@@ -65,7 +65,7 @@ public class PlayerMoveBase : MonoBehaviour
 			isGrounded = value;
 		}
 	}
-	private bool isGrounded;
+	private bool isGrounded, isAtWall;
 
 	// Use this for initialization
 	protected virtual void Start ()
@@ -76,7 +76,8 @@ public class PlayerMoveBase : MonoBehaviour
 	// Update is called once per frame
 	protected virtual void Update ()
 	{
-		if (isGrounded)
+		print(isGrounded + " : " + isAtWall);
+		if (isGrounded && !isAtWall)
 		{
 			if (Input.GetKey (Left))
 			{
@@ -92,7 +93,7 @@ public class PlayerMoveBase : MonoBehaviour
 				isGrounded = false;
 			}
 		}
-		if (!isGrounded)
+		if (!isGrounded && !isAtWall)
 		{
 			if (Input.GetKey (Left))
 			{
@@ -112,16 +113,24 @@ public class PlayerMoveBase : MonoBehaviour
 
 	protected virtual void OnCollisionEnter2D (Collision2D other)
 	{
-		isGrounded = true;
+		if (Physics2D.Raycast ((Vector2) transform.position, Vector2.down, .5f))
+		{
+			isGrounded = true;
+		}
 	}
 
-	protected virtual void DoPassivePower()
+	protected virtual void OnCollisionExit2D (Collision2D other)
+	{
+		isAtWall = false;
+	}
+
+	protected virtual void DoPassivePower ()
 	{
 
 	}
 
-	protected virtual void DoActivePower()
+	protected virtual void DoActivePower ()
 	{
-		
+
 	}
 }
