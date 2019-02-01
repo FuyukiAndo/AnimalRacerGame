@@ -377,6 +377,7 @@ MonoBehaviour:
   normalMat: {fileID: 6200000, guid: 74d2b6a2a30f1c24e9f2b63a48682bda, type: 2}
   powerMaxTime: 3
   cooldownTime: 5
+  maxSlideDist: 0
 --- !u!23 &556339056
 MeshRenderer:
   m_ObjectHideFlags: 0

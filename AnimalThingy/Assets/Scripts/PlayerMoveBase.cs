@@ -125,18 +125,34 @@ public class PlayerMoveBase : MonoBehaviour
 
 			if (Input.GetKey (Left) && rb.velocity.x > 0)
 			{
-				rb.AddForce(new Vector2(airTurningForce * -1, 0f));
+				rb.AddForce (new Vector2 (airTurningForce * -1, 0f));
 			}
 			if (Input.GetKey (Right) && rb.velocity.x < 0)
 			{
-				rb.AddForce(new Vector2(airTurningForce, 0f));
+				rb.AddForce (new Vector2 (airTurningForce, 0f));
 			}
 		}
 	}
 
 	protected virtual void FixedUpdate ()
 	{
+		RaycastHit2D hit2d = Physics2D.Raycast ((Vector2) transform.position - new Vector2 (0f, 1f), Vector2.down);
+		if (hit2d.transform != null)
+		{
+			if (Vector2.Dot (hit2d.transform.up, Vector2.up) < 1f)
+			{
+				isGrounded = true;
+				rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+				if (!Input.GetKey (Left) && !Input.GetKey (Right) && !Input.GetKey (Jump))
+				{
+					rb.constraints = RigidbodyConstraints2D.FreezePosition;
+				}
+			}
+		}
 
+		//Check if hit is sloped
+		//Stabilize rotation
+		//Set velocity to zero if no input
 	}
 
 	protected virtual void OnCollisionEnter2D (Collision2D other)
@@ -199,6 +215,6 @@ public class PlayerMoveBase : MonoBehaviour
 
 	protected virtual void OnDrawGizmos ()
 	{
-		
+
 	}
 }
