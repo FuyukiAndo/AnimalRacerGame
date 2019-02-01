@@ -31,6 +31,7 @@ public class PlayerMoveBase : MonoBehaviour
 
 	[SerializeField] private float moveSpeed, jumpForce;
 	[SerializeField] private KeyCode Jump, Left, Right;
+	[SerializeField] private float airTurningForce;
 
 	protected Rigidbody2D RB
 	{
@@ -65,7 +66,15 @@ public class PlayerMoveBase : MonoBehaviour
 			isGrounded = value;
 		}
 	}
+	public bool IsAtWall
+	{
+		get
+		{
+			return isAtWall;
+		}
+	}
 	private bool isGrounded, isAtWall;
+	private Vector2 wallDir;
 
 	// Use this for initialization
 	protected virtual void Start ()
@@ -76,8 +85,8 @@ public class PlayerMoveBase : MonoBehaviour
 	// Update is called once per frame
 	protected virtual void Update ()
 	{
-		print(isGrounded + " : " + isAtWall);
-		if (isGrounded && !isAtWall)
+		print (isGrounded + " : " + isAtWall);
+		if (isGrounded)
 		{
 			if (Input.GetKey (Left))
 			{
@@ -89,19 +98,38 @@ public class PlayerMoveBase : MonoBehaviour
 			}
 			if (Input.GetKeyDown (Jump))
 			{
-				rb.AddForce (new Vector2 (0f, jumpForce), ForceMode2D.Impulse);
 				isGrounded = false;
+				rb.AddForce (new Vector2 (0f, jumpForce), ForceMode2D.Impulse);
 			}
 		}
-		if (!isGrounded && !isAtWall)
+		if (!isGrounded)
 		{
-			if (Input.GetKey (Left))
+			if (isAtWall)
 			{
-				rb.velocity = new Vector2 (moveSpeed * -1, rb.velocity.y);
+				if (wallDir == Vector2.right)
+				{
+					if (Input.GetKey (Left))
+					{
+						isAtWall = false;
+					}
+				}
+				else if (wallDir == Vector2.left)
+				{
+					if (Input.GetKey (Right))
+					{
+						isAtWall = false;
+					}
+				}
+				rb.velocity = new Vector2 (rb.velocity.x, -1.5f);
 			}
-			if (Input.GetKey (Right))
+
+			if (Input.GetKey (Left) && rb.velocity.x > 0)
 			{
-				rb.velocity = new Vector2 (moveSpeed, rb.velocity.y);
+				rb.AddForce(new Vector2(airTurningForce * -1, 0f));
+			}
+			if (Input.GetKey (Right) && rb.velocity.x < 0)
+			{
+				rb.AddForce(new Vector2(airTurningForce, 0f));
 			}
 		}
 	}
@@ -113,18 +141,53 @@ public class PlayerMoveBase : MonoBehaviour
 
 	protected virtual void OnCollisionEnter2D (Collision2D other)
 	{
-		if (Physics2D.Raycast ((Vector2) transform.position, Vector2.down, .5f))
+		if (Physics2D.Raycast ((Vector2) transform.position - new Vector2 (0f, 1f), Vector2.down, .5f))
 		{
 			isGrounded = true;
 		}
+
+		if (Physics2D.Raycast ((Vector2) transform.position + new Vector2 (1f, 0f), Vector2.right, .5f))
+		{
+			isAtWall = true;
+			wallDir = Vector2.right;
+		}
+		else if (Physics2D.Raycast ((Vector2) transform.position - new Vector2 (1f, 0f), Vector2.left, .5f))
+		{
+			isAtWall = true;
+			wallDir = Vector2.left;
+		}
+	}
+
+	protected virtual void OnCollisionStay2D (Collision2D other)
+	{
+
 	}
 
 	protected virtual void OnCollisionExit2D (Collision2D other)
 	{
-		isAtWall = false;
+		if (!Physics2D.Raycast ((Vector2) transform.position + new Vector2 (1f, 0f), Vector2.right, .5f))
+		{
+			isAtWall = false;
+			wallDir = new Vector2 ();
+		}
+		else if (!Physics2D.Raycast ((Vector2) transform.position - new Vector2 (1f, 0f), Vector2.left, .5f))
+		{
+			isAtWall = false;
+			wallDir = new Vector2 ();
+		}
 	}
 
-	protected virtual void DoPassivePower ()
+	protected virtual void OnTriggerEnter2D (Collider2D other)
+	{
+
+	}
+
+	protected virtual void OnTriggerStay2D (Collider2D other)
+	{
+
+	}
+
+	protected virtual void OnTriggerExit2D (Collider2D other)
 	{
 
 	}
@@ -132,5 +195,10 @@ public class PlayerMoveBase : MonoBehaviour
 	protected virtual void DoActivePower ()
 	{
 
+	}
+
+	protected virtual void OnDrawGizmos ()
+	{
+		
 	}
 }
