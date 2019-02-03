@@ -369,6 +369,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 3
   jumpForce: 5
+  slopeAngleThreshhold: 40
   Jump: 32
   Left: 97
   Right: 100

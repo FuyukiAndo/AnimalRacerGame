@@ -29,7 +29,7 @@ public class PlayerMoveBase : MonoBehaviour
 		}
 	}
 
-	[SerializeField] private float moveSpeed, jumpForce;
+	[SerializeField] private float moveSpeed, jumpForce, slopeAngleThreshhold;
 	[SerializeField] private KeyCode Jump, Left, Right;
 	[SerializeField] private float airTurningForce;
 
@@ -75,26 +75,46 @@ public class PlayerMoveBase : MonoBehaviour
 	}
 	private bool isGrounded, isAtWall;
 	private Vector2 wallDir;
+	private float slopeAngle;
+	private RaycastHit2D hit2d;
 
 	// Use this for initialization
 	protected virtual void Start ()
 	{
 		rb = GetComponent<Rigidbody2D> ();
+		rb.freezeRotation = true;
 	}
 
 	// Update is called once per frame
 	protected virtual void Update ()
 	{
-		print (isGrounded + " : " + isAtWall);
+		print (isGrounded + " : " + isAtWall + " : " + CheckForSlope ());
 		if (isGrounded)
 		{
-			if (Input.GetKey (Left))
+			if (CheckForSlope ())
 			{
-				rb.velocity = new Vector2 (moveSpeed * -1, rb.velocity.y);
+				rb.velocity = Vector2.zero;
+				Vector2 moveRight = GetRotationForSlope().normalized * moveSpeed;
+				Vector2 moveLeft = (GetRotationForSlope().normalized * -1) * moveSpeed;
+				if (Input.GetKey (Left))
+				{
+					rb.velocity = moveLeft;
+				}
+				if (Input.GetKey (Right))
+				{
+					rb.velocity = moveRight;
+				}
 			}
-			if (Input.GetKey (Right))
+			else
 			{
-				rb.velocity = new Vector2 (moveSpeed, rb.velocity.y);
+				if (Input.GetKey (Left))
+				{
+					rb.velocity = Vector2.Scale (transform.right, new Vector2 (moveSpeed * -1, rb.velocity.y));
+				}
+				if (Input.GetKey (Right))
+				{
+					rb.velocity = Vector2.Scale (transform.right, new Vector2 (moveSpeed, rb.velocity.y));
+				}
 			}
 			if (Input.GetKeyDown (Jump))
 			{
@@ -123,11 +143,11 @@ public class PlayerMoveBase : MonoBehaviour
 				rb.velocity = new Vector2 (rb.velocity.x, -1.5f);
 			}
 
-			if (Input.GetKey (Left) && rb.velocity.x > 0)
+			if (Input.GetKey (Left) && rb.velocity.x >= 0f)
 			{
 				rb.AddForce (new Vector2 (airTurningForce * -1, 0f));
 			}
-			if (Input.GetKey (Right) && rb.velocity.x < 0)
+			if (Input.GetKey (Right) && rb.velocity.x <= 0f)
 			{
 				rb.AddForce (new Vector2 (airTurningForce, 0f));
 			}
@@ -136,38 +156,22 @@ public class PlayerMoveBase : MonoBehaviour
 
 	protected virtual void FixedUpdate ()
 	{
-		RaycastHit2D hit2d = Physics2D.Raycast ((Vector2) transform.position - new Vector2 (0f, 1f), Vector2.down);
-		if (hit2d.transform != null)
-		{
-			if (Vector2.Dot (hit2d.transform.up, Vector2.up) < 1f)
-			{
-				isGrounded = true;
-				rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-				if (!Input.GetKey (Left) && !Input.GetKey (Right) && !Input.GetKey (Jump))
-				{
-					rb.constraints = RigidbodyConstraints2D.FreezePosition;
-				}
-			}
-		}
 
-		//Check if hit is sloped
-		//Stabilize rotation
-		//Set velocity to zero if no input
 	}
 
 	protected virtual void OnCollisionEnter2D (Collision2D other)
 	{
-		if (Physics2D.Raycast ((Vector2) transform.position - new Vector2 (0f, 1f), Vector2.down, .5f))
+		if (Physics2D.Raycast ((Vector2) transform.position - new Vector2 (0f, .6f), Vector2.down, .5f))
 		{
 			isGrounded = true;
 		}
 
-		if (Physics2D.Raycast ((Vector2) transform.position + new Vector2 (1f, 0f), Vector2.right, .5f))
+		if (Physics2D.Raycast ((Vector2) transform.position + new Vector2 (1f, 0f), Vector2.right, .1f))
 		{
 			isAtWall = true;
 			wallDir = Vector2.right;
 		}
-		else if (Physics2D.Raycast ((Vector2) transform.position - new Vector2 (1f, 0f), Vector2.left, .5f))
+		else if (Physics2D.Raycast ((Vector2) transform.position - new Vector2 (1f, 0f), Vector2.left, .1f))
 		{
 			isAtWall = true;
 			wallDir = Vector2.left;
@@ -181,12 +185,12 @@ public class PlayerMoveBase : MonoBehaviour
 
 	protected virtual void OnCollisionExit2D (Collision2D other)
 	{
-		if (!Physics2D.Raycast ((Vector2) transform.position + new Vector2 (1f, 0f), Vector2.right, .5f))
+		if (!Physics2D.Raycast ((Vector2) transform.position + new Vector2 (1f, 0f), Vector2.right, .1f))
 		{
 			isAtWall = false;
 			wallDir = new Vector2 ();
 		}
-		else if (!Physics2D.Raycast ((Vector2) transform.position - new Vector2 (1f, 0f), Vector2.left, .5f))
+		else if (!Physics2D.Raycast ((Vector2) transform.position - new Vector2 (1f, 0f), Vector2.left, .1f))
 		{
 			isAtWall = false;
 			wallDir = new Vector2 ();
@@ -216,5 +220,23 @@ public class PlayerMoveBase : MonoBehaviour
 	protected virtual void OnDrawGizmos ()
 	{
 
+	}
+
+	private Vector2 GetRotationForSlope ()
+	{
+		return (Quaternion.FromToRotation (Vector2.up, hit2d.normal) * transform.rotation) * Vector2.right;
+	}
+
+	private bool CheckForSlope ()
+	{
+		hit2d = Physics2D.Raycast ((Vector2) transform.position - new Vector2 (0f, .6f), Vector2.down, 1f);
+		if (hit2d.transform == null) return false;
+		slopeAngle = Mathf.Abs (hit2d.transform.rotation.z); //Mathf.Abs (Mathf.Atan2 (hit2d.normal.x, hit2d.normal.y) * Mathf.Rad2Deg);
+
+		if (Vector2.Dot (hit2d.transform.up, Vector2.up) < 1f && slopeAngle < slopeAngleThreshhold)
+		{
+			return true;
+		}
+		return false;
 	}
 }
