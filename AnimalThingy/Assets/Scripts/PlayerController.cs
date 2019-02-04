@@ -10,7 +10,8 @@ public class PlayerController : MonoBehaviour {
     public int JumpStrenght;
     public float distanceBeforeFlight = 100;
     public float glidGravity = 0.1f;
-    public LayerMask groundLayer;
+    
+    public LayerMask groundLayer, spikeLayer;
 
 
     private Rigidbody2D rb2d;
@@ -31,8 +32,9 @@ public class PlayerController : MonoBehaviour {
         
 	}
 	void FixedUpdate () {
-        Debug.DrawRay(transform.position, Vector3.down * (distanceToGround + 1f), Color.red);
+        Debug.DrawRay(transform.position, Vector3.up * (distanceToGround + 1f), Color.red);
         ifGrouded();
+        hitSpike();
         HorizontalMovement();
         VerticalMovement();
     }
@@ -46,6 +48,14 @@ public class PlayerController : MonoBehaviour {
         else
         {
             isGrounded = false;
+        }
+    }
+    void hitSpike()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up, distanceToGround + 1f, spikeLayer);
+        if(hit.collider != null)
+        {
+            Debug.Log("Stunned");
         }
     }
     void HorizontalMovement()
