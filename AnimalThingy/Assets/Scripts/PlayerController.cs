@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour {
 	void FixedUpdate () {
         Debug.DrawRay(transform.position, Vector3.up * (distanceToGround + 1f), Color.red);
         ifGrouded();
-        hitSpike();
+        //hitSpike();
         HorizontalMovement();
         VerticalMovement();
     }
@@ -48,14 +48,6 @@ public class PlayerController : MonoBehaviour {
         else
         {
             isGrounded = false;
-        }
-    }
-    void hitSpike()
-    {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up, distanceToGround + 1f, spikeLayer);
-        if(hit.collider != null)
-        {
-            Debug.Log("Stunned");
         }
     }
     void HorizontalMovement()
@@ -103,6 +95,13 @@ public class PlayerController : MonoBehaviour {
         //{
         //    rb2d.velocity = new Vector2(rb2d.velocity.x, -glidGravity);
         //}
+    }
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.layer == 9)
+        {
+            Debug.Log("Stunned");
+        }
     }
 
 }

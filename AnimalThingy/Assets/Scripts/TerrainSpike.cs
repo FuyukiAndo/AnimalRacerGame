@@ -20,7 +20,7 @@ public class TerrainSpike : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
          startFalling += Time.deltaTime;
 		if(startFalling > timeBeforeSpikeFalls)
         {
