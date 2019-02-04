@@ -91,18 +91,18 @@ public class PlayerController : MonoBehaviour {
     }
     void VerticalMovement()
     {
-        if (currentDistanceToFlight > distanceBeforeFlight || currentDistanceToFlight < -distanceBeforeFlight)
-        {
+        //if (currentDistanceToFlight > distanceBeforeFlight || currentDistanceToFlight < -distanceBeforeFlight)
+        //{
             if (Input.GetKey("w") && isGrounded == true)
             {
                 rb2d.AddForce(new Vector2(0, JumpStrenght));
                 currentDistanceToFlight = 0;    
             }
-        }
-        if(Input.GetKey("w") && isGrounded == false && rb2d.velocity.y < 0)
-        {
-            rb2d.velocity = new Vector2(rb2d.velocity.x, -glidGravity);
-        }
+        //}
+        //if(Input.GetKey("w") && isGrounded == false && rb2d.velocity.y < 0)
+        //{
+        //    rb2d.velocity = new Vector2(rb2d.velocity.x, -glidGravity);
+        //}
     }
 
 }
