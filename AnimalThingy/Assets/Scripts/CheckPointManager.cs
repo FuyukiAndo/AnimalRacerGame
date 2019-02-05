@@ -121,25 +121,65 @@ public class CheckpointManager : MonoBehaviour
 
 	CheckpointTracker GetPlayerClosestToGoal()
 	{
-		int checkIndex = 0;
-		int trackerIndex = 0;
-		for (int i = 0; i < unplacedPlayers.Count; i++)
+		if (passInSequence)
 		{
-			if (unplacedPlayers[i].GetCurrentCheckpointIndex() > checkIndex)
+			int checkIndex = 0;
+			int trackerIndex = 0;
+			for (int i = 0; i < unplacedPlayers.Count; i++)
 			{
-				checkIndex = unplacedPlayers[i].GetCurrentCheckpointIndex();
-				trackerIndex = i;
+				if (unplacedPlayers[i].GetCurrentCheckpointIndex() > checkIndex)
+				{
+					checkIndex = unplacedPlayers[i].GetCurrentCheckpointIndex();
+					trackerIndex = i;
+				}
 			}
+			foreach (var tracker in unplacedPlayers)
+			{
+				if (AtSameCheckpoint(unplacedPlayers[trackerIndex], tracker))
+				{
+					trackerIndex = Array.IndexOf(unplacedPlayers.ToArray(),
+						GetPlayerClosestToNextCheckpoint(unplacedPlayers[trackerIndex], tracker));
+				}
+			}
+			return unplacedPlayers[trackerIndex];
 		}
-		foreach (var tracker in unplacedPlayers)
+		else
 		{
-			if (AtSameCheckpoint(unplacedPlayers[trackerIndex], tracker))
+			int checksPassed = 0;
+			int trackerIndex = 0;
+			for (int i = 0; i < unplacedPlayers.Count; i++)
 			{
-				trackerIndex = Array.IndexOf(unplacedPlayers.ToArray(),
-				GetPlayerClosestToNextCheckpoint(unplacedPlayers[trackerIndex], tracker));
+				if (unplacedPlayers[i].CheckpointsPassed.Count > checksPassed)
+				{
+					checksPassed = unplacedPlayers[i].CheckpointsPassed.Count;
+					trackerIndex = i;
+				}
 			}
+			foreach (var tracker in unplacedPlayers)
+			{
+				if (SameAmountOfChecksPassed(unplacedPlayers[trackerIndex], tracker))
+				{
+					trackerIndex = Array.IndexOf(unplacedPlayers.ToArray(),
+						GetClosestToGoal(unplacedPlayers[trackerIndex], tracker));
+				}
+			}
+			return unplacedPlayers[trackerIndex];
 		}
-		return unplacedPlayers[trackerIndex];
+	}
+
+	float GetDistToGoal(CheckpointTracker tracker)
+	{
+		return ((Vector2)transform.position - tracker.GetCurrentPosition()).magnitude;
+	}
+
+	CheckpointTracker GetClosestToGoal(CheckpointTracker trackerA, CheckpointTracker trackerB)
+	{
+		return GetDistToGoal(trackerA) < GetDistToGoal(trackerB) ? trackerA : trackerB;
+	}
+
+	bool SameAmountOfChecksPassed(CheckpointTracker trackerA, CheckpointTracker trackerB)
+	{
+		return trackerA.CheckpointsPassed.Count == trackerB.CheckpointsPassed.Count;
 	}
 
 }
