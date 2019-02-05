@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class CheckpointManager : MonoBehaviour
 {
@@ -18,23 +19,25 @@ public class CheckpointManager : MonoBehaviour
 	}
 	private static CheckpointManager instance;
 
-	private List<GameObject> placedPlayers;
+	private List<GameObject> placedPlayers = new List<GameObject>();
 	private bool startCountDown;
-	private List<CheckpointTracker> unplacedPlayers;
+	private List<CheckpointTracker> unplacedPlayers = new List<CheckpointTracker>();
+	[SerializeField] private Vector2[] playerGoalPositions;
+	[SerializeField] private string playerMoveScriptName;
 
 	void Start()
 	{
 		if (instance == null)
 		{
 			instance = this;
-			foreach (var tracker in FindObjectsOfType<CheckpointTracker>())
-			{
-				unplacedPlayers.Add(tracker);
-			}
 		}
 		else if (instance != this)
 		{
 			Destroy(gameObject);
+		}
+		foreach (var tracker in FindObjectsOfType<CheckpointTracker>())
+		{
+			unplacedPlayers.Add(tracker);
 		}
 	}
 
@@ -50,25 +53,41 @@ public class CheckpointManager : MonoBehaviour
 		}
 	}
 
-	void OnTriggerEnter2D(Collider2D other)
+	void OnCollisionEnter2D(Collision2D other)
 	{
-		if (ValidateTracker(other.GetComponent<CheckpointTracker>()) && countDownOnFirstPlayer && !startCountDown)
+		if (ValidateTracker(other.transform.GetComponent<CheckpointTracker>()) && countDownOnFirstPlayer && !startCountDown)
 		{
-			placedPlayers.Add(other.gameObject);
-			int index = Array.IndexOf(unplacedPlayers.ToArray(), other.GetComponent<CheckpointTracker>());
-			unplacedPlayers.RemoveAt(index);
+			//placedPlayers.Add(other.gameObject);
+			PlacePlayers();
+			//int index = Array.IndexOf(unplacedPlayers.ToArray(), other.transform.GetComponent<CheckpointTracker>());
+			//unplacedPlayers.RemoveAt(index);
 			startCountDown = true;
 		}
-		else if (ValidateTracker(other.GetComponent<CheckpointTracker>()) && startCountDown)
+		else if (ValidateTracker(other.transform.GetComponent<CheckpointTracker>()) && startCountDown)
 		{
-			placedPlayers.Add(other.gameObject);
-			int index = Array.IndexOf(unplacedPlayers.ToArray(), other.GetComponent<CheckpointTracker>());
-			unplacedPlayers.RemoveAt(index);
+			//placedPlayers.Add(other.gameObject);
+			PlacePlayers();
+			//int index = Array.IndexOf(unplacedPlayers.ToArray(), other.transform.GetComponent<CheckpointTracker>());
+			//unplacedPlayers.RemoveAt(index);
+		}
+		else if (ValidateTracker(other.transform.GetComponent<CheckpointTracker>()) && !countDownOnFirstPlayer)
+		{
+			//placedPlayers.Add(other.gameObject);
+			PlacePlayers();
+			//int index = Array.IndexOf(unplacedPlayers.ToArray(), other.transform.GetComponent<CheckpointTracker>());
+			//unplacedPlayers.RemoveAt(index);
 		}
 	}
 
 	bool ValidateTracker(CheckpointTracker tracker)
 	{
+		foreach (var placed in placedPlayers)
+		{
+			if (tracker.gameObject == placed)
+			{
+				return false;
+			}
+		}
 		if (passInSequence)
 		{
 			for (int i = 0; i < checksToPass.Length; i++)
@@ -98,8 +117,11 @@ public class CheckpointManager : MonoBehaviour
 	void PlacePlayers()
 	{
 		CheckpointTracker closestTracker = GetPlayerClosestToGoal();
-		int index = Array.IndexOf(unplacedPlayers.ToArray(), closestTracker);
+		int index = unplacedPlayers.IndexOf(closestTracker);
 		placedPlayers.Add(GetPlayerClosestToGoal().gameObject);
+		int index1 = placedPlayers.IndexOf(closestTracker.gameObject);
+		placedPlayers[index1].transform.position = playerGoalPositions[index1];
+		TrapPlayers();
 		unplacedPlayers.RemoveAt(index);
 	}
 
@@ -180,6 +202,21 @@ public class CheckpointManager : MonoBehaviour
 	bool SameAmountOfChecksPassed(CheckpointTracker trackerA, CheckpointTracker trackerB)
 	{
 		return trackerA.CheckpointsPassed.Count == trackerB.CheckpointsPassed.Count;
+	}
+
+	void TrapPlayers()
+	{
+		//string componentName = playerMoveScript.GetType().ToString();
+		foreach (var player in placedPlayers)
+		{
+			MonoBehaviour script = player.GetComponent(playerMoveScriptName)as MonoBehaviour;
+			script.enabled = false;
+			if (player.GetComponent<Rigidbody2D>())
+			{
+				player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+				player.GetComponent<Rigidbody2D>().isKinematic = true;
+			}
+		}
 	}
 
 }

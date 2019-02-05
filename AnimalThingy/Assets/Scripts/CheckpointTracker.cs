@@ -11,7 +11,7 @@ public class CheckpointTracker : MonoBehaviour
 			return checkPointsPassed;
 		}
 	}
-	private List<int> checkPointsPassed;
+	private List<int> checkPointsPassed = new List<int>();
 	private int lastCheckpointPassed = 0;
 
 	void OnTriggerEnter2D(Collider2D other)
@@ -30,11 +30,14 @@ public class CheckpointTracker : MonoBehaviour
 			}
 			else
 			{
-				foreach (var index in checkPointsPassed)
+				if (checkPointsPassed.Count > 0)
 				{
-					if (index == checkPoint.Index)
+					foreach (var index in checkPointsPassed)
 					{
-						return;
+						if (index == checkPoint.Index)
+						{
+							return;
+						}
 					}
 				}
 				checkPointsPassed.Add(checkPoint.Index);
