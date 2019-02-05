@@ -25,7 +25,7 @@ public class TerrainSnowball : MonoBehaviour {
         rb2d.AddForce(movement);
 	}
 
-    void hitWall()
+    public void hitWall()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right, dir, wallLayer);
         if(hit.collider != null)

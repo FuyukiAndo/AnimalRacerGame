@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour {
     public int JumpStrenght;
     public float distanceBeforeFlight = 100;
     public float glidGravity = 0.1f;
+    public int hp = 3;
     
     public LayerMask groundLayer, spikeLayer;
 
@@ -98,10 +99,23 @@ public class PlayerController : MonoBehaviour {
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
+      
         if(collision.gameObject.layer == 9)
         {
-            Debug.Log("Stunned");
+            getStunned();
         }
+        if (collision.gameObject.layer == 11)
+        {
+            getKilled();
+        }
+    }
+    public void getStunned()
+    {
+        Debug.Log("Stunned");
+    }
+    public void getKilled()
+    {
+        Destroy(gameObject);
     }
 
 }
