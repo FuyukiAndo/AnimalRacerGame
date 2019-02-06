@@ -2,13 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TerrainSpikeSpawner : MonoBehaviour {
+public class TerrainSpikeSpawner : Spawner{
 
-    public GameObject spike;
-    public float timeBetweenSpawns;
     public bool wantSpikeToDisappearFirst;
 
-    private float spawnClock;
 	// Use this for initialization
 	void Start () {
 		
@@ -16,11 +13,7 @@ public class TerrainSpikeSpawner : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if(spawnClock > timeBetweenSpawns)
-        {
-            Instantiate(spike, transform.position, new Quaternion(0,0,0,0), gameObject.transform);
-            spawnClock = 0;
-        }
+        SpawnObject(transform,spawnObject);
         if(transform.childCount > 0 && wantSpikeToDisappearFirst == true)
         {
             spawnClock = 0;
