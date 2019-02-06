@@ -27,6 +27,7 @@ public class StartManager : MonoBehaviour
 			timeUntilStart = value;
 		}
 	}
+
 	[SerializeField] private int timeUntilStart;
 	[SerializeField] private Vector2[] playerStartPositions;
 	[SerializeField] private bool startCountDownOnSceneLoad;
@@ -66,9 +67,11 @@ public class StartManager : MonoBehaviour
 		{
 			MonoBehaviour script = player.GetComponent(playerMoveScript)as MonoBehaviour;
 			script.enabled = true;
-			if (player.GetComponent<Rigidbody2D>())
+			if (player.GetComponentInChildren<Rigidbody2D>())
 			{
-				player.GetComponent<Rigidbody2D>().isKinematic = false;
+				//player.GetComponent<Rigidbody2D>().isKinematic = false;
+				player.GetComponentInChildren<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+				player.GetComponentInChildren<Rigidbody2D>().simulated = true;
 			}
 		}
 	}
@@ -80,9 +83,11 @@ public class StartManager : MonoBehaviour
 		{
 			MonoBehaviour script = player.GetComponent(playerMoveScript)as MonoBehaviour;
 			script.enabled = false;
-			if (player.GetComponent<Rigidbody2D>())
+			if (player.GetComponentInChildren<Rigidbody2D>())
 			{
-				player.GetComponent<Rigidbody2D>().isKinematic = true;
+				//player.GetComponent<Rigidbody2D>().isKinematic = true;
+				player.GetComponentInChildren<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+				player.GetComponentInChildren<Rigidbody2D>().simulated = false;
 			}
 		}
 	}
