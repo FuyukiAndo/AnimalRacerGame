@@ -471,7 +471,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 616450139}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c261438f141dd9418540042368a0f09, type: 3}
+  m_Script: {fileID: 11500000, guid: 6f0cd6192080c1e44b73bf48989786e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   passInSequence: 0
@@ -479,11 +479,9 @@ MonoBehaviour:
   checksToPass:
   - {fileID: 1282378658}
   timeBeforeAutoPlacements: 30
-  placedPlayers: []
-  unplacedPlayers: []
   playerGoalPositions:
   - {x: -5, y: 1.5}
-  playerMoveScript: PlayerMoveBase
+  playerMoveScriptName: 
 --- !u!4 &616450141
 Transform:
   m_ObjectHideFlags: 0

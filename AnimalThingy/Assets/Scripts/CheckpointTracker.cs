@@ -19,7 +19,7 @@ public class CheckpointTracker : MonoBehaviour
 		if (other.GetComponent<Checkpoint>())
 		{
 			Checkpoint checkPoint = other.GetComponent<Checkpoint>();
-			if (CheckpointManager.Instance.passInSequence)
+			if (GoalManager.Instance.passInSequence)
 			{
 				if (checkPoint.Index == lastCheckpointPassed + 1)
 				{

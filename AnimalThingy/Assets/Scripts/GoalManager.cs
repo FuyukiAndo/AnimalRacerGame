@@ -1,23 +1,24 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
+using UnityEngine;
 
-public class CheckpointManager : MonoBehaviour
+[RequireComponent(typeof(PlatformEffector2D))]
+public class GoalManager : MonoBehaviour
 {
 	public bool passInSequence, countDownOnFirstPlayer;
 	public Checkpoint[] checksToPass;
 	public float timeBeforeAutoPlacements;
 
-	public static CheckpointManager Instance
+	public static GoalManager Instance
 	{
 		get
 		{
 			return instance;
 		}
 	}
-	private static CheckpointManager instance;
+	private static GoalManager instance;
 
 	private List<GameObject> placedPlayers = new List<GameObject>();
 	private bool startCountDown;
