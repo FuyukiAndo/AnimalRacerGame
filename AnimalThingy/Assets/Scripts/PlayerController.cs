@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class PlayerController : MonoBehaviour {
 
@@ -21,6 +22,7 @@ public class PlayerController : MonoBehaviour {
     private float distanceToGround;
     private bool isGrounded;
     public float currentDistanceToFlight;
+    public bool pengvin;
 
 
 
@@ -30,7 +32,6 @@ public class PlayerController : MonoBehaviour {
         bc2d = GetComponent<BoxCollider2D>();
         currentDistanceToFlight = 0;
         distanceToGround = bc2d.bounds.extents.y;
-        
 	}
 	void FixedUpdate () {
         Debug.DrawRay(transform.position, Vector3.up * (distanceToGround + 1f), Color.red);
@@ -104,7 +105,10 @@ public class PlayerController : MonoBehaviour {
         {
             getStunned();
         }
-        if (collision.gameObject.layer == 11)
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 4 && pengvin == false)
         {
             getKilled();
         }
