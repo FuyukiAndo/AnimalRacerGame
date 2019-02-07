@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+using System;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class CheckpointTracker : MonoBehaviour
@@ -14,7 +16,8 @@ public class CheckpointTracker : MonoBehaviour
 	}
 	private List<int> checkPointsPassed = new List<int>();
 	private int lastCheckpointPassed = 0;
-	[SerializeField] private Vector2 boxSize;
+	[SerializeField] private Vector2 boxSize, checkpointSearchSize;
+	[SerializeField] private float initialCheckpointTipDelay, recurringCheckpointTipDelay;
 
 	void Update()
 	{
@@ -23,7 +26,6 @@ public class CheckpointTracker : MonoBehaviour
 		{
 			if (collider.GetComponent<Checkpoint>())
 			{
-				print("check");
 				Checkpoint checkPoint = collider.GetComponent<Checkpoint>();
 				if (GoalManager.Instance.passInSequence)
 				{
@@ -62,8 +64,54 @@ public class CheckpointTracker : MonoBehaviour
 		return checkPointsPassed[checkPointsPassed.Count - 1];
 	}
 
-	void OnDrawGizmos()
+	IEnumerator FindNearestCheckpointNotTaken()
 	{
-		Gizmos.DrawWireCube(transform.position, boxSize);
+		yield return new WaitForSeconds(initialCheckpointTipDelay);
+		while (true)
+		{
+			GetNearestNotTakenCheckpoint();
+			yield return new WaitForSeconds(recurringCheckpointTipDelay);
+		}
+
+	}
+
+	Checkpoint GetNearestNotTakenCheckpoint()
+	{
+		Checkpoint point1 = null, point2 = null, closest = null;
+		//Find all colliders
+		Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position, checkpointSearchSize, 0f);
+		List<Checkpoint> checkpoints = new List<Checkpoint>();
+		//Find all checkpoints
+		foreach (var collider in colliders)
+		{
+			if (collider.GetComponent<Checkpoint>())
+			{
+				checkpoints.Add(collider.GetComponent<Checkpoint>());
+			}
+		}
+		//Remove the checkpoints the player has already passed
+		for (int i = 0; i < checkPointsPassed.Count; i++)
+		{
+			if (checkpoints[i].Index == checkPointsPassed[i])
+			{
+				checkpoints.RemoveAt(i);
+			}
+		}
+		//Check the distance & set the closest checkpoint
+		for (int i = 0; i < checkpoints.Count; i++)
+		{
+			point1 = checkpoints[i];
+			point2 = checkpoints[i + 1];
+			if ((point1.transform.position - transform.position).magnitude < 
+			(point2.transform.position - transform.position).magnitude)
+			{
+				closest = point1;
+			}
+			else
+			{
+				closest = point2;
+			}
+		}
+		return closest;
 	}
 }
