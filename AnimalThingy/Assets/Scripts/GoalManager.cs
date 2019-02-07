@@ -22,7 +22,7 @@ public class GoalManager : MonoBehaviour
 
 	private List<GameObject> placedPlayers = new List<GameObject>();
 	private bool startCountDown;
-	private List<GameObject> unplacedPlayers = new List<GameObject>();
+	private List<CheckpointTracker> unplacedPlayers = new List<CheckpointTracker>();
 	[SerializeField] private Vector2[] playerGoalPositions;
 	[SerializeField] private string playerMoveScriptName;
 
@@ -38,7 +38,7 @@ public class GoalManager : MonoBehaviour
 		}
 		foreach (var tracker in FindObjectsOfType<CheckpointTracker>())
 		{
-			unplacedPlayers.Add(tracker.transform.parent.gameObject);
+			unplacedPlayers.Add(tracker);
 		}
 	}
 
@@ -118,7 +118,7 @@ public class GoalManager : MonoBehaviour
 	void PlacePlayers()
 	{
 		CheckpointTracker closestTracker = GetPlayerClosestToGoal();
-		int index = unplacedPlayers.IndexOf(closestTracker.transform.parent.gameObject);
+		int index = unplacedPlayers.IndexOf(closestTracker);
 		placedPlayers.Add(GetPlayerClosestToGoal().gameObject);
 		int index1 = placedPlayers.IndexOf(closestTracker.gameObject);
 		placedPlayers[index1].transform.position = playerGoalPositions[index1];
@@ -150,23 +150,21 @@ public class GoalManager : MonoBehaviour
 			int trackerIndex = 0;
 			for (int i = 0; i < unplacedPlayers.Count; i++)
 			{
-				if (unplacedPlayers[i].GetComponentInChildren<CheckpointTracker>().GetCurrentCheckpointIndex() > checkIndex)
+				if (unplacedPlayers[i].GetCurrentCheckpointIndex() > checkIndex)
 				{
-					checkIndex = unplacedPlayers[i].GetComponentInChildren<CheckpointTracker>().GetCurrentCheckpointIndex();
+					checkIndex = unplacedPlayers[i].GetCurrentCheckpointIndex();
 					trackerIndex = i;
 				}
 			}
 			foreach (var tracker in unplacedPlayers)
 			{
-				if (AtSameCheckpoint(unplacedPlayers[trackerIndex].GetComponentInChildren<CheckpointTracker>(), 
-				tracker.GetComponentInChildren<CheckpointTracker>()))
+				if (AtSameCheckpoint(unplacedPlayers[trackerIndex], tracker))
 				{
 					trackerIndex = Array.IndexOf(unplacedPlayers.ToArray(),
-						GetPlayerClosestToNextCheckpoint(unplacedPlayers[trackerIndex].GetComponentInChildren<CheckpointTracker>(), 
-						tracker.GetComponentInChildren<CheckpointTracker>()));
+						GetPlayerClosestToNextCheckpoint(unplacedPlayers[trackerIndex], tracker));
 				}
 			}
-			return unplacedPlayers[trackerIndex].GetComponentInChildren<CheckpointTracker>();
+			return unplacedPlayers[trackerIndex];
 		}
 		else
 		{
@@ -174,23 +172,21 @@ public class GoalManager : MonoBehaviour
 			int trackerIndex = 0;
 			for (int i = 0; i < unplacedPlayers.Count; i++)
 			{
-				if (unplacedPlayers[i].GetComponentInChildren<CheckpointTracker>().CheckpointsPassed.Count > checksPassed)
+				if (unplacedPlayers[i].CheckpointsPassed.Count > checksPassed)
 				{
-					checksPassed = unplacedPlayers[i].GetComponentInChildren<CheckpointTracker>().CheckpointsPassed.Count;
+					checksPassed = unplacedPlayers[i].CheckpointsPassed.Count;
 					trackerIndex = i;
 				}
 			}
 			foreach (var tracker in unplacedPlayers)
 			{
-				if (SameAmountOfChecksPassed(unplacedPlayers[trackerIndex].GetComponentInChildren<CheckpointTracker>(), 
-				tracker.GetComponentInChildren<CheckpointTracker>()))
+				if (SameAmountOfChecksPassed(unplacedPlayers[trackerIndex], tracker))
 				{
-					trackerIndex = Array.IndexOf(unplacedPlayers.ToArray(),
-						GetClosestToGoal(unplacedPlayers[trackerIndex].GetComponentInChildren<CheckpointTracker>(), 
-						tracker.GetComponentInChildren<CheckpointTracker>()));
+					trackerIndex = Array.IndexOf(unplacedPlayers.ToArray(), GetClosestToGoal(unplacedPlayers[trackerIndex], 
+						tracker));
 				}
 			}
-			return unplacedPlayers[trackerIndex].GetComponentInChildren<CheckpointTracker>();
+			return unplacedPlayers[trackerIndex];
 		}
 	}
 
@@ -216,13 +212,6 @@ public class GoalManager : MonoBehaviour
 		{
 			MonoBehaviour script = player.GetComponent(playerMoveScriptName)as MonoBehaviour;
 			script.enabled = false;
-			if (player.GetComponentInChildren<Rigidbody2D>())
-			{
-				player.GetComponentInChildren<Rigidbody2D>().velocity = Vector2.zero;
-				player.GetComponentInChildren<Rigidbody2D>().isKinematic = true;
-				player.GetComponentInChildren<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
-				player.GetComponentInChildren<Rigidbody2D>().simulated = false;
-			}
 		}
 	}
 

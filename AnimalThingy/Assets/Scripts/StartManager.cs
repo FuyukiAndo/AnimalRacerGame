@@ -67,12 +67,6 @@ public class StartManager : MonoBehaviour
 		{
 			MonoBehaviour script = player.GetComponent(playerMoveScript)as MonoBehaviour;
 			script.enabled = true;
-			if (player.GetComponentInChildren<Rigidbody2D>())
-			{
-				//player.GetComponent<Rigidbody2D>().isKinematic = false;
-				player.GetComponentInChildren<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
-				player.GetComponentInChildren<Rigidbody2D>().simulated = true;
-			}
 		}
 	}
 
@@ -83,12 +77,6 @@ public class StartManager : MonoBehaviour
 		{
 			MonoBehaviour script = player.GetComponent(playerMoveScript)as MonoBehaviour;
 			script.enabled = false;
-			if (player.GetComponentInChildren<Rigidbody2D>())
-			{
-				//player.GetComponent<Rigidbody2D>().isKinematic = true;
-				player.GetComponentInChildren<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
-				player.GetComponentInChildren<Rigidbody2D>().simulated = false;
-			}
 		}
 	}
 

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider2D))]
-[RequireComponent(typeof(Rigidbody2D))]
 public class CheckpointTracker : MonoBehaviour
 {
 	public List<int> CheckpointsPassed
@@ -15,34 +14,40 @@ public class CheckpointTracker : MonoBehaviour
 	}
 	private List<int> checkPointsPassed = new List<int>();
 	private int lastCheckpointPassed = 0;
+	[SerializeField] private Vector2 boxSize;
 
-	void OnTriggerEnter2D(Collider2D other)
+	void Update()
 	{
-		if (other.GetComponent<Checkpoint>())
+		Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position, boxSize, 0f);
+		foreach (var collider in colliders)
 		{
-			Checkpoint checkPoint = other.GetComponent<Checkpoint>();
-			if (GoalManager.Instance.passInSequence)
+			if (collider.GetComponent<Checkpoint>())
 			{
-				if (checkPoint.Index == lastCheckpointPassed + 1)
+				print("check");
+				Checkpoint checkPoint = collider.GetComponent<Checkpoint>();
+				if (GoalManager.Instance.passInSequence)
 				{
-					checkPointsPassed.Add(checkPoint.Index);
-					lastCheckpointPassed = checkPoint.Index;
-					return;
-				}
-			}
-			else
-			{
-				if (checkPointsPassed.Count > 0)
-				{
-					foreach (var index in checkPointsPassed)
+					if (checkPoint.Index == lastCheckpointPassed + 1)
 					{
-						if (index == checkPoint.Index)
-						{
-							return;
-						}
+						checkPointsPassed.Add(checkPoint.Index);
+						lastCheckpointPassed = checkPoint.Index;
+						return;
 					}
 				}
-				checkPointsPassed.Add(checkPoint.Index);
+				else
+				{
+					if (checkPointsPassed.Count > 0)
+					{
+						foreach (var index in checkPointsPassed)
+						{
+							if (index == checkPoint.Index)
+							{
+								return;
+							}
+						}
+					}
+					checkPointsPassed.Add(checkPoint.Index);
+				}
 			}
 		}
 	}
@@ -55,5 +60,10 @@ public class CheckpointTracker : MonoBehaviour
 	public int GetCurrentCheckpointIndex()
 	{
 		return checkPointsPassed[checkPointsPassed.Count - 1];
+	}
+
+	void OnDrawGizmos()
+	{
+		Gizmos.DrawWireCube(transform.position, boxSize);
 	}
 }
