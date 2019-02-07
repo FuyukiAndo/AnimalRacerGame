@@ -51,6 +51,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 898dde1e144e57a4dab4cd5d31e5ef75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnObject: {fileID: 1637937109450924, guid: 042066bca482d394da89ac62a6639fc0,
+  spawnObject: {fileID: 1284739177998074, guid: 042066bca482d394da89ac62a6639fc0,
     type: 2}
   timeBetweenSpawns: 5

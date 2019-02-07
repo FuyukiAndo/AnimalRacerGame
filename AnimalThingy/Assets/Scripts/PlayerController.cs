@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour {
     public int hp = 3;
     
     public LayerMask groundLayer, spikeLayer;
+    public float currentDistanceToFlight;
+    public bool pengvin;
 
 
     private Rigidbody2D rb2d;
@@ -21,11 +23,6 @@ public class PlayerController : MonoBehaviour {
     private Vector2 player;
     private float distanceToGround;
     private bool isGrounded;
-    public float currentDistanceToFlight;
-    public bool pengvin;
-
-
-
 
     void Start () {
         rb2d = GetComponent<Rigidbody2D>();
@@ -36,7 +33,6 @@ public class PlayerController : MonoBehaviour {
 	void FixedUpdate () {
         Debug.DrawRay(transform.position, Vector3.up * (distanceToGround + 1f), Color.red);
         ifGrouded();
-        //hitSpike();
         HorizontalMovement();
         VerticalMovement();
     }
