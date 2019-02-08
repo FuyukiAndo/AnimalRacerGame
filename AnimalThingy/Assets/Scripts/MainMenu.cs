@@ -19,12 +19,18 @@ public MainMenuOptions[] mainMenuOptions;
         Application.Quit();
     }
 
-    public void DisableCurrentMenu()
+    public void DisableMenus(GameObject menu)
     {
         for (int i = 0; i < mainMenuOptions.Length; i++)
         {
-            mainMenuOptions[i].gameObject.SetActive(false);
+            if (mainMenuOptions[i].gameObject != menu)
+                mainMenuOptions[i].gameObject.SetActive(false);
         }
+    }
+
+    public void MenuOnOffSwitch(GameObject menu)
+    {
+        menu.SetActive(!menu.activeInHierarchy);
     }
 }
 

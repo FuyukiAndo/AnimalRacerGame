@@ -300,22 +300,22 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1323795157}
-        m_MethodName: DisableCurrentMenu
-        m_Mode: 1
+        m_MethodName: DisableMenus
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1988699501}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1988699501}
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1323795157}
+        m_MethodName: MenuOnOffSwitch
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1988699501}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -823,7 +823,7 @@ GameObject:
   - component: {fileID: 105002577}
   - component: {fileID: 105002576}
   m_Layer: 5
-  m_Name: MULTIPLAYEREnablePlayer1
+  m_Name: JoinButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -907,6 +907,17 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1791709584}
+        m_MethodName: SetPlayerActive
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1025,22 +1036,22 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1323795157}
-        m_MethodName: DisableCurrentMenu
-        m_Mode: 1
+        m_MethodName: DisableMenus
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 457973899}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 457973899}
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1323795157}
+        m_MethodName: MenuOnOffSwitch
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 457973899}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1218,7 +1229,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -1336,6 +1347,17 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1791709584}
+        m_MethodName: SetPlayerInactive
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
@@ -1514,7 +1536,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -1714,22 +1736,22 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1323795157}
-        m_MethodName: DisableCurrentMenu
-        m_Mode: 1
+        m_MethodName: DisableMenus
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1692029993}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1692029993}
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1323795157}
+        m_MethodName: MenuOnOffSwitch
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1692029993}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1935,6 +1957,17 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1791709584}
+        m_MethodName: SetPlayerInactive
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
@@ -2438,7 +2471,7 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
@@ -2540,7 +2573,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 344106995}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1791709584}
+        m_MethodName: SetCharacterForPlayer4
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1471405925829706, guid: c5a50b4e6776d0c4d94e1ab45d64e92e,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &344106995
@@ -2708,6 +2753,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 457973900}
+  - component: {fileID: 457973901}
   m_Layer: 5
   m_Name: MULTIPLAYERMENU
   m_TagString: Untagged
@@ -2738,6 +2784,17 @@ RectTransform:
   m_AnchoredPosition: {x: 129.70032, y: -48.698624}
   m_SizeDelta: {x: 1368.9, y: 807.2}
   m_Pivot: {x: 0.50000006, y: 0.5}
+--- !u!114 &457973901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 457973899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c7432279857d45439c28f658b88e73d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &464361372
 GameObject:
   m_ObjectHideFlags: 0
@@ -4289,6 +4346,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1791709584}
+        m_MethodName: SetPlayerInactive
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &698548181
@@ -4403,7 +4471,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 706307316}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1791709584}
+        m_MethodName: SetCharacterForPlayer3
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1498534499093758, guid: 8a56339ada4bfca459724bcdbcfb79ee,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &706307316
@@ -4454,7 +4534,7 @@ GameObject:
   - component: {fileID: 746566779}
   - component: {fileID: 746566778}
   m_Layer: 5
-  m_Name: MULTIPLAYEREnablePlayer1
+  m_Name: JoinButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4520,6 +4600,17 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 746566776}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 309731937}
         m_MethodName: SetActive
         m_Mode: 6
@@ -4531,16 +4622,16 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 746566776}
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1791709584}
+        m_MethodName: SetPlayerActive
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
@@ -4815,8 +4906,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 789257842}
+  - component: {fileID: 789257843}
   m_Layer: 5
-  m_Name: MULTIPLAYERCharacterSelectionWindow1 (3)
+  m_Name: MULTIPLAYERPlayer4Window
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4843,6 +4935,19 @@ RectTransform:
   m_AnchoredPosition: {x: -328.8, y: 192.65}
   m_SizeDelta: {x: 657.6, y: 385.3}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &789257843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 789257841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 869d15ef98d919f4a86548e6c87cc0c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterSelectionChild: {fileID: 1324246220}
+  joinButton: {fileID: 105002574}
 --- !u!1 &827520731
 GameObject:
   m_ObjectHideFlags: 0
@@ -5044,8 +5149,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 863966453}
+  - component: {fileID: 863966454}
   m_Layer: 5
-  m_Name: MULTIPLAYERCharacterSelectionWindow1 (2)
+  m_Name: MULTIPLAYERPlayer3Window
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5072,6 +5178,19 @@ RectTransform:
   m_AnchoredPosition: {x: 328.8, y: 192.65}
   m_SizeDelta: {x: 657.6, y: 385.3}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &863966454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 863966452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 869d15ef98d919f4a86548e6c87cc0c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterSelectionChild: {fileID: 1051500771}
+  joinButton: {fileID: 945063216}
 --- !u!1 &865932701
 GameObject:
   m_ObjectHideFlags: 0
@@ -5377,7 +5496,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 913840654}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1791709584}
+        m_MethodName: SetCharacterForPlayer3
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1943465016084760, guid: 9603e7a55e867074daf09674fed7798f,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &913840654
@@ -5492,7 +5623,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 944192313}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1791709584}
+        m_MethodName: SetCharacterForPlayer2
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1943465016084760, guid: 9603e7a55e867074daf09674fed7798f,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &944192313
@@ -5543,7 +5686,7 @@ GameObject:
   - component: {fileID: 945063219}
   - component: {fileID: 945063218}
   m_Layer: 5
-  m_Name: MULTIPLAYEREnablePlayer1
+  m_Name: JoinButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5627,6 +5770,17 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1791709584}
+        m_MethodName: SetPlayerActive
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -5743,10 +5897,32 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 946274251}
+  m_TargetGraphic: {fileID: 1332768699}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1791709584}
+        m_MethodName: SetPlayerReady
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1791709584}
+        m_MethodName: StartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &946274251
@@ -6019,7 +6195,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 982317377}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1791709584}
+        m_MethodName: SetCharacterForPlayer1
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1498534499093758, guid: 8a56339ada4bfca459724bcdbcfb79ee,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &982317377
@@ -6615,7 +6803,7 @@ GameObject:
   - component: {fileID: 1103405608}
   - component: {fileID: 1103405607}
   m_Layer: 5
-  m_Name: MULTIPLAYEREnablePlayer1
+  m_Name: JoinButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6699,6 +6887,17 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1791709584}
+        m_MethodName: SetPlayerActive
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -6815,10 +7014,32 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 1116120544}
+  m_TargetGraphic: {fileID: 1332768699}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1791709584}
+        m_MethodName: SetPlayerReady
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1791709584}
+        m_MethodName: StartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1116120544
@@ -7297,7 +7518,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1235470804}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1791709584}
+        m_MethodName: SetCharacterForPlayer3
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1471405925829706, guid: c5a50b4e6776d0c4d94e1ab45d64e92e,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1235470804
@@ -7412,7 +7645,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1239060579}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1791709584}
+        m_MethodName: SetCharacterForPlayer1
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1929546730438896, guid: 02866e62edbd1f84fb7e560b268d38cc,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1239060579
@@ -7839,7 +8084,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1250743875}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1791709584}
+        m_MethodName: SetCharacterForPlayer2
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1929546730438896, guid: 02866e62edbd1f84fb7e560b268d38cc,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1250743875
@@ -7954,7 +8211,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1274884425}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1791709584}
+        m_MethodName: SetCharacterForPlayer4
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1943465016084760, guid: 9603e7a55e867074daf09674fed7798f,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1274884425
@@ -8542,7 +8811,29 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1332768699}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1791709584}
+        m_MethodName: SetPlayerReady
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1791709584}
+        m_MethodName: StartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1332768699
@@ -8655,10 +8946,32 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 1351429850}
+  m_TargetGraphic: {fileID: 1332768699}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1791709584}
+        m_MethodName: SetPlayerReady
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1791709584}
+        m_MethodName: StartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1351429850
@@ -8952,6 +9265,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1791709584}
+        m_MethodName: SetPlayerInactive
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1364911256
@@ -9135,13 +9459,27 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 246223281}
+  - component: {fileID: 1387397627}
   m_Layer: 5
-  m_Name: MULTIPLAYERCharacterSelectionWindow1
+  m_Name: MULTIPLAYERPlayer1Window
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1387397627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1387397626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 869d15ef98d919f4a86548e6c87cc0c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterSelectionChild: {fileID: 679181268}
+  joinButton: {fileID: 1103405605}
 --- !u!1 &1451603457
 GameObject:
   m_ObjectHideFlags: 0
@@ -9333,22 +9671,22 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1323795157}
-        m_MethodName: DisableCurrentMenu
-        m_Mode: 1
+        m_MethodName: DisableMenus
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 313147701}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 313147701}
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1323795157}
+        m_MethodName: MenuOnOffSwitch
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 313147701}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -9526,7 +9864,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -9624,7 +9962,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1508203634}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1791709584}
+        m_MethodName: SetCharacterForPlayer2
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1471405925829706, guid: c5a50b4e6776d0c4d94e1ab45d64e92e,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1508203634
@@ -9739,7 +10089,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1553632820}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1791709584}
+        m_MethodName: SetCharacterForPlayer4
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1498534499093758, guid: 8a56339ada4bfca459724bcdbcfb79ee,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1553632820
@@ -9914,7 +10276,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -10012,7 +10374,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1589488969}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1791709584}
+        m_MethodName: SetCharacterForPlayer1
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1943465016084760, guid: 9603e7a55e867074daf09674fed7798f,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1589488969
@@ -10059,8 +10433,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1598538882}
+  - component: {fileID: 1598538883}
   m_Layer: 5
-  m_Name: MULTIPLAYERCharacterSelectionWindow1 (1)
+  m_Name: MULTIPLAYERPlayer2Window
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10087,6 +10462,19 @@ RectTransform:
   m_AnchoredPosition: {x: -328.8, y: -192.65}
   m_SizeDelta: {x: 657.6, y: 385.3}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1598538883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1598538881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 869d15ef98d919f4a86548e6c87cc0c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterSelectionChild: {fileID: 309731937}
+  joinButton: {fileID: 746566776}
 --- !u!1 &1616109456
 GameObject:
   m_ObjectHideFlags: 0
@@ -10436,7 +10824,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1634687341}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1791709584}
+        m_MethodName: SetCharacterForPlayer4
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1929546730438896, guid: 02866e62edbd1f84fb7e560b268d38cc,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1634687341
@@ -10857,7 +11257,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1774879797}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1791709584}
+        m_MethodName: SetCharacterForPlayer2
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1498534499093758, guid: 8a56339ada4bfca459724bcdbcfb79ee,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1774879797
@@ -10895,6 +11307,65 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1774879794}
+--- !u!1 &1791709583
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1791709585}
+  - component: {fileID: 1791709584}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1791709584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1791709583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae77d275c90eee1478aae1c49b021cee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levels: 
+  players: []
+  player1:
+    character: {fileID: 0}
+    playerIsActive: 0
+    playerIsReady: 0
+  player2:
+    character: {fileID: 0}
+    playerIsActive: 0
+    playerIsReady: 0
+  player3:
+    character: {fileID: 0}
+    playerIsActive: 0
+    playerIsReady: 0
+  player4:
+    character: {fileID: 0}
+    playerIsActive: 0
+    playerIsReady: 0
+  criteriaToStartGame: 0
+--- !u!4 &1791709585
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1791709583}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.31581354, y: 0.18655941, z: -0.34765625}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1795587991
 GameObject:
   m_ObjectHideFlags: 0
@@ -11578,7 +12049,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1911124716}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1791709584}
+        m_MethodName: SetCharacterForPlayer3
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1929546730438896, guid: 02866e62edbd1f84fb7e560b268d38cc,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1911124716
@@ -11919,7 +12402,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1933101157}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1791709584}
+        m_MethodName: SetCharacterForPlayer1
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1471405925829706, guid: c5a50b4e6776d0c4d94e1ab45d64e92e,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1933101157
@@ -12048,7 +12543,7 @@ RectTransform:
   - {fileID: 313147702}
   - {fileID: 1988699502}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -12742,7 +13237,7 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
