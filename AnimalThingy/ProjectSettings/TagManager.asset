@@ -7,6 +7,8 @@ TagManager:
   - Spike
   - Character
   - Tranpolin
+  - Ground
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -19,7 +21,7 @@ TagManager:
   - Ground
   - Spike
   - Wall
-  - 
+  - Terrain
   - 
   - 
   - 

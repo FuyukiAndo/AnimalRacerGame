@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour {
 
 
 
-    public int speed;
+    public float speed;
     public int JumpStrenght;
     public float distanceBeforeFlight = 100;
     public float glidGravity = 0.1f;
@@ -23,18 +23,22 @@ public class PlayerController : MonoBehaviour {
     private Vector2 player;
     private float distanceToGround;
     private bool isGrounded;
+    private float originalSpeed;
+    private IEnumerable coroutine;
 
     void Start () {
         rb2d = GetComponent<Rigidbody2D>();
         bc2d = GetComponent<BoxCollider2D>();
         currentDistanceToFlight = 0;
         distanceToGround = bc2d.bounds.extents.y;
+        originalSpeed = speed;
 	}
 	void FixedUpdate () {
         Debug.DrawRay(transform.position, Vector3.up * (distanceToGround + 1f), Color.red);
         ifGrouded();
         HorizontalMovement();
         VerticalMovement();
+        Debug.Log(1 / Time.deltaTime);
     }
     void ifGrouded()
     {
@@ -101,6 +105,21 @@ public class PlayerController : MonoBehaviour {
         {
             getStunned();
         }
+    }
+    //void SpeedChange(float boostChange)
+    //{
+    //    Debug.Log("hello");
+    //    speed = speed + boostChange;
+    //    StartCoroutine(TimeDelay());
+    //}
+    //private IEnumerator TimeDelay()
+    //{
+    //    yield return new WaitForSeconds(5);
+    //    speed = originalSpeed;
+    //}
+    void hello(float da)
+    {
+        Debug.Log(da);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

@@ -44,7 +44,6 @@ public class Isflak : MonoBehaviour {
         if (collision.gameObject.layer == 10)
         {
             floatSpeed = -floatSpeed;
-            Debug.Log("hello");
         }
     }
     void whichHitDir()
