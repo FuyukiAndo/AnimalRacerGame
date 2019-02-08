@@ -106,20 +106,15 @@ public class PlayerController : MonoBehaviour {
             getStunned();
         }
     }
-    //void SpeedChange(float boostChange)
-    //{
-    //    Debug.Log("hello");
-    //    speed = speed + boostChange;
-    //    StartCoroutine(TimeDelay());
-    //}
-    //private IEnumerator TimeDelay()
-    //{
-    //    yield return new WaitForSeconds(5);
-    //    speed = originalSpeed;
-    //}
-    void hello(float da)
+    void SpeedChange(float boostChange)
     {
-        Debug.Log(da);
+        speed = speed + boostChange;
+        StartCoroutine(TimeDelay());
+    }
+    private IEnumerator TimeDelay()
+    {
+        yield return new WaitForSeconds(5);
+        speed = originalSpeed;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

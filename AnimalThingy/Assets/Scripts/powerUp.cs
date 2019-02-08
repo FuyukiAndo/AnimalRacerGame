@@ -9,7 +9,6 @@ public class powerUp : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("hello");
         collision.gameObject.SendMessage("SpeedChange", speedChange);
     }
 }
