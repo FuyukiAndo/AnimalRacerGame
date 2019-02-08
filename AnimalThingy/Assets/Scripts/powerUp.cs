@@ -6,9 +6,20 @@ public class powerUp : MonoBehaviour
 {
 
     public float speedChange;
+    public float speedDuration;
+
+    void Start()
+    {
+        
+    }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        collision.gameObject.SendMessage("SpeedChange", speedChange);
+        PlayerController player = collision.gameObject.GetComponent<PlayerController>();
+        if (player != null)
+        {
+           StartCoroutine(player.SpeedChange(speedChange, speedDuration));
+            Destroy(gameObject);
+        }
     }
 }

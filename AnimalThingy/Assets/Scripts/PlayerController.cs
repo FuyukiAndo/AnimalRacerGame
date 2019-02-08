@@ -38,7 +38,6 @@ public class PlayerController : MonoBehaviour {
         ifGrouded();
         HorizontalMovement();
         VerticalMovement();
-        Debug.Log(1 / Time.deltaTime);
     }
     void ifGrouded()
     {
@@ -106,14 +105,10 @@ public class PlayerController : MonoBehaviour {
             getStunned();
         }
     }
-    void SpeedChange(float boostChange)
+    public IEnumerator SpeedChange(float boostChange, float boostDuration)
     {
         speed = speed + boostChange;
-        StartCoroutine(TimeDelay());
-    }
-    private IEnumerator TimeDelay()
-    {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(boostDuration);
         speed = originalSpeed;
     }
     private void OnTriggerEnter2D(Collider2D collision)
