@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour {
     public float glidGravity = 0.1f;
     public int hp = 3;
     
-    public LayerMask groundLayer, spikeLayer;
+    public LayerMask terrainLayer, spikeLayer, waterLayer;
     public float currentDistanceToFlight;
     public bool pengvin;
 
@@ -24,7 +24,8 @@ public class PlayerController : MonoBehaviour {
     private float distanceToGround;
     private bool isGrounded;
     private float originalSpeed;
-    private IEnumerable coroutine;
+    private int jumpCount;
+    private bool isStunned;
 
     void Start () {
         rb2d = GetComponent<Rigidbody2D>();
@@ -34,14 +35,16 @@ public class PlayerController : MonoBehaviour {
         originalSpeed = speed;
 	}
 	void FixedUpdate () {
-        Debug.DrawRay(transform.position, Vector3.up * (distanceToGround + 1f), Color.red);
+        Debug.DrawRay(transform.position, Vector3.down * (distanceToGround + 0.1f), Color.red);
         ifGrouded();
         HorizontalMovement();
         VerticalMovement();
     }
+
+
     void ifGrouded()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, distanceToGround + 1f, groundLayer);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, distanceToGround + 0.1f, terrainLayer);
         if (hit.collider != null)
         {
             isGrounded = true;
@@ -53,76 +56,84 @@ public class PlayerController : MonoBehaviour {
     }
     void HorizontalMovement()
     {
-        if (Input.GetKey("a") && isGrounded == true)
+        if (isStunned == false)
         {
-            player = new Vector2(-speed, rb2d.velocity.y);
+            if (Input.GetKey("a") && isGrounded == true)
+            {
+                player = new Vector2(-speed, rb2d.velocity.y);
+                currentDistanceToFlight += rb2d.velocity.x;
+            }
+            else if (Input.GetKey("d") && isGrounded == true)
+            {
+                player = new Vector2(speed, rb2d.velocity.y);
+                currentDistanceToFlight += rb2d.velocity.x;
+            }
+            else if (Input.GetKey("a") && isGrounded == false)
+            {
+                player = new Vector2(-speed, rb2d.velocity.y);
+            }
+            else if (Input.GetKey("d") && isGrounded == false)
+            {
+                player = new Vector2(speed, rb2d.velocity.y);
+            }
+            else
+            {
+                player = new Vector2(0, rb2d.velocity.y);
+                currentDistanceToFlight = 0;
+            }
             rb2d.velocity = player;
-            currentDistanceToFlight += rb2d.velocity.x;
-        }
-        else if (Input.GetKey("d") && isGrounded == true)
-        {
-            player = new Vector2(speed, rb2d.velocity.y);
-            rb2d.velocity = player;
-            currentDistanceToFlight += rb2d.velocity.x;
-        }
-        else if (Input.GetKey("a") && isGrounded == false)
-        {
-            player = new Vector2(-speed, rb2d.velocity.y);
-            rb2d.velocity = player;
-        }
-        else if (Input.GetKey("d") && isGrounded == false)
-        {
-            player = new Vector2(speed, rb2d.velocity.y);
-            rb2d.velocity = player;
-        }
-        else
-        {
-            player = new Vector2(0, rb2d.velocity.y);
-            rb2d.velocity = player;
-            currentDistanceToFlight = 0;
         }
     }
     void VerticalMovement()
     {
         //if (currentDistanceToFlight > distanceBeforeFlight || currentDistanceToFlight < -distanceBeforeFlight)
         //{
-            if (Input.GetKey("w") && isGrounded == true)
+        if (isStunned == false)
+        {
+            if (Input.GetKey("w") && isGrounded == true && jumpCount == 0)
             {
                 rb2d.AddForce(new Vector2(0, JumpStrenght));
-                currentDistanceToFlight = 0;    
+                currentDistanceToFlight = 0;
+                jumpCount++;
             }
-        //}
+            else if (isGrounded == true)
+            {
+                jumpCount = 0;
+            }
+        }        //}
         //if(Input.GetKey("w") && isGrounded == false && rb2d.velocity.y < 0)
         //{
         //    rb2d.velocity = new Vector2(rb2d.velocity.x, -glidGravity);
         //}
     }
-    void OnCollisionEnter2D(Collision2D collision)
+    public IEnumerator SpeedChange(float boostChangeAmount, float boostDuration, GameObject speedObject)
     {
-      
-        if(collision.gameObject.layer == 9)
-        {
-            getStunned();
-        }
-    }
-    public IEnumerator SpeedChange(float boostChange, float boostDuration)
-    {
-        speed = speed + boostChange;
+        speed = speed + boostChangeAmount;
         yield return new WaitForSeconds(boostDuration);
         speed = originalSpeed;
+        Destroy(speedObject);
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == 4 && pengvin == false)
+        bool isOnLayer = waterLayer == (waterLayer | (1 << collision.gameObject.layer));
+        /*Mathf.Log(waterLayer.value, 2) == collision.gameObject.layer*/
+        /*(waterLayer | (1 << collision.gameObject.layer)) - Kollar bitmaskens position på collisionen och jämför den med bitmasken*/
+
+        if ( isOnLayer && pengvin == false)
         {
-            getKilled();
+            GetKilled();
         }
     }
-    public void getStunned()
+    public IEnumerator GetStunned(float stunDuration, GameObject stunObject)
     {
-        Debug.Log("Stunned");
+        isStunned = true;
+        yield return new WaitForSeconds(stunDuration);
+        isStunned = false;
+        Destroy(stunObject);
+        
     }
-    public void getKilled()
+    public void GetKilled()
     {
         Destroy(gameObject);
     }

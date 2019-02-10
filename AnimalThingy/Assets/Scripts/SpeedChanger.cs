@@ -2,24 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class powerUp : MonoBehaviour
+public class SpeedChanger : MonoBehaviour
 {
 
-    public float speedChange;
+    public float speedChangeAmount;
     public float speedDuration;
-
-    void Start()
-    {
-        
-    }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
         PlayerController player = collision.gameObject.GetComponent<PlayerController>();
         if (player != null)
         {
-           StartCoroutine(player.SpeedChange(speedChange, speedDuration));
-            Destroy(gameObject);
+           StartCoroutine(player.SpeedChange(speedChangeAmount, speedDuration, gameObject));
+           GetComponent<MeshRenderer>().enabled = false;
+           GetComponent<Collider2D>().enabled = false;
         }
     }
 }

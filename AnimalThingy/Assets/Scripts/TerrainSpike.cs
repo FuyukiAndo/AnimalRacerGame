@@ -6,6 +6,7 @@ public class TerrainSpike : MonoBehaviour {
 
     public float timeBeforeSpikeFalls = 5;
     public float fallSpeed;
+    public float stunDuration;
 
     private Rigidbody2D rb2d;
     private float startFalling;
@@ -29,6 +30,12 @@ public class TerrainSpike : MonoBehaviour {
 	}
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Destroy(gameObject);
+        PlayerController player = collision.gameObject.GetComponent<PlayerController>();
+        if(player != null)
+        {
+            StartCoroutine(player.GetStunned(stunDuration, gameObject));
+            GetComponent<MeshRenderer>().enabled = false;
+            GetComponent<Collider2D>().enabled = false;
+        }
     }
 }

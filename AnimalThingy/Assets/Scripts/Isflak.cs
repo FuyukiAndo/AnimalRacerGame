@@ -27,8 +27,11 @@ public class Isflak : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        whichHitDir();
-        moveFlak();
+        if (floatSpeed != 0)
+        {
+            whichHitDir();
+            moveFlak();
+        }
         destroyIce();
     }
     void OnCollisionEnter2D(Collision2D collision)
@@ -37,11 +40,11 @@ public class Isflak : MonoBehaviour {
         {
             timeBeforeDestroyed--;
         }
-        if (collision.gameObject.layer == 8)
+        if (collision.gameObject.tag == "Ground")
         {
             Destroy(gameObject);
         }
-        if (collision.gameObject.layer == 10)
+        if (collision.gameObject.tag == "Wall")
         {
             floatSpeed = -floatSpeed;
         }

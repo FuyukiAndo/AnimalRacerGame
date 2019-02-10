@@ -6,7 +6,7 @@ using UnityEngine.Animations;
 public class TerrainSnowball : MonoBehaviour {
 
     public float speed = 5.0f;
-    public LayerMask wallLayer;
+    public LayerMask terrainLayer;
 
     private Rigidbody2D rb2d;
     private float dir;
@@ -28,7 +28,7 @@ public class TerrainSnowball : MonoBehaviour {
 
     public void hitWall()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right, dir, wallLayer);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right, dir, terrainLayer);
         if(hit.collider != null)
         {
             dir = -dir;
