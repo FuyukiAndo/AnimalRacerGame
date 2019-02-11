@@ -18,6 +18,7 @@ public class CheckpointTracker : MonoBehaviour
 	private int lastCheckpointPassed = 0;
 	[SerializeField] private Vector2 boxSize, checkpointSearchSize;
 	[SerializeField] private float initialCheckpointTipDelay, recurringCheckpointTipDelay;
+	[SerializeField] private string UIMethodName;
 
 	void Update()
 	{
@@ -69,7 +70,7 @@ public class CheckpointTracker : MonoBehaviour
 		yield return new WaitForSeconds(initialCheckpointTipDelay);
 		while (true)
 		{
-			GetNearestNotTakenCheckpoint();
+			BroadcastMessage(UIMethodName, GetNearestNotTakenCheckpoint(), SendMessageOptions.DontRequireReceiver);
 			yield return new WaitForSeconds(recurringCheckpointTipDelay);
 		}
 
