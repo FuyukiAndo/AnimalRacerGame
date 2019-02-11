@@ -20,8 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4002295988266570}
   - component: {fileID: 33170196206248196}
-  - component: {fileID: 136660580924875940}
   - component: {fileID: 23395049612819466}
+  - component: {fileID: 70198412265324502}
   m_Layer: 0
   m_Name: istapp
   m_TagString: Untagged
@@ -83,16 +83,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1507464445526034}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!136 &136660580924875940
-CapsuleCollider:
+--- !u!70 &70198412265324502
+CapsuleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1507464445526034}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1, y: 1.9999999}
+  m_Direction: 0
