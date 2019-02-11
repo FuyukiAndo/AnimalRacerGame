@@ -8,7 +8,11 @@ public class Spawner : MonoBehaviour{
     public float timeBetweenSpawns;
 
     protected float spawnClock;
-    
+
+    protected void Start()
+    {
+        timeBetweenSpawns = Mathf.Clamp(timeBetweenSpawns, 0, timeBetweenSpawns);
+    }
     protected void SpawnObject()
     {
         if (spawnClock > timeBetweenSpawns)

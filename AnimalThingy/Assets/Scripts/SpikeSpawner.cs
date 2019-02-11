@@ -6,7 +6,7 @@ public class SpikeSpawner : Spawner{
 
     public bool wantSpikeToDisappearFirst;
 
-	void Update () {
+    void Update () {
         SpawnObject();
         spawnAfter(wantSpikeToDisappearFirst);
 	}

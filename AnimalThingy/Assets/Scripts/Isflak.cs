@@ -6,7 +6,6 @@ using UnityEngine.Animations;
 public class Isflak : MonoBehaviour {
 
     public int durability = 2;
-    public GameObject player;
     public float timeUntillBroken;
     public float floatSpeed;
     
@@ -36,7 +35,7 @@ public class Isflak : MonoBehaviour {
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == player.tag)
+        if (collision.gameObject.tag == "Character")
         {
             timeBeforeDestroyed--;
         }
@@ -49,6 +48,7 @@ public class Isflak : MonoBehaviour {
             floatSpeed = -floatSpeed;
         }
     }
+
     void whichHitDir()
     {
         if(floatSpeed > 0)
@@ -74,7 +74,6 @@ public class Isflak : MonoBehaviour {
         if (timeBeforeDestroyed <= 0)
         {
             breakTime += Time.deltaTime;
-            Debug.Log(breakTime);
             if (breakTime > timeUntillBroken) {
                 Destroy(gameObject);
             }

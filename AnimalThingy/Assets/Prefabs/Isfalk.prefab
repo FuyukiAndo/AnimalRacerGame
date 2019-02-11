@@ -93,7 +93,7 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1284739177998074}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
@@ -160,6 +160,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   durability: 2
-  player: {fileID: 1660101799368522, guid: 3d6962af4226fe74389ce689f84981ef, type: 2}
   timeUntillBroken: 3
   floatSpeed: 1

@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IsflakSpawner : Spawner {
-
-	void Update () {
+public class NeedleSpawner : Spawner
+{
+    void Update()
+    {
         SpawnObject();
-	}
+    }
 }

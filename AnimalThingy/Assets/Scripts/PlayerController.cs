@@ -5,16 +5,14 @@ using UnityEngine.Animations;
 
 public class PlayerController : MonoBehaviour {
 
-
-
+    [Header("Player Attributs")]
     public float speed;
-    public int JumpStrenght;
-    public float distanceBeforeFlight = 100;
-    public float glidGravity = 0.1f;
+    public int jumpStrenght;
     public int hp = 3;
-    
-    public LayerMask terrainLayer, spikeLayer, waterLayer;
-    public float currentDistanceToFlight;
+
+    [Header("Enviorment Interaction")]
+    public LayerMask terrainLayer;
+    public LayerMask waterLayer;
     public bool pengvin;
 
 
@@ -30,7 +28,6 @@ public class PlayerController : MonoBehaviour {
     void Start () {
         rb2d = GetComponent<Rigidbody2D>();
         bc2d = GetComponent<BoxCollider2D>();
-        currentDistanceToFlight = 0;
         distanceToGround = bc2d.bounds.extents.y;
         originalSpeed = speed;
 	}
@@ -61,12 +58,10 @@ public class PlayerController : MonoBehaviour {
             if (Input.GetKey("a") && isGrounded == true)
             {
                 player = new Vector2(-speed, rb2d.velocity.y);
-                currentDistanceToFlight += rb2d.velocity.x;
             }
             else if (Input.GetKey("d") && isGrounded == true)
             {
                 player = new Vector2(speed, rb2d.velocity.y);
-                currentDistanceToFlight += rb2d.velocity.x;
             }
             else if (Input.GetKey("a") && isGrounded == false)
             {
@@ -78,33 +73,25 @@ public class PlayerController : MonoBehaviour {
             }
             else
             {
-                player = new Vector2(0, rb2d.velocity.y);
-                currentDistanceToFlight = 0;
+                player = new Vector2(rb2d.velocity.x, rb2d.velocity.y);
             }
             rb2d.velocity = player;
         }
     }
     void VerticalMovement()
     {
-        //if (currentDistanceToFlight > distanceBeforeFlight || currentDistanceToFlight < -distanceBeforeFlight)
-        //{
         if (isStunned == false)
         {
             if (Input.GetKey("w") && isGrounded == true && jumpCount == 0)
             {
-                rb2d.AddForce(new Vector2(0, JumpStrenght));
-                currentDistanceToFlight = 0;
+                rb2d.AddForce(new Vector2(0, jumpStrenght));
                 jumpCount++;
             }
             else if (isGrounded == true)
             {
                 jumpCount = 0;
             }
-        }        //}
-        //if(Input.GetKey("w") && isGrounded == false && rb2d.velocity.y < 0)
-        //{
-        //    rb2d.velocity = new Vector2(rb2d.velocity.x, -glidGravity);
-        //}
+        }
     }
     public IEnumerator SpeedChange(float boostChangeAmount, float boostDuration, GameObject speedObject)
     {
