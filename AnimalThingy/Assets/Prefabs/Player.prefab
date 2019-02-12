@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 50900448368205996}
   - component: {fileID: 95984502306601024}
   m_Layer: 10
-  m_Name: Player
+  m_Name: PetersPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -235,7 +235,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  jumpStrenght: 0
+  jumpStrenght: 500
   hp: 3
   terrainLayer:
     serializedVersion: 2

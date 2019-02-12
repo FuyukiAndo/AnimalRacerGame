@@ -32,7 +32,7 @@ public class FallingPlatform : MonoBehaviour {
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
-        PlayerController player = collision.gameObject.GetComponent<PlayerController>();
+        PetersPlayerController player = collision.gameObject.GetComponent<PetersPlayerController>();
         bool isOnTerrainLayer = terrainLayer == (terrainLayer | (1 << collision.gameObject.layer));
         if (isOnTerrainLayer)
         {

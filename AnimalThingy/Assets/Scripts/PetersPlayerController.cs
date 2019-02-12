@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
 
-public class PlayerController : MonoBehaviour {
+public class PetersPlayerController : MonoBehaviour {
 
     [Header("Player Attributs")]
     public float speed;
