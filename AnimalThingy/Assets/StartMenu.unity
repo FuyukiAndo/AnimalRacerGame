@@ -2755,7 +2755,7 @@ GameObject:
   - component: {fileID: 399187661}
   - component: {fileID: 399187660}
   m_Layer: 5
-  m_Name: PlayerStats
+  m_Name: InformationManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2769,25 +2769,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 399187659}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3ce09c79a597dc488fb906cfa330282, type: 3}
+  m_Script: {fileID: 11500000, guid: 9412831e4a52b2a4e95aef754f2da20c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player1:
     character: {fileID: 0}
     playerIsActive: 0
     playerIsReady: 0
+    playerCheckpointProgress: 0
   player2:
     character: {fileID: 0}
     playerIsActive: 0
     playerIsReady: 0
+    playerCheckpointProgress: 0
   player3:
     character: {fileID: 0}
     playerIsActive: 0
     playerIsReady: 0
+    playerCheckpointProgress: 0
   player4:
     character: {fileID: 0}
     playerIsActive: 0
     playerIsReady: 0
+    playerCheckpointProgress: 0
   players: []
   levels: 02000000
   usedLevels: 
@@ -5961,7 +5965,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 1332768699}
+  m_TargetGraphic: {fileID: 946274251}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -7078,7 +7082,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 1332768699}
+  m_TargetGraphic: {fileID: 1116120544}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -9010,7 +9014,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 1332768699}
+  m_TargetGraphic: {fileID: 1351429850}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:

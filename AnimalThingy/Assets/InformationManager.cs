@@ -8,10 +8,12 @@ public class Player
     public GameObject character;
     public bool playerIsActive = false;
     public bool playerIsReady = false;
+    public int playerCheckpointProgress = 0;
 }
-public class PlayersStats : MonoBehaviour {
 
-    public static PlayersStats Instance { get; private set; }
+public class InformationManager : MonoBehaviour {
+
+    public static InformationManager Instance { get; private set; }
 
     public Player player1;
     public Player player2;
@@ -24,7 +26,7 @@ public class PlayersStats : MonoBehaviour {
 
     private void Awake()
     {
-        if(Instance == null)
+        if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
