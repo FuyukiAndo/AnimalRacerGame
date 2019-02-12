@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Textures : MonoBehaviour {
+public class Water : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
