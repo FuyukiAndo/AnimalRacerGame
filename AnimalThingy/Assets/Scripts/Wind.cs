@@ -11,10 +11,15 @@ public class Wind : MonoBehaviour {
 
     private float currentChangeInterval;
     private float intervalTime;
+    private Rigidbody2D myRb2d;
 
     // Use this for initialization
     void Start()
     {
+        myRb2d = GetComponent<Rigidbody2D>();
+        myRb2d.bodyType = RigidbodyType2D.Kinematic;
+        myRb2d.simulated = false;
+
         currentChangeInterval = Random.Range(minWindChangeInterval, maxWindChangeInterval);
         foreach (Rigidbody2D rb2d in FindObjectsOfType<Rigidbody2D>())
         {

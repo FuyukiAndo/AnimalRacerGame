@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33063947056392490}
   - component: {fileID: 23630185413016412}
   - component: {fileID: 61560842836094866}
-  - component: {fileID: 114328926167509244}
+  - component: {fileID: 114194593217520208}
   - component: {fileID: 50946959122429926}
   m_Layer: 0
   m_Name: Needle
@@ -130,7 +130,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &114328926167509244
+--- !u!114 &114194593217520208
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -138,9 +138,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 1585389020468604}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66cda99e893d893488abf45b7fecee04, type: 3}
+  m_Script: {fileID: 11500000, guid: f72142a5c2427ce479660b8734ada3ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stunDuration: 2
-  speed: -2
-  distanceFromStart: -3
+  stunDuration: 3
+  speed: -3
