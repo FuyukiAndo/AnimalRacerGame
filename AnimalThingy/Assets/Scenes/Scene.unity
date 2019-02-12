@@ -568,15 +568,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4795036536057502, guid: 8ddf9209253a78446a9fbdc2341f40c1, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4795036536057502, guid: 8ddf9209253a78446a9fbdc2341f40c1, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4795036536057502, guid: 8ddf9209253a78446a9fbdc2341f40c1, type: 2}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4795036536057502, guid: 8ddf9209253a78446a9fbdc2341f40c1, type: 2}
       propertyPath: m_LocalRotation.w
@@ -585,6 +585,15 @@ Prefab:
     - target: {fileID: 4795036536057502, guid: 8ddf9209253a78446a9fbdc2341f40c1, type: 2}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4795036536057502, guid: 8ddf9209253a78446a9fbdc2341f40c1, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114347031514286844, guid: 8ddf9209253a78446a9fbdc2341f40c1,
+        type: 2}
+      propertyPath: needleSpeed
+      value: -5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8ddf9209253a78446a9fbdc2341f40c1, type: 2}
