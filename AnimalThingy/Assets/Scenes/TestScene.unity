@@ -795,7 +795,7 @@ MonoBehaviour:
   collisionController: {fileID: 0}
   maxJumpHeight: 4
   minJumpHeight: 1
-  jumpAndFallSpeed: 0.4
+  jumpAndFallDelay: 0.4
   movementSpeed: 1.2
   movementAcceleration: 0.3
   wallSlideSpeedMax: 3
@@ -2431,7 +2431,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4991582234378600, guid: 19ff3f5c8abd953409f9684f6ed58d83, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -2.5
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4991582234378600, guid: 19ff3f5c8abd953409f9684f6ed58d83, type: 2}
       propertyPath: m_LocalPosition.y
@@ -2461,39 +2461,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114219394262681424, guid: 19ff3f5c8abd953409f9684f6ed58d83,
-        type: 2}
-      propertyPath: collisionMask.m_Bits
-      value: 512
-      objectReference: {fileID: 0}
-    - target: {fileID: 1164201688429514, guid: 19ff3f5c8abd953409f9684f6ed58d83, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114744816111177328, guid: 19ff3f5c8abd953409f9684f6ed58d83,
-        type: 2}
-      propertyPath: moveSpeed
-      value: 9.36
-      objectReference: {fileID: 0}
     - target: {fileID: 114744816111177328, guid: 19ff3f5c8abd953409f9684f6ed58d83,
         type: 2}
       propertyPath: minJumpHeight
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114744816111177328, guid: 19ff3f5c8abd953409f9684f6ed58d83,
-        type: 2}
-      propertyPath: maxJumpHeight
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114744816111177328, guid: 19ff3f5c8abd953409f9684f6ed58d83,
-        type: 2}
-      propertyPath: movementSpeed
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 114744816111177328, guid: 19ff3f5c8abd953409f9684f6ed58d83,
-        type: 2}
-      propertyPath: movementAcceleration
-      value: 0.13
+      value: 1.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 19ff3f5c8abd953409f9684f6ed58d83, type: 2}
