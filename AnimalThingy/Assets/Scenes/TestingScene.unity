@@ -558,27 +558,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   autoAnimate: 0
   animator: {fileID: 0}
-  animationType:
-  - eventType: 0
-    triggerType: 0
-    eventBehaviour: 0
-    animationTriggerOn: 
-    animationTriggerOff: 
-    animationName: 
-    animationActiveState: 0
-    animationValueMin: 0
-    animationValueMax: 0
-    animationInterval: 0
-  - eventType: 0
-    triggerType: 0
-    eventBehaviour: 0
-    animationTriggerOn: 
-    animationTriggerOff: 
-    animationName: 
-    animationActiveState: 0
-    animationValueMin: 0
-    animationValueMax: 0
-    animationInterval: 0
+  animationType: []
 --- !u!1 &885741427
 GameObject:
   m_ObjectHideFlags: 0

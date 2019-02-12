@@ -89,4 +89,13 @@ public class StartManager : MonoBehaviour
 			place++;
 		}
 	}
+
+	void OnDrawGizmos()
+	{
+		Gizmos.color = Color.green;
+		foreach (var start in playerStartPositions)
+		{
+			Gizmos.DrawWireSphere(start, .5f);
+		}
+	}
 }

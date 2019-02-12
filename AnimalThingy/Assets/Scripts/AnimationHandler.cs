@@ -12,25 +12,8 @@ public class AnimationHandler : MonoBehaviour
 	private AnimationTriggerType triggerType;
 	private AnimationEventBehaviour eventBehaviour;
 
-	public static AnimationHandler Instance
-	{
-		get
-		{
-			return instance;
-		}
-	}
-	private static AnimationHandler instance;
-
 	void Start()
 	{
-		if (instance == null)
-		{
-			instance = this;
-		}
-		else if (instance != this)
-		{
-			Destroy(gameObject);
-		}
 		if (animator == null)
 		{
 			animator = GetComponent<Animator>();

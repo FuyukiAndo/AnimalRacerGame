@@ -19,6 +19,7 @@ public class CheckpointTracker : MonoBehaviour
 	[SerializeField] private Vector2 boxSize, checkpointSearchSize;
 	[SerializeField] private float initialCheckpointTipDelay, recurringCheckpointTipDelay;
 	[SerializeField] private string UIMethodName;
+	AnimationHandler animationHandler;
 
 	void Update()
 	{

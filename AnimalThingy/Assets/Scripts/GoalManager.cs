@@ -215,4 +215,18 @@ public class GoalManager : MonoBehaviour
 		}
 	}
 
+	void OnDrawGizmos()
+	{
+		Gizmos.color = Color.green;
+		foreach (var checks in checksToPass)
+		{
+			Gizmos.DrawWireSphere(checks.transform.position, .5f);
+		}
+		Gizmos.color = Color.blue;
+		foreach (var goal in playerGoalPositions)
+		{
+			Gizmos.DrawWireSphere(goal, .5f);
+		}
+	}
+
 }
