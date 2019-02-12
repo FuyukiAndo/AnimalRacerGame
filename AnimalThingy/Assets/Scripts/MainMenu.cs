@@ -11,7 +11,7 @@ public class MainMenuOptions
 
 public class MainMenu : MonoBehaviour {
 
-public MainMenuOptions[] mainMenuOptions;
+    public MainMenuOptions[] mainMenuOptions;
 
     public void ExitGame()
     {

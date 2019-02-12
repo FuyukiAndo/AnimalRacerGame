@@ -6,6 +6,7 @@ public class MultiplayerMenu : MonoBehaviour {
 
     private GameManager gameManager;
 
+
     private void Awake()
     {
         gameManager = FindObjectOfType<GameManager>();
@@ -13,22 +14,22 @@ public class MultiplayerMenu : MonoBehaviour {
 
     private void OnDisable()
     {
-        gameManager.players.Clear();
-        if (gameManager.player1.playerIsActive)
+        PlayersStats.Instance.players.Clear();
+        if (PlayersStats.Instance.player1.playerIsActive)
         {
-            gameManager.SetPlayerInactive(1);
+            gameManager.NumberOfPlayersActive -= 1;
         }
-        if (gameManager.player2.playerIsActive)
+        if (PlayersStats.Instance.player2.playerIsActive)
         {
-            gameManager.SetPlayerInactive(2);
+            gameManager.NumberOfPlayersActive -= 1;
         }
-        if (gameManager.player3.playerIsActive)
+        if (PlayersStats.Instance.player3.playerIsActive)
         {
-            gameManager.SetPlayerInactive(3);
+            gameManager.NumberOfPlayersActive -= 1;
         }
-        if (gameManager.player4.playerIsActive)
+        if (PlayersStats.Instance.player4.playerIsActive)
         {
-            gameManager.SetPlayerInactive(4);
+            gameManager.NumberOfPlayersActive -= 1;
         }
     }
 }

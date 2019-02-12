@@ -3,62 +3,57 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-[System.Serializable]
-public class Player
-{
-    public GameObject character;
-    public bool playerIsActive = false;
-    public bool playerIsReady = false;
-}
 public class GameManager : MonoBehaviour {
 
-    public int[] levels;
-    private List<int> usedLevels;
-    public List<Player> players;
-    public Player player1;
-    public Player player2;
-    public Player player3;
-    public Player player4;
-    public int criteriaToStartGame = 0;
+    public int NumberOfPlayersActive;
 
-    private void Awake()
+    private void Start()
     {
-        player1 = new Player();
-        player2 = new Player();
-        player3 = new Player();
-        player4 = new Player();
-        players = new List<Player>();
-        DontDestroyOnLoad(this.gameObject);
+        if (PlayersStats.Instance.player1.playerIsActive)
+        {
+            SetPlayerInactive(1);
+        }
+        if (PlayersStats.Instance.player2.playerIsActive)
+        {
+            SetPlayerInactive(2);
+        }
+        if (PlayersStats.Instance.player3.playerIsActive)
+        {
+            SetPlayerInactive(3);
+        }
+        if (PlayersStats.Instance.player4.playerIsActive)
+        {
+            SetPlayerInactive(4);
+        }
     }
 
     private void Update()
     {
-        if (players.Count > 4)
+        if(NumberOfPlayersActive < 0)
         {
-            Debug.Log("ToManyPlayersInList");
+            NumberOfPlayersActive = 0;
         }
     }
-
     public void SetPlayerActive(int playerNumber)
     {
-        criteriaToStartGame += 1;
+        NumberOfPlayersActive += 1;
         switch (playerNumber)
         {
             case 1:
-                players.Add(player1);
-                player1.playerIsActive = true;
+                PlayersStats.Instance.players.Add(PlayersStats.Instance.player1);
+                PlayersStats.Instance.player1.playerIsActive = true;
                 break;
             case 2:
-                players.Add(player2);
-                player2.playerIsActive = true;
+                PlayersStats.Instance.players.Add(PlayersStats.Instance.player2);
+                PlayersStats.Instance.player2.playerIsActive = true;
                 break;
             case 3:
-                players.Add(player3);
-                player3.playerIsActive = true;
+                PlayersStats.Instance.players.Add(PlayersStats.Instance.player3);
+                PlayersStats.Instance.player3.playerIsActive = true;
                 break;
             case 4:
-                players.Add(player4);
-                player4.playerIsActive = true;
+                PlayersStats.Instance.players.Add(PlayersStats.Instance.player4);
+                PlayersStats.Instance.player4.playerIsActive = true;
                 break;
             default:
                 Debug.Log("Invalid PlayerNumber entered (SetPlayerActive)");
@@ -69,32 +64,32 @@ public class GameManager : MonoBehaviour {
 
     public void SetPlayerInactive(int playerNumber)
     {
-        criteriaToStartGame -= 1;
+        NumberOfPlayersActive -= 1;
         switch (playerNumber)
         {
             case 1:
-                players.Remove(player1);
-                player1.character = null;
-                player1.playerIsActive = false;
-                player1.playerIsReady = false;
+                PlayersStats.Instance.players.Remove(PlayersStats.Instance.player1);
+                PlayersStats.Instance.player1.character = null;
+                PlayersStats.Instance.player1.playerIsActive = false;
+                PlayersStats.Instance.player1.playerIsReady = false;
                 break;
             case 2:
-                players.Remove(player2);
-                player2.character = null;
-                player2.playerIsActive = false;
-                player2.playerIsReady = false;
+                PlayersStats.Instance.players.Remove(PlayersStats.Instance.player2);
+                PlayersStats.Instance.player2.character = null;
+                PlayersStats.Instance.player2.playerIsActive = false;
+                PlayersStats.Instance.player2.playerIsReady = false;
                 break;
             case 3:
-                players.Remove(player3);
-                player3.character = null;
-                player3.playerIsActive = false;
-                player3.playerIsReady = false;
+                PlayersStats.Instance.players.Remove(PlayersStats.Instance.player3);
+                PlayersStats.Instance.player3.character = null;
+                PlayersStats.Instance.player3.playerIsActive = false;
+                PlayersStats.Instance.player3.playerIsReady = false;
                 break;
             case 4:
-                players.Remove(player4);
-                player4.character = null;
-                player4.playerIsActive = false;
-                player4.playerIsReady = false;
+                PlayersStats.Instance.players.Remove(PlayersStats.Instance.player4);
+                PlayersStats.Instance.player4.character = null;
+                PlayersStats.Instance.player4.playerIsActive = false;
+                PlayersStats.Instance.player4.playerIsReady = false;
                 break;
             default:
                 Debug.Log("Invalid PlayerNumber entered (SetPlayerInactive)");
@@ -108,11 +103,11 @@ public class GameManager : MonoBehaviour {
         switch (playerNumber)
         {
             case 1:
-                if (player1.playerIsReady == false)
+                if (PlayersStats.Instance.player1.playerIsReady == false)
                 {
-                    if (player1.character != null)
+                    if (PlayersStats.Instance.player1.character != null)
                     {
-                        player1.playerIsReady = true;
+                        PlayersStats.Instance.player1.playerIsReady = true;
                     }
                     else
                     {
@@ -120,16 +115,16 @@ public class GameManager : MonoBehaviour {
                     }
                 }
                 else
-                    player1.playerIsReady = false;
+                    PlayersStats.Instance.player1.playerIsReady = false;
 
             break;
 
             case 2:
-                if (player2.playerIsReady == false)
+                if (PlayersStats.Instance.player2.playerIsReady == false)
                 {
-                    if (player2.character != null)
+                    if (PlayersStats.Instance.player2.character != null)
                     {
-                        player2.playerIsReady = true;
+                        PlayersStats.Instance.player2.playerIsReady = true;
                     }
                     else
                     {
@@ -137,16 +132,16 @@ public class GameManager : MonoBehaviour {
                     }
                 }
                 else
-                    player2.playerIsReady = false;
+                    PlayersStats.Instance.player2.playerIsReady = false;
 
                 break;
 
             case 3:
-                if (player3.playerIsReady == false)
+                if (PlayersStats.Instance.player3.playerIsReady == false)
                 {
-                    if (player3.character != null)
+                    if (PlayersStats.Instance.player3.character != null)
                     {
-                        player3.playerIsReady = true;
+                        PlayersStats.Instance.player3.playerIsReady = true;
                     }
                     else
                     {
@@ -154,16 +149,16 @@ public class GameManager : MonoBehaviour {
                     }
                 }
                 else
-                    player3.playerIsReady = false;
+                    PlayersStats.Instance.player3.playerIsReady = false;
 
                 break;
 
             case 4:
-                if (player4.playerIsReady == false)
+                if (PlayersStats.Instance.player4.playerIsReady == false)
                 {
-                    if (player4.character != null)
+                    if (PlayersStats.Instance.player4.character != null)
                     {
-                        player4.playerIsReady = true;
+                        PlayersStats.Instance.player4.playerIsReady = true;
                     }
                     else
                     {
@@ -171,7 +166,7 @@ public class GameManager : MonoBehaviour {
                     }
                 }
                 else
-                    player4.playerIsReady = false;
+                    PlayersStats.Instance.player4.playerIsReady = false;
 
                 break;
 
@@ -184,31 +179,31 @@ public class GameManager : MonoBehaviour {
 
     public void SetCharacterForPlayer1(GameObject character)
     {
-        player1.character = character;
+        PlayersStats.Instance.player1.character = character;
     }
     public void SetCharacterForPlayer2(GameObject character)
     {
-        player2.character = character;
+        PlayersStats.Instance.player2.character = character;
     }
     public void SetCharacterForPlayer3(GameObject character)
     {
-        player3.character = character;
+        PlayersStats.Instance.player3.character = character;
     }
     public void SetCharacterForPlayer4(GameObject character)
     {
-        player4.character = character;
+        PlayersStats.Instance.player4.character = character;
     }
 
     public void StartGame()
     {
         int amountOfReadyPlayers = 0;
-        for (int i = 0; i < players.Count; i++)
+        for (int i = 0; i < PlayersStats.Instance.players.Count; i++)
         {
-            if (players[i].playerIsReady)
+            if (PlayersStats.Instance.players[i].playerIsReady)
             {
                 amountOfReadyPlayers += 1;
             }
-            if(amountOfReadyPlayers == criteriaToStartGame)
+            if(amountOfReadyPlayers == NumberOfPlayersActive)
             {
                 Debug.Log("Starting game...");
                 LoadRandomScene();
@@ -218,18 +213,13 @@ public class GameManager : MonoBehaviour {
 
     private void LoadRandomScene()
     {
-        int level = Random.Range(0, levels.Length);
-        usedLevels.Add(level);
-
-        SceneManager.LoadScene(levels[level]);
+        for(int i = 0; i < PlayersStats.Instance.levels.Length; i++)
+        {
+            if(PlayersStats.Instance.usedLevels.Contains(PlayersStats.Instance.levels[i]) == false)
+            {
+                PlayersStats.Instance.usedLevels.Add(PlayersStats.Instance.levels[i]);
+                SceneManager.LoadScene(PlayersStats.Instance.levels[i]);
+            }
+        }
     }
-
-    // ta in en pool av levels
-
-    // instanciera en random level. vid nästa tillfälle instanciera en level som != en använd
-
-
-
-
-
 }
