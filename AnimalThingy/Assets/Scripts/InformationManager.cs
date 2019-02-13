@@ -8,20 +8,20 @@ public class Player
     public GameObject character;
     public bool playerIsActive = false;
     public bool playerIsReady = false;
-    public int playerCheckpointProgress = 0;
 }
 
 public class InformationManager : MonoBehaviour {
 
     public static InformationManager Instance { get; private set; }
 
+    public Player Singleplayer;
     public Player player1;
     public Player player2;
     public Player player3;
     public Player player4;
     public List<Player> players;
 
-    public int[] levels;
+    public int[] multiplayerLevels;
     public List<int> usedLevels;
 
     private void Awake()

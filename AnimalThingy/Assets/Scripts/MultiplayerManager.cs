@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
-public class GameManager : MonoBehaviour {
+public class MultiplayerManager : MonoBehaviour {
 
     public int NumberOfPlayersActive;
 
@@ -29,7 +28,7 @@ public class GameManager : MonoBehaviour {
 
     private void Update()
     {
-        if(NumberOfPlayersActive < 0)
+        if (NumberOfPlayersActive < 0)
         {
             NumberOfPlayersActive = 0;
         }
@@ -117,7 +116,7 @@ public class GameManager : MonoBehaviour {
                 else
                     InformationManager.Instance.player1.playerIsReady = false;
 
-            break;
+                break;
 
             case 2:
                 if (InformationManager.Instance.player2.playerIsReady == false)
@@ -203,7 +202,7 @@ public class GameManager : MonoBehaviour {
             {
                 amountOfReadyPlayers += 1;
             }
-            if(amountOfReadyPlayers == NumberOfPlayersActive)
+            if (amountOfReadyPlayers == NumberOfPlayersActive)
             {
                 Debug.Log("Starting game...");
                 LoadRandomScene();
@@ -213,12 +212,12 @@ public class GameManager : MonoBehaviour {
 
     private void LoadRandomScene()
     {
-        for(int i = 0; i < InformationManager.Instance.levels.Length; i++)
+        for (int i = 0; i < InformationManager.Instance.multiplayerLevels.Length; i++)
         {
-            if(InformationManager.Instance.usedLevels.Contains(InformationManager.Instance.levels[i]) == false)
+            if (InformationManager.Instance.usedLevels.Contains(InformationManager.Instance.multiplayerLevels[i]) == false)
             {
-                InformationManager.Instance.usedLevels.Add(InformationManager.Instance.levels[i]);
-                SceneManager.LoadScene(InformationManager.Instance.levels[i]);
+                InformationManager.Instance.usedLevels.Add(InformationManager.Instance.multiplayerLevels[i]);
+                SceneManager.LoadScene(InformationManager.Instance.multiplayerLevels[i]);
             }
         }
     }

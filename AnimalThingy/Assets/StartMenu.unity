@@ -911,7 +911,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1791709584}
+      - m_Target: {fileID: 114188917}
         m_MethodName: SetPlayerActive
         m_Mode: 3
         m_Arguments:
@@ -970,6 +970,7 @@ GameObject:
   - component: {fileID: 114188916}
   - component: {fileID: 114188915}
   - component: {fileID: 114188914}
+  - component: {fileID: 114188917}
   m_Layer: 5
   m_Name: MULTIPLAYER
   m_TagString: Untagged
@@ -1092,6 +1093,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 114188912}
+--- !u!114 &114188917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 114188912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfc94178d9204be44a45028a26e9a449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NumberOfPlayersActive: 0
 --- !u!1 &180187098
 GameObject:
   m_ObjectHideFlags: 0
@@ -1351,7 +1364,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1791709584}
+      - m_Target: {fileID: 114188917}
         m_MethodName: SetPlayerInactive
         m_Mode: 3
         m_Arguments:
@@ -1670,6 +1683,7 @@ GameObject:
   - component: {fileID: 248441730}
   - component: {fileID: 248441729}
   - component: {fileID: 248441728}
+  - component: {fileID: 248441731}
   m_Layer: 5
   m_Name: SINGLEPLAYER
   m_TagString: Untagged
@@ -1792,6 +1806,25 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 248441726}
+--- !u!114 &248441731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 248441726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26d5baa7cd3379f47b90cc27b306503c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pig: {fileID: 0}
+  pigLevelIndex: 0
+  albatross: {fileID: 0}
+  albatrossLevelIndex: 0
+  monkey: {fileID: 0}
+  monkeyLevelIndex: 0
+  pinguin: {fileID: 0}
+  pinguinLevelIndex: 0
 --- !u!1 &248672916
 GameObject:
   m_ObjectHideFlags: 0
@@ -1961,7 +1994,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1791709584}
+      - m_Target: {fileID: 114188917}
         m_MethodName: SetPlayerInactive
         m_Mode: 3
         m_Arguments:
@@ -2574,7 +2607,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1791709584}
+      - m_Target: {fileID: 114188917}
         m_MethodName: SetCharacterForPlayer4
         m_Mode: 2
         m_Arguments:
@@ -2772,28 +2805,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9412831e4a52b2a4e95aef754f2da20c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Singleplayer:
+    character: {fileID: 0}
+    playerIsActive: 0
+    playerIsReady: 0
   player1:
     character: {fileID: 0}
     playerIsActive: 0
     playerIsReady: 0
-    playerCheckpointProgress: 0
   player2:
     character: {fileID: 0}
     playerIsActive: 0
     playerIsReady: 0
-    playerCheckpointProgress: 0
   player3:
     character: {fileID: 0}
     playerIsActive: 0
     playerIsReady: 0
-    playerCheckpointProgress: 0
   player4:
     character: {fileID: 0}
     playerIsActive: 0
     playerIsReady: 0
-    playerCheckpointProgress: 0
   players: []
-  levels: 02000000
+  multiplayerLevels: 
   usedLevels: 
 --- !u!224 &399187661
 RectTransform:
@@ -2806,7 +2839,7 @@ RectTransform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4414,7 +4447,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1791709584}
+      - m_Target: {fileID: 114188917}
         m_MethodName: SetPlayerInactive
         m_Mode: 3
         m_Arguments:
@@ -4540,7 +4573,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1791709584}
+      - m_Target: {fileID: 114188917}
         m_MethodName: SetCharacterForPlayer3
         m_Mode: 2
         m_Arguments:
@@ -4690,7 +4723,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1791709584}
+      - m_Target: {fileID: 114188917}
         m_MethodName: SetPlayerActive
         m_Mode: 3
         m_Arguments:
@@ -5565,7 +5598,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1791709584}
+      - m_Target: {fileID: 114188917}
         m_MethodName: SetCharacterForPlayer3
         m_Mode: 2
         m_Arguments:
@@ -5692,7 +5725,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1791709584}
+      - m_Target: {fileID: 114188917}
         m_MethodName: SetCharacterForPlayer2
         m_Mode: 2
         m_Arguments:
@@ -5842,7 +5875,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1791709584}
+      - m_Target: {fileID: 114188917}
         m_MethodName: SetPlayerActive
         m_Mode: 3
         m_Arguments:
@@ -5969,7 +6002,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1791709584}
+      - m_Target: {fileID: 114188917}
         m_MethodName: SetPlayerReady
         m_Mode: 3
         m_Arguments:
@@ -5980,7 +6013,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1791709584}
+      - m_Target: {fileID: 114188917}
         m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
@@ -6264,7 +6297,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1791709584}
+      - m_Target: {fileID: 114188917}
         m_MethodName: SetCharacterForPlayer1
         m_Mode: 2
         m_Arguments:
@@ -6959,7 +6992,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1791709584}
+      - m_Target: {fileID: 114188917}
         m_MethodName: SetPlayerActive
         m_Mode: 3
         m_Arguments:
@@ -7086,7 +7119,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1791709584}
+      - m_Target: {fileID: 114188917}
         m_MethodName: SetPlayerReady
         m_Mode: 3
         m_Arguments:
@@ -7097,7 +7130,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1791709584}
+      - m_Target: {fileID: 114188917}
         m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
@@ -7587,7 +7620,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1791709584}
+      - m_Target: {fileID: 114188917}
         m_MethodName: SetCharacterForPlayer3
         m_Mode: 2
         m_Arguments:
@@ -7714,7 +7747,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1791709584}
+      - m_Target: {fileID: 114188917}
         m_MethodName: SetCharacterForPlayer1
         m_Mode: 2
         m_Arguments:
@@ -8153,7 +8186,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1791709584}
+      - m_Target: {fileID: 114188917}
         m_MethodName: SetCharacterForPlayer2
         m_Mode: 2
         m_Arguments:
@@ -8280,7 +8313,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1791709584}
+      - m_Target: {fileID: 114188917}
         m_MethodName: SetCharacterForPlayer4
         m_Mode: 2
         m_Arguments:
@@ -8880,7 +8913,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1791709584}
+      - m_Target: {fileID: 114188917}
         m_MethodName: SetPlayerReady
         m_Mode: 3
         m_Arguments:
@@ -8891,7 +8924,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1791709584}
+      - m_Target: {fileID: 114188917}
         m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
@@ -9018,7 +9051,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1791709584}
+      - m_Target: {fileID: 114188917}
         m_MethodName: SetPlayerReady
         m_Mode: 3
         m_Arguments:
@@ -9029,7 +9062,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1791709584}
+      - m_Target: {fileID: 114188917}
         m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
@@ -9333,7 +9366,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1791709584}
+      - m_Target: {fileID: 114188917}
         m_MethodName: SetPlayerInactive
         m_Mode: 3
         m_Arguments:
@@ -10031,7 +10064,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1791709584}
+      - m_Target: {fileID: 114188917}
         m_MethodName: SetCharacterForPlayer2
         m_Mode: 2
         m_Arguments:
@@ -10158,7 +10191,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1791709584}
+      - m_Target: {fileID: 114188917}
         m_MethodName: SetCharacterForPlayer4
         m_Mode: 2
         m_Arguments:
@@ -10443,7 +10476,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1791709584}
+      - m_Target: {fileID: 114188917}
         m_MethodName: SetCharacterForPlayer1
         m_Mode: 2
         m_Arguments:
@@ -10893,7 +10926,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1791709584}
+      - m_Target: {fileID: 114188917}
         m_MethodName: SetCharacterForPlayer4
         m_Mode: 2
         m_Arguments:
@@ -11326,7 +11359,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1791709584}
+      - m_Target: {fileID: 114188917}
         m_MethodName: SetCharacterForPlayer2
         m_Mode: 2
         m_Arguments:
@@ -11375,47 +11408,6 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1774879794}
---- !u!1 &1791709583
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1791709585}
-  - component: {fileID: 1791709584}
-  m_Layer: 0
-  m_Name: GameManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1791709584
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1791709583}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae77d275c90eee1478aae1c49b021cee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  NumberOfPlayersActive: 0
---- !u!4 &1791709585
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1791709583}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.31581354, y: 0.18655941, z: -0.34765625}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1795587991
 GameObject:
   m_ObjectHideFlags: 0
@@ -12100,7 +12092,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1791709584}
+      - m_Target: {fileID: 114188917}
         m_MethodName: SetCharacterForPlayer3
         m_Mode: 2
         m_Arguments:
@@ -12453,7 +12445,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1791709584}
+      - m_Target: {fileID: 114188917}
         m_MethodName: SetCharacterForPlayer1
         m_Mode: 2
         m_Arguments:
@@ -12593,7 +12585,7 @@ RectTransform:
   - {fileID: 313147702}
   - {fileID: 1988699502}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
