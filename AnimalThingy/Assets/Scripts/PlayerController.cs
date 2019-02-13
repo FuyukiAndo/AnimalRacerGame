@@ -15,10 +15,10 @@ public class PlayerController : MonoBehaviour {
     public LayerMask waterLayer;
     public bool pengvin;
 
-
     private Rigidbody2D rb2d;
     private BoxCollider2D bc2d;
     private Vector2 player;
+    private ColdWinter coldWinter;
     private float distanceToGround;
     private bool isGrounded;
     private float originalSpeed;
@@ -28,16 +28,16 @@ public class PlayerController : MonoBehaviour {
     void Start () {
         rb2d = GetComponent<Rigidbody2D>();
         bc2d = GetComponent<BoxCollider2D>();
+        coldWinter = GetComponentInChildren<ColdWinter>();
         distanceToGround = bc2d.bounds.extents.y;
         originalSpeed = speed;
 	}
+
 	void FixedUpdate () {
-        Debug.DrawRay(transform.position, Vector3.down * (distanceToGround + 0.1f), Color.red);
         ifGrouded();
         HorizontalMovement();
         VerticalMovement();
     }
-
 
     void ifGrouded()
     {
@@ -93,6 +93,7 @@ public class PlayerController : MonoBehaviour {
             }
         }
     }
+
     public IEnumerator SpeedChange(float boostChangeAmount, float boostDuration, GameObject speedObject)
     {
         speed = speed + boostChangeAmount;
@@ -110,6 +111,10 @@ public class PlayerController : MonoBehaviour {
         if ( isOnLayer && pengvin == false)
         {
             GetKilled();
+        }
+        if(collision.gameObject.tag == "Bonefire")
+        {
+            coldWinter.WarmedUp();
         }
     }
     public IEnumerator GetStunned(float stunDuration, GameObject stunObject)
