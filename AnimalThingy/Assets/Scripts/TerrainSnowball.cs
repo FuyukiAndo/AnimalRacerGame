@@ -7,6 +7,7 @@ public class TerrainSnowball : MonoBehaviour {
 
     public float speed = 5.0f;
     public LayerMask terrainLayer;
+    public float stunDuration;
 
     private Rigidbody2D rb2d;
     private float dir;
@@ -33,6 +34,16 @@ public class TerrainSnowball : MonoBehaviour {
         {
             dir = -dir;
             speed = -speed;
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        PlayerController player = collision.gameObject.GetComponent<PlayerController>();
+        if (player != null)
+        {
+            StartCoroutine(player.GetStunned(stunDuration, gameObject));
+            GetComponent<MeshRenderer>().enabled = false;
+            GetComponent<Collider2D>().enabled = false;
         }
     }
 }

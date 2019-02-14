@@ -59,9 +59,9 @@ GameObject:
   - component: {fileID: 114681879572211694}
   - component: {fileID: 50529964328267168}
   - component: {fileID: 95235049029912918}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -265,6 +265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeForSurvival: 100
+  timeUntillDeath: 0
 --- !u!114 &114681879572211694
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -285,7 +286,7 @@ MonoBehaviour:
   waterLayer:
     serializedVersion: 2
     m_Bits: 16
-  pengvin: 0
+  pengvin: 1
 --- !u!124 &124100331001966656
 Behaviour:
   m_ObjectHideFlags: 1

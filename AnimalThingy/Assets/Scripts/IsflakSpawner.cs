@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class IsflakSpawner : Spawner {
 
-	void Update () {
+    public float floatSpeed;
+
+    void Update () {
         SpawnObject();
 	}
+    public float GetSpeed()
+    {
+        return floatSpeed;
+    }
 }

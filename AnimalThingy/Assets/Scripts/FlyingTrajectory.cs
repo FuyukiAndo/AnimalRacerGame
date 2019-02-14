@@ -24,7 +24,6 @@ public class FlyingTrajectory : MonoBehaviour {
         }
         if(collision.gameObject.layer == LayerMask.NameToLayer("Terrain"))
         {
-            Debug.Log("llo");
             Destroy(gameObject);
         }
     }

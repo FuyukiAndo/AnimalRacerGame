@@ -7,7 +7,7 @@ public class ColdWinter : MonoBehaviour {
     public float timeForSurvival;
 
     private GameObject player;
-    private float timeUntillDeath;
+   public float timeUntillDeath;
 
     private void Start()
     {
@@ -18,7 +18,6 @@ public class ColdWinter : MonoBehaviour {
     void Update () {
         timeUntillDeath -= Time.deltaTime*2;
         FreezingToDeath(); 
-        Debug.Log(timeUntillDeath);
 	}
 
    void FreezingToDeath()

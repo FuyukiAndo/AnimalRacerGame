@@ -9,6 +9,7 @@ TagManager:
   - Tranpolin
   - Ground
   - Wall
+  - Bonefire
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - 
   - 
   - Terrain
-  - Spike
+  - Character
   - 
   - 
   - 

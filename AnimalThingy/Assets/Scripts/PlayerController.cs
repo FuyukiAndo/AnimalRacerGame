@@ -35,8 +35,11 @@ public class PlayerController : MonoBehaviour {
 
 	void FixedUpdate () {
         ifGrouded();
-        HorizontalMovement();
-        VerticalMovement();
+        if (isStunned != true)
+        {
+            HorizontalMovement();
+            VerticalMovement();
+        }
     }
 
     void ifGrouded()
@@ -53,8 +56,6 @@ public class PlayerController : MonoBehaviour {
     }
     void HorizontalMovement()
     {
-        if (isStunned == false)
-        {
             if (Input.GetKey("a") && isGrounded == true)
             {
                 player = new Vector2(-speed, rb2d.velocity.y);
@@ -76,12 +77,10 @@ public class PlayerController : MonoBehaviour {
                 player = new Vector2(rb2d.velocity.x, rb2d.velocity.y);
             }
             rb2d.velocity = player;
-        }
+        
     }
     void VerticalMovement()
     {
-        if (isStunned == false)
-        {
             if (Input.GetKey("w") && isGrounded == true && jumpCount == 0)
             {
                 rb2d.AddForce(new Vector2(0, jumpStrenght));
@@ -91,7 +90,6 @@ public class PlayerController : MonoBehaviour {
             {
                 jumpCount = 0;
             }
-        }
     }
 
     public IEnumerator SpeedChange(float boostChangeAmount, float boostDuration, GameObject speedObject)
@@ -112,10 +110,13 @@ public class PlayerController : MonoBehaviour {
         {
             GetKilled();
         }
-        if(collision.gameObject.tag == "Bonefire")
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Bonefire")
         {
             coldWinter.WarmedUp();
-        }
+        } 
     }
     public IEnumerator GetStunned(float stunDuration, GameObject stunObject)
     {

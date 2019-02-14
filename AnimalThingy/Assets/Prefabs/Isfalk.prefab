@@ -161,4 +161,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   durability: 2
   timeUntillBroken: 3
-  floatSpeed: 1
+  floatSpeed: 0
