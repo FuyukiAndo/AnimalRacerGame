@@ -22,9 +22,9 @@ public class FlyingTrajectory : MonoBehaviour {
             GetComponent<MeshRenderer>().enabled = false;
             GetComponent<Collider2D>().enabled = false;
         }
-        if(collision.gameObject.layer == LayerMask.NameToLayer("Terrain"))
+        if(collision.gameObject.layer == LayerMask.NameToLayer("Platorm") || collision.gameObject.layer == LayerMask.NameToLayer("Water"))
         {
-            Debug.Log("llo");
+            
             Destroy(gameObject);
         }
     }

@@ -35,7 +35,7 @@ public class Isflak : MonoBehaviour {
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Character")
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             timeBeforeDestroyed--;
         }

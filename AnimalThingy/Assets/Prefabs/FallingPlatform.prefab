@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 61469011237403798}
   - component: {fileID: 114353622013745416}
   - component: {fileID: 50768975640892932}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: FallingPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -144,3 +144,4 @@ MonoBehaviour:
   terrainLayer:
     serializedVersion: 2
     m_Bits: 256
+  stunDuration: 0
