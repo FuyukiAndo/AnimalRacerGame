@@ -10,6 +10,8 @@ TagManager:
   - Ground
   - Wall
   - Bonefire
+  - OneWay
+  - oneWay
   layers:
   - Default
   - TransparentFX
@@ -19,8 +21,8 @@ TagManager:
   - UI
   - 
   - 
-  - Terrain
-  - Character
+  - Player
+  - Platform
   - 
   - 
   - 
