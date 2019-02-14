@@ -42,6 +42,7 @@ public class CheckpointTracker : MonoBehaviour
 		}
 	}
 	private float finishingTime, totalFinishingTime;
+	[SerializeField] private Color playerColour;
 
 	void Update()
 	{
@@ -51,6 +52,7 @@ public class CheckpointTracker : MonoBehaviour
 			if (collider.GetComponent<Checkpoint>())
 			{
 				Checkpoint checkPoint = collider.GetComponent<Checkpoint>();
+				checkPoint.SetColour(playerColour);
 				if (GoalManager.Instance.passInSequence)
 				{
 					if (checkPoint.Index == lastCheckpointPassed + 1)

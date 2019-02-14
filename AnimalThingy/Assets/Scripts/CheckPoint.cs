@@ -13,4 +13,15 @@ public class Checkpoint : MonoBehaviour
 		}
 	}
 	[SerializeField] private int index;
+	private List<Color> activatedColours = new List<Color>();
+
+	public void SetColour(Color colour)
+	{
+		activatedColours.Add(colour);
+	}
+
+	public List<Color> GetActivatedColours()
+	{
+		return activatedColours;
+	}
 }
