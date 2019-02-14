@@ -6,19 +6,36 @@ public class CollisionController : RaycastController
 {
 	public static CollisionController collisionController;
 	
-	[HideInInspector]public string collisionTag = "oneWay";
+	private string collisionTag = "OneWay";
 	
 	[HideInInspector]public float maxAngle = 80;
 	
 	[HideInInspector]public BoxCollisionDirections boxCollisionDirections;
 	
 	[HideInInspector]public float SetRayLength = 1.0f;
-
+	
+	void OnValidate()
+	{
+	}
+	
 	public override void Start()
 	{
 		base.Start();
 		collisionController = this;
 	}
+		
+	/*string[] stringtags = new string[]{"player", "enemy"};
+	public enum tagNumbers{player,enemy};
+	public tagNumbers tagNum;*/
+	
+	/*string[] collisionTags = new string[]{"oneWay", "twoWay"};
+	
+	public enum TagElement
+	{
+		oneWay, 
+		twoWay
+	};
+	public TagElement tagElement;*/
 	
 	public struct BoxCollisionDirections
 	{
@@ -141,11 +158,12 @@ public class CollisionController : RaycastController
 			
 			if (hitY)
 			{	
-				/*if((directionY == 1 && (hitY.collider.tag == collisionTag)))
+				// Collision check for one way-platform
+				if((directionY == 1 && (hitY.collider.tag == collisionTag)))
                 {
 					boxCollisionDirections.down = false;
                     continue;
-                }*/
+                }
 				
 				if(boxCollisionDirections.climbing)
 				{
