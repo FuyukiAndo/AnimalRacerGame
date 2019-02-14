@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 public class MultiplayerManager : MonoBehaviour {
 
     public int NumberOfPlayersActive;
+    private Object map1;
+    private Object map2;
+    private Object map3;
+    private Object map4;
 
     private void Start()
     {
@@ -212,13 +216,53 @@ public class MultiplayerManager : MonoBehaviour {
 
     private void LoadRandomScene()
     {
-        for (int i = 0; i < InformationManager.Instance.multiplayerLevels.Length; i++)
+        List<Object> tempMaps = new List<Object>(InformationManager.Instance.iceMaps.maps);
+
+        foreach (Player player in InformationManager.Instance.players)
         {
-            if (InformationManager.Instance.usedMultiplayerLevels.Contains(InformationManager.Instance.multiplayerLevels[i]) == false)
+            switch (player.character.tag)
             {
-                InformationManager.Instance.usedMultiplayerLevels.Add(InformationManager.Instance.multiplayerLevels[i]);
-                SceneManager.LoadScene(InformationManager.Instance.multiplayerLevels[i].name);
+                case "ICE_character":
+                   int temp = Random.Range(0, InformationManager.Instance.iceMaps.maps.Length);
+                    foreach(Object maps in InformationManager.Instance.iceMaps.maps)
+                    {
+                        if (InformationManager.Instance.iceMaps.usedMaps.Contains(InformationManager.Instance.iceMaps.maps[temp]))
+                        {
+                            temp = Random.Range(0, InformationManager.Instance.iceMaps.maps.Length);
+                        }
+                        else
+                        {
+                            InformationManager.Instance.multiplayerlevels.Add(InformationManager.Instance.iceMaps.maps[temp]);
+                            InformationManager.Instance.iceMaps.usedMaps.Add(InformationManager.Instance.iceMaps.maps[temp]);
+                        }
+                    }
+
+                    
+                    
+                    return;
+
+                case "JUNGLE_character":
+
+                    return;
+                case "FARM_character":
+
+                    return;
+                case "COAST_character":
+
+                    return;
             }
         }
+
+
+        //for (int i = 0; i < InformationManager.Instance.multiplayerLevels.Length; i++)
+        //{
+        //    if (InformationManager.Instance.usedMultiplayerLevels.Contains(InformationManager.Instance.multiplayerLevels[i]) == false)
+        //    {
+        //        InformationManager.Instance.usedMultiplayerLevels.Add(InformationManager.Instance.multiplayerLevels[i]);
+        //        SceneManager.LoadScene(InformationManager.Instance.multiplayerLevels[i].name);
+        //    }
+        //}
     }
 }
+
+// även om 4 spelare väljer samma typ av karaktär (ex: is) måste fyra unika banor adderas till multiplayerlevels.

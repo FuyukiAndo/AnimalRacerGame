@@ -9,10 +9,22 @@ public class Player
     public bool playerIsActive = false;
     public bool playerIsReady = false;
 }
+[System.Serializable]
+public class MultiplayerMaps
+{
+    public Object[] maps;
+    public List<Object> usedMaps;
+}
 
 public class InformationManager : MonoBehaviour {
 
     public static InformationManager Instance { get; private set; }
+
+    public MultiplayerMaps iceMaps;
+    public MultiplayerMaps jungleMaps;
+    public MultiplayerMaps farmMaps;
+    public MultiplayerMaps coastMaps;
+
 
     public Player Singleplayer;
     public Player player1;
@@ -20,7 +32,7 @@ public class InformationManager : MonoBehaviour {
     public Player player3;
     public Player player4;
     public List<Player> players;
-    public Object[] multiplayerLevels;
+    public List<Object> multiplayerlevels;
     public List<Object> usedMultiplayerLevels;
 
 
@@ -41,6 +53,7 @@ public class InformationManager : MonoBehaviour {
         player3 = new Player();
         player4 = new Player();
         players = new List<Player>();
+        multiplayerlevels = new List<Object>();
         usedMultiplayerLevels = new List<Object>();
     }
 }

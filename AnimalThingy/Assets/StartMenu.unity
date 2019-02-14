@@ -2805,6 +2805,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9412831e4a52b2a4e95aef754f2da20c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  iceMaps:
+    maps: []
+    usedMaps: []
+  jungleMaps:
+    maps: []
+    usedMaps: []
+  farmMaps:
+    maps: []
+    usedMaps: []
+  coastMaps:
+    maps: []
+    usedMaps: []
   Singleplayer:
     character: {fileID: 0}
     playerIsActive: 0
@@ -2826,8 +2838,7 @@ MonoBehaviour:
     playerIsActive: 0
     playerIsReady: 0
   players: []
-  multiplayerLevels:
-  - {fileID: 102900000, guid: 3c1e34a389e5858438aea22ee59c0355, type: 3}
+  multiplayerlevels: []
   usedMultiplayerLevels: []
 --- !u!224 &399187661
 RectTransform:
