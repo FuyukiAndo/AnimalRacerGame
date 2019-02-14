@@ -7,6 +7,8 @@ TagManager:
   - Ground
   - Tranpolin
   - Spike
+  - OneWay
+  - oneWay
   layers:
   - Default
   - TransparentFX

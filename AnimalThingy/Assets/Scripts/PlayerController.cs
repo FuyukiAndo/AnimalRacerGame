@@ -5,7 +5,20 @@ using UnityEngine;
 [RequireComponent(typeof(CollisionController))]
 
 public class PlayerController : MonoBehaviour 
-{		
+{	
+	public enum PlayerType
+	{
+		playerNobody,
+		playerAlbatross,
+		playerPig,
+		playerMonkey,
+		playerPenguin
+	};
+	
+	[Header("Player Type Settings")]
+	public PlayerType playerType;
+	
+	
 	[HideInInspector] public CollisionController collisionController;
 	[HideInInspector] public static PlayerController playerController;
 	
@@ -30,6 +43,8 @@ public class PlayerController : MonoBehaviour
 	[HideInInspector] public float wallSlideSpeedMax = 3;
 	private float velocitySmoothing;
 	[HideInInspector] public Vector2 movement;
+	
+
 
 	void Awake()
 	{
