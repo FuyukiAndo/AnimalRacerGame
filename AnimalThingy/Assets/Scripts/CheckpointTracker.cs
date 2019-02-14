@@ -19,7 +19,29 @@ public class CheckpointTracker : MonoBehaviour
 	[SerializeField] private Vector2 boxSize, checkpointSearchSize;
 	[SerializeField] private float initialCheckpointTipDelay, recurringCheckpointTipDelay;
 	[SerializeField] private string UIMethodName;
-	AnimationHandler animationHandler;
+	public float FinishingTime
+	{
+		get
+		{
+			return finishingTime;
+		}
+		set
+		{
+			finishingTime = value;
+		}
+	}
+	public float TotalFinishingTime
+	{
+		get
+		{
+			return totalFinishingTime;
+		}
+		set
+		{
+			totalFinishingTime = value;
+		}
+	}
+	private float finishingTime, totalFinishingTime;
 
 	void Update()
 	{
@@ -116,4 +138,6 @@ public class CheckpointTracker : MonoBehaviour
 		}
 		return closest;
 	}
+
+	//Check every checkpoint, set colour for the ones who the player has passed, leave the ones who the player hasn't passed uncoloured
 }

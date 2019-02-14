@@ -25,6 +25,7 @@ public class GoalManager : MonoBehaviour
 	private List<CheckpointTracker> unplacedPlayers = new List<CheckpointTracker>();
 	[SerializeField] private Vector2[] playerGoalPositions;
 	[SerializeField] private string playerMoveScriptName;
+	private float totalTimeBeforeAutoPlacements;
 
 	void Start()
 	{
@@ -40,6 +41,7 @@ public class GoalManager : MonoBehaviour
 		{
 			unplacedPlayers.Add(tracker);
 		}
+		totalTimeBeforeAutoPlacements = timeBeforeAutoPlacements;
 	}
 
 	void Update()
@@ -110,9 +112,14 @@ public class GoalManager : MonoBehaviour
 		return false;
 	}
 
-	public List<GameObject> GetPlayerPlacements()
+	public Dictionary<GameObject, float> GetPlayerPlacements()
 	{
-		return placedPlayers;
+		Dictionary<GameObject, float> _placedPlayers = new Dictionary<GameObject, float>();
+		for (int i = 0; i < placedPlayers.Count; i++)
+		{
+			_placedPlayers.Add(placedPlayers[i], placedPlayers[i].GetComponent<CheckpointTracker>().FinishingTime);
+		}
+		return _placedPlayers;
 	}
 
 	void PlacePlayers()
@@ -120,6 +127,7 @@ public class GoalManager : MonoBehaviour
 		CheckpointTracker closestTracker = GetPlayerClosestToGoal();
 		int index = unplacedPlayers.IndexOf(closestTracker);
 		placedPlayers.Add(GetPlayerClosestToGoal().gameObject);
+		AssignFinishingTime(GetPlayerClosestToGoal());
 		int index1 = placedPlayers.IndexOf(closestTracker.gameObject);
 		placedPlayers[index1].transform.position = playerGoalPositions[index1];
 		TrapPlayers();
@@ -160,8 +168,7 @@ public class GoalManager : MonoBehaviour
 			{
 				if (AtSameCheckpoint(unplacedPlayers[trackerIndex], tracker))
 				{
-					trackerIndex = Array.IndexOf(unplacedPlayers.ToArray(),
-						GetPlayerClosestToNextCheckpoint(unplacedPlayers[trackerIndex], tracker));
+					trackerIndex = unplacedPlayers.IndexOf(GetPlayerClosestToNextCheckpoint(unplacedPlayers[trackerIndex], tracker));
 				}
 			}
 			return unplacedPlayers[trackerIndex];
@@ -182,8 +189,7 @@ public class GoalManager : MonoBehaviour
 			{
 				if (SameAmountOfChecksPassed(unplacedPlayers[trackerIndex], tracker))
 				{
-					trackerIndex = Array.IndexOf(unplacedPlayers.ToArray(), GetClosestToGoal(unplacedPlayers[trackerIndex], 
-						tracker));
+					trackerIndex = unplacedPlayers.IndexOf(GetClosestToGoal(unplacedPlayers[trackerIndex], tracker));
 				}
 			}
 			return unplacedPlayers[trackerIndex];
@@ -227,6 +233,32 @@ public class GoalManager : MonoBehaviour
 		{
 			Gizmos.DrawWireSphere(goal, .5f);
 		}
+	}
+
+	void AssignFinishingTime(CheckpointTracker tracker)
+	{
+		//Assign time taken as points or remaining time as points?
+		float finishingTime = totalTimeBeforeAutoPlacements - timeBeforeAutoPlacements;
+		if (finishingTime > 0f)
+		{
+			tracker.FinishingTime = finishingTime;
+			tracker.TotalFinishingTime += finishingTime;
+		}
+		else
+		{
+			tracker.FinishingTime = 0f;
+		}
+	}
+
+	public float[] GetTotalPlayerFinishingTimes()
+	{
+		float[] finishingTimes = {
+			placedPlayers[0].GetComponent<CheckpointTracker>().TotalFinishingTime,
+			placedPlayers[1].GetComponent<CheckpointTracker>().TotalFinishingTime,
+			placedPlayers[2].GetComponent<CheckpointTracker>().TotalFinishingTime,
+			placedPlayers[3].GetComponent<CheckpointTracker>().TotalFinishingTime,
+		};
+		return finishingTimes;
 	}
 
 }
