@@ -20,9 +20,9 @@ public class InformationManager : MonoBehaviour {
     public Player player3;
     public Player player4;
     public List<Player> players;
+    public Object[] multiplayerLevels;
+    public List<Object> usedMultiplayerLevels;
 
-    public int[] multiplayerLevels;
-    public List<int> usedLevels;
 
     private void Awake()
     {
@@ -41,6 +41,6 @@ public class InformationManager : MonoBehaviour {
         player3 = new Player();
         player4 = new Player();
         players = new List<Player>();
-        usedLevels = new List<int>();
+        usedMultiplayerLevels = new List<Object>();
     }
 }

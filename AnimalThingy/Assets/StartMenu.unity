@@ -2826,8 +2826,9 @@ MonoBehaviour:
     playerIsActive: 0
     playerIsReady: 0
   players: []
-  multiplayerLevels: 
-  usedLevels: 
+  multiplayerLevels:
+  - {fileID: 102900000, guid: 3c1e34a389e5858438aea22ee59c0355, type: 3}
+  usedMultiplayerLevels: []
 --- !u!224 &399187661
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5007,7 +5008,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 789257842}
-  - component: {fileID: 789257843}
   m_Layer: 5
   m_Name: MULTIPLAYERPlayer4Window
   m_TagString: Untagged
@@ -5036,19 +5036,6 @@ RectTransform:
   m_AnchoredPosition: {x: -328.8, y: 192.65}
   m_SizeDelta: {x: 657.6, y: 385.3}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &789257843
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 789257841}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 869d15ef98d919f4a86548e6c87cc0c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterSelectionChild: {fileID: 1324246220}
-  joinButton: {fileID: 105002574}
 --- !u!1 &827520731
 GameObject:
   m_ObjectHideFlags: 0
@@ -5250,7 +5237,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 863966453}
-  - component: {fileID: 863966454}
   m_Layer: 5
   m_Name: MULTIPLAYERPlayer3Window
   m_TagString: Untagged
@@ -5279,19 +5265,6 @@ RectTransform:
   m_AnchoredPosition: {x: 328.8, y: 192.65}
   m_SizeDelta: {x: 657.6, y: 385.3}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &863966454
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 863966452}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 869d15ef98d919f4a86548e6c87cc0c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterSelectionChild: {fileID: 1051500771}
-  joinButton: {fileID: 945063216}
 --- !u!1 &865932701
 GameObject:
   m_ObjectHideFlags: 0
@@ -9560,7 +9533,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 246223281}
-  - component: {fileID: 1387397627}
   m_Layer: 5
   m_Name: MULTIPLAYERPlayer1Window
   m_TagString: Untagged
@@ -9568,19 +9540,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1387397627
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1387397626}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 869d15ef98d919f4a86548e6c87cc0c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterSelectionChild: {fileID: 679181268}
-  joinButton: {fileID: 1103405605}
 --- !u!1 &1451603457
 GameObject:
   m_ObjectHideFlags: 0
@@ -10534,7 +10493,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1598538882}
-  - component: {fileID: 1598538883}
   m_Layer: 5
   m_Name: MULTIPLAYERPlayer2Window
   m_TagString: Untagged
@@ -10563,19 +10521,6 @@ RectTransform:
   m_AnchoredPosition: {x: -328.8, y: -192.65}
   m_SizeDelta: {x: 657.6, y: 385.3}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1598538883
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1598538881}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 869d15ef98d919f4a86548e6c87cc0c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterSelectionChild: {fileID: 309731937}
-  joinButton: {fileID: 746566776}
 --- !u!1 &1616109456
 GameObject:
   m_ObjectHideFlags: 0
@@ -11158,7 +11103,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -75.900024}
+  m_AnchoredPosition: {x: 0, y: -75.8999}
   m_SizeDelta: {x: 869.6, y: 151.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1748036260

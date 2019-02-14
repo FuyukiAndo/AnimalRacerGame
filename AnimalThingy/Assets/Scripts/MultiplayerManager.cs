@@ -214,10 +214,10 @@ public class MultiplayerManager : MonoBehaviour {
     {
         for (int i = 0; i < InformationManager.Instance.multiplayerLevels.Length; i++)
         {
-            if (InformationManager.Instance.usedLevels.Contains(InformationManager.Instance.multiplayerLevels[i]) == false)
+            if (InformationManager.Instance.usedMultiplayerLevels.Contains(InformationManager.Instance.multiplayerLevels[i]) == false)
             {
-                InformationManager.Instance.usedLevels.Add(InformationManager.Instance.multiplayerLevels[i]);
-                SceneManager.LoadScene(InformationManager.Instance.multiplayerLevels[i]);
+                InformationManager.Instance.usedMultiplayerLevels.Add(InformationManager.Instance.multiplayerLevels[i]);
+                SceneManager.LoadScene(InformationManager.Instance.multiplayerLevels[i].name);
             }
         }
     }
