@@ -8,12 +8,16 @@ public class Player
     public GameObject character;
     public bool playerIsActive = false;
     public bool playerIsReady = false;
+    public int score = 0;
+    public float level1Time = 0;
+    public float level2Time = 0;
+    public float level3Time = 0;
+    public float level4Time = 0;
 }
 [System.Serializable]
 public class MultiplayerMaps
 {
     public Object[] maps;
-    public List<Object> usedMaps;
 }
 
 public class InformationManager : MonoBehaviour {
@@ -32,9 +36,7 @@ public class InformationManager : MonoBehaviour {
     public Player player3;
     public Player player4;
     public List<Player> players;
-    public List<Object> multiplayerlevels;
-    public List<Object> usedMultiplayerLevels;
-
+    public List<Object> multiplayerLevels;
 
     private void Awake()
     {
@@ -53,7 +55,6 @@ public class InformationManager : MonoBehaviour {
         player3 = new Player();
         player4 = new Player();
         players = new List<Player>();
-        multiplayerlevels = new List<Object>();
-        usedMultiplayerLevels = new List<Object>();
+        multiplayerLevels = new List<Object>();
     }
 }
