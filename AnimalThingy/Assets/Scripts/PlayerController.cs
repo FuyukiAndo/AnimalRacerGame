@@ -31,11 +31,12 @@ public class PlayerController : MonoBehaviour {
         coldWinter = GetComponentInChildren<ColdWinter>();
         distanceToGround = bc2d.bounds.extents.y;
         originalSpeed = speed;
+        
 	}
 
 	void FixedUpdate () {
         ifGrouded();
-        if (isStunned != true)
+        if (!isStunned)
         {
             HorizontalMovement();
             VerticalMovement();
@@ -118,13 +119,19 @@ public class PlayerController : MonoBehaviour {
             coldWinter.WarmedUp();
         } 
     }
-    public IEnumerator GetStunned(float stunDuration, GameObject stunObject)
+    public IEnumerator GetStunnedAndDestroy(float stunDuration, GameObject stunObject)
     {
         isStunned = true;
         yield return new WaitForSeconds(stunDuration);
         isStunned = false;
         Destroy(stunObject);
-        
+    }
+    public IEnumerator GetStunned(float stunDurtation)
+    {
+        Debug.Log(stunDurtation);
+        isStunned = true;
+        yield return new WaitForSeconds(stunDurtation);
+        isStunned = false;
     }
     public void GetKilled()
     {
