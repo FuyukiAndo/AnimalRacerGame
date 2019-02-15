@@ -46,7 +46,18 @@ public class GoalManager : MonoBehaviour
 
 	void Update()
 	{
-		if (startCountDown && unplacedPlayers.Count > 0)
+		if (countDownOnFirstPlayer)
+		{
+			if (startCountDown && unplacedPlayers.Count > 0)
+			{
+				timeBeforeAutoPlacements -= Time.deltaTime;
+				if (timeBeforeAutoPlacements <= 0f)
+				{
+					PlacePlayers();
+				}
+			}
+		}
+		else if (StartManager.Instance.TimeUntilStart <= 0f && unplacedPlayers.Count > 0)
 		{
 			timeBeforeAutoPlacements -= Time.deltaTime;
 			if (timeBeforeAutoPlacements <= 0f)
@@ -112,15 +123,29 @@ public class GoalManager : MonoBehaviour
 		return false;
 	}
 
-	public Dictionary<GameObject, float> GetPlayerPlacements()
+	public float[] GetPlayerTimesForCurrentRound()
 	{
-		Dictionary<GameObject, float> _placedPlayers = new Dictionary<GameObject, float>();
+		List<float> playerTimes = new List<float>();
 		for (int i = 0; i < placedPlayers.Count; i++)
 		{
-			_placedPlayers.Add(placedPlayers[i], placedPlayers[i].GetComponent<CheckpointTracker>().FinishingTime);
+			playerTimes.Add(placedPlayers[i].GetComponent<CheckpointTracker>().FinishingTime);
 		}
-		return _placedPlayers;
+		return playerTimes.ToArray();
 	}
+
+	public int[] GetPlayerPointsForCurrentRound()
+	{
+		List<int> playerPoints = new List<int>();
+		for (int i = 0; i < placedPlayers.Count; i++)
+		{
+			playerPoints.Add(placedPlayers.Count - 1);
+		}
+		return playerPoints.ToArray();
+	}
+
+	//Fast antal poäng per placering - har 2 spelare samma placering avgörs placeringen med deras finishingTime
+	//vid målgång kolla och sätt rätt poäng för rätt spelare
+	//lagra poängen och skicka poäng och tid per spelare när alla gått i mål
 
 	void PlacePlayers()
 	{
@@ -237,28 +262,15 @@ public class GoalManager : MonoBehaviour
 
 	void AssignFinishingTime(CheckpointTracker tracker)
 	{
-		//Assign time taken as points or remaining time as points?
 		float finishingTime = totalTimeBeforeAutoPlacements - timeBeforeAutoPlacements;
 		if (finishingTime > 0f)
 		{
 			tracker.FinishingTime = finishingTime;
-			tracker.TotalFinishingTime += finishingTime;
 		}
 		else
 		{
 			tracker.FinishingTime = 0f;
 		}
-	}
-
-	public float[] GetTotalPlayerFinishingTimes()
-	{
-		float[] finishingTimes = {
-			placedPlayers[0].GetComponent<CheckpointTracker>().TotalFinishingTime,
-			placedPlayers[1].GetComponent<CheckpointTracker>().TotalFinishingTime,
-			placedPlayers[2].GetComponent<CheckpointTracker>().TotalFinishingTime,
-			placedPlayers[3].GetComponent<CheckpointTracker>().TotalFinishingTime,
-		};
-		return finishingTimes;
 	}
 
 }

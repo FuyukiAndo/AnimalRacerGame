@@ -30,18 +30,7 @@ public class CheckpointTracker : MonoBehaviour
 			finishingTime = value;
 		}
 	}
-	public float TotalFinishingTime
-	{
-		get
-		{
-			return totalFinishingTime;
-		}
-		set
-		{
-			totalFinishingTime = value;
-		}
-	}
-	private float finishingTime, totalFinishingTime;
+	private float finishingTime;
 	[SerializeField] private Color playerColour;
 
 	void Update()
