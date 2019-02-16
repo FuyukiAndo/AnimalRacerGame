@@ -8,6 +8,7 @@ public class Isflak : MonoBehaviour {
     public int durability = 2;
     public float timeUntillBroken;
     public float floatSpeed;
+    public LayerMask characterLayer;
 
     private int timeBeforeDestroyed;
     private float breakTime;
@@ -25,6 +26,7 @@ public class Isflak : MonoBehaviour {
         {
             isflakSpawner = GetComponentInParent<IsflakSpawner>();
             speed = isflakSpawner.GetSpeed();
+            durability = isflakSpawner.GetDurability();
         }
         else
         {
@@ -45,7 +47,8 @@ public class Isflak : MonoBehaviour {
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Character")
+        bool isOnLayer = characterLayer == (characterLayer | (1 << collision.gameObject.layer));
+        if (isOnLayer)
         {
             timeBeforeDestroyed--;
         }

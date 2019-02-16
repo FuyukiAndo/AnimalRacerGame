@@ -9,20 +9,30 @@ public class FlyingTrajectory : MonoBehaviour {
 
     [Header("Trajectory Attributs")]
     public float speed;
+    public LayerMask terrainTypesLayer;
 
     protected Rigidbody2D rb2d;
     protected float startFalling;
+    protected bool isOnLayer;
 
     protected void OnCollisionEnter2D(Collision2D collision)
     {
         PlayerController player = collision.gameObject.GetComponent<PlayerController>();
         if (player != null)
         {
-            StartCoroutine(player.GetStunned(stunDuration, gameObject));
+            StartCoroutine(player.GetStunnedAndDestroy(stunDuration, gameObject));
             GetComponent<MeshRenderer>().enabled = false;
             GetComponent<Collider2D>().enabled = false;
         }
-        if(collision.gameObject.layer == LayerMask.NameToLayer("Terrain"))
+        if(isOnLayer)
+        {
+            Destroy(gameObject);
+        }
+    }
+    protected void OnTriggerEnter2D(Collider2D collision)
+    {
+        bool isOnLayer = terrainTypesLayer == (terrainTypesLayer | (1 << collision.gameObject.layer));
+        if (isOnLayer)
         {
             Destroy(gameObject);
         }

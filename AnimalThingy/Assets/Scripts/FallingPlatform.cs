@@ -40,7 +40,7 @@ public class FallingPlatform : MonoBehaviour {
         }
         else if (player != null)
         {
-            StartCoroutine(player.GetStunned(stunDuration, gameObject));
+            StartCoroutine(player.GetStunnedAndDestroy(stunDuration, gameObject));
         }
     }
 }
