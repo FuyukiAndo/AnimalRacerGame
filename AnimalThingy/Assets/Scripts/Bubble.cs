@@ -40,5 +40,4 @@ public class Bubble : MonoBehaviour {
         yield return new WaitForSeconds(bubbleSpawner.GetPopTime());
         Destroy(gameObject);
     }
-
 }
