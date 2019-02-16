@@ -47,6 +47,10 @@ public class Isflak : MonoBehaviour {
         {
             floatSpeed = -floatSpeed;
         }
+        if (collision.gameObject.tag == "OneWay")
+        {
+            Destroy(gameObject);
+        }
     }
 
     void whichHitDir()
