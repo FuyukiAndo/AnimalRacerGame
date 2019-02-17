@@ -888,8 +888,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1282378659}
-  - component: {fileID: 1282378658}
   - component: {fileID: 1282378660}
+  - component: {fileID: 1282378658}
   m_Layer: 0
   m_Name: Checkpoint
   m_TagString: Untagged

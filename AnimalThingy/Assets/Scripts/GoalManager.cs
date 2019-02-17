@@ -26,6 +26,7 @@ public class GoalManager : MonoBehaviour
 	[SerializeField] private Vector2[] playerGoalPositions;
 	[SerializeField] private string playerMoveScriptName;
 	private float totalTimeBeforeAutoPlacements;
+	private int initialPlayerCount;
 
 	void Start()
 	{
@@ -42,6 +43,7 @@ public class GoalManager : MonoBehaviour
 			unplacedPlayers.Add(tracker);
 		}
 		totalTimeBeforeAutoPlacements = timeBeforeAutoPlacements;
+		initialPlayerCount = unplacedPlayers.Count;
 	}
 
 	void Update()
@@ -138,7 +140,7 @@ public class GoalManager : MonoBehaviour
 		List<int> playerPoints = new List<int>();
 		for (int i = 0; i < placedPlayers.Count; i++)
 		{
-			playerPoints.Add(placedPlayers.Count - 1);
+			playerPoints.Add(placedPlayers[i].GetComponent<CheckpointTracker>().PlacementPoint);
 		}
 		return playerPoints.ToArray();
 	}
@@ -152,6 +154,7 @@ public class GoalManager : MonoBehaviour
 		CheckpointTracker closestTracker = GetPlayerClosestToGoal();
 		int index = unplacedPlayers.IndexOf(closestTracker);
 		placedPlayers.Add(GetPlayerClosestToGoal().gameObject);
+		AssignPlacementPoint(GetPlayerClosestToGoal());
 		AssignFinishingTime(GetPlayerClosestToGoal());
 		int index1 = placedPlayers.IndexOf(closestTracker.gameObject);
 		placedPlayers[index1].transform.position = playerGoalPositions[index1];
@@ -249,14 +252,20 @@ public class GoalManager : MonoBehaviour
 	void OnDrawGizmos()
 	{
 		Gizmos.color = Color.green;
-		foreach (var checks in checksToPass)
+		if (checksToPass.Count() > 0)
 		{
-			Gizmos.DrawWireSphere(checks.transform.position, .5f);
+			foreach (var checks in checksToPass)
+			{
+				Gizmos.DrawWireSphere(checks.transform.position, .5f);
+			}
 		}
 		Gizmos.color = Color.blue;
-		foreach (var goal in playerGoalPositions)
+		if (playerGoalPositions.Count() > 0)
 		{
-			Gizmos.DrawWireSphere(goal, .5f);
+			foreach (var goal in playerGoalPositions)
+			{
+				Gizmos.DrawWireSphere(goal, .5f);
+			}
 		}
 	}
 
@@ -271,6 +280,11 @@ public class GoalManager : MonoBehaviour
 		{
 			tracker.FinishingTime = 0f;
 		}
+	}
+
+	void AssignPlacementPoint(CheckpointTracker tracker)
+	{
+		tracker.PlacementPoint = initialPlayerCount - placedPlayers.Count;
 	}
 
 }

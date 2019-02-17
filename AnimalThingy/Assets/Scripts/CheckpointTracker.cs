@@ -31,6 +31,18 @@ public class CheckpointTracker : MonoBehaviour
 		}
 	}
 	private float finishingTime;
+	public int PlacementPoint
+	{
+		get
+		{
+			return placementPoint;
+		}
+		set
+		{
+			placementPoint = value;
+		}
+	}
+	private int placementPoint;
 
 	void Update()
 	{
