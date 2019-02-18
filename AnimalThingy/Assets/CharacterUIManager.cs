@@ -6,6 +6,7 @@ using UnityEngine.UI;
 [System.Serializable]
 public class PlayerUI
 {
+    public GameObject playerUIObject;
     public Slider playerSlider;
     public Text playerCheckpoints;
     public float playerEnergy = 0f;
@@ -46,6 +47,24 @@ public class CharacterUIManager : MonoBehaviour {
             player4UI.player = GameObject.Find("Player4");
             playersUI.Add(player4UI);
         }
+
+        if(player1UI.player != null)
+        {
+            player1UI.playerUIObject = GameObject.Find("Player1UI");
+        }
+        if (player2UI.player != null)
+        {
+            player2UI.playerUIObject = GameObject.Find("Player2UI");
+        }
+        if (player3UI.player != null)
+        {
+            player3UI.playerUIObject = GameObject.Find("Player3UI");
+        }
+        if (player4UI.player != null)
+        {
+            player4UI.playerUIObject = GameObject.Find("Player4UI");
+        }
+
     }
 
     private void Update()
@@ -64,6 +83,7 @@ public class CharacterUIManager : MonoBehaviour {
         if(player.playerEnergy > 100)
         {
             player.playerEnergy = 100;
+            
         }
         //abilitykey check -> getComponent().keyisdownbool
     }
