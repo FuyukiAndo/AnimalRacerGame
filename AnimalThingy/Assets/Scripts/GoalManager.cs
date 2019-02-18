@@ -71,27 +71,22 @@ public class GoalManager : MonoBehaviour
 
 	void OnCollisionEnter2D(Collision2D other)
 	{
-		if (ValidateTracker(other.transform.GetComponent<CheckpointTracker>()) && countDownOnFirstPlayer && !startCountDown)
+		/*if (ValidateTracker(other.transform.GetComponent<CheckpointTracker>()) && countDownOnFirstPlayer && !startCountDown)
 		{
 			//placedPlayers.Add(other.gameObject);
 			PlacePlayers();
 			//int index = Array.IndexOf(unplacedPlayers.ToArray(), other.transform.GetComponent<CheckpointTracker>());
 			//unplacedPlayers.RemoveAt(index);
 			startCountDown = true;
-		}
-		else if (ValidateTracker(other.transform.GetComponent<CheckpointTracker>()) && startCountDown)
+		}*/
+		if (ValidateTracker(other.transform.GetComponent<CheckpointTracker>()))
 		{
-			//placedPlayers.Add(other.gameObject);
+			print("Validated");
 			PlacePlayers();
-			//int index = Array.IndexOf(unplacedPlayers.ToArray(), other.transform.GetComponent<CheckpointTracker>());
-			//unplacedPlayers.RemoveAt(index);
-		}
-		else if (ValidateTracker(other.transform.GetComponent<CheckpointTracker>()) && !countDownOnFirstPlayer)
-		{
-			//placedPlayers.Add(other.gameObject);
-			PlacePlayers();
-			//int index = Array.IndexOf(unplacedPlayers.ToArray(), other.transform.GetComponent<CheckpointTracker>());
-			//unplacedPlayers.RemoveAt(index);
+			if (countDownOnFirstPlayer && !startCountDown)
+			{
+				startCountDown = true;
+			}
 		}
 	}
 
