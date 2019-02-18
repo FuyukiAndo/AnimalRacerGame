@@ -81,12 +81,11 @@ public class Isflak : MonoBehaviour {
     {
        Vector2 flak = new Vector2(speed, rb2d.velocity.y);
        rb2d.velocity = flak;
-        Debug.Log(breakTime);
+
     }
     void destroyIce()
     {
-        Debug.Log(timeBeforeDestroyed);
-        if (timeBeforeDestroyed <= 0)
+      if (timeBeforeDestroyed <= 0)
         {
             breakTime += Time.deltaTime;
             if (breakTime > timeUntillBroken) {

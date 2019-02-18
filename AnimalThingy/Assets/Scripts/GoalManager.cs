@@ -274,7 +274,6 @@ public class GoalManager : MonoBehaviour
 		if (finishingTime > 0f)
 		{
 			tracker.FinishingTime = finishingTime;
-			tracker.TotalFinishingTime += finishingTime;
 		}
 		else
 		{
