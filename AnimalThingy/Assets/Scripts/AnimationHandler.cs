@@ -398,4 +398,9 @@ public class AnimationHandler : MonoBehaviour
 		}
 		animator.SetBool(name, state);
 	}
+
+	public void SetApplyRootMotion(bool state)
+	{
+		animator.applyRootMotion = state;
+	}
 }
