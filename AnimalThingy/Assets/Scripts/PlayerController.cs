@@ -49,8 +49,6 @@ public class PlayerController : MonoBehaviour
     /*Checks if player is stunned. Have before checking movement. True = no movement. False = can move*/
     [HideInInspector] public bool isStunned = false;
 
-
-
 	void Awake()
 	{
 		playerController = this;
@@ -68,7 +66,6 @@ public class PlayerController : MonoBehaviour
 			//Debug.LogWarning("'minJumpHeight' cannot be lower than 0");
 			minJumpHeight = 0.1f;
 		}
-
 		if(maxJumpHeight < 0.1f)
 		{
 			//Debug.LogWarning("'minJumpHeight' cannot be lower than 0");
@@ -80,20 +77,17 @@ public class PlayerController : MonoBehaviour
 			//Debug.LogWarning("'minJumpHeight' cannot be lower than 0");
 			movementSpeed = 1.0f;
 		}
-
 		if(maxJumpHeight < minJumpHeight)
 		{
 			maxJumpHeight = minJumpHeight + 0.1f;
 		}
 	}
-
 	void UpdateGravity()
 	{
 		gravity = -(2*maxJumpHeight)/Mathf.Pow(jumpAndFallDelay, 2);
 		maxVelocity = Mathf.Abs(gravity) * jumpAndFallDelay;
 		minVelocity = Mathf.Sqrt(2*Mathf.Abs(gravity) * minJumpHeight);
 	}
-
 	void PlayerInput()
 	{
 		horizontalInput = Input.GetAxisRaw("Horizontal");
@@ -122,12 +116,10 @@ public class PlayerController : MonoBehaviour
 			//translateVertical = false;
 			//translateHorizontal = false;
 		}
-
 		if (collisionController.boxCollisionDirections.up || collisionController.boxCollisionDirections.down)
 		{
 			movement.y = 0;
 		}
-
 
 		/*if(horizontalInput == 0 && CollisionController.BoxCollision.below)
 		{
@@ -138,7 +130,6 @@ public class PlayerController : MonoBehaviour
 			}
 		}
 		*/
-
 		/*if(CollisionController.BoxCollision.below)
 		{
 			movement.y = 0;
@@ -162,7 +153,6 @@ public class PlayerController : MonoBehaviour
 				movement.y = maxVelocity;
 			}
 		}
-
 		if(Input.GetKeyUp(KeyCode.Space))
 		{
 			if(!collisionController.boxCollisionDirections.down)
@@ -173,7 +163,6 @@ public class PlayerController : MonoBehaviour
 				}
 			}
 		}
-
 		//gravity in y-axis
 		float movementVelocity = Input.GetAxisRaw("Horizontal") * movementSpeed;
 		movement.x = Mathf.SmoothDamp(movement.x, movementVelocity, ref velocitySmoothing,movementAcceleration);
@@ -189,12 +178,10 @@ public class PlayerController : MonoBehaviour
 	{
 		collisionController.UpdateRaycastDirections();
 		collisionController.boxCollisionDirections.resetDirections();
-
 		if(movement.y < 0)
 		{
 			collisionController.DescendSlope(ref movement);
 		}
-
 		if(movement.x != 0 || movement.y != 0)
 		{
 			collisionController.checkCollision(ref movement);
@@ -202,7 +189,6 @@ public class PlayerController : MonoBehaviour
 
 		transform.Translate(movement);
 	}
-
 	void OnDrawGizmosSelected()
 	{
 		Gizmos.color = Color.red;

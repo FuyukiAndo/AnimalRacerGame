@@ -4,11 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Spike
-  - Character
-  - Tranpolin
   - Ground
-  - Wall
+  - Tranpolin
+  - Spike
+  - OneWay
   layers:
   - Default
   - TransparentFX
@@ -18,9 +17,9 @@ TagManager:
   - UI
   - 
   - 
-  - Terrain
-  - Spike
-  - Character
+  - Player
+  - Platorm
+  - 
   - 
   - 
   - 
