@@ -22,7 +22,6 @@ public class TerrainSnowball : MonoBehaviour {
         Debug.DrawRay(transform.position,Vector2.right * (dir), Color.red);
         hitWall();
         Vector2 movement = new Vector2(speed, 0);
-
         rb2d.AddForce(movement);
 	}
 

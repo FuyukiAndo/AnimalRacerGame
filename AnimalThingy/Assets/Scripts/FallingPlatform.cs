@@ -32,7 +32,7 @@ public class FallingPlatform : MonoBehaviour {
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
-        PetersPlayerController player = collision.gameObject.GetComponent<PetersPlayerController>();
+        TemporaryCodeDump player = collision.gameObject.GetComponent<TemporaryCodeDump>();
         bool isOnTerrainLayer = terrainLayer == (terrainLayer | (1 << collision.gameObject.layer));
         if (isOnTerrainLayer)
         {
@@ -40,7 +40,7 @@ public class FallingPlatform : MonoBehaviour {
         }
         else if (player != null)
         {
-            StartCoroutine(player.GetStunned(stunDuration, gameObject));
+            StartCoroutine(player.GetStunnedAndDestroy(stunDuration, gameObject));
         }
     }
 }
