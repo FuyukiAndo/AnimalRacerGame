@@ -29,7 +29,6 @@ public class StartManager : MonoBehaviour
 	}
 
 	[SerializeField] private int timeUntilStart;
-	[SerializeField] private Vector2[] playerStartPositions;
 	[SerializeField] private bool startCountDownOnSceneLoad;
 
 	void Start()
@@ -42,7 +41,6 @@ public class StartManager : MonoBehaviour
 		{
 			Destroy(gameObject);
 		}
-		PlacePlayers();
 		TrapPlayers();
 		if (startCountDownOnSceneLoad)
 		{
@@ -77,25 +75,6 @@ public class StartManager : MonoBehaviour
 		{
 			MonoBehaviour script = player.GetComponent(playerMoveScript)as MonoBehaviour;
 			script.enabled = false;
-		}
-	}
-
-	void PlacePlayers()
-	{
-		int place = 0;
-		foreach (var player in unplacedPlayers)
-		{
-			player.transform.position = playerStartPositions[place];
-			place++;
-		}
-	}
-
-	void OnDrawGizmos()
-	{
-		Gizmos.color = Color.green;
-		foreach (var start in playerStartPositions)
-		{
-			Gizmos.DrawWireSphere(start, .5f);
 		}
 	}
 }

@@ -10,6 +10,8 @@ public class MultiplayerSceneManager : MonoBehaviour {
     public GameObject player4SpawnPoint;
     public List<GameObject> spawnPoints;
 
+
+
     public InformationManager informationManager;
 
     void Awake()
