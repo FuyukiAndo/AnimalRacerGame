@@ -17,10 +17,10 @@ public class CharacterUIManager : MonoBehaviour {
 
     public float energyRegMultiplier;
 
-    private PlayerUI player1UI;
-    private PlayerUI player2UI;
-    private PlayerUI player3UI;
-    private PlayerUI player4UI;
+    public PlayerUI player1UI;
+    public PlayerUI player2UI;
+    public PlayerUI player3UI;
+    public PlayerUI player4UI;
     private List<PlayerUI> playersUI;
 
 
@@ -28,12 +28,6 @@ public class CharacterUIManager : MonoBehaviour {
     {
         playersUI = new List<PlayerUI>();
 
-        if (InformationManager.Instance.player1.playerIsActive)
-        {
-            player1UI.player = GameObject.Find("Player1");
-            playersUI.Add(player1UI);
-
-        }
         if (InformationManager.Instance.player2.playerIsActive)
         {
             player2UI.player = GameObject.Find("Player2");
@@ -52,22 +46,18 @@ public class CharacterUIManager : MonoBehaviour {
 
         if(player1UI.player != null)
         {
-            player1UI.playerUIObject = GameObject.Find("Player1UI");
             player1UI.playerUIObject.SetActive(true);
         }
         if (player2UI.player != null)
         {
-            player2UI.playerUIObject = GameObject.Find("Player2UI");
             player2UI.playerUIObject.SetActive(true);
         }
         if (player3UI.player != null)
         {
-            player3UI.playerUIObject = GameObject.Find("Player3UI");
             player3UI.playerUIObject.SetActive(true);
         }
         if (player4UI.player != null)
         {
-            player4UI.playerUIObject = GameObject.Find("Player4UI");
             player4UI.playerUIObject.SetActive(true);
         }
 
@@ -75,7 +65,12 @@ public class CharacterUIManager : MonoBehaviour {
 
     private void Update()
     {
-        foreach(PlayerUI player in playersUI)
+        if (InformationManager.Instance.player1.playerIsActive)
+        {
+            player1UI.player = GameObject.Find("Player1");
+            playersUI.Add(player1UI);
+        }
+        foreach (PlayerUI player in playersUI)
         {
             UpdateEnergy(player);
             AddEnergy(player);
@@ -87,9 +82,9 @@ public class CharacterUIManager : MonoBehaviour {
 
     private void UpdateEnergy(PlayerUI player)
     {
-        if(player.playerEnergy >= 100)
+        if(player.playerEnergy >= 10)
         {
-            player.playerEnergy = 100;
+            player.playerEnergy = 10;
             //check input??
             //run abilityFunction in playerscript
         }
@@ -98,7 +93,7 @@ public class CharacterUIManager : MonoBehaviour {
     }
     private void AddEnergy(PlayerUI player)
     {
-        if(player.playerEnergy <= 100)
+        if(player.playerEnergy <= 10)
         player.playerEnergy += Time.deltaTime * energyRegMultiplier;
     }
     private void UpdateSlider(PlayerUI player)

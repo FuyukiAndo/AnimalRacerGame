@@ -55,7 +55,6 @@ public class StartManager : MonoBehaviour
             spawnPos4
         };
         InformationManager.Instance.player3.score += 10;
-        informationManager = FindObjectOfType<InformationManager>();
 		if (instance == null)
 		{
 			instance = this;
@@ -108,34 +107,51 @@ public class StartManager : MonoBehaviour
         foreach(Player player in InformationManager.Instance.players)
         {
             bool playerSpawned = false;
+            GameObject temp = null;
 
             if(spawnPos1.beenUsed == false && playerSpawned == false)
             {
                 playerSpawned = true;
-                Instantiate(player.character, spawnPos1.spawnPos.transform.position, Quaternion.identity);
+                temp = Instantiate(player.character, spawnPos1.spawnPos.transform.position, Quaternion.identity);
                 spawnPos1.player = player;
                 spawnPos1.beenUsed = true;
             }
             if (spawnPos2.beenUsed == false && playerSpawned == false)
             {
                 playerSpawned = true;
-                Instantiate(player.character, spawnPos2.spawnPos.transform.position, Quaternion.identity);
+                temp = Instantiate(player.character, spawnPos2.spawnPos.transform.position, Quaternion.identity);
                 spawnPos2.player = player;
                 spawnPos2.beenUsed = true;
             }
             if (spawnPos3.beenUsed == false && playerSpawned == false)
             {
                 playerSpawned = true;
-                Instantiate(player.character, spawnPos3.spawnPos.transform.position, Quaternion.identity);
+                temp = Instantiate(player.character, spawnPos3.spawnPos.transform.position, Quaternion.identity);
                 spawnPos3.player = player;
                 spawnPos3.beenUsed = true;
             }
             if (spawnPos4.beenUsed == false && playerSpawned == false)
             {
                 playerSpawned = true;
-                Instantiate(player.character, spawnPos4.spawnPos.transform.position, Quaternion.identity);
+                temp = Instantiate(player.character, spawnPos4.spawnPos.transform.position, Quaternion.identity);
                 spawnPos4.player = player;
                 spawnPos4.beenUsed = true;
+            }
+            if(player == InformationManager.Instance.player1)
+            {
+                temp.name = "Player1";
+            }
+            if (player == InformationManager.Instance.player2)
+            {
+                temp.name = "Player2";
+            }
+            if (player == InformationManager.Instance.player3)
+            {
+                temp.name = "Player3";
+            }
+            if (player == InformationManager.Instance.player4)
+            {
+                temp.name = "Player4";
             }
         }
         foreach (SpawnPoint spawnPoint in spawnPoints)
