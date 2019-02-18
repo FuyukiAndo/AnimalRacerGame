@@ -32,6 +32,18 @@ public class CheckpointTracker : MonoBehaviour
 	}
 	private float finishingTime;
 	[SerializeField] private Color playerColour;
+	public int PlacementPoint
+	{
+		get
+		{
+			return placementPoint;
+		}
+		set
+		{
+			placementPoint = value;
+		}
+	}
+	private int placementPoint;
 
 	void Update()
 	{
