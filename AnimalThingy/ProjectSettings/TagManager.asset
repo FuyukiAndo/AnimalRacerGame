@@ -9,6 +9,10 @@ TagManager:
   - Spike
   - OneWay
   - Wall
+  - Ice_Character
+  - Farm_Character
+  - Jungle_Character
+  - Coast_Character
   layers:
   - Default
   - TransparentFX

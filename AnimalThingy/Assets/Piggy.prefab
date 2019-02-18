@@ -9,47 +9,48 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1929546730438896}
+  m_RootGameObject: {fileID: 1575260841855414}
   m_IsPrefabParent: 1
---- !u!1 &1929546730438896
+--- !u!1 &1575260841855414
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4765837422312156}
-  - component: {fileID: 33999655088184042}
-  - component: {fileID: 65172781107533384}
-  - component: {fileID: 23680773489812930}
-  - component: {fileID: 114283222710317962}
-  - component: {fileID: 54188747844355212}
+  - component: {fileID: 4835896525818760}
+  - component: {fileID: 33952132246611422}
+  - component: {fileID: 23677520177478438}
+  - component: {fileID: 61375855216361670}
+  - component: {fileID: 114924681535422134}
+  - component: {fileID: 114009069244581464}
+  - component: {fileID: 114616307811644510}
   m_Layer: 8
   m_Name: Piggy
-  m_TagString: Player
+  m_TagString: Ice_Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4765837422312156
+--- !u!4 &4835896525818760
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1929546730438896}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.6, y: -2.6, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_GameObject: {fileID: 1575260841855414}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -12.900001, y: 12.599999, z: 0}
+  m_LocalScale: {x: 1.0968199, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23680773489812930
+--- !u!23 &23677520177478438
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1929546730438896}
+  m_GameObject: {fileID: 1575260841855414}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -58,7 +59,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: d8b5e79348b45c340b40ee4564574516, type: 2}
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -78,64 +79,91 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33999655088184042
+--- !u!33 &33952132246611422
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1929546730438896}
+  m_GameObject: {fileID: 1575260841855414}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54188747844355212
-Rigidbody:
+--- !u!61 &61375855216361670
+BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1929546730438896}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 1
-  m_Constraints: 120
-  m_CollisionDetection: 1
---- !u!65 &65172781107533384
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1929546730438896}
-  m_Material: {fileID: 13400000, guid: 27a57be015479da4cbec5668d086bb19, type: 2}
-  m_IsTrigger: 0
+  m_GameObject: {fileID: 1575260841855414}
   m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114283222710317962
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!114 &114009069244581464
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1929546730438896}
+  m_GameObject: {fileID: 1575260841855414}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e4733919e5dfea4780515276cfacef5, type: 3}
+  m_Script: {fileID: 11500000, guid: 12cc0c1502d1f9a4d8cf9512b0083174, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftKey: a
-  rightKey: d
-  jumpKey: w
-  abillityKey: g
-  movementSpeed: 20
-  midAirTurningForce: 75
-  jumpForce: 20
-  bounceForce: 1
-  downForce: 10
-  groundLayer:
+  playerType: 0
+  collisionController: {fileID: 114616307811644510}
+  maxJumpHeight: 5
+  minJumpHeight: 3
+  jumpAndFallDelay: 0.4
+  movementSpeed: 9
+  movementAcceleration: 0.2
+  wallSlideSpeedMax: 3
+  movement: {x: -4.7322654e-29, y: -3.8317637}
+  isStunned: 0
+--- !u!114 &114616307811644510
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1575260841855414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f3c395ba95f4f341a3da67a53d8acfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionMask:
     serializedVersion: 2
     m_Bits: 512
-  bouncyMaterial: {fileID: 13400000, guid: 93160dafa4cac9c4db424a864d5bc3b2, type: 2}
-  pigMaterial: {fileID: 13400000, guid: 27a57be015479da4cbec5668d086bb19, type: 2}
-  groundDetectionRayLength: 1.5
-  isGrounded: 0
+  horizontalRaycastAmount: 4
+  verticalRaycastAmount: 4
+  maxAngle: 80
+  SetRayLength: 1
+--- !u!114 &114924681535422134
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1575260841855414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5ec439ee930d954298470af432981e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boxSize: {x: 0, y: 0}
+  checkpointSearchSize: {x: 0, y: 0}
+  initialCheckpointTipDelay: 0
+  recurringCheckpointTipDelay: 0
+  UIMethodName: 
+  playerColour: {r: 0, g: 0, b: 0, a: 0}

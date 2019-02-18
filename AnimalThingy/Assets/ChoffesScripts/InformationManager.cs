@@ -36,7 +36,6 @@ public class InformationManager : MonoBehaviour {
     public Player player3;
     public Player player4;
     public List<Player> players;
-    //public List<Player> placementsInMatch;
     public List<Object> multiplayerLevels;
 
     private void Awake()
@@ -57,6 +56,5 @@ public class InformationManager : MonoBehaviour {
         player4 = new Player();
         players = new List<Player>();
         multiplayerLevels = new List<Object>();
-        //placementsInMatch = new List<Player>();
     }
 }

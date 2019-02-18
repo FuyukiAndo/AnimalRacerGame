@@ -250,7 +250,7 @@ public class GoalManager : MonoBehaviour
 		{
 			foreach (var checks in checksToPass)
 			{
-				Gizmos.DrawWireSphere(checks.transform.position, .5f);
+				//Gizmos.DrawWireSphere(checks.transform.position, .5f);
 			}
 		}
 		Gizmos.color = Color.blue;

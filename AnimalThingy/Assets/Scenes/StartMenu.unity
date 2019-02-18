@@ -1105,6 +1105,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NumberOfPlayersActive: 0
+  iceCharacterTag: Ice_Character
+  jungleCharacterTag: Jungle_Character
+  farmCharacterTag: Farm_Character
+  coastCharacterTag: Coast_Character
 --- !u!1 &180187098
 GameObject:
   m_ObjectHideFlags: 0
@@ -2611,7 +2615,7 @@ MonoBehaviour:
         m_MethodName: SetCharacterForPlayer4
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1471405925829706, guid: c5a50b4e6776d0c4d94e1ab45d64e92e,
+          m_ObjectArgument: {fileID: 1420190824272484, guid: c5a50b4e6776d0c4d94e1ab45d64e92e,
             type: 2}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
@@ -2806,40 +2810,62 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   iceMaps:
-    maps: []
-    usedMaps: []
+    maps:
+    - {fileID: 102900000, guid: 5dae6f95356995241b0c4f2a22f05850, type: 3}
   jungleMaps:
     maps: []
-    usedMaps: []
   farmMaps:
     maps: []
-    usedMaps: []
   coastMaps:
     maps: []
-    usedMaps: []
   Singleplayer:
     character: {fileID: 0}
     playerIsActive: 0
     playerIsReady: 0
+    score: 0
+    level1Time: 0
+    level2Time: 0
+    level3Time: 0
+    level4Time: 0
   player1:
     character: {fileID: 0}
     playerIsActive: 0
     playerIsReady: 0
+    score: 0
+    level1Time: 0
+    level2Time: 0
+    level3Time: 0
+    level4Time: 0
   player2:
     character: {fileID: 0}
     playerIsActive: 0
     playerIsReady: 0
+    score: 0
+    level1Time: 0
+    level2Time: 0
+    level3Time: 0
+    level4Time: 0
   player3:
     character: {fileID: 0}
     playerIsActive: 0
     playerIsReady: 0
+    score: 0
+    level1Time: 0
+    level2Time: 0
+    level3Time: 0
+    level4Time: 0
   player4:
     character: {fileID: 0}
     playerIsActive: 0
     playerIsReady: 0
+    score: 0
+    level1Time: 0
+    level2Time: 0
+    level3Time: 0
+    level4Time: 0
   players: []
-  multiplayerlevels: []
-  usedMultiplayerLevels: []
+  multiplayerLevels:
+  - {fileID: 0}
 --- !u!224 &399187661
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4589,7 +4615,7 @@ MonoBehaviour:
         m_MethodName: SetCharacterForPlayer3
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1498534499093758, guid: 8a56339ada4bfca459724bcdbcfb79ee,
+          m_ObjectArgument: {fileID: 1391248947053972, guid: 8a56339ada4bfca459724bcdbcfb79ee,
             type: 2}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
@@ -5586,7 +5612,7 @@ MonoBehaviour:
         m_MethodName: SetCharacterForPlayer3
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1943465016084760, guid: 9603e7a55e867074daf09674fed7798f,
+          m_ObjectArgument: {fileID: 1047987280323254, guid: 9603e7a55e867074daf09674fed7798f,
             type: 2}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
@@ -5713,7 +5739,7 @@ MonoBehaviour:
         m_MethodName: SetCharacterForPlayer2
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1943465016084760, guid: 9603e7a55e867074daf09674fed7798f,
+          m_ObjectArgument: {fileID: 1047987280323254, guid: 9603e7a55e867074daf09674fed7798f,
             type: 2}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
@@ -6285,7 +6311,7 @@ MonoBehaviour:
         m_MethodName: SetCharacterForPlayer1
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1498534499093758, guid: 8a56339ada4bfca459724bcdbcfb79ee,
+          m_ObjectArgument: {fileID: 1391248947053972, guid: 8a56339ada4bfca459724bcdbcfb79ee,
             type: 2}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
@@ -7608,7 +7634,7 @@ MonoBehaviour:
         m_MethodName: SetCharacterForPlayer3
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1471405925829706, guid: c5a50b4e6776d0c4d94e1ab45d64e92e,
+          m_ObjectArgument: {fileID: 1420190824272484, guid: c5a50b4e6776d0c4d94e1ab45d64e92e,
             type: 2}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
@@ -7735,7 +7761,7 @@ MonoBehaviour:
         m_MethodName: SetCharacterForPlayer1
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1929546730438896, guid: 02866e62edbd1f84fb7e560b268d38cc,
+          m_ObjectArgument: {fileID: 1575260841855414, guid: 02866e62edbd1f84fb7e560b268d38cc,
             type: 2}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
@@ -8174,7 +8200,7 @@ MonoBehaviour:
         m_MethodName: SetCharacterForPlayer2
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1929546730438896, guid: 02866e62edbd1f84fb7e560b268d38cc,
+          m_ObjectArgument: {fileID: 1575260841855414, guid: 02866e62edbd1f84fb7e560b268d38cc,
             type: 2}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
@@ -8301,7 +8327,7 @@ MonoBehaviour:
         m_MethodName: SetCharacterForPlayer4
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1943465016084760, guid: 9603e7a55e867074daf09674fed7798f,
+          m_ObjectArgument: {fileID: 1047987280323254, guid: 9603e7a55e867074daf09674fed7798f,
             type: 2}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
@@ -10038,7 +10064,7 @@ MonoBehaviour:
         m_MethodName: SetCharacterForPlayer2
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1471405925829706, guid: c5a50b4e6776d0c4d94e1ab45d64e92e,
+          m_ObjectArgument: {fileID: 1420190824272484, guid: c5a50b4e6776d0c4d94e1ab45d64e92e,
             type: 2}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
@@ -10165,7 +10191,7 @@ MonoBehaviour:
         m_MethodName: SetCharacterForPlayer4
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1498534499093758, guid: 8a56339ada4bfca459724bcdbcfb79ee,
+          m_ObjectArgument: {fileID: 1391248947053972, guid: 8a56339ada4bfca459724bcdbcfb79ee,
             type: 2}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
@@ -10450,7 +10476,7 @@ MonoBehaviour:
         m_MethodName: SetCharacterForPlayer1
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1943465016084760, guid: 9603e7a55e867074daf09674fed7798f,
+          m_ObjectArgument: {fileID: 1047987280323254, guid: 9603e7a55e867074daf09674fed7798f,
             type: 2}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
@@ -10886,7 +10912,7 @@ MonoBehaviour:
         m_MethodName: SetCharacterForPlayer4
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1929546730438896, guid: 02866e62edbd1f84fb7e560b268d38cc,
+          m_ObjectArgument: {fileID: 1575260841855414, guid: 02866e62edbd1f84fb7e560b268d38cc,
             type: 2}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
@@ -11319,7 +11345,7 @@ MonoBehaviour:
         m_MethodName: SetCharacterForPlayer2
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1498534499093758, guid: 8a56339ada4bfca459724bcdbcfb79ee,
+          m_ObjectArgument: {fileID: 1391248947053972, guid: 8a56339ada4bfca459724bcdbcfb79ee,
             type: 2}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
@@ -12052,7 +12078,7 @@ MonoBehaviour:
         m_MethodName: SetCharacterForPlayer3
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1929546730438896, guid: 02866e62edbd1f84fb7e560b268d38cc,
+          m_ObjectArgument: {fileID: 1575260841855414, guid: 02866e62edbd1f84fb7e560b268d38cc,
             type: 2}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
@@ -12405,7 +12431,7 @@ MonoBehaviour:
         m_MethodName: SetCharacterForPlayer1
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1471405925829706, guid: c5a50b4e6776d0c4d94e1ab45d64e92e,
+          m_ObjectArgument: {fileID: 1420190824272484, guid: c5a50b4e6776d0c4d94e1ab45d64e92e,
             type: 2}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0

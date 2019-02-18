@@ -29,7 +29,7 @@ public class MultiplayerManager : MonoBehaviour {
         {
             SetPlayerInactive(4);
         }
-        AddAllMapsToList();
+        //AddAllMapsToList();
     }
 
     private void Update()
@@ -211,13 +211,14 @@ public class MultiplayerManager : MonoBehaviour {
             if (amountOfReadyPlayers == NumberOfPlayersActive)
             {
                 LoadRandomCharacterScene();
-                if(amountOfReadyPlayers < 4)
-                {
-                    for(int j = 0; j < 4 - amountOfReadyPlayers; j++)
-                    {
-                        LoadRandomScene();
-                    }
-                }
+                //if(amountOfReadyPlayers < 4)
+                //{
+                //    for(int j = 0; j < 4 - amountOfReadyPlayers; j++)
+                //    {
+                //        LoadRandomScene();
+                //    }
+                //}
+                SceneManager.LoadScene(InformationManager.Instance.multiplayerLevels[0].name);
             }
         }
     }
