@@ -30,20 +30,20 @@ public class CheckpointTracker : MonoBehaviour
 			finishingTime = value;
 		}
 	}
-	public float TotalFinishingTime
+	[SerializeField] private Color playerColour;
+	private float finishingTime;
+	public int PlacementPoint
 	{
 		get
 		{
-			return totalFinishingTime;
+			return placementPoint;
 		}
 		set
 		{
-			totalFinishingTime = value;
+			placementPoint = value;
 		}
 	}
-	private float finishingTime, totalFinishingTime;
-	[SerializeField] private Color playerColour;
-
+	private int placementPoint;
 	void Update()
 	{
 		Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position, boxSize, 0f);
