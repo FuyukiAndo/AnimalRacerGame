@@ -54,7 +54,7 @@ public class StartManager : MonoBehaviour
             spawnPos3,
             spawnPos4
         };
-        InformationManager.Instance.player3.score += 10;
+
 		if (instance == null)
 		{
 			instance = this;
