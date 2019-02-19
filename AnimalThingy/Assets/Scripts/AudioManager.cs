@@ -12,7 +12,6 @@ public class AudioManager : MonoBehaviour {
 
 	EventInstance backgroundAudioInstance;
 	private bool shouldStopBack;
-	private List<AudioEffectController> audioEffectControllers;
 
 	public static AudioManager Instance
 	{
@@ -34,10 +33,6 @@ public class AudioManager : MonoBehaviour {
 		{
 			Destroy(gameObject);
 		}
-		foreach (var controller in FindObjectsOfType<AudioEffectController>())
-		{
-			audioEffectControllers.Add(controller);
-		}
 		StartCoroutine(PlayBackAudio());
 	}
 	
@@ -46,27 +41,24 @@ public class AudioManager : MonoBehaviour {
 		backgroundAudioInstance.start();
 		PLAYBACK_STATE playState = new PLAYBACK_STATE();
 		backgroundAudioInstance.getPlaybackState(out playState);
-		while (playState == PLAYBACK_STATE.PLAYING)
+		while (playState == PLAYBACK_STATE.PLAYING && !shouldStopBack)
 		{
 			backgroundAudioInstance.getPlaybackState(out playState);
 			yield return null;
 		}
-		if (playState == PLAYBACK_STATE.STOPPED)
+		if (shouldStopBack)
 		{
-			if (shouldStopBack)
-			{
-				backgroundAudioInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-			}
-			else
-			{
-				StartCoroutine(PlayBackAudio());
-			}
+			backgroundAudioInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+		}
+		if (playState == PLAYBACK_STATE.STOPPED && !shouldStopBack)
+		{
+			StartCoroutine(PlayBackAudio());
 		}
 	}
 
 	IEnumerator StopAll(bool fade)
 	{
-		foreach (var controller in audioEffectControllers)
+		foreach (var controller in FindObjectsOfType<AudioEffectController>())
 		{
 			while (controller.GetAudioVolume() > 0f)
 			{
@@ -85,7 +77,7 @@ public class AudioManager : MonoBehaviour {
 
 	public void SetVolumeAll(float volume)
 	{
-		foreach (var controller in audioEffectControllers)
+		foreach (var controller in FindObjectsOfType<AudioEffectController>())
 		{
 			controller.SetAudioVolume(volume);
 		}
