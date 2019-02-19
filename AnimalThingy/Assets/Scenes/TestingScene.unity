@@ -1067,6 +1067,49 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1542065055
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1542065057}
+  - component: {fileID: 1542065056}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1542065056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1542065055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 304b0fe8a9c440540acc98e4ec8ca3ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backgroundAudioPath: 
+  sfxVolume: 0
+  backgroundVolume: 0
+--- !u!4 &1542065057
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1542065055}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.897945, y: 1.7575188, z: 0.7502985}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1567064974
 GameObject:
   m_ObjectHideFlags: 0
@@ -1113,8 +1156,8 @@ MonoBehaviour:
   playerMoveScript: PlayerMoveBase
   timeUntilStart: 5
   playerStartPositions:
-  - {x: 1, y: 2}
-  - {x: -1, y: 2}
+  - {fileID: 0}
+  - {fileID: 0}
   startCountDownOnSceneLoad: 1
 --- !u!1 &1798562335
 GameObject:
