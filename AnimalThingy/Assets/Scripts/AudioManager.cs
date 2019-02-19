@@ -56,7 +56,7 @@ public class AudioManager : MonoBehaviour {
 		}
 	}
 
-	IEnumerator StopAll(bool fade)
+	IEnumerator IStopAll(bool fade)
 	{
 		foreach (var controller in FindObjectsOfType<AudioEffectController>())
 		{
@@ -73,6 +73,11 @@ public class AudioManager : MonoBehaviour {
 				yield return null;
 			}
 		}
+	}
+
+	public void StopAll(bool fade)
+	{
+		StartCoroutine(IStopAll(fade));
 	}
 
 	public void SetVolumeAll(float volume)
