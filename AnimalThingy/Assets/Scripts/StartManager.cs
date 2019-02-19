@@ -48,9 +48,6 @@ public class StartManager : MonoBehaviour
 
 	void Start()
 	{
-        InformationManager.Instance.player3.score = 5;
-        InformationManager.Instance.player4.score = 7;
-        InformationManager.Instance.player1.score = 2;
         playerScoreList = new List<int>();
         characterUIManager = FindObjectOfType<CharacterUIManager>();
         spawnPoints = new List<SpawnPoint>
@@ -123,11 +120,13 @@ public class StartManager : MonoBehaviour
         for(int i = 0; i < InformationManager.Instance.players.Count; i++)
         {
             GameObject spawnedPlayer = null;
+            bool playerSpawned = false;
             for(int j = 0; j < playerScoreList.Count; j++)
             {
-                if(InformationManager.Instance.players[i].score == playerScoreList[j] && spawnPoints[j].beenUsed == false)
+                if(InformationManager.Instance.players[i].score == playerScoreList[j] && spawnPoints[j].beenUsed == false && playerSpawned == false)
                 {
                     spawnedPlayer = Instantiate(InformationManager.Instance.players[i].character, spawnPoints[j].spawnPos.transform.position, Quaternion.identity);
+                    playerSpawned = true;
                     spawnPoints[j].beenUsed = true;
                 }
             }
