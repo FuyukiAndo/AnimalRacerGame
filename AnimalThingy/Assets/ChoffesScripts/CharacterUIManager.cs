@@ -10,7 +10,7 @@ public class PlayerUI
     public GameObject playerUIObject;
     public Slider playerSlider;
     public GameObject playerCheckpoints;
-    public float playerEnergy = 0f;
+    [HideInInspector] public float playerEnergy = 0f;
     public GameObject player;
 }
 
@@ -27,6 +27,23 @@ public class CharacterUIManager : MonoBehaviour {
     private void Start()
     {
         playersUI = new List<PlayerUI>();
+        if (InformationManager.Instance.player1.playerIsActive)
+        {
+            playersUI.Add(player1UI);
+        }
+        if (InformationManager.Instance.player2.playerIsActive)
+        {
+            playersUI.Add(player2UI);
+        }
+        if (InformationManager.Instance.player3.playerIsActive)
+        {
+            playersUI.Add(player3UI);
+        }
+        if (InformationManager.Instance.player4.playerIsActive)
+        {
+            playersUI.Add(player4UI);
+        }
+
         if (player1UI.player != null)
         {
             player1UI.playerUIObject.SetActive(true);
@@ -48,34 +65,6 @@ public class CharacterUIManager : MonoBehaviour {
 
     private void Update()
     {
-        if (InformationManager.Instance.player1.playerIsActive)
-        {
-            player1UI.player = GameObject.Find("Player1");
-            playersUI.Add(player1UI);
-        }
-        if (InformationManager.Instance.player2.playerIsActive)
-        {
-            player2UI.player = GameObject.Find("Player2");
-            playersUI.Add(player2UI);
-        }
-        if (InformationManager.Instance.player3.playerIsActive)
-        {
-            player3UI.player = GameObject.Find("Player3");
-            playersUI.Add(player3UI);
-        }
-        if (InformationManager.Instance.player4.playerIsActive)
-        {
-            player4UI.player = GameObject.Find("Player4");
-            playersUI.Add(player4UI);
-        }
-        foreach(PlayerUI player in playersUI)
-        {
-            if(player.player.name == "Player1")
-            {
-                player.playerCheckpoints = GameObject.Find("Player1Checkpoints");
-            }
-        }
-
         foreach (PlayerUI player in playersUI)
         {
             UpdateEnergy(player);
@@ -84,12 +73,32 @@ public class CharacterUIManager : MonoBehaviour {
             SetCurrentCheckpointProgress(player);
         }
     }
-
-    private void UpdateEnergy(PlayerUI player)
+    public void BindUIToPlayer1(GameObject playerCharacter)
     {
-        if(player.playerEnergy >= 10)
+        player1UI.player = playerCharacter;
+        player1UI.playerCheckpoints = GameObject.Find("Player1Checkpoints");
+    }
+    public void BindUIToPlayer2(GameObject playerCharacter)
+    {
+        player2UI.player = playerCharacter;
+        player2UI.playerCheckpoints = GameObject.Find("Player2Checkpoints");
+    }
+    public void BindUIToPlayer3(GameObject playerCharacter)
+    {
+        player3UI.player = playerCharacter;
+        player3UI.playerCheckpoints = GameObject.Find("Player3Checkpoints");
+    }
+    public void BindUIToPlayer4(GameObject playerCharacter)
+    {
+        player4UI.player = playerCharacter;
+        player4UI.playerCheckpoints = GameObject.Find("Player4Checkpoints");
+    }
+
+    private void UpdateEnergy(PlayerUI playerUI)
+    {
+        if(playerUI.playerEnergy >= 10)
         {
-            player.playerEnergy = 10;
+            playerUI.playerEnergy = 10;
             //check input??
             //run abilityFunction in playerscript
         }
@@ -112,5 +121,4 @@ public class CharacterUIManager : MonoBehaviour {
         //get checkpoint tracker
        // player.playerCheckpoints.text = /*playercheckpointtracker.currentprogress*/ + "/" + /*player.checkpointtracker.total checkpoints
     }
-
 }
