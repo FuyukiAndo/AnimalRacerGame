@@ -5,6 +5,11 @@ using UnityEngine.SceneManagement;
 public class MultiplayerManager : MonoBehaviour {
 
     public int NumberOfPlayersActive;
+    private List<Object> allMaps;
+    public string iceCharacterTag = "Ice_Character";
+    public string jungleCharacterTag = "Jungle_Character";
+    public string farmCharacterTag = "Farm_Character";
+    public string coastCharacterTag = "Coast_Character";
 
     private void Start()
     {
@@ -24,6 +29,7 @@ public class MultiplayerManager : MonoBehaviour {
         {
             SetPlayerInactive(4);
         }
+        //AddAllMapsToList();
     }
 
     private void Update()
@@ -204,21 +210,139 @@ public class MultiplayerManager : MonoBehaviour {
             }
             if (amountOfReadyPlayers == NumberOfPlayersActive)
             {
-                Debug.Log("Starting game...");
-                LoadRandomScene();
+                LoadRandomCharacterScene();
+                //if(amountOfReadyPlayers < 4)
+                //{
+                //    for(int j = 0; j < 4 - amountOfReadyPlayers; j++)
+                //    {
+                //        LoadRandomScene();
+                //    }
+                //}
+                SceneManager.LoadScene(InformationManager.Instance.multiplayerLevels[0].name);
             }
+        }
+    }
+
+    private void LoadRandomCharacterScene()
+    {
+        foreach (Player player in InformationManager.Instance.players)
+        {
+            if(player.character.tag == iceCharacterTag)
+            {
+                List<Object> tempMaps = new List<Object>(InformationManager.Instance.iceMaps.maps);
+                bool levelSelected = false;
+                for (int i = 0; i < InformationManager.Instance.iceMaps.maps.Length; i++)
+                {
+                    if(levelSelected == false)
+                    {
+                        int temp = Random.Range(0, tempMaps.Count);
+                        if (InformationManager.Instance.multiplayerLevels.Contains(tempMaps[temp]))
+                        {
+                            tempMaps.Remove(tempMaps[i]);
+                        }
+                        else
+                        {
+                            InformationManager.Instance.multiplayerLevels.Add(tempMaps[i]);
+                            levelSelected = true;
+                        }
+                    }
+
+                }
+            }
+            if (player.character.tag == jungleCharacterTag)
+            {
+                List<Object> tempMaps = new List<Object>(InformationManager.Instance.jungleMaps.maps);
+                bool levelSelected = false;
+                for (int i = 0; i < InformationManager.Instance.jungleMaps.maps.Length; i++)
+                {
+                    if(levelSelected == false)
+                    {
+                        int temp = Random.Range(0, tempMaps.Count);
+                        if (InformationManager.Instance.multiplayerLevels.Contains(tempMaps[temp]))
+                        {
+                            tempMaps.Remove(tempMaps[i]);
+                        }
+                        else
+                        {
+                            InformationManager.Instance.multiplayerLevels.Add(tempMaps[i]);
+                            levelSelected = true;
+                        }
+                    }
+                }
+            }
+            if (player.character.tag == farmCharacterTag)
+            {
+                List<Object> tempMaps = new List<Object>(InformationManager.Instance.farmMaps.maps);
+                bool levelSelected = false;
+                for (int i = 0; i < InformationManager.Instance.farmMaps.maps.Length; i++)
+                {
+                    if(levelSelected == false)
+                    {
+                        int temp = Random.Range(0, tempMaps.Count);
+                        if (InformationManager.Instance.multiplayerLevels.Contains(tempMaps[temp]))
+                        {
+                            tempMaps.Remove(tempMaps[i]);
+                        }
+                        else
+                        {
+                            InformationManager.Instance.multiplayerLevels.Add(tempMaps[i]);
+                            levelSelected = true;
+                        }
+                    }
+                }
+            }
+            if (player.character.tag == coastCharacterTag)
+            {
+                List<Object> tempMaps = new List<Object>(InformationManager.Instance.coastMaps.maps);
+                bool levelSelected = false;
+                for (int i = 0; i < InformationManager.Instance.coastMaps.maps.Length; i++)
+                {
+                    if (levelSelected == false)
+                    {
+                        int temp = Random.Range(0, tempMaps.Count);
+                        if (InformationManager.Instance.multiplayerLevels.Contains(tempMaps[temp]))
+                        {
+                            tempMaps.Remove(tempMaps[i]);
+                        }
+                        else
+                        {
+                            InformationManager.Instance.multiplayerLevels.Add(tempMaps[i]);
+                            levelSelected = true;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private void AddAllMapsToList()
+    {
+        for (int i = 0; i < InformationManager.Instance.iceMaps.maps.Length; i++)
+        {
+            allMaps.Add(InformationManager.Instance.iceMaps.maps[i]);
+        }
+
+        for (int i = 0; i < InformationManager.Instance.jungleMaps.maps.Length; i++)
+        {
+            allMaps.Add(InformationManager.Instance.jungleMaps.maps[i]);
+        }
+
+        for (int i = 0; i < InformationManager.Instance.farmMaps.maps.Length; i++)
+        {
+            allMaps.Add(InformationManager.Instance.farmMaps.maps[i]);
+        }
+
+        for (int i = 0; i < InformationManager.Instance.coastMaps.maps.Length; i++)
+        {
+            allMaps.Add(InformationManager.Instance.coastMaps.maps[i]);
         }
     }
 
     private void LoadRandomScene()
     {
-        for (int i = 0; i < InformationManager.Instance.multiplayerLevels.Length; i++)
-        {
-            if (InformationManager.Instance.usedMultiplayerLevels.Contains(InformationManager.Instance.multiplayerLevels[i]) == false)
-            {
-                InformationManager.Instance.usedMultiplayerLevels.Add(InformationManager.Instance.multiplayerLevels[i]);
-                SceneManager.LoadScene(InformationManager.Instance.multiplayerLevels[i].name);
-            }
-        }
+        int temp = Random.Range(0, allMaps.Count);
+        InformationManager.Instance.multiplayerLevels.Add(allMaps[temp]);
     }
 }
+
+// även om 4 spelare väljer samma typ av karaktär (ex: is) måste fyra unika banor adderas till multiplayerlevels.

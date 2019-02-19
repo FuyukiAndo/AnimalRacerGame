@@ -4,48 +4,45 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Spike
-  - Character
-  - Tranpolin
+  - Ice_Character
   - Ground
-  - Wall
-  - Bonefire
+  - Tranpolin
+  - Coast_Character
+  - Jungle_Character
   - OneWay
-  - oneWay
-  - Ball
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  -
+  - 
   - Water
   - UI
-  -
-  -
-  - Player
-  - Platform
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   m_SortingLayers:
   - name: Default
     uniqueID: 0

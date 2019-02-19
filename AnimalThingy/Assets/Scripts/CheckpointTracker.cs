@@ -30,9 +30,20 @@ public class CheckpointTracker : MonoBehaviour
 			finishingTime = value;
 		}
 	}
-	private float finishingTime;
 	[SerializeField] private Color playerColour;
-
+	private float finishingTime;
+	public int PlacementPoint
+	{
+		get
+		{
+			return placementPoint;
+		}
+		set
+		{
+			placementPoint = value;
+		}
+	}
+	private int placementPoint;
 	void Update()
 	{
 		Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position, boxSize, 0f);
@@ -117,7 +128,7 @@ public class CheckpointTracker : MonoBehaviour
 		{
 			point1 = checkpoints[i];
 			point2 = checkpoints[i + 1];
-			if ((point1.transform.position - transform.position).magnitude < 
+			if ((point1.transform.position - transform.position).magnitude <
 			(point2.transform.position - transform.position).magnitude)
 			{
 				closest = point1;

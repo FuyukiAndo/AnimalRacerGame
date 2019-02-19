@@ -17,7 +17,7 @@ public class FlyingTrajectory : MonoBehaviour {
 
     protected void OnCollisionEnter2D(Collision2D collision)
     {
-        PlayerController player = collision.gameObject.GetComponent<PlayerController>();
+        TemporaryCodeDump player = collision.gameObject.GetComponent<TemporaryCodeDump>();
         if (player != null)
         {
             StartCoroutine(player.GetStunnedAndDestroy(stunDuration, gameObject));

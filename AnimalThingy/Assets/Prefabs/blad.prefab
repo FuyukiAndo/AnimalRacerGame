@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33298823019812964}
   - component: {fileID: 23735371503336244}
   - component: {fileID: 61294393454185860}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: blad
   m_TagString: Tranpolin
   m_Icon: {fileID: 0}

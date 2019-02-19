@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-[RequireComponent(typeof(PlatformEffector2D))]
 public class GoalManager : MonoBehaviour
 {
 	public bool passInSequence, countDownOnFirstPlayer;
@@ -23,9 +22,10 @@ public class GoalManager : MonoBehaviour
 	private List<GameObject> placedPlayers = new List<GameObject>();
 	private bool startCountDown;
 	private List<CheckpointTracker> unplacedPlayers = new List<CheckpointTracker>();
-	[SerializeField] private Vector2[] playerGoalPositions;
+	[SerializeField] private GameObject[] playerGoalPositions;
 	[SerializeField] private string playerMoveScriptName;
 	private float totalTimeBeforeAutoPlacements;
+	private int initialPlayerCount;
 
 	void Start()
 	{
@@ -42,6 +42,7 @@ public class GoalManager : MonoBehaviour
 			unplacedPlayers.Add(tracker);
 		}
 		totalTimeBeforeAutoPlacements = timeBeforeAutoPlacements;
+		initialPlayerCount = unplacedPlayers.Count;
 	}
 
 	void Update()
@@ -69,27 +70,22 @@ public class GoalManager : MonoBehaviour
 
 	void OnCollisionEnter2D(Collision2D other)
 	{
-		if (ValidateTracker(other.transform.GetComponent<CheckpointTracker>()) && countDownOnFirstPlayer && !startCountDown)
+		/*if (ValidateTracker(other.transform.GetComponent<CheckpointTracker>()) && countDownOnFirstPlayer && !startCountDown)
 		{
 			//placedPlayers.Add(other.gameObject);
 			PlacePlayers();
 			//int index = Array.IndexOf(unplacedPlayers.ToArray(), other.transform.GetComponent<CheckpointTracker>());
 			//unplacedPlayers.RemoveAt(index);
 			startCountDown = true;
-		}
-		else if (ValidateTracker(other.transform.GetComponent<CheckpointTracker>()) && startCountDown)
+		}*/
+		if (ValidateTracker(other.transform.GetComponent<CheckpointTracker>()))
 		{
-			//placedPlayers.Add(other.gameObject);
+			print("Validated");
 			PlacePlayers();
-			//int index = Array.IndexOf(unplacedPlayers.ToArray(), other.transform.GetComponent<CheckpointTracker>());
-			//unplacedPlayers.RemoveAt(index);
-		}
-		else if (ValidateTracker(other.transform.GetComponent<CheckpointTracker>()) && !countDownOnFirstPlayer)
-		{
-			//placedPlayers.Add(other.gameObject);
-			PlacePlayers();
-			//int index = Array.IndexOf(unplacedPlayers.ToArray(), other.transform.GetComponent<CheckpointTracker>());
-			//unplacedPlayers.RemoveAt(index);
+			if (countDownOnFirstPlayer && !startCountDown)
+			{
+				startCountDown = true;
+			}
 		}
 	}
 
@@ -138,7 +134,7 @@ public class GoalManager : MonoBehaviour
 		List<int> playerPoints = new List<int>();
 		for (int i = 0; i < placedPlayers.Count; i++)
 		{
-			playerPoints.Add(placedPlayers.Count - 1);
+			playerPoints.Add(placedPlayers[i].GetComponent<CheckpointTracker>().PlacementPoint);
 		}
 		return playerPoints.ToArray();
 	}
@@ -146,15 +142,15 @@ public class GoalManager : MonoBehaviour
 	//Fast antal poäng per placering - har 2 spelare samma placering avgörs placeringen med deras finishingTime
 	//vid målgång kolla och sätt rätt poäng för rätt spelare
 	//lagra poängen och skicka poäng och tid per spelare när alla gått i mål
-
 	void PlacePlayers()
 	{
 		CheckpointTracker closestTracker = GetPlayerClosestToGoal();
 		int index = unplacedPlayers.IndexOf(closestTracker);
 		placedPlayers.Add(GetPlayerClosestToGoal().gameObject);
+		AssignPlacementPoint(GetPlayerClosestToGoal());
 		AssignFinishingTime(GetPlayerClosestToGoal());
 		int index1 = placedPlayers.IndexOf(closestTracker.gameObject);
-		placedPlayers[index1].transform.position = playerGoalPositions[index1];
+		placedPlayers[index1].transform.position = playerGoalPositions[index1].transform.position;
 		TrapPlayers();
 		unplacedPlayers.RemoveAt(index);
 	}
@@ -249,14 +245,20 @@ public class GoalManager : MonoBehaviour
 	void OnDrawGizmos()
 	{
 		Gizmos.color = Color.green;
-		foreach (var checks in checksToPass)
+		if (checksToPass.Count() > 0)
 		{
-			Gizmos.DrawWireSphere(checks.transform.position, .5f);
+			foreach (var checks in checksToPass)
+			{
+				//Gizmos.DrawWireSphere(checks.transform.position, .5f);
+			}
 		}
 		Gizmos.color = Color.blue;
-		foreach (var goal in playerGoalPositions)
+		if (playerGoalPositions.Count() > 0)
 		{
-			Gizmos.DrawWireSphere(goal, .5f);
+			foreach (var goal in playerGoalPositions)
+			{
+				Gizmos.DrawWireSphere(goal.transform.position, .5f);
+			}
 		}
 	}
 
@@ -271,6 +273,11 @@ public class GoalManager : MonoBehaviour
 		{
 			tracker.FinishingTime = 0f;
 		}
+	}
+
+	void AssignPlacementPoint(CheckpointTracker tracker)
+	{
+		tracker.PlacementPoint = initialPlayerCount - placedPlayers.Count;
 	}
 
 }
