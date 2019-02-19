@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-[RequireComponent(typeof(PlatformEffector2D))]
 public class GoalManager : MonoBehaviour
 {
 	public bool passInSequence, countDownOnFirstPlayer;
@@ -23,7 +22,7 @@ public class GoalManager : MonoBehaviour
 	private List<GameObject> placedPlayers = new List<GameObject>();
 	private bool startCountDown;
 	private List<CheckpointTracker> unplacedPlayers = new List<CheckpointTracker>();
-	[SerializeField] private Vector2[] playerGoalPositions;
+	[SerializeField] private GameObject[] playerGoalPositions;
 	[SerializeField] private string playerMoveScriptName;
 	private float totalTimeBeforeAutoPlacements;
 	private int initialPlayerCount;
@@ -151,7 +150,7 @@ public class GoalManager : MonoBehaviour
 		AssignPlacementPoint(GetPlayerClosestToGoal());
 		AssignFinishingTime(GetPlayerClosestToGoal());
 		int index1 = placedPlayers.IndexOf(closestTracker.gameObject);
-		placedPlayers[index1].transform.position = playerGoalPositions[index1];
+		placedPlayers[index1].transform.position = playerGoalPositions[index1].transform.position;
 		TrapPlayers();
 		unplacedPlayers.RemoveAt(index);
 	}
@@ -258,7 +257,7 @@ public class GoalManager : MonoBehaviour
 		{
 			foreach (var goal in playerGoalPositions)
 			{
-				Gizmos.DrawWireSphere(goal, .5f);
+				Gizmos.DrawWireSphere(goal.transform.position, .5f);
 			}
 		}
 	}
