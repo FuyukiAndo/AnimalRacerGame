@@ -80,7 +80,7 @@ public class AudioManager : MonoBehaviour {
 		StartCoroutine(IStopAll(fade));
 	}
 
-	public void SetVolumeAll(float volume)
+	public void SetVolumeSFX(float volume)
 	{
 		foreach (var controller in FindObjectsOfType<AudioEffectController>())
 		{
