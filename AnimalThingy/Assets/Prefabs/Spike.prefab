@@ -163,4 +163,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stunDuration: 3
   speed: 10
-  timeBeforeSpikeFalls: 3
+  terrainTypesLayer:
+    serializedVersion: 2
+    m_Bits: 528
+  timeBeforeSpikeFallsMin: 2
+  timeBeforeSpikeFallsMax: 10

@@ -18,6 +18,7 @@ public class FlyingTrajectory : MonoBehaviour {
     protected void OnCollisionEnter2D(Collision2D collision)
     {
         TemporaryCodeDump player = collision.gameObject.GetComponent<TemporaryCodeDump>();
+        bool isOnLayer = terrainTypesLayer == (terrainTypesLayer | (1 << collision.gameObject.layer));
         if (player != null)
         {
             StartCoroutine(player.GetStunnedAndDestroy(stunDuration, gameObject));

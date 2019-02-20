@@ -20,9 +20,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4102624639531856}
   - component: {fileID: 114496566061937710}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: IsflakSpawner
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -53,4 +53,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnObject: {fileID: 1284739177998074, guid: 042066bca482d394da89ac62a6639fc0,
     type: 2}
-  timeBetweenSpawns: 5
+  timeBetweenSpawns: 4
+  floatSpeed: 2
+  durability: 2
