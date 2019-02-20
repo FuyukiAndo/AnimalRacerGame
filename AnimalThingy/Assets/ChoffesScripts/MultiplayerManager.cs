@@ -185,18 +185,34 @@ public class MultiplayerManager : MonoBehaviour {
     public void SetCharacterForPlayer1(GameObject character)
     {
         InformationManager.Instance.player1.character = character;
+        if(InformationManager.Instance.player1.playerIsReady == true)
+        {
+            InformationManager.Instance.player1.playerIsReady = false;
+        }
     }
     public void SetCharacterForPlayer2(GameObject character)
     {
         InformationManager.Instance.player2.character = character;
+        if (InformationManager.Instance.player2.playerIsReady == true)
+        {
+            InformationManager.Instance.player2.playerIsReady = false;
+        }
     }
     public void SetCharacterForPlayer3(GameObject character)
     {
         InformationManager.Instance.player3.character = character;
+        if (InformationManager.Instance.player3.playerIsReady == true)
+        {
+            InformationManager.Instance.player3.playerIsReady = false;
+        }
     }
     public void SetCharacterForPlayer4(GameObject character)
     {
         InformationManager.Instance.player4.character = character;
+        if (InformationManager.Instance.player4.playerIsReady == true)
+        {
+            InformationManager.Instance.player4.playerIsReady = false;
+        }
     }
 
     public void StartGame()

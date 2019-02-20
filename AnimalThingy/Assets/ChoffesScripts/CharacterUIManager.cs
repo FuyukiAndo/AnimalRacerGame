@@ -30,37 +30,23 @@ public class CharacterUIManager : MonoBehaviour {
         if (InformationManager.Instance.player1.playerIsActive)
         {
             playersUI.Add(player1UI);
+            player1UI.playerUIObject.SetActive(true);
         }
         if (InformationManager.Instance.player2.playerIsActive)
         {
             playersUI.Add(player2UI);
+            player2UI.playerUIObject.SetActive(true);
         }
         if (InformationManager.Instance.player3.playerIsActive)
         {
             playersUI.Add(player3UI);
+            player3UI.playerUIObject.SetActive(true);
         }
         if (InformationManager.Instance.player4.playerIsActive)
         {
             playersUI.Add(player4UI);
-        }
-
-        if (player1UI.player != null)
-        {
-            player1UI.playerUIObject.SetActive(true);
-        }
-        if (player2UI.player != null)
-        {
-            player2UI.playerUIObject.SetActive(true);
-        }
-        if (player3UI.player != null)
-        {
-            player3UI.playerUIObject.SetActive(true);
-        }
-        if (player4UI.player != null)
-        {
             player4UI.playerUIObject.SetActive(true);
         }
-
     }
 
     private void Update()

@@ -498,6 +498,10 @@ Prefab:
       propertyPath: m_Name
       value: Player1UI
       objectReference: {fileID: 0}
+    - target: {fileID: 1645264657229748, guid: d710e5cbb6991b24a8078ebb251e8dcb, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d710e5cbb6991b24a8078ebb251e8dcb, type: 2}
   m_IsPrefabParent: 0
@@ -6208,6 +6212,10 @@ Prefab:
       propertyPath: m_Name
       value: Player2UI
       objectReference: {fileID: 0}
+    - target: {fileID: 1645264657229748, guid: d710e5cbb6991b24a8078ebb251e8dcb, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d710e5cbb6991b24a8078ebb251e8dcb, type: 2}
   m_IsPrefabParent: 0
@@ -6676,6 +6684,7 @@ MonoBehaviour:
     beenUsed: 0
   unplacedPlayers: []
   playerMoveScript: PlayerController
+  playerScoreList: 
   timeUntilStart: 0
   startCountDownOnSceneLoad: 0
 --- !u!4 &1377242355
@@ -7606,6 +7615,10 @@ Prefab:
     - target: {fileID: 1645264657229748, guid: d710e5cbb6991b24a8078ebb251e8dcb, type: 2}
       propertyPath: m_Name
       value: Player4UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 1645264657229748, guid: d710e5cbb6991b24a8078ebb251e8dcb, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d710e5cbb6991b24a8078ebb251e8dcb, type: 2}
@@ -8795,6 +8808,10 @@ Prefab:
     - target: {fileID: 1645264657229748, guid: d710e5cbb6991b24a8078ebb251e8dcb, type: 2}
       propertyPath: m_Name
       value: Player3UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 1645264657229748, guid: d710e5cbb6991b24a8078ebb251e8dcb, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d710e5cbb6991b24a8078ebb251e8dcb, type: 2}
