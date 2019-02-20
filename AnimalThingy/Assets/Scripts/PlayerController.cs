@@ -46,6 +46,7 @@ public class PlayerController : MonoBehaviour
 	
 
 
+<<<<<<< HEAD
 	void Awake()
 	{
 		playerController = this;
@@ -122,6 +123,93 @@ public class PlayerController : MonoBehaviour
 		{
 			movement.y = 0;
 		}
+=======
+    private Rigidbody2D rb2d;
+    private BoxCollider2D bc2d;
+    private Vector2 player;
+    private ColdWinter coldWinter;
+    private float distanceToGround;
+    private bool isGrounded;
+    private float originalSpeed;
+    private int jumpCount;
+    private bool isStunned;
+
+    void Start () {
+        rb2d = GetComponent<Rigidbody2D>();
+        bc2d = GetComponent<BoxCollider2D>();
+        coldWinter = GetComponentInChildren<ColdWinter>();
+        distanceToGround = bc2d.bounds.extents.y;
+        originalSpeed = speed;
+        
+	}
+
+	void FixedUpdate () {
+        ifGrouded();
+        if (!isStunned)
+        {
+            HorizontalMovement();
+            VerticalMovement();
+        }
+    }
+
+    void ifGrouded()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, distanceToGround + 0.1f, terrainLayer);
+        if (hit.collider != null)
+        {
+            isGrounded = true;
+        }
+        else
+        {
+            isGrounded = false;
+        }
+    }
+    void HorizontalMovement()
+    {
+            if (Input.GetKey("a") && isGrounded == true)
+            {
+                player = new Vector2(-speed, rb2d.velocity.y);
+            }
+            else if (Input.GetKey("d") && isGrounded == true)
+            {
+                player = new Vector2(speed, rb2d.velocity.y);
+            }
+            else if (Input.GetKey("a") && isGrounded == false)
+            {
+                player = new Vector2(-speed, rb2d.velocity.y);
+            }
+            else if (Input.GetKey("d") && isGrounded == false)
+            {
+                player = new Vector2(speed, rb2d.velocity.y);
+            }
+            else
+            {
+                player = new Vector2(rb2d.velocity.x, rb2d.velocity.y);
+            }
+            rb2d.velocity = player;
+        
+    }
+    void VerticalMovement()
+    {
+            if (Input.GetKey("w") && isGrounded == true && jumpCount == 0)
+            {
+                rb2d.AddForce(new Vector2(0, jumpStrenght));
+                jumpCount++;
+            }
+            else if (isGrounded == true)
+            {
+                jumpCount = 0;
+            }
+    }
+
+    public IEnumerator SpeedChange(float boostChangeAmount, float boostDuration, GameObject speedObject)
+    {
+        speed = speed + boostChangeAmount;
+        yield return new WaitForSeconds(boostDuration);
+        speed = originalSpeed;
+        Destroy(speedObject);
+    }
+>>>>>>> Peter
 
 		
 		/*if(horizontalInput == 0 && CollisionController.BoxCollision.below)
@@ -145,6 +233,7 @@ public class PlayerController : MonoBehaviour
 			movement.x = -1 * movementSpeed;	
 		}
 
+<<<<<<< HEAD
 		if(horizontalInput == 1)
 		{
 			movement.x = 1 * movementSpeed;	
@@ -194,6 +283,38 @@ public class PlayerController : MonoBehaviour
 		{
 			collisionController.checkCollision(ref movement);
 		}
+=======
+        if ( isOnLayer && pengvin == false)
+        {
+            GetKilled();
+        }
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Bonefire")
+        {
+            coldWinter.WarmedUp();
+        } 
+    }
+    public IEnumerator GetStunnedAndDestroy(float stunDuration, GameObject stunObject)
+    {
+        isStunned = true;
+        yield return new WaitForSeconds(stunDuration);
+        isStunned = false;
+        Destroy(stunObject);
+    }
+    public IEnumerator GetStunned(float stunDurtation)
+    {
+        Debug.Log(stunDurtation);
+        isStunned = true;
+        yield return new WaitForSeconds(stunDurtation);
+        isStunned = false;
+    }
+    public void GetKilled()
+    {
+        Destroy(gameObject);
+    }
+>>>>>>> Peter
 
 		transform.Translate(movement);
 	}

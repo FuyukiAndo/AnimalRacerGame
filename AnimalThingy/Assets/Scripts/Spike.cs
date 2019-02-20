@@ -4,12 +4,25 @@ using UnityEngine;
 
 public class Spike : FlyingTrajectory
 {
-    public float timeBeforeSpikeFalls = 5;
+    public float timeBeforeSpikeFallsMin = 0;
+    public float timeBeforeSpikeFallsMax = 5;
+
+    private float timeBeforeSpikeFalls;
+    private SpikeSpawner spikeSpawner;
+
     void Start () {
         rb2d = GetComponent<Rigidbody2D>();
         rb2d.gravityScale = speed;
         rb2d.Sleep();
-
+        if (transform.parent != null)
+        {
+            spikeSpawner = GetComponentInParent<SpikeSpawner>();
+            timeBeforeSpikeFalls = spikeSpawner.GetFallTime();
+        }
+        else
+        {
+            timeBeforeSpikeFalls = Random.Range(timeBeforeSpikeFallsMin, timeBeforeSpikeFallsMax);
+        }
         speed = Mathf.Clamp(speed, 0, Mathf.Infinity);
         timeBeforeSpikeFalls = Mathf.Clamp(timeBeforeSpikeFalls, 0, Mathf.Infinity);
 	}
@@ -19,6 +32,7 @@ public class Spike : FlyingTrajectory
         startFalling += Time.deltaTime;
         if (startFalling > timeBeforeSpikeFalls)
         {
+            Debug.Log("hello");
             rb2d.WakeUp();
         }
     }

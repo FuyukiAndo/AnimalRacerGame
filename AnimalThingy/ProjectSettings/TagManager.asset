@@ -4,10 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Character
+  - Bonefire
   - Ground
-  - Tranpolin
-  - Spike
-  - OneWay
   layers:
   - Default
   - TransparentFX
@@ -17,8 +16,8 @@ TagManager:
   - UI
   - 
   - 
-  - Player
-  - Platorm
+  - 
+  - 
   - 
   - 
   - 

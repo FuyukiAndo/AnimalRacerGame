@@ -162,5 +162,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stunDuration: 3
+<<<<<<< HEAD
   speed: 10
   timeBeforeSpikeFalls: 3
+=======
+  speed: 1
+  terrainTypesLayer:
+    serializedVersion: 2
+    m_Bits: 272
+  timeBeforeSpikeFallsMin: 0
+  timeBeforeSpikeFallsMax: 5
+>>>>>>> Peter

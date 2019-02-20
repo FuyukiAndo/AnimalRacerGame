@@ -8,34 +8,51 @@ public class Isflak : MonoBehaviour {
     public int durability = 2;
     public float timeUntillBroken;
     public float floatSpeed;
-    
+    public LayerMask characterLayer;
 
     private int timeBeforeDestroyed;
     private float breakTime;
     private Rigidbody2D rb2d;
     private Vector2 hitDir;
+    private IsflakSpawner isflakSpawner;
+    private float speed;
 
     // Use this for initialization
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
         timeBeforeDestroyed = durability;
-
+        if (transform.parent != null)
+        {
+            isflakSpawner = GetComponentInParent<IsflakSpawner>();
+            speed = isflakSpawner.GetSpeed();
+            durability = isflakSpawner.GetDurability();
+        }
+        else
+        {
+            speed = floatSpeed;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (floatSpeed != 0)
+        if (speed != 0)
         {
             whichHitDir();
             moveFlak();
         }
+
         destroyIce();
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
+<<<<<<< HEAD
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+=======
+        bool isOnLayer = characterLayer == (characterLayer | (1 << collision.gameObject.layer));
+        if (isOnLayer)
+>>>>>>> Peter
         {
             timeBeforeDestroyed--;
         }
@@ -45,7 +62,7 @@ public class Isflak : MonoBehaviour {
         }
         if (collision.gameObject.tag == "Wall")
         {
-            floatSpeed = -floatSpeed;
+            speed = -speed;
         }
         if (collision.gameObject.tag == "OneWay")
         {
@@ -55,11 +72,11 @@ public class Isflak : MonoBehaviour {
 
     void whichHitDir()
     {
-        if(floatSpeed > 0)
+        if(speed > 0)
         {
             hitDir = Vector2.right;
         }
-        else if(floatSpeed < 0)
+        else if(speed < 0)
         {
             hitDir = Vector2.left;
         }
@@ -70,11 +87,13 @@ public class Isflak : MonoBehaviour {
     }
     void moveFlak()
     {
-       Vector2 flak = new Vector2(floatSpeed, rb2d.velocity.y);
+       Vector2 flak = new Vector2(speed, rb2d.velocity.y);
        rb2d.velocity = flak;
+        Debug.Log(breakTime);
     }
     void destroyIce()
     {
+        Debug.Log(timeBeforeDestroyed);
         if (timeBeforeDestroyed <= 0)
         {
             breakTime += Time.deltaTime;
@@ -87,7 +106,7 @@ public class Isflak : MonoBehaviour {
     {
         if(collision.gameObject.layer == 4)
         {
-            rb2d.velocity = new Vector2(floatSpeed, 0);
+            rb2d.velocity = new Vector2(speed, 0);
             rb2d.bodyType = RigidbodyType2D.Kinematic;
             
         }
@@ -97,7 +116,6 @@ public class Isflak : MonoBehaviour {
         if (collision.gameObject.layer == 4)
         {
             rb2d.bodyType = RigidbodyType2D.Dynamic;
-
         }
     }
 

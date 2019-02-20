@@ -9,51 +9,48 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1026457470933230}
+  m_RootGameObject: {fileID: 1312993045005810}
   m_IsPrefabParent: 1
---- !u!1 &1026457470933230
+--- !u!1 &1312993045005810
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4944074833955334}
-  - component: {fileID: 114178587054048336}
-  m_Layer: 9
-  m_Name: Spike Spawner
+  - component: {fileID: 4252474603888494}
+  - component: {fileID: 114633779842873980}
+  m_Layer: 0
+  m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4944074833955334
+--- !u!4 &4252474603888494
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1026457470933230}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.47, y: 7.6, z: 0}
+  m_GameObject: {fileID: 1312993045005810}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.7323809, y: 14.777117, z: -0.54144436}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114178587054048336
+--- !u!114 &114633779842873980
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1026457470933230}
+  m_GameObject: {fileID: 1312993045005810}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af8e2f11e06b4d544b800088ee7e8ddb, type: 3}
+  m_Script: {fileID: 11500000, guid: 9d0b811104cdfd04795e949a64fa7278, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnObject: {fileID: 1930622670536196, guid: 65fe2ec3132892542a72b75f23eaff9b,
-    type: 2}
-  timeBetweenSpawns: 0
-  wantSpikeToDisappearFirst: 0
-  timeBeforeSpikeFallsMin: 0
-  timeBeforeSpikeFallsMax: 5
+  splash: {fileID: 1611506509345726, guid: 291d1e01cb95b4d4bb73a6eb9b0fc2ce, type: 2}
+  mat: {fileID: 2100000, guid: 1a8e6ca5f9749a046827bacdf0fb911d, type: 2}
+  watermesh: {fileID: 1785284625391646, guid: 8cc14a4e3d4545f4f906a0a5b8fd6b4a, type: 2}

@@ -161,4 +161,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   durability: 2
   timeUntillBroken: 3
+<<<<<<< HEAD
   floatSpeed: 2
+=======
+  floatSpeed: 0
+>>>>>>> Peter
