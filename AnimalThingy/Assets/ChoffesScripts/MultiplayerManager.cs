@@ -13,6 +13,7 @@ public class MultiplayerManager : MonoBehaviour {
 
     private void Start()
     {
+        InformationManager.Instance.multiplayerLevels.Clear();
         if (InformationManager.Instance.player1.playerIsActive)
         {
             SetPlayerInactive(1);
@@ -29,6 +30,7 @@ public class MultiplayerManager : MonoBehaviour {
         {
             SetPlayerInactive(4);
         }
+        //Aktivera när 4 eller fler kompletta scener finns och ligger i InformationManagers folders för banor
         //AddAllMapsToList();
     }
 
@@ -227,6 +229,8 @@ public class MultiplayerManager : MonoBehaviour {
             if (amountOfReadyPlayers == NumberOfPlayersActive)
             {
                 LoadRandomCharacterScene();
+
+                //Aktivera när 4 eller fler kompletta scener finns och ligger i InformationManagers folders för banor
                 //if(amountOfReadyPlayers < 4)
                 //{
                 //    for(int j = 0; j < 4 - amountOfReadyPlayers; j++)

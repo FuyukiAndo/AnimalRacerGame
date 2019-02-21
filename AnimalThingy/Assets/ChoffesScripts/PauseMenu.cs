@@ -5,8 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour {
 
-    public static bool GameIsPaused = false;
+    private static bool GameIsPaused = false;
     public GameObject pauseMenuUI;
+    public Object StartMenuScene;
+    Scene currentScene;
+
+    private void Start()
+    {
+        currentScene = SceneManager.GetActiveScene();
+    }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -40,13 +47,13 @@ public class PauseMenu : MonoBehaviour {
     public void Restart()
     {
         Time.timeScale = 1f;
-        //Anropa SceneManager
+        SceneManager.LoadScene(currentScene.buildIndex);
     }
 
     public void MainMenu()
     {
         Time.timeScale = 1f;
-        //Anropa SceneManager
+        SceneManager.LoadScene(StartMenuScene.name);
     }
 
     public void ExitGame()
