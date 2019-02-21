@@ -88,7 +88,6 @@ public class PlayerMoveBase : MonoBehaviour
 	// Update is called once per frame
 	protected virtual void Update ()
 	{
-		print (isGrounded + " : " + isAtWall + " : " + CheckForSlope ());
 		if (isGrounded)
 		{
 			if (CheckForSlope ())
