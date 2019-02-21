@@ -126,7 +126,6 @@ MonoBehaviour:
     m_Bits: 512
   horizontalRaycastAmount: 4
   verticalRaycastAmount: 4
-  collisionTag: oneWay
   maxAngle: 80
   SetRayLength: 1
 --- !u!114 &114744816111177328
@@ -140,11 +139,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12cc0c1502d1f9a4d8cf9512b0083174, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerType: 0
   collisionController: {fileID: 114219394262681424}
-  maxJumpHeight: 5.14
-  minJumpHeight: 1.2
+  maxJumpHeight: 5
+  minJumpHeight: 2
   jumpAndFallDelay: 0.4
   movementSpeed: 10
-  movementAcceleration: 0.13
+  movementAcceleration: 0.2
   wallSlideSpeedMax: 3
   movement: {x: -4.7322654e-29, y: -3.8317637}
+  isStunned: 0
