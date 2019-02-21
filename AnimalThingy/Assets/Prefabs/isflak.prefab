@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 50621826752833342}
   m_Layer: 9
   m_Name: isflak
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -144,3 +144,7 @@ MonoBehaviour:
   durability: 2
   timeUntillBroken: 3
   floatSpeed: -2
+  characterLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  stunDuration: 0
