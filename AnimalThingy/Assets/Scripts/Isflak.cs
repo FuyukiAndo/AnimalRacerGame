@@ -9,6 +9,8 @@ public class Isflak : MonoBehaviour {
     public float timeUntillBroken;
     public float floatSpeed;
     public LayerMask characterLayer;
+    public float stunDuration;
+
 
     private int timeBeforeDestroyed;
     private float breakTime;
@@ -39,34 +41,39 @@ public class Isflak : MonoBehaviour {
     {
         if (speed != 0)
         {
-            whichHitDir();
-            moveFlak();
+            WhichHitDir();
+            MoveFlak();
         }
 
-        destroyIce();
+        DestroyIce();
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
+
         bool isOnLayer = characterLayer == (characterLayer | (1 << collision.gameObject.layer));
+        TemporaryCodeDump player = collision.gameObject.GetComponent<TemporaryCodeDump>();
+        if (isOnLayer && GetRelativeVelocityY() != 0.0f)
+        {
+            StartCoroutine(player.GetStunnedAndDestroy(stunDuration, gameObject));
+            GetComponent<MeshRenderer>().enabled = false;
+            GetComponent<Collider2D>().enabled = false;
+        }
         if (isOnLayer)
         {
             timeBeforeDestroyed--;
         }
-        if (collision.gameObject.tag == "Ground")
+        switch (collision.gameObject.tag)
         {
-            Destroy(gameObject);
-        }
-        if (collision.gameObject.tag == "Wall")
-        {
-            speed = -speed;
-        }
-        if (collision.gameObject.tag == "OneWay")
-        {
-            Destroy(gameObject);
+            case "Ground":
+                Destroy(gameObject);
+                break;
+            case "Wall":
+                speed = -speed;
+                break;
         }
     }
 
-    void whichHitDir()
+    void WhichHitDir()
     {
         if(speed > 0)
         {
@@ -81,15 +88,20 @@ public class Isflak : MonoBehaviour {
             hitDir = new Vector2(0, 0);
         }
     }
-    void moveFlak()
+    float GetRelativeVelocityY()
+    {
+        return rb2d.velocity.y;
+    }
+    void MoveFlak()
     {
        Vector2 flak = new Vector2(speed, rb2d.velocity.y);
        rb2d.velocity = flak;
-
+        Debug.Log(breakTime);
     }
-    void destroyIce()
+    void DestroyIce()
     {
-      if (timeBeforeDestroyed <= 0)
+        Debug.Log(timeBeforeDestroyed);
+        if (timeBeforeDestroyed <= 0)
         {
             breakTime += Time.deltaTime;
             if (breakTime > timeUntillBroken) {
@@ -103,7 +115,6 @@ public class Isflak : MonoBehaviour {
         {
             rb2d.velocity = new Vector2(speed, 0);
             rb2d.bodyType = RigidbodyType2D.Kinematic;
-            
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
