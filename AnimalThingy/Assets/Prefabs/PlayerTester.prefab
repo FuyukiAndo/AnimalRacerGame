@@ -142,7 +142,7 @@ MonoBehaviour:
   playerType: 0
   collisionController: {fileID: 114219394262681424}
   maxJumpHeight: 5
-  minJumpHeight: 2
+  minJumpHeight: 1
   jumpAndFallDelay: 0.4
   movementSpeed: 10
   movementAcceleration: 0.2
