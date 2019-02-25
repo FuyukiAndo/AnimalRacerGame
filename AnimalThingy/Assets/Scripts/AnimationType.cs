@@ -7,13 +7,14 @@ public class AnimationType
 {
 	public AnimationEventType eventType;
 	public AnimationTriggerType triggerType;
-	public AnimationEventBehaviour eventBehaviour;
-	[Tooltip("Animation Trigger On")] public string animationTriggerOn;
-	[Tooltip("Animation Trigger Off")] public string animationTriggerOff;
-	[Tooltip("Animation Name")] public string animationName;
+	[Tooltip("Animation Trigger")] public string animationTrigger;
+	[Tooltip("Animation Trigger For Secondary Animation, leave empty if unnecessary")] public string secondAnimationTrigger;
+	[Tooltip("Animation Trigger Name")] public string animationName;
 	[Tooltip("Animation Active State")] public bool animationActiveState;
-	[Tooltip("Animation Min Value")] public float animationValueMin;
-	[Tooltip("Animation Max Value")] public float animationValueMax;
+	[Tooltip("Let the animation control the motion")] public bool ApplyRootMotion;
+	[Tooltip("Animation Value")] public float animationValue;
+	[Tooltip("Animation Value For Secondary Animation, leave empty if unnecessary")] public float secondAnimationValue;
+	[Tooltip("Initial Animation Delay")] public float initialAnimationDelay;
 	public float NextAnimation
 	{
 		get
@@ -26,29 +27,25 @@ public class AnimationType
 		}
 	}
 	private float nextAnimation;
-	public float AnimationTimer
+	[Tooltip("Delay Until Next Animation Cycle")] public float animationInterval;
+	public bool OnFirstAnimation
 	{
 		get
 		{
-			return animationTimer;
-		}
-		set
-		{
-			animationTimer = value;
+			return onFirstAnimation;
 		}
 	}
-	private float animationTimer;
-	[Tooltip("Delay Until Next Animation Cycle")] public float animationInterval;
+	private bool onFirstAnimation;
+
+	public void SwitchedAnimation()
+	{
+		onFirstAnimation = !onFirstAnimation;
+	}
 }
 
 public enum AnimationEventType
 {
 	update, triggerEnter, triggerStay, triggerExit, collisionEnter, collisionStay, collisionExit
-}
-
-public enum AnimationEventBehaviour
-{
-	setMin, setMax, setOn, setOff, setNext
 }
 
 public enum AnimationTriggerType
