@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1597,15 +1597,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: bd103b8c34d125a4885c8872c91d4168, type: 3}
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 38.399998, y: 21.599998}
+  m_Size: {x: 0.16, y: 0.16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
 --- !u!4 &198754763
 Transform:
@@ -3019,7 +3019,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4146263001780638, guid: cfc0a52fb3726cc42b52fdb6c68160d6, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1521987817325276, guid: cfc0a52fb3726cc42b52fdb6c68160d6, type: 2}
       propertyPath: m_Name
@@ -3308,7 +3308,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4146263001780638, guid: cfc0a52fb3726cc42b52fdb6c68160d6, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1521987817325276, guid: cfc0a52fb3726cc42b52fdb6c68160d6, type: 2}
       propertyPath: m_Name
@@ -5982,7 +5982,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1087638728}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 30, y: 53.7, z: -63.2}
+  m_LocalPosition: {x: 38.4, y: 44.5, z: -85.9}
   m_LocalScale: {x: 0.1630646, y: 0.46749726, z: 0.7993102}
   m_Children: []
   m_Father: {fileID: 0}
@@ -6559,7 +6559,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1248922935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7909,7 +7909,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4146263001780638, guid: cfc0a52fb3726cc42b52fdb6c68160d6, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1521987817325276, guid: cfc0a52fb3726cc42b52fdb6c68160d6, type: 2}
       propertyPath: m_Name
@@ -10234,7 +10234,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4146263001780638, guid: cfc0a52fb3726cc42b52fdb6c68160d6, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1521987817325276, guid: cfc0a52fb3726cc42b52fdb6c68160d6, type: 2}
       propertyPath: m_Name
