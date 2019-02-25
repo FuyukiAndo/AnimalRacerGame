@@ -52,7 +52,7 @@ public class AudioManager : MonoBehaviour {
 		}
 		if (playState == PLAYBACK_STATE.STOPPED && !shouldStopBack)
 		{
-			StartCoroutine(PlayBackAudio());
+			//StartCoroutine(PlayBackAudio());
 		}
 	}
 
