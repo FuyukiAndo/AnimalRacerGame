@@ -29,7 +29,7 @@ public class StartManager : MonoBehaviour
 	}
 
 	[SerializeField] private int timeUntilStart;
-	[SerializeField] private Vector2[] playerStartPositions;
+	[SerializeField] private GameObject[] playerStartPositions;
 	[SerializeField] private bool startCountDownOnSceneLoad;
 
 	void Start()
@@ -85,7 +85,7 @@ public class StartManager : MonoBehaviour
 		int place = 0;
 		foreach (var player in unplacedPlayers)
 		{
-			player.transform.position = playerStartPositions[place];
+			player.transform.position = playerStartPositions[place].transform.position;
 			place++;
 		}
 	}
@@ -95,7 +95,7 @@ public class StartManager : MonoBehaviour
 		Gizmos.color = Color.green;
 		foreach (var start in playerStartPositions)
 		{
-			Gizmos.DrawWireSphere(start, .5f);
+			Gizmos.DrawWireSphere(start.transform.position, .5f);
 		}
 	}
 }
