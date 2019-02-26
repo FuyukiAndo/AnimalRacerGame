@@ -11,9 +11,10 @@ public class SpeedChanger : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         PlayerController player = collision.gameObject.GetComponent<PlayerController>();
+		
         if (player != null)
         {
-           StartCoroutine(player.SpeedChange(speedChangeAmount, speedDuration, gameObject));
+           //StartCoroutine(player.SpeedChange(speedChangeAmount, speedDuration, gameObject));
            GetComponent<MeshRenderer>().enabled = false;
            GetComponent<Collider2D>().enabled = false;
         }

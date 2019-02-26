@@ -20,7 +20,7 @@ public class FlyingTrajectory : MonoBehaviour {
         PlayerController player = collision.gameObject.GetComponent<PlayerController>();
         if (player != null)
         {
-            StartCoroutine(player.GetStunnedAndDestroy(stunDuration, gameObject));
+            //StartCoroutine(player.GetStunnedAndDestroy(stunDuration, gameObject));
             GetComponent<MeshRenderer>().enabled = false;
             GetComponent<Collider2D>().enabled = false;
         }
