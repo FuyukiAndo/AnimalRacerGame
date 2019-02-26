@@ -9,9 +9,9 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1391248947053972}
+  m_RootGameObject: {fileID: 1498534499093758}
   m_IsPrefabParent: 1
---- !u!1 &1391248947053972
+--- !u!1 &1498534499093758
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}

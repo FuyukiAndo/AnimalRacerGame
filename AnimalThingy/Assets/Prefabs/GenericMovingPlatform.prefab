@@ -9,48 +9,49 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1284739177998074}
+  m_RootGameObject: {fileID: 1225037111131342}
   m_IsPrefabParent: 1
---- !u!1 &1284739177998074
+--- !u!1 &1225037111131342
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4474793305817414}
-  - component: {fileID: 33621610879066784}
-  - component: {fileID: 23234209782348824}
-  - component: {fileID: 114216615527738608}
-  - component: {fileID: 61474718819906330}
-  - component: {fileID: 95226026573584518}
-  - component: {fileID: 50202677681379814}
-  m_Layer: 9
-  m_Name: Isfalk
+  - component: {fileID: 4201892616794668}
+  - component: {fileID: 33153178288285004}
+  - component: {fileID: 23434509837552568}
+  - component: {fileID: 61061350268961362}
+  - component: {fileID: 114887990348794836}
+  - component: {fileID: 114697117649231868}
+  - component: {fileID: 114566883890920160}
+  - component: {fileID: 114773650638937810}
+  m_Layer: 10
+  m_Name: GenericMovingPlatform
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4474793305817414
+--- !u!4 &4201892616794668
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1284739177998074}
+  m_GameObject: {fileID: 1225037111131342}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -5.42, y: 3.39, z: 0}
-  m_LocalScale: {x: 2.5, y: 0.43750018, z: 1}
+  m_LocalScale: {x: 2.0625002, y: 0.43750018, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -52.427002, z: 0}
---- !u!23 &23234209782348824
+--- !u!23 &23434509837552568
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1284739177998074}
+  m_GameObject: {fileID: 1225037111131342}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -79,39 +80,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33621610879066784
+--- !u!33 &33153178288285004
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1284739177998074}
+  m_GameObject: {fileID: 1225037111131342}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!50 &50202677681379814
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1284739177998074}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 1
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
---- !u!61 &61474718819906330
+--- !u!61 &61061350268961362
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1284739177998074}
+  m_GameObject: {fileID: 1225037111131342}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -131,37 +112,81 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.0000001}
   m_EdgeRadius: 0
---- !u!95 &95226026573584518
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1284739177998074}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4b5c92d26ddd5784f8dd0afb0fe0e2c0, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114216615527738608
+--- !u!114 &114566883890920160
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1284739177998074}
+  m_GameObject: {fileID: 1225037111131342}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f2998b53fd4b3746bf4524dd2738ffb, type: 3}
+  m_Script: {fileID: 11500000, guid: ef2f0b25bf02456429b0d61ae375410c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  durability: 2
-  timeUntillBroken: 3
-  floatSpeed: 0
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 0
+  horizontalRaycastAmount: 4
+  verticalRaycastAmount: 4
+  collisionController: {fileID: 0}
+  movingPlatform: {fileID: 0}
+  entityMask:
+    serializedVersion: 2
+    m_Bits: 256
+  moveEntity: {x: 0, y: 0}
+  setRayLength: 1
+--- !u!114 &114697117649231868
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1225037111131342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c116ea33963aa345941008e2570b121, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxJumpHeight: 8
+  minJumpHeight: 1
+  jumpAndFallDelay: 0.4
+  gravity: 0
+  maxVelocity: 0
+  minVelocity: 0
+--- !u!114 &114773650638937810
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1225037111131342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 239246f1dd7d43348833a855c2753daa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionController: {fileID: 0}
+  gravityController: {fileID: 0}
+  platformController: {fileID: 0}
+  timeUntilBroken: 0
   characterLayer:
     serializedVersion: 2
     m_Bits: 256
+  movement: {x: 1, y: 0}
+  collision: []
+--- !u!114 &114887990348794836
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1225037111131342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f3c395ba95f4f341a3da67a53d8acfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 528
+  horizontalRaycastAmount: 4
+  verticalRaycastAmount: 4
+  maxAngle: 80
+  SetRayLength: 1

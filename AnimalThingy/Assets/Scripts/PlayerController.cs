@@ -4,50 +4,45 @@ using UnityEngine;
 
 public enum PlayerType
 {
-    playerNobody,
-    playerAlbatross,
-    playerPig,
-    playerMonkey,
-    playerPenguin
+	playerNobody,
+	playerAlbatross,
+	playerPig,
+	playerMonkey,
+	playerPenguin
 };
 
-
 [RequireComponent(typeof(CollisionController))]
+[RequireComponent(typeof(GravityController))]
+[RequireComponent(typeof(PlayerInput))]
 
 public class PlayerController : MonoBehaviour
 {
-	
-
 	[Header("Player Type Settings")]
 	public PlayerType playerType;
 
-
-	[HideInInspector] public CollisionController collisionController;
-	[HideInInspector] public static PlayerController playerController;
-
-	[Header("Jump and Gravity Settings")]
-	[Tooltip("Max jump height value between 0.1f and x")]
-	public float maxJumpHeight = 8.0f;
-
-	[Tooltip("Min jump height value between 0.1f and x")]
-	public float minJumpHeight = 0.1f;
-
-	[Tooltip("Min jump height value between 0.1f and x")]
-	[Range(0.1f,2.0f)]public float jumpAndFallDelay = 0.4f;
-
 	[Header("Movement Settings")]
 	public float movementSpeed = 18.0f;
+
 	[Range(0.1f,1.0f)]public float movementAcceleration = 0.15f;
 
-	private float gravity;
-	private float maxVelocity;
-	private float minVelocity;
-	private float horizontalInput;
-	[HideInInspector] public float wallSlideSpeedMax = 3;
+	//References for CollisionController class and PlayerController class
+	[HideInInspector] public CollisionController collisionController;
+	[HideInInspector] public GravityController gravityController;
+	
+	[HideInInspector] public static PlayerController playerController;
+
+	//private float horizontalInput;
 	private float velocitySmoothing;
+	
+	public float wallSlideSpeedMax = 3;
+	
 	[HideInInspector] public Vector2 movement;
-    /*Checks if player is stunned. Have before checking movement. True = no movement. False = can move*/
-    [HideInInspector] public bool isStunned = false;
+	[HideInInspector] public int direction;
+	
+	//Only public for debug
+	public float tempSpeed;
+	public float mod0 = 0.1f;
+	public float mod1 = 0.2f;
 
 	void Awake()
 	{
@@ -57,51 +52,119 @@ public class PlayerController : MonoBehaviour
 	void Start()
 	{
 		collisionController = GetComponent<CollisionController>();
+		gravityController = GetComponent<GravityController>();
+		direction = 0;
 	}
 
 	void OnValidate()
 	{
-		if(minJumpHeight < 0.1f)
-		{
-			//Debug.LogWarning("'minJumpHeight' cannot be lower than 0");
-			minJumpHeight = 0.1f;
-		}
-		if(maxJumpHeight < 0.1f)
-		{
-			//Debug.LogWarning("'minJumpHeight' cannot be lower than 0");
-			maxJumpHeight = 0.1f;
-		}
-
 		if(movementSpeed < 1.0f)
 		{
-			//Debug.LogWarning("'minJumpHeight' cannot be lower than 0");
 			movementSpeed = 1.0f;
 		}
-		if(maxJumpHeight < minJumpHeight)
+		
+		if(direction > 1)
 		{
-			maxJumpHeight = minJumpHeight + 0.1f;
+			direction = 1;
 		}
 	}
-	void UpdateGravity()
+
+	//If jump button released before reaching max value, then goto min value.
+	public void OnJumpKeyUp()
 	{
-		gravity = -(2*maxJumpHeight)/Mathf.Pow(jumpAndFallDelay, 2);
-		maxVelocity = Mathf.Abs(gravity) * jumpAndFallDelay;
-		minVelocity = Mathf.Sqrt(2*Mathf.Abs(gravity) * minJumpHeight);
+		if(!collisionController.boxCollisionDirections.down)
+		{
+			if(movement.y > gravityController.minVelocity)
+			{
+				movement.y = gravityController.minVelocity;
+			}
+		}
 	}
-	void PlayerInput()
+
+	//If pressed down, then goes to max value.
+	public void OnJumpKeyDown()
 	{
-		horizontalInput = Input.GetAxisRaw("Horizontal");
-	//	verticalInput = Input.GetAxisRaw("Jump");
+		if(collisionController.boxCollisionDirections.down)
+		{
+			movement.y = gravityController.maxVelocity;
+		}
+	}
+	
+	//Move player Left direction with smooth acceleration
+	public void MoveLeft()
+	{
+		//Smooth movement acceleration
+		for(float i = 0; i <movementSpeed;i++)
+		{
+			tempSpeed=tempSpeed+mod0;
+			
+			if(tempSpeed > movementSpeed)
+			{
+				tempSpeed = movementSpeed;
+			}
+		}
+
+		//Translation in Left direction		
+		movement.x = -1 * tempSpeed;
+		
+		//Set direction to Left
+		direction = -1;
+	}
+
+	//Move player Right direction with smooth acceleration	
+	public void MoveRight()
+	{
+		//Smooth movement acceleration
+		for(float i = 0; i <movementSpeed;i++)
+		{
+			tempSpeed=tempSpeed+mod0;
+			
+			if(tempSpeed > movementSpeed)
+			{
+				tempSpeed = movementSpeed;
+			}
+		}
+		
+		//Translation in Right direction
+		movement.x = 1 * tempSpeed;
+
+		//Set direction to Right 
+		direction = 1;
+	}
+	
+	public void MoveNot()
+	{
+		//Smooth deacceleration
+		tempSpeed=tempSpeed-0.2f;
+		
+		//When fully deaccelerated, movement speed is 0
+		if(tempSpeed < 0)
+		{
+			tempSpeed = 0;
+		}
+	
+		//SmoothDamp for deacceleratation
+		float movementVelocity = direction * tempSpeed;
+		movement.x = Mathf.SmoothDamp(movement.x, movementVelocity, ref velocitySmoothing,movementAcceleration);
+		
+		//Set direction to None
+		direction = 0;
 	}
 
 	void Update()
 	{
-		UpdateGravity();
-		//PlayerInput();
-
+		gravityController.UpdateGravity();
+		
+		float verticalTranslate = gravityController.gravity * Time.deltaTime;
+		
+		movement.y += verticalTranslate;
+		//collisionController.Move(movement * Time.deltaTime);
+		MoveObject(movement * Time.deltaTime);
+		
 		bool wallSliding = false;
 
-		if((collisionController.boxCollisionDirections.left || collisionController.boxCollisionDirections.right) && !collisionController.boxCollisionDirections.down && maxVelocity < 0)
+		if((collisionController.boxCollisionDirections.left || collisionController.boxCollisionDirections.right) 
+			&& !collisionController.boxCollisionDirections.down && gravityController.maxVelocity < 0)
 		{
 			wallSliding = true;
 
@@ -111,71 +174,16 @@ public class PlayerController : MonoBehaviour
 			}
 		}
 
-		if (collisionController.boxCollisionDirections.up||collisionController.boxCollisionDirections.down)
-		{
-			//translateVertical = false;
-			//translateHorizontal = false;
-		}
 		if (collisionController.boxCollisionDirections.up || collisionController.boxCollisionDirections.down)
 		{
 			movement.y = 0;
 		}
-
-		/*if(horizontalInput == 0 && CollisionController.BoxCollision.below)
-		{
-			if (restricted == false)
-			{
-				movement.x = 0;
-				movement.y = 0;
-			}
-		}
-		*/
-		/*if(CollisionController.BoxCollision.below)
-		{
-			movement.y = 0;
-			movement.x = 0;
-		}*/
-
-		if(horizontalInput == -1)
-		{
-			movement.x = -1 * movementSpeed;
-		}
-
-		if(horizontalInput == 1)
-		{
-			movement.x = 1 * movementSpeed;
-		}
-
-		if(Input.GetKeyDown(KeyCode.Space))
-		{
-			if(collisionController.boxCollisionDirections.down)
-			{
-				movement.y = maxVelocity;
-			}
-		}
-		if(Input.GetKeyUp(KeyCode.Space))
-		{
-			if(!collisionController.boxCollisionDirections.down)
-			{
-				if(movement.y > minVelocity)
-				{
-					movement.y = minVelocity;
-				}
-			}
-		}
-		//gravity in y-axis
-		float movementVelocity = Input.GetAxisRaw("Horizontal") * movementSpeed;
-		movement.x = Mathf.SmoothDamp(movement.x, movementVelocity, ref velocitySmoothing,movementAcceleration);
-
-		float verticalTranslate = gravity * Time.deltaTime;
-		movement.y += verticalTranslate;
-
-		//collisionController.Move(movement * Time.deltaTime);
-		MovePlayer(movement * Time.deltaTime);
 	}
 
-	public void MovePlayer(Vector2 movement)
+	public void MoveObject(Vector2 movement)
 	{
+		//Update collision check 
+		
 		collisionController.UpdateRaycastDirections();
 		collisionController.boxCollisionDirections.resetDirections();
 		if(movement.y < 0)
@@ -189,20 +197,4 @@ public class PlayerController : MonoBehaviour
 
 		transform.Translate(movement);
 	}
-	void OnDrawGizmosSelected()
-	{
-		Gizmos.color = Color.red;
-		Gizmos.DrawLine(new Vector3(gameObject.transform.position.x-4, gameObject.transform.position.y + maxJumpHeight, 0),
-						new Vector3(gameObject.transform.position.x+4,gameObject.transform.position.y  + maxJumpHeight, 0));
-
-		Gizmos.color = Color.green;
-		Gizmos.DrawLine(new Vector3(gameObject.transform.position.x-4, gameObject.transform.position.y + minJumpHeight, 0),
-						new Vector3(gameObject.transform.position.x+4,gameObject.transform.position.y  + minJumpHeight, 0));
-
-		Gizmos.color = Color.blue;
-		Gizmos.DrawLine(new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0),
-						new Vector3(gameObject.transform.position.x,gameObject.transform.position.y + maxJumpHeight, 0));
-	}
-
-
 }

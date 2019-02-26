@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
 
-public class Isflak : MonoBehaviour {
-
+public class Isflak : MonoBehaviour 
+{
     public int durability = 2;
     public float timeUntillBroken;
     public float floatSpeed;
     public LayerMask characterLayer;
-    public float stunDuration;
-
+	public Vector2 flak;
 
     private int timeBeforeDestroyed;
     private float breakTime;
@@ -19,11 +18,19 @@ public class Isflak : MonoBehaviour {
     private IsflakSpawner isflakSpawner;
     private float speed;
 
+	public Vector2 isflakVector
+	{
+		get
+		{
+			return flak;
+		}
+	}
     // Use this for initialization
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
         timeBeforeDestroyed = durability;
+		
         if (transform.parent != null)
         {
             isflakSpawner = GetComponentInParent<IsflakSpawner>();
@@ -45,14 +52,14 @@ public class Isflak : MonoBehaviour {
             MoveFlak();
         }
 
-        DestroyIce();
+        destroyIce();
     }
+
     void OnCollisionEnter2D(Collision2D collision)
     {
-
         bool isOnLayer = characterLayer == (characterLayer | (1 << collision.gameObject.layer));
-        TemporaryCodeDump player = collision.gameObject.GetComponent<TemporaryCodeDump>();
-        if (isOnLayer && GetRelativeVelocityY() != 0.0f)
+		
+        if (isOnLayer)
         {
             StartCoroutine(player.GetStunnedAndDestroy(stunDuration, gameObject));
             GetComponent<MeshRenderer>().enabled = false;
@@ -64,12 +71,7 @@ public class Isflak : MonoBehaviour {
         }
         switch (collision.gameObject.tag)
         {
-            case "Ground":
-                Destroy(gameObject);
-                break;
-            case "Wall":
-                speed = -speed;
-                break;
+            speed = -speed;
         }
     }
 
@@ -90,33 +92,36 @@ public class Isflak : MonoBehaviour {
     }
     float GetRelativeVelocityY()
     {
-        return rb2d.velocity.y;
+		flak = new Vector2(speed, rb2d.velocity.y);
+		rb2d.velocity = flak;
+		// Debug.Log(breakTime);
     }
-    void MoveFlak()
-    {
-       Vector2 flak = new Vector2(speed, rb2d.velocity.y);
-       rb2d.velocity = flak;
-        Debug.Log(breakTime);
-    }
-    void DestroyIce()
+
+    void destroyIce()
     {
         Debug.Log(timeBeforeDestroyed);
+		
         if (timeBeforeDestroyed <= 0)
         {
             breakTime += Time.deltaTime;
-            if (breakTime > timeUntillBroken) {
-                Destroy(gameObject);
+			
+            if (breakTime > timeUntillBroken) 
+			{
+					Destroy(gameObject);
             }
         }
     }
+	
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.layer == 4)
         {
             rb2d.velocity = new Vector2(speed, 0);
-            rb2d.bodyType = RigidbodyType2D.Kinematic;
+            //rb2d.bodyType = RigidbodyType2D.Kinematic;
+            
         }
     }
+	
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.layer == 4)
@@ -126,3 +131,6 @@ public class Isflak : MonoBehaviour {
     }
 
 }
+
+
+//interface
