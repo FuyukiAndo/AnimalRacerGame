@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+[System.Serializable]
 public class PlayerKeybindings
 {
     public KeyCode left;
@@ -17,6 +19,7 @@ public class KeybindingsManager : MonoBehaviour {
     public PlayerKeybindings Player2Keys;
     public PlayerKeybindings Player3Keys;
     public PlayerKeybindings Player4Keys;
+
 
     private void Awake()
     {
@@ -35,6 +38,4 @@ public class KeybindingsManager : MonoBehaviour {
         Player3Keys = new PlayerKeybindings();
         Player4Keys = new PlayerKeybindings();
     }
-
-
 }
