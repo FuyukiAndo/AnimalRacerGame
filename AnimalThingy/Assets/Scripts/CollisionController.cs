@@ -12,21 +12,11 @@ public class CollisionController : RaycastController
 	
 	[HideInInspector]public BoxCollisionDirections boxCollisionDirections;
 	
-	public float SetRayLength = 1.0f;
+	[HideInInspector]public float SetRayLength = 1.0f;
 	
-	/*void OnValidate()
+	void OnValidate()
 	{
 	}
-	
-	void Awake()
-	{
-
-	}
-	
-	void Update()
-	{
-
-	}*/
 	
 	public override void Start()
 	{
@@ -49,7 +39,7 @@ public class CollisionController : RaycastController
 	
 	public struct BoxCollisionDirections
 	{
-		public bool up, down, left, right, horizontal, climbing, descendAngle, moving;
+		public bool up, down, left, right, horizontal, climbing, descendAngle;
 		public float ascendAngle, angleOld;
 		
 		public void resetDirections()
@@ -60,7 +50,6 @@ public class CollisionController : RaycastController
 			right = false;
 			horizontal = false;
 			climbing = false;
-			moving = false;
 
 			descendAngle = false;
 			
@@ -113,7 +102,7 @@ public class CollisionController : RaycastController
 			if (hitX)
 			{		
 				float angle = Vector2.Angle(hitX.normal, Vector2.up);
-
+				
 				if(i == 0 && angle <= maxAngle)
 				{
 					float distanceToSlope = 0;
@@ -146,7 +135,6 @@ public class CollisionController : RaycastController
 			}
 		}	
 
-		Physics2D.SyncTransforms(); 
 		float directionY = Mathf.Sign(movement.y);
 		float rayLengthY = Mathf.Abs(movement.y) + collisionOffset*SetRayLength;
 		
@@ -177,25 +165,6 @@ public class CollisionController : RaycastController
                     continue;
                 }
 				
-				/*Isflak isflak = hitY.transform.GetComponent<Isflak>();
-
-				if(isflak)//FindObjectOfType(typeof(Isflak)))
-				{
-					transform.SetParent(isflak.transform);
-					
-					//Vector2 movingPlatform = isflak.flak;
-					//print("it works!");
-					//hitY.transform.Translate(movingPlatform);	
-				}
-				
-				if(!hitY.transform.GetComponent<Isflak>())
-				{
-					transform.SetParent(null);
-				}*/
-				
-			
-				//hitY.transform.Translate(new Vector2(moveX, moveY));
-				
 				if(boxCollisionDirections.climbing)
 				{
 					movement.x = movement.y / Mathf.Tan(boxCollisionDirections.ascendAngle * Mathf.Deg2Rad) * Mathf.Sign(movement.x);
@@ -216,7 +185,6 @@ public class CollisionController : RaycastController
 					if(newHitY)
 					{
 						float angle = Vector2.Angle(newHitY.normal, Vector2.up);
-						
 						if(angle != boxCollisionDirections.ascendAngle)
 						{
 							movement.x = (newHitY.distance - collisionOffset) * directionX;
@@ -239,27 +207,9 @@ public class CollisionController : RaycastController
 				rayLengthY = hitY.distance;
 			}
 		}
-		
-		//Check for movingplatforms
-		/*if(FindObjectOfType(typeof(Isflak)))
-		{
-			Vector2 movingPlatform = Isflak.isflakVector;
-			
-			//if(movingPlatform.x != 0)
-			//{
-				print("test");
-			//}
-			//print("it work");
-			//if (movingPlatform.x != 0)
-			//{
-			//	print("it work");
-			//}
-		}*/
-		
-		
-		
 	}	
-
+	
+	
 	public void ClimbSlope(ref Vector2 movement, float angle)
 	{
 		float moveDistance = Mathf.Abs(movement.x);
@@ -315,51 +265,4 @@ public class CollisionController : RaycastController
 			}
 		}
 	}
-	
-   /* public IEnumerator SpeedChange(float boostChangeAmount, float boostDuration, GameObject speedObject)
-    {
-        speed = speed + boostChangeAmount;
-        yield return new WaitForSeconds(boostDuration);
-        speed = originalSpeed;
-        Destroy(speedObject);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        bool isOnLayer = waterLayer == (waterLayer | (1 << collision.gameObject.layer));
-        //Mathf.Log(waterLayer.value, 2) == collision.gameObject.layer
-        //(waterLayer | (1 << collision.gameObject.layer)) - Kollar bitmaskens position på collisionen och jämför den med bitmasken
-
-        if (isOnLayer && pengvin == false)
-        {
-            GetKilled();
-        }
-    }
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Bonefire")
-        {
-            coldWinter.WarmedUp();
-        }
-    }
-    public IEnumerator GetStunnedAndDestroy(float stunDuration, GameObject stunObject)
-    {
-        isStunned = true;
-        yield return new WaitForSeconds(stunDuration);
-        isStunned = false;
-        Destroy(stunObject);
-    }
-	
-    public IEnumerator GetStunned(float stunDurtation)
-    {
-        Debug.Log(stunDurtation);
-        isStunned = true;
-        yield return new WaitForSeconds(stunDurtation);
-        isStunned = false;
-    }
-	
-    public void GetKilled()
-    {
-        Destroy(gameObject);
-    }*/
 }

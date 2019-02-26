@@ -21,7 +21,7 @@ public class FlyingTrajectory : MonoBehaviour {
         bool isOnLayer = terrainTypesLayer == (terrainTypesLayer | (1 << collision.gameObject.layer));
         if (player != null)
         {
-            //StartCoroutine(player.GetStunnedAndDestroy(stunDuration, gameObject));
+            StartCoroutine(player.GetStunnedAndDestroy(stunDuration, gameObject));
             GetComponent<MeshRenderer>().enabled = false;
             GetComponent<Collider2D>().enabled = false;
         }

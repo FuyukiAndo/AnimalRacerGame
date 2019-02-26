@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
 
-public class Isflak : MonoBehaviour 
-{
+public class Isflak : MonoBehaviour {
+
     public int durability = 2;
     public float timeUntillBroken;
     public float floatSpeed;
     public LayerMask characterLayer;
-	public Vector2 flak;
 
     private int timeBeforeDestroyed;
     private float breakTime;
@@ -18,19 +17,11 @@ public class Isflak : MonoBehaviour
     private IsflakSpawner isflakSpawner;
     private float speed;
 
-	public Vector2 isflakVector
-	{
-		get
-		{
-			return flak;
-		}
-	}
     // Use this for initialization
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
         timeBeforeDestroyed = durability;
-		
         if (transform.parent != null)
         {
             isflakSpawner = GetComponentInParent<IsflakSpawner>();
@@ -54,11 +45,9 @@ public class Isflak : MonoBehaviour
 
         destroyIce();
     }
-
     void OnCollisionEnter2D(Collision2D collision)
     {
         bool isOnLayer = characterLayer == (characterLayer | (1 << collision.gameObject.layer));
-		
         if (isOnLayer)
         {
             timeBeforeDestroyed--;
@@ -98,7 +87,6 @@ public class Isflak : MonoBehaviour
 		rb2d.velocity = flak;
 		// Debug.Log(breakTime);
     }
-
     void destroyIce()
     {
         Debug.Log(timeBeforeDestroyed);
@@ -106,24 +94,20 @@ public class Isflak : MonoBehaviour
         if (timeBeforeDestroyed <= 0)
         {
             breakTime += Time.deltaTime;
-			
-            if (breakTime > timeUntillBroken) 
-			{
-					Destroy(gameObject);
+            if (breakTime > timeUntillBroken) {
+                Destroy(gameObject);
             }
         }
     }
-	
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.layer == 4)
         {
             rb2d.velocity = new Vector2(speed, 0);
-            //rb2d.bodyType = RigidbodyType2D.Kinematic;
+            rb2d.bodyType = RigidbodyType2D.Kinematic;
             
         }
     }
-	
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.layer == 4)
@@ -133,6 +117,3 @@ public class Isflak : MonoBehaviour
     }
 
 }
-
-
-//interface

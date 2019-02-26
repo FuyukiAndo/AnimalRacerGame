@@ -14,7 +14,7 @@ public class SpeedChanger : MonoBehaviour
 		
         if (player != null)
         {
-           //StartCoroutine(player.SpeedChange(speedChangeAmount, speedDuration, gameObject));
+           StartCoroutine(player.SpeedChange(speedChangeAmount, speedDuration, gameObject));
            GetComponent<MeshRenderer>().enabled = false;
            GetComponent<Collider2D>().enabled = false;
         }
