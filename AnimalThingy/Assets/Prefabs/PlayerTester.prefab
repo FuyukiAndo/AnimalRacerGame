@@ -22,8 +22,10 @@ GameObject:
   - component: {fileID: 33988807850618552}
   - component: {fileID: 23269981365263724}
   - component: {fileID: 61354334367736266}
-  - component: {fileID: 114744816111177328}
   - component: {fileID: 114219394262681424}
+  - component: {fileID: 114783685815102794}
+  - component: {fileID: 114744816111177328}
+  - component: {fileID: 114330150080949900}
   m_Layer: 8
   m_Name: PlayerTester
   m_TagString: Untagged
@@ -38,7 +40,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1164201688429514}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 2.5, z: 0}
+  m_LocalPosition: {x: 0.75141585, y: 3.1038947, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -126,9 +128,23 @@ MonoBehaviour:
     m_Bits: 512
   horizontalRaycastAmount: 4
   verticalRaycastAmount: 4
-  collisionTag: oneWay
   maxAngle: 80
   SetRayLength: 1
+--- !u!114 &114330150080949900
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1164201688429514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ada670a83430aa448bc3fa1cbfa48aaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerLeftKey: 276
+  playerRightKey: 275
+  playerJumpKey: 97
+  playerAbilityKey: 115
 --- !u!114 &114744816111177328
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -140,11 +156,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12cc0c1502d1f9a4d8cf9512b0083174, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerType: 0
+  movementSpeed: 9
+  movementAcceleration: 0.2
   collisionController: {fileID: 114219394262681424}
-  maxJumpHeight: 5.14
-  minJumpHeight: 1.2
-  jumpAndFallDelay: 0.4
-  movementSpeed: 10
-  movementAcceleration: 0.13
+  gravityController: {fileID: 114783685815102794}
   wallSlideSpeedMax: 3
-  movement: {x: -4.7322654e-29, y: -3.8317637}
+  movement: {x: 0, y: 0}
+  direction: 0
+  tempSpeed: 0
+  mod0: 0.1
+  mod1: 0.2
+--- !u!114 &114783685815102794
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1164201688429514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c116ea33963aa345941008e2570b121, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxJumpHeight: 8
+  minJumpHeight: 1.5
+  jumpAndFallDelay: 0.4
+  gravity: -99.99999
+  maxVelocity: 39.999996
+  minVelocity: 17.320507
