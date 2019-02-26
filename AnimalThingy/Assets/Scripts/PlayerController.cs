@@ -197,6 +197,6 @@ public class PlayerController : MonoBehaviour
 			collisionController.checkCollision(ref movement);
 		}
 
-		transform.Translate(movement);
+		transform.Translate(movement,Space.World);
 	}
 }

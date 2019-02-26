@@ -47,7 +47,7 @@ public class MovingPlatform : MonoBehaviour
         //rb2d = GetComponent<Rigidbody2D>();
 		if(transform.parent != null)
 		{
-			timeBeforeDestroyed = platformDurability;
+			//timeBeforeDestroyed = platformDurability;
 			isflakSpawner = GetComponentInParent<IsflakSpawner>();
 			movementSpeed = isflakSpawner.GetSpeed();
 			platformDurability = isflakSpawner.GetDurability();
@@ -92,7 +92,7 @@ public class MovingPlatform : MonoBehaviour
 			movement.y = 0;
 		}
 
-		DestroyPlatform();
+		//DestroyPlatform();
     }
 
 	void OnPlatform()

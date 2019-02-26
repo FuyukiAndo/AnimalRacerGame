@@ -98,5 +98,5 @@ MonoBehaviour:
     type: 2}
   timeBetweenSpawns: 5
   floatSpeed: 1
-  durability: 2
+  durability: 6
   spawnDirection: 1
