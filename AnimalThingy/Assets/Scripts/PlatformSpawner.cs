@@ -9,7 +9,7 @@ CODE UPDATED BY FILIP ANTONIJEVIC 2019-02-24
 --------------------------------------------
 **/
 
-public class IsflakSpawner : Spawner 
+public class PlatformSpawner : Spawner 
 {
     public float floatSpeed;
     public int durability = 2;

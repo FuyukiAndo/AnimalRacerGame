@@ -34,7 +34,7 @@ public class MovingPlatform : MonoBehaviour
 	//private Rigidbody2D rb2d;
     
 	//private Vector2 hitDir;
-    private IsflakSpawner isflakSpawner; //Change the name to MovingPlatformSpawner
+    private PlatformSpawner platormSpawner; //Change the name to MovingPlatformSpawner
 	
 	//private float speed;
 
@@ -48,10 +48,10 @@ public class MovingPlatform : MonoBehaviour
 		if(transform.parent != null)
 		{
 			timeBeforeDestroyed = platformDurability;
-			isflakSpawner = GetComponentInParent<IsflakSpawner>();
-			movementSpeed = isflakSpawner.GetSpeed();
-			platformDurability = isflakSpawner.GetDurability();
-			movementDirection = isflakSpawner.GetDirection();
+            platormSpawner = GetComponentInParent<PlatformSpawner>();
+			movementSpeed = platormSpawner.GetSpeed();
+			platformDurability = platormSpawner.GetDurability();
+			movementDirection = platormSpawner.GetDirection();
 		}
 	   /* if (transform.parent != null)
         {
