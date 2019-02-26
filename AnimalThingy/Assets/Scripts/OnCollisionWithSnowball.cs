@@ -16,10 +16,7 @@ public class OnCollisionWithSnowball : MonoBehaviour {
             return;
         Vector2 dir = transform.position - collision.transform.position;
         dir.Normalize();
-        StartCoroutine(GetComponent<TemporaryCodeDump>().GetStunned(stunDuration));
-
-        //GetComponent<PlayerController>().AddForce(dir*force, ForceMode2D.Impulse);
-
-        GetComponent<PlayerController>().MovePlayer(dir * force);
+        //StartCoroutine(GetComponent<PlayerController>().GetStunned(stunDuration));
+        GetComponent<Rigidbody2D>().AddForce(dir*force, ForceMode2D.Impulse);
     }
 }

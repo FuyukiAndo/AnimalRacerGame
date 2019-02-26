@@ -83,13 +83,15 @@ public class Isflak : MonoBehaviour {
     }
     void moveFlak()
     {
-       Vector2 flak = new Vector2(speed, rb2d.velocity.y);
-       rb2d.velocity = flak;
-
+		flak = new Vector2(speed, rb2d.velocity.y);
+		rb2d.velocity = flak;
+		// Debug.Log(breakTime);
     }
     void destroyIce()
     {
-      if (timeBeforeDestroyed <= 0)
+        Debug.Log(timeBeforeDestroyed);
+		
+        if (timeBeforeDestroyed <= 0)
         {
             breakTime += Time.deltaTime;
             if (breakTime > timeUntillBroken) {

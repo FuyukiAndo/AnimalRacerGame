@@ -10,7 +10,8 @@ public class SpeedChanger : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        TemporaryCodeDump player = collision.gameObject.GetComponent<TemporaryCodeDump>();
+        PlayerController player = collision.gameObject.GetComponent<PlayerController>();
+		
         if (player != null)
         {
            StartCoroutine(player.SpeedChange(speedChangeAmount, speedDuration, gameObject));
