@@ -4,15 +4,16 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Ground
-  - Tranpolin
   - Spike
-  - OneWay
+  - Character
+  - Tranpolin
+  - Ground
   - Wall
-  - Ice_Character
-  - Farm_Character
-  - Jungle_Character
-  - Coast_Character
+  - Bonefire
+  - OneWay
+  - oneWay
+  - Ball
+  - Workdammit
   layers:
   - Default
   - TransparentFX
@@ -23,8 +24,9 @@ TagManager:
   - 
   - 
   - Player
-  - Platorm
-  - Background
+  - Platform
+  - MovingPlatform
+  - 
   - 
   - 
   - tempUI

@@ -161,4 +161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   durability: 2
   timeUntillBroken: 3
-  floatSpeed: 2
+  floatSpeed: 0
+  characterLayer:
+    serializedVersion: 2
+    m_Bits: 256

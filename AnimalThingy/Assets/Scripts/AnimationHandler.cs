@@ -9,8 +9,7 @@ public class AnimationHandler : MonoBehaviour
 	[Tooltip("One animation per event type")] [SerializeField] private AnimationType[] animationType;
 	private AnimationType forUpdate, forCollisionEnter, forCollisionExit, forCollisionStay, forTriggerEnter,
 	forTriggerStay, forTriggerExit;
-	private AnimationTriggerType triggerType;
-	private AnimationEventBehaviour eventBehaviour;
+	private bool queveUpdateAnimation;
 
 	void Start()
 	{
@@ -56,99 +55,68 @@ public class AnimationHandler : MonoBehaviour
 
 	void Update()
 	{
-		if (forUpdate != null)
+		if (EventAnimationStopped())
 		{
-			forUpdate.AnimationTimer += Time.deltaTime;
-			if (forUpdate.AnimationTimer >= forUpdate.NextAnimation)
+			queveUpdateAnimation = false;
+		}
+		if (forUpdate != null && !queveUpdateAnimation)
+		{
+			if (Time.time < forUpdate.initialAnimationDelay)
 			{
-				switch (triggerType)
+				return;
+			}
+			if (Time.time >= forUpdate.NextAnimation)
+			{
+				switch (forUpdate.triggerType)
 				{
 					case AnimationTriggerType.boolean:
-						switch (eventBehaviour)
-						{
-							case AnimationEventBehaviour.setOn:
-								SetAnimatorBool(forUpdate.animationName, forUpdate.animationActiveState);
-								break;
-							case AnimationEventBehaviour.setOff:
-								SetAnimatorBool(forUpdate.animationName, forUpdate.animationActiveState);
-								break;
-						}
+						SetAnimatorBool(forUpdate.animationName,
+						forUpdate.OnFirstAnimation ? forUpdate.animationActiveState : !forUpdate.animationActiveState);
 						break;
 					case AnimationTriggerType.floating:
-						switch (eventBehaviour)
+						if (forUpdate.secondAnimationValue != 0.0f)
 						{
-							case AnimationEventBehaviour.setMin:
-								SetAnimatorFloat(forUpdate.animationName, forUpdate.animationValueMin);
-								break;
-							case AnimationEventBehaviour.setMax:
-								SetAnimatorFloat(forUpdate.animationName, forUpdate.animationValueMax);
-								break;
+							SetAnimatorFloat(forUpdate.animationName,
+						forUpdate.OnFirstAnimation ? forUpdate.animationValue : forUpdate.secondAnimationValue);
+						}
+						else
+						{
+							SetAnimatorFloat(forUpdate.animationName, forUpdate.animationValue);
 						}
 						break;
 					case AnimationTriggerType.trigger:
-						switch (eventBehaviour)
+						if (forUpdate.secondAnimationTrigger != null)
 						{
-							case AnimationEventBehaviour.setOn:
-								SetAnimatorTrigger(forUpdate.animationTriggerOn);
-								break;
-							case AnimationEventBehaviour.setOff:
-								SetAnimatorTrigger(forUpdate.animationTriggerOff);
-								break;
+							SetAnimatorTrigger(
+							forUpdate.OnFirstAnimation ? forUpdate.animationTrigger : forUpdate.secondAnimationTrigger);
+						}
+						else
+						{
+							SetAnimatorTrigger(forUpdate.animationTrigger);
 						}
 						break;
 				}
+				forUpdate.SwitchedAnimation();
 				forUpdate.NextAnimation = Time.time + forUpdate.animationInterval;
 			}
 		}
-		/*if (continuously)
-		{
-			animationTimer += Time.deltaTime;
-			if (animationTimer >= nextAnimation)
-			{
-				//PlayAnimationOnce();
-				nextAnimation = Time.time + animationInterval;
-			}
-		}*/
 	}
 
 	void OnCollisionEnter2D()
 	{
+		queveUpdateAnimation = true;
 		if (forCollisionEnter != null)
 		{
-			switch (triggerType)
+			switch (forCollisionEnter.triggerType)
 			{
 				case AnimationTriggerType.boolean:
-					switch (eventBehaviour)
-					{
-						case AnimationEventBehaviour.setOn:
-							SetAnimatorBool(forCollisionEnter.animationName, forCollisionEnter.animationActiveState);
-							break;
-						case AnimationEventBehaviour.setOff:
-							SetAnimatorBool(forCollisionEnter.animationName, forCollisionEnter.animationActiveState);
-							break;
-					}
+					SetAnimatorBool(forCollisionEnter.animationName, forCollisionEnter.animationActiveState);
 					break;
 				case AnimationTriggerType.floating:
-					switch (eventBehaviour)
-					{
-						case AnimationEventBehaviour.setMin:
-							SetAnimatorFloat(forCollisionEnter.animationName, forCollisionEnter.animationValueMin);
-							break;
-						case AnimationEventBehaviour.setMax:
-							SetAnimatorFloat(forCollisionEnter.animationName, forCollisionEnter.animationValueMax);
-							break;
-					}
+					SetAnimatorFloat(forCollisionEnter.animationName, forCollisionEnter.animationValue);
 					break;
 				case AnimationTriggerType.trigger:
-					switch (eventBehaviour)
-					{
-						case AnimationEventBehaviour.setOn:
-							SetAnimatorTrigger(forCollisionEnter.animationTriggerOn);
-							break;
-						case AnimationEventBehaviour.setOff:
-							SetAnimatorTrigger(forCollisionEnter.animationTriggerOff);
-							break;
-					}
+					SetAnimatorTrigger(forCollisionEnter.animationTrigger);
 					break;
 			}
 		}
@@ -156,42 +124,19 @@ public class AnimationHandler : MonoBehaviour
 
 	void OnCollisionStay2D()
 	{
+		queveUpdateAnimation = true;
 		if (forCollisionStay != null)
 		{
-			switch (triggerType)
+			switch (forCollisionStay.triggerType)
 			{
 				case AnimationTriggerType.boolean:
-					switch (eventBehaviour)
-					{
-						case AnimationEventBehaviour.setOn:
-							SetAnimatorBool(forCollisionStay.animationName, forCollisionStay.animationActiveState);
-							break;
-						case AnimationEventBehaviour.setOff:
-							SetAnimatorBool(forCollisionStay.animationName, forCollisionStay.animationActiveState);
-							break;
-					}
+					SetAnimatorBool(forCollisionStay.animationName, forCollisionStay.animationActiveState);
 					break;
 				case AnimationTriggerType.floating:
-					switch (eventBehaviour)
-					{
-						case AnimationEventBehaviour.setMin:
-							SetAnimatorFloat(forCollisionStay.animationName, forCollisionStay.animationValueMin);
-							break;
-						case AnimationEventBehaviour.setMax:
-							SetAnimatorFloat(forCollisionStay.animationName, forCollisionStay.animationValueMax);
-							break;
-					}
+					SetAnimatorFloat(forCollisionStay.animationName, forCollisionStay.animationValue);
 					break;
 				case AnimationTriggerType.trigger:
-					switch (eventBehaviour)
-					{
-						case AnimationEventBehaviour.setOn:
-							SetAnimatorTrigger(forCollisionStay.animationTriggerOn);
-							break;
-						case AnimationEventBehaviour.setOff:
-							SetAnimatorTrigger(forCollisionStay.animationTriggerOff);
-							break;
-					}
+					SetAnimatorTrigger(forCollisionStay.animationTrigger);
 					break;
 			}
 		}
@@ -199,42 +144,19 @@ public class AnimationHandler : MonoBehaviour
 
 	void OnCollisionExit2D()
 	{
+		queveUpdateAnimation = true;
 		if (forCollisionExit != null)
 		{
-			switch (triggerType)
+			switch (forCollisionExit.triggerType)
 			{
 				case AnimationTriggerType.boolean:
-					switch (eventBehaviour)
-					{
-						case AnimationEventBehaviour.setOn:
-							SetAnimatorBool(forCollisionExit.animationName, forCollisionExit.animationActiveState);
-							break;
-						case AnimationEventBehaviour.setOff:
-							SetAnimatorBool(forCollisionExit.animationName, forCollisionExit.animationActiveState);
-							break;
-					}
+					SetAnimatorBool(forCollisionExit.animationName, forCollisionExit.animationActiveState);
 					break;
 				case AnimationTriggerType.floating:
-					switch (eventBehaviour)
-					{
-						case AnimationEventBehaviour.setMin:
-							SetAnimatorFloat(forCollisionExit.animationName, forCollisionExit.animationValueMin);
-							break;
-						case AnimationEventBehaviour.setMax:
-							SetAnimatorFloat(forCollisionExit.animationName, forCollisionExit.animationValueMax);
-							break;
-					}
+					SetAnimatorFloat(forCollisionExit.animationName, forCollisionExit.animationValue);
 					break;
 				case AnimationTriggerType.trigger:
-					switch (eventBehaviour)
-					{
-						case AnimationEventBehaviour.setOn:
-							SetAnimatorTrigger(forCollisionExit.animationTriggerOn);
-							break;
-						case AnimationEventBehaviour.setOff:
-							SetAnimatorTrigger(forCollisionExit.animationTriggerOff);
-							break;
-					}
+					SetAnimatorTrigger(forCollisionExit.animationTrigger);
 					break;
 			}
 		}
@@ -242,42 +164,19 @@ public class AnimationHandler : MonoBehaviour
 
 	void OnTriggerEnter2D()
 	{
+		queveUpdateAnimation = true;
 		if (forTriggerEnter != null)
 		{
-			switch (triggerType)
+			switch (forTriggerEnter.triggerType)
 			{
 				case AnimationTriggerType.boolean:
-					switch (eventBehaviour)
-					{
-						case AnimationEventBehaviour.setOn:
-							SetAnimatorBool(forTriggerEnter.animationName, forTriggerEnter.animationActiveState);
-							break;
-						case AnimationEventBehaviour.setOff:
-							SetAnimatorBool(forTriggerEnter.animationName, forTriggerEnter.animationActiveState);
-							break;
-					}
+					SetAnimatorBool(forTriggerEnter.animationName, forTriggerEnter.animationActiveState);
 					break;
 				case AnimationTriggerType.floating:
-					switch (eventBehaviour)
-					{
-						case AnimationEventBehaviour.setMin:
-							SetAnimatorFloat(forTriggerEnter.animationName, forTriggerEnter.animationValueMin);
-							break;
-						case AnimationEventBehaviour.setMax:
-							SetAnimatorFloat(forTriggerEnter.animationName, forTriggerEnter.animationValueMax);
-							break;
-					}
+					SetAnimatorFloat(forTriggerEnter.animationName, forTriggerEnter.animationValue);
 					break;
 				case AnimationTriggerType.trigger:
-					switch (eventBehaviour)
-					{
-						case AnimationEventBehaviour.setOn:
-							SetAnimatorTrigger(forTriggerEnter.animationTriggerOn);
-							break;
-						case AnimationEventBehaviour.setOff:
-							SetAnimatorTrigger(forTriggerEnter.animationTriggerOff);
-							break;
-					}
+					SetAnimatorTrigger(forTriggerEnter.animationTrigger);
 					break;
 			}
 		}
@@ -285,42 +184,19 @@ public class AnimationHandler : MonoBehaviour
 
 	void OnTriggerStay2D()
 	{
+		queveUpdateAnimation = true;
 		if (forTriggerStay != null)
 		{
-			switch (triggerType)
+			switch (forTriggerStay.triggerType)
 			{
 				case AnimationTriggerType.boolean:
-					switch (eventBehaviour)
-					{
-						case AnimationEventBehaviour.setOn:
-							SetAnimatorBool(forTriggerStay.animationName, forTriggerStay.animationActiveState);
-							break;
-						case AnimationEventBehaviour.setOff:
-							SetAnimatorBool(forTriggerStay.animationName, forTriggerStay.animationActiveState);
-							break;
-					}
+					SetAnimatorBool(forTriggerStay.animationName, forTriggerStay.animationActiveState);
 					break;
 				case AnimationTriggerType.floating:
-					switch (eventBehaviour)
-					{
-						case AnimationEventBehaviour.setMin:
-							SetAnimatorFloat(forTriggerStay.animationName, forTriggerStay.animationValueMin);
-							break;
-						case AnimationEventBehaviour.setMax:
-							SetAnimatorFloat(forTriggerStay.animationName, forTriggerStay.animationValueMax);
-							break;
-					}
+					SetAnimatorFloat(forTriggerStay.animationName, forTriggerStay.animationValue);
 					break;
 				case AnimationTriggerType.trigger:
-					switch (eventBehaviour)
-					{
-						case AnimationEventBehaviour.setOn:
-							SetAnimatorTrigger(forTriggerStay.animationTriggerOn);
-							break;
-						case AnimationEventBehaviour.setOff:
-							SetAnimatorTrigger(forTriggerStay.animationTriggerOff);
-							break;
-					}
+					SetAnimatorTrigger(forTriggerStay.animationTrigger);
 					break;
 			}
 		}
@@ -328,42 +204,19 @@ public class AnimationHandler : MonoBehaviour
 
 	void OnTriggerExit2D()
 	{
+		queveUpdateAnimation = true;
 		if (forTriggerExit != null)
 		{
-			switch (triggerType)
+			switch (forTriggerExit.triggerType)
 			{
 				case AnimationTriggerType.boolean:
-					switch (eventBehaviour)
-					{
-						case AnimationEventBehaviour.setOn:
-							SetAnimatorBool(forTriggerExit.animationName, forTriggerExit.animationActiveState);
-							break;
-						case AnimationEventBehaviour.setOff:
-							SetAnimatorBool(forTriggerExit.animationName, forTriggerExit.animationActiveState);
-							break;
-					}
+					SetAnimatorBool(forTriggerExit.animationName, forTriggerExit.animationActiveState);
 					break;
 				case AnimationTriggerType.floating:
-					switch (eventBehaviour)
-					{
-						case AnimationEventBehaviour.setMin:
-							SetAnimatorFloat(forTriggerExit.animationName, forTriggerExit.animationValueMin);
-							break;
-						case AnimationEventBehaviour.setMax:
-							SetAnimatorFloat(forTriggerExit.animationName, forTriggerExit.animationValueMax);
-							break;
-					}
+					SetAnimatorFloat(forTriggerExit.animationName, forTriggerExit.animationValue);
 					break;
 				case AnimationTriggerType.trigger:
-					switch (eventBehaviour)
-					{
-						case AnimationEventBehaviour.setOn:
-							SetAnimatorTrigger(forTriggerExit.animationTriggerOn);
-							break;
-						case AnimationEventBehaviour.setOff:
-							SetAnimatorTrigger(forTriggerExit.animationTriggerOff);
-							break;
-					}
+					SetAnimatorTrigger(forTriggerExit.animationTrigger);
 					break;
 			}
 		}
@@ -402,5 +255,10 @@ public class AnimationHandler : MonoBehaviour
 	public void SetApplyRootMotion(bool state)
 	{
 		animator.applyRootMotion = state;
+	}
+
+	private bool EventAnimationStopped()
+	{
+		return animator.IsInTransition(0);
 	}
 }
