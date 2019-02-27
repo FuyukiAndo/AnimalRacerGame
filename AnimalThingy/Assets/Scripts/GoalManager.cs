@@ -142,6 +142,7 @@ public class GoalManager : MonoBehaviour
 	//Fast antal poäng per placering - har 2 spelare samma placering avgörs placeringen med deras finishingTime
 	//vid målgång kolla och sätt rätt poäng för rätt spelare
 	//lagra poängen och skicka poäng och tid per spelare när alla gått i mål
+
 	void PlacePlayers()
 	{
 		CheckpointTracker closestTracker = GetPlayerClosestToGoal();
@@ -249,7 +250,7 @@ public class GoalManager : MonoBehaviour
 		{
 			foreach (var checks in checksToPass)
 			{
-				//Gizmos.DrawWireSphere(checks.transform.position, .5f);
+				Gizmos.DrawWireSphere(checks.transform.position, .5f);
 			}
 		}
 		Gizmos.color = Color.blue;

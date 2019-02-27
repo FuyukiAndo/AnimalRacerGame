@@ -2,20 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class SpawnPoint
-{
-    public GameObject spawnPos;
-    public bool beenUsed = false;
-}
-
 public class StartManager : MonoBehaviour
 {
-    public SpawnPoint spawnPos1;
-    public SpawnPoint spawnPos2;
-    public SpawnPoint spawnPos3;
-    public SpawnPoint spawnPos4;
-    private List<SpawnPoint> spawnPoints;
 
 	public static StartManager Instance
 	{
@@ -28,10 +16,7 @@ public class StartManager : MonoBehaviour
 	private static StartManager instance;
 	[SerializeField] private GameObject[] unplacedPlayers;
 	[SerializeField] private string playerMoveScript;
-    private CharacterUIManager characterUIManager;
-    public List<int> playerScoreList;
-
-    public int TimeUntilStart
+	public int TimeUntilStart
 	{
 		get
 		{
@@ -44,20 +29,11 @@ public class StartManager : MonoBehaviour
 	}
 
 	[SerializeField] private int timeUntilStart;
+	[SerializeField] private GameObject[] playerStartPositions;
 	[SerializeField] private bool startCountDownOnSceneLoad;
 
 	void Start()
 	{
-        playerScoreList = new List<int>();
-        characterUIManager = FindObjectOfType<CharacterUIManager>();
-        spawnPoints = new List<SpawnPoint>
-        {
-            spawnPos1,
-            spawnPos2,
-            spawnPos3,
-            spawnPos4
-        };
-
 		if (instance == null)
 		{
 			instance = this;
@@ -66,12 +42,10 @@ public class StartManager : MonoBehaviour
 		{
 			Destroy(gameObject);
 		}
-        SortPlayers();
-        SpawnPlayers();
+		PlacePlayers();
 		TrapPlayers();
 		if (startCountDownOnSceneLoad)
 		{
-            
 			StartCoroutine(CountDownStart());
 		}
 	}
@@ -106,50 +80,22 @@ public class StartManager : MonoBehaviour
 		}
 	}
 
-    public void SortPlayers()
-    {
-        foreach(Player player in InformationManager.Instance.players)
-        {
-            playerScoreList.Add(player.score);
-        }
-        playerScoreList.Sort();
-        playerScoreList.Reverse();
-    }
-    void SpawnPlayers()
-    {
-        for(int i = 0; i < InformationManager.Instance.players.Count; i++)
-        {
-            GameObject spawnedPlayer = null;
-            bool playerSpawned = false;
-            for(int j = 0; j < playerScoreList.Count; j++)
-            {
-                if(InformationManager.Instance.players[i].score == playerScoreList[j] && spawnPoints[j].beenUsed == false && playerSpawned == false)
-                {
-                    spawnedPlayer = Instantiate(InformationManager.Instance.players[i].character, spawnPoints[j].spawnPos.transform.position, Quaternion.identity);
-                    playerSpawned = true;
-                    spawnPoints[j].beenUsed = true;
-                }
-            }
-            if (InformationManager.Instance.players[i] == InformationManager.Instance.player1)
-            {
-                spawnedPlayer.name = "Player1";
-                characterUIManager.BindUIToPlayer1(spawnedPlayer);
-            }
-            if (InformationManager.Instance.players[i] == InformationManager.Instance.player2)
-            {
-                spawnedPlayer.name = "Player2";
-                characterUIManager.BindUIToPlayer2(spawnedPlayer);
-            }
-            if (InformationManager.Instance.players[i] == InformationManager.Instance.player3)
-            {
-                spawnedPlayer.name = "Player3";
-                characterUIManager.BindUIToPlayer3(spawnedPlayer);
-            }
-            if (InformationManager.Instance.players[i] == InformationManager.Instance.player4)
-            {
-                spawnedPlayer.name = "Player4";
-                characterUIManager.BindUIToPlayer4(spawnedPlayer);
-            }
-        }
-    }
+	void PlacePlayers()
+	{
+		int place = 0;
+		foreach (var player in unplacedPlayers)
+		{
+			player.transform.position = playerStartPositions[place].transform.position;
+			place++;
+		}
+	}
+
+	void OnDrawGizmos()
+	{
+		Gizmos.color = Color.green;
+		foreach (var start in playerStartPositions)
+		{
+			Gizmos.DrawWireSphere(start.transform.position, .5f);
+		}
+	}
 }
