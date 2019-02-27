@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="ParameterPreset" id="{832d421e-89af-4b7d-a602-50ea23ff6315}">
+        <property name="name">
+            <value>VIND</value>
+        </property>
+        <relationship name="folder">
+            <destination>{66086b72-7867-47d1-9fa4-c73519939f94}</destination>
+        </relationship>
+        <relationship name="parameter">
+            <destination>{9a251b85-6ed4-4f72-9463-3b6193e7c03b}</destination>
+        </relationship>
+    </object>
+    <object class="GameParameter" id="{9a251b85-6ed4-4f72-9463-3b6193e7c03b}">
+        <property name="initialValue">
+            <value>0</value>
+        </property>
+    </object>
+</objects>
