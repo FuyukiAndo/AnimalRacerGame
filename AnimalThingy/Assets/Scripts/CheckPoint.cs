@@ -17,17 +17,28 @@ public class Checkpoint : MonoBehaviour
 
 	void Start()
 	{
-		foreach (var flag in playerFlags)
+		if (playerFlags.Length > 0)
 		{
-			flag.playerFlag.SetActive(false);
+			foreach (var flag in playerFlags)
+			{
+				if (flag.playerFlag != null)
+				{
+					flag.playerFlag.SetActive(false);
+				}
+			}
 		}
 	}
 
 	void Update()
 	{
 		Collider2D collider = Physics2D.OverlapCircle(transform.position, 1f);
+		if (playerFlags.Length <= 0) return;
 		for (int i = 0; i < playerFlags.Length; i++)
 		{
+			if (playerFlags[i].playerFlag == null)
+			{
+				continue;
+			}
 			if (collider.tag == playerFlags[i].playerTag || collider.GetComponent(playerFlags[i].playerControllerScript))
 			{
 				playerFlags[i].playerFlag.SetActive(true);

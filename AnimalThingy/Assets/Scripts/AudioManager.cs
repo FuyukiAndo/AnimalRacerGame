@@ -46,7 +46,14 @@ public class AudioManager : MonoBehaviour {
 		else
 		{
 			source = GetComponent<AudioSource>();
-			StartCoroutine(PlayBackgroundAudio());
+			if (source != null)
+			{
+				StartCoroutine(PlayBackgroundAudio());
+			}
+			else
+			{
+				UnityEngine.Debug.LogWarning("AudioManager has no AudioSource component!");
+			}
 		}
 	}
 	
