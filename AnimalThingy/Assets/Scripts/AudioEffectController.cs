@@ -37,6 +37,8 @@ public class AudioEffectController : MonoBehaviour {
 	{
 		if (AudioManager.Instance.useFMOD)
 		{
+			sfxInstance = RuntimeManager.CreateInstance(sfxPath);
+			RuntimeManager.AttachInstanceToGameObject(sfxInstance, transform, new Rigidbody2D());
 			if (playEffectAuto)
 			{
 				if (startEvent == StartEvent.start)

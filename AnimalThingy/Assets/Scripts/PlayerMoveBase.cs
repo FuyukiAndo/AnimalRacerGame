@@ -155,7 +155,7 @@ public class PlayerMoveBase : MonoBehaviour
 
 	protected virtual void FixedUpdate ()
 	{
-
+		
 	}
 
 	protected virtual void OnCollisionEnter2D (Collision2D other)

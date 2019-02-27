@@ -40,6 +40,7 @@ public class AudioManager : MonoBehaviour {
 		}
 		if (useFMOD)
 		{
+			backgroundAudioInstance = RuntimeManager.CreateInstance(backgroundAudioPath);
 			StartCoroutine(PlayBackAudio());
 		}
 		else
@@ -52,7 +53,7 @@ public class AudioManager : MonoBehaviour {
 	IEnumerator PlayBackAudio()
 	{
 		backgroundAudioInstance.start();
-		PLAYBACK_STATE playState = new PLAYBACK_STATE();
+		PLAYBACK_STATE playState;
 		backgroundAudioInstance.getPlaybackState(out playState);
 		while (playState == PLAYBACK_STATE.PLAYING && !shouldStopBack)
 		{
