@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="AudioFile" id="{cc91b862-99ce-4b03-8986-74cd0065903b}">
+        <property name="assetPath">
+            <value>GRIS_CRAZY_09.wav</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>44.0999985</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>1.379092970521542</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{d33b57b3-7e46-47e1-8694-5faf651db5a0}</destination>
+        </relationship>
+    </object>
+</objects>

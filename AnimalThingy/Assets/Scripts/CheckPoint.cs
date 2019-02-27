@@ -13,15 +13,49 @@ public class Checkpoint : MonoBehaviour
 		}
 	}
 	[SerializeField] private int index;
-	private List<Color> activatedColours = new List<Color>();
+	public PlayerFlag[] playerFlags;
 
-	public void SetColour(Color colour)
+	void Start()
 	{
-		activatedColours.Add(colour);
+		if (playerFlags.Length > 0)
+		{
+			foreach (var flag in playerFlags)
+			{
+				if (flag.playerFlag != null)
+				{
+					flag.playerFlag.SetActive(false);
+				}
+			}
+		}
 	}
 
-	public List<Color> GetActivatedColours()
+	void Update()
 	{
-		return activatedColours;
+		Collider2D collider = Physics2D.OverlapCircle(transform.position, 1f);
+		if (playerFlags.Length <= 0) return;
+		for (int i = 0; i < playerFlags.Length; i++)
+		{
+			if (playerFlags[i].playerFlag == null)
+			{
+				continue;
+			}
+			if (collider.tag == playerFlags[i].playerTag || collider.GetComponent(playerFlags[i].playerControllerScript))
+			{
+				playerFlags[i].playerFlag.SetActive(true);
+			}
+		}
 	}
+
+	public void SetFlagCount(int count)
+	{
+		playerFlags = new PlayerFlag[count];
+	}
+}
+
+[System.Serializable]
+public class PlayerFlag
+{
+	public GameObject playerFlag;
+	public string playerTag;
+	[Tooltip("PlayerController Script Name")] public string playerControllerScript;
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using FMODUnity;
 using FMOD;
 using FMOD.Studio;
@@ -9,6 +10,9 @@ public class AudioManager : MonoBehaviour {
 
 	[EventRef] [SerializeField] private string backgroundAudioPath;
 	[Range(0f, 1f)] [SerializeField] private float sfxVolume, backgroundVolume;
+
+	[SerializeField] private AudioClip backgroundClip;
+	private AudioSource source;
 
 	EventInstance backgroundAudioInstance;
 	private bool shouldStopBack;
@@ -21,6 +25,7 @@ public class AudioManager : MonoBehaviour {
 		}
 	}
 	private static AudioManager instance;
+	public bool useFMOD;
 
 	// Use this for initialization
 	void Start () {
@@ -33,13 +38,29 @@ public class AudioManager : MonoBehaviour {
 		{
 			Destroy(gameObject);
 		}
-		StartCoroutine(PlayBackAudio());
+		if (useFMOD)
+		{
+			backgroundAudioInstance = RuntimeManager.CreateInstance(backgroundAudioPath);
+			StartCoroutine(PlayBackAudio());
+		}
+		else
+		{
+			source = GetComponent<AudioSource>();
+			if (source != null)
+			{
+				StartCoroutine(PlayBackgroundAudio());
+			}
+			else
+			{
+				UnityEngine.Debug.LogWarning("AudioManager has no AudioSource component!");
+			}
+		}
 	}
 	
 	IEnumerator PlayBackAudio()
 	{
 		backgroundAudioInstance.start();
-		PLAYBACK_STATE playState = new PLAYBACK_STATE();
+		PLAYBACK_STATE playState;
 		backgroundAudioInstance.getPlaybackState(out playState);
 		while (playState == PLAYBACK_STATE.PLAYING && !shouldStopBack)
 		{
@@ -52,7 +73,21 @@ public class AudioManager : MonoBehaviour {
 		}
 		if (playState == PLAYBACK_STATE.STOPPED && !shouldStopBack)
 		{
+			//Restart background audio if needed
 			//StartCoroutine(PlayBackAudio());
+		}
+	}
+
+	IEnumerator PlayBackgroundAudio()
+	{
+		source.Play();
+		while (source.isPlaying && !shouldStopBack)
+		{
+			yield return null;
+		}
+		if (shouldStopBack)
+		{
+			source.Stop();
 		}
 	}
 
@@ -98,10 +133,43 @@ public class AudioManager : MonoBehaviour {
 		}
 	}
 
+	public void FadeTo(AudioClip clip)
+	{
+		if (useFMOD)
+		{
+			print("Using FMOD enabled, no need for fading with AudioClip.");
+			return;
+		}
+		StartCoroutine(IFadeTo(clip));
+	}
+
+	IEnumerator IFadeTo(AudioClip clip)
+	{
+		while (source.volume > 0.0f)
+		{
+			source.volume -= Time.deltaTime;
+			yield return null;
+		}
+		backgroundClip = clip;
+		source.clip = backgroundClip;
+		while (source.volume < 1.0f)
+		{
+			source.volume += Time.deltaTime;
+			yield return null;
+		}
+	}
+
 	public void PlayAudioLooping()
 	{
 		shouldStopBack = false;
-		StartCoroutine(PlayBackAudio());
+		if (useFMOD)
+		{
+			StartCoroutine(PlayBackAudio());
+		}
+		else
+		{
+			StartCoroutine(PlayBackgroundAudio());
+		}
 	}
 
 	public void StopAudioLooping()
@@ -111,11 +179,28 @@ public class AudioManager : MonoBehaviour {
 
 	public void SetVolumeBackground(float volume)
 	{
-		backgroundAudioInstance.setVolume(volume);
+		if (useFMOD)
+		{
+			backgroundAudioInstance.setVolume(volume);
+		}
+		else
+		{
+			source.volume = volume;
+		}
 	}
 
 	public void SetBackgroundAudio(string path)
 	{
 		backgroundAudioPath = path;
+	}
+
+	public void SetBackgroundAudio(AudioClip clip)
+	{
+		if (useFMOD)
+		{
+			print("Using FMOD enabled, no need for setting AudioClip.");
+			return;
+		}
+		backgroundClip = clip;
 	}
 }
