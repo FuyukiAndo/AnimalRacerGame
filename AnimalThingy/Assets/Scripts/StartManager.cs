@@ -133,21 +133,37 @@ public class StartManager : MonoBehaviour
             if (InformationManager.Instance.players[i] == InformationManager.Instance.player1)
             {
                 spawnedPlayer.name = "Player1";
+                spawnedPlayer.GetComponent<PlayerInput>().playerLeftKey = KeybindingsManager.Instance.Player1Keys.left;
+                spawnedPlayer.GetComponent<PlayerInput>().playerRightKey = KeybindingsManager.Instance.Player1Keys.right;
+                spawnedPlayer.GetComponent<PlayerInput>().playerJumpKey = KeybindingsManager.Instance.Player1Keys.jump;
+                spawnedPlayer.GetComponent<PlayerInput>().playerAbilityKey = KeybindingsManager.Instance.Player1Keys.ability;
                 characterUIManager.BindUIToPlayer1(spawnedPlayer);
             }
             if (InformationManager.Instance.players[i] == InformationManager.Instance.player2)
             {
                 spawnedPlayer.name = "Player2";
+                spawnedPlayer.GetComponent<PlayerInput>().playerLeftKey = KeybindingsManager.Instance.Player2Keys.left;
+                spawnedPlayer.GetComponent<PlayerInput>().playerRightKey = KeybindingsManager.Instance.Player2Keys.right;
+                spawnedPlayer.GetComponent<PlayerInput>().playerJumpKey = KeybindingsManager.Instance.Player2Keys.jump;
+                spawnedPlayer.GetComponent<PlayerInput>().playerAbilityKey = KeybindingsManager.Instance.Player2Keys.ability;
                 characterUIManager.BindUIToPlayer2(spawnedPlayer);
             }
             if (InformationManager.Instance.players[i] == InformationManager.Instance.player3)
             {
                 spawnedPlayer.name = "Player3";
+                spawnedPlayer.GetComponent<PlayerInput>().playerLeftKey = KeybindingsManager.Instance.Player3Keys.left;
+                spawnedPlayer.GetComponent<PlayerInput>().playerRightKey = KeybindingsManager.Instance.Player3Keys.right;
+                spawnedPlayer.GetComponent<PlayerInput>().playerJumpKey = KeybindingsManager.Instance.Player3Keys.jump;
+                spawnedPlayer.GetComponent<PlayerInput>().playerAbilityKey = KeybindingsManager.Instance.Player3Keys.ability;
                 characterUIManager.BindUIToPlayer3(spawnedPlayer);
             }
             if (InformationManager.Instance.players[i] == InformationManager.Instance.player4)
             {
                 spawnedPlayer.name = "Player4";
+                spawnedPlayer.GetComponent<PlayerInput>().playerLeftKey = KeybindingsManager.Instance.Player4Keys.left;
+                spawnedPlayer.GetComponent<PlayerInput>().playerRightKey = KeybindingsManager.Instance.Player4Keys.right;
+                spawnedPlayer.GetComponent<PlayerInput>().playerJumpKey = KeybindingsManager.Instance.Player4Keys.jump;
+                spawnedPlayer.GetComponent<PlayerInput>().playerAbilityKey = KeybindingsManager.Instance.Player4Keys.ability;
                 characterUIManager.BindUIToPlayer4(spawnedPlayer);
             }
         }

@@ -25,6 +25,8 @@ GameObject:
   - component: {fileID: 114924681535422134}
   - component: {fileID: 114009069244581464}
   - component: {fileID: 114616307811644510}
+  - component: {fileID: 114492471020736356}
+  - component: {fileID: 114443909185082424}
   m_Layer: 8
   m_Name: Piggy
   m_TagString: Ice_Character
@@ -123,15 +125,48 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerType: 0
-  collisionController: {fileID: 114616307811644510}
-  maxJumpHeight: 5
-  minJumpHeight: 3
-  jumpAndFallDelay: 0.4
   movementSpeed: 9
   movementAcceleration: 0.2
+  collisionController: {fileID: 114616307811644510}
+  gravityController: {fileID: 0}
   wallSlideSpeedMax: 3
   movement: {x: -4.7322654e-29, y: -3.8317637}
-  isStunned: 0
+  direction: 0
+  tempSpeed: 0
+  mod0: 0.1
+  mod1: 0.2
+--- !u!114 &114443909185082424
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1575260841855414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ada670a83430aa448bc3fa1cbfa48aaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerLeftKey: 276
+  playerRightKey: 275
+  playerJumpKey: 97
+  playerAbilityKey: 115
+--- !u!114 &114492471020736356
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1575260841855414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c116ea33963aa345941008e2570b121, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxJumpHeight: 8
+  minJumpHeight: 1
+  jumpAndFallDelay: 0.4
+  gravity: 0
+  maxVelocity: 0
+  minVelocity: 0
 --- !u!114 &114616307811644510
 MonoBehaviour:
   m_ObjectHideFlags: 1

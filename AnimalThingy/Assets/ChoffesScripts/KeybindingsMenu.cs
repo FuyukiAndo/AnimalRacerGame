@@ -37,40 +37,80 @@ public class KeybindingsMenu : MonoBehaviour {
             Event e = Event.current;
             if (e.isKey)
             {
-                //FEL SOM FAN, fix pleb
-                switch (currentKey.transform.root.name)
+
+                switch (currentKey.transform.name)
                 {
-                    case "Player1Background":
-                        if(KeybindingsManager.Instance.Player1Keys.left.ToString() == currentKey.name.ToString())
-                        {
-                            KeybindingsManager.Instance.Player1Keys.left = e.keyCode;
-                            currentKey.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = e.keyCode.ToString();
-                        }
-                        if (KeybindingsManager.Instance.Player1Keys.right.ToString() == currentKey.name.ToString())
-                        {
-                            KeybindingsManager.Instance.Player1Keys.right = e.keyCode;
-                            currentKey.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = e.keyCode.ToString();
-                        }
-                        if (KeybindingsManager.Instance.Player1Keys.jump.ToString() == currentKey.name.ToString())
-                        {
-                            KeybindingsManager.Instance.Player1Keys.jump = e.keyCode;
-                            currentKey.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = e.keyCode.ToString();
-                        }
-                        if (KeybindingsManager.Instance.Player1Keys.ability.ToString() == currentKey.name.ToString())
-                        {
-                            KeybindingsManager.Instance.Player1Keys.ability = e.keyCode;
-                            currentKey.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = e.keyCode.ToString();
-                        }
+                    case "Player1LeftButton":
+                        KeybindingsManager.Instance.Player1Keys.left = e.keyCode;
+                        currentKey.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = e.keyCode.ToString();
                         break;
-                    case "Player2Background":
+                    case "Player2LeftButton":
+                        KeybindingsManager.Instance.Player2Keys.left = e.keyCode;
+                        currentKey.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = e.keyCode.ToString();
                         break;
-                    case "Player3Background":
+                    case "Player3LeftButton":
+                        KeybindingsManager.Instance.Player3Keys.left = e.keyCode;
+                        currentKey.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = e.keyCode.ToString();
                         break;
-                    case "Player4Background":
+                    case "Player4LeftButton":
+                        KeybindingsManager.Instance.Player4Keys.left = e.keyCode;
+                        currentKey.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = e.keyCode.ToString();
+                        break;
+
+
+                    case "Player1RightButton":
+                        KeybindingsManager.Instance.Player1Keys.right = e.keyCode;
+                        currentKey.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = e.keyCode.ToString();
+                        break;
+                    case "Player2RightButton":
+                        KeybindingsManager.Instance.Player2Keys.right = e.keyCode;
+                        currentKey.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = e.keyCode.ToString();
+                        break;
+                    case "Player3RightButton":
+                        KeybindingsManager.Instance.Player3Keys.right = e.keyCode;
+                        currentKey.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = e.keyCode.ToString();
+                        break;
+                    case "Player4RightButton":
+                        KeybindingsManager.Instance.Player4Keys.right = e.keyCode;
+                        currentKey.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = e.keyCode.ToString();
+                        break;
+
+
+                    case "Player1JumpButton":
+                        KeybindingsManager.Instance.Player1Keys.jump = e.keyCode;
+                        currentKey.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = e.keyCode.ToString();
+                        break;
+                    case "Player2JumpButton":
+                        KeybindingsManager.Instance.Player2Keys.jump = e.keyCode;
+                        currentKey.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = e.keyCode.ToString();
+                        break;
+                    case "Player3JumpButton":
+                        KeybindingsManager.Instance.Player3Keys.jump = e.keyCode;
+                        currentKey.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = e.keyCode.ToString();
+                        break;
+                    case "Player4JumpButton":
+                        KeybindingsManager.Instance.Player4Keys.jump = e.keyCode;
+                        currentKey.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = e.keyCode.ToString();
+                        break;
+
+
+                    case "Player1AbilityButton":
+                        KeybindingsManager.Instance.Player1Keys.ability = e.keyCode;
+                        currentKey.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = e.keyCode.ToString();
+                        break;
+                    case "Player2AbilityButton":
+                        KeybindingsManager.Instance.Player2Keys.ability = e.keyCode;
+                        currentKey.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = e.keyCode.ToString();
+                        break;
+                    case "Player3AbilityButton":
+                        KeybindingsManager.Instance.Player3Keys.ability = e.keyCode;
+                        currentKey.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = e.keyCode.ToString();
+                        break;
+                    case "Player4AbilityButton":
+                        KeybindingsManager.Instance.Player4Keys.ability = e.keyCode;
+                        currentKey.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = e.keyCode.ToString();
                         break;
                 }
-                    
-
                 currentKey = null;
             }
         }
