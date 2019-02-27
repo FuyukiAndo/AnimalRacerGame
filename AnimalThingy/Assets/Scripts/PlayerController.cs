@@ -12,6 +12,8 @@ public enum PlayerType
 };
 
 [RequireComponent(typeof(CollisionController))]
+[RequireComponent(typeof(GravityController))]
+[RequireComponent(typeof(PlayerInput))]
 
 public class PlayerController : MonoBehaviour
 {
@@ -20,6 +22,7 @@ public class PlayerController : MonoBehaviour
 
 	[Header("Movement Settings")]
 	public float movementSpeed = 18.0f;
+
 	[Range(0.1f,1.0f)]public float movementAcceleration = 0.15f;
 
 	//References for CollisionController class and PlayerController class
@@ -30,6 +33,9 @@ public class PlayerController : MonoBehaviour
 
 	//private float horizontalInput;
 	private float velocitySmoothing;
+	
+	public float wallSlideSpeedMax = 3;
+	
 	[HideInInspector] public Vector2 movement;
 	[HideInInspector] public int direction;
 	
@@ -46,19 +52,20 @@ public class PlayerController : MonoBehaviour
 	void Start()
 	{
 		collisionController = GetComponent<CollisionController>();
+		gravityController = GetComponent<GravityController>();
+		direction = 0;
 	}
 
 	void OnValidate()
 	{
 		if(movementSpeed < 1.0f)
 		{
-			//Debug.LogWarning("'minJumpHeight' cannot be lower than 0");
 			movementSpeed = 1.0f;
 		}
-
+		
 		if(direction > 1)
 		{
-			maxJumpHeight = minJumpHeight + 0.1f;
+			direction = 1;
 		}
 	}
 
@@ -89,9 +96,35 @@ public class PlayerController : MonoBehaviour
 		//Smooth movement acceleration
 		for(float i = 0; i <movementSpeed;i++)
 		{
-			movement.y = 0;
+			tempSpeed=tempSpeed+mod0;
+			
+			if(tempSpeed > movementSpeed)
+			{
+				tempSpeed = movementSpeed;
+			}
 		}
 
+		//Translation in Left direction		
+		movement.x = -1 * tempSpeed;
+		
+		//Set direction to Left
+		direction = -1;
+	}
+
+	//Move player Right direction with smooth acceleration	
+	public void MoveRight()
+	{
+		//Smooth movement acceleration
+		for(float i = 0; i <movementSpeed;i++)
+		{
+			tempSpeed=tempSpeed+mod0;
+			
+			if(tempSpeed > movementSpeed)
+			{
+				tempSpeed = movementSpeed;
+			}
+		}
+		
 		//Translation in Right direction
 		movement.x = 1 * tempSpeed;
 
@@ -109,6 +142,14 @@ public class PlayerController : MonoBehaviour
 		{
 			tempSpeed = 0;
 		}
+	
+		//SmoothDamp for deacceleratation
+		float movementVelocity = direction * tempSpeed;
+		movement.x = Mathf.SmoothDamp(movement.x, movementVelocity, ref velocitySmoothing,movementAcceleration);
+		
+		//Set direction to None
+		direction = 0;
+	}
 
 	void Update()
 	{
@@ -125,27 +166,24 @@ public class PlayerController : MonoBehaviour
 		if((collisionController.boxCollisionDirections.left || collisionController.boxCollisionDirections.right) 
 			&& !collisionController.boxCollisionDirections.down && gravityController.maxVelocity < 0)
 		{
-			if(collisionController.boxCollisionDirections.down)
+			wallSliding = true;
+
+			if(movement.y < -wallSlideSpeedMax)
 			{
-				movement.y = maxVelocity;
+				movement.y = 2*wallSlideSpeedMax;
 			}
 		}
 
 		if (collisionController.boxCollisionDirections.up || collisionController.boxCollisionDirections.down)
 		{
-			if(!collisionController.boxCollisionDirections.down)
-			{
-				if(movement.y > minVelocity)
-				{
-					movement.y = minVelocity;
-				}
-			}
+			movement.y = 0;
 		}
-
 	}
 
 	public void MoveObject(Vector2 movement)
 	{
+		//Update collision check 
+		
 		collisionController.UpdateRaycastDirections();
 		collisionController.boxCollisionDirections.resetDirections();
 
@@ -153,11 +191,12 @@ public class PlayerController : MonoBehaviour
 		{
 			collisionController.DescendSlope(ref movement);
 		}
+
 		if(movement.x != 0 || movement.y != 0)
 		{
 			collisionController.checkCollision(ref movement);
 		}
 
-		transform.Translate(movement);
+		transform.Translate(movement,Space.World);
 	}
 }

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: C:\Users\Emilb\Downloads\SFML-2.5.0-windows-vc15-32-bit.zip
-  SourceProjectPathUnformatted: C:\Users\Emilb\Downloads\SFML-2.5.0-windows-vc15-32-bit.zip
-  SourceBankPathUnformatted: C:\Users\Emilb\Downloads\Build
+  sourceProjectPath: 
+  SourceProjectPathUnformatted: 
+  SourceBankPathUnformatted: 
   AutomaticEventLoading: 1
   AutomaticSampleLoading: 0
   ImportType: 0

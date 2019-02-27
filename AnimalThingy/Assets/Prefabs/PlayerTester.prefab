@@ -108,7 +108,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 3.16}
   m_EdgeRadius: 0
 --- !u!114 &114219394262681424
 MonoBehaviour:
@@ -140,12 +140,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerType: 0
-  collisionController: {fileID: 114219394262681424}
-  maxJumpHeight: 8
-  minJumpHeight: 0.1
-  jumpAndFallDelay: 0.4
-  movementSpeed: 9
-  movementAcceleration: 0.2
+  movementSpeed: 8
+  movementAcceleration: 0.15
+  collisionController: {fileID: 0}
+  gravityController: {fileID: 0}
   wallSlideSpeedMax: 3
-  movement: {x: -4.7322654e-29, y: -3.8317637}
-  isStunned: 0
+  movement: {x: 0, y: 0}
+  direction: 0
+  tempSpeed: 0
+  mod0: 0.1
+  mod1: 0.2
