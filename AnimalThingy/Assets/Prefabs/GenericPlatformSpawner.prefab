@@ -122,7 +122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnObject: {fileID: 1225037111131342, guid: e0d0c6429c5938a4c89126361440b420,
     type: 2}
-  timeBetweenSpawns: 3
-  floatSpeed: 2
-  durability: 2
-  spawnDirection: -1
+  timeBetweenSpawns: 5
+  floatSpeed: 1
+  durability: 6
+  spawnDirection: 1

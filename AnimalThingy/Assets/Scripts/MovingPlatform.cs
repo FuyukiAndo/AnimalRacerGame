@@ -30,16 +30,16 @@ public class MovingPlatform : MonoBehaviour
 	
 	private BoxCollider2D boxCollider;
 	public Collider2D[] collision; //= Physics2D.OverlapBoxAll(transform.position, boxSize, 0f);
-	
+
 	//private Rigidbody2D rb2d;
-    
+
 	//private Vector2 hitDir;
-    private PlatformSpawner platormSpawner; //Change the name to MovingPlatformSpawner
-	
+	private PlatformSpawner platformSpawner; //Change the name to MovingPlatformSpawner
+
 	//private float speed;
 
 	// Use this for initialization
-    void Start()
+	void Start()
     {
 		collisionController = GetComponent<CollisionController>();
 		gravityController = GetComponent<GravityController>();
@@ -48,10 +48,10 @@ public class MovingPlatform : MonoBehaviour
 		if(transform.parent != null)
 		{
 			timeBeforeDestroyed = platformDurability;
-            platormSpawner = GetComponentInParent<PlatformSpawner>();
-			movementSpeed = platormSpawner.GetSpeed();
-			platformDurability = platormSpawner.GetDurability();
-			movementDirection = platormSpawner.GetDirection();
+			platformSpawner = GetComponentInParent<PlatformSpawner>();
+			movementSpeed = platformSpawner.GetSpeed();
+			platformDurability = platformSpawner.GetDurability();
+			movementDirection = platformSpawner.GetDirection();
 		}
 	   /* if (transform.parent != null)
         {
@@ -92,7 +92,7 @@ public class MovingPlatform : MonoBehaviour
 			movement.y = 0;
 		}
 
-		DestroyPlatform();
+		//DestroyPlatform();
     }
 
 	void OnPlatform()
