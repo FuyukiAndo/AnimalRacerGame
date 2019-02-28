@@ -167,5 +167,6 @@ public class StartManager : MonoBehaviour
                 characterUIManager.BindUIToPlayer4(spawnedPlayer);
             }
         }
+        GameObject.FindObjectOfType<CameraScript>().BindPlayersToCamera();
     }
 }

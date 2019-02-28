@@ -8,12 +8,12 @@ public class CameraScript : MonoBehaviour {
     public string playerTag = "Player";
     public float cameraSmoothTime = 0.5f;
 
-    public float minZoom = 40f;
+    public float minZoom = 100f;
     public float maxZoom = 10f;
     public float zoomLimiter = 50f;
 
 
-    private GameObject[] players;
+    public List<GameObject> players;
     private GameObject furthestPosPlayer;
     private GameObject furthestNegPlayer;
     private Camera cam;
@@ -21,8 +21,16 @@ public class CameraScript : MonoBehaviour {
 
     private void Start()
     {
+        players = new List<GameObject>();
         cam = GetComponent<Camera>();
-        players = GameObject.FindGameObjectsWithTag(playerTag);
+    }
+
+    public void BindPlayersToCamera()
+    {
+        foreach (var player in FindObjectsOfType<PlayerInput>())
+        {
+            players.Add(player.gameObject);
+        }
         furthestPosPlayer = players[0].gameObject;
         furthestNegPlayer = players[1].gameObject;
     }
@@ -38,7 +46,7 @@ public class CameraScript : MonoBehaviour {
 
     void CheckFurthestPosPlayer()
     {
-        for(int i = 0; i < players.Length; i++)
+        for(int i = 0; i < players.Count; i++)
         {
             if(players[i].transform.position.x > furthestPosPlayer.transform.position.x)
             {
@@ -60,7 +68,7 @@ public class CameraScript : MonoBehaviour {
     }
     void CheckFurthestNegPlayer()
     {
-        for (int i = 0; i < players.Length; i++)
+        for (int i = 0; i < players.Count; i++)
         {
             if (players[i].transform.position.x < furthestNegPlayer.transform.position.x)
             {
@@ -90,11 +98,11 @@ public class CameraScript : MonoBehaviour {
     float GetGreatestDistance(GameObject g1, GameObject g2)
     {
         var bounds = new Bounds(players[0].transform.position, Vector3.zero);
-        for(int i = 0; i < players.Length; i++)
+        for(int i = 0; i < players.Count; i++)
         {
             bounds.Encapsulate(players[i].transform.position);
         }
-        return bounds.size.x;
+        return bounds.size.magnitude;
     }
 
     void CameraFollow(GameObject g1, GameObject g2)
