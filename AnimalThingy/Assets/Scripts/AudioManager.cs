@@ -48,6 +48,7 @@ public class AudioManager : MonoBehaviour {
 			source = GetComponent<AudioSource>();
 			if (source != null)
 			{
+				SetBackgroundAudio(backgroundClip);
 				StartCoroutine(PlayBackgroundAudio());
 			}
 			else
@@ -202,5 +203,6 @@ public class AudioManager : MonoBehaviour {
 			return;
 		}
 		backgroundClip = clip;
+		source.clip = backgroundClip;
 	}
 }
