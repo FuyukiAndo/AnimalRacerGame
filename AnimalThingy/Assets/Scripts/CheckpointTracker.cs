@@ -47,35 +47,34 @@ public class CheckpointTracker : MonoBehaviour
 	void Update()
 	{
 		Collider2D collider = Physics2D.OverlapBox(transform.position, boxSize, 0f);
-        if (collider.GetComponent<Checkpoint>())
-        {
-          
-            Checkpoint checkPoint = collider.GetComponent<Checkpoint>();
-            if (GoalManager.Instance.passInSequence)
-            {
-                if (checkPoint.Index == lastCheckpointPassed + 1)
-                {
-                    checkPointsPassed.Add(checkPoint.Index);
-                    lastCheckpointPassed = checkPoint.Index;
-                    return;
-                }
-            }
-            else
-            {
-                if (checkPointsPassed.Count > 0)
-                {
-                    foreach (var index in checkPointsPassed)
-                    {
-                        if (index == checkPoint.Index)
-                        {
-                            return;
-                        }
-                    }
-                }
-                checkPointsPassed.Add(checkPoint.Index);
-            }
-        }
-    }
+		if (collider.GetComponent<Checkpoint>())
+		{
+			Checkpoint checkPoint = collider.GetComponent<Checkpoint>();
+			if (GoalManager.Instance.passInSequence)
+			{
+				if (checkPoint.Index == lastCheckpointPassed + 1)
+				{
+					checkPointsPassed.Add(checkPoint.Index);
+					lastCheckpointPassed = checkPoint.Index;
+					return;
+				}
+			}
+			else
+			{
+				if (checkPointsPassed.Count > 0)
+				{
+					foreach (var index in checkPointsPassed)
+					{
+						if (index == checkPoint.Index)
+						{
+							return;
+						}
+					}
+				}
+				checkPointsPassed.Add(checkPoint.Index);
+			}
+		}
+	}
 
 	public Vector2 GetCurrentPosition()
 	{
