@@ -32,7 +32,6 @@ public class Spike : FlyingTrajectory
         startFalling += Time.deltaTime;
         if (startFalling > timeBeforeSpikeFalls)
         {
-            Debug.Log("hello");
             rb2d.WakeUp();
         }
     }
