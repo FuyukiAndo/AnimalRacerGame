@@ -17,7 +17,6 @@ public class PlatformController : RaycastController
 		base.Start();
 		movingPlatform = GetComponent<MovingPlatform>();
 		collisionController = GetComponent<CollisionController>();
-		
 	}
 	
 	void Update()

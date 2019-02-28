@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-[RequireComponent(typeof(PlayerController))]
+//[RequireComponent(typeof(PlayerController))]
 public class PlayerInput : MonoBehaviour 
 {	
 	PlayerController playerController;
@@ -26,7 +26,7 @@ public class PlayerInput : MonoBehaviour
 	void Start() 
 	{
 		playerController = GetComponent<PlayerController>();
-		
+
 		keyDictionary.Add(playerNoKey, ()=>playerController.MoveNot());
 		keyDictionary.Add(playerLeftKey,()=>playerController.MoveLeft());
 		keyDictionary.Add(playerRightKey,()=>playerController.MoveRight());
@@ -49,16 +49,12 @@ public class PlayerInput : MonoBehaviour
 		if(Input.GetKey(playerLeftKey))
 		{
 			keyDictionary[playerLeftKey]();
-			rotationActive = true;
-			targetAngle = 179f+90f;
 		}
 
 		//move player right
 		if(Input.GetKey(playerRightKey))
 		{
 			keyDictionary[playerRightKey]();
-			rotationActive = true;
-			targetAngle = 1f+90f;
 		}	
 		
 		//max value of jump height
@@ -79,6 +75,18 @@ public class PlayerInput : MonoBehaviour
 	
 	void InputAnimation()
 	{
+		if(Input.GetKey(playerLeftKey))
+		{
+			rotationActive = true;
+			targetAngle = 179f+90f;
+		}
+		
+		if(Input.GetKey(playerRightKey))
+		{
+			rotationActive = true;
+			targetAngle = 1f+90f;
+		}	
+		
 		if(Input.GetKeyDown(playerLeftKey))
 		{
 			animationHandler.SetAnimatorTrigger("Run");
@@ -99,6 +107,7 @@ public class PlayerInput : MonoBehaviour
 			animationHandler.SetAnimatorTrigger("Idle");
 		}
 		
+		//Rotates player model when changing direction
 		if(rotationActive)
 		{
 			Quaternion target = Quaternion.Euler(new Vector3(0f,targetAngle,0f));
@@ -109,7 +118,12 @@ public class PlayerInput : MonoBehaviour
 	void Update() 
 	{		
 		InputAction();
-		InputAnimation();
+		
+		if(animationHandler != null)
+		{
+			InputAnimation();
+		}
+		
 		StaticZPos();
 	}
 }

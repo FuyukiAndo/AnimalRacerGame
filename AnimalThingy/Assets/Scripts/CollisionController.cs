@@ -4,36 +4,37 @@ using UnityEngine;
 
 public class CollisionController : RaycastController
 {
-	public static CollisionController collisionController;
+	[Header("Collision Mask")]
+	[Tooltip("The layer mask which to check for collision")]
+	public LayerMask collisionMask;
+	
+	[Header("Amount of raycasts")]
+	[Tooltip("The amount of raycasts vectors for horizontal collision")]	
+	public int horizontalRaycastsAmount = 4;
+	[Tooltip("The amount of raycasts vectors for horizontal collision")]	
+	public int verticalRaycastsAmount = 4;
+	
+	public float SetRayLength = 1.0f;
+	//public static CollisionController collisionController;
 	
 	private string collisionTag = "OneWay";
 	
+	//Max angle player can move on, (don't touch this) - 80
 	[HideInInspector]public float maxAngle = 80;
 	
 	[HideInInspector]public BoxCollisionDirections boxCollisionDirections;
 	
-	public float SetRayLength = 1.0f;
-	
-	/*void OnValidate()
+	public override void Start()
 	{
-	}
-	
-	void Awake()
-	{
-
+		base.Start();
+		//collisionController = this;
 	}
 	
 	void Update()
 	{
-
-	}*/
-	
-	public override void Start()
-	{
-		base.Start();
-		collisionController = this;
+		horizontalRaycastAmount = horizontalRaycastsAmount;
+		verticalRaycastAmount = verticalRaycastsAmount;
 	}
-		
 	/*string[] stringtags = new string[]{"player", "enemy"};
 	public enum tagNumbers{player,enemy};
 	public tagNumbers tagNum;*/

@@ -4,13 +4,22 @@ using UnityEngine;
 using UnityEngine.Animations;
 
 [RequireComponent(typeof(CollisionController))]
-[RequireComponent(typeof(GravityController))]
+//[RequireComponent(typeof(GravityController))]
 
 public class MovingPlatform : MonoBehaviour 
 {
 	[HideInInspector] public CollisionController collisionController;
-    [HideInInspector] public GravityController gravityController;
+    //[HideInInspector] public GravityController gravityController;
 	[HideInInspector] public PlatformController platformController;
+	
+	[Header("Platform Gravity Settings")]
+	[Tooltip("Max jump height value between 0.1f and x")]
+	public float maxVelocity = 8.0f;
+
+	[Tooltip("Min jump height value between 0.1f and 2.0f")]
+	[Range(0.1f,2.0f)]public float fallDelay = 0.4f;
+	
+	[HideInInspector] public float gravity;
 	
     public float timeUntilBroken;
     //public float floatSpeed;
@@ -29,56 +38,52 @@ public class MovingPlatform : MonoBehaviour
 	int newColliderCount;
 	
 	private BoxCollider2D boxCollider;
-	public Collider2D[] collision; //= Physics2D.OverlapBoxAll(transform.position, boxSize, 0f);
+	private Collider2D[] collision;
 	
-	//private Rigidbody2D rb2d;
-    
 	//private Vector2 hitDir;
-    private IsflakSpawner isflakSpawner; //Change the name to MovingPlatformSpawner
-	
-	//private float speed;
+    private MovingPlatformSpawner movingPlatformSpawner; 
 
-	// Use this for initialization
     void Start()
     {
 		collisionController = GetComponent<CollisionController>();
-		gravityController = GetComponent<GravityController>();
 		boxCollider = GetComponent<BoxCollider2D>();
-        //rb2d = GetComponent<Rigidbody2D>();
+
 		if(transform.parent != null)
 		{
 			//timeBeforeDestroyed = platformDurability;
-			isflakSpawner = GetComponentInParent<IsflakSpawner>();
-			movementSpeed = isflakSpawner.GetSpeed();
-			platformDurability = isflakSpawner.GetDurability();
-			movementDirection = isflakSpawner.GetDirection();
+			movingPlatformSpawner = GetComponentInParent<MovingPlatformSpawner>();
+			movementSpeed = movingPlatformSpawner.GetSpeed();
+			platformDurability = movingPlatformSpawner.GetDurability();
+			movementDirection = movingPlatformSpawner.GetDirection();
 		}
-	   /* if (transform.parent != null)
-        {
-            isflakSpawner = GetComponentInParent<IsflakSpawner>();
-            movementSpeed = isflakSpawner.GetSpeed();
-            platformDurability = isflakSpawner.GetDurability();
-			movementDirection = isflakSpawner.GetDirection();
-        }
-        else
-        {
-            movementSpeed = defaultSpeed;
-			movementDirection = 1;
-        }*/
     }
+	
+	void OnValidate()
+	{
+		if (maxVelocity < 0)
+		{
+			maxVelocity = 0.1f;
+		}
+	}
 
 	void FixedUpdate()
 	{
 		OnPlatform();
 	}
-    // Update is called once per frame
+	
+	public void UpdateGravity()
+	{
+		gravity = -(2*maxVelocity)/Mathf.Pow(fallDelay, 2);
+	}
+
     void Update()
     {
 		//Updates gravity every frame
-		gravityController.UpdateGravity();
+		UpdateGravity();
+		movement.x = movementDirection;
 		
 		//Add gravity to y-axis of Vector2 'movement'
-		float verticalTranslate = gravityController.gravity * Time.deltaTime;
+		float verticalTranslate = gravity * Time.deltaTime;
 		movement.y += verticalTranslate;
 		
 		//Platform travels a direction with constant speed
@@ -136,13 +141,6 @@ public class MovingPlatform : MonoBehaviour
 				{
 					print("platform");
 				}
-				/*if(collision[i].gameObject.tag == "Wall")
-				{
-					//movement.x = -movement.x;
-					print("yes");
-				}*/
-				
-				
 			}
 		}
 			
@@ -247,6 +245,8 @@ public class MovingPlatform : MonoBehaviour
             }
         }
     }
+	
+
 	
     /*private void OnTriggerEnter2D(Collider2D collision)
     {

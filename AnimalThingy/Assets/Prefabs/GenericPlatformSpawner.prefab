@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4682888438092822}
   - component: {fileID: 33265441858566004}
   - component: {fileID: 23218191625739042}
-  - component: {fileID: 114174700389330296}
+  - component: {fileID: 114292707820059886}
   m_Layer: 0
   m_Name: GenericPlatformSpawner
   m_TagString: Untagged
@@ -83,7 +83,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1041694807255144}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114174700389330296
+--- !u!114 &114292707820059886
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -91,12 +91,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1041694807255144}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 898dde1e144e57a4dab4cd5d31e5ef75, type: 3}
+  m_Script: {fileID: 11500000, guid: 71736fe7b77cdb94bbe572dec6ee336f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnObject: {fileID: 1225037111131342, guid: e0d0c6429c5938a4c89126361440b420,
     type: 2}
   timeBetweenSpawns: 5
-  floatSpeed: 1
-  durability: 6
+  floatSpeed: 2
+  durability: 2
   spawnDirection: 1

@@ -2,23 +2,37 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum PlayerType
+/*public enum PlayerType
 {
 	playerNobody,
 	playerAlbatross,
 	playerPig,
 	playerMonkey,
 	playerPenguin
-};
+};*/
 
 [RequireComponent(typeof(CollisionController))]
-[RequireComponent(typeof(GravityController))]
+//[RequireComponent(typeof(GravityController))]
 [RequireComponent(typeof(PlayerInput))]
 
 public class PlayerController : MonoBehaviour
 {
-	[Header("Player Type Settings")]
-	public PlayerType playerType;
+	[Header("Jump and Gravity Settings")]
+	[Tooltip("Max jump height value between 0.1f and x")]
+	public float maxJumpHeight = 8.0f;
+
+	[Tooltip("Min jump height value between 0.1f and x")]
+	public float minJumpHeight = 1f;
+
+	[Tooltip("Min jump height value between 0.1f and x")]
+	[Range(0.1f,2.0f)]public float jumpAndFallDelay = 0.4f;
+	
+	[HideInInspector] public float gravity;
+	[HideInInspector] public float maxVelocity;
+	[HideInInspector] public float minVelocity;
+
+	//[Header("Player Type Settings")]
+	//public PlayerType playerType;
 
 	[Header("Movement Settings")]
 	public float movementSpeed = 18.0f;
@@ -26,38 +40,63 @@ public class PlayerController : MonoBehaviour
 	[Range(0.1f,1.0f)]public float movementAcceleration = 0.15f;
 
 	//References for CollisionController class and PlayerController class
-	[HideInInspector] public CollisionController collisionController;
-	[HideInInspector] public GravityController gravityController;
+	protected CollisionController collisionController;
+	RaycastController raycastController;
 	
-	[HideInInspector] public static PlayerController playerController;
+	//[HideInInspector] public static PlayerController playerController;
 
 	//private float horizontalInput;
-	private float velocitySmoothing;
+	protected float velocitySmoothing;
 	
-	public float wallSlideSpeedMax = 3;
+	protected float wallSlideSpeedMax = 3;
 	
 	[HideInInspector] public Vector2 movement;
 	[HideInInspector] public int direction;
 	
 	//Only public for debug
-	public float tempSpeed;
-	public float mod0 = 0.1f;
-	public float mod1 = 0.2f;
+	protected float tempSpeed;
+	protected float mod0 = 0.1f;
+	protected float mod1 = 0.2f;
+	
+	float abilityRegen;
 
-	void Awake()
+	/*void Awake()
 	{
-		playerController = this;
-	}
+		//playerController = this;
+	}*/
 
-	void Start()
+	public virtual void Start()
 	{
 		collisionController = GetComponent<CollisionController>();
-		gravityController = GetComponent<GravityController>();
+		raycastController = GetComponent<RaycastController>();
 		direction = 0;
+		abilityRegen = 1f;
+	}
+
+	public void UpdateGravity()
+	{
+		gravity = -(2*maxJumpHeight)/Mathf.Pow(jumpAndFallDelay, 2);
+		maxVelocity = Mathf.Abs(gravity) * jumpAndFallDelay;
+		minVelocity = Mathf.Sqrt(2*Mathf.Abs(gravity) * minJumpHeight);
 	}
 
 	void OnValidate()
 	{
+		if(minJumpHeight < 0.1f)
+		{
+			minJumpHeight = 0.1f;
+		}
+
+		if(maxJumpHeight < 0.1f)
+		{
+			maxJumpHeight = 0.1f;
+		}
+		
+		if(maxJumpHeight < minJumpHeight)
+		{
+			maxJumpHeight = minJumpHeight + 0.1f;
+		}
+		
 		if(movementSpeed < 1.0f)
 		{
 			movementSpeed = 1.0f;
@@ -74,9 +113,9 @@ public class PlayerController : MonoBehaviour
 	{
 		if(!collisionController.boxCollisionDirections.down)
 		{
-			if(movement.y > gravityController.minVelocity)
+			if(movement.y > minVelocity)
 			{
-				movement.y = gravityController.minVelocity;
+				movement.y = minVelocity;
 			}
 		}
 	}
@@ -86,7 +125,7 @@ public class PlayerController : MonoBehaviour
 	{
 		if(collisionController.boxCollisionDirections.down)
 		{
-			movement.y = gravityController.maxVelocity;
+			movement.y = maxVelocity;
 		}
 	}
 	
@@ -153,9 +192,9 @@ public class PlayerController : MonoBehaviour
 
 	void Update()
 	{
-		gravityController.UpdateGravity();
+		UpdateGravity();
 		
-		float verticalTranslate = gravityController.gravity * Time.deltaTime;
+		float verticalTranslate = gravity * Time.deltaTime;
 		
 		movement.y += verticalTranslate;
 		//collisionController.Move(movement * Time.deltaTime);
@@ -164,7 +203,7 @@ public class PlayerController : MonoBehaviour
 		bool wallSliding = false;
 
 		if((collisionController.boxCollisionDirections.left || collisionController.boxCollisionDirections.right) 
-			&& !collisionController.boxCollisionDirections.down && gravityController.maxVelocity < 0)
+			&& !collisionController.boxCollisionDirections.down && maxVelocity < 0)
 		{
 			wallSliding = true;
 
@@ -186,6 +225,8 @@ public class PlayerController : MonoBehaviour
 		
 		collisionController.UpdateRaycastDirections();
 		collisionController.boxCollisionDirections.resetDirections();
+		//collisionController.UpdateRaycastDirections();
+		//collisionController.boxCollisionDirections.resetDirections();
 
 		if(movement.y < 0)
 		{
@@ -199,4 +240,20 @@ public class PlayerController : MonoBehaviour
 
 		transform.Translate(movement,Space.World);
 	}
+	
+	void OnDrawGizmosSelected()
+	{
+		Gizmos.color = Color.red;
+		Gizmos.DrawLine(new Vector3(gameObject.transform.position.x-4, gameObject.transform.position.y + maxJumpHeight, 0),
+						new Vector3(gameObject.transform.position.x+4,gameObject.transform.position.y  + maxJumpHeight, 0));
+
+		Gizmos.color = Color.green;
+		Gizmos.DrawLine(new Vector3(gameObject.transform.position.x-4, gameObject.transform.position.y + minJumpHeight, 0),
+						new Vector3(gameObject.transform.position.x+4,gameObject.transform.position.y  + minJumpHeight, 0));
+
+		Gizmos.color = Color.blue;
+		Gizmos.DrawLine(new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0),
+						new Vector3(gameObject.transform.position.x,gameObject.transform.position.y + maxJumpHeight, 0));
+	}
+
 }
