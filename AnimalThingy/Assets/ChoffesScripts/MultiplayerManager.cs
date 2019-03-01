@@ -230,16 +230,16 @@ public class MultiplayerManager : MonoBehaviour {
             {
                 LoadRandomCharacterScene();
 
-                //Aktivera när 4 eller fler kompletta scener finns och ligger i InformationManagers folders för banor
-                //if(amountOfReadyPlayers < 4)
-                //{
-                //    for(int j = 0; j < 4 - amountOfReadyPlayers; j++)
-                //    {
-                //        LoadRandomScene();
-                //    }
-                //}
-                SceneManager.LoadScene(InformationManager.Instance.multiplayerLevels[0].name);
-            }
+				//Aktivera när 4 eller fler kompletta scener finns och ligger i InformationManagers folders för banor
+				//if(amountOfReadyPlayers < 4)
+				//{
+				//    for(int j = 0; j < 4 - amountOfReadyPlayers; j++)
+				//    {
+				//        LoadRandomScene();
+				//    }
+				//}
+				SceneManager.LoadScene(InformationManager.Instance.multiplayerLevels[0].name);
+			}
         }
     }
 
