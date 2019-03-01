@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(BoxCollider2D))]
 public class Checkpoint : MonoBehaviour
 {
 	public int Index
@@ -13,7 +12,11 @@ public class Checkpoint : MonoBehaviour
 		}
 	}
 	[SerializeField] private int index;
-	public PlayerFlag[] playerFlags;
+	[SerializeField] private PlayerFlag[] playerFlags;
+	[SerializeField] private AnimationHandler animationHandler;
+	[SerializeField] private string animationTrigger;
+	[SerializeField] private AudioEffectController effectController;
+	[SerializeField] private float searchRadius = 1f;
 
 	void Start()
 	{
@@ -27,11 +30,19 @@ public class Checkpoint : MonoBehaviour
 				}
 			}
 		}
+		if (GetComponentInChildren<AnimationHandler>() && animationHandler == null)
+		{
+			animationHandler = GetComponentInChildren<AnimationHandler>();
+		}
+		if (GetComponent<AudioEffectController>() && effectController == null)
+		{
+			effectController = GetComponent<AudioEffectController>();
+		}
 	}
 
 	void Update()
 	{
-		Collider2D collider = Physics2D.OverlapCircle(transform.position, 1f);
+		Collider2D collider = Physics2D.OverlapCircle(transform.position, searchRadius);
 		if (playerFlags.Length <= 0) return;
 		for (int i = 0; i < playerFlags.Length; i++)
 		{
@@ -41,6 +52,7 @@ public class Checkpoint : MonoBehaviour
 			}
 			if (collider.tag == playerFlags[i].playerTag || collider.GetComponent(playerFlags[i].playerControllerScript))
 			{
+				animationHandler.SetAnimatorTrigger(animationTrigger);
 				playerFlags[i].playerFlag.SetActive(true);
 			}
 		}
@@ -49,6 +61,12 @@ public class Checkpoint : MonoBehaviour
 	public void SetFlagCount(int count)
 	{
 		playerFlags = new PlayerFlag[count];
+	}
+
+	void OnDrawGizmos()
+	{
+		Gizmos.color = Color.yellow;
+		Gizmos.DrawWireSphere(transform.position, searchRadius);
 	}
 }
 
