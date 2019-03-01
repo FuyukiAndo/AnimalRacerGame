@@ -1050,20 +1050,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40862dde935f54f458b568c9a99b539e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 0
-  playerFlags:
-  - playerFlag: {fileID: 0}
-    playerTag: 
-    playerControllerScript: 
-  - playerFlag: {fileID: 0}
-    playerTag: 
-    playerControllerScript: 
-  - playerFlag: {fileID: 0}
-    playerTag: 
-    playerControllerScript: 
-  - playerFlag: {fileID: 0}
-    playerTag: 
-    playerControllerScript: 
 --- !u!4 &1282378659
 Transform:
   m_ObjectHideFlags: 0
@@ -1578,8 +1564,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40862dde935f54f458b568c9a99b539e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 0
-  playerFlags: []
 --- !u!61 &1798562337
 BoxCollider2D:
   m_ObjectHideFlags: 0
