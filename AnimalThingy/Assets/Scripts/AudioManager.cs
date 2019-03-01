@@ -82,14 +82,15 @@ public class AudioManager : MonoBehaviour {
 	IEnumerator PlayBackgroundAudio()
 	{
 		source.Play();
-		while (source.isPlaying && !shouldStopBack)
+		while (!shouldStopBack)
 		{
+			if (!source.isPlaying)
+			{
+				source.Play();
+			}
 			yield return null;
 		}
-		if (shouldStopBack)
-		{
-			source.Stop();
-		}
+		source.Stop();
 	}
 
 	IEnumerator IStopAll(bool fade)
