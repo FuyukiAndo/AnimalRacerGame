@@ -16,7 +16,7 @@ public class CheckpointTracker : MonoBehaviour
 	}
 	private List<int> checkPointsPassed = new List<int>();
 	private int lastCheckpointPassed = 0;
-	[SerializeField] private Vector2 boxSize, checkpointSearchSize;
+	[SerializeField] private Vector2 boxSize = new Vector2(1.0f,1.0f), checkpointSearchSize;
 	[SerializeField] private float initialCheckpointTipDelay, recurringCheckpointTipDelay;
 	[SerializeField] private string UIMethodName;
 	public float FinishingTime
@@ -31,7 +31,6 @@ public class CheckpointTracker : MonoBehaviour
 		}
 	}
 	private float finishingTime;
-	[SerializeField] private Color playerColour;
 	public int PlacementPoint
 	{
 		get
@@ -47,36 +46,32 @@ public class CheckpointTracker : MonoBehaviour
 
 	void Update()
 	{
-		Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position, boxSize, 0f);
-		foreach (var collider in colliders)
+		Collider2D collider = Physics2D.OverlapBox(transform.position, boxSize, 0f);
+		if (collider.GetComponent<Checkpoint>())
 		{
-			if (collider.GetComponent<Checkpoint>())
+			Checkpoint checkPoint = collider.GetComponent<Checkpoint>();
+			if (GoalManager.Instance.passInSequence)
 			{
-				Checkpoint checkPoint = collider.GetComponent<Checkpoint>();
-				checkPoint.SetColour(playerColour);
-				if (GoalManager.Instance.passInSequence)
+				if (checkPoint.Index == lastCheckpointPassed + 1)
 				{
-					if (checkPoint.Index == lastCheckpointPassed + 1)
-					{
-						checkPointsPassed.Add(checkPoint.Index);
-						lastCheckpointPassed = checkPoint.Index;
-						return;
-					}
+					checkPointsPassed.Add(checkPoint.Index);
+					lastCheckpointPassed = checkPoint.Index;
+					return;
 				}
-				else
+			}
+			else
+			{
+				if (checkPointsPassed.Count > 0)
 				{
-					if (checkPointsPassed.Count > 0)
+					foreach (var index in checkPointsPassed)
 					{
-						foreach (var index in checkPointsPassed)
+						if (index == checkPoint.Index)
 						{
-							if (index == checkPoint.Index)
-							{
-								return;
-							}
+							return;
 						}
 					}
-					checkPointsPassed.Add(checkPoint.Index);
 				}
+				checkPointsPassed.Add(checkPoint.Index);
 			}
 		}
 	}

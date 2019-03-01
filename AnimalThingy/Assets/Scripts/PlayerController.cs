@@ -186,12 +186,10 @@ public class PlayerController : MonoBehaviour
 		
 		collisionController.UpdateRaycastDirections();
 		collisionController.boxCollisionDirections.resetDirections();
-
 		if(movement.y < 0)
 		{
 			collisionController.DescendSlope(ref movement);
 		}
-
 		if(movement.x != 0 || movement.y != 0)
 		{
 			collisionController.checkCollision(ref movement);

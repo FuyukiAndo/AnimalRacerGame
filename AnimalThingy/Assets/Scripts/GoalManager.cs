@@ -9,6 +9,7 @@ public class GoalManager : MonoBehaviour
 	public bool passInSequence, countDownOnFirstPlayer;
 	public Checkpoint[] checksToPass;
 	public float timeBeforeAutoPlacements;
+	public Vector2 boxSize;
 
 	public static GoalManager Instance
 	{
@@ -23,7 +24,7 @@ public class GoalManager : MonoBehaviour
 	private bool startCountDown;
 	private List<CheckpointTracker> unplacedPlayers = new List<CheckpointTracker>();
 	[SerializeField] private GameObject[] playerGoalPositions;
-	[SerializeField] private string playerMoveScriptName;
+	[SerializeField] private string[] playerMoveScriptName;
 	private float totalTimeBeforeAutoPlacements;
 	private int initialPlayerCount;
 
@@ -43,6 +44,7 @@ public class GoalManager : MonoBehaviour
 		}
 		totalTimeBeforeAutoPlacements = timeBeforeAutoPlacements;
 		initialPlayerCount = unplacedPlayers.Count;
+		boxSize = GetComponent<BoxCollider2D>().size;
 	}
 
 	void Update()
@@ -64,6 +66,23 @@ public class GoalManager : MonoBehaviour
 			if (timeBeforeAutoPlacements <= 0f)
 			{
 				PlacePlayers();
+			}
+		}
+
+		ValidateForGoal();
+	}
+
+	void ValidateForGoal()
+	{
+		Collider2D collider = Physics2D.OverlapBox(transform.position, boxSize, 0f);
+
+		if (ValidateTracker(collider.transform.GetComponent<CheckpointTracker>()))
+		{
+			//print("Validated");
+			PlacePlayers();
+			if (countDownOnFirstPlayer && !startCountDown)
+			{
+				startCountDown = true;
 			}
 		}
 	}
@@ -238,8 +257,11 @@ public class GoalManager : MonoBehaviour
 		//string componentName = playerMoveScript.GetType().ToString();
 		foreach (var player in placedPlayers)
 		{
-			MonoBehaviour script = player.GetComponent(playerMoveScriptName)as MonoBehaviour;
-			script.enabled = false;
+			for (int i = 0; i < playerMoveScriptName.Length; i++)
+			{
+				MonoBehaviour script = player.GetComponent(playerMoveScriptName[i]) as MonoBehaviour;
+				script.enabled = false;
+			}
 		}
 	}
 
@@ -250,7 +272,10 @@ public class GoalManager : MonoBehaviour
 		{
 			foreach (var checks in checksToPass)
 			{
-				Gizmos.DrawWireSphere(checks.transform.position, .5f);
+				if (checks != null)
+				{
+					Gizmos.DrawWireSphere(checks.transform.position, .5f);
+				}
 			}
 		}
 		Gizmos.color = Color.blue;

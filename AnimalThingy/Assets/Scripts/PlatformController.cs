@@ -8,7 +8,7 @@ public class PlatformController : RaycastController
 	[HideInInspector] public MovingPlatform movingPlatform;
 	public LayerMask entityMask;
 	public Vector2 moveEntity;
-	Isflak isflak;
+
 	
 	public float setRayLength = 1.0f;
 	
