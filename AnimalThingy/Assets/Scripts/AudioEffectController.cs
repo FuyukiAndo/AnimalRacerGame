@@ -6,6 +6,7 @@ using FMODUnity;
 using FMOD;
 using FMOD.Studio;
 
+[RequireComponent(typeof(AudioSource))]
 public class AudioEffectController : MonoBehaviour {
 
 	[SerializeField] private bool playEffectAuto, oneshot, attached;

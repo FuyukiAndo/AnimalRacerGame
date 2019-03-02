@@ -6,6 +6,7 @@ using FMODUnity;
 using FMOD;
 using FMOD.Studio;
 
+[RequireComponent(typeof(AudioSource))]
 public class AudioManager : MonoBehaviour {
 
 	[EventRef] [SerializeField] private string backgroundAudioPath;
