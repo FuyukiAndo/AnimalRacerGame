@@ -3,6 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+
+enum PlayerCharacterType
+{
+	PlayerNobody,
+	PlayerAlbatross,
+	PlayerPenguin,
+	PlayerPig,
+	PlayerMonkey
+};
+
 //[RequireComponent(typeof(PlayerController))]
 public class PlayerInput : MonoBehaviour 
 {	
@@ -19,20 +29,40 @@ public class PlayerInput : MonoBehaviour
 	private KeyCode playerNoKey = KeyCode.None;
 
     [Range(0.01f, 1f)] public float speed = 0.25f;
-	private float targetAngle;
+	private float targetAngle = 179f+90f;
 	public bool rotationActive = false; 
+	public bool groundedMovement = true;
 
 	// Use this for initialization
 	void Start() 
 	{
+		//Starter character setup
+		PlayerCharacterType playerCharacterType;
+		playerCharacterType = PlayerCharacterType.PlayerNobody;
+		
 		playerController = GetComponent<PlayerController>();
-
+		
+		var script0 = gameObject.GetComponent<PlayerAlbatross>();
+		
 		keyDictionary.Add(playerNoKey, ()=>playerController.MoveNot());
 		keyDictionary.Add(playerLeftKey,()=>playerController.MoveLeft());
-		keyDictionary.Add(playerRightKey,()=>playerController.MoveRight());
-		keyDictionary.Add(playerJumpKey,()=>playerController.OnJumpKeyDown());
+		keyDictionary.Add(playerRightKey,()=>playerController.MoveRight());	
 		
-		anotherDictionary.Add(playerJumpKey, ()=>playerController.OnJumpKeyUp());
+		//Albatross Setup
+		if(script0 !=null)
+		{
+			PlayerAlbatross playerAlbatross;
+			playerAlbatross = GetComponent<PlayerAlbatross>();
+			playerCharacterType = PlayerCharacterType.PlayerAlbatross;
+			
+			keyDictionary.Add(playerJumpKey,()=>playerAlbatross.OnFlyKeyDown());
+			anotherDictionary.Add(playerJumpKey, ()=>playerAlbatross.OnFlyKeyUp());
+		}
+		else
+		{
+			keyDictionary.Add(playerJumpKey,()=>playerController.OnJumpKeyDown());	
+			anotherDictionary.Add(playerJumpKey, ()=>playerController.OnJumpKeyUp());
+		}
 	}
 	
 	void StaticZPos()
@@ -89,22 +119,40 @@ public class PlayerInput : MonoBehaviour
 		
 		if(Input.GetKeyDown(playerLeftKey))
 		{
-			animationHandler.SetAnimatorTrigger("Run");
+			if(groundedMovement)
+			{
+				animationHandler.SetAnimatorTrigger("Run");
+			}
 		}
 		
 		if(Input.GetKeyDown(playerRightKey))
 		{
-			animationHandler.SetAnimatorTrigger("Run");
+			if(groundedMovement)
+			{
+				animationHandler.SetAnimatorTrigger("Run");
+			}
 		}
 
 		if(Input.GetKeyUp(playerLeftKey))
 		{
-			animationHandler.SetAnimatorTrigger("Idle");
+			if(groundedMovement)
+			{
+				animationHandler.SetAnimatorTrigger("Idle");
+			}
 		}
 		
 		if(Input.GetKeyUp(playerRightKey))
 		{
-			animationHandler.SetAnimatorTrigger("Idle");
+			if(groundedMovement)
+			{
+				animationHandler.SetAnimatorTrigger("Idle");
+			}
+		}
+		
+		if(Input.GetKeyDown(playerJumpKey))
+		{
+			//groundedMovement = false;
+			//animationHandler.SetAnimatorTrigger("Jump");
 		}
 		
 		//Rotates player model when changing direction

@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
 	protected float mod0 = 0.1f;
 	protected float mod1 = 0.2f;
 	
-	float abilityRegen;
+	protected float abilityMeter;
 
 	/*void Awake()
 	{
@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour
 		collisionController = GetComponent<CollisionController>();
 		raycastController = GetComponent<RaycastController>();
 		direction = 0;
-		abilityRegen = 1f;
+		//abilityRegen = 1f;
 	}
 
 	public void UpdateGravity()
@@ -107,7 +107,7 @@ public class PlayerController : MonoBehaviour
 			direction = 1;
 		}
 	}
-
+	
 	//If jump button released before reaching max value, then goto min value.
 	public void OnJumpKeyUp()
 	{
@@ -190,7 +190,7 @@ public class PlayerController : MonoBehaviour
 		direction = 0;
 	}
 
-	void Update()
+	public virtual void Update()
 	{
 		UpdateGravity();
 		
