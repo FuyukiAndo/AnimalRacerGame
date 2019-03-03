@@ -43,7 +43,6 @@ public class Checkpoint : MonoBehaviour
 	void Update()
 	{
 		Collider2D collider = Physics2D.OverlapCircle(transform.position, searchRadius);
-		//Comment to trigger github change -- pls ignore
 		if (playerFlags.Length <= 0) return;
 		for (int i = 0; i < playerFlags.Length; i++)
 		{
