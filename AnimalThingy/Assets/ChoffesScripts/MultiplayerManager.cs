@@ -2,10 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
+[System.Serializable]
+public class MultiplayerMaps
+{
+    public string[] maps;
+}
+
 public class MultiplayerManager : MonoBehaviour {
 
-    public int NumberOfPlayersActive;
-    private List<Object> allMaps;
+    public MultiplayerMaps iceMaps;
+    public MultiplayerMaps jungleMaps;
+    public MultiplayerMaps farmMaps;
+    public MultiplayerMaps coastMaps;
+
+    [HideInInspector] public int NumberOfPlayersActive;
+    private List<string> allMaps;
     public string iceCharacterTag = "Ice_Character";
     public string jungleCharacterTag = "Jungle_Character";
     public string farmCharacterTag = "Farm_Character";
@@ -238,7 +250,9 @@ public class MultiplayerManager : MonoBehaviour {
 				//        LoadRandomScene();
 				//    }
 				//}
-				SceneManager.LoadScene(InformationManager.Instance.multiplayerLevels[0].name);
+
+
+				SceneManager.LoadScene(InformationManager.Instance.multiplayerLevels[0]);
 			}
         }
     }
@@ -249,9 +263,9 @@ public class MultiplayerManager : MonoBehaviour {
         {
             if(player.character.tag == iceCharacterTag)
             {
-                List<Object> tempMaps = new List<Object>(InformationManager.Instance.iceMaps.maps);
+                List<string> tempMaps = new List<string>(iceMaps.maps);
                 bool levelSelected = false;
-                for (int i = 0; i < InformationManager.Instance.iceMaps.maps.Length; i++)
+                for (int i = 0; i < iceMaps.maps.Length; i++)
                 {
                     if(levelSelected == false)
                     {
@@ -271,9 +285,9 @@ public class MultiplayerManager : MonoBehaviour {
             }
             if (player.character.tag == jungleCharacterTag)
             {
-                List<Object> tempMaps = new List<Object>(InformationManager.Instance.jungleMaps.maps);
+                List<string> tempMaps = new List<string>(jungleMaps.maps);
                 bool levelSelected = false;
-                for (int i = 0; i < InformationManager.Instance.jungleMaps.maps.Length; i++)
+                for (int i = 0; i < jungleMaps.maps.Length; i++)
                 {
                     if(levelSelected == false)
                     {
@@ -292,9 +306,9 @@ public class MultiplayerManager : MonoBehaviour {
             }
             if (player.character.tag == farmCharacterTag)
             {
-                List<Object> tempMaps = new List<Object>(InformationManager.Instance.farmMaps.maps);
+                List<string> tempMaps = new List<string>(farmMaps.maps);
                 bool levelSelected = false;
-                for (int i = 0; i < InformationManager.Instance.farmMaps.maps.Length; i++)
+                for (int i = 0; i < farmMaps.maps.Length; i++)
                 {
                     if(levelSelected == false)
                     {
@@ -313,9 +327,9 @@ public class MultiplayerManager : MonoBehaviour {
             }
             if (player.character.tag == coastCharacterTag)
             {
-                List<Object> tempMaps = new List<Object>(InformationManager.Instance.coastMaps.maps);
+                List<string> tempMaps = new List<string>(coastMaps.maps);
                 bool levelSelected = false;
-                for (int i = 0; i < InformationManager.Instance.coastMaps.maps.Length; i++)
+                for (int i = 0; i < coastMaps.maps.Length; i++)
                 {
                     if (levelSelected == false)
                     {
@@ -337,24 +351,24 @@ public class MultiplayerManager : MonoBehaviour {
 
     private void AddAllMapsToList()
     {
-        for (int i = 0; i < InformationManager.Instance.iceMaps.maps.Length; i++)
+        for (int i = 0; i < iceMaps.maps.Length; i++)
         {
-            allMaps.Add(InformationManager.Instance.iceMaps.maps[i]);
+            allMaps.Add(iceMaps.maps[i]);
         }
 
-        for (int i = 0; i < InformationManager.Instance.jungleMaps.maps.Length; i++)
+        for (int i = 0; i < jungleMaps.maps.Length; i++)
         {
-            allMaps.Add(InformationManager.Instance.jungleMaps.maps[i]);
+            allMaps.Add(jungleMaps.maps[i]);
         }
 
-        for (int i = 0; i < InformationManager.Instance.farmMaps.maps.Length; i++)
+        for (int i = 0; i < farmMaps.maps.Length; i++)
         {
-            allMaps.Add(InformationManager.Instance.farmMaps.maps[i]);
+            allMaps.Add(farmMaps.maps[i]);
         }
 
-        for (int i = 0; i < InformationManager.Instance.coastMaps.maps.Length; i++)
+        for (int i = 0; i < coastMaps.maps.Length; i++)
         {
-            allMaps.Add(InformationManager.Instance.coastMaps.maps[i]);
+            allMaps.Add(coastMaps.maps[i]);
         }
     }
 

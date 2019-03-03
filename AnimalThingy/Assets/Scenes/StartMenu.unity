@@ -1701,6 +1701,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfc94178d9204be44a45028a26e9a449, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  iceMaps:
+    maps:
+    - Is_bana
+  jungleMaps:
+    maps: []
+  farmMaps:
+    maps: []
+  coastMaps:
+    maps: []
   NumberOfPlayersActive: 0
   iceCharacterTag: Ice_Character
   jungleCharacterTag: Jungle_Character
@@ -5577,15 +5586,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9412831e4a52b2a4e95aef754f2da20c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iceMaps:
-    maps:
-    - {fileID: 102900000, guid: 5dae6f95356995241b0c4f2a22f05850, type: 3}
-  jungleMaps:
-    maps: []
-  farmMaps:
-    maps: []
-  coastMaps:
-    maps: []
   Singleplayer:
     character: {fileID: 0}
     playerIsActive: 0
@@ -5633,7 +5633,7 @@ MonoBehaviour:
     level4Time: 0
   players: []
   multiplayerLevels:
-  - {fileID: 0}
+  - 
 --- !u!224 &399187661
 RectTransform:
   m_ObjectHideFlags: 0

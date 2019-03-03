@@ -14,21 +14,10 @@ public class Player
     public float level3Time = 0;
     public float level4Time = 0;
 }
-[System.Serializable]
-public class MultiplayerMaps
-{
-    public Object[] maps;
-}
 
 public class InformationManager : MonoBehaviour {
 
     public static InformationManager Instance { get; private set; }
-
-    public MultiplayerMaps iceMaps;
-    public MultiplayerMaps jungleMaps;
-    public MultiplayerMaps farmMaps;
-    public MultiplayerMaps coastMaps;
-
 
     public Player Singleplayer;
     public Player player1;
@@ -36,7 +25,7 @@ public class InformationManager : MonoBehaviour {
     public Player player3;
     public Player player4;
     public List<Player> players;
-    public List<Object> multiplayerLevels;
+    public List<string> multiplayerLevels;
 
     private void Awake()
     {
@@ -55,6 +44,6 @@ public class InformationManager : MonoBehaviour {
         player3 = new Player();
         player4 = new Player();
         players = new List<Player>();
-        multiplayerLevels = new List<Object>();
+        multiplayerLevels = new List<string>();
     }
 }
