@@ -19,11 +19,18 @@ public class CameraScript : MonoBehaviour {
     private Camera cam;
     private Vector3 velocity;
 
-    private void Start()
+	public float startFov;
+	public Transform startPos;
+	public float timeBeforeZoomToPlayers;
+
+	private bool followPlayers = false;
+
+	private void Start()
     {
         players = new List<GameObject>();
         cam = GetComponent<Camera>();
-    }
+		StartCoroutine(Overlook());
+	}
 
     public void BindPlayersToCamera()
     {
@@ -37,10 +44,13 @@ public class CameraScript : MonoBehaviour {
 
     private void LateUpdate()
     {
-        CheckFurthestPosPlayer();
-        CheckFurthestNegPlayer();
-        Zoom();
-        CameraFollow(furthestPosPlayer, furthestNegPlayer);
+        if (followPlayers)
+        {
+			CheckFurthestPosPlayer();
+			CheckFurthestNegPlayer();
+			Zoom();
+			CameraFollow(furthestPosPlayer, furthestNegPlayer);
+        }
     }
 
 
@@ -110,4 +120,12 @@ public class CameraScript : MonoBehaviour {
         Vector3 newPosition = new Vector3((g1.transform.position.x + g2.transform.position.x) / 2, (g1.transform.position.y + g2.transform.position.y) / 2, transform.position.z);
         transform.position = Vector3.SmoothDamp(transform.position, newPosition, ref velocity, cameraSmoothTime);
     }
+
+    IEnumerator Overlook()
+    {
+		transform.position = startPos.position;
+		cam.fieldOfView = startFov;
+		yield return new WaitForSeconds(timeBeforeZoomToPlayers);
+		followPlayers = true;
+	}
 }

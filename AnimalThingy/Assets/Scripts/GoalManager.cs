@@ -20,6 +20,13 @@ public class GoalManager : MonoBehaviour
 	}
 	private static GoalManager instance;
 
+	public List<GameObject> PlacedPlayers
+	{
+		get
+		{
+			return placedPlayers;
+		}
+	}
 	private List<GameObject> placedPlayers = new List<GameObject>();
 	private bool startCountDown;
 	private List<CheckpointTracker> unplacedPlayers = new List<CheckpointTracker>();
@@ -96,7 +103,7 @@ public class GoalManager : MonoBehaviour
 			//int index = Array.IndexOf(unplacedPlayers.ToArray(), other.transform.GetComponent<CheckpointTracker>());
 			//unplacedPlayers.RemoveAt(index);
 			startCountDown = true;
-		}*/
+		}
 		if (ValidateTracker(other.transform.GetComponent<CheckpointTracker>()))
 		{
 			print("Validated");
@@ -105,7 +112,7 @@ public class GoalManager : MonoBehaviour
 			{
 				startCountDown = true;
 			}
-		}
+		}*/
 	}
 
 	bool ValidateTracker(CheckpointTracker tracker)

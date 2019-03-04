@@ -113,6 +113,114 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &30467619
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 30467620}
+  m_Layer: 0
+  m_Name: Gris
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &30467620
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 30467619}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4, y: -1.25, z: -0.041015625}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 81899609}
+  m_Father: {fileID: 0}
+  m_RootOrder: 19
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &81899608
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 30467620}
+    m_Modifications:
+    - target: {fileID: 400000, guid: 88e08c44799dd524d9331d6398b15885, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 88e08c44799dd524d9331d6398b15885, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 88e08c44799dd524d9331d6398b15885, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 88e08c44799dd524d9331d6398b15885, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 88e08c44799dd524d9331d6398b15885, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 88e08c44799dd524d9331d6398b15885, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 88e08c44799dd524d9331d6398b15885, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 88e08c44799dd524d9331d6398b15885, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 88e08c44799dd524d9331d6398b15885, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 88e08c44799dd524d9331d6398b15885, type: 3}
+  m_IsPrefabParent: 0
+--- !u!4 &81899609 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: 88e08c44799dd524d9331d6398b15885, type: 3}
+  m_PrefabInternal: {fileID: 81899608}
+--- !u!1 &81899610 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100000, guid: 88e08c44799dd524d9331d6398b15885, type: 3}
+  m_PrefabInternal: {fileID: 81899608}
+--- !u!114 &81899611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 81899610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee15a0617f3d0344db5be4e260f09dc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  autoAnimate: 0
+  animator: {fileID: 0}
+  animationType:
+  - eventType: 0
+    triggerType: 0
+    animationTrigger: 
+    secondAnimationTrigger: 
+    animationName: 
+    animationActiveState: 0
+    ApplyRootMotion: 0
+    animationValue: 0
+    secondAnimationValue: 0
+    initialAnimationDelay: 0
+    animationInterval: 0
 --- !u!1 &118394582
 GameObject:
   m_ObjectHideFlags: 0
@@ -658,10 +766,11 @@ MonoBehaviour:
   - {fileID: 1282378658}
   - {fileID: 1798562336}
   timeBeforeAutoPlacements: 30
+  boxSize: {x: 0, y: 0}
   playerGoalPositions:
   - {fileID: 1424178920}
   - {fileID: 504268616}
-  playerMoveScriptName: PlayerMoveBase
+  playerMoveScriptName: []
 --- !u!4 &616450141
 Transform:
   m_ObjectHideFlags: 0
@@ -1050,6 +1159,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40862dde935f54f458b568c9a99b539e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
+  playerFlags: []
+  animationHandler: {fileID: 0}
+  animationTrigger: 
+  effectController: {fileID: 0}
+  searchRadius: 1
 --- !u!4 &1282378659
 Transform:
   m_ObjectHideFlags: 0
@@ -1564,6 +1679,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40862dde935f54f458b568c9a99b539e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
+  playerFlags: []
+  animationHandler: {fileID: 0}
+  animationTrigger: 
+  effectController: {fileID: 0}
+  searchRadius: 1
 --- !u!61 &1798562337
 BoxCollider2D:
   m_ObjectHideFlags: 0
