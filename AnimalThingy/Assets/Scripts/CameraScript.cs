@@ -4,8 +4,6 @@ using UnityEngine;
 
 [RequireComponent(typeof(Camera))]
 public class CameraScript : MonoBehaviour {
-
-    public string playerTag = "Player";
     public float cameraSmoothTime = 0.5f;
 
     public float minZoom = 100f;

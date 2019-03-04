@@ -23,7 +23,7 @@ public class GoalManager : MonoBehaviour
 
 	public List<GameObject> placedPlayers = new List<GameObject>();
 	private bool startCountDown;
-	private List<CheckpointTracker> unplacedPlayers = new List<CheckpointTracker>();
+	public List<CheckpointTracker> unplacedPlayers = new List<CheckpointTracker>();
 	[SerializeField] private GameObject[] playerGoalPositions;
 	[SerializeField] private string[] playerMoveScriptName;
 	private float totalTimeBeforeAutoPlacements;
