@@ -175,14 +175,6 @@ public class PlayerInput : MonoBehaviour
 				animationHandler.SetAnimatorTrigger("Run");
 			}
 		}
-		else if(!Input.GetKeyDown(playerLeftKey))
-		{
-			if(groundedMovement && groundedRun)
-			{
-				groundedRun = false;
-				animationHandler.SetAnimatorTrigger("Idle");
-			}
-		}
 		
 		if(Input.GetKeyDown(playerRightKey))
 		{
@@ -192,16 +184,8 @@ public class PlayerInput : MonoBehaviour
 				animationHandler.SetAnimatorTrigger("Run");
 			}
 		}
-		else if(!Input.GetKeyDown(playerRightKey))
-		{
-			if(groundedMovement && groundedRun)
-			{
-				groundedRun = false;
-				animationHandler.SetAnimatorTrigger("Idle");
-			}
-		}
 
-		/*if(Input.GetKeyUp(playerLeftKey))
+		if(Input.GetKeyUp(playerLeftKey))
 		{
 			if(groundedMovement && groundedRun)
 			{
@@ -217,7 +201,7 @@ public class PlayerInput : MonoBehaviour
 				animationHandler.SetAnimatorTrigger("Idle");
 				groundedRun = false;
 			}
-		}*/
+		}
 		
 		if(Input.GetKeyDown(playerJumpKey))
 		{
