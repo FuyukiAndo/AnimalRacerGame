@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 
 [System.Serializable]
@@ -19,7 +20,12 @@ public class ScoreScreenChild
     public ScoreScreenChild thirdChild;
     public ScoreScreenChild fourthChild;
 
-    public List<ScoreScreenChild> childObjects;
+    private List<ScoreScreenChild> childObjects;
+
+    public Color player1Color = Color.red;
+    public Color player2Color = Color.blue;
+    public Color player3Color = Color.green;
+    public Color player4Color = Color.yellow;
 
     private void OnEnable()
     {
@@ -27,6 +33,7 @@ public class ScoreScreenChild
         EnableChildObjects();
         AddNamesToChildObjects();
         AddTimeToChildObjects();
+        SetBackgroundColor();
     }
 
     private void AddChildrenToList()
@@ -200,6 +207,25 @@ public class ScoreScreenChild
 
             //        break;
             //}
+        }
+    }
+
+    private void SetBackgroundColor()
+    {
+        switch (childObjects[0].nameText.text)
+        {
+            case "Player1":
+                gameObject.GetComponent<Image>().color = player1Color;
+                break;
+            case "Player2":
+                gameObject.GetComponent<Image>().color = player2Color;
+                break;
+            case "Player3":
+                gameObject.GetComponent<Image>().color = player3Color;
+                break;
+            case "Player4":
+                gameObject.GetComponent<Image>().color = player4Color;
+                break;
         }
     }
 }
