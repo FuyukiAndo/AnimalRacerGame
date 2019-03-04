@@ -88,6 +88,7 @@ public class PlayerAlbatross : PlayerController
 	public void OnAbilityKey()
 	{
 		 Instantiate(prefab, transform.position, new Quaternion(0, 0, 0, 0), gameObject.transform);
+		 
 		//Instantiate(prefab,transform.position, Quaternion.identity);
 		//prefab.transform.SetParent(transform.parent, true);
 		//prefab.transform.parent = gameObject.transform;
