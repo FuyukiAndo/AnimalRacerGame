@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33170196206248196}
   - component: {fileID: 23395049612819466}
   - component: {fileID: 70198412265324502}
+  - component: {fileID: 114861548873162764}
   m_Layer: 0
   m_Name: istapp
   m_TagString: Untagged
@@ -98,3 +99,18 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 1.9999999}
   m_Direction: 0
+--- !u!114 &114861548873162764
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1507464445526034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af8e2f11e06b4d544b800088ee7e8ddb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnObject: {fileID: 1930622670536196, guid: 65fe2ec3132892542a72b75f23eaff9b,
+    type: 2}
+  timeBetweenSpawns: 4
+  wantSpikeToDisappearFirst: 1

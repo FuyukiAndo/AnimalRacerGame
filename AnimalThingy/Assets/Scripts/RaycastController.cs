@@ -6,9 +6,11 @@ using UnityEngine;
 
 public class RaycastController : MonoBehaviour 
 {
-	public LayerMask collisionMask;
-	[HideInInspector] public int horizontalRaycastAmount = 4;
-	[HideInInspector] public int verticalRaycastAmount = 4;
+	//[HideInSubClass]
+	protected int horizontalRaycastAmount = 4;
+	
+	//[HideInSubClass]
+	protected int verticalRaycastAmount = 4;
 	
 	protected const float collisionOffset = 0.15f;
 	

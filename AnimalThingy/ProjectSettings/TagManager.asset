@@ -4,9 +4,16 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Ground
-  - Tranpolin
   - Spike
+  - Character
+  - Tranpolin
+  - Ground
+  - Wall
+  - Bonefire
+  - OneWay
+  - oneWay
+  - Ball
+  - Workdammit
   layers:
   - Default
   - TransparentFX
@@ -18,10 +25,15 @@ TagManager:
   - 
   - Player
   - Platform
+<<<<<<< HEAD
+  - 
+=======
+  - MovingPlatform
+>>>>>>> Peter's-diner
   - 
   - 
   - 
-  - 
+  - tempUI
   - 
   - 
   - 
