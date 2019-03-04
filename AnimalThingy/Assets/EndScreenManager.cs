@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 
 [System.Serializable]
@@ -9,7 +10,7 @@ public class ScoreScreenChild
 {
     public GameObject parent;
     public TextMeshProUGUI timeText;
-    public TextMeshProUGUI NameText;
+    public TextMeshProUGUI nameText;
 }
     public class EndScreenManager : MonoBehaviour {
 
@@ -18,25 +19,14 @@ public class ScoreScreenChild
     public ScoreScreenChild thirdChild;
     public ScoreScreenChild fourthChild;
 
-    private List<ScoreScreenChild> childObjects;
-
-    public TextMeshProUGUI FirstPlayerName;
-    public TextMeshProUGUI FirstPlayerTime;
-
-    public TextMeshProUGUI secondPlayerName;
-    public TextMeshProUGUI secondPlayerTime;
-
-    public TextMeshProUGUI thirdPlayerName;
-    public TextMeshProUGUI thirdPlayerTime;
-
-    public TextMeshProUGUI fourthPlayerName;
-    public TextMeshProUGUI fourthPlayerTime;
+    public List<ScoreScreenChild> childObjects;
 
     private void OnEnable()
     {
         AddChildrenToList();
         EnableChildObjects();
         AddNamesToChildObjects();
+        AddTimeToChildObjects();
     }
 
     private void AddChildrenToList()
@@ -75,6 +65,141 @@ public class ScoreScreenChild
 
     private void AddNamesToChildObjects()
     {
-        
+        for(int i = 0; i < childObjects.Count; i++)
+        {
+            switch (GoalManager.Instance.placedPlayers[i].name)
+            {
+                case "Player1":
+                    childObjects[i].nameText.text = GoalManager.Instance.placedPlayers[i].name;
+                    break;
+                case "Player2":
+                    childObjects[i].nameText.text = GoalManager.Instance.placedPlayers[i].name;
+                    break;
+                case "Player3":
+                    childObjects[i].nameText.text = GoalManager.Instance.placedPlayers[i].name;
+                    break;
+                case "Player4":
+                    childObjects[i].nameText.text = GoalManager.Instance.placedPlayers[i].name;
+                    break;
+            }
+        }
+    }
+
+    private void AddTimeToChildObjects()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+
+        for(int i = 0; i < GoalManager.Instance.placedPlayers.Count; i++)
+        {      
+            if(GoalManager.Instance.placedPlayers[i].name == "Player1")
+            {
+                    if (currentScene.name == InformationManager.Instance.multiplayerLevels[0])
+                    {
+                        childObjects[i].timeText.text = InformationManager.Instance.player1.level1Time.ToString();
+                    continue;
+                    }
+                    if (currentScene.name == InformationManager.Instance.multiplayerLevels[1])
+                    {
+                        childObjects[i].timeText.text = InformationManager.Instance.player1.level2Time.ToString();
+                    continue;
+                }
+                    if (currentScene.name == InformationManager.Instance.multiplayerLevels[2])
+                    {
+                        childObjects[i].timeText.text = InformationManager.Instance.player1.level3Time.ToString();
+                    continue;
+                }
+                    if (currentScene.name == InformationManager.Instance.multiplayerLevels[3])
+                    {
+                        childObjects[i].timeText.text = InformationManager.Instance.player1.level4Time.ToString();
+                    continue;
+                }
+            }
+            if(GoalManager.Instance.placedPlayers[i].name == "Player2")
+            {
+                    if (currentScene.name == InformationManager.Instance.multiplayerLevels[0])
+                    {
+                        childObjects[i].timeText.text = InformationManager.Instance.player2.level1Time.ToString();
+                    continue;
+                }
+                    if (currentScene.name == InformationManager.Instance.multiplayerLevels[1])
+                    {
+                        childObjects[i].timeText.text = InformationManager.Instance.player2.level2Time.ToString();
+                    continue;
+                }
+                    if (currentScene.name == InformationManager.Instance.multiplayerLevels[2])
+                    {
+                        childObjects[i].timeText.text = InformationManager.Instance.player2.level3Time.ToString();
+                    continue;
+                }
+                    if (currentScene.name == InformationManager.Instance.multiplayerLevels[3])
+                    {
+                        childObjects[i].timeText.text = InformationManager.Instance.player2.level4Time.ToString();
+                    continue;
+                }
+            }
+            if (GoalManager.Instance.placedPlayers[i].name == "Player3")
+            {
+                    if (currentScene.name == InformationManager.Instance.multiplayerLevels[0])
+                    {
+                        childObjects[i].timeText.text = InformationManager.Instance.player3.level1Time.ToString();
+                    continue;
+                }
+                    if (currentScene.name == InformationManager.Instance.multiplayerLevels[1])
+                    {
+                        childObjects[i].timeText.text = InformationManager.Instance.player3.level2Time.ToString();
+                    continue;
+                }
+                    if (currentScene.name == InformationManager.Instance.multiplayerLevels[2])
+                    {
+                        childObjects[i].timeText.text = InformationManager.Instance.player3.level3Time.ToString();
+                    continue;
+                }
+                    if (currentScene.name == InformationManager.Instance.multiplayerLevels[3])
+                    {
+                        childObjects[i].timeText.text = InformationManager.Instance.player3.level4Time.ToString();
+                    continue;
+                }
+            }
+            if (GoalManager.Instance.placedPlayers[i].name == "Player4")
+            {
+                    if (currentScene.name == InformationManager.Instance.multiplayerLevels[0])
+                    {
+                        childObjects[i].timeText.text = InformationManager.Instance.player4.level1Time.ToString();
+                    continue;
+                }
+                    if (currentScene.name == InformationManager.Instance.multiplayerLevels[1])
+                    {
+                        childObjects[i].timeText.text = InformationManager.Instance.player4.level2Time.ToString();
+                    continue;
+                }
+                    if (currentScene.name == InformationManager.Instance.multiplayerLevels[2])
+                    {
+                        childObjects[i].timeText.text = InformationManager.Instance.player4.level3Time.ToString();
+                    continue;
+                }
+                    if (currentScene.name == InformationManager.Instance.multiplayerLevels[3])
+                    {
+                        childObjects[i].timeText.text = InformationManager.Instance.player4.level4Time.ToString();
+                    continue;
+                }
+            }
+            //    switch (GoalManager.Instance.placedPlayers[i].name)
+            //{
+            //    case "Player1":
+
+            //        break;
+
+            //    case "Player2":
+
+            //        break;
+
+            //    case "Player3":
+
+            //        break;
+            //    case "Player4":
+
+            //        break;
+            //}
+        }
     }
 }

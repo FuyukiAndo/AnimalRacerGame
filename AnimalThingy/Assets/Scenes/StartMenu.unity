@@ -9174,7 +9174,7 @@ MonoBehaviour:
         m_MethodName: SetCharacterForPlayer3
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1391248947053972, guid: 8a56339ada4bfca459724bcdbcfb79ee,
+          m_ObjectArgument: {fileID: 1934942309825892, guid: 5b29a2af749912542a1e24e3ff3321db,
             type: 2}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
@@ -19052,7 +19052,7 @@ MonoBehaviour:
         m_MethodName: SetCharacterForPlayer4
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1391248947053972, guid: 8a56339ada4bfca459724bcdbcfb79ee,
+          m_ObjectArgument: {fileID: 1934942309825892, guid: 5b29a2af749912542a1e24e3ff3321db,
             type: 2}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0

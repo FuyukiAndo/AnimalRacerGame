@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class GoalManager : MonoBehaviour
 {
+    public GameObject endScreenUI;
 	public bool passInSequence, countDownOnFirstPlayer;
 	public Checkpoint[] checksToPass;
 	public float timeBeforeAutoPlacements;
@@ -20,7 +21,7 @@ public class GoalManager : MonoBehaviour
 	}
 	private static GoalManager instance;
 
-	private List<GameObject> placedPlayers = new List<GameObject>();
+	public List<GameObject> placedPlayers = new List<GameObject>();
 	private bool startCountDown;
 	private List<CheckpointTracker> unplacedPlayers = new List<CheckpointTracker>();
 	[SerializeField] private GameObject[] playerGoalPositions;
@@ -49,6 +50,10 @@ public class GoalManager : MonoBehaviour
 
 	void Update()
 	{
+        if(placedPlayers.Count == InformationManager.Instance.players.Count)
+        {
+            endScreenUI.SetActive(true);
+        }
 		if (countDownOnFirstPlayer)
 		{
 			if (startCountDown && unplacedPlayers.Count > 0)
