@@ -298,10 +298,102 @@ public class GoalManager : MonoBehaviour
 		{
 			tracker.FinishingTime = 0f;
 		}
+		string name = tracker.name;
+		switch (name)
+		{
+			case "Player1":
+				if (InformationManager.Instance.player1.level1Time == 0f)
+				{
+					InformationManager.Instance.player1.level1Time = tracker.FinishingTime;
+				}
+				else if (InformationManager.Instance.player1.level2Time == 0f)
+				{
+					InformationManager.Instance.player1.level2Time = tracker.FinishingTime;
+				}
+				else if (InformationManager.Instance.player1.level3Time == 0f)
+				{
+					InformationManager.Instance.player1.level3Time = tracker.FinishingTime;
+				}
+				else
+				{
+					InformationManager.Instance.player1.level4Time = tracker.FinishingTime;
+				}
+				break;
+			case "Player2":
+				if (InformationManager.Instance.player2.level1Time == 0f)
+				{
+					InformationManager.Instance.player2.level1Time = tracker.FinishingTime;
+				}
+				else if (InformationManager.Instance.player2.level2Time == 0f)
+				{
+					InformationManager.Instance.player2.level2Time = tracker.FinishingTime;
+				}
+				else if (InformationManager.Instance.player2.level3Time == 0f)
+				{
+					InformationManager.Instance.player2.level3Time = tracker.FinishingTime;
+				}
+				else
+				{
+					InformationManager.Instance.player2.level4Time = tracker.FinishingTime;
+				}
+				break;
+			case "Player3":
+				if (InformationManager.Instance.player3.level1Time == 0f)
+				{
+					InformationManager.Instance.player3.level1Time = tracker.FinishingTime;
+				}
+				else if (InformationManager.Instance.player3.level2Time == 0f)
+				{
+					InformationManager.Instance.player3.level2Time = tracker.FinishingTime;
+				}
+				else if (InformationManager.Instance.player3.level3Time == 0f)
+				{
+					InformationManager.Instance.player3.level3Time = tracker.FinishingTime;
+				}
+				else
+				{
+					InformationManager.Instance.player3.level4Time = tracker.FinishingTime;
+				}
+				break;
+			case "Player4":
+				if (InformationManager.Instance.player4.level1Time == 0f)
+				{
+					InformationManager.Instance.player4.level1Time = tracker.FinishingTime;
+				}
+				else if (InformationManager.Instance.player4.level2Time == 0f)
+				{
+					InformationManager.Instance.player4.level2Time = tracker.FinishingTime;
+				}
+				else if (InformationManager.Instance.player4.level3Time == 0f)
+				{
+					InformationManager.Instance.player4.level3Time = tracker.FinishingTime;
+				}
+				else
+				{
+					InformationManager.Instance.player4.level4Time = tracker.FinishingTime;
+				}
+				break;
+		}
 	}
 
 	void AssignPlacementPoint(CheckpointTracker tracker)
 	{
 		tracker.PlacementPoint = initialPlayerCount - placedPlayers.Count;
+		string name = tracker.name;
+		switch (name)
+		{
+			case "Player1":
+				InformationManager.Instance.player1.score += tracker.PlacementPoint;
+				break;
+			case "Player2":
+				InformationManager.Instance.player2.score += tracker.PlacementPoint;
+				break;
+			case "Player3":
+				InformationManager.Instance.player3.score += tracker.PlacementPoint;
+				break;
+			case "Player4":
+				InformationManager.Instance.player4.score += tracker.PlacementPoint;
+				break;
+		}
 	}
 }
