@@ -18,7 +18,7 @@ public class Checkpoint : MonoBehaviour
 	[SerializeField] private AudioEffectController effectController;
 	[SerializeField] private float searchRadius = 1f;
 
-	public void SetColour(Color colour)
+	void Start()
 	{
 		if (playerFlags.Length > 0)
 		{
@@ -40,7 +40,7 @@ public class Checkpoint : MonoBehaviour
 		}
 	}
 
-	public List<Color> GetActivatedColours()
+	void Update()
 	{
 		Collider2D collider = Physics2D.OverlapCircle(transform.position, searchRadius);
 		if (playerFlags.Length <= 0) return;
