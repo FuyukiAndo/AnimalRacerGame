@@ -29,27 +29,38 @@ public class PlayerInput : MonoBehaviour
 	private KeyCode playerNoKey = KeyCode.None;
 
     [Range(0.01f, 1f)] public float speed = 0.25f;
-	private float targetAngle = 179f+90f;
+	
+	float minAngleValue = 1f+90f;
+	float maxAngleValue = 179f+90f;
+	
+	private float targetAngle;// = 179f+90f;
 	public bool rotationActive = false; 
 	public bool groundedMovement = true;
+	public bool groundedRun = false;
 
 	// Use this for initialization
 	void Start() 
 	{
+		targetAngle = maxAngleValue;
+		
 		//Starter character setup
 		PlayerCharacterType playerCharacterType;
 		playerCharacterType = PlayerCharacterType.PlayerNobody;
 		
 		playerController = GetComponent<PlayerController>();
+		playerController.playerStates = PlayerStates.playerIdle;
 		
-		var script0 = gameObject.GetComponent<PlayerAlbatross>();
+		var albatrossComponent = gameObject.GetComponent<PlayerAlbatross>();
+		var monkeyComponent = gameObject.GetComponent<PlayerAlbatross>();
+		var penguinComponent = gameObject.GetComponent<PlayerAlbatross>();
+		var pigComponent = gameObject.GetComponent<PlayerAlbatross>();
 		
 		keyDictionary.Add(playerNoKey, ()=>playerController.MoveNot());
 		keyDictionary.Add(playerLeftKey,()=>playerController.MoveLeft());
 		keyDictionary.Add(playerRightKey,()=>playerController.MoveRight());	
 		
 		//Albatross Setup
-		if(script0 !=null)
+		if(albatrossComponent !=null)
 		{
 			PlayerAlbatross playerAlbatross;
 			playerAlbatross = GetComponent<PlayerAlbatross>();
@@ -57,6 +68,19 @@ public class PlayerInput : MonoBehaviour
 			
 			keyDictionary.Add(playerJumpKey,()=>playerAlbatross.OnFlyKeyDown());
 			anotherDictionary.Add(playerJumpKey, ()=>playerAlbatross.OnFlyKeyUp());
+			keyDictionary.Add(playerAbilityKey,()=>playerAlbatross.OnAbilityKey());	
+		}
+		else if(monkeyComponent !=null)
+		{
+			//do something	
+		} 
+		else if(penguinComponent !=null)
+		{
+			//do something	
+		}
+		else if(pigComponent !=null)
+		{
+			//do something
 		}
 		else
 		{
@@ -80,12 +104,38 @@ public class PlayerInput : MonoBehaviour
 		{
 			keyDictionary[playerLeftKey]();
 		}
+		
+		if(Input.GetKeyDown(playerLeftKey))
+		{
+			playerController.playerStates = PlayerStates.playerRun;
+		}
+		
+		if(Input.GetKeyUp(playerLeftKey))
+		{
+			playerController.playerStates = PlayerStates.playerIdle;
+		}
 
 		//move player right
 		if(Input.GetKey(playerRightKey))
 		{
 			keyDictionary[playerRightKey]();
 		}	
+		
+		if(Input.GetKeyDown(playerRightKey))
+		{
+			playerController.playerStates = PlayerStates.playerRun;
+		}
+		
+		if(Input.GetKeyUp(playerRightKey))
+		{
+			playerController.playerStates = PlayerStates.playerIdle;
+		}
+		
+		// Ability Key
+		if(Input.GetKeyDown(playerAbilityKey))
+		{
+			keyDictionary[playerAbilityKey]();
+		}
 		
 		//max value of jump height
 		if(Input.GetKeyDown(playerJumpKey))
@@ -108,51 +158,76 @@ public class PlayerInput : MonoBehaviour
 		if(Input.GetKey(playerLeftKey))
 		{
 			rotationActive = true;
-			targetAngle = 179f+90f;
+			targetAngle = maxAngleValue;
 		}
 		
 		if(Input.GetKey(playerRightKey))
 		{
 			rotationActive = true;
-			targetAngle = 1f+90f;
+			targetAngle = minAngleValue;
 		}	
 		
 		if(Input.GetKeyDown(playerLeftKey))
 		{
-			if(groundedMovement)
+			if(groundedMovement && !groundedRun)
 			{
+				groundedRun = true;
 				animationHandler.SetAnimatorTrigger("Run");
+			}
+		}
+		else if(!Input.GetKeyDown(playerLeftKey))
+		{
+			if(groundedMovement && groundedRun)
+			{
+				groundedRun = false;
+				animationHandler.SetAnimatorTrigger("Idle");
 			}
 		}
 		
 		if(Input.GetKeyDown(playerRightKey))
 		{
-			if(groundedMovement)
+			if(groundedMovement && !groundedRun)
 			{
+				groundedRun = true;
 				animationHandler.SetAnimatorTrigger("Run");
 			}
 		}
-
-		if(Input.GetKeyUp(playerLeftKey))
+		else if(!Input.GetKeyDown(playerRightKey))
 		{
-			if(groundedMovement)
+			if(groundedMovement && groundedRun)
 			{
+				groundedRun = false;
+				animationHandler.SetAnimatorTrigger("Idle");
+			}
+		}
+
+		/*if(Input.GetKeyUp(playerLeftKey))
+		{
+			if(groundedMovement && groundedRun)
+			{
+				 groundedRun = false;
 				animationHandler.SetAnimatorTrigger("Idle");
 			}
 		}
 		
 		if(Input.GetKeyUp(playerRightKey))
-		{
-			if(groundedMovement)
+		{	
+			if(groundedMovement && groundedRun)
 			{
 				animationHandler.SetAnimatorTrigger("Idle");
+				groundedRun = false;
 			}
-		}
+		}*/
 		
 		if(Input.GetKeyDown(playerJumpKey))
 		{
 			//groundedMovement = false;
-			//animationHandler.SetAnimatorTrigger("Jump");
+			animationHandler.SetAnimatorTrigger("WingDown");
+		}
+		
+		if(Input.GetKeyUp(playerJumpKey))
+		{
+			animationHandler.SetAnimatorTrigger("WingUp");
 		}
 		
 		//Rotates player model when changing direction
@@ -170,7 +245,7 @@ public class PlayerInput : MonoBehaviour
 		if(animationHandler != null)
 		{
 			InputAnimation();
-		}
+		}		
 		
 		StaticZPos();
 	}

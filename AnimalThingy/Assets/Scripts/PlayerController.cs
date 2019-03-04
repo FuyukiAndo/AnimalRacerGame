@@ -2,14 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/*public enum PlayerType
+public enum PlayerType
 {
 	playerNobody,
 	playerAlbatross,
 	playerPig,
 	playerMonkey,
 	playerPenguin
-};*/
+};
+
+public enum PlayerStates
+{
+	playerIdle,
+	playerRun,
+	playerJump
+	
+};
 
 [RequireComponent(typeof(CollisionController))]
 //[RequireComponent(typeof(GravityController))]
@@ -17,6 +25,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+	public PlayerStates playerStates;
+	
 	[Header("Jump and Gravity Settings")]
 	[Tooltip("Max jump height value between 0.1f and x")]
 	public float maxJumpHeight = 8.0f;
@@ -58,7 +68,7 @@ public class PlayerController : MonoBehaviour
 	protected float mod0 = 0.1f;
 	protected float mod1 = 0.2f;
 	
-	protected float abilityMeter;
+	[Range(0.1f,100f)]public float abilityMeter = 100;
 
 	/*void Awake()
 	{

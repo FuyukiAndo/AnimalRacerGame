@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerAlbatross : PlayerController 
 {
+	public GameObject prefab;
 	[Header("Flying Settings")]
 	public float flyTimer = 3;
 	public int maxFlyCount = 3;
@@ -19,6 +20,8 @@ public class PlayerAlbatross : PlayerController
 	public override void Start()
 	{
 		base.Start();
+		playerStates = PlayerStates.playerIdle;
+		
 		mMaxFlyCount = maxFlyCount;
 		mFlyTimer = flyTimer;
 		playerInput = GetComponent<PlayerInput>();
@@ -28,15 +31,6 @@ public class PlayerAlbatross : PlayerController
 	public override void Update()
 	{
 		base.Update();		
-		
-		int arrayLength = 3;
-		int counter = 0;
-		for(int i = 0; i < arrayLength; i++)
-		{
-			counter = i;
-			Debug.Log(counter);
-			
-		}
 		
 		if(isFlying)
 		{
@@ -54,6 +48,10 @@ public class PlayerAlbatross : PlayerController
 		{
 			maxFlyCount = mMaxFlyCount;
 			playerInput.groundedMovement = true;
+		}
+		else
+		{
+			playerInput.groundedMovement = false;	
 		}
 		
 		if(maxFlyCount == 0)
@@ -89,9 +87,17 @@ public class PlayerAlbatross : PlayerController
 	
 	public void OnAbilityKey()
 	{
-		
+		 Instantiate(prefab, transform.position, new Quaternion(0, 0, 0, 0), gameObject.transform);
+		//Instantiate(prefab,transform.position, Quaternion.identity);
+		//prefab.transform.SetParent(transform.parent, true);
+		//prefab.transform.parent = gameObject.transform;
 	}
 	
+	
+	public int GetDirection()
+	{
+		return direction;
+	}
 	
 	/*void windDiraction()
     {
