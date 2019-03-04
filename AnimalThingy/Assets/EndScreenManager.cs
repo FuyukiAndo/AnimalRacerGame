@@ -67,19 +67,19 @@ public class ScoreScreenChild
     {
         for(int i = 0; i < childObjects.Count; i++)
         {
-            switch (GoalManager.Instance.placedPlayers[i].name)
+            switch (GoalManager.Instance.PlacedPlayers[i].name)
             {
                 case "Player1":
-                    childObjects[i].nameText.text = GoalManager.Instance.placedPlayers[i].name;
+                    childObjects[i].nameText.text = GoalManager.Instance.PlacedPlayers[i].name;
                     break;
                 case "Player2":
-                    childObjects[i].nameText.text = GoalManager.Instance.placedPlayers[i].name;
+                    childObjects[i].nameText.text = GoalManager.Instance.PlacedPlayers[i].name;
                     break;
                 case "Player3":
-                    childObjects[i].nameText.text = GoalManager.Instance.placedPlayers[i].name;
+                    childObjects[i].nameText.text = GoalManager.Instance.PlacedPlayers[i].name;
                     break;
                 case "Player4":
-                    childObjects[i].nameText.text = GoalManager.Instance.placedPlayers[i].name;
+                    childObjects[i].nameText.text = GoalManager.Instance.PlacedPlayers[i].name;
                     break;
             }
         }
@@ -89,9 +89,9 @@ public class ScoreScreenChild
     {
         Scene currentScene = SceneManager.GetActiveScene();
 
-        for(int i = 0; i < GoalManager.Instance.placedPlayers.Count; i++)
+        for(int i = 0; i < GoalManager.Instance.PlacedPlayers.Count; i++)
         {      
-            if(GoalManager.Instance.placedPlayers[i].name == "Player1")
+            if(GoalManager.Instance.PlacedPlayers[i].name == "Player1")
             {
                     if (currentScene.name == InformationManager.Instance.multiplayerLevels[0])
                     {
@@ -114,7 +114,7 @@ public class ScoreScreenChild
                     continue;
                 }
             }
-            if(GoalManager.Instance.placedPlayers[i].name == "Player2")
+            if(GoalManager.Instance.PlacedPlayers[i].name == "Player2")
             {
                     if (currentScene.name == InformationManager.Instance.multiplayerLevels[0])
                     {
@@ -137,7 +137,7 @@ public class ScoreScreenChild
                     continue;
                 }
             }
-            if (GoalManager.Instance.placedPlayers[i].name == "Player3")
+            if (GoalManager.Instance.PlacedPlayers[i].name == "Player3")
             {
                     if (currentScene.name == InformationManager.Instance.multiplayerLevels[0])
                     {
@@ -160,7 +160,7 @@ public class ScoreScreenChild
                     continue;
                 }
             }
-            if (GoalManager.Instance.placedPlayers[i].name == "Player4")
+            if (GoalManager.Instance.PlacedPlayers[i].name == "Player4")
             {
                     if (currentScene.name == InformationManager.Instance.multiplayerLevels[0])
                     {
@@ -183,7 +183,7 @@ public class ScoreScreenChild
                     continue;
                 }
             }
-            //    switch (GoalManager.Instance.placedPlayers[i].name)
+            //    switch (GoalManager.Instance.PlacedPlayers[i].name)
             //{
             //    case "Player1":
 

@@ -121,7 +121,10 @@ public class CameraScript : MonoBehaviour {
 
     IEnumerator Overlook()
     {
-		transform.position = startPos.position;
+        if (startPos != null)
+        {
+			transform.position = startPos.position;
+        }
 		cam.fieldOfView = startFov;
 		yield return new WaitForSeconds(timeBeforeZoomToPlayers);
 		followPlayers = true;
