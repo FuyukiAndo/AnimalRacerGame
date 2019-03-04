@@ -304,5 +304,4 @@ public class GoalManager : MonoBehaviour
 	{
 		tracker.PlacementPoint = initialPlayerCount - placedPlayers.Count;
 	}
-
 }

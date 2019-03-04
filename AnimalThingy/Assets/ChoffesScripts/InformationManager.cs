@@ -25,6 +25,7 @@ public class InformationManager : MonoBehaviour {
     public Player player3;
     public Player player4;
     public List<Player> players;
+
     public List<string> multiplayerLevels;
 
     private void Awake()
