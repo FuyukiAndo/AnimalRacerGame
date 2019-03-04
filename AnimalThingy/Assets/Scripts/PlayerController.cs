@@ -26,6 +26,7 @@ public enum PlayerStates
 public class PlayerController : MonoBehaviour
 {
 	public PlayerStates playerStates;
+    public PlayerType playerType;
 	
 	[Header("Jump and Gravity Settings")]
 	[Tooltip("Max jump height value between 0.1f and x")]
