@@ -8,7 +8,6 @@ public class PlatformController : RaycastController
 	[HideInInspector] public MovingPlatform movingPlatform;
 	public LayerMask entityMask;
 	public Vector2 moveEntity;
-
 	
 	public float setRayLength = 1.0f;
 	
@@ -17,7 +16,6 @@ public class PlatformController : RaycastController
 		base.Start();
 		movingPlatform = GetComponent<MovingPlatform>();
 		collisionController = GetComponent<CollisionController>();
-		
 	}
 	
 	void Update()
