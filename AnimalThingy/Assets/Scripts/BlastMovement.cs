@@ -6,14 +6,19 @@ public class BlastMovement : MonoBehaviour
 {
 	public float blastSpeed = 3f;
 	private int direction;
+	private int tempDirection;
 	private Vector2 movement;
-	
-	PlayerAlbatross playerAlbatross;
 	
 	void Start()
 	{
+		PlayerAlbatross playerAlbatross;
+		
 		playerAlbatross = GetComponentInParent<PlayerAlbatross>();
-		direction = playerAlbatross.GetDirection();
+		tempDirection = playerAlbatross.GetDirection();
+		direction = tempDirection;
+		tempDirection = 0;
+		
+		
 		
 		if(playerAlbatross.direction == -1)
 		{

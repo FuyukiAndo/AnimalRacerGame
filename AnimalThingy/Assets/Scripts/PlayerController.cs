@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
 	[HideInInspector] public float minVelocity;
 
 	//[Header("Player Type Settings")]
-	//public PlayerType playerType;
+	public PlayerType playerType;
 
 	[Header("Movement Settings")]
 	public float movementSpeed = 18.0f;
