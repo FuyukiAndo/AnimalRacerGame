@@ -28,7 +28,7 @@ public class GoalManager : MonoBehaviour
 			return placedPlayers;
 		}
 	}
-	private List<GameObject> placedPlayers = new List<GameObject>();
+	public List<GameObject> placedPlayers = new List<GameObject>();
 	private bool startCountDown;
 	public List<CheckpointTracker> unplacedPlayers = new List<CheckpointTracker>();
 	[SerializeField] private GameObject[] playerGoalPositions;
