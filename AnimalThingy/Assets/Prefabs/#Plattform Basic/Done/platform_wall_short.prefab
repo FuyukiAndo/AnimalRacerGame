@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 61009686547548590}
   m_Layer: 9
   m_Name: platform_wall_short
-  m_TagString: Ground
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

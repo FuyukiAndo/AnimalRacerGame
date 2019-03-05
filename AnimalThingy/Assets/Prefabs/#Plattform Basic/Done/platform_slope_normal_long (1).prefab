@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4209339750761032}
   m_Layer: 9
   m_Name: platform_slope_normal_long (1)
-  m_TagString: Ground
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
