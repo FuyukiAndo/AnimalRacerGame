@@ -22,6 +22,7 @@ public class MovingPlatform : MonoBehaviour
 	[HideInInspector] public float gravity;
 	
     public float timeUntilBroken;
+    public int platformDurability;
     //public float floatSpeed;
     public LayerMask characterLayer;
 	
@@ -32,8 +33,7 @@ public class MovingPlatform : MonoBehaviour
 	private float movementSpeed;
 
 	private int movementDirection;	
-    private int timeBeforeDestroyed;
-    private int platformDurability;
+    //private int timeBeforeDestroyed;
 	int oldColliderCount;
 	int newColliderCount;
 	
@@ -99,7 +99,7 @@ public class MovingPlatform : MonoBehaviour
 		
 
 
-		//DestroyPlatform();
+		DestroyPlatform();
     }
 
 	void OnPlatform()
@@ -118,13 +118,12 @@ public class MovingPlatform : MonoBehaviour
 		{
 			for(int i = 0; i < collision.Length; i++)
 			{
-				//Debug.Log(collision.Length);
 
 				bool isOnLayer = characterLayer == (characterLayer | (1 << collision[i].gameObject.layer));
-		
+		        
 				if(isOnLayer)
 				{
-					timeBeforeDestroyed--;
+                    platformDurability--;
 				}
 
 				if(collision[i].gameObject.tag == "Ground" && collision[i].gameObject != gameObject)
@@ -144,7 +143,7 @@ public class MovingPlatform : MonoBehaviour
                 }
 				if(collision[i].gameObject.tag == "Workdammit")
 				{
-					print("platform");
+                    movementDirection = -movementDirection;
 				}
 			}
 		}
@@ -190,21 +189,21 @@ public class MovingPlatform : MonoBehaviour
         //}
     }*/
 
-    void whichHitDir()
-    {
-       /* if(speed > 0)
-        {
-            hitDir = Vector2.right;
-        }
-        else if(speed < 0)
-        {
-            hitDir = Vector2.left;
-        }
-        else
-        {
-            hitDir = new Vector2(0, 0);
-        }*/
-    }
+    //void whichHitDir()
+    //{
+    //   /* if(speed > 0)
+    //    {
+    //        hitDir = Vector2.right;
+    //    }
+    //    else if(speed < 0)
+    //    {
+    //        hitDir = Vector2.left;
+    //    }
+    //    else
+    //    {
+    //        hitDir = new Vector2(0, 0);
+    //    }*/
+    //}
 	
   //  void MovePlatform()
     //{
@@ -237,13 +236,10 @@ public class MovingPlatform : MonoBehaviour
 	}*/
 
     void DestroyPlatform()
-    {
-        Debug.Log(timeBeforeDestroyed);
-		
-        if (timeBeforeDestroyed <= 0)
+    {		
+        if (platformDurability <= 0)
         {
             breakTime += Time.deltaTime;
-			
             if (breakTime > timeUntilBroken) 
 			{
 				Destroy(gameObject);

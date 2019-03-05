@@ -165,6 +165,6 @@ MonoBehaviour:
   speed: 1
   terrainTypesLayer:
     serializedVersion: 2
-    m_Bits: 272
+    m_Bits: 528
   timeBeforeSpikeFallsMin: 0
   timeBeforeSpikeFallsMax: 5

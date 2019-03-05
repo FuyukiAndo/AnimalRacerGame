@@ -165,6 +165,6 @@ MonoBehaviour:
   movingPlatform: {fileID: 0}
   entityMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 528
   moveEntity: {x: 0, y: 0}
-  setRayLength: 0.2
+  setRayLength: 1
