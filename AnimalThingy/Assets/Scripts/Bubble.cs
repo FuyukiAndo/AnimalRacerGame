@@ -25,6 +25,7 @@ public class Bubble : MonoBehaviour {
     void Update () {
         currentPosition = transform.position;
         MoveToPosition();
+        CollisionCheck();
 	}
 
     private void MoveToPosition()
@@ -32,9 +33,9 @@ public class Bubble : MonoBehaviour {
        travelTime += Time.deltaTime / timeBeforeDestination;
        transform.position = Vector2.Lerp(currentPosition, travelPosition, travelTime);
     }
+
     private void CollisionCheck()
     {
-
         var oldColliderCount = newColliderCount;
 
         colliders = Physics2D.OverlapBoxAll(transform.position, bc2d.bounds.size, 0.0f);
@@ -47,19 +48,12 @@ public class Bubble : MonoBehaviour {
                 bool isOnLayer = characterLayer == (characterLayer | (1 << collision.gameObject.layer));
                 if (isOnLayer)
                 {
-                    popBubble();
+                    StartCoroutine(PopBubble());
                 }
             }
         }
-    }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        bool isOnLayer = characterLayer == (characterLayer | (1 << collision.gameObject.layer));
-        if (isOnLayer) {
-            StartCoroutine(popBubble());
-        }
-    }
-    IEnumerator popBubble()
+    } 
+    IEnumerator PopBubble()
     {
         yield return new WaitForSeconds(bubbleSpawner.GetPopTime());
         Destroy(gameObject);
