@@ -9,10 +9,17 @@ public class Spawner : MonoBehaviour
     public float timeBetweenSpawnsMax;
     protected float spawnClock;
     protected float timeBetweenSpawns;
+
     private void Awake()
     {
-        GetComponent<MeshRenderer>().enabled = false;
-        GetComponent<CapsuleCollider2D>().enabled = false;
+        if (GetComponent<MeshRenderer>() != null)
+        {
+            GetComponent<MeshRenderer>().enabled = false;
+        }
+        if (GetComponent<CapsuleCollider2D>() != null)
+       {
+            GetComponent<CapsuleCollider2D>().enabled = false;
+        }
     }
     protected void Start()
     {
