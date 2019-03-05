@@ -24,8 +24,8 @@ GameObject:
   - component: {fileID: 251438522243788478}
   - component: {fileID: 68729426339099992}
   m_Layer: 9
-  m_Name: One Way Playform
-  m_TagString: Ground
+  m_Name: One Way Playform 1
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
