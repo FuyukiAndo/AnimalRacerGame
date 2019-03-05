@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
 	public float minJumpHeight = 1f;
 
 	[Tooltip("Min jump height value between 0.1f and x")]
-	[Range(0.1f,2.0f)]public float jumpAndFallDelay = 0.4f;
+	[Range(0.1f,6.0f)]public float jumpAndFallDelay = 0.4f;
 	
 	[HideInInspector] public float gravity;
 	[HideInInspector] public float maxVelocity;
@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
 	[Range(0.1f,1.0f)]public float movementAcceleration = 0.15f;
 
 	//References for CollisionController class and PlayerController class
-	protected CollisionController collisionController;
+	[HideInInspector]public CollisionController collisionController;
 	RaycastController raycastController;
 	
 	//[HideInInspector] public static PlayerController playerController;
@@ -62,9 +62,10 @@ public class PlayerController : MonoBehaviour
 	
 	[HideInInspector] public Vector2 movement;
 	[HideInInspector] public int direction;
-	
-	//Only public for debug
-	protected float tempSpeed;
+    [HideInInspector] public float stunDurationLeft;
+
+    //Only public for debug
+    protected float tempSpeed;
 	protected float mod0 = 0.1f;
 	protected float mod1 = 0.2f;
 	
@@ -207,10 +208,17 @@ public class PlayerController : MonoBehaviour
 		float verticalTranslate = gravity * Time.deltaTime;
 		
 		movement.y += verticalTranslate;
-		//collisionController.Move(movement * Time.deltaTime);
-		MoveObject(movement * Time.deltaTime);
-		
-		bool wallSliding = false;
+        //collisionController.Move(movement * Time.deltaTime);
+        if (stunDurationLeft > 0)
+        {
+            RecoverFromStun();
+        }
+        else
+        {
+            MoveObject(movement * Time.deltaTime);
+        }
+
+        bool wallSliding = false;
 
 		if((collisionController.boxCollisionDirections.left || collisionController.boxCollisionDirections.right) 
 			&& !collisionController.boxCollisionDirections.down && maxVelocity < 0)
@@ -249,8 +257,12 @@ public class PlayerController : MonoBehaviour
 
 		transform.Translate(movement,Space.World);
 	}
-	
-	void OnDrawGizmosSelected()
+    void RecoverFromStun()
+    {
+        stunDurationLeft -= Time.deltaTime;
+    }
+
+    void OnDrawGizmosSelected()
 	{
 		Gizmos.color = Color.red;
 		Gizmos.DrawLine(new Vector3(gameObject.transform.position.x-4, gameObject.transform.position.y + maxJumpHeight, 0),

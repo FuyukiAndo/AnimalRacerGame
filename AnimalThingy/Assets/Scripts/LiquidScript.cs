@@ -24,12 +24,16 @@ public class LiquidScript : MonoBehaviour {
     }
     void CollisionDetect()
     {
+        if(checkpointPositions.Count <= 0)
+        {
+            return;
+        }
         collider2d = Physics2D.OverlapBox(transform.position, bc2d.bounds.size, 0);
         playerController = collider2d.gameObject.GetComponent<PlayerController>();
 
         //if (playerController.playerType == PlayerType.playerPenguin) return;
 
-        if (checkpointPositions.Count <= 0 || collider2d.gameObject.GetComponent<CheckpointTracker>().CheckpointsPassed.Count <= 0)
+        if (collider2d.gameObject.GetComponent<CheckpointTracker>().CheckpointsPassed.Count <= 0)
         {
             collider2d.gameObject.transform.position = StartManager.Instance.spawnPos1.spawnPos.transform.position;
         }

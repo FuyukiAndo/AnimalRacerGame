@@ -1161,7 +1161,23 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.546875
+        functionName: PlayAudioOneShot
+        data: 
+        objectReferenceParameter: {fileID: 1934942309825892, guid: 5b29a2af749912542a1e24e3ff3321db,
+          type: 2}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.009375
+        functionName: PlayAudioOneShot
+        data: 
+        objectReferenceParameter: {fileID: 1934942309825892, guid: 5b29a2af749912542a1e24e3ff3321db,
+          type: 2}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}

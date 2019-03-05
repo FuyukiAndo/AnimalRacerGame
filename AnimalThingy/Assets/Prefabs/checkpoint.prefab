@@ -21,8 +21,8 @@ GameObject:
   - component: {fileID: 4054658343583894}
   - component: {fileID: 33861896701847922}
   - component: {fileID: 23505651037470766}
-  - component: {fileID: 114854939783317110}
   - component: {fileID: 61107090915512030}
+  - component: {fileID: 114042230987468328}
   m_Layer: 0
   m_Name: checkpoint
   m_TagString: Respawn
@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1829252250889114}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.49, y: 32.268463, z: -64.033585}
+  m_LocalPosition: {x: 10.49, y: 32.268463, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -109,7 +109,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &114854939783317110
+--- !u!114 &114042230987468328
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -121,3 +121,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 0
+  playerFlags: []
+  animationHandler: {fileID: 0}
+  animationTrigger: 
+  effectController: {fileID: 0}
+  searchRadius: 1

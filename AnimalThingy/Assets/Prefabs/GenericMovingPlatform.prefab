@@ -128,6 +128,7 @@ MonoBehaviour:
   fallDelay: 0.4
   gravity: 0
   timeUntilBroken: 2
+  platformDurability: 0
   characterLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -145,7 +146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collisionMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 528
   horizontalRaycastsAmount: 4
   verticalRaycastsAmount: 4
   SetRayLength: 1
@@ -165,6 +166,6 @@ MonoBehaviour:
   movingPlatform: {fileID: 0}
   entityMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   moveEntity: {x: 0, y: 0}
   setRayLength: 1

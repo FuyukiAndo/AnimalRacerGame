@@ -16,9 +16,7 @@ public class CheckpointTracker : MonoBehaviour
 	}
 	private List<int> checkPointsPassed = new List<int>();
 	private int lastCheckpointPassed = 0;
-	[SerializeField] private Vector2 boxSize = new Vector2(1.0f,1.0f), checkpointSearchSize;
-	[SerializeField] private float initialCheckpointTipDelay, recurringCheckpointTipDelay;
-	[SerializeField] private string UIMethodName;
+	[SerializeField] private Vector2 boxSize = new Vector2(1.0f,1.0f), boxOffset;
 	public float FinishingTime
 	{
 		get
@@ -30,7 +28,6 @@ public class CheckpointTracker : MonoBehaviour
 			finishingTime = value;
 		}
 	}
-	[SerializeField] private Color playerColour;
 	private float finishingTime;
 	public int PlacementPoint
 	{
@@ -44,9 +41,10 @@ public class CheckpointTracker : MonoBehaviour
 		}
 	}
 	private int placementPoint;
+	
 	void Update()
 	{
-		Collider2D collider = Physics2D.OverlapBox(transform.position, boxSize, 0f);
+		Collider2D collider = Physics2D.OverlapBox((Vector2)transform.position + boxOffset, boxSize, 0f);
 		if (collider.GetComponent<Checkpoint>())
 		{
 			Checkpoint checkPoint = collider.GetComponent<Checkpoint>();
@@ -74,6 +72,12 @@ public class CheckpointTracker : MonoBehaviour
 				checkPointsPassed.Add(checkPoint.Index);
 			}
 		}
+	}
+
+	void OnDrawGizmos()
+	{
+		Gizmos.color = Color.blue;
+		Gizmos.DrawWireCube((Vector2)transform.position + boxOffset, boxSize);
 	}
 
 	public Vector2 GetCurrentPosition()

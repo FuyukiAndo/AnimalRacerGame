@@ -5,24 +5,16 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public GameObject spawnObject;
-    public float timeBetweenSpawnsMin;
-    public float timeBetweenSpawnsMax;
+    public float timeBetweenSpawns;
     protected float spawnClock;
-    protected float timeBetweenSpawns;
-    private void Awake()
-    {
-        GetComponent<MeshRenderer>().enabled = false;
-        GetComponent<CapsuleCollider2D>().enabled = false;
-    }
+
     protected void Start()
     {
-        timeBetweenSpawnsMin = Mathf.Clamp(timeBetweenSpawnsMin, 0, timeBetweenSpawnsMin);
-        timeBetweenSpawnsMax = Mathf.Clamp(timeBetweenSpawnsMax, timeBetweenSpawnsMin, timeBetweenSpawnsMax);
+        timeBetweenSpawns = Mathf.Clamp(timeBetweenSpawns, 0, timeBetweenSpawns);
     }
 	
     protected void SpawnObject()
     {
-        timeBetweenSpawns = Random.Range(timeBetweenSpawnsMin, timeBetweenSpawnsMax);
         if (spawnClock > timeBetweenSpawns)
         {
 
