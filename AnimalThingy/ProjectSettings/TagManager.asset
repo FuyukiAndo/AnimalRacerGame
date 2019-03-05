@@ -3,7 +3,17 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Spike
+  - Character
+  - Tranpolin
+  - Ground
+  - Wall
+  - Bonefire
+  - OneWay
+  - oneWay
+  - Ball
+  - Workdammit
   layers:
   - Default
   - TransparentFX
@@ -13,12 +23,13 @@ TagManager:
   - UI
   - 
   - 
+  - Player
+  - Platform
+  - MovingPlatform
   - 
   - 
   - 
-  - 
-  - 
-  - 
+  - tempUI
   - 
   - 
   - 
