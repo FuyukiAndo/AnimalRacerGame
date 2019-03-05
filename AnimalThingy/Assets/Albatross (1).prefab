@@ -15212,6 +15212,8 @@ MonoBehaviour:
   playerAbilityKey: 115
   speed: 0.09
   rotationActive: 0
+  groundedMovement: 1
+  groundedRun: 0
 --- !u!114 &114742849067311526
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15223,7 +15225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5ec439ee930d954298470af432981e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boxSize: {x: 1, y: 1}
+  boxSize: {x: 1, y: 2}
   checkpointSearchSize: {x: 0, y: 0}
   initialCheckpointTipDelay: 0
   recurringCheckpointTipDelay: 0
@@ -15260,10 +15262,10 @@ MonoBehaviour:
   collisionMask:
     serializedVersion: 2
     m_Bits: 512
-  horizontalRaycastAmount: 4
-  verticalRaycastAmount: 4
-  maxAngle: 80
+  horizontalRaycastsAmount: 4
+  verticalRaycastsAmount: 4
   SetRayLength: 1
+  maxAngle: 80
 --- !u!114 &114949256285257286
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15275,17 +15277,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12cc0c1502d1f9a4d8cf9512b0083174, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerStates: 0
+  maxJumpHeight: 8
+  minJumpHeight: 1
+  jumpAndFallDelay: 0.4
+  gravity: 0
+  maxVelocity: 0
+  minVelocity: 0
   playerType: 0
   movementSpeed: 9
   movementAcceleration: 0.2
-  collisionController: {fileID: 114779052181348494}
-  gravityController: {fileID: 0}
-  wallSlideSpeedMax: 3
   movement: {x: -4.7322654e-29, y: -3.8317637}
   direction: 0
-  tempSpeed: 0
-  mod0: 0.1
-  mod1: 0.2
+  abilityMeter: 100
 --- !u!137 &137219577692733182
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

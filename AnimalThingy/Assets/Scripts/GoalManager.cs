@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GoalManager : MonoBehaviour
 {
@@ -28,13 +29,16 @@ public class GoalManager : MonoBehaviour
 			return placedPlayers;
 		}
 	}
-	public List<GameObject> placedPlayers = new List<GameObject>();
+	private List<GameObject> placedPlayers = new List<GameObject>();
 	private bool startCountDown;
-	public List<CheckpointTracker> unplacedPlayers = new List<CheckpointTracker>();
+	private List<CheckpointTracker> unplacedPlayers = new List<CheckpointTracker>();
 	[SerializeField] private GameObject[] playerGoalPositions;
 	[SerializeField] private string[] playerMoveScriptName;
 	private float totalTimeBeforeAutoPlacements;
 	private int initialPlayerCount;
+	[SerializeField] private LayerMask playerLayer, ignorePlayerLayer;
+	[SerializeField] private float nextSceneDelay;
+	private bool startedSceneSwitch;
 
 	void Start()
 	{
@@ -86,11 +90,11 @@ public class GoalManager : MonoBehaviour
 
 	void ValidateForGoal()
 	{
-		Collider2D collider = Physics2D.OverlapBox(transform.position, boxSize, 0f);
+		Collider2D collider = Physics2D.OverlapBox(transform.position, boxSize, 0f, playerLayer);
 
+		if (!collider.transform.GetComponent<CheckpointTracker>() || collider == null) return;
 		if (ValidateTracker(collider.transform.GetComponent<CheckpointTracker>()))
 		{
-			//print("Validated");
 			PlacePlayers();
 			if (countDownOnFirstPlayer && !startCountDown)
 			{
@@ -122,6 +126,7 @@ public class GoalManager : MonoBehaviour
 
 	bool ValidateTracker(CheckpointTracker tracker)
 	{
+		tracker.gameObject.layer = ignorePlayerLayer;
 		foreach (var placed in placedPlayers)
 		{
 			if (tracker.gameObject == placed)
@@ -184,6 +189,11 @@ public class GoalManager : MonoBehaviour
 		placedPlayers[index1].transform.position = playerGoalPositions[index1].transform.position;
 		TrapPlayers();
 		unplacedPlayers.RemoveAt(index);
+		if (unplacedPlayers.Count <= 0 && !startedSceneSwitch)
+		{
+			startedSceneSwitch = true;
+			StartCoroutine(LoadNextScene());
+		}
 	}
 
 	float GetDistToNextCheckpointInSequence(CheckpointTracker tracker)
@@ -406,6 +416,22 @@ public class GoalManager : MonoBehaviour
 			case "Player4":
 				InformationManager.Instance.player4.score += tracker.PlacementPoint;
 				break;
+		}
+	}
+
+	IEnumerator LoadNextScene()
+	{
+		yield return new WaitForSeconds(nextSceneDelay);
+		SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().name);
+		int index = InformationManager.Instance.multiplayerLevels.IndexOf(
+			InformationManager.Instance.multiplayerLevels.Find(x => x == SceneManager.GetActiveScene().name));
+		if (index + 1 >= InformationManager.Instance.multiplayerLevels.Count)
+		{
+			SceneManager.LoadScene("StartMenu", LoadSceneMode.Additive);
+		}
+		else
+		{
+			SceneManager.LoadScene(InformationManager.Instance.multiplayerLevels[index + 1], LoadSceneMode.Additive);
 		}
 	}
 }
