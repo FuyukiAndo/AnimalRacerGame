@@ -21,13 +21,12 @@ GameObject:
   - component: {fileID: 4191544377912692}
   - component: {fileID: 33289777183807648}
   - component: {fileID: 23293131065100616}
-  - component: {fileID: 58664732549273032}
   - component: {fileID: 50211802004755084}
   - component: {fileID: 114149042015133368}
-  - component: {fileID: 95326535610754392}
+  - component: {fileID: 58583448267880432}
   m_Layer: 0
   m_Name: Sphere
-  m_TagString: Untagged
+  m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40,7 +39,7 @@ Transform:
   m_GameObject: {fileID: 1163810867469742}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -21.19, y: 64.96523, z: 0}
-  m_LocalScale: {x: 2.8219066, y: 2.8518689, z: 2.8219063}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -106,7 +105,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &58664732549273032
+--- !u!58 &58583448267880432
 CircleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -121,23 +120,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!95 &95326535610754392
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1163810867469742}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114149042015133368
 MonoBehaviour:
   m_ObjectHideFlags: 1
