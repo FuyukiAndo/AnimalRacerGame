@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
 	public float minJumpHeight = 1f;
 
 	[Tooltip("Min jump height value between 0.1f and x")]
-	[Range(0.1f,2.0f)]public float jumpAndFallDelay = 0.4f;
+	[Range(0.1f,6.0f)]public float jumpAndFallDelay = 0.4f;
 	
 	[HideInInspector] public float gravity;
 	[HideInInspector] public float maxVelocity;
@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
 	[Range(0.1f,1.0f)]public float movementAcceleration = 0.15f;
 
 	//References for CollisionController class and PlayerController class
-	protected CollisionController collisionController;
+	[HideInInspector]public CollisionController collisionController;
 	RaycastController raycastController;
 	
 	//[HideInInspector] public static PlayerController playerController;

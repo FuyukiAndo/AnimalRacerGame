@@ -17,10 +17,13 @@ enum PlayerCharacterType
 public class PlayerInput : MonoBehaviour 
 {	
 	PlayerController playerController;
+	PlayerAlbatross playerAlbatross;
+	
 	public AnimationHandler animationHandler;
 	
 	Dictionary<KeyCode, Action> keyDictionary = new Dictionary<KeyCode, Action>();
 	Dictionary<KeyCode, Action> anotherDictionary = new Dictionary<KeyCode, Action>();
+	Dictionary<KeyCode, Action> aWholeNewDictionary = new Dictionary<KeyCode, Action>();
 	
 	public KeyCode playerLeftKey = KeyCode.LeftArrow;
 	public KeyCode playerRightKey = KeyCode.RightArrow;
@@ -35,8 +38,11 @@ public class PlayerInput : MonoBehaviour
 	
 	private float targetAngle;// = 179f+90f;
 	public bool rotationActive = false; 
-	public bool groundedMovement = true;
-	public bool groundedRun = false;
+	public bool isGrounded = true;
+	public bool isRunning = false;
+	//public bool groundedRun = false;
+	public bool isGliding = false;
+	public float f = 0;
 
 	// Use this for initialization
 	void Start() 
@@ -48,6 +54,7 @@ public class PlayerInput : MonoBehaviour
 		playerCharacterType = PlayerCharacterType.PlayerNobody;
 		
 		playerController = GetComponent<PlayerController>();
+		playerAlbatross = GetComponent<PlayerAlbatross>();
 		playerController.playerStates = PlayerStates.playerIdle;
 		
 		var albatrossComponent = gameObject.GetComponent<PlayerAlbatross>();
@@ -69,6 +76,9 @@ public class PlayerInput : MonoBehaviour
 			keyDictionary.Add(playerJumpKey,()=>playerAlbatross.OnFlyKeyDown());
 			anotherDictionary.Add(playerJumpKey, ()=>playerAlbatross.OnFlyKeyUp());
 			keyDictionary.Add(playerAbilityKey,()=>playerAlbatross.OnAbilityKey());	
+			
+			aWholeNewDictionary.Add(playerJumpKey, ()=>playerAlbatross.OnGlideKeyDown());
+			
 		}
 		else if(monkeyComponent !=null)
 		{
@@ -169,46 +179,69 @@ public class PlayerInput : MonoBehaviour
 		
 		if(Input.GetKeyDown(playerLeftKey))
 		{
-			if(groundedMovement && !groundedRun)
+			animationHandler.SetAnimatorBool("EndTheThird", true);			
+	
+			if(isGrounded)
 			{
-				groundedRun = true;
-				animationHandler.SetAnimatorTrigger("Run");
+				animationHandler.SetAnimatorBool("RunT", true);
+				animationHandler.SetAnimatorBool("IdleT", false);
+				animationHandler.SetAnimatorBool("EndGlideRun", false);
+				
+				isRunning = true;
+			}
+
+			if(!isGrounded)
+			{
+				animationHandler.SetAnimatorBool("EndGlideRun", true);		
 			}
 		}
 		
 		if(Input.GetKeyDown(playerRightKey))
 		{
-			if(groundedMovement && !groundedRun)
+			animationHandler.SetAnimatorBool("EndTheThird", true);	
+			
+			if(isGrounded)
 			{
-				groundedRun = true;
-				animationHandler.SetAnimatorTrigger("Run");
+				animationHandler.SetAnimatorBool("EndGlideRun", false);
+				animationHandler.SetAnimatorBool("RunT", true);
+				animationHandler.SetAnimatorBool("IdleT", false);
+				
+				isRunning = true;
 			}
 		}
 
 		if(Input.GetKeyUp(playerLeftKey))
-		{
-			if(groundedMovement && groundedRun)
-			{
-				 groundedRun = false;
-				animationHandler.SetAnimatorTrigger("Idle");
+		{				
+			animationHandler.SetAnimatorBool("EndTheThird", false);	
+		
+			if(isGrounded)
+			{	
+				animationHandler.SetAnimatorBool("EndGlideRun", false);
+				animationHandler.SetAnimatorBool("RunT", false);
+				animationHandler.SetAnimatorBool("IdleT", true);
+				
+				isRunning = false;
 			}
 		}
 		
 		if(Input.GetKeyUp(playerRightKey))
 		{	
-			if(groundedMovement && groundedRun)
-			{
-				animationHandler.SetAnimatorTrigger("Idle");
-				groundedRun = false;
+			animationHandler.SetAnimatorBool("EndTheThird", false);	
+			
+			if(isGrounded)
+			{	
+				animationHandler.SetAnimatorBool("EndGlideRun", false);
+				animationHandler.SetAnimatorBool("RunT", false);
+				animationHandler.SetAnimatorBool("IdleT", true);
+				
+				isRunning = false;
 			}
 		}
 		
 		if(Input.GetKeyDown(playerJumpKey))
 		{
-			//groundedMovement = false;
 			animationHandler.SetAnimatorTrigger("WingDown");
 		}
-		
 		if(Input.GetKeyUp(playerJumpKey))
 		{
 			animationHandler.SetAnimatorTrigger("WingUp");
@@ -224,13 +257,43 @@ public class PlayerInput : MonoBehaviour
 	
 	void Update() 
 	{		
+		//var oldPos;
+		
 		InputAction();
 		
 		if(animationHandler != null)
 		{
 			InputAnimation();
 		}		
-		
 		StaticZPos();
+		
+		Debug.Log(playerAlbatross.movement.x);
+		
+		if(playerAlbatross.collisionController.boxCollisionDirections.down)
+		{
+			isGrounded = true;
+			
+			if(playerAlbatross.movement.x != 0)
+			{
+				animationHandler.SetAnimatorBool("EndGlide", false);	
+				animationHandler.SetAnimatorBool("EndGlideRun", true);					
+			}
+
+			if(playerAlbatross.movement.x == 0)
+			{
+				animationHandler.SetAnimatorBool("EndGlideRun", true);	
+				//animationHandler.SetAnimatorBool("EndGlide", true);		
+				animationHandler.SetAnimatorBool("RunT", false);						
+			}
+		}
+		else
+		{
+				animationHandler.SetAnimatorBool("EndGlide", false);				
+				animationHandler.SetAnimatorBool("IdleT", false);				
+				isGrounded = false;				
+		}
+
+		
+		//oldPos = transform.position;
 	}
 }
