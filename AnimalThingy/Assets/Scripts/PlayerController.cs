@@ -62,9 +62,10 @@ public class PlayerController : MonoBehaviour
 	
 	[HideInInspector] public Vector2 movement;
 	[HideInInspector] public int direction;
-	
-	//Only public for debug
-	protected float tempSpeed;
+    [HideInInspector] public float stunDurationLeft;
+
+    //Only public for debug
+    protected float tempSpeed;
 	protected float mod0 = 0.1f;
 	protected float mod1 = 0.2f;
 	
@@ -207,10 +208,17 @@ public class PlayerController : MonoBehaviour
 		float verticalTranslate = gravity * Time.deltaTime;
 		
 		movement.y += verticalTranslate;
-		//collisionController.Move(movement * Time.deltaTime);
-		MoveObject(movement * Time.deltaTime);
-		
-		bool wallSliding = false;
+        //collisionController.Move(movement * Time.deltaTime);
+        if (stunDurationLeft > 0)
+        {
+            RecoverFromStun();
+        }
+        else
+        {
+            MoveObject(movement * Time.deltaTime);
+        }
+
+        bool wallSliding = false;
 
 		if((collisionController.boxCollisionDirections.left || collisionController.boxCollisionDirections.right) 
 			&& !collisionController.boxCollisionDirections.down && maxVelocity < 0)
@@ -249,8 +257,12 @@ public class PlayerController : MonoBehaviour
 
 		transform.Translate(movement,Space.World);
 	}
-	
-	void OnDrawGizmosSelected()
+    void RecoverFromStun()
+    {
+        stunDurationLeft -= Time.deltaTime;
+    }
+
+    void OnDrawGizmosSelected()
 	{
 		Gizmos.color = Color.red;
 		Gizmos.DrawLine(new Vector3(gameObject.transform.position.x-4, gameObject.transform.position.y + maxJumpHeight, 0),

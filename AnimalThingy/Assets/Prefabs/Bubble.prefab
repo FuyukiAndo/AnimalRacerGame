@@ -23,9 +23,9 @@ GameObject:
   - component: {fileID: 23037676934651740}
   - component: {fileID: 114211526868221612}
   - component: {fileID: 61992133511604462}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Bubble
-  m_TagString: Ground
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,4 +123,4 @@ MonoBehaviour:
   timeBeforeDestination: 100
   characterLayer:
     serializedVersion: 2
-    m_Bits: 1536
+    m_Bits: 256

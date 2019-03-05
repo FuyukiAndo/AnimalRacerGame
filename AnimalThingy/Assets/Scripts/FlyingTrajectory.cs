@@ -17,11 +17,11 @@ public class FlyingTrajectory : MonoBehaviour {
 
     protected void OnCollisionEnter2D(Collision2D collision)
     {
-        TemporaryCodeDump player = collision.gameObject.GetComponent<TemporaryCodeDump>();
+        PlayerController player = collision.gameObject.GetComponent<PlayerController>();
         bool isOnLayer = terrainTypesLayer == (terrainTypesLayer | (1 << collision.gameObject.layer));
         if (player != null)
         {
-            //StartCoroutine(player.GetStunnedAndDestroy(stunDuration, gameObject));
+            player.stunDurationLeft = stunDuration;
             GetComponent<MeshRenderer>().enabled = false;
             GetComponent<Collider2D>().enabled = false;
         }
