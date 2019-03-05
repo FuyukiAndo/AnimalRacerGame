@@ -23,8 +23,8 @@ GameObject:
   - component: {fileID: 23434509837552568}
   - component: {fileID: 61061350268961362}
   - component: {fileID: 114887990348794836}
-  - component: {fileID: 114566883890920160}
   - component: {fileID: 114773650638937810}
+  - component: {fileID: 114236911758095602}
   m_Layer: 10
   m_Name: GenericMovingPlatform
   m_TagString: Ground
@@ -111,29 +111,9 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.0000001}
   m_EdgeRadius: 0
---- !u!114 &114566883890920160
+--- !u!114 &114236911758095602
 MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1225037111131342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef2f0b25bf02456429b0d61ae375410c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  horizontalRaycastAmount: 4
-  verticalRaycastAmount: 4
-  collisionController: {fileID: 0}
-  movingPlatform: {fileID: 0}
-  entityMask:
-    serializedVersion: 2
-    m_Bits: 256
-  moveEntity: {x: 0, y: 0}
-  setRayLength: 1
---- !u!114 &114773650638937810
-MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1225037111131342}
@@ -147,12 +127,12 @@ MonoBehaviour:
   maxVelocity: 8
   fallDelay: 0.4
   gravity: 0
-  timeUntilBroken: 0
+  timeUntilBroken: 2
   characterLayer:
     serializedVersion: 2
     m_Bits: 256
   movement: {x: 0, y: 0}
---- !u!114 &114887990348794836
+--- !u!114 &114773650638937810
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -163,8 +143,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f3c395ba95f4f341a3da67a53d8acfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalRaycastAmount: 4
-  verticalRaycastAmount: 4
   collisionMask:
     serializedVersion: 2
     m_Bits: 528
@@ -172,3 +150,21 @@ MonoBehaviour:
   verticalRaycastsAmount: 4
   SetRayLength: 1
   maxAngle: 80
+--- !u!114 &114887990348794836
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1225037111131342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef2f0b25bf02456429b0d61ae375410c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionController: {fileID: 0}
+  movingPlatform: {fileID: 0}
+  entityMask:
+    serializedVersion: 2
+    m_Bits: 528
+  moveEntity: {x: 0, y: 0}
+  setRayLength: 1

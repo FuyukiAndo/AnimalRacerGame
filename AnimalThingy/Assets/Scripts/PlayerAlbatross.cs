@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerAlbatross : PlayerController 
 {
-	public GameObject prefab;
+	GameObject windBlastObject;//prefab;
 	[Header("Flying Settings")]
 	public float flyTimer = 3;
 	public int maxFlyCount = 3;
@@ -13,14 +13,17 @@ public class PlayerAlbatross : PlayerController
 	private int mMaxFlyCount;
 	private float mFlyTimer;
 	private float countdownMod = 0.1f;
+	private float tempDelay;
+	public bool isGliding = false;
+	//public float tt = 0;
 
 	PlayerInput playerInput;
-	
 	
 	public override void Start()
 	{
 		base.Start();
 		playerStates = PlayerStates.playerIdle;
+		windBlastObject = Resources.Load<GameObject>("Prefabs/SpeedUpBlast");
 		
 		mMaxFlyCount = maxFlyCount;
 		mFlyTimer = flyTimer;
@@ -47,11 +50,11 @@ public class PlayerAlbatross : PlayerController
 		if(collisionController.boxCollisionDirections.down)
 		{
 			maxFlyCount = mMaxFlyCount;
-			playerInput.groundedMovement = true;
+			//playerInput.groundedMovement = true;
 		}
 		else
 		{
-			playerInput.groundedMovement = false;	
+			//playerInput.groundedMovement = false;	
 		}
 		
 		if(maxFlyCount == 0)
@@ -63,18 +66,53 @@ public class PlayerAlbatross : PlayerController
 				maxFlyCount = mMaxFlyCount;
 			}
 		}
+				float t = movement.y+maxVelocity;
+	
+		//Debug.Log(tt);
+		//Debug.Log("Movement.y: " + t);
+		//Debug.Log("MaxVelocity: " + maxVelocity);
+		
+		/*if(tt < maxVelocity && isGliding == false && isFlying == true)
+		{
+			//isGliding = true;
+			tt=tt+1.4f;
+		}	
+		
+		if(tt >= maxVelocity)
+		{
+			isGliding = true;
+			tt = 0;
+		}*/
+		
 	}
 	
 	public void OnFlyKeyDown()
 	{	
-		if(maxFlyCount != 0)
-		{
-			if (flyTimer == mFlyTimer)
+
+		if(!isGliding)
+		{	
+			//jumpAndFallDelay = 0.884f;
+			
+			if(maxFlyCount != 0)
 			{
-				isFlying = true;
-				movement.y = maxVelocity;
+				if (flyTimer == mFlyTimer)
+				{
+					isFlying = true;
+					movement.y = maxVelocity;
+				}
 			}
 		}
+	}
+	
+	
+	public void OnGlideKeyDown()
+	{
+		 jumpAndFallDelay = 1.8f;
+	}
+	
+	public void OnGlideKeyUp()
+	{
+
 	}
 	
 	public void OnFlyKeyUp()
@@ -87,8 +125,11 @@ public class PlayerAlbatross : PlayerController
 	
 	public void OnAbilityKey()
 	{
-		 Instantiate(prefab, transform.position, new Quaternion(0, 0, 0, 0), gameObject.transform);
-		 
+		
+		
+		Instantiate(windBlastObject, new Vector2(transform.position.x,transform.position.y+10f), new Quaternion(0, 0, 0, 0), gameObject.transform);
+		Physics2D.IgnoreCollision(windBlastObject.GetComponent<BoxCollider2D>(), GetComponent<BoxCollider2D>());
+		
 		//Instantiate(prefab,transform.position, Quaternion.identity);
 		//prefab.transform.SetParent(transform.parent, true);
 		//prefab.transform.parent = gameObject.transform;

@@ -14,7 +14,14 @@ public class TerrainSnowball : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         rb2d = GetComponent<Rigidbody2D>();
-        dir = gameObject.transform.lossyScale.x;
+        if(speed > 0)
+        {
+            dir = gameObject.transform.lossyScale.x;
+        }
+        else
+        {
+            dir = -gameObject.transform.lossyScale.x;
+        }
 	}
 	
 	// Update is called once per frame
@@ -24,7 +31,6 @@ public class TerrainSnowball : MonoBehaviour {
         Vector2 movement = new Vector2(speed, 0);
         rb2d.AddForce(movement);
 	}
-
     public void hitWall()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right, dir, terrainLayer);
