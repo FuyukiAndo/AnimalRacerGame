@@ -22,7 +22,6 @@ public class MovingPlatform : MonoBehaviour
 	[HideInInspector] public float gravity;
 	
     public float timeUntilBroken;
-    public int platformDurability;
     //public float floatSpeed;
     public LayerMask characterLayer;
 	
@@ -33,7 +32,8 @@ public class MovingPlatform : MonoBehaviour
 	private float movementSpeed;
 
 	private int movementDirection;	
-    //private int timeBeforeDestroyed;
+    private int timeBeforeDestroyed;
+    private int platformDurability;
 	int oldColliderCount;
 	int newColliderCount;
 	
@@ -81,15 +81,9 @@ public class MovingPlatform : MonoBehaviour
 		//Updates gravity every frame
 		UpdateGravity();
 		movement.x = movementDirection;
-
-        //If collides with a BoxCollider2D above or below then velocity or movement in y-axis = 0
-        if (collisionController.boxCollisionDirections.down)
-        {
-            movement.y = 0;
-        }
-
-        //Add gravity to y-axis of Vector2 'movement'
-        float verticalTranslate = gravity * Time.deltaTime;
+		
+		//Add gravity to y-axis of Vector2 'movement'
+		float verticalTranslate = gravity * Time.deltaTime;
 		movement.y += verticalTranslate;
 		
 		//Platform travels a direction with constant speed
@@ -97,9 +91,13 @@ public class MovingPlatform : MonoBehaviour
 			
         //MoveObject(movement * Time.deltaTime);
 		
+		//If collides with a BoxCollider2D above or below then velocity or movement in y-axis = 0
+		if (collisionController.boxCollisionDirections.up || collisionController.boxCollisionDirections.down)
+		{
+			movement.y = 0;
+		}
 
-
-		DestroyPlatform();
+		//DestroyPlatform();
     }
 
 	void OnPlatform()
@@ -118,12 +116,13 @@ public class MovingPlatform : MonoBehaviour
 		{
 			for(int i = 0; i < collision.Length; i++)
 			{
+				//Debug.Log(collision.Length);
 
 				bool isOnLayer = characterLayer == (characterLayer | (1 << collision[i].gameObject.layer));
-		        
+		
 				if(isOnLayer)
 				{
-                    platformDurability--;
+					timeBeforeDestroyed--;
 				}
 
 				if(collision[i].gameObject.tag == "Ground" && collision[i].gameObject != gameObject)
@@ -137,13 +136,10 @@ public class MovingPlatform : MonoBehaviour
 					
 					//Destroy(collision[i].gameObject);
 				}
-                if(collision[i].gameObject.layer == LayerMask.NameToLayer("Platform"))
-                {
-                    Destroy(gameObject);
-                }
+
 				if(collision[i].gameObject.tag == "Workdammit")
 				{
-                    movementDirection = -movementDirection;
+					print("platform");
 				}
 			}
 		}
@@ -189,21 +185,21 @@ public class MovingPlatform : MonoBehaviour
         //}
     }*/
 
-    //void whichHitDir()
-    //{
-    //   /* if(speed > 0)
-    //    {
-    //        hitDir = Vector2.right;
-    //    }
-    //    else if(speed < 0)
-    //    {
-    //        hitDir = Vector2.left;
-    //    }
-    //    else
-    //    {
-    //        hitDir = new Vector2(0, 0);
-    //    }*/
-    //}
+    void whichHitDir()
+    {
+       /* if(speed > 0)
+        {
+            hitDir = Vector2.right;
+        }
+        else if(speed < 0)
+        {
+            hitDir = Vector2.left;
+        }
+        else
+        {
+            hitDir = new Vector2(0, 0);
+        }*/
+    }
 	
   //  void MovePlatform()
     //{
@@ -236,10 +232,13 @@ public class MovingPlatform : MonoBehaviour
 	}*/
 
     void DestroyPlatform()
-    {		
-        if (platformDurability <= 0)
+    {
+        Debug.Log(timeBeforeDestroyed);
+		
+        if (timeBeforeDestroyed <= 0)
         {
             breakTime += Time.deltaTime;
+			
             if (breakTime > timeUntilBroken) 
 			{
 				Destroy(gameObject);
