@@ -274,23 +274,29 @@ public class PlayerInput : MonoBehaviour
 			isGrounded = true;
 			
 			if(playerAlbatross.movement.x != 0)
-			{
-				animationHandler.SetAnimatorBool("EndGlide", false);	
+			{	
 				animationHandler.SetAnimatorBool("EndGlideRun", true);					
 			}
 
 			if(playerAlbatross.movement.x == 0)
 			{
-				animationHandler.SetAnimatorBool("EndGlideRun", true);	
-				//animationHandler.SetAnimatorBool("EndGlide", true);		
+				animationHandler.SetAnimatorBool("EndGlideRun", true);		
 				animationHandler.SetAnimatorBool("RunT", false);						
 			}
 		}
 		else
 		{
-				animationHandler.SetAnimatorBool("EndGlide", false);				
-				animationHandler.SetAnimatorBool("IdleT", false);				
-				isGrounded = false;				
+			animationHandler.SetAnimatorBool("EndGlideRun", false);	
+			animationHandler.SetAnimatorBool("EndGlide", false);				
+			animationHandler.SetAnimatorBool("IdleT", false);	
+			animationHandler.SetAnimatorBool("RunT", false);
+				
+			if(playerAlbatross.movement.x == 0)
+			{	
+						
+			}				
+			
+			isGrounded = false;				
 		}
 
 		
