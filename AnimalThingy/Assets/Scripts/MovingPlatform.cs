@@ -81,9 +81,15 @@ public class MovingPlatform : MonoBehaviour
 		//Updates gravity every frame
 		UpdateGravity();
 		movement.x = movementDirection;
-		
-		//Add gravity to y-axis of Vector2 'movement'
-		float verticalTranslate = gravity * Time.deltaTime;
+
+        //If collides with a BoxCollider2D above or below then velocity or movement in y-axis = 0
+        if (collisionController.boxCollisionDirections.down)
+        {
+            movement.y = 0;
+        }
+
+        //Add gravity to y-axis of Vector2 'movement'
+        float verticalTranslate = gravity * Time.deltaTime;
 		movement.y += verticalTranslate;
 		
 		//Platform travels a direction with constant speed
@@ -91,11 +97,7 @@ public class MovingPlatform : MonoBehaviour
 			
         //MoveObject(movement * Time.deltaTime);
 		
-		//If collides with a BoxCollider2D above or below then velocity or movement in y-axis = 0
-		if (collisionController.boxCollisionDirections.up || collisionController.boxCollisionDirections.down)
-		{
-			movement.y = 0;
-		}
+
 
 		//DestroyPlatform();
     }
@@ -136,7 +138,10 @@ public class MovingPlatform : MonoBehaviour
 					
 					//Destroy(collision[i].gameObject);
 				}
-
+                if(collision[i].gameObject.layer == LayerMask.NameToLayer("Platform"))
+                {
+                    Destroy(gameObject);
+                }
 				if(collision[i].gameObject.tag == "Workdammit")
 				{
 					print("platform");

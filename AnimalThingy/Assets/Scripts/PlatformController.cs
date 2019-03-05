@@ -27,7 +27,8 @@ public class PlatformController : RaycastController
 			moveEntity = movingPlatform.movement;
 		}
 
-		Vector2 movement = moveEntity * Time.deltaTime;
+
+        Vector2 movement = moveEntity * Time.deltaTime;
 		MoveObject(movement);
 
 	}
