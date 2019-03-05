@@ -6,6 +6,7 @@ using FMODUnity;
 using FMOD;
 using FMOD.Studio;
 
+[RequireComponent(typeof(AudioSource))]
 public class AudioEffectController : MonoBehaviour {
 
 	[SerializeField] private bool playEffectAuto, oneshot, attached;
@@ -32,6 +33,7 @@ public class AudioEffectController : MonoBehaviour {
 	private AudioSource source;
 
 	[SerializeField] private Vector2 boxSize = new Vector2(1f, 1f);
+	[SerializeField] private Dictionary<string, AudioClip> clips;
 
 	void Start()
 	{
@@ -455,6 +457,21 @@ public class AudioEffectController : MonoBehaviour {
 	public void PlayAudioOneShot()
 	{
 		source.PlayOneShot(clip);
+	}
+
+	public void SetAudioClip(AudioClip clip)
+	{
+		source.clip = clip;
+	}
+
+	public void SetAudioClip(string clip)
+	{
+		AudioClip _clip;
+		clips.TryGetValue(clip, out _clip);
+		if (clip != null)
+		{
+			source.clip = _clip;
+		}
 	}
 
 	public void SetAudioVolume(float volume)
