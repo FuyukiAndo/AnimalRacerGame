@@ -14459,7 +14459,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1868843985287048}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 19.538933, y: 8.45, z: 0}
+  m_LocalPosition: {x: 242.73878, y: 1.1066668, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4718760125600232}
@@ -15211,11 +15211,12 @@ MonoBehaviour:
   animationHandler: {fileID: 114046187569117440}
   playerLeftKey: 276
   playerRightKey: 275
-  playerJumpKey: 97
+  playerJumpKey: 32
   playerAbilityKey: 115
   speed: 0.09
   rotationActive: 1
   groundedMovement: 1
+  groundedRun: 1
 --- !u!114 &114552997832392996
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15245,19 +15246,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e08f83bd87fb6d45a770257bf733f45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxJumpHeight: 8
+  playerStates: 0
+  maxJumpHeight: 4
   minJumpHeight: 1
-  jumpAndFallDelay: 0.884
+  jumpAndFallDelay: 0.6
   gravity: 0
   maxVelocity: 0
   minVelocity: 0
-  movementSpeed: 11
+  playerType: 0
+  movementSpeed: 10
   movementAcceleration: 0.15
   movement: {x: 0, y: 0}
   direction: 0
-  flyTimer: 1.6
-  maxFlyCount: 3
-  isFlying: 0
+  abilityMeter: 100
+  prefab: {fileID: 0}
+  flyTimer: 2.3
+  maxFlyCount: 2
 --- !u!137 &137254172613971228
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
