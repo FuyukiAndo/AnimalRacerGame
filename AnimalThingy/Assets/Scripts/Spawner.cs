@@ -16,9 +16,9 @@ public class Spawner : MonoBehaviour
         {
             GetComponent<MeshRenderer>().enabled = false;
         }
-        if (GetComponent<CapsuleCollider2D>() != null)
+        if (GetComponent<Collider2D>() != null)
        {
-            GetComponent<CapsuleCollider2D>().enabled = false;
+            GetComponent<Collider2D>().enabled = false;
         }
     }
     protected void Start()
