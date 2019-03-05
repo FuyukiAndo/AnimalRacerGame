@@ -44,15 +44,16 @@ public class PlayerInput : MonoBehaviour
 	public bool isGliding = false;
 	public float f = 0;
 
+	PlayerCharacterType playerCharacterType;
+
 	// Use this for initialization
 	void Start() 
 	{
 		targetAngle = maxAngleValue;
 		
 		//Starter character setup
-		PlayerCharacterType playerCharacterType;
 		playerCharacterType = PlayerCharacterType.PlayerNobody;
-		
+
 		playerController = GetComponent<PlayerController>();
 		playerAlbatross = GetComponent<PlayerAlbatross>();
 		playerController.playerStates = PlayerStates.playerIdle;
@@ -175,77 +176,100 @@ public class PlayerInput : MonoBehaviour
 		{
 			rotationActive = true;
 			targetAngle = minAngleValue;
-		}	
-		
-		if(Input.GetKeyDown(playerLeftKey))
-		{
-			animationHandler.SetAnimatorBool("EndTheThird", true);			
-	
-			if(isGrounded)
-			{
-				animationHandler.SetAnimatorBool("RunT", true);
-				animationHandler.SetAnimatorBool("IdleT", false);
-				animationHandler.SetAnimatorBool("EndGlideRun", false);
-				
-				isRunning = true;
-			}
-
-			if(!isGrounded)
-			{
-				animationHandler.SetAnimatorBool("EndGlideRun", true);		
-			}
-		}
-		
-		if(Input.GetKeyDown(playerRightKey))
-		{
-			animationHandler.SetAnimatorBool("EndTheThird", true);	
-			
-			if(isGrounded)
-			{
-				animationHandler.SetAnimatorBool("EndGlideRun", false);
-				animationHandler.SetAnimatorBool("RunT", true);
-				animationHandler.SetAnimatorBool("IdleT", false);
-				
-				isRunning = true;
-			}
 		}
 
-		if(Input.GetKeyUp(playerLeftKey))
-		{				
-			animationHandler.SetAnimatorBool("EndTheThird", false);	
-		
-			if(isGrounded)
-			{	
-				animationHandler.SetAnimatorBool("EndGlideRun", false);
-				animationHandler.SetAnimatorBool("RunT", false);
-				animationHandler.SetAnimatorBool("IdleT", true);
-				
-				isRunning = false;
+		#region PlayerAblatross
+		if (playerCharacterType == PlayerCharacterType.PlayerAlbatross)
+		{
+			if (Input.GetKeyDown(playerLeftKey))
+			{
+				animationHandler.SetAnimatorBool("EndTheThird", true);
+
+				if (isGrounded)
+				{
+					animationHandler.SetAnimatorBool("RunT", true);
+					animationHandler.SetAnimatorBool("IdleT", false);
+					animationHandler.SetAnimatorBool("EndGlideRun", false);
+
+					isRunning = true;
+				}
+
+				if (!isGrounded)
+				{
+					animationHandler.SetAnimatorBool("EndGlideRun", true);
+				}
+			}
+
+			if (Input.GetKeyDown(playerRightKey))
+			{
+				animationHandler.SetAnimatorBool("EndTheThird", true);
+
+				if (isGrounded)
+				{
+					animationHandler.SetAnimatorBool("EndGlideRun", false);
+					animationHandler.SetAnimatorBool("RunT", true);
+					animationHandler.SetAnimatorBool("IdleT", false);
+
+					isRunning = true;
+				}
+			}
+
+			if (Input.GetKeyUp(playerLeftKey))
+			{
+				animationHandler.SetAnimatorBool("EndTheThird", false);
+
+				if (isGrounded)
+				{
+					animationHandler.SetAnimatorBool("EndGlideRun", false);
+					animationHandler.SetAnimatorBool("RunT", false);
+					animationHandler.SetAnimatorBool("IdleT", true);
+
+					isRunning = false;
+				}
+			}
+
+			if (Input.GetKeyUp(playerRightKey))
+			{
+				animationHandler.SetAnimatorBool("EndTheThird", false);
+
+				if (isGrounded)
+				{
+					animationHandler.SetAnimatorBool("EndGlideRun", false);
+					animationHandler.SetAnimatorBool("RunT", false);
+					animationHandler.SetAnimatorBool("IdleT", true);
+
+					isRunning = false;
+				}
+			}
+
+			if (Input.GetKeyDown(playerJumpKey))
+			{
+				animationHandler.SetAnimatorTrigger("WingDown");
+			}
+			if (Input.GetKeyUp(playerJumpKey))
+			{
+				animationHandler.SetAnimatorTrigger("WingUp");
 			}
 		}
-		
-		if(Input.GetKeyUp(playerRightKey))
-		{	
-			animationHandler.SetAnimatorBool("EndTheThird", false);	
+		#endregion
+		#region PlayerPenguin
+		else if (playerCharacterType == PlayerCharacterType.PlayerPenguin)
+		{
 			
-			if(isGrounded)
-			{	
-				animationHandler.SetAnimatorBool("EndGlideRun", false);
-				animationHandler.SetAnimatorBool("RunT", false);
-				animationHandler.SetAnimatorBool("IdleT", true);
-				
-				isRunning = false;
-			}
 		}
-		
-		if(Input.GetKeyDown(playerJumpKey))
+		#endregion
+		#region PlayerPig
+		else if (playerCharacterType == PlayerCharacterType.PlayerPig)
 		{
-			animationHandler.SetAnimatorTrigger("WingDown");
+
 		}
-		if(Input.GetKeyUp(playerJumpKey))
+		#endregion
+		#region PlayerMonkey
+		else if (playerCharacterType == PlayerCharacterType.PlayerMonkey)
 		{
-			animationHandler.SetAnimatorTrigger("WingUp");
+
 		}
+		#endregion
 		
 		//Rotates player model when changing direction
 		if(rotationActive)
@@ -269,37 +293,60 @@ public class PlayerInput : MonoBehaviour
 		
 		Debug.Log(playerAlbatross.movement.x);
 		
-		if(playerAlbatross.collisionController.boxCollisionDirections.down)
+		#region PlayerAblatross
+		if (playerCharacterType == PlayerCharacterType.PlayerAlbatross)
 		{
-			isGrounded = true;
-			
-			if(playerAlbatross.movement.x != 0)
-			{	
-				animationHandler.SetAnimatorBool("EndGlideRun", true);					
-			}
-
-			if(playerAlbatross.movement.x == 0)
+			if (playerAlbatross.collisionController.boxCollisionDirections.down)
 			{
-				animationHandler.SetAnimatorBool("EndGlideRun", true);		
-				animationHandler.SetAnimatorBool("RunT", false);						
+				isGrounded = true;
+
+				if (playerAlbatross.movement.x != 0)
+				{
+					animationHandler.SetAnimatorBool("EndGlideRun", true);
+				}
+
+				if (playerAlbatross.movement.x == 0)
+				{
+					animationHandler.SetAnimatorBool("EndGlideRun", true);
+					animationHandler.SetAnimatorBool("RunT", false);
+				}
+			}
+			else
+			{
+				animationHandler.SetAnimatorBool("EndGlideRun", false);
+				animationHandler.SetAnimatorBool("EndGlide", false);
+				animationHandler.SetAnimatorBool("IdleT", false);
+				animationHandler.SetAnimatorBool("RunT", false);
+
+				if (playerAlbatross.movement.x == 0)
+				{
+
+				}
+
+				isGrounded = false;
 			}
 		}
-		else
+		#endregion
+		#region PlayerPenguin
+		else if (playerCharacterType == PlayerCharacterType.PlayerPenguin)
 		{
-			animationHandler.SetAnimatorBool("EndGlideRun", false);	
-			animationHandler.SetAnimatorBool("EndGlide", false);				
-			animationHandler.SetAnimatorBool("IdleT", false);	
-			animationHandler.SetAnimatorBool("RunT", false);
-				
-			if(playerAlbatross.movement.x == 0)
-			{	
-						
-			}				
-			
-			isGrounded = false;				
-		}
 
-		
+		}
+		#endregion
+		#region PlayerPig
+		else if (playerCharacterType == PlayerCharacterType.PlayerPig)
+		{
+
+		}
+		#endregion
+		#region PlayerMonkey
+		else if (playerCharacterType == PlayerCharacterType.PlayerMonkey)
+		{
+
+		}
+		#endregion
+
+
 		//oldPos = transform.position;
 	}
 }
