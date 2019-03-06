@@ -273,11 +273,11 @@ public class MultiplayerManager : MonoBehaviour {
                         int temp = Random.Range(0, tempMaps.Count);
                         if (InformationManager.Instance.multiplayerLevels.Contains(tempMaps[temp]))
                         {
-                            tempMaps.Remove(tempMaps[i]);
+                            tempMaps.Remove(tempMaps[temp]);
                         }
                         else
                         {
-                            InformationManager.Instance.multiplayerLevels.Add(tempMaps[i]);
+                            InformationManager.Instance.multiplayerLevels.Add(tempMaps[temp]);
                             levelSelected = true;
                         }
                     }
@@ -295,11 +295,11 @@ public class MultiplayerManager : MonoBehaviour {
                         int temp = Random.Range(0, tempMaps.Count);
                         if (InformationManager.Instance.multiplayerLevels.Contains(tempMaps[temp]))
                         {
-                            tempMaps.Remove(tempMaps[i]);
+                            tempMaps.Remove(tempMaps[temp]);
                         }
                         else
                         {
-                            InformationManager.Instance.multiplayerLevels.Add(tempMaps[i]);
+                            InformationManager.Instance.multiplayerLevels.Add(tempMaps[temp]);
                             levelSelected = true;
                         }
                     }
@@ -316,11 +316,11 @@ public class MultiplayerManager : MonoBehaviour {
                         int temp = Random.Range(0, tempMaps.Count);
                         if (InformationManager.Instance.multiplayerLevels.Contains(tempMaps[temp]))
                         {
-                            tempMaps.Remove(tempMaps[i]);
+                            tempMaps.Remove(tempMaps[temp]);
                         }
                         else
                         {
-                            InformationManager.Instance.multiplayerLevels.Add(tempMaps[i]);
+                            InformationManager.Instance.multiplayerLevels.Add(tempMaps[temp]);
                             levelSelected = true;
                         }
                     }
@@ -337,11 +337,11 @@ public class MultiplayerManager : MonoBehaviour {
                         int temp = Random.Range(0, tempMaps.Count);
                         if (InformationManager.Instance.multiplayerLevels.Contains(tempMaps[temp]))
                         {
-                            tempMaps.Remove(tempMaps[i]);
+                            tempMaps.Remove(tempMaps[temp]);
                         }
                         else
                         {
-                            InformationManager.Instance.multiplayerLevels.Add(tempMaps[i]);
+                            InformationManager.Instance.multiplayerLevels.Add(tempMaps[temp]);
                             levelSelected = true;
                         }
                     }
@@ -375,19 +375,20 @@ public class MultiplayerManager : MonoBehaviour {
 
     private void LoadRandomScene()
     {
+        List<string> tempList = new List<string>(allMaps);
         bool levelSelected = false;
-        for(int i = 0; i < allMaps.Count; i++)
+        for(int i = 0; i < tempList.Count; i++)
         {
             if (levelSelected == false)
             {
                 int temp = Random.Range(0, allMaps.Count);
                 if (InformationManager.Instance.multiplayerLevels.Contains(allMaps[temp]))
                 {
-                    allMaps.Remove(allMaps[i]);
+                    allMaps.Remove(allMaps[temp]);
                 }
                 else
                 {
-                    InformationManager.Instance.multiplayerLevels.Add(allMaps[i]);
+                    InformationManager.Instance.multiplayerLevels.Add(allMaps[temp]);
                     levelSelected = true;
                 }
             }

@@ -17,6 +17,11 @@ public class StartManager : MonoBehaviour
     public SpawnPoint spawnPos4;
     private List<SpawnPoint> spawnPoints;
 
+    public Material redCrystalMaterial;
+    public Material blueCrystalMaterial;
+    public Material greenCrystalMaterial;
+    public Material yellowCrystalMaterial;
+
 	public static StartManager Instance
 	{
 		get
@@ -133,6 +138,8 @@ public class StartManager : MonoBehaviour
             if (InformationManager.Instance.players[i] == InformationManager.Instance.player1)
             {
                 spawnedPlayer.name = "Player1";
+                Transform crystalChild = spawnedPlayer.transform.Find("PlayerCrystal");
+                crystalChild.GetComponent<MeshRenderer>().material = redCrystalMaterial;
                 spawnedPlayer.GetComponent<PlayerInput>().playerLeftKey = KeybindingsManager.Instance.Player1Keys.left;
                 spawnedPlayer.GetComponent<PlayerInput>().playerRightKey = KeybindingsManager.Instance.Player1Keys.right;
                 spawnedPlayer.GetComponent<PlayerInput>().playerJumpKey = KeybindingsManager.Instance.Player1Keys.jump;
@@ -142,6 +149,8 @@ public class StartManager : MonoBehaviour
             if (InformationManager.Instance.players[i] == InformationManager.Instance.player2)
             {
                 spawnedPlayer.name = "Player2";
+                Transform crystalChild = spawnedPlayer.transform.Find("PlayerCrystal");
+                crystalChild.GetComponent<MeshRenderer>().material = blueCrystalMaterial;
                 spawnedPlayer.GetComponent<PlayerInput>().playerLeftKey = KeybindingsManager.Instance.Player2Keys.left;
                 spawnedPlayer.GetComponent<PlayerInput>().playerRightKey = KeybindingsManager.Instance.Player2Keys.right;
                 spawnedPlayer.GetComponent<PlayerInput>().playerJumpKey = KeybindingsManager.Instance.Player2Keys.jump;
@@ -151,6 +160,8 @@ public class StartManager : MonoBehaviour
             if (InformationManager.Instance.players[i] == InformationManager.Instance.player3)
             {
                 spawnedPlayer.name = "Player3";
+                Transform crystalChild = spawnedPlayer.transform.Find("PlayerCrystal");
+                crystalChild.GetComponent<MeshRenderer>().material = greenCrystalMaterial;
                 spawnedPlayer.GetComponent<PlayerInput>().playerLeftKey = KeybindingsManager.Instance.Player3Keys.left;
                 spawnedPlayer.GetComponent<PlayerInput>().playerRightKey = KeybindingsManager.Instance.Player3Keys.right;
                 spawnedPlayer.GetComponent<PlayerInput>().playerJumpKey = KeybindingsManager.Instance.Player3Keys.jump;
@@ -160,6 +171,8 @@ public class StartManager : MonoBehaviour
             if (InformationManager.Instance.players[i] == InformationManager.Instance.player4)
             {
                 spawnedPlayer.name = "Player4";
+                Transform crystalChild = spawnedPlayer.transform.Find("PlayerCrystal");
+                crystalChild.GetComponent<MeshRenderer>().material = yellowCrystalMaterial;
                 spawnedPlayer.GetComponent<PlayerInput>().playerLeftKey = KeybindingsManager.Instance.Player4Keys.left;
                 spawnedPlayer.GetComponent<PlayerInput>().playerRightKey = KeybindingsManager.Instance.Player4Keys.right;
                 spawnedPlayer.GetComponent<PlayerInput>().playerJumpKey = KeybindingsManager.Instance.Player4Keys.jump;

@@ -23,3 +23,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Is_bana_new.unity
     guid: e4a4279a51aabca42a2018ac829e952d
+  - enabled: 1
+    path: Assets/Scenes/Is_bana_test1.unity
+    guid: 6e40f93d339a7304da519b8f26fbd752
+  - enabled: 1
+    path: Assets/Scenes/Is_bana_test2.unity
+    guid: e567e3fc34b1f4f4abd3755b38a231f1
+  - enabled: 1
+    path: Assets/Scenes/Is_bana_test3.unity
+    guid: eac0c9fbb8bb84e4abff0089f7be6ea7
