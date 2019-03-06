@@ -22,8 +22,7 @@ public class FlyingTrajectory : MonoBehaviour {
         if (player != null)
         {
             player.stunDurationLeft = stunDuration;
-            GetComponent<MeshRenderer>().enabled = false;
-            GetComponent<Collider2D>().enabled = false;
+            Destroy(gameObject);
         }
         if(isOnLayer)
         {
