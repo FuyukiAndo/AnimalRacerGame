@@ -2664,7 +2664,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1375142751
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2701,7 +2701,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1412334644
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2895,7 +2895,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1653670235
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3148,7 +3148,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1746753581}
+      - m_Target: {fileID: 0}
         m_MethodName: Continue
         m_Mode: 1
         m_Arguments:
@@ -3276,7 +3276,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1746753577}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c9965fbf2ee289419fd1807e4142c4f, type: 3}
+  m_Script: {fileID: 11500000, guid: 65ad3098d320f644884eab692fdd3a0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   firstChild:
@@ -3299,11 +3299,6 @@ MonoBehaviour:
     timeText: {fileID: 1654271561}
     nameText: {fileID: 1260249788}
     scoreText: {fileID: 1275129440}
-  victoryScene: 1
-  player1Color: {r: 1, g: 0, b: 0, a: 1}
-  player2Color: {r: 0, g: 0, b: 1, a: 1}
-  player3Color: {r: 0, g: 1, b: 0, a: 1}
-  player4Color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!1 &1895907782
 GameObject:
   m_ObjectHideFlags: 0
@@ -3318,7 +3313,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1895907783
 RectTransform:
   m_ObjectHideFlags: 0
