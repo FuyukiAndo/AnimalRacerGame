@@ -27,7 +27,7 @@ public class InformationManager : MonoBehaviour {
     public List<Player> players;
 
     public List<string> multiplayerLevels;
-
+    public int sceneIndex = 0;
     private void Awake()
     {
         if (Instance == null)

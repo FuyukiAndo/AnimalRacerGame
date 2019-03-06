@@ -14353,7 +14353,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -14377,7 +14377,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
 --- !u!95 &95009904322853554
 Animator:
   serializedVersion: 3
@@ -14416,8 +14416,10 @@ MonoBehaviour:
   playerType: 4
   movementSpeed: 9
   movementAcceleration: 0.2
+  collisionController: {fileID: 0}
   movement: {x: -4.7322654e-29, y: -3.8317637}
   direction: 0
+  stunDurationLeft: 0
   abilityMeter: 100
 --- !u!114 &114088474332127142
 MonoBehaviour:
@@ -14489,8 +14491,10 @@ MonoBehaviour:
   playerAbilityKey: 115
   speed: 0.25
   rotationActive: 0
-  groundedMovement: 1
-  groundedRun: 0
+  isGrounded: 1
+  isRunning: 0
+  isGliding: 0
+  f: 0
 --- !u!114 &114879823984058200
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -32,3 +32,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Is_bana_test3.unity
     guid: eac0c9fbb8bb84e4abff0089f7be6ea7
+  - enabled: 1
+    path: Assets/Scenes/VictoryScene.unity
+    guid: 1a9ab8010dbe0974eb333eed8a7e70c4

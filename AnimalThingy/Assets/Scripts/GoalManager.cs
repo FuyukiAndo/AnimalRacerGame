@@ -91,7 +91,8 @@ public class GoalManager : MonoBehaviour
     IEnumerator Wait()
     {
         yield return new WaitForSeconds(5.0f);
-        
+        InformationManager.Instance.sceneIndex += 1;
+        SceneManager.LoadScene(InformationManager.Instance.multiplayerLevels[InformationManager.Instance.sceneIndex]);
     }
 	void ValidateForGoal()
 	{

@@ -43,8 +43,6 @@ public class MultiplayerManager : MonoBehaviour {
         {
             SetPlayerInactive(4);
         }
-        //Aktivera när 4 eller fler kompletta scener finns och ligger i InformationManagers folders för banor
-        AddAllMapsToList();
     }
 
     private void Update()
@@ -232,6 +230,7 @@ public class MultiplayerManager : MonoBehaviour {
 
     public void StartGame()
     {
+        AddAllMapsToList();
         int amountOfReadyPlayers = 0;
         for (int i = 0; i < InformationManager.Instance.players.Count; i++)
         {
@@ -252,7 +251,7 @@ public class MultiplayerManager : MonoBehaviour {
                     }
                 }
 
-
+                InformationManager.Instance.multiplayerLevels.Add("VictoryScene");
                 SceneManager.LoadScene(InformationManager.Instance.multiplayerLevels[0]);
 			}
         }

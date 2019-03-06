@@ -7105,6 +7105,7 @@ GameObject:
   - component: {fileID: 33843152062892332}
   - component: {fileID: 65785339625773270}
   - component: {fileID: 23458219592764168}
+  - component: {fileID: 114382666865093218}
   m_Layer: 0
   m_Name: PlayerCrystal
   m_TagString: Untagged
@@ -15361,6 +15362,23 @@ MonoBehaviour:
   autoAnimate: 0
   animator: {fileID: 0}
   animationType: []
+--- !u!114 &114382666865093218
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1887674428577990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 809408e66f2ce1e49a0375bf27482b16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  redCrystalMaterial: {fileID: 2100000, guid: 5c3107764d405d044b69c556421c9b48, type: 2}
+  blueCrystalMaterial: {fileID: 2100000, guid: a5187cf2d8b971d4087cb62427a9d173, type: 2}
+  greenCrystalMaterial: {fileID: 2100000, guid: 106e0a992223e7542a57cf733695c711,
+    type: 2}
+  yellowCrystalMaterial: {fileID: 2100000, guid: 1841b5596ca744b4d8e16085a83d274a,
+    type: 2}
 --- !u!114 &114403236259646676
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15400,8 +15418,10 @@ MonoBehaviour:
   playerAbilityKey: 115
   speed: 0.09
   rotationActive: 0
-  groundedMovement: 1
-  groundedRun: 0
+  isGrounded: 1
+  isRunning: 0
+  isGliding: 0
+  f: 0
 --- !u!114 &114742849067311526
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15471,8 +15491,10 @@ MonoBehaviour:
   playerType: 1
   movementSpeed: 9
   movementAcceleration: 0.2
+  collisionController: {fileID: 0}
   movement: {x: -4.7322654e-29, y: -3.8317637}
   direction: 0
+  stunDurationLeft: 0
   abilityMeter: 100
 --- !u!137 &137219577692733182
 SkinnedMeshRenderer:
