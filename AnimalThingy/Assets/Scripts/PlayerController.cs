@@ -11,13 +11,13 @@ public enum PlayerType
 	playerPenguin
 };
 
-public enum PlayerStates
+/*public enum PlayerStates
 {
 	playerIdle,
 	playerRun,
 	playerJump
 	
-};
+};*/
 
 [RequireComponent(typeof(CollisionController))]
 //[RequireComponent(typeof(GravityController))]

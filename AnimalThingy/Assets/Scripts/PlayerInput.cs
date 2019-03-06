@@ -19,6 +19,8 @@ public class PlayerInput : MonoBehaviour
 	PlayerController playerController;
 	PlayerAlbatross playerAlbatross;
 	
+	public PlayerCharacterType playerCharacterType;
+	
 	public AnimationHandler animationHandler;
 	
 	Dictionary<KeyCode, Action> keyDictionary = new Dictionary<KeyCode, Action>();
@@ -50,7 +52,7 @@ public class PlayerInput : MonoBehaviour
 		targetAngle = maxAngleValue;
 		
 		//Starter character setup
-		PlayerCharacterType playerCharacterType;
+		//PlayerCharacterType playerCharacterType;
 		playerCharacterType = PlayerCharacterType.PlayerNobody;
 		
 		playerController = GetComponent<PlayerController>();
@@ -74,10 +76,10 @@ public class PlayerInput : MonoBehaviour
 			playerCharacterType = PlayerCharacterType.PlayerAlbatross;
 			
 			keyDictionary.Add(playerJumpKey,()=>playerAlbatross.OnFlyKeyDown());
-			anotherDictionary.Add(playerJumpKey, ()=>playerAlbatross.OnFlyKeyUp());
+			anotherDictionary.Add(playerJumpKey,()=>playerAlbatross.OnFlyKeyUp());
 			keyDictionary.Add(playerAbilityKey,()=>playerAlbatross.OnAbilityKey());	
 			
-			aWholeNewDictionary.Add(playerJumpKey, ()=>playerAlbatross.OnGlideKeyDown());
+			aWholeNewDictionary.Add(playerJumpKey,()=>playerAlbatross.OnGlideKeyDown());
 			
 		}
 		else if(monkeyComponent !=null)
