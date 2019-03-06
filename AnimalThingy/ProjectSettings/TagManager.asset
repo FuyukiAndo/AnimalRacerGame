@@ -12,6 +12,7 @@ TagManager:
   - Bonefire
   - Coast_Character
   - Jungle_Character
+  - Wall
   layers:
   - Default
   - TransparentFX
