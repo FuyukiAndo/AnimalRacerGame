@@ -15208,17 +15208,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ada670a83430aa448bc3fa1cbfa48aaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerCharacterType: 0
   animationHandler: {fileID: 114046187569117440}
   playerLeftKey: 276
   playerRightKey: 275
-  playerJumpKey: 32
+  playerJumpKey: 97
   playerAbilityKey: 115
-  speed: 0.09
-  rotationActive: 1
-  isGrounded: 1
-  isRunning: 0
-  isGliding: 0
-  f: 0
+  rotationSpeed: 0.09
+  minAngleValue: 91
+  maxAngleValue: 269
+  targetAngle: 0
+  isControllable: 1
 --- !u!114 &114552997832392996
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15248,8 +15248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e08f83bd87fb6d45a770257bf733f45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerStates: 0
-  maxJumpHeight: 8
+  maxJumpHeight: 6
   minJumpHeight: 1
   jumpAndFallDelay: 0.884
   gravity: 0
@@ -15260,11 +15259,18 @@ MonoBehaviour:
   movementAcceleration: 0.15
   collisionController: {fileID: 0}
   movement: {x: 0, y: 0}
-  direction: 0
+  movementDirection: 0
   abilityMeter: 100
+  abilityTimer: 3
+  playerInput: {fileID: 0}
   flyTimer: 2.3
   maxFlyCount: 20
   isGliding: 0
+  abilityModifier: 0
+  mDash: 0
+  glideTimer: 1
+  activateGlide: 0
+  maxGlideSpeed: 2.79
 --- !u!137 &137254172613971228
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

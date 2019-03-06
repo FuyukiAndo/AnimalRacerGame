@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerAlbatross : PlayerController 
 {
-	GameObject windBlastObject;//prefab;
+	GameObject windBlastObject; //make it public instead?
 	[Header("Flying Settings")]
 	public float flyTimer = 3;
 	public int maxFlyCount = 3;
@@ -15,6 +15,13 @@ public class PlayerAlbatross : PlayerController
 	private float countdownMod = 0.1f;
 	private float tempDelay;
 	public bool isGliding = false;
+	public float abilityModifier;
+	public bool mDash = false; 
+	//public int dashCounter;
+	public float glideTimer = 1.0f;
+	public bool activateGlide = false;
+	[Range(0.1f,6.0f)] public float maxGlideSpeed = 4.0f;
+	private float tempFallDelay;
 	//public float tt = 0;
 
 	//private PlayerInput playerInput;
@@ -23,18 +30,60 @@ public class PlayerAlbatross : PlayerController
 	{
 		base.Start();
 		//playerStates = PlayerStates.playerIdle;
-		windBlastObject = Resources.Load<GameObject>("Prefabs/SpeedUpBlast");
-		
+		windBlastObject = Resources.Load<GameObject>("Prefabs/SpeedUpBlast"); //good idea - ?
 		
 		mMaxFlyCount = maxFlyCount;
 		mFlyTimer = flyTimer;
+		abilityModifier = 2f;
+		tempFallDelay = jumpAndFallDelay;
+		//dashCounter = 0;
 		//playerInput = GetComponent<PlayerInput>();
-		abilityMeter = 1.0f;
+		//abilityMeter = 1.0f;
 	}
 	
 	public override void Update()
 	{
 		base.Update();		
+		
+		if(activateGlide)
+		{
+			glideTimer -= 1.4f * Time.deltaTime;
+			isGliding = false;
+		}
+		
+		if(isGliding)
+		{
+			float directionY = Mathf.Sign(movement.y);
+			
+			if(directionY == -1)
+			{
+				jumpAndFallDelay = maxGlideSpeed;	
+			}
+		}
+		else
+		{
+			jumpAndFallDelay = tempFallDelay;
+		}
+		
+		if(glideTimer < 0)
+		{
+			activateGlide = false;	
+			isGliding = true;
+			glideTimer = 1.0f;
+		}
+		
+		if(mDash && abilityMeter < 100)
+		{
+			movement.x += -1 * abilityDirection * abilityModifier;
+			abilityMeter=abilityMeter+abilityTimer;
+		}
+	
+		if(abilityMeter >= 100)
+		{
+			mDash = false;
+			playerInput.isControllable = true;
+			abilityMeter = 100;
+		}
 		
 		if(isFlying)
 		{
@@ -53,10 +102,10 @@ public class PlayerAlbatross : PlayerController
 			maxFlyCount = mMaxFlyCount;
 			//playerInput.groundedMovement = true;
 		}
-		else
-		{
+		//else
+		//{
 			//playerInput.groundedMovement = false;	
-		}
+		//}
 		
 		if(maxFlyCount == 0)
 		{	
@@ -67,7 +116,8 @@ public class PlayerAlbatross : PlayerController
 				maxFlyCount = mMaxFlyCount;
 			}
 		}
-				float t = movement.y+maxVelocity;
+		
+		//float t = movement.y+maxVelocity;
 	
 		//Debug.Log(tt);
 		//Debug.Log("Movement.y: " + t);
@@ -88,10 +138,12 @@ public class PlayerAlbatross : PlayerController
 	}
 	
 	public void OnFlyKeyDown()
-	{	
-
+	{
+		//glideTimer -= 0.1f * Time.deltaTime;
+		
 		if(!isGliding)
 		{	
+			activateGlide = true;	
 			//jumpAndFallDelay = 0.884f;
 			
 			if(maxFlyCount != 0)
@@ -103,20 +155,27 @@ public class PlayerAlbatross : PlayerController
 				}
 			}
 		}
+		else
+		{	
+			//jumpAndFallDelay = 4.0f;		
+		}
 	}
 	
-	public void OnGlideKeyDown()
+	/*public void OnGlideKeyDown()
 	{
 		 jumpAndFallDelay = 1.8f;
-	}
+	}*/
 	
-	public void OnGlideKeyUp()
+	/*public void OnGlideKeyUp()
 	{
 
-	}
+	}*/
 	
 	public void OnFlyKeyUp()
 	{
+		isGliding = false;
+		activateGlide = false;
+				
 		if(movement.y > minVelocity)
 		{
 			movement.y = minVelocity;
@@ -125,16 +184,22 @@ public class PlayerAlbatross : PlayerController
 	
 	public void OnAbilityKey()
 	{
+		//abilityModifier
+		if(abilityMeter==100)
+		{
+			mDash = true;
+			abilityMeter = 0;
+			playerInput.isControllable = false;
+		}
 		
 		
-		Instantiate(windBlastObject, new Vector2(transform.position.x,transform.position.y+2f), new Quaternion(0, 0, 0, 0), gameObject.transform);
+		Instantiate(windBlastObject, new Vector2(transform.position.x+(2.5f*abilityDirection),transform.position.y+2f), new Quaternion(0, 0, 0, 0), gameObject.transform);
 		Physics2D.IgnoreCollision(windBlastObject.GetComponent<BoxCollider2D>(), GetComponent<BoxCollider2D>());
 		
 		//Instantiate(prefab,transform.position, Quaternion.identity);
 		//prefab.transform.SetParent(transform.parent, true);
 		//prefab.transform.parent = gameObject.transform;
 	}
-	
 	
 	/*public int GetDirection()
 	{

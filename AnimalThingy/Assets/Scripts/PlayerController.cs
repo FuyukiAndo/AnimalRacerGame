@@ -61,31 +61,28 @@ public class PlayerController : MonoBehaviour
 	protected float wallSlideSpeedMax = 3;
 	
 	[HideInInspector] public Vector2 movement;
-	[HideInInspector] public int direction;
-	private int abilityDirection;
+	[HideInInspector] public int movementDirection;
+	protected int abilityDirection;
 	
 	//Only public for debug
 	protected float tempSpeed;
 	protected float mod0 = 0.1f;
 	protected float mod1 = 0.2f;
 	
-	[Range(0.1f,100f)]public float abilityMeter = 100;
+	public int abilityMeter = 100;
+	public int abilityTimer = 3;
+	public float stunDuration = 10f;
 	
 	public PlayerInput playerInput;
-
-	/*void Awake()
-	{
-		//playerController = this;
-	}*/
-
+	public Collider2D[] collision;	
+	
 	public virtual void Start()
 	{
 		collisionController = GetComponent<CollisionController>();
 		raycastController = GetComponent<RaycastController>();
 		playerInput = GetComponent<PlayerInput>();
-		direction = 0;
+		movementDirection = 0;
 		abilityDirection = 0;
-		//abilityRegen = 1f;
 	}
 
 	public void UpdateGravity()
@@ -115,11 +112,6 @@ public class PlayerController : MonoBehaviour
 		if(movementSpeed < 1.0f)
 		{
 			movementSpeed = 1.0f;
-		}
-		
-		if(direction > 1)
-		{
-			direction = 1;
 		}
 	}
 	
@@ -162,7 +154,7 @@ public class PlayerController : MonoBehaviour
 		movement.x = -1 * tempSpeed;
 		
 		//Set direction to Left
-		direction = -1;
+		movementDirection = -1;
 	}
 
 	//Move player Right direction with smooth acceleration	
@@ -183,7 +175,7 @@ public class PlayerController : MonoBehaviour
 		movement.x = 1 * tempSpeed;
 
 		//Set direction to Right 
-		direction = 1;
+		movementDirection = 1;
 	}
 	
 	public void MoveNot()
@@ -198,12 +190,17 @@ public class PlayerController : MonoBehaviour
 		}
 	
 		//SmoothDamp for deacceleratation
-		float movementVelocity = direction * tempSpeed;
+		float movementVelocity = movementDirection * tempSpeed;
 		movement.x = Mathf.SmoothDamp(movement.x, movementVelocity, ref velocitySmoothing,movementAcceleration);
 		
 		//Set direction to None
-		direction = 0;
+		movementDirection = 0;
 	}
+
+    void RecoverFromStun()
+    {
+        stunDuration -= Time.deltaTime;
+    } 
 
 	public virtual void Update()
 	{
@@ -213,7 +210,15 @@ public class PlayerController : MonoBehaviour
 		
 		movement.y += verticalTranslate;
 		//collisionController.Move(movement * Time.deltaTime);
-		MoveObject(movement * Time.deltaTime);
+		
+		if(stunDuration < 0)
+        {
+            RecoverFromStun();
+        }
+        else
+        {
+			MoveObject(movement * Time.deltaTime);
+        }
 		
 		bool wallSliding = false;
 
@@ -242,18 +247,27 @@ public class PlayerController : MonoBehaviour
 		{
 			abilityDirection = -1;
 		}
+	
+		//collision with windblast from albatross
+		collision = Physics2D.OverlapCircleAll(transform.position, 1.5f);
 		
+		for(int i = 0; i < collision.Length; i++)
+		{
+			if(collision[i].gameObject.tag == "Blast")
+			{
+				Debug.Log("this works");
+			}
+		}
 	}
 	
 	public int GetDirection()
 	{
 		return abilityDirection;
 	}
-	
 
 	public void MoveObject(Vector2 movement)
 	{
-		//Update collision check 
+		// Update collision check 
 		
 		collisionController.UpdateRaycastDirections();
 		collisionController.boxCollisionDirections.resetDirections();

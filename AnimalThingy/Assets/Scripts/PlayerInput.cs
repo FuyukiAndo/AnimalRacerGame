@@ -24,7 +24,7 @@ public class PlayerInput : MonoBehaviour
 	//Dictionary for KeyCode Actions
 	private Dictionary<KeyCode, Action> keyCodeDictionary0 = new Dictionary<KeyCode, Action>();
 	private Dictionary<KeyCode, Action> keyCodeDictionary1 = new Dictionary<KeyCode, Action>();
-	private Dictionary<KeyCode, Action> keyCodeDictionary2 = new Dictionary<KeyCode, Action>();
+	//private Dictionary<KeyCode, Action> keyCodeDictionary2 = new Dictionary<KeyCode, Action>();
 	
 	// KeyCode for Player Input
 	public KeyCode playerLeftKey = KeyCode.LeftArrow;
@@ -41,6 +41,7 @@ public class PlayerInput : MonoBehaviour
 	
 	public float targetAngle;
 	private bool isGrounded = true;
+	public bool isControllable = true;
 
 	void Start() 
 	{
@@ -102,33 +103,36 @@ public class PlayerInput : MonoBehaviour
 	void InputAction()
 	{
 		// Move player left
-		if(Input.GetKey(playerLeftKey))
+		if(isControllable)
 		{
-			keyCodeDictionary0[playerLeftKey]();
-		}
+			if(Input.GetKey(playerLeftKey))
+			{
+				keyCodeDictionary0[playerLeftKey]();
+			}
 
-		// Move player right
-		if(Input.GetKey(playerRightKey))
-		{
-			keyCodeDictionary0[playerRightKey]();
-		}
-		
-		// Ability Key
-		if(Input.GetKeyDown(playerAbilityKey))
-		{
-			keyCodeDictionary0[playerAbilityKey]();
-		}
-		
-		// Jump KeyCode Down
-		if(Input.GetKeyDown(playerJumpKey))
-		{
-			keyCodeDictionary0[playerJumpKey]();
-		}
-		
-		// Jump KeyCode Up
-		if(Input.GetKeyUp(playerJumpKey))
-		{
-			keyCodeDictionary1[playerJumpKey]();
+			// Move player right
+			if(Input.GetKey(playerRightKey))
+			{
+				keyCodeDictionary0[playerRightKey]();
+			}
+			
+			// Ability Key
+			if(Input.GetKeyDown(playerAbilityKey))
+			{
+				keyCodeDictionary0[playerAbilityKey]();
+			}
+			
+			// Jump KeyCode Down
+			if(Input.GetKeyDown(playerJumpKey))
+			{
+				keyCodeDictionary0[playerJumpKey]();
+			}
+			
+			// Jump KeyCode Up
+			if(Input.GetKeyUp(playerJumpKey))
+			{
+				keyCodeDictionary1[playerJumpKey]();
+			}
 		}
 		
 		//If no KeyCode is pressed
@@ -137,19 +141,23 @@ public class PlayerInput : MonoBehaviour
 
 	void InputAnimationRotation()
 	{
-		if(Input.GetKey(playerLeftKey))
-		{
-			targetAngle = maxAngleValue;
-		}
 		
-		if(Input.GetKey(playerRightKey))
+		if(isControllable && playerCharacterType == PlayerCharacterType.PlayerAlbatross)
 		{
-			targetAngle = minAngleValue;
+			if(Input.GetKey(playerLeftKey))
+			{
+				targetAngle = maxAngleValue;
+			}
+			
+			if(Input.GetKey(playerRightKey))
+			{
+				targetAngle = minAngleValue;
+			}
 		}
 		
 		//Rotates player model when changing direction
 		Quaternion target = Quaternion.Euler(new Vector3(0f,targetAngle,0f));
-		animationHandler.transform.rotation = Quaternion.Lerp(animationHandler.transform.rotation, target, rotationSpeed);
+		animationHandler.transform.rotation = Quaternion.Lerp(animationHandler.transform.rotation, target, rotationSpeed);	
 	}
 	
 	void InputAnimationGeneric()
