@@ -17,17 +17,18 @@ public class PlayerAlbatross : PlayerController
 	public bool isGliding = false;
 	//public float tt = 0;
 
-	PlayerInput playerInput;
+	//private PlayerInput playerInput;
 	
 	public override void Start()
 	{
 		base.Start();
-		playerStates = PlayerStates.playerIdle;
+		//playerStates = PlayerStates.playerIdle;
 		windBlastObject = Resources.Load<GameObject>("Prefabs/SpeedUpBlast");
+		
 		
 		mMaxFlyCount = maxFlyCount;
 		mFlyTimer = flyTimer;
-		playerInput = GetComponent<PlayerInput>();
+		//playerInput = GetComponent<PlayerInput>();
 		abilityMeter = 1.0f;
 	}
 	
@@ -104,7 +105,6 @@ public class PlayerAlbatross : PlayerController
 		}
 	}
 	
-	
 	public void OnGlideKeyDown()
 	{
 		 jumpAndFallDelay = 1.8f;
@@ -127,7 +127,7 @@ public class PlayerAlbatross : PlayerController
 	{
 		
 		
-		Instantiate(windBlastObject, new Vector2(transform.position.x,transform.position.y+10f), new Quaternion(0, 0, 0, 0), gameObject.transform);
+		Instantiate(windBlastObject, new Vector2(transform.position.x,transform.position.y+2f), new Quaternion(0, 0, 0, 0), gameObject.transform);
 		Physics2D.IgnoreCollision(windBlastObject.GetComponent<BoxCollider2D>(), GetComponent<BoxCollider2D>());
 		
 		//Instantiate(prefab,transform.position, Quaternion.identity);
@@ -136,10 +136,10 @@ public class PlayerAlbatross : PlayerController
 	}
 	
 	
-	public int GetDirection()
+	/*public int GetDirection()
 	{
 		return direction;
-	}
+	}*/
 	
 	/*void windDiraction()
     {

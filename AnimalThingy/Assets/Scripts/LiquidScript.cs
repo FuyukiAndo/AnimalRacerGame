@@ -30,7 +30,7 @@ public class LiquidScript : MonoBehaviour {
 
         playerInput = collider2d.gameObject.GetComponent<PlayerInput>();
 
-        if (playerInput.playerCharacterType == PlayerCharacterType.playerPenguin) return;
+        if (playerInput.playerCharacterType == PlayerCharacterType.PlayerPenguin) return;
 
         if (collider2d.gameObject.GetComponent<CheckpointTracker>().CheckpointsPassed.Count <= 0 || checkpointPositions.Count <= 0)
         {

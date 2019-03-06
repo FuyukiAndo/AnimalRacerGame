@@ -4,39 +4,39 @@ using UnityEngine;
 
 public class BlastMovement : MonoBehaviour 
 {
-	public float blastSpeed = 3f;
-	private int direction;
+	private float blastSpeed = 20f;
+	private int blastDirection;
 	private int tempDirection;
 	private Vector2 movement;
 	
 	void Start()
 	{
 		PlayerAlbatross playerAlbatross;
-		
 		playerAlbatross = GetComponentInParent<PlayerAlbatross>();
-		tempDirection = playerAlbatross.GetDirection();
-		direction = tempDirection;
-		tempDirection = 0;
 		
-		
-		
-		if(playerAlbatross.direction == -1)
+		if(transform.parent !=null)
 		{
-			movement.x = -1 * blastSpeed;
-		}
-		else if(playerAlbatross.direction == 1)
-		{
-			movement.x = 1 * blastSpeed;
+			tempDirection = playerAlbatross.GetDirection();
 		}
 		
+		blastDirection = tempDirection;
+		transform.parent = null;
+		//blastDirection = tempDirection;		
 	}
-	
-	
-	
+
 	void Update() 
 	{
-
+		//Debug.Log(blastDirection);
 		
-		transform.Translate(movement);
+		if(blastDirection == -1)
+		{
+			movement.x = -1 * blastSpeed;			
+		}
+		else if(blastDirection == 1)
+		{
+				movement.x = 1 * blastSpeed;		
+		}
+		
+		transform.Translate(movement * Time.deltaTime);
 	}
 }

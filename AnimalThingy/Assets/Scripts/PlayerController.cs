@@ -25,7 +25,7 @@ public enum PlayerType
 
 public class PlayerController : MonoBehaviour
 {
-	public PlayerStates playerStates;
+	//public PlayerStates playerStates;
 	
 	[Header("Jump and Gravity Settings")]
 	[Tooltip("Max jump height value between 0.1f and x")]
@@ -62,6 +62,7 @@ public class PlayerController : MonoBehaviour
 	
 	[HideInInspector] public Vector2 movement;
 	[HideInInspector] public int direction;
+	private int abilityDirection;
 	
 	//Only public for debug
 	protected float tempSpeed;
@@ -69,6 +70,8 @@ public class PlayerController : MonoBehaviour
 	protected float mod1 = 0.2f;
 	
 	[Range(0.1f,100f)]public float abilityMeter = 100;
+	
+	public PlayerInput playerInput;
 
 	/*void Awake()
 	{
@@ -79,7 +82,9 @@ public class PlayerController : MonoBehaviour
 	{
 		collisionController = GetComponent<CollisionController>();
 		raycastController = GetComponent<RaycastController>();
+		playerInput = GetComponent<PlayerInput>();
 		direction = 0;
+		abilityDirection = 0;
 		//abilityRegen = 1f;
 	}
 
@@ -227,7 +232,24 @@ public class PlayerController : MonoBehaviour
 		{
 			movement.y = 0;
 		}
+		
+		
+		if(playerInput.targetAngle == playerInput.maxAngleValue)
+		{
+			abilityDirection = 1;
+		}
+		else
+		{
+			abilityDirection = -1;
+		}
+		
 	}
+	
+	public int GetDirection()
+	{
+		return abilityDirection;
+	}
+	
 
 	public void MoveObject(Vector2 movement)
 	{
