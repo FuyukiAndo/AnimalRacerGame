@@ -25,6 +25,8 @@ public class AudioEffectController : MonoBehaviour {
 	[SerializeField] private float AliveTime, waitTime;
 	[EventRef] [SerializeField] private string sfxPath;
 	private EventInstance sfxInstance;
+	private ParameterInstance sfxParameterInstance;
+	[SerializeField] private string sfxParameterName;
 	private float nextWait;
 	private Collider2D[] colliders;
 	private int oldColliderCount, newColliderCount;
@@ -40,6 +42,7 @@ public class AudioEffectController : MonoBehaviour {
 		if (AudioManager.Instance.useFMOD)
 		{
 			sfxInstance = RuntimeManager.CreateInstance(sfxPath);
+			sfxInstance.getParameter(sfxParameterName, out sfxParameterInstance);
 			RuntimeManager.AttachInstanceToGameObject(sfxInstance, transform, new Rigidbody2D());
 			if (playEffectAuto)
 			{
@@ -533,6 +536,19 @@ public class AudioEffectController : MonoBehaviour {
 		{
 			source.volume = 0.0f;
 		}
+	}
+
+	public float GetParameterValue(string parameter)
+	{
+		sfxInstance.getParameter(parameter, out sfxParameterInstance);
+		float tempValue;
+		sfxParameterInstance.getValue(out tempValue);
+		return tempValue;
+	}
+
+	public void SetParameterValue(string parameter, float value)
+	{
+		sfxInstance.setParameterValue(parameter, value);
 	}
 
 }
