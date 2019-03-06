@@ -64,6 +64,7 @@ public class GoalManager : MonoBehaviour
         if(placedPlayers.Count == InformationManager.Instance.players.Count)
         {
             endScreenUI.SetActive(true);
+            StartCoroutine(Wait());
         }
 		if (countDownOnFirstPlayer)
 		{
@@ -87,7 +88,11 @@ public class GoalManager : MonoBehaviour
 
 		ValidateForGoal();
 	}
-
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(5.0f);
+        
+    }
 	void ValidateForGoal()
 	{
 		Collider2D collider = Physics2D.OverlapBox(transform.position, boxSize, 0f, playerLayer);

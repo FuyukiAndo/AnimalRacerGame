@@ -1704,6 +1704,9 @@ MonoBehaviour:
   iceMaps:
     maps:
     - Is_bana
+    - Is_bana_test1
+    - Is_bana_test2
+    - Is_bana_test3
   jungleMaps:
     maps: []
   farmMaps:

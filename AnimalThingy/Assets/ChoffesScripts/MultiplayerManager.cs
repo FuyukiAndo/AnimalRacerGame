@@ -25,6 +25,7 @@ public class MultiplayerManager : MonoBehaviour {
 
     private void Start()
     {
+        allMaps = new List<string>();
         InformationManager.Instance.multiplayerLevels.Clear();
         if (InformationManager.Instance.player1.playerIsActive)
         {
@@ -43,7 +44,7 @@ public class MultiplayerManager : MonoBehaviour {
             SetPlayerInactive(4);
         }
         //Aktivera när 4 eller fler kompletta scener finns och ligger i InformationManagers folders för banor
-        //AddAllMapsToList();
+        AddAllMapsToList();
     }
 
     private void Update()
@@ -242,17 +243,17 @@ public class MultiplayerManager : MonoBehaviour {
             {
                 LoadRandomCharacterScene();
 
-				//Aktivera när 4 eller fler kompletta scener finns och ligger i InformationManagers folders för banor
-				//if(amountOfReadyPlayers < 4)
-				//{
-				//    for(int j = 0; j < 4 - amountOfReadyPlayers; j++)
-				//    {
-				//        LoadRandomScene();
-				//    }
-				//}
+                //Aktivera när 4 eller fler kompletta scener finns och ligger i InformationManagers folders för banor
+                if (amountOfReadyPlayers < 4)
+                {
+                    for (int j = 0; j < 4 - amountOfReadyPlayers; j++)
+                    {
+                        LoadRandomScene();
+                    }
+                }
 
 
-				SceneManager.LoadScene(InformationManager.Instance.multiplayerLevels[0]);
+                SceneManager.LoadScene(InformationManager.Instance.multiplayerLevels[0]);
 			}
         }
     }
@@ -374,8 +375,23 @@ public class MultiplayerManager : MonoBehaviour {
 
     private void LoadRandomScene()
     {
-        int temp = Random.Range(0, allMaps.Count);
-        InformationManager.Instance.multiplayerLevels.Add(allMaps[temp]);
+        bool levelSelected = false;
+        for(int i = 0; i < allMaps.Count; i++)
+        {
+            if (levelSelected == false)
+            {
+                int temp = Random.Range(0, allMaps.Count);
+                if (InformationManager.Instance.multiplayerLevels.Contains(allMaps[temp]))
+                {
+                    allMaps.Remove(allMaps[i]);
+                }
+                else
+                {
+                    InformationManager.Instance.multiplayerLevels.Add(allMaps[i]);
+                    levelSelected = true;
+                }
+            }
+        }
     }
 }
 
