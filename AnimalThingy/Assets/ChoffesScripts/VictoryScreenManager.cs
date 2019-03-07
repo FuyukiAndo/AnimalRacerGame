@@ -129,7 +129,6 @@ public class VictoryScreenManager : MonoBehaviour {
         }
         sortedPlayerScores.Sort();
         sortedPlayerScores.Reverse();
-        SetVictoryVideo(sortedPlayerTimes);
         for (int i = 0; i < childObjects.Count; i++)
         {
             if (sortedPlayerTimes[i] == InformationManager.Instance.player1.level1Time + InformationManager.Instance.player1.level2Time + 
@@ -170,6 +169,7 @@ public class VictoryScreenManager : MonoBehaviour {
             }
         END:;
         }
+        SetVictoryVideo(sortedPlayerTimes);
     }
 
     private void SetVictoryVideo(List<float> sortedPlayerTimes)

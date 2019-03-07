@@ -26,23 +26,6 @@ public class MultiplayerManager : MonoBehaviour {
     private void Start()
     {
         allMaps = new List<string>();
-        InformationManager.Instance.multiplayerLevels.Clear();
-        if (InformationManager.Instance.player1.playerIsActive)
-        {
-            SetPlayerInactive(1);
-        }
-        if (InformationManager.Instance.player2.playerIsActive)
-        {
-            SetPlayerInactive(2);
-        }
-        if (InformationManager.Instance.player3.playerIsActive)
-        {
-            SetPlayerInactive(3);
-        }
-        if (InformationManager.Instance.player4.playerIsActive)
-        {
-            SetPlayerInactive(4);
-        }
     }
 
     private void Update()
