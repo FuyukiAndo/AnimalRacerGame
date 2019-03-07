@@ -11,6 +11,8 @@ public class VictoryScreenManager : MonoBehaviour {
     public ScoreScreenChild thirdChild;
     public ScoreScreenChild fourthChild;
 
+    public string videoPlayerName = "Video Player";
+
     private List<ScoreScreenChild> childObjects;
 
     private Dictionary<string, float> playerTimeList = new Dictionary<string, float>();
@@ -127,7 +129,7 @@ public class VictoryScreenManager : MonoBehaviour {
         }
         sortedPlayerScores.Sort();
         sortedPlayerScores.Reverse();
-
+        SetVictoryVideo(sortedPlayerTimes);
         for (int i = 0; i < childObjects.Count; i++)
         {
             if (sortedPlayerTimes[i] == InformationManager.Instance.player1.level1Time + InformationManager.Instance.player1.level2Time + 
@@ -167,6 +169,29 @@ public class VictoryScreenManager : MonoBehaviour {
                 goto END;
             }
         END:;
+        }
+    }
+
+    private void SetVictoryVideo(List<float> sortedPlayerTimes)
+    {
+        for(int i = 0; i < playerTimeList.Count; i++)
+        {
+            if(sortedPlayerTimes[0] == playerTimeList["Player1"])
+            {
+                GameObject.Find(videoPlayerName).GetComponent<VideoPlayerScript>().SetVictoryVideo("Player1");
+            }
+            if (sortedPlayerTimes[0] == playerTimeList["Player2"])
+            {
+                GameObject.Find(videoPlayerName).GetComponent<VideoPlayerScript>().SetVictoryVideo("Player2");
+            }
+            if (sortedPlayerTimes[0] == playerTimeList["Player3"])
+            {
+                GameObject.Find(videoPlayerName).GetComponent<VideoPlayerScript>().SetVictoryVideo("Player3");
+            }
+            if (sortedPlayerTimes[0] == playerTimeList["Player4"])
+            {
+                GameObject.Find(videoPlayerName).GetComponent<VideoPlayerScript>().SetVictoryVideo("Player4");
+            }
         }
     }
 

@@ -13,6 +13,25 @@ public class MainMenu : MonoBehaviour {
 
     public MainMenuOptions[] mainMenuOptions;
 
+
+    private void Start()
+    {
+        foreach(Player player in InformationManager.Instance.players)
+        {
+            player.character = null;
+            player.playerIsActive = false;
+            player.playerIsReady = false;
+            player.score = 0;
+            player.level1Time = 0;
+            player.level2Time = 0;
+            player.level3Time = 0;
+            player.level4Time = 0;
+        }
+
+        InformationManager.Instance.players.Clear();
+        InformationManager.Instance.multiplayerLevels.Clear();
+    }
+
     public void ExitGame()
     {
         Debug.Log("Exit!");
