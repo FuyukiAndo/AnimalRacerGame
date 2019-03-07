@@ -20,8 +20,9 @@ public class MovingPlatform : MonoBehaviour
 
     public float timeUntilBroken;
     public int platformDurability;
+    public float destroyDelay;
     //public float floatSpeed;
-    public LayerMask characterLayer;
+    public LayerMask characterLayer, platformLayer;
 
     public Vector2 movement;
     private float breakTime;
@@ -110,10 +111,10 @@ public class MovingPlatform : MonoBehaviour
             {
                 //Debug.Log(collision.Length);
 
-                bool isOnLayer = characterLayer == (characterLayer | (1 << collision[i].gameObject.layer));
+                bool isOnCLayer = characterLayer == (characterLayer | (1 << collision[i].gameObject.layer));
+                bool isOnPLayer = platformLayer == (platformLayer | (1 << collision[i].gameObject.layer));
 
-
-                if (isOnLayer)
+                if (isOnCLayer)
                 {
                     timeBeforeDestroyed--;
                     platformDurability--;
@@ -130,7 +131,10 @@ public class MovingPlatform : MonoBehaviour
 
                     //Destroy(collision[i].gameObject);
                 }
-
+                if (isOnPLayer)
+                {
+                    StartCoroutine(DestroyOnPlatformCollision());
+                }
                     if (collision[i].gameObject.tag == "Wall")
                     {
                         print("platform");
@@ -219,7 +223,11 @@ public class MovingPlatform : MonoBehaviour
 		platformController.MoveObject(movement);
 		//transform.Translate(movement);
 	}*/
-
+    IEnumerator DestroyOnPlatformCollision()
+    {
+        yield return new WaitForSeconds(destroyDelay);
+        Destroy(gameObject);
+    }
     void DestroyPlatform()
     {
         Debug.Log(timeBeforeDestroyed);

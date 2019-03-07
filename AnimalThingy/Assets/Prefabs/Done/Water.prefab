@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4789220418205504}
   - component: {fileID: 33861154780175324}
   - component: {fileID: 23024173506675746}
+  - component: {fileID: 114367550524611054}
   m_Layer: 4
   m_Name: default
   m_TagString: Untagged
@@ -50,9 +51,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1969089015918420}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 213.6, y: 28.5, z: 8}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -12.13, y: -1.0470066, z: 0}
+  m_LocalScale: {x: 3.985277, y: 1.419998, z: 1}
   m_Children:
   - {fileID: 4789220418205504}
   m_Father: {fileID: 0}
@@ -65,8 +66,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1187114348624146}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.2271, y: -1.4948, z: -3}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -3.2271, y: -1.4948, z: 0}
+  m_LocalScale: {x: 0.9891189, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4110585945378458}
   m_RootOrder: 0
@@ -85,7 +86,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 28e21eec802bc7a44b56b5d4804f54d7, type: 2}
+  - {fileID: 2100000, guid: c46234ae246b96f4195326f880ba93c6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -124,7 +125,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -3.217476, y: -1.0103893}
+  m_Offset: {x: -3.2143373, y: -1.0103893}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -135,5 +136,18 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 8.036667, y: 1.0150986}
+  m_Size: {x: 7.9247284, y: 1.0150986}
   m_EdgeRadius: 0
+--- !u!114 &114367550524611054
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1187114348624146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbbea569913be25478851d82f43b5f13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WF_speed: -0.05
+  WF_renderer: {fileID: 23024173506675746}

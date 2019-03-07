@@ -40,7 +40,7 @@ Transform:
   m_GameObject: {fileID: 1225037111131342}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -5.42, y: 3.39, z: 0}
-  m_LocalScale: {x: 2.0625002, y: 0.43750018, z: 1}
+  m_LocalScale: {x: 3.2, y: 0.43750018, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -125,13 +125,17 @@ MonoBehaviour:
   collisionController: {fileID: 0}
   platformController: {fileID: 0}
   maxVelocity: 8
-  fallDelay: 0.4
+  fallDelay: 0.2
   gravity: 0
   timeUntilBroken: 2
-  platformDurability: 0
+  platformDurability: 3
+  destroyDelay: 0.6
   characterLayer:
     serializedVersion: 2
     m_Bits: 256
+  platformLayer:
+    serializedVersion: 2
+    m_Bits: 512
   movement: {x: 0, y: 0}
 --- !u!114 &114773650638937810
 MonoBehaviour:
