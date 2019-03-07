@@ -251,6 +251,7 @@ public class PlayerController : MonoBehaviour
 		//collision with windblast from albatross
 		collision = Physics2D.OverlapCircleAll(transform.position, 1.5f);
 		
+		//don't know if I like this solution...
 		for(int i = 0; i < collision.Length; i++)
 		{
 			if(collision[i].gameObject.tag == "Blast")
