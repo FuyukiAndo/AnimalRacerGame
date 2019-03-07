@@ -161,7 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab4a0a6a190711a4b9f86d7fb8fc85e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stunDuration: 3
+  stunDuration: 1
   speed: 1
   terrainTypesLayer:
     serializedVersion: 2
