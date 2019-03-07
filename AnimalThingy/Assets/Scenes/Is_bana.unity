@@ -6137,7 +6137,6 @@ MonoBehaviour:
     timeText: {fileID: 1568215909}
     nameText: {fileID: 807224944}
     scoreText: {fileID: 0}
-  victoryScene: 0
   player1Color: {r: 1, g: 0, b: 0, a: 1}
   player2Color: {r: 0, g: 0, b: 1, a: 1}
   player3Color: {r: 0, g: 1, b: 0, a: 1}
@@ -7868,7 +7867,7 @@ MonoBehaviour:
   maxZoom: 10
   zoomLimiter: 50
   players: []
-  startFov: 0
+  startFov: 60
   startPos: {fileID: 0}
   timeBeforeZoomToPlayers: 0
 --- !u!1001 &1096938419
@@ -9286,12 +9285,6 @@ MonoBehaviour:
   spawnPos4:
     spawnPos: {fileID: 1749368206}
     beenUsed: 0
-  redCrystalMaterial: {fileID: 2100000, guid: 5c3107764d405d044b69c556421c9b48, type: 2}
-  blueCrystalMaterial: {fileID: 2100000, guid: a5187cf2d8b971d4087cb62427a9d173, type: 2}
-  greenCrystalMaterial: {fileID: 2100000, guid: 106e0a992223e7542a57cf733695c711,
-    type: 2}
-  yellowCrystalMaterial: {fileID: 2100000, guid: 1841b5596ca744b4d8e16085a83d274a,
-    type: 2}
   unplacedPlayers: []
   playerMoveScript: PlayerController
   playerScoreList: 

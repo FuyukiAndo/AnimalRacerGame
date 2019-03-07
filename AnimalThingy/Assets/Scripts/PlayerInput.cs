@@ -42,6 +42,7 @@ public class PlayerInput : MonoBehaviour
 	public bool isRunning = false;
 	//public bool groundedRun = false;
 	public bool isGliding = false;
+    public float stunDurationLeft;
 	public float f = 0;
 
 	// Use this for initialization
@@ -254,46 +255,53 @@ public class PlayerInput : MonoBehaviour
 			animationHandler.transform.rotation = Quaternion.Lerp(animationHandler.transform.rotation, target, speed);	
 		}
 	}
-	
+	public void Recover()
+    {
+        stunDurationLeft -= Time.deltaTime;
+    }
 	void Update() 
 	{		
 		//var oldPos;
-		
-		InputAction();
+		if(stunDurationLeft > 0)
+        {
+            Recover();
+        }
+        else
+        {
+            InputAction();
+        }
 		
 		if(animationHandler != null)
 		{
 			InputAnimation();
 		}		
 		StaticZPos();
-		
-		Debug.Log(playerAlbatross.movement.x);
-		
-		if(playerAlbatross.collisionController.boxCollisionDirections.down)
-		{
-			isGrounded = true;
-			
-			if(playerAlbatross.movement.x != 0)
-			{
-				animationHandler.SetAnimatorBool("EndGlide", false);	
-				animationHandler.SetAnimatorBool("EndGlideRun", true);					
-			}
 
-			if(playerAlbatross.movement.x == 0)
-			{
-				animationHandler.SetAnimatorBool("EndGlideRun", true);	
-				//animationHandler.SetAnimatorBool("EndGlide", true);		
-				animationHandler.SetAnimatorBool("RunT", false);						
-			}
-		}
-		else
-		{
-				animationHandler.SetAnimatorBool("EndGlide", false);				
-				animationHandler.SetAnimatorBool("IdleT", false);				
-				isGrounded = false;				
-		}
+        if (playerAlbatross.collisionController.boxCollisionDirections.down)
+        {
+            isGrounded = true;
 
-		
-		//oldPos = transform.position;
-	}
+            if (playerAlbatross.movement.x != 0)
+            {
+                animationHandler.SetAnimatorBool("EndGlide", false);
+                animationHandler.SetAnimatorBool("EndGlideRun", true);
+            }
+
+            if (playerAlbatross.movement.x == 0)
+            {
+                animationHandler.SetAnimatorBool("EndGlideRun", true);
+                //animationHandler.SetAnimatorBool("EndGlide", true);		
+                animationHandler.SetAnimatorBool("RunT", false);
+            }
+        }
+        else
+        {
+            animationHandler.SetAnimatorBool("EndGlide", false);
+            animationHandler.SetAnimatorBool("IdleT", false);
+            isGrounded = false;
+        }
+
+
+        //oldPos = transform.position;
+    }
 }

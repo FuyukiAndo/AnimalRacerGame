@@ -17,7 +17,7 @@ public class FlyingTrajectory : MonoBehaviour {
 
     protected void OnCollisionEnter2D(Collision2D collision)
     {
-        PlayerController player = collision.gameObject.GetComponent<PlayerController>();
+        PlayerInput player = collision.gameObject.GetComponent<PlayerInput>();
         bool isOnLayer = terrainTypesLayer == (terrainTypesLayer | (1 << collision.gameObject.layer));
         if (player != null)
         {

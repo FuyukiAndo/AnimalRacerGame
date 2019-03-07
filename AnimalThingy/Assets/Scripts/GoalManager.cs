@@ -98,7 +98,7 @@ public class GoalManager : MonoBehaviour
 	{
 		Collider2D collider = Physics2D.OverlapBox(transform.position, boxSize, 0f, playerLayer);
 
-		if (!collider.transform.GetComponent<CheckpointTracker>() || collider == null) return;
+		if (collider == null  || !collider.transform.GetComponent<CheckpointTracker>()) return;
 		if (ValidateTracker(collider.transform.GetComponent<CheckpointTracker>()))
 		{
 			PlacePlayers();

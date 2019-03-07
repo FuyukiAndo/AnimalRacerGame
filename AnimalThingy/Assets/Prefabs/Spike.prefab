@@ -115,7 +115,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -161,7 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab4a0a6a190711a4b9f86d7fb8fc85e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stunDuration: 1
+  stunDuration: 4
   speed: 1
   terrainTypesLayer:
     serializedVersion: 2

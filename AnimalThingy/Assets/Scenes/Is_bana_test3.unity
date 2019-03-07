@@ -6137,7 +6137,6 @@ MonoBehaviour:
     timeText: {fileID: 1568215909}
     nameText: {fileID: 807224944}
     scoreText: {fileID: 0}
-  victoryScene: 0
   player1Color: {r: 1, g: 0, b: 0, a: 1}
   player2Color: {r: 0, g: 0, b: 1, a: 1}
   player3Color: {r: 0, g: 1, b: 0, a: 1}
@@ -7868,7 +7867,7 @@ MonoBehaviour:
   maxZoom: 10
   zoomLimiter: 50
   players: []
-  startFov: 0
+  startFov: 60
   startPos: {fileID: 0}
   timeBeforeZoomToPlayers: 0
 --- !u!1001 &1096938419

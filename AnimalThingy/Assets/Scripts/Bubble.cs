@@ -14,6 +14,7 @@ public class Bubble : MonoBehaviour {
     private BoxCollider2D bc2d;
     private Collider2D[] colliders;
     private int newColliderCount;
+    public bool popOnDestination;
 
     private void Start()
     {
@@ -31,7 +32,15 @@ public class Bubble : MonoBehaviour {
     private void MoveToPosition()
     {
        travelTime += Time.deltaTime / timeBeforeDestination;
-       transform.position = Vector2.Lerp(currentPosition, travelPosition, travelTime);
+        if (popOnDestination && (Vector2)transform.position == travelPosition)
+        {
+            Destroy(gameObject);
+            transform.position = Vector2.Lerp(currentPosition, travelPosition, travelTime/2);
+        }
+        else
+        {
+            transform.position = Vector2.Lerp(currentPosition, travelPosition, travelTime);
+        }
     }
 
     private void CollisionCheck()
