@@ -29,8 +29,8 @@ public class AudioManager : MonoBehaviour {
 	private static AudioManager instance;
 	public bool useFMOD;
 
-	// Use this for initialization
-	void Start () {
+	void Awake()
+	{
 		if (instance == null)
 		{
 			instance = this;
@@ -40,6 +40,10 @@ public class AudioManager : MonoBehaviour {
 		{
 			Destroy(gameObject);
 		}
+	}
+
+	// Use this for initialization
+	void Start () {
 		if (useFMOD)
 		{
 			backgroundAudioInstance = RuntimeManager.CreateInstance(backgroundAudioPath);

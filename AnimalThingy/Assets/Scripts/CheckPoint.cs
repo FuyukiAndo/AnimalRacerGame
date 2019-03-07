@@ -78,7 +78,8 @@ public class Checkpoint : MonoBehaviour
 
 	void SetNextCheckPosToGoFor()
 	{
-		GoalManager.Instance.UpdateCheckpointToGoFor();
+		//GoalManager.Instance.UpdateCheckpointToGoFor();
+		//GPS
 	}
 }
 
