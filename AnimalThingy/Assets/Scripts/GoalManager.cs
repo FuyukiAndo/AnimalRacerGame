@@ -39,6 +39,8 @@ public class GoalManager : MonoBehaviour
 	[SerializeField] private LayerMask playerLayer, ignorePlayerLayer;
 	[SerializeField] private float nextSceneDelay;
 	private bool startedSceneSwitch;
+	private GameObject checkpointToGoFor;
+	private int currentCheckToGoFor;
 
 	void Start()
 	{
@@ -433,5 +435,16 @@ public class GoalManager : MonoBehaviour
 		{
 			SceneManager.LoadScene(InformationManager.Instance.multiplayerLevels[index + 1], LoadSceneMode.Additive);
 		}
+	}
+
+	public void UpdateCheckpointToGoFor()
+	{
+		currentCheckToGoFor++;
+		checkpointToGoFor = checksToPass[currentCheckToGoFor].gameObject;
+	}
+
+	public Vector2 GetCheckPos()
+	{
+		return (Vector2) Camera.main.WorldToViewportPoint(checkpointToGoFor.transform.position);
 	}
 }

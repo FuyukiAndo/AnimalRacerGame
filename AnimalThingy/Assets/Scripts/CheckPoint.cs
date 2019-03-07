@@ -18,6 +18,8 @@ public class Checkpoint : MonoBehaviour
 	[SerializeField] private AudioEffectController effectController;
 	[SerializeField] private float searchRadius = 1f;
 
+	private bool updatedCheckToGoFor;
+
 	void Start()
 	{
 		if (playerFlags.Length > 0)
@@ -54,6 +56,11 @@ public class Checkpoint : MonoBehaviour
 			{
 				animationHandler.SetAnimatorTrigger(animationTrigger);
 				playerFlags[i].playerFlag.SetActive(true);
+				if (!updatedCheckToGoFor)
+				{
+					SetNextCheckPosToGoFor();
+					updatedCheckToGoFor = true;
+				}
 			}
 		}
 	}
@@ -67,6 +74,11 @@ public class Checkpoint : MonoBehaviour
 	{
 		Gizmos.color = Color.yellow;
 		Gizmos.DrawWireSphere(transform.position, searchRadius);
+	}
+
+	void SetNextCheckPosToGoFor()
+	{
+		GoalManager.Instance.UpdateCheckpointToGoFor();
 	}
 }
 

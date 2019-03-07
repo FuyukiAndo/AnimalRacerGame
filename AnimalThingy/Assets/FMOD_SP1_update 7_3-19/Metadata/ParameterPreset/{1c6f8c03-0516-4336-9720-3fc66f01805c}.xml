@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="ParameterPreset" id="{1c6f8c03-0516-4336-9720-3fc66f01805c}">
+        <property name="name">
+            <value>WaterFall_djungel</value>
+        </property>
+        <relationship name="folder">
+            <destination>{66086b72-7867-47d1-9fa4-c73519939f94}</destination>
+        </relationship>
+        <relationship name="parameter">
+            <destination>{2aca1603-b8b9-4f83-a13b-4189e6087b85}</destination>
+        </relationship>
+    </object>
+    <object class="GameParameter" id="{2aca1603-b8b9-4f83-a13b-4189e6087b85}">
+        <property name="initialValue">
+            <value>0</value>
+        </property>
+    </object>
+</objects>

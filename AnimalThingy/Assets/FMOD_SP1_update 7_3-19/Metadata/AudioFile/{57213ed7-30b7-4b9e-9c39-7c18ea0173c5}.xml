@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="AudioFile" id="{57213ed7-30b7-4b9e-9c39-7c18ea0173c5}">
+        <property name="assetPath">
+            <value>Winter Stage 140bpm.wav</value>
+        </property>
+        <property name="isStreaming">
+            <value>true</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>44.0999985</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>121</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{d33b57b3-7e46-47e1-8694-5faf651db5a0}</destination>
+        </relationship>
+    </object>
+</objects>

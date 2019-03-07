@@ -41,7 +41,7 @@ public class CheckpointTracker : MonoBehaviour
 		}
 	}
 	private int placementPoint;
-	
+
 	void Update()
 	{
 		Collider2D collider = Physics2D.OverlapBox((Vector2)transform.position + boxOffset, boxSize, 0f);
