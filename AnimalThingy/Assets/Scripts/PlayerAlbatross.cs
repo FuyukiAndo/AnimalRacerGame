@@ -83,6 +83,7 @@ public class PlayerAlbatross : PlayerController
 			mDash = false;
 			playerInput.isControllable = true;
 			abilityMeter = 100;
+
 		}
 		
 		if(isFlying)

@@ -13,12 +13,24 @@ public enum PlayerCharacterType
 	PlayerMonkey
 };
 
+public enum PlayerStates
+{
+	PlayerIdle,
+	PlayerRun,
+	PlayerJump,
+	PlayerAbility
+};
+
 public class PlayerInput : MonoBehaviour 
 {	
 	private PlayerController playerController;
 	private PlayerAlbatross playerAlbatross;
+	private PlayerMonkey playerMonkey;
+	private PlayerNobody playerNobody;
 	
 	public PlayerCharacterType playerCharacterType;
+	public PlayerStates playerStates;
+	
 	public AnimationHandler animationHandler;
 	
 	//Dictionary for KeyCode Actions
@@ -31,6 +43,7 @@ public class PlayerInput : MonoBehaviour
 	public KeyCode playerRightKey = KeyCode.RightArrow;
 	public KeyCode playerJumpKey = KeyCode.A;
 	public KeyCode playerAbilityKey = KeyCode.S;
+	
 	private KeyCode playerNoKey = KeyCode.None;
 
     [Range(0.01f, 1f)] public float rotationSpeed = 0.09f;
@@ -49,7 +62,7 @@ public class PlayerInput : MonoBehaviour
 		targetAngle = maxAngleValue;
 		
 		var albatrossComponent = gameObject.GetComponent<PlayerAlbatross>();
-		var monkeyComponent = gameObject.GetComponent<PlayerAlbatross>();
+		var monkeyComponent = gameObject.GetComponent<PlayerMonkey>();
 		var penguinComponent = gameObject.GetComponent<PlayerAlbatross>();
 		var pigComponent = gameObject.GetComponent<PlayerAlbatross>();
 		
@@ -75,7 +88,18 @@ public class PlayerInput : MonoBehaviour
 		}
 		else if(monkeyComponent !=null)
 		{
-			//do something	
+			playerMonkey = GetComponent<PlayerMonkey>();
+			playerCharacterType = PlayerCharacterType.PlayerMonkey;		
+
+			keyCodeDictionary0.Add(playerNoKey, ()=>playerMonkey.MoveNot());
+			keyCodeDictionary0.Add(playerLeftKey,()=>playerMonkey.MoveLeft());
+			keyCodeDictionary0.Add(playerRightKey,()=>playerMonkey.MoveRight());			
+
+			keyCodeDictionary0.Add(playerJumpKey,()=>playerMonkey.OnJumpKeyDown());
+			keyCodeDictionary1.Add(playerJumpKey,()=>playerMonkey.OnJumpKeyUp());
+			
+			//Ability KeyCode
+			keyCodeDictionary0.Add(playerAbilityKey,()=>playerMonkey.OnAbilityKey());				
 		} 
 		else if(penguinComponent !=null)
 		{
@@ -87,8 +111,20 @@ public class PlayerInput : MonoBehaviour
 		}
 		else
 		{
-			//keyCodeDictionary0.Add(playerJumpKey,()=>playerController.OnJumpKeyDown());	
-			//keyCodeDictionary1.Add(playerJumpKey, ()=>playerController.OnJumpKeyUp());
+			//System.Type addType = System.Type.GetType("PlayerNobody");
+			//gameObject.AddComponent(addType);
+			
+			playerNobody = GetComponent<PlayerNobody>();
+			playerCharacterType = PlayerCharacterType.PlayerNobody;		
+			
+			keyCodeDictionary0.Add(playerNoKey, ()=>playerNobody.MoveNot());
+			keyCodeDictionary0.Add(playerLeftKey,()=>playerNobody.MoveLeft());
+			keyCodeDictionary0.Add(playerRightKey,()=>playerNobody.MoveRight());	
+
+			keyCodeDictionary0.Add(playerJumpKey,()=>playerNobody.OnJumpKeyDown());
+			keyCodeDictionary1.Add(playerJumpKey,()=>playerNobody.OnJumpKeyUp());
+
+			keyCodeDictionary0.Add(playerAbilityKey,()=>playerNobody.OnAbilityKey());			
 		}
 	}
 	
@@ -255,6 +291,16 @@ public class PlayerInput : MonoBehaviour
 		{
 			animationHandler.SetAnimatorTrigger("WingUp");
 		}	
+		
+		if(Input.GetKeyDown(playerAbilityKey))
+		{
+			animationHandler.SetAnimatorBool("Flap",true);
+		}
+		
+		if(isControllable)
+		{
+			animationHandler.SetAnimatorBool("Flap",false);
+		}
 
 		//Collision check for animation bools
 		if(playerAlbatross.collisionController.boxCollisionDirections.down)
@@ -267,7 +313,8 @@ public class PlayerInput : MonoBehaviour
 			if(playerAlbatross.movement.x == 0)
 			{
 				animationHandler.SetAnimatorBool("EndGlideRun", true);		
-				animationHandler.SetAnimatorBool("RunT", false);						
+				animationHandler.SetAnimatorBool("RunT", false);	
+			animationHandler.SetAnimatorBool("IdleT", true);				
 			}
 			
 			isGrounded = true;
