@@ -29,9 +29,6 @@ public class EndScreenManager : MonoBehaviour
     public Color player3Color = Color.green;
     public Color player4Color = Color.yellow;
 
-    private Dictionary<string, float> playerTimeList = new Dictionary<string, float>();
-    private Dictionary<string, int> playerScoreList = new Dictionary<string, int>();
-
     private void OnEnable()
     {
         AddChildrenToList();

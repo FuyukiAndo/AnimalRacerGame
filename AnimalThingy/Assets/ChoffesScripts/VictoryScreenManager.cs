@@ -16,6 +16,11 @@ public class VictoryScreenManager : MonoBehaviour {
     private Dictionary<string, float> playerTimeList = new Dictionary<string, float>();
     private Dictionary<string, int> playerScoreList = new Dictionary<string, int>();
 
+    private bool player1Set = false;
+    private bool player2Set = false;
+    private bool player3Set = false;
+    private bool player4Set = false;
+
     private void Start()
     {
         AddChildrenToList();
@@ -123,36 +128,42 @@ public class VictoryScreenManager : MonoBehaviour {
         sortedPlayerScores.Sort();
         sortedPlayerScores.Reverse();
 
-
-
         for (int i = 0; i < childObjects.Count; i++)
         {
-            if (sortedPlayerScores[i] == InformationManager.Instance.player1.score && childObjects[i].nameText.text == null)
+            if (sortedPlayerTimes[i] == InformationManager.Instance.player1.level1Time + InformationManager.Instance.player1.level2Time + 
+                InformationManager.Instance.player1.level3Time + InformationManager.Instance.player1.level4Time && player1Set == false)
             {
                 childObjects[i].nameText.text = "Player1";
-                childObjects[i].timeText.text = playerTimeList["Player1"].ToString();
-                childObjects[i].scoreText.text = sortedPlayerScores[i].ToString();
+                childObjects[i].timeText.text = sortedPlayerTimes[i].ToString();
+                childObjects[i].scoreText.text = playerScoreList["Player1"].ToString();
+                player1Set = true;
                 goto END;
             }
-            if (sortedPlayerScores[i] == InformationManager.Instance.player2.score && childObjects[i].nameText.text == null)
+            if (sortedPlayerTimes[i] == InformationManager.Instance.player2.level1Time + InformationManager.Instance.player2.level2Time +
+                InformationManager.Instance.player2.level3Time + InformationManager.Instance.player2.level4Time && player2Set == false)
             {
                 childObjects[i].nameText.text = "Player2";
-                childObjects[i].timeText.text = playerTimeList["Player2"].ToString();
-                childObjects[i].scoreText.text = sortedPlayerScores[i].ToString();
+                childObjects[i].timeText.text = sortedPlayerTimes[i].ToString();
+                childObjects[i].scoreText.text = playerScoreList["Player2"].ToString();
+                player2Set = true;
                 goto END;
             }
-            if (sortedPlayerScores[i] == InformationManager.Instance.player3.score && childObjects[i].nameText.text == null)
+            if (sortedPlayerTimes[i] == InformationManager.Instance.player3.level1Time + InformationManager.Instance.player3.level2Time +
+                InformationManager.Instance.player3.level3Time + InformationManager.Instance.player3.level4Time && player3Set == false)
             {
                 childObjects[i].nameText.text = "Player3";
-                childObjects[i].timeText.text = playerTimeList["Player3"].ToString();
-                childObjects[i].scoreText.text = sortedPlayerScores[i].ToString();
+                childObjects[i].timeText.text = sortedPlayerTimes[i].ToString();
+                childObjects[i].scoreText.text = playerScoreList["Player3"].ToString();
+                player3Set = true;
                 goto END;
             }
-            if (sortedPlayerScores[i] == InformationManager.Instance.player4.score && childObjects[i].nameText.text == null)
+            if (sortedPlayerTimes[i] == InformationManager.Instance.player4.level1Time + InformationManager.Instance.player4.level2Time +
+                InformationManager.Instance.player4.level3Time + InformationManager.Instance.player4.level4Time && player4Set == false)
             {
                 childObjects[i].nameText.text = "Player4";
-                childObjects[i].timeText.text = playerTimeList["Player4"].ToString();
-                childObjects[i].scoreText.text = sortedPlayerScores[i].ToString();
+                childObjects[i].timeText.text = sortedPlayerTimes[i].ToString();
+                childObjects[i].scoreText.text = playerScoreList["Player4"].ToString();
+                player4Set = true;
                 goto END;
             }
         END:;
