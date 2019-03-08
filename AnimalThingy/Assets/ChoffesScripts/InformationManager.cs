@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class Player
@@ -27,7 +28,8 @@ public class InformationManager : MonoBehaviour {
     public List<Player> players;
 
     public List<string> multiplayerLevels;
-
+    public int sceneIndex = 0;
+    private bool statsCleared = false;
     private void Awake()
     {
         if (Instance == null)
@@ -46,5 +48,32 @@ public class InformationManager : MonoBehaviour {
         player4 = new Player();
         players = new List<Player>();
         multiplayerLevels = new List<string>();
+    }
+
+    private void Update()
+    {
+        if (SceneManager.GetActiveScene().name == "StartMenu" && statsCleared == false)
+        {
+            foreach (Player player in InformationManager.Instance.players)
+            {
+                player.character = null;
+                player.playerIsActive = false;
+                player.playerIsReady = false;
+                player.score = 0;
+                player.level1Time = 0.0f;
+                player.level2Time = 0.0f;
+                player.level3Time = 0.0f;
+                player.level4Time = 0.0f;
+            }
+            InformationManager.Instance.players.Clear();
+            InformationManager.Instance.multiplayerLevels.Clear();
+            sceneIndex = 0;
+            statsCleared = true;
+        }
+
+        if(SceneManager.GetActiveScene().name != "StartMenu")
+        {
+            statsCleared = false;
+        }
     }
 }

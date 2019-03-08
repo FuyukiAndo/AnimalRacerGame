@@ -14353,7 +14353,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -14377,8 +14377,8 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
---- !u!95 &95372842635313470
+    m_RotationOrder: 0
+--- !u!95 &95009904322853554
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
@@ -14419,6 +14419,7 @@ MonoBehaviour:
   collisionController: {fileID: 0}
   movement: {x: -4.7322654e-29, y: -3.8317637}
   direction: 0
+  stunDurationLeft: 0
   abilityMeter: 100
 --- !u!114 &114088474332127142
 MonoBehaviour:
@@ -14512,6 +14513,20 @@ MonoBehaviour:
   isRunning: 0
   isGliding: 0
   f: 0
+--- !u!114 &114879823984058200
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1658577195760978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee15a0617f3d0344db5be4e260f09dc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  autoAnimate: 0
+  animator: {fileID: 0}
+  animationType: []
 --- !u!114 &114918605944297334
 MonoBehaviour:
   m_ObjectHideFlags: 1

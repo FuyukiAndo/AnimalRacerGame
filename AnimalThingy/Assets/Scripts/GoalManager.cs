@@ -64,10 +64,11 @@ public class GoalManager : MonoBehaviour
 
 	void Update()
 	{
-		if (placedPlayers.Count == InformationManager.Instance.players.Count)
-		{
-			endScreenUI.SetActive(true);
-		}
+        if(placedPlayers.Count == InformationManager.Instance.players.Count)
+        {
+            endScreenUI.SetActive(true);
+            StartCoroutine(Wait());
+        }
 		if (countDownOnFirstPlayer)
 		{
 			if (startCountDown && unplacedPlayers.Count > 0)
@@ -90,12 +91,17 @@ public class GoalManager : MonoBehaviour
 
 		ValidateForGoal();
 	}
-
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(5.0f);
+        InformationManager.Instance.sceneIndex += 1;
+        SceneManager.LoadScene(InformationManager.Instance.multiplayerLevels[InformationManager.Instance.sceneIndex]);
+    }
 	void ValidateForGoal()
 	{
 		Collider2D collider = Physics2D.OverlapBox(transform.position, boxSize, 0f, playerLayer);
 
-		if (!collider.transform.GetComponent<CheckpointTracker>() || collider == null)return;
+		if (collider == null  || !collider.transform.GetComponent<CheckpointTracker>()) return;
 		if (ValidateTracker(collider.transform.GetComponent<CheckpointTracker>()))
 		{
 			PlacePlayers();

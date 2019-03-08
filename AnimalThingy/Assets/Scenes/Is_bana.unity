@@ -1111,12 +1111,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4054658343583894, guid: cfc0a52fb3726cc42b52fdb6c68160d6,
     type: 2}
   m_PrefabInternal: {fileID: 991723974}
---- !u!114 &97577096 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114854939783317110, guid: cfc0a52fb3726cc42b52fdb6c68160d6,
-    type: 2}
-  m_PrefabInternal: {fileID: 991723974}
-  m_Script: {fileID: 11500000, guid: 40862dde935f54f458b568c9a99b539e, type: 3}
 --- !u!1 &102497963
 GameObject:
   m_ObjectHideFlags: 0
@@ -6127,18 +6121,22 @@ MonoBehaviour:
     parent: {fileID: 285582545}
     timeText: {fileID: 753049842}
     nameText: {fileID: 722494941}
+    scoreText: {fileID: 0}
   secondChild:
     parent: {fileID: 1853728509}
     timeText: {fileID: 1578813080}
     nameText: {fileID: 454337932}
+    scoreText: {fileID: 0}
   thirdChild:
     parent: {fileID: 1476703944}
     timeText: {fileID: 1421150693}
     nameText: {fileID: 159338352}
+    scoreText: {fileID: 0}
   fourthChild:
     parent: {fileID: 1080928188}
     timeText: {fileID: 1568215909}
     nameText: {fileID: 807224944}
+    scoreText: {fileID: 0}
   player1Color: {r: 1, g: 0, b: 0, a: 1}
   player2Color: {r: 0, g: 0, b: 1, a: 1}
   player3Color: {r: 0, g: 1, b: 0, a: 1}
@@ -7295,6 +7293,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cfc0a52fb3726cc42b52fdb6c68160d6, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &991723975 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114546196150856140, guid: cfc0a52fb3726cc42b52fdb6c68160d6,
+    type: 2}
+  m_PrefabInternal: {fileID: 991723974}
+  m_Script: {fileID: 11500000, guid: 40862dde935f54f458b568c9a99b539e, type: 3}
 --- !u!1 &993114185
 GameObject:
   m_ObjectHideFlags: 0
@@ -7863,7 +7867,7 @@ MonoBehaviour:
   maxZoom: 10
   zoomLimiter: 50
   players: []
-  startFov: 0
+  startFov: 60
   startPos: {fileID: 0}
   timeBeforeZoomToPlayers: 0
 --- !u!1001 &1096938419
@@ -11727,12 +11731,10 @@ MonoBehaviour:
   - {fileID: 1829327259}
   - {fileID: 1665474495}
   - {fileID: 1529007533}
-  - {fileID: 97577096}
+  - {fileID: 991723975}
   - {fileID: 63703124}
   timeBeforeAutoPlacements: 180
   boxSize: {x: 0, y: 0}
-  placedPlayers: []
-  unplacedPlayers: []
   playerGoalPositions:
   - {fileID: 1655744218}
   - {fileID: 1975229639}

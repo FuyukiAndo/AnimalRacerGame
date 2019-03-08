@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33861896701847922}
   - component: {fileID: 23505651037470766}
   - component: {fileID: 61107090915512030}
-  - component: {fileID: 114042230987468328}
+  - component: {fileID: 114546196150856140}
   m_Layer: 0
   m_Name: checkpoint
   m_TagString: Respawn
@@ -83,7 +83,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1829252250889114}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300004, guid: 7bc2b8a2c5562e146ab0800d1d3f0456, type: 3}
 --- !u!61 &61107090915512030
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -109,7 +109,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &114042230987468328
+--- !u!114 &114546196150856140
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

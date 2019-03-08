@@ -42,6 +42,7 @@ public class PlayerInput : MonoBehaviour
 	public bool isRunning = false;
 	//public bool groundedRun = false;
 	public bool isGliding = false;
+    public float stunDurationLeft;
 	public float f = 0;
 
 	PlayerCharacterType playerCharacterType;
@@ -278,75 +279,53 @@ public class PlayerInput : MonoBehaviour
 			animationHandler.transform.rotation = Quaternion.Lerp(animationHandler.transform.rotation, target, speed);	
 		}
 	}
-	
+	public void Recover()
+    {
+        stunDurationLeft -= Time.deltaTime;
+    }
 	void Update() 
 	{		
 		//var oldPos;
-		
-		InputAction();
+		if(stunDurationLeft > 0)
+        {
+            Recover();
+        }
+        else
+        {
+            InputAction();
+        }
 		
 		if(animationHandler != null)
 		{
 			InputAnimation();
 		}		
 		StaticZPos();
-		
-		Debug.Log(playerAlbatross.movement.x);
-		
-		#region PlayerAblatross
-		if (playerCharacterType == PlayerCharacterType.PlayerAlbatross)
-		{
-			if (playerAlbatross.collisionController.boxCollisionDirections.down)
-			{
-				isGrounded = true;
 
-				if (playerAlbatross.movement.x != 0)
-				{
-					animationHandler.SetAnimatorBool("EndGlideRun", true);
-				}
+        if (playerAlbatross.collisionController.boxCollisionDirections.down)
+        {
+            isGrounded = true;
 
-				if (playerAlbatross.movement.x == 0)
-				{
-					animationHandler.SetAnimatorBool("EndGlideRun", true);
-					animationHandler.SetAnimatorBool("RunT", false);
-				}
-			}
-			else
-			{
-				animationHandler.SetAnimatorBool("EndGlideRun", false);
-				animationHandler.SetAnimatorBool("EndGlide", false);
-				animationHandler.SetAnimatorBool("IdleT", false);
-				animationHandler.SetAnimatorBool("RunT", false);
+            if (playerAlbatross.movement.x != 0)
+            {
+                animationHandler.SetAnimatorBool("EndGlide", false);
+                animationHandler.SetAnimatorBool("EndGlideRun", true);
+            }
 
-				if (playerAlbatross.movement.x == 0)
-				{
-
-				}
-
-				isGrounded = false;
-			}
-		}
-		#endregion
-		#region PlayerPenguin
-		else if (playerCharacterType == PlayerCharacterType.PlayerPenguin)
-		{
-
-		}
-		#endregion
-		#region PlayerPig
-		else if (playerCharacterType == PlayerCharacterType.PlayerPig)
-		{
-
-		}
-		#endregion
-		#region PlayerMonkey
-		else if (playerCharacterType == PlayerCharacterType.PlayerMonkey)
-		{
-
-		}
-		#endregion
+            if (playerAlbatross.movement.x == 0)
+            {
+                animationHandler.SetAnimatorBool("EndGlideRun", true);
+                //animationHandler.SetAnimatorBool("EndGlide", true);		
+                animationHandler.SetAnimatorBool("RunT", false);
+            }
+        }
+        else
+        {
+            animationHandler.SetAnimatorBool("EndGlide", false);
+            animationHandler.SetAnimatorBool("IdleT", false);
+            isGrounded = false;
+        }
 
 
-		//oldPos = transform.position;
-	}
+        //oldPos = transform.position;
+    }
 }

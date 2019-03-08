@@ -76,3 +76,6 @@ MonoBehaviour:
   minWindChangeInterval: 0
   maxWindChangeInterval: 0
   playerRigidbody2D: []
+  characterLayer:
+    serializedVersion: 2
+    m_Bits: 0

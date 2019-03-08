@@ -25,25 +25,7 @@ public class MultiplayerManager : MonoBehaviour {
 
     private void Start()
     {
-        InformationManager.Instance.multiplayerLevels.Clear();
-        if (InformationManager.Instance.player1.playerIsActive)
-        {
-            SetPlayerInactive(1);
-        }
-        if (InformationManager.Instance.player2.playerIsActive)
-        {
-            SetPlayerInactive(2);
-        }
-        if (InformationManager.Instance.player3.playerIsActive)
-        {
-            SetPlayerInactive(3);
-        }
-        if (InformationManager.Instance.player4.playerIsActive)
-        {
-            SetPlayerInactive(4);
-        }
-        //Aktivera när 4 eller fler kompletta scener finns och ligger i InformationManagers folders för banor
-        //AddAllMapsToList();
+        allMaps = new List<string>();
     }
 
     private void Update()
@@ -231,6 +213,7 @@ public class MultiplayerManager : MonoBehaviour {
 
     public void StartGame()
     {
+        AddAllMapsToList();
         int amountOfReadyPlayers = 0;
         for (int i = 0; i < InformationManager.Instance.players.Count; i++)
         {
@@ -242,17 +225,17 @@ public class MultiplayerManager : MonoBehaviour {
             {
                 LoadRandomCharacterScene();
 
-				//Aktivera när 4 eller fler kompletta scener finns och ligger i InformationManagers folders för banor
-				//if(amountOfReadyPlayers < 4)
-				//{
-				//    for(int j = 0; j < 4 - amountOfReadyPlayers; j++)
-				//    {
-				//        LoadRandomScene();
-				//    }
-				//}
+                //Aktivera när 4 eller fler kompletta scener finns och ligger i InformationManagers folders för banor
+                if (amountOfReadyPlayers < 4)
+                {
+                    for (int j = 0; j < 4 - amountOfReadyPlayers; j++)
+                    {
+                        LoadRandomScene();
+                    }
+                }
 
-
-				SceneManager.LoadScene(InformationManager.Instance.multiplayerLevels[0]);
+                InformationManager.Instance.multiplayerLevels.Add("VictoryScene");
+                SceneManager.LoadScene(InformationManager.Instance.multiplayerLevels[0]);
 			}
         }
     }
@@ -272,11 +255,11 @@ public class MultiplayerManager : MonoBehaviour {
                         int temp = Random.Range(0, tempMaps.Count);
                         if (InformationManager.Instance.multiplayerLevels.Contains(tempMaps[temp]))
                         {
-                            tempMaps.Remove(tempMaps[i]);
+                            tempMaps.Remove(tempMaps[temp]);
                         }
                         else
                         {
-                            InformationManager.Instance.multiplayerLevels.Add(tempMaps[i]);
+                            InformationManager.Instance.multiplayerLevels.Add(tempMaps[temp]);
                             levelSelected = true;
                         }
                     }
@@ -294,11 +277,11 @@ public class MultiplayerManager : MonoBehaviour {
                         int temp = Random.Range(0, tempMaps.Count);
                         if (InformationManager.Instance.multiplayerLevels.Contains(tempMaps[temp]))
                         {
-                            tempMaps.Remove(tempMaps[i]);
+                            tempMaps.Remove(tempMaps[temp]);
                         }
                         else
                         {
-                            InformationManager.Instance.multiplayerLevels.Add(tempMaps[i]);
+                            InformationManager.Instance.multiplayerLevels.Add(tempMaps[temp]);
                             levelSelected = true;
                         }
                     }
@@ -315,11 +298,11 @@ public class MultiplayerManager : MonoBehaviour {
                         int temp = Random.Range(0, tempMaps.Count);
                         if (InformationManager.Instance.multiplayerLevels.Contains(tempMaps[temp]))
                         {
-                            tempMaps.Remove(tempMaps[i]);
+                            tempMaps.Remove(tempMaps[temp]);
                         }
                         else
                         {
-                            InformationManager.Instance.multiplayerLevels.Add(tempMaps[i]);
+                            InformationManager.Instance.multiplayerLevels.Add(tempMaps[temp]);
                             levelSelected = true;
                         }
                     }
@@ -336,11 +319,11 @@ public class MultiplayerManager : MonoBehaviour {
                         int temp = Random.Range(0, tempMaps.Count);
                         if (InformationManager.Instance.multiplayerLevels.Contains(tempMaps[temp]))
                         {
-                            tempMaps.Remove(tempMaps[i]);
+                            tempMaps.Remove(tempMaps[temp]);
                         }
                         else
                         {
-                            InformationManager.Instance.multiplayerLevels.Add(tempMaps[i]);
+                            InformationManager.Instance.multiplayerLevels.Add(tempMaps[temp]);
                             levelSelected = true;
                         }
                     }
@@ -374,8 +357,24 @@ public class MultiplayerManager : MonoBehaviour {
 
     private void LoadRandomScene()
     {
-        int temp = Random.Range(0, allMaps.Count);
-        InformationManager.Instance.multiplayerLevels.Add(allMaps[temp]);
+        List<string> tempList = new List<string>(allMaps);
+        bool levelSelected = false;
+        for(int i = 0; i < tempList.Count; i++)
+        {
+            if (levelSelected == false)
+            {
+                int temp = Random.Range(0, allMaps.Count);
+                if (InformationManager.Instance.multiplayerLevels.Contains(allMaps[temp]))
+                {
+                    allMaps.Remove(allMaps[temp]);
+                }
+                else
+                {
+                    InformationManager.Instance.multiplayerLevels.Add(allMaps[temp]);
+                    levelSelected = true;
+                }
+            }
+        }
     }
 }
 
