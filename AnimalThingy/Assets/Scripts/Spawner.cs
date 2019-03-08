@@ -2,19 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spawner : MonoBehaviour{
-
+public class Spawner : MonoBehaviour
+{
     public GameObject spawnObject;
-    public float timeBetweenSpawns;
-
+    public float timeBetweenSpawnsMin = 1;
+    public float timeBetweenSpawnsMax = 3;
+    protected float timeBetweenSpawns;
     protected float spawnClock;
 
+    private void Awake()
+    {
+        if (GetComponent<MeshRenderer>() != null)
+        {
+            GetComponent<MeshRenderer>().enabled = false;
+        }
+        if (GetComponent<Collider2D>() != null)
+        {
+            GetComponent<Collider2D>().enabled = false;
+        }
+    }
     protected void Start()
     {
-        timeBetweenSpawns = Mathf.Clamp(timeBetweenSpawns, 0, timeBetweenSpawns);
+        timeBetweenSpawnsMin = Mathf.Clamp(timeBetweenSpawnsMin, 0, timeBetweenSpawnsMin);
+        timeBetweenSpawnsMax = Mathf.Clamp(timeBetweenSpawnsMax, timeBetweenSpawnsMin, timeBetweenSpawnsMax);
     }
+	
     protected void SpawnObject()
     {
+        timeBetweenSpawns = Random.Range(timeBetweenSpawnsMin, timeBetweenSpawnsMax);
         if (spawnClock > timeBetweenSpawns)
         {
 
@@ -26,6 +41,7 @@ public class Spawner : MonoBehaviour{
             spawnClock += Time.deltaTime;
         }
     }
+	
     protected void spawnAfter(bool first)
     {
         if (transform.childCount > 0 && first == true)

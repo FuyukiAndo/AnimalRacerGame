@@ -143,3 +143,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stunDuration: 3
   speed: -3
+  terrainTypesLayer:
+    serializedVersion: 2
+    m_Bits: 512

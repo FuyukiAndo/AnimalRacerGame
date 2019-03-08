@@ -10,6 +10,7 @@ public class BubbleSpawner : Spawner {
 
     private Vector2 travelPosition;
     private bool onlyChild = true;
+
     void Update () {
         SpawnObject();
         spawnAfter(onlyChild);

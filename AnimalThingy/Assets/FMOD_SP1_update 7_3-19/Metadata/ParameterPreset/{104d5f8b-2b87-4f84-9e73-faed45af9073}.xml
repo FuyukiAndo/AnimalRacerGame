@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="ParameterPreset" id="{104d5f8b-2b87-4f84-9e73-faed45af9073}">
+        <property name="name">
+            <value>DJUNGEL_MUSIC</value>
+        </property>
+        <relationship name="folder">
+            <destination>{66086b72-7867-47d1-9fa4-c73519939f94}</destination>
+        </relationship>
+        <relationship name="parameter">
+            <destination>{de9cea50-4aaf-4167-b6a4-42bf5226167c}</destination>
+        </relationship>
+    </object>
+    <object class="GameParameter" id="{de9cea50-4aaf-4167-b6a4-42bf5226167c}">
+        <property name="initialValue">
+            <value>0</value>
+        </property>
+    </object>
+</objects>

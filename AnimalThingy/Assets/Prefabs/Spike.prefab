@@ -25,9 +25,9 @@ GameObject:
   - component: {fileID: 50990794935749964}
   - component: {fileID: 114885341173724332}
   - component: {fileID: 95138750451587478}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Spike
-  m_TagString: Spike
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -161,6 +161,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab4a0a6a190711a4b9f86d7fb8fc85e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBeforeSpikeFalls: 3
-  fallSpeed: 1
-  stunDuration: 3
+  stunDuration: 4
+  speed: 1
+  terrainTypesLayer:
+    serializedVersion: 2
+    m_Bits: 528
+  timeBeforeSpikeFallsMin: 0
+  timeBeforeSpikeFallsMax: 5

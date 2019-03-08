@@ -5,26 +5,35 @@ using UnityEngine;
 public class FlyingTrajectory : MonoBehaviour {
 
     [Header("Player Interaction")]
-    public float stunDuration;
+    public float stunDuration = 1;
 
     [Header("Trajectory Attributs")]
-    public float speed;
+    public float speed = 2;
+    public LayerMask terrainTypesLayer;
 
     protected Rigidbody2D rb2d;
     protected float startFalling;
+    protected bool isOnLayer;
 
     protected void OnCollisionEnter2D(Collision2D collision)
     {
-        PetersPlayerController player = collision.gameObject.GetComponent<PetersPlayerController>();
+        PlayerInput player = collision.gameObject.GetComponent<PlayerInput>();
+        bool isOnLayer = terrainTypesLayer == (terrainTypesLayer | (1 << collision.gameObject.layer));
         if (player != null)
         {
-            StartCoroutine(player.GetStunned(stunDuration, gameObject));
-            GetComponent<MeshRenderer>().enabled = false;
-            GetComponent<Collider2D>().enabled = false;
+            player.stunDurationLeft = stunDuration;
+            Destroy(gameObject);
         }
-        if(collision.gameObject.layer == LayerMask.NameToLayer("Terrain"))
+        if(isOnLayer)
         {
-            Debug.Log("llo");
+            Destroy(gameObject);
+        }
+    }
+    protected void OnTriggerEnter2D(Collider2D collision)
+    {
+        bool isOnLayer = terrainTypesLayer == (terrainTypesLayer | (1 << collision.gameObject.layer));
+        if (isOnLayer)
+        {
             Destroy(gameObject);
         }
     }

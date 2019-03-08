@@ -8,6 +8,7 @@ public class Wind : MonoBehaviour {
     public float minWindChangeInterval;
     public float maxWindChangeInterval;
     public List<Rigidbody2D> playerRigidbody2D;
+    public LayerMask characterLayer;
 
     private float currentChangeInterval;
     private float intervalTime;
@@ -23,7 +24,8 @@ public class Wind : MonoBehaviour {
         currentChangeInterval = Random.Range(minWindChangeInterval, maxWindChangeInterval);
         foreach (Rigidbody2D rb2d in FindObjectsOfType<Rigidbody2D>())
         {
-            if (rb2d.gameObject.layer == LayerMask.NameToLayer("Character"))
+            bool isLayerSame = characterLayer == (characterLayer | (1 << rb2d.gameObject.layer));
+            if (isLayerSame)
             {
                 playerRigidbody2D.Add(rb2d);
             }

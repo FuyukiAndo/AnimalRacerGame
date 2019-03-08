@@ -53,5 +53,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnObject: {fileID: 1930622670536196, guid: 65fe2ec3132892542a72b75f23eaff9b,
     type: 2}
-  timeBetweenSpawns: 0
+  timeBetweenSpawnsMin: 2
+  timeBetweenSpawnsMax: 3
   wantSpikeToDisappearFirst: 0
+  timeBeforeSpikeFallsMin: 1
+  timeBeforeSpikeFallsMax: 2

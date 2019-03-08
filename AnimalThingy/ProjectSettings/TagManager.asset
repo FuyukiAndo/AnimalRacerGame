@@ -4,11 +4,13 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Spike
-  - Character
-  - Tranpolin
   - Ground
-  - Wall
+  - Ball
+  - Workdammit
+  - Ice_Character
+  - Coast_Character
+  - Jungle_Character
+  - Blast
   layers:
   - Default
   - TransparentFX
@@ -18,9 +20,9 @@ TagManager:
   - UI
   - 
   - 
-  - Terrain
-  - Spike
-  - Character
+  - 
+  - 
+  - 
   - 
   - 
   - 
