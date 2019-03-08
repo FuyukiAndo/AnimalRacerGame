@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="ParameterPreset" id="{293cd9f1-7231-467f-b396-608a058618a8}">
+        <property name="name">
+            <value>NOISE_DJUNGEL</value>
+        </property>
+        <relationship name="folder">
+            <destination>{66086b72-7867-47d1-9fa4-c73519939f94}</destination>
+        </relationship>
+        <relationship name="parameter">
+            <destination>{3c829c2e-17c7-4f85-9357-20e0897b4b96}</destination>
+        </relationship>
+    </object>
+    <object class="GameParameter" id="{3c829c2e-17c7-4f85-9357-20e0897b4b96}">
+        <property name="initialValue">
+            <value>0</value>
+        </property>
+    </object>
+</objects>

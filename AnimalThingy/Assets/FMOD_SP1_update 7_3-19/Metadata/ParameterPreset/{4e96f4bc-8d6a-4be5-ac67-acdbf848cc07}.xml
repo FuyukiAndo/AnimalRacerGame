@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="ParameterPreset" id="{4e96f4bc-8d6a-4be5-ac67-acdbf848cc07}">
+        <property name="name">
+            <value>DJungel_TEMPO</value>
+        </property>
+        <relationship name="folder">
+            <destination>{66086b72-7867-47d1-9fa4-c73519939f94}</destination>
+        </relationship>
+        <relationship name="parameter">
+            <destination>{5b0b5507-0912-4f09-a6d1-ddfa446b01ab}</destination>
+        </relationship>
+    </object>
+    <object class="GameParameter" id="{5b0b5507-0912-4f09-a6d1-ddfa446b01ab}">
+        <property name="initialValue">
+            <value>0</value>
+        </property>
+    </object>
+</objects>
