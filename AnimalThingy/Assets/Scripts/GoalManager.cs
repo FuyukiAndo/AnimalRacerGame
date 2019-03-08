@@ -12,6 +12,7 @@ public class GoalManager : MonoBehaviour
 	public Checkpoint[] checksToPass;
 	public float timeBeforeAutoPlacements;
 	public Vector2 boxSize;
+	public float yRotation;
 
 	public static GoalManager Instance
 	{
@@ -280,6 +281,9 @@ public class GoalManager : MonoBehaviour
 		//string componentName = playerMoveScript.GetType().ToString();
 		foreach (var player in placedPlayers)
 		{
+			player.transform.GetChild(0).rotation = Quaternion.Euler(
+				player.transform.GetChild(0).rotation.x, yRotation, player.transform.GetChild(0).rotation.z
+			);
 			if (player.GetComponentInChildren<AnimationHandler>())
 			{
 				player.GetComponentInChildren<AnimationHandler>().SetAnimatorTrigger("Idle");

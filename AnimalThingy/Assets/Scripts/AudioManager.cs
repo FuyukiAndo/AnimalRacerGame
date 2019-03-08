@@ -1,15 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Audio;
-using FMODUnity;
 using FMOD;
 using FMOD.Studio;
+using FMODUnity;
+using UnityEngine;
+using UnityEngine.Audio;
 
 [RequireComponent(typeof(AudioSource))]
-public class AudioManager : MonoBehaviour {
+public class AudioManager : MonoBehaviour
+{
 
-	[EventRef] [SerializeField] private string backgroundAudioPath, ambiencePath;
+	[EventRef][SerializeField] private string backgroundAudioPath, ambiencePath;
 	[SerializeField] private ParameterInstance backgroundParameter, ambienceParameter;
 	[SerializeField] private string backgroundParameterName, ambienceParameterName;
 
@@ -43,7 +44,8 @@ public class AudioManager : MonoBehaviour {
 	}
 
 	// Use this for initialization
-	void Start () {
+	void Start()
+	{
 		if (useFMOD)
 		{
 			backgroundAudioInstance = RuntimeManager.CreateInstance(backgroundAudioPath);
@@ -66,7 +68,7 @@ public class AudioManager : MonoBehaviour {
 			}
 		}
 	}
-	
+
 	IEnumerator PlayBackAudio()
 	{
 		backgroundAudioInstance.start();
@@ -234,9 +236,29 @@ public class AudioManager : MonoBehaviour {
 		}
 	}
 
+	public float GetVolumeBackground()
+	{
+		float volume, finalVolume;
+		backgroundAudioInstance.getVolume(out volume, out finalVolume);
+		return finalVolume;
+	}
+
 	public void SetVolumeAmbience(float volume)
 	{
 		ambienceInstance.setVolume(volume);
+	}
+
+	public float GetVolumeAmbience()
+	{
+		float volume, finalVolume;
+		ambienceInstance.getVolume(out volume, out finalVolume);
+		return finalVolume;
+	}
+
+	public void SetVolumeMaster(float volume)
+	{
+		SetVolumeBackground(GetVolumeBackground() * volume);
+		SetVolumeAmbience(GetVolumeAmbience() * volume);
 	}
 
 	public void SetBackgroundAudio(string path)

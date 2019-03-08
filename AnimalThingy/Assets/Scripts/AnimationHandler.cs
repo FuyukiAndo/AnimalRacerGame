@@ -10,6 +10,19 @@ public class AnimationHandler : MonoBehaviour
 	private AnimationType forUpdate, forCollisionEnter, forCollisionExit, forCollisionStay, forTriggerEnter,
 	forTriggerStay, forTriggerExit;
 	private bool queveUpdateAnimation;
+	public float BlinkInterval
+	{
+		get
+		{
+			return blinkInterval;
+		}
+		set
+		{
+			blinkInterval = value;
+		}
+	}
+	[SerializeField] private float blinkInterval;
+	private float nextBlink;
 
 	void Start()
 	{
@@ -260,5 +273,15 @@ public class AnimationHandler : MonoBehaviour
 	private bool EventAnimationStopped()
 	{
 		return animator.IsInTransition(0);
+	}
+
+	public void UpdateBlink()
+	{
+		if (Time.time > nextBlink)
+		{
+			animator.SetBool("Blink", true);
+		}
+		animator.SetBool("Blink", false);
+		nextBlink = Time.time + blinkInterval;
 	}
 }
