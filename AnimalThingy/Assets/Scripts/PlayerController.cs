@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
 	RaycastController raycastController;
 
 	protected float velocitySmoothing;
-	protected float wallSlideSpeedMax = 3;
+	public float wallSlideSpeedMax = 6;
 	
 	[HideInInspector] public Vector2 movement;
 	protected int movementDirection;
@@ -185,7 +185,7 @@ public class PlayerController : MonoBehaviour
 	public virtual void Update()
 	{
 		UpdateGravity();
-		
+
 		float verticalTranslate = gravity * Time.deltaTime;
 		
 		movement.y += verticalTranslate;
@@ -199,26 +199,14 @@ public class PlayerController : MonoBehaviour
 			MoveObject(movement * Time.deltaTime);
         }
 		
-		bool wallSliding = false;
 
-		/*if((collisionController.boxCollisionDirections.left || collisionController.boxCollisionDirections.right) 
-			&& !collisionController.boxCollisionDirections.down && maxVelocity < 0)
-		{
-			wallSliding = true;
-
-			if(movement.y < -wallSlideSpeedMax)
-			{
-				movement.y = 0.1f;//2*wallSlideSpeedMax;
-			}
-		}*/
 
 		if (collisionController.boxCollisionDirections.up || collisionController.boxCollisionDirections.down)
 		{
 			movement.y = 0;
-		}
+		}	
 		
-		
-		if(playerInput.targetAngle == playerInput.maxAngleValue)
+		if(playerInput.targetAngle == playerInput.GetMaxAngleValue())
 		{
 			abilityDirection = 1;
 		}

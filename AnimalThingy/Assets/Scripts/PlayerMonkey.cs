@@ -11,10 +11,26 @@ public class PlayerMonkey : PlayerController
 	
 	public override void Update()
 	{
-		if((collisionController.boxCollisionDirections.left || collisionController.boxCollisionDirections.right)) 
+		base.Update();
+
+		bool wallSliding = false;
+
+		if((collisionController.boxCollisionDirections.left || collisionController.boxCollisionDirections.right)
+		&& !collisionController.boxCollisionDirections.down && movement.y < 0)
 		{
-			print("this works");
+			wallSliding = true;
+
+			if(movement.y < -wallSlideSpeedMax)
+			{
+				Debug.Log("wallslide");
+				movement.y = -wallSlideSpeedMax;
+			}
 		}
+		
+		/*if((collisionController.boxCollisionDirections.left || collisionController.boxCollisionDirections.right)) 
+		{
+			//print("The wall has been collided with");
+		}	*/	
 	}
 	
 	public void OnAbilityKey()
