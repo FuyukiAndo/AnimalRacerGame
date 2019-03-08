@@ -9,6 +9,11 @@ public class PlayerNobody : PlayerController
 		base.Start();
 	}
 
+	public override void Update()
+	{
+		base.Update();
+	}
+
 	public void OnAbilityKey()
 	{
 		//doesn't do anything.

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="MixerGroup" id="{bec35392-45ef-4355-9366-f681a0bd48a5}">
+        <property name="name">
+            <value>MUSIC</value>
+        </property>
+        <relationship name="effectChain">
+            <destination>{23dc247c-30bd-435e-9334-afec7f6c236d}</destination>
+        </relationship>
+        <relationship name="panner">
+            <destination>{3366bb08-a5f4-4eda-8101-0c82f602abf9}</destination>
+        </relationship>
+        <relationship name="output">
+            <destination>{0ed27d95-098f-4353-90a3-02e873841ca1}</destination>
+        </relationship>
+    </object>
+    <object class="MixerBusEffectChain" id="{23dc247c-30bd-435e-9334-afec7f6c236d}">
+        <relationship name="effects">
+            <destination>{4ed31d9a-1c82-4f9c-b9b4-ea69fec512d0}</destination>
+            <destination>{73ab4a8e-687f-4c5e-864d-fc443c523cd3}</destination>
+            <destination>{119c8c17-9af7-4511-8178-2c7ec56c6225}</destination>
+        </relationship>
+    </object>
+    <object class="MixerBusPanner" id="{3366bb08-a5f4-4eda-8101-0c82f602abf9}"/>
+    <object class="CompressorEffect" id="{4ed31d9a-1c82-4f9c-b9b4-ea69fec512d0}">
+        <property name="threshold">
+            <value>-25.5</value>
+        </property>
+        <property name="attackTime">
+            <value>0.100000001</value>
+        </property>
+        <property name="releaseTime">
+            <value>26</value>
+        </property>
+        <property name="gain">
+            <value>3</value>
+        </property>
+        <property name="sidechainEnabled">
+            <value>true</value>
+        </property>
+    </object>
+    <object class="MixerBusFader" id="{73ab4a8e-687f-4c5e-864d-fc443c523cd3}"/>
+    <object class="Sidechain" id="{119c8c17-9af7-4511-8178-2c7ec56c6225}">
+        <relationship name="targets">
+            <destination>{ca301b10-f756-4a48-a15d-652a705c3083}</destination>
+        </relationship>
+    </object>
+</objects>

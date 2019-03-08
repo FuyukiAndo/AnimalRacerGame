@@ -7,11 +7,12 @@ using UnityEngine.SceneManagement;
 
 public class GoalManager : MonoBehaviour
 {
-    public GameObject endScreenUI;
+	public GameObject endScreenUI;
 	public bool passInSequence, countDownOnFirstPlayer;
 	public Checkpoint[] checksToPass;
 	public float timeBeforeAutoPlacements;
 	public Vector2 boxSize;
+	public float yRotation;
 
 	public static GoalManager Instance
 	{
@@ -39,6 +40,8 @@ public class GoalManager : MonoBehaviour
 	[SerializeField] private LayerMask playerLayer, ignorePlayerLayer;
 	[SerializeField] private float nextSceneDelay;
 	private bool startedSceneSwitch;
+	private GameObject checkpointToGoFor;
+	private int currentCheckToGoFor;
 
 	void Start()
 	{
@@ -284,9 +287,17 @@ public class GoalManager : MonoBehaviour
 		//string componentName = playerMoveScript.GetType().ToString();
 		foreach (var player in placedPlayers)
 		{
+			player.transform.GetChild(0).rotation = Quaternion.Euler(
+				player.transform.GetChild(0).rotation.x, yRotation, player.transform.GetChild(0).rotation.z
+			);
+			if (player.GetComponentInChildren<AnimationHandler>())
+			{
+				player.GetComponentInChildren<AnimationHandler>().SetAnimatorTrigger("Idle");
+				player.GetComponentInChildren<AnimationHandler>().SetAnimatorTrigger("Victory");
+			}
 			for (int i = 0; i < playerMoveScriptName.Length; i++)
 			{
-				MonoBehaviour script = player.GetComponent(playerMoveScriptName[i]) as MonoBehaviour;
+				MonoBehaviour script = player.GetComponent(playerMoveScriptName[i])as MonoBehaviour;
 				script.enabled = false;
 			}
 		}

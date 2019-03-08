@@ -13,9 +13,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: 
-  SourceProjectPathUnformatted: 
-  SourceBankPathUnformatted: 
+  sourceProjectPath: Assets\FMOD_SP1_update 7_3-19\FMOD_SP1_update 7_3-19.fspro
+  SourceProjectPathUnformatted: Assets\FMOD_SP1_update 7_3-19\FMOD_SP1_update 7_3-19.fspro
+  SourceBankPathUnformatted: Assets\FMOD_SP1_update 7_3-19\Build
   AutomaticEventLoading: 1
   AutomaticSampleLoading: 0
   ImportType: 0
@@ -56,5 +56,7 @@ MonoBehaviour:
   - Platform: 2
     Value: 32
   Plugins: []
-  MasterBanks: []
+  MasterBanks:
+  - Master Bank
+  - Master Bank
   Banks: []

@@ -4,19 +4,13 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Spike
-  - Character
-  - Tranpolin
   - Ground
-  - Wall
-  - Bonefire
-  - OneWay
-  - oneWay
   - Ball
   - Workdammit
   - Ice_Character
   - Coast_Character
   - Jungle_Character
+  - Blast
   layers:
   - Default
   - TransparentFX
@@ -26,13 +20,13 @@ TagManager:
   - UI
   - 
   - 
-  - Player
-  - Platform
-  - MovingPlatform
   - 
   - 
   - 
-  - tempUI
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -53,13 +47,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: 1
-    uniqueID: 3458042835
-    locked: 0
-  - name: 2
-    uniqueID: 1585366551
-    locked: 0
-  - name: 3
-    uniqueID: 2772169801
     locked: 0
