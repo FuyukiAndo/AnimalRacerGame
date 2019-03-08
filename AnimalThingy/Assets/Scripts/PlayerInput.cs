@@ -49,6 +49,8 @@ public class PlayerInput : MonoBehaviour
 	
 	[HideInInspector] public float targetAngle;
 	[HideInInspector] public bool isControllable = true;
+	
+	public float stunDurationLeft = 1.2f;
 
 	public float GetMaxAngleValue()
 	{
@@ -136,43 +138,36 @@ public class PlayerInput : MonoBehaviour
 	
 	void InputAction()
 	{
-	    if (stunDurationLeft > 0)
-        {
-            Recover();
-        }
-        else
-        {
-			if(isControllable)
+		// Move player left
+		if(isControllable)
+		{
+			if(Input.GetKey(playerLeftKey))
 			{
-				// Move player left
-				if(Input.GetKey(playerLeftKey))
-				{
-					keyCodeDictionary0[playerLeftKey]();
-				}
+				keyCodeDictionary0[playerLeftKey]();
+			}
 
-				// Move player right
-				if(Input.GetKey(playerRightKey))
-				{
-					keyCodeDictionary0[playerRightKey]();
-				}
-				
-				// Ability Key
-				if(Input.GetKeyDown(playerAbilityKey))
-				{
-					keyCodeDictionary0[playerAbilityKey]();
-				}
-				
-				// Jump KeyCode Down
-				if(Input.GetKeyDown(playerJumpKey))
-				{
-					keyCodeDictionary0[playerJumpKey]();
-				}
-				
-				// Jump KeyCode Up
-				if(Input.GetKeyUp(playerJumpKey))
-				{
-					keyCodeDictionary1[playerJumpKey]();
-				}
+			// Move player right
+			if(Input.GetKey(playerRightKey))
+			{
+				keyCodeDictionary0[playerRightKey]();
+			}
+			
+			// Ability Key
+			if(Input.GetKeyDown(playerAbilityKey))
+			{
+				keyCodeDictionary0[playerAbilityKey]();
+			}
+			
+			// Jump KeyCode Down
+			if(Input.GetKeyDown(playerJumpKey))
+			{
+				keyCodeDictionary0[playerJumpKey]();
+			}
+			
+			// Jump KeyCode Up
+			if(Input.GetKeyUp(playerJumpKey))
+			{
+				keyCodeDictionary1[playerJumpKey]();
 			}
 		}
 		
@@ -338,11 +333,6 @@ public class PlayerInput : MonoBehaviour
 		}
 	}
 	
-	public void Recover()
-    {
-        stunDurationLeft -= Time.deltaTime;
-    }
-
 	void Update() 
 	{
 		StaticZPos();

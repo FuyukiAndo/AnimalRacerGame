@@ -41,21 +41,15 @@ public class PlayerController : MonoBehaviour
 	public float wallSlideSpeedMax = 6;
 	
 	[HideInInspector] public Vector2 movement;
-//	[HideInInspector] public int direction;
-    [HideInInspector] public float stunDurationLeft;
-
-    //Only public for debug
-    protected float tempSpeed;
 	protected int movementDirection;
 	protected int abilityDirection;
 
-	//protected float tempSpeed;
+	protected float tempSpeed;
 	protected float mod0 = 0.1f;
 	protected float mod1 = 0.2f;
 	
 	[HideInInspector] public int abilityMeter = 100;
 	[HideInInspector] public int abilityTimer = 3;
-	//public float stunDuration = 10f;
 	
 	protected PlayerInput playerInput;
 	public Collider2D[] collision;	
@@ -182,11 +176,6 @@ public class PlayerController : MonoBehaviour
 		movementDirection = 0;
 	}
 
-    void RecoverFromStun()
-    {
-        stunDuration -= Time.deltaTime;
-    } 
-
 	public virtual void Update()
 	{
 		UpdateGravity();
@@ -195,14 +184,7 @@ public class PlayerController : MonoBehaviour
 		
 		movement.y += verticalTranslate;
 		
-		if (stunDurationLeft > 0)
-        {
-            RecoverFromStun();
-        }
-        else
-        {
-			MoveObject(movement * Time.deltaTime);
-        }
+		MoveObject(movement * Time.deltaTime);
 
 		if (collisionController.boxCollisionDirections.up || collisionController.boxCollisionDirections.down)
 		{
@@ -251,12 +233,8 @@ public class PlayerController : MonoBehaviour
 
 		transform.Translate(movement,Space.World);
 	}
-    void RecoverFromStun()
-    {
-        stunDurationLeft -= Time.deltaTime;
-    }
-
-    void OnDrawGizmosSelected()
+	
+	void OnDrawGizmosSelected()
 	{
 		Gizmos.color = Color.red;
 		Gizmos.DrawLine(new Vector3(gameObject.transform.position.x-4, gameObject.transform.position.y + maxJumpHeight, 0),

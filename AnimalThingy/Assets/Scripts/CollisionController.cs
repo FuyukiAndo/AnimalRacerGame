@@ -162,7 +162,7 @@ public class CollisionController : RaycastController
 			}
 		}	
 
-		Physics2D.SyncTransforms(); 
+		//Physics2D.SyncTransforms(); 
 		float directionY = Mathf.Sign(movement.y);
 		float rayLengthY = Mathf.Abs(movement.y) + collisionOffset*SetRayLength;
 		
