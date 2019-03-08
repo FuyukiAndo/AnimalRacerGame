@@ -20,6 +20,7 @@ public class CameraScript : MonoBehaviour {
 	public float startFov;
 	public Transform startPos;
 	public float timeBeforeZoomToPlayers;
+	public float camAngle = 5, camYOffset = 5;
 
 	private bool followPlayers = false;
 
@@ -28,6 +29,7 @@ public class CameraScript : MonoBehaviour {
         Debug.Log(InformationManager.Instance.players.Count);
         players = new List<GameObject>();
         cam = GetComponent<Camera>();
+		cam.transform.Rotate(camAngle, 0f, 0f);
 		StartCoroutine(Overlook());
 	}
 
@@ -138,7 +140,7 @@ public class CameraScript : MonoBehaviour {
 
     void CameraFollow(GameObject g1, GameObject g2)
     {
-        Vector3 newPosition = new Vector3((g1.transform.position.x + g2.transform.position.x) / 2, (g1.transform.position.y + g2.transform.position.y) / 2, transform.position.z);
+        Vector3 newPosition = new Vector3((g1.transform.position.x + g2.transform.position.x) / 2, ((g1.transform.position.y + g2.transform.position.y) / 2) + camYOffset, transform.position.z);
         transform.position = Vector3.SmoothDamp(transform.position, newPosition, ref velocity, cameraSmoothTime);
     }
 
