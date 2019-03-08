@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class GoalManager : MonoBehaviour
 {
-    public GameObject endScreenUI;
+	public GameObject endScreenUI;
 	public bool passInSequence, countDownOnFirstPlayer;
 	public Checkpoint[] checksToPass;
 	public float timeBeforeAutoPlacements;
@@ -63,10 +63,10 @@ public class GoalManager : MonoBehaviour
 
 	void Update()
 	{
-        if(placedPlayers.Count == InformationManager.Instance.players.Count)
-        {
-            endScreenUI.SetActive(true);
-        }
+		if (placedPlayers.Count == InformationManager.Instance.players.Count)
+		{
+			endScreenUI.SetActive(true);
+		}
 		if (countDownOnFirstPlayer)
 		{
 			if (startCountDown && unplacedPlayers.Count > 0)
@@ -94,7 +94,7 @@ public class GoalManager : MonoBehaviour
 	{
 		Collider2D collider = Physics2D.OverlapBox(transform.position, boxSize, 0f, playerLayer);
 
-		if (!collider.transform.GetComponent<CheckpointTracker>() || collider == null) return;
+		if (!collider.transform.GetComponent<CheckpointTracker>() || collider == null)return;
 		if (ValidateTracker(collider.transform.GetComponent<CheckpointTracker>()))
 		{
 			PlacePlayers();
@@ -280,9 +280,14 @@ public class GoalManager : MonoBehaviour
 		//string componentName = playerMoveScript.GetType().ToString();
 		foreach (var player in placedPlayers)
 		{
+			if (player.GetComponentInChildren<AnimationHandler>())
+			{
+				player.GetComponentInChildren<AnimationHandler>().SetAnimatorTrigger("Idle");
+				player.GetComponentInChildren<AnimationHandler>().SetAnimatorTrigger("Victory");
+			}
 			for (int i = 0; i < playerMoveScriptName.Length; i++)
 			{
-				MonoBehaviour script = player.GetComponent(playerMoveScriptName[i]) as MonoBehaviour;
+				MonoBehaviour script = player.GetComponent(playerMoveScriptName[i])as MonoBehaviour;
 				script.enabled = false;
 			}
 		}
