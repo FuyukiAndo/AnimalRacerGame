@@ -50,14 +50,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1758811890012606}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -30.422455, y: -15.954739, z: 0}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: -15, y: 65.481415, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4763535674650438}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!4 &4763535674650438
 Transform:
   m_ObjectHideFlags: 1
@@ -65,8 +65,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1256401647531460}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -10.58, y: -4.47, z: 0.03}
+  m_LocalScale: {x: 50, y: 100, z: 100}
   m_Children: []
   m_Father: {fileID: 4710498595008404}
   m_RootOrder: 0
@@ -111,7 +111,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1256401647531460}
-  m_Mesh: {fileID: 4300000, guid: 7b8db982cf9e9cf46b39105aa5646bec, type: 3}
+  m_Mesh: {fileID: 4300010, guid: 1b348d5fe283b834e87eb2097fc00165, type: 3}
 --- !u!60 &60430131211811620
 PolygonCollider2D:
   m_ObjectHideFlags: 1
@@ -136,8 +136,16 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -4.9999275, y: -3.9997425}
-      - {x: -8.000427, y: -5.500044}
-      - {x: -8.000202, y: -6.500269}
-      - {x: -6.303173, y: -5.6519165}
-      - {x: -4.999897, y: -5.000347}
+    - - {x: -8.449572, y: -4.0038185}
+      - {x: -12.084401, y: -3.9771996}
+      - {x: -12.094906, y: -3.9999886}
+      - {x: -12.178812, y: -4.1853523}
+      - {x: -12.227776, y: -4.2853394}
+      - {x: -12.318202, y: -4.468872}
+      - {x: -12.413982, y: -4.664337}
+      - {x: -12.43765, y: -4.710167}
+      - {x: -12.477119, y: -4.7848816}
+      - {x: -12.473623, y: -4.7851295}
+      - {x: -12.543955, y: -4.930153}
+      - {x: -10.713143, y: -4.9568634}
+      - {x: -8.95044, y: -4.9888153}
