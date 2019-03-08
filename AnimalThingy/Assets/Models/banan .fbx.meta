@@ -12,7 +12,12 @@ ModelImporter:
     3300000: //RootNode
     4300000: pCube5
     9500000: //RootNode
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: 1d9fc3bc0a80f694ab8d9628c3616263, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -47,8 +52,8 @@ ModelImporter:
     addColliders: 0
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
