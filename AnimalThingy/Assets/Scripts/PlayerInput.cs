@@ -110,56 +110,64 @@ public class PlayerInput : MonoBehaviour
 	
 	void InputAction()
 	{
-		//move player left
-		if(Input.GetKey(playerLeftKey))
-		{
-			keyDictionary[playerLeftKey]();
-		}
-		
-		if(Input.GetKeyDown(playerLeftKey))
-		{
-			playerController.playerStates = PlayerStates.playerRun;
-		}
-		
-		if(Input.GetKeyUp(playerLeftKey))
-		{
-			playerController.playerStates = PlayerStates.playerIdle;
-		}
+        if (stunDurationLeft > 0)
+        {
+            Recover();
+        }
+        else
+        {
 
-		//move player right
-		if(Input.GetKey(playerRightKey))
-		{
-			keyDictionary[playerRightKey]();
-		}	
-		
-		if(Input.GetKeyDown(playerRightKey))
-		{
-			playerController.playerStates = PlayerStates.playerRun;
-		}
-		
-		if(Input.GetKeyUp(playerRightKey))
-		{
-			playerController.playerStates = PlayerStates.playerIdle;
-		}
-		
-		// Ability Key
-		if(Input.GetKeyDown(playerAbilityKey))
-		{
-			keyDictionary[playerAbilityKey]();
-		}
-		
-		//max value of jump height
-		if(Input.GetKeyDown(playerJumpKey))
-		{
-			keyDictionary[playerJumpKey]();
-		}
-		
-		//min value of jump height
-		if(Input.GetKeyUp(playerJumpKey))
-		{
-			anotherDictionary[playerJumpKey]();
-		}
-		
+
+            //move player left
+            if (Input.GetKey(playerLeftKey))
+            {
+                keyDictionary[playerLeftKey]();
+            }
+
+            if (Input.GetKeyDown(playerLeftKey))
+            {
+                playerController.playerStates = PlayerStates.playerRun;
+            }
+
+            if (Input.GetKeyUp(playerLeftKey))
+            {
+                playerController.playerStates = PlayerStates.playerIdle;
+            }
+
+            //move player right
+            if (Input.GetKey(playerRightKey))
+            {
+                keyDictionary[playerRightKey]();
+            }
+
+            if (Input.GetKeyDown(playerRightKey))
+            {
+                playerController.playerStates = PlayerStates.playerRun;
+            }
+
+            if (Input.GetKeyUp(playerRightKey))
+            {
+                playerController.playerStates = PlayerStates.playerIdle;
+            }
+
+            // Ability Key
+            if (Input.GetKeyDown(playerAbilityKey))
+            {
+                keyDictionary[playerAbilityKey]();
+            }
+
+            //max value of jump height
+            if (Input.GetKeyDown(playerJumpKey))
+            {
+                keyDictionary[playerJumpKey]();
+            }
+
+            //min value of jump height
+            if (Input.GetKeyUp(playerJumpKey))
+            {
+                anotherDictionary[playerJumpKey]();
+            }
+        }
 		//if no key is pressed	
 		keyDictionary[playerNoKey]();
 	}
@@ -262,14 +270,8 @@ public class PlayerInput : MonoBehaviour
 	void Update() 
 	{		
 		//var oldPos;
-		if(stunDurationLeft > 0)
-        {
-            Recover();
-        }
-        else
-        {
+
             InputAction();
-        }
 		
 		if(animationHandler != null)
 		{

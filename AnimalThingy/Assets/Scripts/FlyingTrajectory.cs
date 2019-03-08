@@ -5,10 +5,10 @@ using UnityEngine;
 public class FlyingTrajectory : MonoBehaviour {
 
     [Header("Player Interaction")]
-    public float stunDuration;
+    public float stunDuration = 1;
 
     [Header("Trajectory Attributs")]
-    public float speed;
+    public float speed = 2;
     public LayerMask terrainTypesLayer;
 
     protected Rigidbody2D rb2d;

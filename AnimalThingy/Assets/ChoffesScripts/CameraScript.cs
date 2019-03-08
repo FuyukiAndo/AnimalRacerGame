@@ -25,6 +25,7 @@ public class CameraScript : MonoBehaviour {
 
 	private void Start()
     {
+        Debug.Log(InformationManager.Instance.players.Count);
         players = new List<GameObject>();
         cam = GetComponent<Camera>();
 		StartCoroutine(Overlook());
@@ -42,12 +43,27 @@ public class CameraScript : MonoBehaviour {
 
     private void LateUpdate()
     {
-        if (followPlayers)
+        if(players.Count == 1)
         {
-			CheckFurthestPosPlayer();
-			CheckFurthestNegPlayer();
-			Zoom();
-			CameraFollow(furthestPosPlayer, furthestNegPlayer);
+            if (followPlayers)
+            {
+                var newPosition =  new Vector3(players[0].transform.position.x, players[0].transform.position.y, transform.position.z);
+                transform.position = Vector3.SmoothDamp(transform.position, newPosition, ref velocity, cameraSmoothTime);
+                transform.parent = players[0].transform;
+                float newZoom = Mathf.Lerp(maxZoom, minZoom, GetGreatestDistance() / zoomLimiter);
+                cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, newZoom, Time.deltaTime);
+            }
+        }
+        else
+        {
+            if (followPlayers)
+            {
+                CheckFurthestPosPlayer();
+                CheckFurthestNegPlayer();
+                Zoom();
+                CameraFollow(furthestPosPlayer, furthestNegPlayer);
+            }
+
         }
     }
 
@@ -113,6 +129,13 @@ public class CameraScript : MonoBehaviour {
         return bounds.size.magnitude;
     }
 
+    float GetGreatestDistance()
+    {
+        var bounds = new Bounds(players[0].transform.position, Vector3.zero);
+        bounds.Encapsulate(players[0].transform.position);
+        return bounds.size.magnitude;
+    }
+
     void CameraFollow(GameObject g1, GameObject g2)
     {
         Vector3 newPosition = new Vector3((g1.transform.position.x + g2.transform.position.x) / 2, (g1.transform.position.y + g2.transform.position.y) / 2, transform.position.z);
@@ -121,6 +144,7 @@ public class CameraScript : MonoBehaviour {
 
     IEnumerator Overlook()
     {
+        Debug.Log(players.Count);
         if (startPos != null)
         {
 			transform.position = startPos.position;
