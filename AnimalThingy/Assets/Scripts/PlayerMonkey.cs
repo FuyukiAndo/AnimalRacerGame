@@ -20,10 +20,15 @@ public class PlayerMonkey : PlayerController
 		{
 			wallSliding = true;
 
-			if(movement.y < -wallSlideSpeedMax)
+			/*if(movement.y < -wallSlideSpeedMax)
 			{
 				Debug.Log("wallslide");
 				movement.y = -wallSlideSpeedMax;
+			}*/
+			
+			if(movement.y > wallSlideSpeedMax)
+			{
+				movement.y = wallSlideSpeedMax;
 			}
 		}
 		
