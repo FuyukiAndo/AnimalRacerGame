@@ -2,182 +2,226 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum PlayerType
+/*public enum PlayerType
 {
-    playerNobody,
-    playerAlbatross,
-    playerPig,
-    playerMonkey,
-    playerPenguin
-};
-
+	playerNobody,
+	playerAlbatross,
+	playerPig,
+	playerMonkey,
+	playerPenguin
+};*/
 
 [RequireComponent(typeof(CollisionController))]
+[RequireComponent(typeof(PlayerInput))]
 
 public class PlayerController : MonoBehaviour
 {
-
-
-	[Header("Player Type Settings")]
-	public PlayerType playerType;
-
-
-	[HideInInspector] public CollisionController collisionController;
-	[HideInInspector] public static PlayerController playerController;
+	//public PlayerStates playerStates;
 
 	[Header("Jump and Gravity Settings")]
-	[Tooltip("Max jump height value between 0.1f and x")]
+
 	public float maxJumpHeight = 8.0f;
+	public float minJumpHeight = 1f;
+	[Range(0.1f,6.0f)]public float jumpAndFallDelay = 0.4f;
 
-	[Tooltip("Min jump height value between 0.1f and x")]
-	public float minJumpHeight = 0.1f;
+	[HideInInspector] public float gravity;
+	[HideInInspector] public float maxVelocity;
+	[HideInInspector] public float minVelocity;
 
-	[Tooltip("Min jump height value between 0.1f and x")]
-	[Range(0.1f,2.0f)]public float jumpAndFallDelay = 0.4f;
+	//public PlayerType playerType;
 
 	[Header("Movement Settings")]
 	public float movementSpeed = 18.0f;
 	[Range(0.1f,1.0f)]public float movementAcceleration = 0.15f;
 
-	private float gravity;
-	private float maxVelocity;
-	private float minVelocity;
-	private float horizontalInput;
-	[HideInInspector] public float wallSlideSpeedMax = 3;
-	private float velocitySmoothing;
+	[HideInInspector] public CollisionController collisionController;
+	RaycastController raycastController;
+
+	protected float velocitySmoothing;
+	public float wallSlideSpeedMax = 6;
+
 	[HideInInspector] public Vector2 movement;
-    /*Checks if player is stunned. Have before checking movement. True = no movement. False = can move*/
-    [HideInInspector] public bool isStunned = false;
+	protected int movementDirection;
+	protected int abilityDirection;
 
-	void Awake()
-	{
-		playerController = this;
-	}
+	protected float tempSpeed;
+	protected float mod0 = 0.1f;
+	protected float mod1 = 0.2f;
 
-	void Start()
+	[HideInInspector] public int abilityMeter = 100;
+	[HideInInspector] public int abilityTimer = 3;
+
+	protected PlayerInput playerInput;
+	public Collider2D[] collision;
+
+	public virtual void Start()
 	{
 		collisionController = GetComponent<CollisionController>();
+		raycastController = GetComponent<RaycastController>();
+		playerInput = GetComponent<PlayerInput>();
+
+		movementDirection = 0;
+		abilityDirection = 0;
+	}
+
+	public void UpdateGravity()
+	{
+		gravity = -(2 * maxJumpHeight) / Mathf.Pow(jumpAndFallDelay, 2);
+		maxVelocity = Mathf.Abs(gravity) * jumpAndFallDelay;
+		minVelocity = Mathf.Sqrt(2 * Mathf.Abs(gravity) * minJumpHeight);
 	}
 
 	void OnValidate()
 	{
 		if(minJumpHeight < 0.1f)
 		{
-			//Debug.LogWarning("'minJumpHeight' cannot be lower than 0");
 			minJumpHeight = 0.1f;
 		}
+
 		if(maxJumpHeight < 0.1f)
 		{
-			//Debug.LogWarning("'minJumpHeight' cannot be lower than 0");
 			maxJumpHeight = 0.1f;
 		}
 
-		if(movementSpeed < 1.0f)
-		{
-			//Debug.LogWarning("'minJumpHeight' cannot be lower than 0");
-			movementSpeed = 1.0f;
-		}
 		if(maxJumpHeight < minJumpHeight)
 		{
 			maxJumpHeight = minJumpHeight + 0.1f;
 		}
-	}
-	void UpdateGravity()
-	{
-		gravity = -(2*maxJumpHeight)/Mathf.Pow(jumpAndFallDelay, 2);
-		maxVelocity = Mathf.Abs(gravity) * jumpAndFallDelay;
-		minVelocity = Mathf.Sqrt(2*Mathf.Abs(gravity) * minJumpHeight);
-	}
-	void PlayerInput()
-	{
-		horizontalInput = Input.GetAxisRaw("Horizontal");
-	//	verticalInput = Input.GetAxisRaw("Jump");
-	}
 
-	void Update()
-	{
-		UpdateGravity();
-		//PlayerInput();
-
-		bool wallSliding = false;
-
-		if((collisionController.boxCollisionDirections.left || collisionController.boxCollisionDirections.right) && !collisionController.boxCollisionDirections.down && maxVelocity < 0)
+		if(movementSpeed < 1.0f)
 		{
-			wallSliding = true;
+			movementSpeed = 1.0f;
+		}
+	}
 
-			if(movement.y < -wallSlideSpeedMax)
+	//If jump button released before reaching max value, then goto min value.
+	public void OnJumpKeyUp()
+	{
+		if(!collisionController.boxCollisionDirections.down)
+		{
+			if(movement.y > minVelocity)
 			{
-				movement.y = 2*wallSlideSpeedMax;
+				movement.y = minVelocity;
+			}
+		}
+	}
+
+	//If pressed down, then goes to max value.
+	public void OnJumpKeyDown()
+	{
+		if(collisionController.boxCollisionDirections.down)
+		{
+			movement.y = maxVelocity;
+		}
+	}
+
+	//Move player Left direction with smooth acceleration
+	public void MoveLeft()
+	{
+		//Smooth movement acceleration
+		for(float i = 0; i <movementSpeed;i++)
+		{
+			tempSpeed=tempSpeed+mod0;
+
+			if(tempSpeed > movementSpeed)
+			{
+				tempSpeed = movementSpeed;
 			}
 		}
 
-		if (collisionController.boxCollisionDirections.up||collisionController.boxCollisionDirections.down)
+		//Translation in Left direction
+		movement.x = -1 * tempSpeed;
+
+		//Set direction to Left
+		movementDirection = -1;
+	}
+
+	//Move player Right direction with smooth acceleration
+	public void MoveRight()
+	{
+		//Smooth movement acceleration
+		for(float i = 0; i <movementSpeed;i++)
 		{
-			//translateVertical = false;
-			//translateHorizontal = false;
+			tempSpeed=tempSpeed+mod0;
+
+			if(tempSpeed > movementSpeed)
+			{
+				tempSpeed = movementSpeed;
+			}
 		}
+
+		//Translation in Right direction
+		movement.x = 1 * tempSpeed;
+
+		//Set direction to Right
+		movementDirection = 1;
+	}
+
+	public void MoveNot()
+	{
+		//Smooth deacceleration
+		tempSpeed=tempSpeed-0.2f;
+
+		//When fully deaccelerated, movement speed is 0
+		if(tempSpeed < 0)
+		{
+			tempSpeed = 0;
+		}
+
+		//SmoothDamp for deacceleratation
+		float movementVelocity = movementDirection * tempSpeed;
+		movement.x = Mathf.SmoothDamp(movement.x, movementVelocity, ref velocitySmoothing,movementAcceleration);
+
+		//Set direction to None
+		movementDirection = 0;
+	}
+
+	public virtual void Update()
+	{
+		UpdateGravity();
+
+		float verticalTranslate = gravity * Time.deltaTime;
+
+		movement.y += verticalTranslate;
+
+		MoveObject(movement * Time.deltaTime);
+
 		if (collisionController.boxCollisionDirections.up || collisionController.boxCollisionDirections.down)
 		{
 			movement.y = 0;
 		}
 
-		/*if(horizontalInput == 0 && CollisionController.BoxCollision.below)
+		if(playerInput.targetAngle == playerInput.GetMaxAngleValue())
 		{
-			if (restricted == false)
-			{
-				movement.x = 0;
-				movement.y = 0;
-			}
+			abilityDirection = 1;
 		}
-		*/
-		/*if(CollisionController.BoxCollision.below)
+		else
 		{
-			movement.y = 0;
-			movement.x = 0;
-		}*/
-
-		if(horizontalInput == -1)
-		{
-			movement.x = -1 * movementSpeed;
+			abilityDirection = -1;
 		}
 
-		if(horizontalInput == 1)
-		{
-			movement.x = 1 * movementSpeed;
-		}
-
-		if(Input.GetKeyDown(KeyCode.Space))
-		{
-			if(collisionController.boxCollisionDirections.down)
-			{
-				movement.y = maxVelocity;
-			}
-		}
-		if(Input.GetKeyUp(KeyCode.Space))
-		{
-			if(!collisionController.boxCollisionDirections.down)
-			{
-				if(movement.y > minVelocity)
-				{
-					movement.y = minVelocity;
-				}
-			}
-		}
-		//gravity in y-axis
-		float movementVelocity = Input.GetAxisRaw("Horizontal") * movementSpeed;
-		movement.x = Mathf.SmoothDamp(movement.x, movementVelocity, ref velocitySmoothing,movementAcceleration);
-
-		float verticalTranslate = gravity * Time.deltaTime;
-		movement.y += verticalTranslate;
-
-		//collisionController.Move(movement * Time.deltaTime);
-		MovePlayer(movement * Time.deltaTime);
+		WindblastCollision();
 	}
 
-	public void MovePlayer(Vector2 movement)
+	void WindblastCollision()
+	{
+		collision = Physics2D.OverlapCircleAll(transform.position, 1.5f);
+
+		for(int i = 0; i < collision.Length; i++)
+		{
+			if(collision[i].gameObject.tag == "Blast")
+			{
+				Debug.Log("this works");
+				//Call on Stun function
+			}
+		}
+	}
+
+	public void MoveObject(Vector2 movement)
 	{
 		collisionController.UpdateRaycastDirections();
 		collisionController.boxCollisionDirections.resetDirections();
+
 		if(movement.y < 0)
 		{
 			collisionController.DescendSlope(ref movement);
@@ -187,8 +231,9 @@ public class PlayerController : MonoBehaviour
 			collisionController.checkCollision(ref movement);
 		}
 
-		transform.Translate(movement);
+		transform.Translate(movement,Space.World);
 	}
+
 	void OnDrawGizmosSelected()
 	{
 		Gizmos.color = Color.red;
@@ -204,5 +249,8 @@ public class PlayerController : MonoBehaviour
 						new Vector3(gameObject.transform.position.x,gameObject.transform.position.y + maxJumpHeight, 0));
 	}
 
-
+	public int GetDirection()
+	{
+		return abilityDirection;
+	}
 }

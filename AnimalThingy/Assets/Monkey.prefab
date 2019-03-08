@@ -25,6 +25,8 @@ GameObject:
   - component: {fileID: 114185315606882318}
   - component: {fileID: 114469507779456228}
   - component: {fileID: 114040419457534568}
+  - component: {fileID: 114360756629340686}
+  - component: {fileID: 114145220111742012}
   m_Layer: 8
   m_Name: Monkey
   m_TagString: Jungle_Character
@@ -129,6 +131,21 @@ MonoBehaviour:
   verticalRaycastAmount: 4
   maxAngle: 80
   SetRayLength: 1
+--- !u!114 &114145220111742012
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1047987280323254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ada670a83430aa448bc3fa1cbfa48aaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerLeftKey: 276
+  playerRightKey: 275
+  playerJumpKey: 97
+  playerAbilityKey: 115
 --- !u!114 &114185315606882318
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -146,6 +163,23 @@ MonoBehaviour:
   recurringCheckpointTipDelay: 0
   UIMethodName: 
   playerColour: {r: 0, g: 0, b: 0, a: 0}
+--- !u!114 &114360756629340686
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1047987280323254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c116ea33963aa345941008e2570b121, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxJumpHeight: 8
+  minJumpHeight: 1
+  jumpAndFallDelay: 0.4
+  gravity: 0
+  maxVelocity: 0
+  minVelocity: 0
 --- !u!114 &114469507779456228
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -158,12 +192,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerType: 0
-  collisionController: {fileID: 114040419457534568}
-  maxJumpHeight: 5
-  minJumpHeight: 3
-  jumpAndFallDelay: 0.4
   movementSpeed: 9
   movementAcceleration: 0.2
+  collisionController: {fileID: 114040419457534568}
+  gravityController: {fileID: 0}
   wallSlideSpeedMax: 3
   movement: {x: -4.7322654e-29, y: -3.8317637}
-  isStunned: 0
+  direction: 0
+  tempSpeed: 0
+  mod0: 0.1
+  mod1: 0.2

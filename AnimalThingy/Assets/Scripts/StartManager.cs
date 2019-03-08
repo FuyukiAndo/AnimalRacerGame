@@ -6,7 +6,6 @@ using UnityEngine;
 public class SpawnPoint
 {
     public GameObject spawnPos;
-    public Player player;
     public bool beenUsed = false;
 }
 
@@ -29,8 +28,10 @@ public class StartManager : MonoBehaviour
 	private static StartManager instance;
 	[SerializeField] private GameObject[] unplacedPlayers;
 	[SerializeField] private string playerMoveScript;
-    private InformationManager informationManager;
-	public int TimeUntilStart
+    private CharacterUIManager characterUIManager;
+    public List<int> playerScoreList;
+
+    public int TimeUntilStart
 	{
 		get
 		{
@@ -47,6 +48,8 @@ public class StartManager : MonoBehaviour
 
 	void Start()
 	{
+        playerScoreList = new List<int>();
+        characterUIManager = FindObjectOfType<CharacterUIManager>();
         spawnPoints = new List<SpawnPoint>
         {
             spawnPos1,
@@ -63,6 +66,7 @@ public class StartManager : MonoBehaviour
 		{
 			Destroy(gameObject);
 		}
+        SortPlayers();
         SpawnPlayers();
 		TrapPlayers();
 		if (startCountDownOnSceneLoad)
@@ -101,69 +105,68 @@ public class StartManager : MonoBehaviour
 			script.enabled = false;
 		}
 	}
-    void SpawnPlayers()
+
+    public void SortPlayers()
     {
-        //Fungerar inte riktigt!
         foreach(Player player in InformationManager.Instance.players)
         {
-            bool playerSpawned = false;
-            GameObject temp = null;
-
-            if(spawnPos1.beenUsed == false && playerSpawned == false)
-            {
-                playerSpawned = true;
-                temp = Instantiate(player.character, spawnPos1.spawnPos.transform.position, Quaternion.identity);
-                spawnPos1.player = player;
-                spawnPos1.beenUsed = true;
-            }
-            if (spawnPos2.beenUsed == false && playerSpawned == false)
-            {
-                playerSpawned = true;
-                temp = Instantiate(player.character, spawnPos2.spawnPos.transform.position, Quaternion.identity);
-                spawnPos2.player = player;
-                spawnPos2.beenUsed = true;
-            }
-            if (spawnPos3.beenUsed == false && playerSpawned == false)
-            {
-                playerSpawned = true;
-                temp = Instantiate(player.character, spawnPos3.spawnPos.transform.position, Quaternion.identity);
-                spawnPos3.player = player;
-                spawnPos3.beenUsed = true;
-            }
-            if (spawnPos4.beenUsed == false && playerSpawned == false)
-            {
-                playerSpawned = true;
-                temp = Instantiate(player.character, spawnPos4.spawnPos.transform.position, Quaternion.identity);
-                spawnPos4.player = player;
-                spawnPos4.beenUsed = true;
-            }
-            if(player == InformationManager.Instance.player1)
-            {
-                temp.name = "Player1";
-            }
-            if (player == InformationManager.Instance.player2)
-            {
-                temp.name = "Player2";
-            }
-            if (player == InformationManager.Instance.player3)
-            {
-                temp.name = "Player3";
-            }
-            if (player == InformationManager.Instance.player4)
-            {
-                temp.name = "Player4";
-            }
+            playerScoreList.Add(player.score);
         }
-        foreach (SpawnPoint spawnPoint in spawnPoints)
+        playerScoreList.Sort();
+        playerScoreList.Reverse();
+    }
+    void SpawnPlayers()
+    {
+        for(int i = 0; i < InformationManager.Instance.players.Count; i++)
         {
-            if(spawnPoint.player.score > 0)
+            GameObject spawnedPlayer = null;
+            bool playerSpawned = false;
+            for(int j = 0; j < playerScoreList.Count; j++)
             {
-                if(spawnPoints[spawnPoints.IndexOf(spawnPoint) - 1]  != null && spawnPoint.player.score > spawnPoints[spawnPoints.IndexOf(spawnPoint) - 1].player.score)
+                if(InformationManager.Instance.players[i].score == playerScoreList[j] && spawnPoints[j].beenUsed == false && playerSpawned == false)
                 {
-                    spawnPoint.player.character.transform.Translate(spawnPoints[spawnPoints.IndexOf(spawnPoint) - 1].player.character.transform.position);
-                    spawnPoints[spawnPoints.IndexOf(spawnPoint) - 1].player.character.transform.Translate(spawnPoint.player.character.transform.position);
+                    spawnedPlayer = Instantiate(InformationManager.Instance.players[i].character, spawnPoints[j].spawnPos.transform.position, Quaternion.identity);
+                    playerSpawned = true;
+                    spawnPoints[j].beenUsed = true;
                 }
             }
+            if (InformationManager.Instance.players[i] == InformationManager.Instance.player1)
+            {
+                spawnedPlayer.name = "Player1";
+                spawnedPlayer.GetComponent<PlayerInput>().playerLeftKey = KeybindingsManager.Instance.Player1Keys.left;
+                spawnedPlayer.GetComponent<PlayerInput>().playerRightKey = KeybindingsManager.Instance.Player1Keys.right;
+                spawnedPlayer.GetComponent<PlayerInput>().playerJumpKey = KeybindingsManager.Instance.Player1Keys.jump;
+                spawnedPlayer.GetComponent<PlayerInput>().playerAbilityKey = KeybindingsManager.Instance.Player1Keys.ability;
+                characterUIManager.BindUIToPlayer1(spawnedPlayer);
+            }
+            if (InformationManager.Instance.players[i] == InformationManager.Instance.player2)
+            {
+                spawnedPlayer.name = "Player2";
+                spawnedPlayer.GetComponent<PlayerInput>().playerLeftKey = KeybindingsManager.Instance.Player2Keys.left;
+                spawnedPlayer.GetComponent<PlayerInput>().playerRightKey = KeybindingsManager.Instance.Player2Keys.right;
+                spawnedPlayer.GetComponent<PlayerInput>().playerJumpKey = KeybindingsManager.Instance.Player2Keys.jump;
+                spawnedPlayer.GetComponent<PlayerInput>().playerAbilityKey = KeybindingsManager.Instance.Player2Keys.ability;
+                characterUIManager.BindUIToPlayer2(spawnedPlayer);
+            }
+            if (InformationManager.Instance.players[i] == InformationManager.Instance.player3)
+            {
+                spawnedPlayer.name = "Player3";
+                spawnedPlayer.GetComponent<PlayerInput>().playerLeftKey = KeybindingsManager.Instance.Player3Keys.left;
+                spawnedPlayer.GetComponent<PlayerInput>().playerRightKey = KeybindingsManager.Instance.Player3Keys.right;
+                spawnedPlayer.GetComponent<PlayerInput>().playerJumpKey = KeybindingsManager.Instance.Player3Keys.jump;
+                spawnedPlayer.GetComponent<PlayerInput>().playerAbilityKey = KeybindingsManager.Instance.Player3Keys.ability;
+                characterUIManager.BindUIToPlayer3(spawnedPlayer);
+            }
+            if (InformationManager.Instance.players[i] == InformationManager.Instance.player4)
+            {
+                spawnedPlayer.name = "Player4";
+                spawnedPlayer.GetComponent<PlayerInput>().playerLeftKey = KeybindingsManager.Instance.Player4Keys.left;
+                spawnedPlayer.GetComponent<PlayerInput>().playerRightKey = KeybindingsManager.Instance.Player4Keys.right;
+                spawnedPlayer.GetComponent<PlayerInput>().playerJumpKey = KeybindingsManager.Instance.Player4Keys.jump;
+                spawnedPlayer.GetComponent<PlayerInput>().playerAbilityKey = KeybindingsManager.Instance.Player4Keys.ability;
+                characterUIManager.BindUIToPlayer4(spawnedPlayer);
+            }
         }
+        GameObject.FindObjectOfType<CameraScript>().BindPlayersToCamera();
     }
 }

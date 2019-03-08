@@ -25,9 +25,9 @@ GameObject:
   - component: {fileID: 50990794935749964}
   - component: {fileID: 114885341173724332}
   - component: {fileID: 95138750451587478}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Spike
-  m_TagString: Spike
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -147,7 +147,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
-  m_WarningMessage: 
+  m_WarningMessage:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114885341173724332
@@ -159,8 +159,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab4a0a6a190711a4b9f86d7fb8fc85e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stunDuration: 3
-  speed: 10
-  timeBeforeSpikeFalls: 3
+  m_Name:
+  m_EditorClassIdentifier:
+  stunDuration: 4
+  speed: 1
+  terrainTypesLayer:
+    serializedVersion: 2
+    m_Bits: 528
+  timeBeforeSpikeFallsMin: 0
+  timeBeforeSpikeFallsMax: 5

@@ -9,9 +9,9 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1391248947053972}
+  m_RootGameObject: {fileID: 1498534499093758}
   m_IsPrefabParent: 1
---- !u!1 &1391248947053972
+--- !u!1 &1498534499093758
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -25,6 +25,8 @@ GameObject:
   - component: {fileID: 114220515296970560}
   - component: {fileID: 114293109924927274}
   - component: {fileID: 114618271275334546}
+  - component: {fileID: 114625610000985422}
+  - component: {fileID: 114218700242019054}
   m_Layer: 8
   m_Name: Albatross
   m_TagString: Coast_Character
@@ -37,7 +39,7 @@ Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1391248947053972}
+  m_GameObject: {fileID: 1498534499093758}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -4.3, y: 4.2, z: 0}
   m_LocalScale: {x: 1.0968199, y: 1, z: 1}
@@ -50,7 +52,7 @@ MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1391248947053972}
+  m_GameObject: {fileID: 1498534499093758}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -84,14 +86,14 @@ MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1391248947053972}
+  m_GameObject: {fileID: 1498534499093758}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!61 &61842410298635262
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1391248947053972}
+  m_GameObject: {fileID: 1498534499093758}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -111,55 +113,71 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &114218700242019054
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1498534499093758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ada670a83430aa448bc3fa1cbfa48aaf, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  playerLeftKey: 276
+  playerRightKey: 275
+  playerJumpKey: 97
+  playerAbilityKey: 115
 --- !u!114 &114220515296970560
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1391248947053972}
+  m_GameObject: {fileID: 1498534499093758}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a5ec439ee930d954298470af432981e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   boxSize: {x: 0, y: 0}
   checkpointSearchSize: {x: 0, y: 0}
   initialCheckpointTipDelay: 0
   recurringCheckpointTipDelay: 0
-  UIMethodName: 
+  UIMethodName:
   playerColour: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114293109924927274
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1391248947053972}
+  m_GameObject: {fileID: 1498534499093758}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 12cc0c1502d1f9a4d8cf9512b0083174, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   playerType: 0
-  collisionController: {fileID: 114618271275334546}
-  maxJumpHeight: 5
-  minJumpHeight: 3
-  jumpAndFallDelay: 0.4
   movementSpeed: 9
   movementAcceleration: 0.2
+  collisionController: {fileID: 114618271275334546}
+  gravityController: {fileID: 0}
   wallSlideSpeedMax: 3
   movement: {x: -4.7322654e-29, y: -3.8317637}
-  isStunned: 0
+  direction: 0
+  tempSpeed: 0
+  mod0: 0.1
+  mod1: 0.2
 --- !u!114 &114618271275334546
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1391248947053972}
+  m_GameObject: {fileID: 1498534499093758}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2f3c395ba95f4f341a3da67a53d8acfd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   collisionMask:
     serializedVersion: 2
     m_Bits: 512
@@ -167,3 +185,20 @@ MonoBehaviour:
   verticalRaycastAmount: 4
   maxAngle: 80
   SetRayLength: 1
+--- !u!114 &114625610000985422
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1498534499093758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c116ea33963aa345941008e2570b121, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  maxJumpHeight: 8
+  minJumpHeight: 1
+  jumpAndFallDelay: 0.4
+  gravity: 0
+  maxVelocity: 0
+  minVelocity: 0

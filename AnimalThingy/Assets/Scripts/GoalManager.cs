@@ -3,12 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GoalManager : MonoBehaviour
 {
+	public GameObject endScreenUI;
 	public bool passInSequence, countDownOnFirstPlayer;
 	public Checkpoint[] checksToPass;
 	public float timeBeforeAutoPlacements;
+	public Vector2 boxSize;
+	public float yRotation;
 
 	public static GoalManager Instance
 	{
@@ -19,13 +23,25 @@ public class GoalManager : MonoBehaviour
 	}
 	private static GoalManager instance;
 
+	public List<GameObject> PlacedPlayers
+	{
+		get
+		{
+			return placedPlayers;
+		}
+	}
 	private List<GameObject> placedPlayers = new List<GameObject>();
 	private bool startCountDown;
 	private List<CheckpointTracker> unplacedPlayers = new List<CheckpointTracker>();
 	[SerializeField] private GameObject[] playerGoalPositions;
-	[SerializeField] private string playerMoveScriptName;
+	[SerializeField] private string[] playerMoveScriptName;
 	private float totalTimeBeforeAutoPlacements;
 	private int initialPlayerCount;
+	[SerializeField] private LayerMask playerLayer, ignorePlayerLayer;
+	[SerializeField] private float nextSceneDelay;
+	private bool startedSceneSwitch;
+	private GameObject checkpointToGoFor;
+	private int currentCheckToGoFor;
 
 	void Start()
 	{
@@ -43,10 +59,16 @@ public class GoalManager : MonoBehaviour
 		}
 		totalTimeBeforeAutoPlacements = timeBeforeAutoPlacements;
 		initialPlayerCount = unplacedPlayers.Count;
+		boxSize = GetComponent<BoxCollider2D>().size;
 	}
 
 	void Update()
 	{
+        if(placedPlayers.Count == InformationManager.Instance.players.Count)
+        {
+            endScreenUI.SetActive(true);
+            StartCoroutine(Wait());
+        }
 		if (countDownOnFirstPlayer)
 		{
 			if (startCountDown && unplacedPlayers.Count > 0)
@@ -66,6 +88,28 @@ public class GoalManager : MonoBehaviour
 				PlacePlayers();
 			}
 		}
+
+		ValidateForGoal();
+	}
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(5.0f);
+        InformationManager.Instance.sceneIndex += 1;
+        SceneManager.LoadScene(InformationManager.Instance.multiplayerLevels[InformationManager.Instance.sceneIndex]);
+    }
+	void ValidateForGoal()
+	{
+		Collider2D collider = Physics2D.OverlapBox(transform.position, boxSize, 0f, playerLayer);
+
+		if (collider == null  || !collider.transform.GetComponent<CheckpointTracker>()) return;
+		if (ValidateTracker(collider.transform.GetComponent<CheckpointTracker>()))
+		{
+			PlacePlayers();
+			if (countDownOnFirstPlayer && !startCountDown)
+			{
+				startCountDown = true;
+			}
+		}
 	}
 
 	void OnCollisionEnter2D(Collision2D other)
@@ -77,7 +121,7 @@ public class GoalManager : MonoBehaviour
 			//int index = Array.IndexOf(unplacedPlayers.ToArray(), other.transform.GetComponent<CheckpointTracker>());
 			//unplacedPlayers.RemoveAt(index);
 			startCountDown = true;
-		}*/
+		}
 		if (ValidateTracker(other.transform.GetComponent<CheckpointTracker>()))
 		{
 			print("Validated");
@@ -86,11 +130,12 @@ public class GoalManager : MonoBehaviour
 			{
 				startCountDown = true;
 			}
-		}
+		}*/
 	}
 
 	bool ValidateTracker(CheckpointTracker tracker)
 	{
+		tracker.gameObject.layer = ignorePlayerLayer;
 		foreach (var placed in placedPlayers)
 		{
 			if (tracker.gameObject == placed)
@@ -153,6 +198,11 @@ public class GoalManager : MonoBehaviour
 		placedPlayers[index1].transform.position = playerGoalPositions[index1].transform.position;
 		TrapPlayers();
 		unplacedPlayers.RemoveAt(index);
+		if (unplacedPlayers.Count <= 0 && !startedSceneSwitch)
+		{
+			startedSceneSwitch = true;
+			StartCoroutine(LoadNextScene());
+		}
 	}
 
 	float GetDistToNextCheckpointInSequence(CheckpointTracker tracker)
@@ -237,8 +287,19 @@ public class GoalManager : MonoBehaviour
 		//string componentName = playerMoveScript.GetType().ToString();
 		foreach (var player in placedPlayers)
 		{
-			MonoBehaviour script = player.GetComponent(playerMoveScriptName)as MonoBehaviour;
-			script.enabled = false;
+			player.transform.GetChild(0).rotation = Quaternion.Euler(
+				player.transform.GetChild(0).rotation.x, yRotation, player.transform.GetChild(0).rotation.z
+			);
+			if (player.GetComponentInChildren<AnimationHandler>())
+			{
+				player.GetComponentInChildren<AnimationHandler>().SetAnimatorTrigger("Idle");
+				player.GetComponentInChildren<AnimationHandler>().SetAnimatorTrigger("Victory");
+			}
+			for (int i = 0; i < playerMoveScriptName.Length; i++)
+			{
+				MonoBehaviour script = player.GetComponent(playerMoveScriptName[i])as MonoBehaviour;
+				script.enabled = false;
+			}
 		}
 	}
 
@@ -249,7 +310,10 @@ public class GoalManager : MonoBehaviour
 		{
 			foreach (var checks in checksToPass)
 			{
-				//Gizmos.DrawWireSphere(checks.transform.position, .5f);
+				if (checks != null)
+				{
+					Gizmos.DrawWireSphere(checks.transform.position, .5f);
+				}
 			}
 		}
 		Gizmos.color = Color.blue;
@@ -273,11 +337,118 @@ public class GoalManager : MonoBehaviour
 		{
 			tracker.FinishingTime = 0f;
 		}
+		string name = tracker.name;
+		switch (name)
+		{
+			case "Player1":
+				if (InformationManager.Instance.player1.level1Time == 0f)
+				{
+					InformationManager.Instance.player1.level1Time = tracker.FinishingTime;
+				}
+				else if (InformationManager.Instance.player1.level2Time == 0f)
+				{
+					InformationManager.Instance.player1.level2Time = tracker.FinishingTime;
+				}
+				else if (InformationManager.Instance.player1.level3Time == 0f)
+				{
+					InformationManager.Instance.player1.level3Time = tracker.FinishingTime;
+				}
+				else
+				{
+					InformationManager.Instance.player1.level4Time = tracker.FinishingTime;
+				}
+				break;
+			case "Player2":
+				if (InformationManager.Instance.player2.level1Time == 0f)
+				{
+					InformationManager.Instance.player2.level1Time = tracker.FinishingTime;
+				}
+				else if (InformationManager.Instance.player2.level2Time == 0f)
+				{
+					InformationManager.Instance.player2.level2Time = tracker.FinishingTime;
+				}
+				else if (InformationManager.Instance.player2.level3Time == 0f)
+				{
+					InformationManager.Instance.player2.level3Time = tracker.FinishingTime;
+				}
+				else
+				{
+					InformationManager.Instance.player2.level4Time = tracker.FinishingTime;
+				}
+				break;
+			case "Player3":
+				if (InformationManager.Instance.player3.level1Time == 0f)
+				{
+					InformationManager.Instance.player3.level1Time = tracker.FinishingTime;
+				}
+				else if (InformationManager.Instance.player3.level2Time == 0f)
+				{
+					InformationManager.Instance.player3.level2Time = tracker.FinishingTime;
+				}
+				else if (InformationManager.Instance.player3.level3Time == 0f)
+				{
+					InformationManager.Instance.player3.level3Time = tracker.FinishingTime;
+				}
+				else
+				{
+					InformationManager.Instance.player3.level4Time = tracker.FinishingTime;
+				}
+				break;
+			case "Player4":
+				if (InformationManager.Instance.player4.level1Time == 0f)
+				{
+					InformationManager.Instance.player4.level1Time = tracker.FinishingTime;
+				}
+				else if (InformationManager.Instance.player4.level2Time == 0f)
+				{
+					InformationManager.Instance.player4.level2Time = tracker.FinishingTime;
+				}
+				else if (InformationManager.Instance.player4.level3Time == 0f)
+				{
+					InformationManager.Instance.player4.level3Time = tracker.FinishingTime;
+				}
+				else
+				{
+					InformationManager.Instance.player4.level4Time = tracker.FinishingTime;
+				}
+				break;
+		}
 	}
 
 	void AssignPlacementPoint(CheckpointTracker tracker)
 	{
 		tracker.PlacementPoint = initialPlayerCount - placedPlayers.Count;
+		string name = tracker.name;
+		switch (name)
+		{
+			case "Player1":
+				InformationManager.Instance.player1.score += tracker.PlacementPoint;
+				break;
+			case "Player2":
+				InformationManager.Instance.player2.score += tracker.PlacementPoint;
+				break;
+			case "Player3":
+				InformationManager.Instance.player3.score += tracker.PlacementPoint;
+				break;
+			case "Player4":
+				InformationManager.Instance.player4.score += tracker.PlacementPoint;
+				break;
+		}
 	}
 
+	IEnumerator LoadNextScene()
+	{
+		yield return new WaitForSeconds(nextSceneDelay);
+		SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().name);
+		int index = InformationManager.Instance.multiplayerLevels.IndexOf(
+			InformationManager.Instance.multiplayerLevels.Find(x => x == SceneManager.GetActiveScene().name));
+		if (index + 1 >= InformationManager.Instance.multiplayerLevels.Count)
+		{
+			SceneManager.LoadScene("StartMenu", LoadSceneMode.Additive);
+		}
+		else
+		{
+			SceneManager.LoadScene(InformationManager.Instance.multiplayerLevels[index + 1], LoadSceneMode.Additive);
+		}
+	}
 }

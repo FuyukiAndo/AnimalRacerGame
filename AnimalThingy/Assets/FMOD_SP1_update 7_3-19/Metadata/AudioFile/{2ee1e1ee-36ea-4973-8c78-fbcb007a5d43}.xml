@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="AudioFile" id="{2ee1e1ee-36ea-4973-8c78-fbcb007a5d43}">
+        <property name="assetPath">
+            <value>DJUNGELAMBIENCE_BIRDS (1shot).wav</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>44.0999985</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>6.5822902494331066</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{d33b57b3-7e46-47e1-8694-5faf651db5a0}</destination>
+        </relationship>
+    </object>
+</objects>

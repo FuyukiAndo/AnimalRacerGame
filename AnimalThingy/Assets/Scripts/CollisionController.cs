@@ -4,26 +4,37 @@ using UnityEngine;
 
 public class CollisionController : RaycastController
 {
-	public static CollisionController collisionController;
+	[Header("Collision Mask")]
+	[Tooltip("The layer mask which to check for collision")]
+	public LayerMask collisionMask;
+	
+	[Header("Amount of raycasts")]
+	[Tooltip("The amount of raycasts vectors for horizontal collision")]	
+	public int horizontalRaycastsAmount = 4;
+	[Tooltip("The amount of raycasts vectors for horizontal collision")]	
+	public int verticalRaycastsAmount = 4;
+	
+	public float SetRayLength = 1.0f;
+	//public static CollisionController collisionController;
 	
 	private string collisionTag = "OneWay";
 	
+	//Max angle player can move on, (don't touch this) - 80
 	[HideInInspector]public float maxAngle = 80;
 	
 	[HideInInspector]public BoxCollisionDirections boxCollisionDirections;
 	
-	[HideInInspector]public float SetRayLength = 1.0f;
-	
-	void OnValidate()
-	{
-	}
-	
 	public override void Start()
 	{
 		base.Start();
-		collisionController = this;
+		//collisionController = this;
 	}
-		
+	
+	void Update()
+	{
+		horizontalRaycastAmount = horizontalRaycastsAmount;
+		verticalRaycastAmount = verticalRaycastsAmount;
+	}
 	/*string[] stringtags = new string[]{"player", "enemy"};
 	public enum tagNumbers{player,enemy};
 	public tagNumbers tagNum;*/
@@ -39,7 +50,7 @@ public class CollisionController : RaycastController
 	
 	public struct BoxCollisionDirections
 	{
-		public bool up, down, left, right, horizontal, climbing, descendAngle;
+		public bool up, down, left, right, horizontal, climbing, descendAngle, moving;
 		public float ascendAngle, angleOld;
 		
 		public void resetDirections()
@@ -50,6 +61,7 @@ public class CollisionController : RaycastController
 			right = false;
 			horizontal = false;
 			climbing = false;
+			moving = false;
 
 			descendAngle = false;
 			
@@ -98,11 +110,12 @@ public class CollisionController : RaycastController
 			
 			RaycastHit2D hitX = Physics2D.Raycast(rayVectorX, Vector2.right * directionX, rayLengthX, collisionMask);
 			Debug.DrawRay(rayVectorX, Vector2.right * directionX * rayLengthX, Color.red);
+
 			
 			if (hitX)
 			{		
 				float angle = Vector2.Angle(hitX.normal, Vector2.up);
-				
+
 				if(i == 0 && angle <= maxAngle)
 				{
 					float distanceToSlope = 0;
@@ -132,9 +145,24 @@ public class CollisionController : RaycastController
 						movement.y = Mathf.Tan(boxCollisionDirections.ascendAngle * Mathf.Deg2Rad) * Mathf.Abs(movement.x);
 					}
 				}
+				
+				if (directionX == -1)
+				{
+					boxCollisionDirections.left = true;
+				}
+				
+				if (directionX == 1)
+				{
+					boxCollisionDirections.right = true;
+				}
+				
+				movement.x = (hitX.distance - collisionOffset) * directionX;
+				rayLengthX = hitX.distance;
+				
 			}
 		}	
 
+		//Physics2D.SyncTransforms(); 
 		float directionY = Mathf.Sign(movement.y);
 		float rayLengthY = Mathf.Abs(movement.y) + collisionOffset*SetRayLength;
 		
@@ -165,6 +193,25 @@ public class CollisionController : RaycastController
                     continue;
                 }
 				
+				/*Isflak isflak = hitY.transform.GetComponent<Isflak>();
+
+				if(isflak)//FindObjectOfType(typeof(Isflak)))
+				{
+					transform.SetParent(isflak.transform);
+					
+					//Vector2 movingPlatform = isflak.flak;
+					//print("it works!");
+					//hitY.transform.Translate(movingPlatform);	
+				}
+				
+				if(!hitY.transform.GetComponent<Isflak>())
+				{
+					transform.SetParent(null);
+				}*/
+				
+			
+				//hitY.transform.Translate(new Vector2(moveX, moveY));
+				
 				if(boxCollisionDirections.climbing)
 				{
 					movement.x = movement.y / Mathf.Tan(boxCollisionDirections.ascendAngle * Mathf.Deg2Rad) * Mathf.Sign(movement.x);
@@ -185,6 +232,7 @@ public class CollisionController : RaycastController
 					if(newHitY)
 					{
 						float angle = Vector2.Angle(newHitY.normal, Vector2.up);
+						
 						if(angle != boxCollisionDirections.ascendAngle)
 						{
 							movement.x = (newHitY.distance - collisionOffset) * directionX;
@@ -207,9 +255,27 @@ public class CollisionController : RaycastController
 				rayLengthY = hitY.distance;
 			}
 		}
+		
+		//Check for movingplatforms
+		/*if(FindObjectOfType(typeof(Isflak)))
+		{
+			Vector2 movingPlatform = Isflak.isflakVector;
+			
+			//if(movingPlatform.x != 0)
+			//{
+				print("test");
+			//}
+			//print("it work");
+			//if (movingPlatform.x != 0)
+			//{
+			//	print("it work");
+			//}
+		}*/
+		
+		
+		
 	}	
-	
-	
+
 	public void ClimbSlope(ref Vector2 movement, float angle)
 	{
 		float moveDistance = Mathf.Abs(movement.x);
@@ -265,7 +331,8 @@ public class CollisionController : RaycastController
 			}
 		}
 	}
-    public IEnumerator SpeedChange(float boostChangeAmount, float boostDuration, GameObject speedObject)
+	
+   /* public IEnumerator SpeedChange(float boostChangeAmount, float boostDuration, GameObject speedObject)
     {
         speed = speed + boostChangeAmount;
         yield return new WaitForSeconds(boostDuration);
@@ -276,8 +343,8 @@ public class CollisionController : RaycastController
     private void OnTriggerEnter2D(Collider2D collision)
     {
         bool isOnLayer = waterLayer == (waterLayer | (1 << collision.gameObject.layer));
-        /*Mathf.Log(waterLayer.value, 2) == collision.gameObject.layer*/
-        /*(waterLayer | (1 << collision.gameObject.layer)) - Kollar bitmaskens position på collisionen och jämför den med bitmasken*/
+        //Mathf.Log(waterLayer.value, 2) == collision.gameObject.layer
+        //(waterLayer | (1 << collision.gameObject.layer)) - Kollar bitmaskens position på collisionen och jämför den med bitmasken
 
         if (isOnLayer && pengvin == false)
         {
@@ -298,6 +365,7 @@ public class CollisionController : RaycastController
         isStunned = false;
         Destroy(stunObject);
     }
+	
     public IEnumerator GetStunned(float stunDurtation)
     {
         Debug.Log(stunDurtation);
@@ -305,8 +373,9 @@ public class CollisionController : RaycastController
         yield return new WaitForSeconds(stunDurtation);
         isStunned = false;
     }
+	
     public void GetKilled()
     {
         Destroy(gameObject);
-    }
+    }*/
 }
