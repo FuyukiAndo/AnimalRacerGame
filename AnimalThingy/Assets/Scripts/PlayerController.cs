@@ -203,7 +203,7 @@ public class PlayerController : MonoBehaviour
         {
 			MoveObject(movement * Time.deltaTime);
         }
-
+		
 		if (collisionController.boxCollisionDirections.up || collisionController.boxCollisionDirections.down)
 		{
 			movement.y = 0;

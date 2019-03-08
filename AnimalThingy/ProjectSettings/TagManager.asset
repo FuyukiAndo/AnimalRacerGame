@@ -6,7 +6,11 @@ TagManager:
   tags:
   - Ground
   - Ball
+  - Workdammit
   - Ice_Character
+  - Coast_Character
+  - Jungle_Character
+  - Blast
   layers:
   - Default
   - TransparentFX

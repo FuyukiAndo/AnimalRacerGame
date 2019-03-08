@@ -52,7 +52,7 @@ public class Checkpoint : MonoBehaviour
 			{
 				continue;
 			}
-			if (collider.tag == playerFlags[i].playerTag || collider.GetComponent(playerFlags[i].playerControllerScript))
+			if (collider.name == playerFlags[i].playerName)
 			{
 				animationHandler.SetAnimatorTrigger(animationTrigger);
 				playerFlags[i].playerFlag.SetActive(true);
@@ -78,7 +78,8 @@ public class Checkpoint : MonoBehaviour
 
 	void SetNextCheckPosToGoFor()
 	{
-		GoalManager.Instance.UpdateCheckpointToGoFor();
+		//GoalManager.Instance.UpdateCheckpointToGoFor();
+		//GPS
 	}
 }
 
@@ -86,6 +87,5 @@ public class Checkpoint : MonoBehaviour
 public class PlayerFlag
 {
 	public GameObject playerFlag;
-	public string playerTag;
-	[Tooltip("PlayerController Script Name")] public string playerControllerScript;
+	public string playerName;
 }
