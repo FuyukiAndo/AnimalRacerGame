@@ -1,27 +1,16 @@
 fileFormatVersion: 2
-guid: 6c1a6bdf77399d746891a524c128f881
-timeCreated: 1551882587
+guid: aeba1a9917be23044a9c399be8a13eb0
+timeCreated: 1552057984
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
-    100002: platform_edges_long:polySurface1
-    100004: platform_edges_long_snow:polySurface1
-    100006: platform_edges_long_snow:polySurface2
-    100008: platform_edges_long_snow:transform1
-    100010: platform_edges_long_snow:transform2
     400000: //RootNode
-    400002: platform_edges_long:polySurface1
-    400004: platform_edges_long_snow:polySurface1
-    400006: platform_edges_long_snow:polySurface2
-    400008: platform_edges_long_snow:transform1
-    400010: platform_edges_long_snow:transform2
     2100000: lambert1
-    2100002: platform_edges_long_Material1
-    2300000: platform_edges_long_snow:polySurface2
-    3300000: platform_edges_long_snow:polySurface2
-    4300000: platform_edges_long_snow:polySurface2
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: pCylinder1
     9500000: //RootNode
   externalObjects: {}
   materials:

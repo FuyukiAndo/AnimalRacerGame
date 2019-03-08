@@ -121,7 +121,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 0
-  playerFlags: []
+  playerFlags:
+  - playerFlag: {fileID: 0}
+    playerTag: 
+    playerControllerScript: 
+  - playerFlag: {fileID: 0}
+    playerTag: 
+    playerControllerScript: 
+  - playerFlag: {fileID: 0}
+    playerTag: 
+    playerControllerScript: 
+  - playerFlag: {fileID: 0}
+    playerTag: 
+    playerControllerScript: 
   animationHandler: {fileID: 0}
   animationTrigger: 
   effectController: {fileID: 0}

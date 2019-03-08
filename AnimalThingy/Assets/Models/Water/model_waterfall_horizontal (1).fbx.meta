@@ -1,28 +1,16 @@
 fileFormatVersion: 2
-guid: 3975e36657a509d40a5f0b328f8154ef
-timeCreated: 1551882584
+guid: ee9e6bc78a6091e498bc0288ccdbf7d6
+timeCreated: 1552041854
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
-    100002: platform_flat_long:polySurface1
-    100004: platform_flat_long_snow:polySurface1
-    100006: platform_flat_long_snow:polySurface2
-    100008: platform_flat_long_snow:transform1
-    100010: platform_flat_long_snow:transform2
     400000: //RootNode
-    400002: platform_flat_long:polySurface1
-    400004: platform_flat_long_snow:polySurface1
-    400006: platform_flat_long_snow:polySurface2
-    400008: platform_flat_long_snow:transform1
-    400010: platform_flat_long_snow:transform2
-    2100000: lambert1
-    2100002: platform_flat_long_Material1
-    2300000: platform_flat_long_snow:polySurface2
-    3300000: platform_flat_long_snow:polySurface2
-    4300000: platform_flat_long_snow:polySurface2
-    9500000: //RootNode
+    2100000: Material.001
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Plane.004
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -97,7 +85,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
