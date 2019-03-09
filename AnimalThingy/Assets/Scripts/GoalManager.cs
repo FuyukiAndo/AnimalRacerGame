@@ -439,16 +439,15 @@ public class GoalManager : MonoBehaviour
 	IEnumerator LoadNextScene()
 	{
 		yield return new WaitForSeconds(nextSceneDelay);
-		SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().name);
 		int index = InformationManager.Instance.multiplayerLevels.IndexOf(
 			InformationManager.Instance.multiplayerLevels.Find(x => x == SceneManager.GetActiveScene().name));
 		if (index + 1 >= InformationManager.Instance.multiplayerLevels.Count)
 		{
-			SceneManager.LoadScene("StartMenu", LoadSceneMode.Additive);
+			SceneManager.LoadScene("StartMenu");
 		}
 		else
 		{
-			SceneManager.LoadScene(InformationManager.Instance.multiplayerLevels[index + 1], LoadSceneMode.Additive);
+			SceneManager.LoadScene(InformationManager.Instance.multiplayerLevels[index + 1]);
 		}
 	}
 }

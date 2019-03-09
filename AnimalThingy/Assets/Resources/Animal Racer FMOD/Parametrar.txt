@@ -1,0 +1,21 @@
+Karaktärer 
+ 
+ Hopp 0.0 - 0.99
+ 
+ Aggresiva 1.0 - 2.0
+
+Banor 
+
+ Konstant loop 0.0 - 0.49 
+ 
+ Slut/Stress 0.50 - 1.0
+
+Checkpoints
+ 
+ Spelare 1 0.0 - 0.05
+ 
+ Spelare 2 0.1 - 0.15
+
+ Spelare 3 0.2 - 0.25
+ 
+ Spelare 4 0.3 - 0.35

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="ParameterPreset" id="{68db18a5-957b-4e5f-a4a5-ce5947320c69}">
+        <property name="name">
+            <value>Apljud</value>
+        </property>
+        <relationship name="folder">
+            <destination>{eeb4d956-6d5f-4882-8484-a5143fb4d5f1}</destination>
+        </relationship>
+        <relationship name="parameter">
+            <destination>{12990a94-e078-4ee0-8a17-e5c1504715dc}</destination>
+        </relationship>
+    </object>
+    <object class="GameParameter" id="{12990a94-e078-4ee0-8a17-e5c1504715dc}">
+        <property name="maximum">
+            <value>2</value>
+        </property>
+        <property name="initialValue">
+            <value>0</value>
+        </property>
+    </object>
+</objects>

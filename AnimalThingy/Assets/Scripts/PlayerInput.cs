@@ -50,6 +50,8 @@ public class PlayerInput : MonoBehaviour
 	[HideInInspector] public float targetAngle;
 	[HideInInspector] public bool isControllable = true;
 
+	public float stunDurationLeft; //Added by Emil, not neccessarily important
+
 	public float GetMaxAngleValue()
 	{
 		return maxAngleValue;

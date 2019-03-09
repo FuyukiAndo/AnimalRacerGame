@@ -248,10 +248,6 @@ public class PlayerController : MonoBehaviour
 
 		transform.Translate(movement,Space.World);
 	}
-    void RecoverFromStun()
-    {
-        stunDurationLeft -= Time.deltaTime;
-    }
 
     void OnDrawGizmosSelected()
 	{
