@@ -36,7 +36,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4894361919814514}
-  - component: {fileID: 60408287473398060}
   m_Layer: 9
   m_Name: platform_slope_normal_short
   m_TagString: Untagged
@@ -93,8 +92,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1763889734990182}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 184.18, y: 51.8, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 201.16722, y: 71.57138, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4040176276643928}
@@ -141,36 +140,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1210182493933264}
-  m_Mesh: {fileID: 4300000, guid: 7c496f0c7994b744ab5bfed7784dd006, type: 3}
---- !u!60 &60408287473398060
-PolygonCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1763889734990182}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -5.929489, y: -0.91511536}
-      - {x: -9.16394, y: -2.4899979}
-      - {x: -9.0216675, y: -2.5031548}
-      - {x: -8.987793, y: -3.4607124}
-      - {x: -5.972824, y: -2.011219}
+  m_Mesh: {fileID: 4300010, guid: 688e0cabf07fd2645911e3fd48aca206, type: 3}
 --- !u!61 &61412495150703906
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -183,7 +153,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.16747254, y: -0.059207827}
+  m_Offset: {x: 8.397615, y: 1.8378743}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -194,5 +164,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.3498073, y: 0.88158435}
+  m_Size: {x: 3.3523521, y: 1.0450118}
   m_EdgeRadius: 0
