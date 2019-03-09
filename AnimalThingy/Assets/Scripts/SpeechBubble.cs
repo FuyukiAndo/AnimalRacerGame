@@ -28,7 +28,7 @@ public class SpeechBubble : MonoBehaviour
 		{
 			if (Time.time > commentator.nextComment)
 			{
-				SetCommentatorSpeechActive();
+				SetCommentatorSpeechActive(false);
 			}
 		}
 	}
@@ -41,9 +41,16 @@ public class SpeechBubble : MonoBehaviour
 		StartCoroutine(SetSpeechInactive());
 	}
 
-	public void SetCommentatorSpeechActive()
+	public void SetCommentatorSpeechActive(bool levelComplete)
 	{
-		SetRandomSpeechFromCommentator();
+		if (levelComplete)
+		{
+			textMesh.text = commentator.levelCompleteSpeech;
+		}
+		else
+		{
+			SetRandomSpeechFromCommentator();
+		}
 		characterCrystal.SetActive(false);
 		speechBubble.SetActive(true);
 		StartCoroutine(SetSpeechInactive());
@@ -67,6 +74,7 @@ public class SpeechBubble : MonoBehaviour
 	IEnumerator SetSpeechInactive()
 	{
 		yield return new WaitForSeconds(textMesh.text.Length * speechSpeedMult);
+		textMesh.text = string.Empty;
 		speechBubble.SetActive(false);
 		characterCrystal.SetActive(true);
 	}
@@ -86,6 +94,7 @@ public class Speech
 public class CommentatorSpeech
 {
 	public string[] speeches;
+	public string levelCompleteSpeech;
 	public float commentingDelay;
 	[HideInInspector] public float nextComment;
 }

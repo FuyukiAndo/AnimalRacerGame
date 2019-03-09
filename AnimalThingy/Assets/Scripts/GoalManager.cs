@@ -13,6 +13,7 @@ public class GoalManager : MonoBehaviour
 	public float timeBeforeAutoPlacements;
 	public Vector2 boxSize;
 	public float yRotation;
+	public SpeechBubble commentator;
 
 	public static GoalManager Instance
 	{
@@ -31,6 +32,7 @@ public class GoalManager : MonoBehaviour
 		}
 	}
 	private List<GameObject> placedPlayers = new List<GameObject>();
+	private List<GameObject> trappedPlayers = new List<GameObject>();
 	private bool startCountDown;
 	private List<CheckpointTracker> unplacedPlayers = new List<CheckpointTracker>();
 	[SerializeField] private GameObject[] playerGoalPositions;
@@ -64,11 +66,11 @@ public class GoalManager : MonoBehaviour
 
 	void Update()
 	{
-        if(placedPlayers.Count == InformationManager.Instance.players.Count)
-        {
-            endScreenUI.SetActive(true);
-            StartCoroutine(Wait());
-        }
+		if (placedPlayers.Count == InformationManager.Instance.players.Count)
+		{
+			endScreenUI.SetActive(true);
+			StartCoroutine(Wait());
+		}
 		if (countDownOnFirstPlayer)
 		{
 			if (startCountDown && unplacedPlayers.Count > 0)
@@ -91,17 +93,17 @@ public class GoalManager : MonoBehaviour
 
 		ValidateForGoal();
 	}
-    IEnumerator Wait()
-    {
-        yield return new WaitForSeconds(5.0f);
-        InformationManager.Instance.sceneIndex += 1;
-        SceneManager.LoadScene(InformationManager.Instance.multiplayerLevels[InformationManager.Instance.sceneIndex]);
-    }
+	IEnumerator Wait()
+	{
+		yield return new WaitForSeconds(5.0f);
+		InformationManager.Instance.sceneIndex += 1;
+		SceneManager.LoadScene(InformationManager.Instance.multiplayerLevels[InformationManager.Instance.sceneIndex]);
+	}
 	void ValidateForGoal()
 	{
 		Collider2D collider = Physics2D.OverlapBox(transform.position, boxSize, 0f, playerLayer);
 
-		if (collider == null  || !collider.transform.GetComponent<CheckpointTracker>()) return;
+		if (collider == null || !collider.transform.GetComponent<CheckpointTracker>())return;
 		if (ValidateTracker(collider.transform.GetComponent<CheckpointTracker>()))
 		{
 			PlacePlayers();
@@ -287,6 +289,10 @@ public class GoalManager : MonoBehaviour
 		//string componentName = playerMoveScript.GetType().ToString();
 		foreach (var player in placedPlayers)
 		{
+			if (trappedPlayers.Contains(player))
+			{
+				continue;
+			}
 			player.transform.GetChild(0).rotation = Quaternion.Euler(
 				player.transform.GetChild(0).rotation.x, yRotation, player.transform.GetChild(0).rotation.z
 			);
@@ -299,7 +305,14 @@ public class GoalManager : MonoBehaviour
 			{
 				MonoBehaviour script = player.GetComponent(playerMoveScriptName[i])as MonoBehaviour;
 				script.enabled = false;
+				PlayerInput input = player.GetComponent<PlayerInput>();
+				input.isControllable = false;
 			}
+			trappedPlayers.Add(player);
+		}
+		if (placedPlayers.Count == initialPlayerCount)
+		{
+			commentator.SetCommentatorSpeechActive(true);
 		}
 	}
 
