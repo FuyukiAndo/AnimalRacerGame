@@ -47,7 +47,8 @@ public class PlayerController : MonoBehaviour
 	protected float tempSpeed;
 	protected float mod0 = 0.1f;
 	protected float mod1 = 0.2f;
-	
+    protected float startMovementSpeed;
+
 	[HideInInspector] public int abilityMeter = 100;
 	[HideInInspector] public int abilityTimer = 3;
 	
@@ -59,7 +60,8 @@ public class PlayerController : MonoBehaviour
 		collisionController = GetComponent<CollisionController>();
 		raycastController = GetComponent<RaycastController>();
 		playerInput = GetComponent<PlayerInput>();
-		
+
+        startMovementSpeed = movementSpeed;
 		movementDirection = 0;
 		abilityDirection = 0;
 	}
@@ -93,7 +95,12 @@ public class PlayerController : MonoBehaviour
 			movementSpeed = 1.0f;
 		}
 	}
-	
+	public IEnumerator movementSpeedChanger(float speedChange, float duration)
+    {
+        movementSpeed += speedChange;
+        yield return new WaitForSeconds(duration);
+        movementSpeed = startMovementSpeed;
+    }
 	//If jump button released before reaching max value, then goto min value.
 	public void OnJumpKeyUp()
 	{
