@@ -49,7 +49,7 @@ public class CameraScript : MonoBehaviour {
         {
             if (followPlayers)
             {
-                var newPosition =  new Vector3(players[0].transform.position.x, players[0].transform.position.y, transform.position.z);
+                var newPosition =  new Vector3(players[0].transform.position.x, players[0].transform.position.y + camYOffset, transform.position.z);
                 transform.position = Vector3.SmoothDamp(transform.position, newPosition, ref velocity, cameraSmoothTime);
                 transform.parent = players[0].transform;
                 float newZoom = Mathf.Lerp(maxZoom, minZoom, GetGreatestDistance() / zoomLimiter);
