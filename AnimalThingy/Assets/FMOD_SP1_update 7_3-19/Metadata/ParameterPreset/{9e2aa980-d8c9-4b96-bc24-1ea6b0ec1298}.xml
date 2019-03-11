@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="ParameterPreset" id="{9e2aa980-d8c9-4b96-bc24-1ea6b0ec1298}">
+        <property name="name">
+            <value>ALBA_PowerUp</value>
+        </property>
+        <relationship name="folder">
+            <destination>{66086b72-7867-47d1-9fa4-c73519939f94}</destination>
+        </relationship>
+        <relationship name="parameter">
+            <destination>{70e592dc-dd64-41b8-9a8b-1db19c8c0f0a}</destination>
+        </relationship>
+    </object>
+    <object class="GameParameter" id="{70e592dc-dd64-41b8-9a8b-1db19c8c0f0a}">
+        <property name="initialValue">
+            <value>0</value>
+        </property>
+    </object>
+</objects>

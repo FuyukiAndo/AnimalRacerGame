@@ -7,11 +7,12 @@ using UnityEngine.SceneManagement;
 
 public class GoalManager : MonoBehaviour
 {
-    public GameObject endScreenUI;
+	public GameObject endScreenUI;
 	public bool passInSequence, countDownOnFirstPlayer;
 	public Checkpoint[] checksToPass;
 	public float timeBeforeAutoPlacements;
 	public Vector2 boxSize;
+	public float yRotation;
 
 	public static GoalManager Instance
 	{
@@ -39,6 +40,8 @@ public class GoalManager : MonoBehaviour
 	[SerializeField] private LayerMask playerLayer, ignorePlayerLayer;
 	[SerializeField] private float nextSceneDelay;
 	private bool startedSceneSwitch;
+	private GameObject checkpointToGoFor;
+	private int currentCheckToGoFor;
 
 	void Start()
 	{
@@ -64,6 +67,7 @@ public class GoalManager : MonoBehaviour
         if(placedPlayers.Count == InformationManager.Instance.players.Count)
         {
             endScreenUI.SetActive(true);
+            StartCoroutine(Wait());
         }
 		if (countDownOnFirstPlayer)
 		{
@@ -87,12 +91,17 @@ public class GoalManager : MonoBehaviour
 
 		ValidateForGoal();
 	}
-
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(5.0f);
+        InformationManager.Instance.sceneIndex += 1;
+        SceneManager.LoadScene(InformationManager.Instance.multiplayerLevels[InformationManager.Instance.sceneIndex]);
+    }
 	void ValidateForGoal()
 	{
 		Collider2D collider = Physics2D.OverlapBox(transform.position, boxSize, 0f, playerLayer);
 
-		if (!collider.transform.GetComponent<CheckpointTracker>() || collider == null) return;
+		if (collider == null  || !collider.transform.GetComponent<CheckpointTracker>()) return;
 		if (ValidateTracker(collider.transform.GetComponent<CheckpointTracker>()))
 		{
 			PlacePlayers();
@@ -278,9 +287,17 @@ public class GoalManager : MonoBehaviour
 		//string componentName = playerMoveScript.GetType().ToString();
 		foreach (var player in placedPlayers)
 		{
+			player.transform.GetChild(0).rotation = Quaternion.Euler(
+				player.transform.GetChild(0).rotation.x, yRotation, player.transform.GetChild(0).rotation.z
+			);
+			if (player.GetComponentInChildren<AnimationHandler>())
+			{
+				player.GetComponentInChildren<AnimationHandler>().SetAnimatorTrigger("Idle");
+				player.GetComponentInChildren<AnimationHandler>().SetAnimatorTrigger("Victory");
+			}
 			for (int i = 0; i < playerMoveScriptName.Length; i++)
 			{
-				MonoBehaviour script = player.GetComponent(playerMoveScriptName[i]) as MonoBehaviour;
+				MonoBehaviour script = player.GetComponent(playerMoveScriptName[i])as MonoBehaviour;
 				script.enabled = false;
 			}
 		}

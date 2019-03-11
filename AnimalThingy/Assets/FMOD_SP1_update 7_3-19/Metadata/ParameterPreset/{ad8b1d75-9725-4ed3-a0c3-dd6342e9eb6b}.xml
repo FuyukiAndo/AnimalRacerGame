@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="ParameterPreset" id="{ad8b1d75-9725-4ed3-a0c3-dd6342e9eb6b}">
+        <property name="name">
+            <value>PingvinPowerup</value>
+        </property>
+        <relationship name="folder">
+            <destination>{66086b72-7867-47d1-9fa4-c73519939f94}</destination>
+        </relationship>
+        <relationship name="parameter">
+            <destination>{b095179d-3dac-44ae-8b67-25c3e0af7702}</destination>
+        </relationship>
+    </object>
+    <object class="GameParameter" id="{b095179d-3dac-44ae-8b67-25c3e0af7702}">
+        <property name="initialValue">
+            <value>0</value>
+        </property>
+    </object>
+</objects>

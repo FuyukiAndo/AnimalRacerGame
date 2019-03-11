@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="AudioFile" id="{6357e1dd-4cc9-4453-8fdf-696a9c4fffdc}">
+        <property name="assetPath">
+            <value>PINGVIN_POWERUP_SLIDE (loop).wav</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>48</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>5.75</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{d33b57b3-7e46-47e1-8694-5faf651db5a0}</destination>
+        </relationship>
+    </object>
+</objects>

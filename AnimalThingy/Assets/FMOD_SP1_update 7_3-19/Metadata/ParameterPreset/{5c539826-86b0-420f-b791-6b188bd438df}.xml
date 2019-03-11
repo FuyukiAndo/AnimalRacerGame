@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="ParameterPreset" id="{5c539826-86b0-420f-b791-6b188bd438df}">
+        <property name="name">
+            <value>GrisSound</value>
+        </property>
+        <relationship name="folder">
+            <destination>{66086b72-7867-47d1-9fa4-c73519939f94}</destination>
+        </relationship>
+        <relationship name="parameter">
+            <destination>{ce026d20-9f6b-4e96-ade9-9056c8b62b52}</destination>
+        </relationship>
+    </object>
+    <object class="GameParameter" id="{ce026d20-9f6b-4e96-ade9-9056c8b62b52}">
+        <property name="initialValue">
+            <value>0</value>
+        </property>
+    </object>
+</objects>

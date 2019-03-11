@@ -13,14 +13,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: Assets\Resources\FMOD_SP1_samling\FMOD_SP1_samling .fspro
-  SourceProjectPathUnformatted: Assets\Resources\FMOD_SP1_samling\FMOD_SP1_samling
-    .fspro
-  SourceBankPathUnformatted: Assets\Resources\FMOD_SP1_samling\Build
+  sourceProjectPath: Assets\FMOD_SP1_update 7_3-19\FMOD_SP1_update 7_3-19.fspro
+  SourceProjectPathUnformatted: Assets\FMOD_SP1_update 7_3-19\FMOD_SP1_update 7_3-19.fspro
+  SourceBankPathUnformatted: Assets\FMOD_SP1_update 7_3-19\Build
   AutomaticEventLoading: 1
   AutomaticSampleLoading: 0
   ImportType: 0
-  TargetAssetPath: Assets
+  TargetAssetPath: 
   LoggingLevel: 2
   SpeakerModeSettings:
   - Platform: 2
@@ -45,9 +44,7 @@ MonoBehaviour:
     Value: 1
   - Platform: 2
     Value: 0
-  BankDirectorySettings:
-  - Platform: 2
-    Value: Desktop
+  BankDirectorySettings: []
   VirtualChannelSettings:
   - Platform: 1
     Value: 1024
@@ -60,5 +57,6 @@ MonoBehaviour:
     Value: 32
   Plugins: []
   MasterBanks:
+  - Master Bank
   - Master Bank
   Banks: []

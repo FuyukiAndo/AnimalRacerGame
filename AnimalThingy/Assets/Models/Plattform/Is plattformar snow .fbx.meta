@@ -1,0 +1,303 @@
+fileFormatVersion: 2
+guid: 688e0cabf07fd2645911e3fd48aca206
+timeCreated: 1552044424
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: platform_edges_long:polySurface1
+    100004: platform_edges_long_snow:polySurface1
+    100006: platform_edges_long_snow:polySurface2
+    100008: platform_edges_long_snow:transform1
+    100010: platform_edges_long_snow:transform2
+    100012: platform_edges_short1:polySurface1
+    100014: platform_edges_short_snow:polySurface1
+    100016: platform_flat_long:polySurface1
+    100018: platform_flat_long_snow:polySurface1
+    100020: platform_flat_short:polySurface1
+    100022: platform_slope_normal_long:polySurface1
+    100024: platform_slope_normal_short:polySurface1
+    100026: platform_slope_steep_long:polySurface1
+    100028: platform_slope_steep_short:polySurface1
+    100030: platform_thin_long:polySurface1
+    100032: platform_thin_short:polySurface1
+    100034: platform_wall_long:polySurface1
+    100036: platform_wall_short:polySurface1
+    100038: platform_wall_short:polySurface2
+    100040: platform_wall_short:transform1
+    100042: platform_wall_short:transform10
+    100044: platform_wall_short:transform11
+    100046: platform_wall_short:transform12
+    100048: platform_wall_short:transform13
+    100050: platform_wall_short:transform14
+    100052: platform_wall_short:transform15
+    100054: platform_wall_short:transform16
+    100056: platform_wall_short:transform17
+    100058: platform_wall_short:transform2
+    100060: platform_wall_short:transform3
+    100062: platform_wall_short:transform4
+    100064: platform_wall_short:transform5
+    100066: platform_wall_short:transform6
+    100068: platform_wall_short:transform7
+    100070: platform_wall_short:transform8
+    100072: platform_wall_short:transform9
+    100074: polySurface1
+    100076: polySurface11
+    100078: polySurface12
+    100080: polySurface14
+    100082: polySurface20
+    100084: polySurface22
+    100086: polySurface24
+    100088: polySurface24 1
+    100090: polySurface25
+    100092: polySurface26
+    100094: polySurface27
+    100096: polySurface28
+    100098: polySurface29
+    100100: polySurface30
+    100102: polySurface31
+    100104: polySurface32
+    100106: polySurface34
+    100108: polySurface35
+    100110: polySurface35 1
+    100112: polySurface4
+    100114: polySurface40
+    100116: polySurface41
+    100118: polySurface42
+    100120: polySurface43
+    100122: polySurface43 1
+    100124: polySurface44
+    100126: polySurface45
+    100128: polySurface5
+    100130: polySurface6
+    100132: polySurface60
+    100134: polySurface61
+    100136: polySurface62
+    100138: polySurface63
+    100140: polySurface9
+    100142: transform10
+    100144: transform11
+    100146: transform12
+    100148: transform13
+    100150: transform14
+    100152: transform15
+    100154: transform16
+    100156: transform17
+    100158: transform18
+    100160: transform19
+    100162: transform20
+    100164: transform21
+    100166: transform22
+    100168: transform23
+    100170: transform24
+    100172: transform25
+    100174: transform26
+    100176: transform3
+    100178: transform4
+    100180: transform5
+    100182: transform6
+    100184: transform7
+    100186: transform8
+    100188: transform9
+    400000: //RootNode
+    400002: platform_edges_long:polySurface1
+    400004: platform_edges_long_snow:polySurface1
+    400006: platform_edges_long_snow:polySurface2
+    400008: platform_edges_long_snow:transform1
+    400010: platform_edges_long_snow:transform2
+    400012: platform_edges_short1:polySurface1
+    400014: platform_edges_short_snow:polySurface1
+    400016: platform_flat_long:polySurface1
+    400018: platform_flat_long_snow:polySurface1
+    400020: platform_flat_short:polySurface1
+    400022: platform_slope_normal_long:polySurface1
+    400024: platform_slope_normal_short:polySurface1
+    400026: platform_slope_steep_long:polySurface1
+    400028: platform_slope_steep_short:polySurface1
+    400030: platform_thin_long:polySurface1
+    400032: platform_thin_short:polySurface1
+    400034: platform_wall_long:polySurface1
+    400036: platform_wall_short:polySurface1
+    400038: platform_wall_short:polySurface2
+    400040: platform_wall_short:transform1
+    400042: platform_wall_short:transform10
+    400044: platform_wall_short:transform11
+    400046: platform_wall_short:transform12
+    400048: platform_wall_short:transform13
+    400050: platform_wall_short:transform14
+    400052: platform_wall_short:transform15
+    400054: platform_wall_short:transform16
+    400056: platform_wall_short:transform17
+    400058: platform_wall_short:transform2
+    400060: platform_wall_short:transform3
+    400062: platform_wall_short:transform4
+    400064: platform_wall_short:transform5
+    400066: platform_wall_short:transform6
+    400068: platform_wall_short:transform7
+    400070: platform_wall_short:transform8
+    400072: platform_wall_short:transform9
+    400074: polySurface1
+    400076: polySurface11
+    400078: polySurface12
+    400080: polySurface14
+    400082: polySurface20
+    400084: polySurface22
+    400086: polySurface24
+    400088: polySurface24 1
+    400090: polySurface25
+    400092: polySurface26
+    400094: polySurface27
+    400096: polySurface28
+    400098: polySurface29
+    400100: polySurface30
+    400102: polySurface31
+    400104: polySurface32
+    400106: polySurface34
+    400108: polySurface35
+    400110: polySurface35 1
+    400112: polySurface4
+    400114: polySurface40
+    400116: polySurface41
+    400118: polySurface42
+    400120: polySurface43
+    400122: polySurface43 1
+    400124: polySurface44
+    400126: polySurface45
+    400128: polySurface5
+    400130: polySurface6
+    400132: polySurface60
+    400134: polySurface61
+    400136: polySurface62
+    400138: polySurface63
+    400140: polySurface9
+    400142: transform10
+    400144: transform11
+    400146: transform12
+    400148: transform13
+    400150: transform14
+    400152: transform15
+    400154: transform16
+    400156: transform17
+    400158: transform18
+    400160: transform19
+    400162: transform20
+    400164: transform21
+    400166: transform22
+    400168: transform23
+    400170: transform24
+    400172: transform25
+    400174: transform26
+    400176: transform3
+    400178: transform4
+    400180: transform5
+    400182: transform6
+    400184: transform7
+    400186: transform8
+    400188: transform9
+    2100000: lambert1
+    2300000: polySurface11
+    2300002: polySurface22
+    2300004: polySurface34
+    2300006: polySurface41
+    2300008: polySurface43
+    2300010: polySurface45
+    2300012: polySurface63
+    2300014: polySurface9
+    3300000: polySurface11
+    3300002: polySurface22
+    3300004: polySurface34
+    3300006: polySurface41
+    3300008: polySurface43
+    3300010: polySurface45
+    3300012: polySurface63
+    3300014: polySurface9
+    4300000: polySurface9
+    4300002: polySurface11
+    4300004: polySurface22
+    4300006: polySurface34
+    4300008: polySurface41
+    4300010: polySurface43
+    4300012: polySurface45
+    4300014: polySurface63
+    9500000: //RootNode
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -110,6 +110,7 @@ public class CollisionController : RaycastController
 			
 			RaycastHit2D hitX = Physics2D.Raycast(rayVectorX, Vector2.right * directionX, rayLengthX, collisionMask);
 			Debug.DrawRay(rayVectorX, Vector2.right * directionX * rayLengthX, Color.red);
+
 			
 			if (hitX)
 			{		
@@ -144,10 +145,24 @@ public class CollisionController : RaycastController
 						movement.y = Mathf.Tan(boxCollisionDirections.ascendAngle * Mathf.Deg2Rad) * Mathf.Abs(movement.x);
 					}
 				}
+				
+				if (directionX == -1)
+				{
+					boxCollisionDirections.left = true;
+				}
+				
+				if (directionX == 1)
+				{
+					boxCollisionDirections.right = true;
+				}
+				
+				movement.x = (hitX.distance - collisionOffset) * directionX;
+				rayLengthX = hitX.distance;
+				
 			}
 		}	
 
-		Physics2D.SyncTransforms(); 
+		//Physics2D.SyncTransforms(); 
 		float directionY = Mathf.Sign(movement.y);
 		float rayLengthY = Mathf.Abs(movement.y) + collisionOffset*SetRayLength;
 		

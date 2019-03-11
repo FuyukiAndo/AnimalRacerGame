@@ -18,6 +18,8 @@ public class Checkpoint : MonoBehaviour
 	[SerializeField] private AudioEffectController effectController;
 	[SerializeField] private float searchRadius = 1f;
 
+	private bool updatedCheckToGoFor;
+
 	void Start()
 	{
 		if (playerFlags.Length > 0)
@@ -50,10 +52,15 @@ public class Checkpoint : MonoBehaviour
 			{
 				continue;
 			}
-			if (collider.tag == playerFlags[i].playerTag || collider.GetComponent(playerFlags[i].playerControllerScript))
+			if (collider.name == playerFlags[i].playerName)
 			{
 				animationHandler.SetAnimatorTrigger(animationTrigger);
 				playerFlags[i].playerFlag.SetActive(true);
+				if (!updatedCheckToGoFor)
+				{
+					SetNextCheckPosToGoFor();
+					updatedCheckToGoFor = true;
+				}
 			}
 		}
 	}
@@ -68,12 +75,17 @@ public class Checkpoint : MonoBehaviour
 		Gizmos.color = Color.yellow;
 		Gizmos.DrawWireSphere(transform.position, searchRadius);
 	}
+
+	void SetNextCheckPosToGoFor()
+	{
+		//GoalManager.Instance.UpdateCheckpointToGoFor();
+		//GPS
+	}
 }
 
 [System.Serializable]
 public class PlayerFlag
 {
 	public GameObject playerFlag;
-	public string playerTag;
-	[Tooltip("PlayerController Script Name")] public string playerControllerScript;
+	public string playerName;
 }

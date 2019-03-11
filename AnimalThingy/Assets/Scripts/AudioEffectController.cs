@@ -25,6 +25,8 @@ public class AudioEffectController : MonoBehaviour {
 	[SerializeField] private float AliveTime, waitTime;
 	[EventRef] [SerializeField] private string sfxPath;
 	private EventInstance sfxInstance;
+	private ParameterInstance sfxParameterInstance;
+	[SerializeField] private string sfxParameterName;
 	private float nextWait;
 	private Collider2D[] colliders;
 	private int oldColliderCount, newColliderCount;
@@ -34,12 +36,14 @@ public class AudioEffectController : MonoBehaviour {
 
 	[SerializeField] private Vector2 boxSize = new Vector2(1f, 1f);
 	[SerializeField] private Dictionary<string, AudioClip> clips;
+	[SerializeField] private LayerMask layer;
 
 	void Start()
 	{
 		if (AudioManager.Instance.useFMOD)
 		{
 			sfxInstance = RuntimeManager.CreateInstance(sfxPath);
+			sfxInstance.getParameter(sfxParameterName, out sfxParameterInstance);
 			RuntimeManager.AttachInstanceToGameObject(sfxInstance, transform, new Rigidbody2D());
 			if (playEffectAuto)
 			{
@@ -164,7 +168,7 @@ public class AudioEffectController : MonoBehaviour {
 							}
 							else
 							{
-								RuntimeManager.PlayOneShotAttached(sfxPath, gameObject);
+								//RuntimeManager.PlayOneShotAttached(sfxPath, gameObject);
 							}
 						}
 					}
@@ -442,6 +446,65 @@ public class AudioEffectController : MonoBehaviour {
 		}
 	}
 
+	/*void OnTriggerEnter2D(Collider2D other)
+	{
+		if (playEffectAuto)
+		{
+			if (other.GetComponent<CheckpointTracker>())
+			{
+				if (startEvent == StartEvent.triggerEnter)
+				{
+					if (AudioManager.Instance.useFMOD)
+					{
+						//Play audio
+						if (!oneshot)
+						{
+							sfxInstance.start();
+							StartCoroutine(AliveCountDown());
+						}
+						else
+						{
+							if (!attached)
+							{
+								RuntimeManager.PlayOneShot(sfxPath, transform.position);
+							}
+							else
+							{
+								RuntimeManager.PlayOneShotAttached(sfxPath, gameObject);
+							}
+						}
+					}
+					else
+					{
+						if (!oneshot)
+						{
+							source.Play();
+							StartCoroutine(AliveCountDown());
+						}
+						else
+						{
+							source.PlayOneShot(clip);
+						}
+					}
+				}
+				else if (stopEvent == StopEvent.triggerEnter)
+				{
+					if (AudioManager.Instance.useFMOD)
+					{
+						if (!oneshot)
+						{
+							sfxInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+						}
+					}
+					else
+					{
+						source.Stop();
+					}
+				}
+			}
+		}
+	}*/
+
 	public void PlayAudioOneShot(bool attached)
 	{
 		if (attached)
@@ -533,6 +596,25 @@ public class AudioEffectController : MonoBehaviour {
 		{
 			source.volume = 0.0f;
 		}
+	}
+
+	public float GetParameterValue(string parameter)
+	{
+		sfxInstance.getParameter(parameter, out sfxParameterInstance);
+		float tempValue;
+		sfxParameterInstance.getValue(out tempValue);
+		return tempValue;
+	}
+
+	public void SetParameterValue(string parameter, float value)
+	{
+		sfxInstance.setParameterValue(parameter, value);
+	}
+
+	void OnDrawGizmos()
+	{
+		Gizmos.color = Color.red;
+		Gizmos.DrawWireCube(transform.position, boxSize);
 	}
 
 }
