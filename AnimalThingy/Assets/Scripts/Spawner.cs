@@ -5,6 +5,7 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public GameObject spawnObject;
+    public bool wantSpawnerToBeRemoved;
     public float timeBetweenSpawnsMin = 1;
     public float timeBetweenSpawnsMax = 3;
     protected float timeBetweenSpawns;
@@ -12,13 +13,16 @@ public class Spawner : MonoBehaviour
 
     private void Awake()
     {
-        if (GetComponent<MeshRenderer>() != null)
+        if (wantSpawnerToBeRemoved == true)
         {
-            GetComponent<MeshRenderer>().enabled = false;
-        }
-        if (GetComponent<Collider2D>() != null)
-        {
-            GetComponent<Collider2D>().enabled = false;
+            if (GetComponent<MeshRenderer>() != null)
+            {
+                GetComponent<MeshRenderer>().enabled = false;
+            }
+            if (GetComponent<Collider2D>() != null)
+            {
+                GetComponent<Collider2D>().enabled = false;
+            }
         }
     }
     protected void Start()
