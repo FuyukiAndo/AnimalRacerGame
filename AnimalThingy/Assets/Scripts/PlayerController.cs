@@ -47,7 +47,8 @@ public class PlayerController : MonoBehaviour
 	protected float tempSpeed;
 	protected float mod0 = 0.1f;
 	protected float mod1 = 0.2f;
-	
+    private float startMovmenetSpeed;
+
 	[HideInInspector] public int abilityMeter = 100;
 	[HideInInspector] public int abilityTimer = 3;
 	
@@ -59,7 +60,8 @@ public class PlayerController : MonoBehaviour
 		collisionController = GetComponent<CollisionController>();
 		raycastController = GetComponent<RaycastController>();
 		playerInput = GetComponent<PlayerInput>();
-		
+
+        startMovmenetSpeed = movementSpeed;
 		movementDirection = 0;
 		abilityDirection = 0;
 	}
@@ -70,7 +72,12 @@ public class PlayerController : MonoBehaviour
 		maxVelocity = Mathf.Abs(gravity) * jumpAndFallDelay;
 		minVelocity = Mathf.Sqrt(2 * Mathf.Abs(gravity) * minJumpHeight);
 	}
-
+    public IEnumerator movementSpeedChange(float addedSpeed, float duration)
+    {
+        movementSpeed += addedSpeed;
+        yield return new WaitForSeconds(duration);
+        movementSpeed = startMovmenetSpeed;
+    }
 	void OnValidate()
 	{
 		if(minJumpHeight < 0.1f)
