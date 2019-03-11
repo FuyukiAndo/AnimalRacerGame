@@ -298,16 +298,16 @@ public class GoalManager : MonoBehaviour
 			);
 			if (player.GetComponentInChildren<AnimationHandler>())
 			{
-				player.GetComponentInChildren<AnimationHandler>().SetAnimatorTrigger("Idle");
-				player.GetComponentInChildren<AnimationHandler>().SetAnimatorTrigger("Victory");
+				//player.GetComponentInChildren<AnimationHandler>().SetAnimatorTrigger("Idle");
+				//player.GetComponentInChildren<AnimationHandler>().SetAnimatorTrigger("Victory");
 			}
 			for (int i = 0; i < playerMoveScriptName.Length; i++)
 			{
-				MonoBehaviour script = player.GetComponent(playerMoveScriptName[i])as MonoBehaviour;
-				script.enabled = false;
-				PlayerInput input = player.GetComponent<PlayerInput>();
-				input.isControllable = false;
+				//MonoBehaviour script = player.GetComponent(playerMoveScriptName[i])as MonoBehaviour;
+				//script.enabled = false;
 			}
+			PlayerInput input = player.GetComponent<PlayerInput>();
+			input.isControllable = false;
 			trappedPlayers.Add(player);
 		}
 		if (placedPlayers.Count == initialPlayerCount)
