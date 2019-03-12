@@ -24,6 +24,7 @@ MonoBehaviour:
   - {fileID: 114230911985897912}
   - {fileID: 114997247051191282}
   - {fileID: 114021245832967308}
+  - {fileID: 114717968170098708}
   MasterBanks:
   - {fileID: 114432929868239666}
   - {fileID: 114278245612169640}
@@ -32,7 +33,7 @@ MonoBehaviour:
   - {fileID: 114203500236496050}
   - {fileID: 114021963340287018}
   - {fileID: 114339853886280370}
-  stringsBankWriteTime: 636876572979863930
+  stringsBankWriteTime: 636880015179549900
   cacheVersion: 3
 --- !u!114 &114021245832967308
 MonoBehaviour:
@@ -53,7 +54,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters:
-  - {fileID: 114588000112897164}
+  - {fileID: 114538464434709526}
   MinDistance: 1
   MaxDistance: 20
   Length: 0
@@ -109,10 +110,10 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: 114221832581179762}
+  - {fileID: 114139852495217996}
   MinDistance: 1
   MaxDistance: 20
-  Length: 208523
+  Length: 210752
 --- !u!114 &114070808939912248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,10 +148,25 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: 114913243382348896}
+  - {fileID: 114123468703735652}
   MinDistance: 1
   MaxDistance: 20
-  Length: 158023
+  Length: 160752
+--- !u!114 &114123468703735652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Slut Isbana
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114125841058348824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,6 +188,36 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 28672
+--- !u!114 &114139852495217996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Slut Djungelbana
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114141120345475226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Albatrossljud
+  Min: 0
+  Max: 3
+  Default: 0
 --- !u!114 &114152112705508894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,6 +319,21 @@ MonoBehaviour:
   - Name: Desktop
     Value: 672
   Exists: 0
+--- !u!114 &114207864178231336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Checkpoints
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114215007777053326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -318,13 +379,14 @@ MonoBehaviour:
   guid: e2349baf434c4045ab9d33f72326796f
   Banks:
   - {fileID: 114720966725561638}
-  IsStream: 0
+  IsStream: 1
   Is3D: 0
-  IsOneShot: 1
-  Parameters: []
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 114753169777563022}
   MinDistance: 0
   MaxDistance: 0
-  Length: 0
+  Length: 54500
 --- !u!114 &114255836330883534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -402,7 +464,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 242941
+  Length: 147905
 --- !u!114 &114323707190422554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -437,11 +499,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Path: Assets\Resources\Animal Racer FMOD\Build\Desktop\Master Bank.strings.bank
-  lastModified: 636876572979863930
+  lastModified: 636880015179549900
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 1092
+    Value: 1136
   Exists: 1
 --- !u!114 &114342570588372450
 MonoBehaviour:
@@ -548,6 +610,21 @@ MonoBehaviour:
   - Name: Desktop
     Value: 12474
   Exists: 0
+--- !u!114 &114538464434709526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Apljud
+  Min: 0
+  Max: 3
+  Default: 0
 --- !u!114 &114546220500317126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -642,6 +719,21 @@ MonoBehaviour:
   Min: 0
   Max: 2
   Default: 0
+--- !u!114 &114651316779794630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Grisljud
+  Min: 0
+  Max: 3
+  Default: 0
 --- !u!114 &114673332145029940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -694,6 +786,28 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
+--- !u!114 &114717968170098708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Victory Screen
+  guid: c09eff2eaa0f344cb98d638629a2b7ae
+  Banks:
+  - {fileID: 114720966725561638}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 7666
 --- !u!114 &114718015112150810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -737,11 +851,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: C:\Users\Emilb\DevProjects\Games\AnimalRacerGame\AnimalThingy\Assets\Resources\Animal
     Racer FMOD\Build\Desktop\Master Bank.bank
-  lastModified: 636876572978752930
+  lastModified: 636880015179190745
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 11975584
+    Value: 11859520
   Exists: 1
 --- !u!114 &114751986409553938
 MonoBehaviour:
@@ -762,10 +876,25 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters:
-  - {fileID: 114402564792908002}
+  - {fileID: 114207864178231336}
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &114753169777563022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Knappar
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114798109258007988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -856,7 +985,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters:
-  - {fileID: 114152112705508894}
+  - {fileID: 114991173745350378}
   MinDistance: 1
   MaxDistance: 20
   Length: 0
@@ -894,7 +1023,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters:
-  - {fileID: 114821484745442042}
+  - {fileID: 114651316779794630}
   MinDistance: 1
   MaxDistance: 20
   Length: 0
@@ -956,6 +1085,21 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 32079
+--- !u!114 &114991173745350378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Pingvinljud
+  Min: 0
+  Max: 3
+  Default: 0
 --- !u!114 &114997247051191282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -975,7 +1119,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters:
-  - {fileID: 114391741170905856}
+  - {fileID: 114141120345475226}
   MinDistance: 1
   MaxDistance: 20
   Length: 0
