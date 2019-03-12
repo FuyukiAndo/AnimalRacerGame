@@ -14,11 +14,20 @@ public class SpeechBubble : MonoBehaviour
 	[SerializeField] private CommentatorSpeech commentator;
 	private TextMeshPro textMesh;
 	private SpriteRenderer sprite;
+	private TextMeshProUGUI commentatorText;
 
 	void Start()
 	{
-		textMesh = speechBubble.GetComponent<TextMeshPro>();
-		textMesh.autoSizeTextContainer = true;
+		if (isCommentator)
+		{
+			commentatorText = commentator.commentatorSpeechBubble.GetComponent<TextMeshProUGUI>();
+			commentatorText.autoSizeTextContainer = true;
+		}
+		else
+		{
+			textMesh = speechBubble.GetComponent<TextMeshPro>();
+			textMesh.autoSizeTextContainer = true;
+		}
 		sprite = speechBubble.GetComponentInChildren<SpriteRenderer>();
 	}
 
@@ -45,14 +54,13 @@ public class SpeechBubble : MonoBehaviour
 	{
 		if (levelComplete)
 		{
-			textMesh.text = commentator.levelCompleteSpeech;
+			commentatorText.text = commentator.levelCompleteSpeech;
 		}
 		else
 		{
 			SetRandomSpeechFromCommentator();
 		}
-		characterCrystal.SetActive(false);
-		speechBubble.SetActive(true);
+		commentator.commentatorSpeechBubble.SetActive(true);
 		StartCoroutine(SetSpeechInactive());
 		commentator.nextComment = Time.time + commentator.commentingDelay;
 	}
@@ -68,15 +76,24 @@ public class SpeechBubble : MonoBehaviour
 	void SetRandomSpeechFromCommentator()
 	{
 		int rand = Random.Range(0, commentator.speeches.Length - 1);
-		textMesh.text = commentator.speeches[rand];
+		commentatorText.text = commentator.speeches[rand];
 	}
 
 	IEnumerator SetSpeechInactive()
 	{
-		yield return new WaitForSeconds(textMesh.text.Length * speechSpeedMult);
-		textMesh.text = string.Empty;
-		speechBubble.SetActive(false);
-		characterCrystal.SetActive(true);
+		if (isCommentator)
+		{
+			yield return new WaitForSeconds(commentatorText.text.Length * speechSpeedMult);
+			commentatorText.text = string.Empty;
+			commentator.commentatorSpeechBubble.SetActive(false);
+		}
+		else
+		{
+			yield return new WaitForSeconds(textMesh.text.Length * speechSpeedMult);
+			textMesh.text = string.Empty;
+			speechBubble.SetActive(false);
+			characterCrystal.SetActive(true);
+		}
 	}
 
 }
@@ -86,8 +103,6 @@ public class Speech
 {
 	public SpeechType speechType;
 	public string[] speeches;
-	public float commentingDelay;
-	[HideInInspector] public float nextComment;
 }
 
 [System.Serializable]
@@ -96,6 +111,7 @@ public class CommentatorSpeech
 	public string[] speeches;
 	public string levelCompleteSpeech;
 	public float commentingDelay;
+	public GameObject commentatorSpeechBubble;
 	[HideInInspector] public float nextComment;
 }
 

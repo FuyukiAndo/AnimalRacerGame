@@ -120,6 +120,16 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114501584345831048, guid: 1af859a1540477943bc73cb9a765bac5,
+        type: 2}
+      propertyPath: speeches.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114501584345831048, guid: 1af859a1540477943bc73cb9a765bac5,
+        type: 2}
+      propertyPath: speeches.Array.data[0].speeches.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 224638288891107604, guid: 1af859a1540477943bc73cb9a765bac5,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -168,7 +178,7 @@ Prefab:
     - target: {fileID: 224638288891107604, guid: 1af859a1540477943bc73cb9a765bac5,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 224638288891107604, guid: 1af859a1540477943bc73cb9a765bac5,
         type: 2}
@@ -228,6 +238,36 @@ Prefab:
         type: 2}
       propertyPath: m_isInputParsingRequired
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114304759738746906, guid: 1af859a1540477943bc73cb9a765bac5,
+        type: 2}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114304759738746906, guid: 1af859a1540477943bc73cb9a765bac5,
+        type: 2}
+      propertyPath: m_fontSize
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114304759738746906, guid: 1af859a1540477943bc73cb9a765bac5,
+        type: 2}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114304759738746906, guid: 1af859a1540477943bc73cb9a765bac5,
+        type: 2}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114304759738746906, guid: 1af859a1540477943bc73cb9a765bac5,
+        type: 2}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114304759738746906, guid: 1af859a1540477943bc73cb9a765bac5,
+        type: 2}
+      propertyPath: m_textInfo.pageCount
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1af859a1540477943bc73cb9a765bac5, type: 2}
