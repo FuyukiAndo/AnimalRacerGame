@@ -43,30 +43,35 @@ public class AudioManager : MonoBehaviour
 	}
 	private static AudioManager instance;
 	public bool useFMOD;
-	public float BackgroundVolume {
+	public float BackgroundVolume
+	{
 		get
 		{
 			return backgroundVolume;
 		}
 	}
-	public float AmbienceVolume {
+	public float AmbienceVolume
+	{
 		get
 		{
 			return ambienceVolume;
 		}
 	}
-	public float SFXVolume {
+	public float SFXVolume
+	{
 		get
 		{
 			return sfxVolume;
 		}
 	}
-	public float MasterVolume {
+	public float MasterVolume
+	{
 		get
 		{
 			return masterVolume;
 		}
 	}
+
 	[SerializeField][Range(0f, 1f)] private float backgroundVolume, ambienceVolume, sfxVolume, masterVolume;
 
 	void OnValidate()
@@ -96,8 +101,24 @@ public class AudioManager : MonoBehaviour
 		if (useFMOD)
 		{
 			Setup();
-			SetBackParameterValue(background.paramValue);
-			SetAmbienceParameterValue(ambience.paramValue);
+			if (background.randomizeValue && background.additionalParamValues.Length > 0)
+			{
+				int rand = Random.Range(0, background.additionalParamValues.Length);
+				SetBackParameterValue(background.additionalParamValues[rand]);
+			}
+			else
+			{
+				SetBackParameterValue(background.paramValue);
+			}
+			if (ambience.randomizeValue && ambience.additionalParamValues.Length > 0)
+			{
+				int rand = Random.Range(0, ambience.additionalParamValues.Length);
+				SetAmbienceParameterValue(ambience.additionalParamValues[rand]);
+			}
+			else
+			{
+				SetAmbienceParameterValue(ambience.paramValue);
+			}
 			SetVolumeSFX(sfxVolume);
 			SetVolumeBackground(backgroundVolume);
 			SetVolumeAmbience(ambienceVolume);
@@ -389,7 +410,8 @@ public struct FMODAudio
 	[EventRef] public string audioPath;
 	public string paramName;
 	public float paramValue;
-	public Sound sound;
+	public float[] additionalParamValues;
+	public bool randomizeValue;
 
 	public ParameterInstance paramInstance;
 	public EventInstance audioInstance;
