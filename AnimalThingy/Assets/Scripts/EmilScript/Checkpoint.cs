@@ -54,7 +54,6 @@ public class Checkpoint : MonoBehaviour
 			}
 			if (collider.name == playerFlags[i].playerName)
 			{
-				animationHandler.SetAnimatorTrigger(animationTrigger);
 				playerFlags[i].playerFlag.SetActive(true);
 				if (!updatedCheckToGoFor)
 				{

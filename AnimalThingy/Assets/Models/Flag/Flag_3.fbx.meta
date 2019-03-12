@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c8c3d172aa9d9474291450c9c0bf8ff3
+guid: 494a3a7eff788fc49a9c647fa5c62df5
 timeCreated: 1552042283
 licenseType: Free
 ModelImporter:
@@ -40,7 +40,12 @@ ModelImporter:
     7400000: flag_spawn
     9500000: //RootNode
     13700000: Plane.001
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: flag
+    second: {fileID: 2100000, guid: 6a7d8d18f6de01f4face0614643daeb3, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
