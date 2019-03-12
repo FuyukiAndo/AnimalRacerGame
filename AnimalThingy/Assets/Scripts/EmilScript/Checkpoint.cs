@@ -11,12 +11,12 @@ public class Checkpoint : MonoBehaviour
 			return index;
 		}
 	}
+
 	[SerializeField] private int index;
 	[SerializeField] private PlayerFlag[] playerFlags;
-	[SerializeField] private AnimationHandler animationHandler;
-	[SerializeField] private string animationTrigger;
 	[SerializeField] private AudioEffectController effectController;
 	[SerializeField] private float searchRadius = 1f;
+	[SerializeField] private Vector2 collisionDetectionOffset;
 
 	private bool updatedCheckToGoFor;
 
@@ -32,10 +32,6 @@ public class Checkpoint : MonoBehaviour
 				}
 			}
 		}
-		if (GetComponentInChildren<AnimationHandler>() && animationHandler == null)
-		{
-			animationHandler = GetComponentInChildren<AnimationHandler>();
-		}
 		if (GetComponent<AudioEffectController>() && effectController == null)
 		{
 			effectController = GetComponent<AudioEffectController>();
@@ -44,8 +40,8 @@ public class Checkpoint : MonoBehaviour
 
 	void Update()
 	{
-		Collider2D collider = Physics2D.OverlapCircle(transform.position, searchRadius);
-		if (playerFlags.Length <= 0) return;
+		Collider2D collider = Physics2D.OverlapCircle((Vector2)transform.position + collisionDetectionOffset, searchRadius);
+		if (playerFlags.Length <= 0)return;
 		for (int i = 0; i < playerFlags.Length; i++)
 		{
 			if (playerFlags[i].playerFlag == null)
@@ -54,7 +50,6 @@ public class Checkpoint : MonoBehaviour
 			}
 			if (collider.name == playerFlags[i].playerName)
 			{
-				animationHandler.SetAnimatorTrigger(animationTrigger);
 				playerFlags[i].playerFlag.SetActive(true);
 				if (!updatedCheckToGoFor)
 				{
@@ -73,13 +68,15 @@ public class Checkpoint : MonoBehaviour
 	void OnDrawGizmos()
 	{
 		Gizmos.color = Color.yellow;
-		Gizmos.DrawWireSphere(transform.position, searchRadius);
+		Gizmos.DrawWireSphere((Vector2)transform.position + collisionDetectionOffset, searchRadius);
 	}
 
 	void SetNextCheckPosToGoFor()
 	{
-		//GoalManager.Instance.UpdateCheckpointToGoFor();
-		//GPS
+		if (GPSCheckpoint.Instance != null)
+		{
+			GPSCheckpoint.Instance.UpdateCheckpointToGo();
+		}
 	}
 }
 
