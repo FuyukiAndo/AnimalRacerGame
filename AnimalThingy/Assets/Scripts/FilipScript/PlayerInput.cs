@@ -54,7 +54,7 @@ public class PlayerInput : MonoBehaviour
 	
 	public float stunDurationLeft = 1.2f;
 
-	public float stunDurationLeft; //Added by Emil, not neccessarily important
+	//public float stunDurationLeft; //Added by Emil, not neccessarily important
 
 	public float GetMaxAngleValue()
 	{

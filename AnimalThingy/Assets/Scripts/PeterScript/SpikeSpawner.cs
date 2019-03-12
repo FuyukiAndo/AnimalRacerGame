@@ -5,13 +5,14 @@ using UnityEngine;
 public class SpikeSpawner : Spawner{
 
     public bool wantSpikeToDisappearFirst;
-    public float timeBeforeSpikeFallsMin = 0;
-    public float timeBeforeSpikeFallsMax = 5;
+    public float timeBeforeSpikeFallsMin;
+    public float timeBeforeSpikeFallsMax;
     
 
     void Update () {
-        SpawnObject();
         spawnAfter(wantSpikeToDisappearFirst);
+        SpawnObject();
+
 	}
     public float GetFallTime()
     {
