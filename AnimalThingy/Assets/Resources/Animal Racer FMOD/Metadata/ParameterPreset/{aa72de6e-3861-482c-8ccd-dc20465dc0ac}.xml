@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="ParameterPreset" id="{aa72de6e-3861-482c-8ccd-dc20465dc0ac}">
+        <property name="name">
+            <value>Knappar</value>
+        </property>
+        <relationship name="folder">
+            <destination>{eeb4d956-6d5f-4882-8484-a5143fb4d5f1}</destination>
+        </relationship>
+        <relationship name="parameter">
+            <destination>{0a97a941-10d8-4415-adf1-024e70f34834}</destination>
+        </relationship>
+    </object>
+    <object class="GameParameter" id="{0a97a941-10d8-4415-adf1-024e70f34834}">
+        <property name="initialValue">
+            <value>0</value>
+        </property>
+    </object>
+</objects>
