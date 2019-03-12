@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="AudioFile" id="{92f10069-a5c4-4822-982a-ed0155d2e125}">
+        <property name="assetPath">
+            <value>Penguin Hoppljud_01 V2.wav</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>48</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>0.46325</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{62735493-e8e9-437e-ba6c-43c859bdfc29}</destination>
+        </relationship>
+    </object>
+</objects>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="ParameterPreset" id="{eb2901f3-f914-42a3-967e-0532aba1c8e7}">
+        <property name="name">
+            <value>Slut Djungelbana</value>
+        </property>
+        <relationship name="folder">
+            <destination>{eeb4d956-6d5f-4882-8484-a5143fb4d5f1}</destination>
+        </relationship>
+        <relationship name="parameter">
+            <destination>{913842d2-7389-450f-8c95-7a5e37d9a5ef}</destination>
+        </relationship>
+    </object>
+    <object class="GameParameter" id="{913842d2-7389-450f-8c95-7a5e37d9a5ef}">
+        <property name="initialValue">
+            <value>0</value>
+        </property>
+    </object>
+</objects>
