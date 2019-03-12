@@ -487,8 +487,11 @@ MonoBehaviour:
     audioPath: event:/[K] Albatross
     paramName: Albatrossljud
     paramValue: 0
-    additionalParamValues: []
-    randomizeValue: 0
+    additionalParamValues:
+    - 0.5
+    - 1.5
+    - 2.5
+    randomizeValue: 1
   layer:
     serializedVersion: 2
     m_Bits: 0
