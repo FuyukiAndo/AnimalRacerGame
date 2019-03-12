@@ -7,16 +7,30 @@ public class SpeedChanger : MonoBehaviour
 
     public float speedChangeAmount;
     public float speedDuration;
+    private Collider2D c2d;
+    private Collider2D[] collision;
 
-    void OnTriggerEnter2D(Collider2D collision)
+    private void Start()
     {
-        PlayerController player = collision.gameObject.GetComponent<PlayerController>();
-		
-        if (player != null)
+        c2d = GetComponent<Collider2D>();
+    }
+
+    void CollisionEnter2D()
+    {
+        collision = Physics2D.OverlapBoxAll(transform.position, c2d.bounds.size, 0.0f);
+        foreach (var collider in collision)
         {
-           //StartCoroutine(player.SpeedChange(speedChangeAmount, speedDuration, gameObject));
-           GetComponent<MeshRenderer>().enabled = false;
-           GetComponent<Collider2D>().enabled = false;
+            PlayerController player = collider.gameObject.GetComponent<PlayerController>();
+            if (player != null)
+            {
+                StartCoroutine(player.movementSpeedChanger(speedChangeAmount, speedDuration));
+                GetComponent<MeshRenderer>().enabled = false;
+                GetComponent<Collider2D>().enabled = false;
+            }
         }
+    }
+    private void Update()
+    {
+        CollisionEnter2D();
     }
 }

@@ -8123,7 +8123,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1045792901303020}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.92, y: 13.94, z: 0}
+  m_LocalPosition: {x: 253.7, y: -0.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4325771557941594}
@@ -15189,9 +15189,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e08f83bd87fb6d45a770257bf733f45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxJumpHeight: 6
+  maxJumpHeight: 5
   minJumpHeight: 1
-  jumpAndFallDelay: 0.884
+  jumpAndFallDelay: 0.4
   gravity: -15.355951
   maxVelocity: 13.574661
   minVelocity: 5.541832
@@ -15205,13 +15205,13 @@ MonoBehaviour:
   - {fileID: 61171798329010392}
   - {fileID: 0}
   flyTimer: 2.3
-  maxFlyCount: 20
+  maxFlyCount: 1
   isGliding: 0
   abilityModifier: 5
   mDash: 0
   glideTimer: 1
   activateGlide: 0
-  maxGlideSpeed: 2.79
+  maxGlideSpeed: 1.5
 --- !u!114 &114262746873581374
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15240,10 +15240,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCharacterType: 1
   animationHandler: {fileID: 114262746873581374}
-  playerLeftKey: 276
-  playerRightKey: 275
-  playerJumpKey: 97
-  playerAbilityKey: 115
+  playerLeftKey: 97
+  playerRightKey: 100
+  playerJumpKey: 119
+  playerAbilityKey: 101
   rotationSpeed: 0.18
   targetAngle: 269
   isControllable: 1

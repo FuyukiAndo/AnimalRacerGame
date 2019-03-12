@@ -1,27 +1,39 @@
 fileFormatVersion: 2
-guid: 3975e36657a509d40a5f0b328f8154ef
-timeCreated: 1551882584
+guid: be03254808dfb8e48a68e7885b003ef0
+timeCreated: 1552173240
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
-    100002: platform_flat_long:polySurface1
-    100004: platform_flat_long_snow:polySurface1
-    100006: platform_flat_long_snow:polySurface2
-    100008: platform_flat_long_snow:transform1
-    100010: platform_flat_long_snow:transform2
+    100002: platform_flat_long:platform_flat_long:hej
+    100004: platform_flat_long:platform_flat_long:Mesh
+    100006: platform_flat_long:platform_flat_long:Mesh20
+    100008: platform_flat_long:platform_flat_long:Mesh21
+    100010: platform_flat_long:platform_flat_long:Mesh22
+    100012: platform_flat_long:platform_flat_long:platform_flat_long:platform_flat_long:transform1
+    100014: platform_flat_long:platform_flat_long:platform_flat_long:platform_flat_long:transform2
+    100016: platform_flat_long:platform_flat_long:platform_flat_long:platform_flat_long:transform3
+    100018: platform_flat_long:platform_flat_long:platform_flat_long:platform_flat_long:transform4
+    100020: platform_thin_long1
     400000: //RootNode
-    400002: platform_flat_long:polySurface1
-    400004: platform_flat_long_snow:polySurface1
-    400006: platform_flat_long_snow:polySurface2
-    400008: platform_flat_long_snow:transform1
-    400010: platform_flat_long_snow:transform2
+    400002: platform_flat_long:platform_flat_long:hej
+    400004: platform_flat_long:platform_flat_long:Mesh
+    400006: platform_flat_long:platform_flat_long:Mesh20
+    400008: platform_flat_long:platform_flat_long:Mesh21
+    400010: platform_flat_long:platform_flat_long:Mesh22
+    400012: platform_flat_long:platform_flat_long:platform_flat_long:platform_flat_long:transform1
+    400014: platform_flat_long:platform_flat_long:platform_flat_long:platform_flat_long:transform2
+    400016: platform_flat_long:platform_flat_long:platform_flat_long:platform_flat_long:transform3
+    400018: platform_flat_long:platform_flat_long:platform_flat_long:platform_flat_long:transform4
+    400020: platform_thin_long1
     2100000: lambert1
-    2100002: platform_flat_long_Material1
-    2300000: platform_flat_long_snow:polySurface2
-    3300000: platform_flat_long_snow:polySurface2
-    4300000: platform_flat_long_snow:polySurface2
+    2300000: platform_flat_long:platform_flat_long:hej
+    2300002: platform_thin_long1
+    3300000: platform_flat_long:platform_flat_long:hej
+    3300002: platform_thin_long1
+    4300000: platform_thin_long1
+    4300002: platform_flat_long:platform_flat_long:hej
     9500000: //RootNode
   externalObjects: {}
   materials:
