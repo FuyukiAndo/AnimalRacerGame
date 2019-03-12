@@ -697,6 +697,16 @@ public class AudioEffectController : MonoBehaviour
 		sfx.audioInstance.setParameterValue(sfx.paramName, value);
 	}
 
+	public void SetAudioPath(string path)
+	{
+		sfx.audioPath = path;
+	}
+
+	public void SetAudioPath(EventRefAttribute eventRef)
+	{
+		sfx.audioPath = eventRef.ToString();
+	}
+
 	void OnDrawGizmos()
 	{
 		Gizmos.color = Color.red;
