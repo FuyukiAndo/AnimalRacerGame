@@ -10,7 +10,7 @@ using UnityEngine.Audio;
 public class AudioEffectController : MonoBehaviour
 {
 
-	[SerializeField] private bool playEffectAuto, oneshot, attached, shouldDieAfterTime;
+	[SerializeField] private bool playEffectAuto, oneshot, attached;
 
 	public enum StartEvent
 	{
@@ -54,7 +54,6 @@ public class AudioEffectController : MonoBehaviour
 		if (AudioManager.Instance.useFMOD)
 		{
 			Setup();
-			SetParameterValue(sfx.paramValue);
 			if (playEffectAuto)
 			{
 				if (startEvent == StartEvent.start)
@@ -63,7 +62,6 @@ public class AudioEffectController : MonoBehaviour
 					if (!oneshot)
 					{
 						Setup();
-						SetParameterValue(sfx.paramValue);
 						sfx.audioInstance.start();
 					}
 					else
@@ -73,7 +71,6 @@ public class AudioEffectController : MonoBehaviour
 							if (sfx.paramName != string.Empty)
 							{
 								Setup();
-								SetParameterValue(sfx.paramValue);
 								sfx.audioInstance.start();
 								sfx.audioInstance.release();
 							}
@@ -87,7 +84,6 @@ public class AudioEffectController : MonoBehaviour
 							if (sfx.paramName != string.Empty)
 							{
 								Setup();
-								SetParameterValue(sfx.paramValue);
 								sfx.audioInstance.start();
 								sfx.audioInstance.release();
 							}
@@ -133,6 +129,16 @@ public class AudioEffectController : MonoBehaviour
 			ATTRIBUTES_3D attributesAmb = FMODUnity.RuntimeUtils.To3DAttributes(transform.position);
 			sfx.audioInstance.set3DAttributes(attributesAmb);
 			SetAudioVolume(AudioManager.Instance.SFXVolume);
+
+			if (sfx.randomizeValue && sfx.additionalParamValues.Length > 0)
+			{
+				int rand = Random.Range(0, sfx.additionalParamValues.Length);
+				SetParameterValue(sfx.additionalParamValues[rand]);
+			}
+			else
+			{
+				SetParameterValue(sfx.paramValue);
+			}
 		}
 	}
 
@@ -148,7 +154,6 @@ public class AudioEffectController : MonoBehaviour
 					if (!oneshot)
 					{
 						Setup();
-						SetParameterValue(sfx.paramValue);
 						sfx.audioInstance.start();
 					}
 					else
@@ -158,7 +163,6 @@ public class AudioEffectController : MonoBehaviour
 							if (sfx.paramName != string.Empty)
 							{
 								Setup();
-								SetParameterValue(sfx.paramValue);
 								sfx.audioInstance.start();
 								sfx.audioInstance.release();
 							}
@@ -172,7 +176,6 @@ public class AudioEffectController : MonoBehaviour
 							if (sfx.paramName != string.Empty)
 							{
 								Setup();
-								SetParameterValue(sfx.paramValue);
 								sfx.audioInstance.start();
 								sfx.audioInstance.release();
 							}
@@ -218,7 +221,6 @@ public class AudioEffectController : MonoBehaviour
 						if (!oneshot)
 						{
 							Setup();
-							SetParameterValue(sfx.paramValue);
 							sfx.audioInstance.start();
 						}
 						else
@@ -228,7 +230,6 @@ public class AudioEffectController : MonoBehaviour
 								if (sfx.paramName != string.Empty)
 								{
 									Setup();
-									SetParameterValue(sfx.paramValue);
 									sfx.audioInstance.start();
 									sfx.audioInstance.release();
 								}
@@ -242,7 +243,6 @@ public class AudioEffectController : MonoBehaviour
 								if (sfx.paramName != string.Empty)
 								{
 									Setup();
-									SetParameterValue(sfx.paramValue);
 									sfx.audioInstance.start();
 									sfx.audioInstance.release();
 								}
@@ -294,7 +294,6 @@ public class AudioEffectController : MonoBehaviour
 						if (!oneshot)
 						{
 							Setup();
-							SetParameterValue(sfx.paramValue);
 							sfx.audioInstance.start();
 						}
 						else
@@ -304,7 +303,6 @@ public class AudioEffectController : MonoBehaviour
 								if (sfx.paramName != string.Empty)
 								{
 									Setup();
-									SetParameterValue(sfx.paramValue);
 									sfx.audioInstance.start();
 									sfx.audioInstance.release();
 								}
@@ -318,7 +316,6 @@ public class AudioEffectController : MonoBehaviour
 								if (sfx.paramName != string.Empty)
 								{
 									Setup();
-									SetParameterValue(sfx.paramValue);
 									sfx.audioInstance.start();
 									sfx.audioInstance.release();
 								}
@@ -364,7 +361,6 @@ public class AudioEffectController : MonoBehaviour
 		if (startEvent == StartEvent.destroyed)
 		{
 			Setup();
-			SetParameterValue(sfx.paramValue);
 			sfx.audioInstance.start();
 		}
 		if (stopEvent == StopEvent.destroyed)
@@ -391,7 +387,6 @@ public class AudioEffectController : MonoBehaviour
 					if (!oneshot)
 					{
 						Setup();
-						SetParameterValue(sfx.paramValue);
 						sfx.audioInstance.start();
 					}
 					else
@@ -401,7 +396,6 @@ public class AudioEffectController : MonoBehaviour
 							if (sfx.paramName != string.Empty)
 							{
 								Setup();
-								SetParameterValue(sfx.paramValue);
 								sfx.audioInstance.start();
 								sfx.audioInstance.release();
 							}
@@ -415,7 +409,6 @@ public class AudioEffectController : MonoBehaviour
 							if (sfx.paramName != string.Empty)
 							{
 								Setup();
-								SetParameterValue(sfx.paramValue);
 								sfx.audioInstance.start();
 								sfx.audioInstance.release();
 							}
@@ -467,7 +460,6 @@ public class AudioEffectController : MonoBehaviour
 					if (!oneshot)
 					{
 						Setup();
-						SetParameterValue(sfx.paramValue);
 						sfx.audioInstance.start();
 					}
 					else
@@ -477,7 +469,6 @@ public class AudioEffectController : MonoBehaviour
 							if (sfx.paramName != string.Empty)
 							{
 								Setup();
-								SetParameterValue(sfx.paramValue);
 								sfx.audioInstance.start();
 								sfx.audioInstance.release();
 							}
@@ -491,7 +482,6 @@ public class AudioEffectController : MonoBehaviour
 							if (sfx.paramName != string.Empty)
 							{
 								Setup();
-								SetParameterValue(sfx.paramValue);
 								sfx.audioInstance.start();
 								sfx.audioInstance.release();
 							}
@@ -543,7 +533,6 @@ public class AudioEffectController : MonoBehaviour
 					if (!oneshot)
 					{
 						Setup();
-						SetParameterValue(sfx.paramValue);
 						sfx.audioInstance.start();
 					}
 					else
@@ -553,7 +542,6 @@ public class AudioEffectController : MonoBehaviour
 							if (sfx.paramName != string.Empty)
 							{
 								Setup();
-								SetParameterValue(sfx.paramValue);
 								sfx.audioInstance.start();
 								sfx.audioInstance.release();
 							}
@@ -567,7 +555,6 @@ public class AudioEffectController : MonoBehaviour
 							if (sfx.paramName != string.Empty)
 							{
 								Setup();
-								SetParameterValue(sfx.paramValue);
 								sfx.audioInstance.start();
 								sfx.audioInstance.release();
 							}
@@ -625,7 +612,6 @@ public class AudioEffectController : MonoBehaviour
 		if (AudioManager.Instance.useFMOD)
 		{
 			Setup();
-			SetParameterValue(value);
 			sfx.audioInstance.start();
 			sfx.audioInstance.release();
 		}

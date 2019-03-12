@@ -180,6 +180,15 @@
         <property name="filterTypeA">
             <value>4</value>
         </property>
+        <property name="filterTypeB">
+            <value>3</value>
+        </property>
+        <property name="frequencyB">
+            <value>11816.1611</value>
+        </property>
+        <property name="qualityB">
+            <value>0.100000001</value>
+        </property>
     </object>
     <object class="MixerBusFader" id="{922e8ac0-36d1-448b-8c84-3ca1614cc377}"/>
 </objects>

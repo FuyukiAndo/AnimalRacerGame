@@ -382,8 +382,8 @@ GameObject:
   - component: {fileID: 211661462}
   - component: {fileID: 211661466}
   - component: {fileID: 211661468}
-  - component: {fileID: 211661467}
   - component: {fileID: 211661469}
+  - component: {fileID: 211661467}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -480,14 +480,15 @@ MonoBehaviour:
   playEffectAuto: 1
   oneshot: 0
   attached: 0
-  shouldDieAfterTime: 0
   startEvent: 2
   stopEvent: 0
-  updateDelay: 0
+  updateDelay: 0.5
   sfx:
     audioPath: event:/[K] Albatross
-    paramName: Albatross
+    paramName: Albatrossljud
     paramValue: 0
+    additionalParamValues: []
+    randomizeValue: 0
   layer:
     serializedVersion: 2
     m_Bits: 0
@@ -588,10 +589,14 @@ MonoBehaviour:
     audioPath: event:/[B] Isbana
     paramName: Start Isbana
     paramValue: 0
+    additionalParamValues: []
+    randomizeValue: 0
   ambience:
     audioPath: 
     paramName: 
     paramValue: 0
+    additionalParamValues: []
+    randomizeValue: 0
   backgroundClip: {fileID: 0}
   useFMOD: 1
   backgroundVolume: 0.935
@@ -1281,12 +1286,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40862dde935f54f458b568c9a99b539e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 0
-  playerFlags: []
-  animationHandler: {fileID: 0}
-  animationTrigger: 
-  effectController: {fileID: 0}
-  searchRadius: 1
 --- !u!1 &1345718634
 GameObject:
   m_ObjectHideFlags: 0
@@ -1498,12 +1497,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40862dde935f54f458b568c9a99b539e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 1
-  playerFlags: []
-  animationHandler: {fileID: 0}
-  animationTrigger: 
-  effectController: {fileID: 0}
-  searchRadius: 1
 --- !u!61 &1798562337
 BoxCollider2D:
   m_ObjectHideFlags: 0
