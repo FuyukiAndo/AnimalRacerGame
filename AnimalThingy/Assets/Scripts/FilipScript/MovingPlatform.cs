@@ -116,8 +116,8 @@ public class MovingPlatform : MonoBehaviour
 
                 if (isOnCLayer)
                 {
-                    timeBeforeDestroyed--;
-                    platformDurability--;
+                   // timeBeforeDestroyed--;
+                    //platformDurability--;
                 }
 
                 if (collision[i].gameObject.tag == "Ground" && collision[i].gameObject != gameObject)
@@ -131,13 +131,14 @@ public class MovingPlatform : MonoBehaviour
 
                     //Destroy(collision[i].gameObject);
                 }
-                if (isOnPLayer)
+               
+			   if (isOnPLayer)
                 {
                     StartCoroutine(DestroyOnPlatformCollision());
                 }
                     if (collision[i].gameObject.tag == "Wall")
                     {
-                        print("platform");
+                        //print("platform");
                         movementDirection = -movementDirection;
                     }
             }
@@ -228,9 +229,10 @@ public class MovingPlatform : MonoBehaviour
         yield return new WaitForSeconds(destroyDelay);
         Destroy(gameObject);
     }
+	
     void DestroyPlatform()
     {
-        Debug.Log(timeBeforeDestroyed);
+        //Debug.Log(timeBeforeDestroyed);
 
         if (timeBeforeDestroyed <= 0)
         {

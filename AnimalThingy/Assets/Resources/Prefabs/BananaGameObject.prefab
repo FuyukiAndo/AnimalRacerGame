@@ -38,6 +38,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4034103556492722}
   - component: {fileID: 61746728438998782}
+  - component: {fileID: 114632551454181118}
+  - component: {fileID: 114383666107728716}
+  - component: {fileID: 114281077882653038}
   m_Layer: 0
   m_Name: BananaGameObject
   m_TagString: Untagged
@@ -155,3 +158,49 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114281077882653038
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1616428850741774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f3c395ba95f4f341a3da67a53d8acfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 512
+  horizontalRaycastsAmount: 4
+  verticalRaycastsAmount: 4
+  SetRayLength: 1
+  maxAngle: 80
+--- !u!114 &114383666107728716
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1616428850741774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c116ea33963aa345941008e2570b121, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxJumpHeight: 8
+  minJumpHeight: 1
+  jumpAndFallDelay: 0.4
+  gravity: 0
+  maxVelocity: 0
+  minVelocity: 0
+--- !u!114 &114632551454181118
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1616428850741774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7188ecbb374b194d8543e3e49f5c691, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

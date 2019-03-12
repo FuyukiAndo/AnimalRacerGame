@@ -43,7 +43,8 @@ public class PlayerAlbatross : PlayerController
 	
 	public override void Update()
 	{
-		base.Update();		
+		base.Update();	
+		UpdateGravity();		
 		
 		if(activateGlide)
 		{
@@ -72,18 +73,22 @@ public class PlayerAlbatross : PlayerController
 			glideTimer = 1.0f;
 		}
 		
-		if(mDash && abilityMeter < 100)
+		if(mDash && abilityActive)//abilityMeter < 100)
 		{
 			movement.x += -1 * abilityDirection * abilityModifier;
 			abilityMeter=abilityMeter+abilityTimer;
 		}
 	
-		if(abilityMeter >= 100)
+		/*if(abilityMeter >= 100)
+		{
+			abilityMeter = 100;
+			abilityActive = false;
+		}*/
+		
+		if(!abilityActive)
 		{
 			mDash = false;
-			playerInput.isControllable = true;
-			abilityMeter = 100;
-
+			playerInput.isControllable = true;			
 		}
 		
 		if(isFlying)
@@ -138,7 +143,7 @@ public class PlayerAlbatross : PlayerController
 		
 	}
 	
-	public void OnFlyKeyDown()
+	public override void OnJumpKeyDown()
 	{
 		//glideTimer -= 0.1f * Time.deltaTime;
 		
@@ -172,7 +177,7 @@ public class PlayerAlbatross : PlayerController
 
 	}*/
 	
-	public void OnFlyKeyUp()
+	public override void OnJumpKeyUp()
 	{
 		isGliding = false;
 		activateGlide = false;
@@ -183,19 +188,20 @@ public class PlayerAlbatross : PlayerController
 		}
 	}
 	
-	public void OnAbilityKey()
+	public override void OnAbilityKey()
 	{
-		//abilityModifier
-		if(abilityMeter==100)
+		base.OnAbilityKey();
+		
+		abilityActive=true;
+		
+		if(abilityActive)
 		{
 			mDash = true;
-			abilityMeter = 0;
 			playerInput.isControllable = false;
 		}
 		
-		
 		Instantiate(windBlastObject, new Vector2(transform.position.x+(2.5f*abilityDirection),transform.position.y+2f), new Quaternion(0, 0, 0, 0), gameObject.transform);
-		Physics2D.IgnoreCollision(windBlastObject.GetComponent<BoxCollider2D>(), GetComponent<BoxCollider2D>());
+		//Physics2D.IgnoreCollision(windBlastObject.GetComponent<BoxCollider2D>(), GetComponent<BoxCollider2D>());
 		
 		//Instantiate(prefab,transform.position, Quaternion.identity);
 		//prefab.transform.SetParent(transform.parent, true);

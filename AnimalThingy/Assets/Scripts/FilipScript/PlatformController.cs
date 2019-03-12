@@ -8,6 +8,10 @@ public class PlatformController : RaycastController
 	[HideInInspector] public MovingPlatform movingPlatform;
 	public LayerMask entityMask;
 	public Vector2 moveEntity;
+	PlayerController playerController;
+	
+	List<TransportEntities> transportEntities;
+	public Dictionary<Transform,PlayerController> entityDictionary = new Dictionary<Transform, PlayerController>();
 	
 	public float setRayLength = 1.0f;
 	
@@ -16,6 +20,7 @@ public class PlatformController : RaycastController
 		base.Start();
 		movingPlatform = GetComponent<MovingPlatform>();
 		collisionController = GetComponent<CollisionController>();
+		playerController = gameObject.transform.GetComponent<PlayerController>();
 	}
 	
 	void Update()
@@ -28,8 +33,12 @@ public class PlatformController : RaycastController
 		}
 
 		Vector2 movement = moveEntity * Time.deltaTime;
-		MoveObject(movement);
 
+		CheckForMoveEntities(movement);
+
+		MoveEntities(true);
+		MoveObject(movement);
+		MoveEntities(false);
 	}
 	
 	public void MoveObject(Vector2 movement)
@@ -47,18 +56,36 @@ public class PlatformController : RaycastController
 		{
 			collisionController.checkCollision(ref movement);
 		}
-		
-		//move players
-		MoveEntities(movement);
-		
-		//moves platform
+
 		transform.Translate(movement);
+
+//		MoveEntities(false);
 	}
 	
-	void MoveEntities(Vector2 movement)
+	void MoveEntities(bool movePlatform)
+	{
+		for(int i = 0; i < transportEntities.Count; i++)
+		{
+			//if(!entityDictionary.ContainsKey(transportEntities[i].transform))
+			//{
+				//entityDictionary.Add(transportEntities[i].transform, transportEntities[i].transform.GetComponent<PlayerController>());
+				
+				if(transportEntities[i].onPlatform == movePlatform)
+				{
+					//entityDictionary[transportEntities[i].transform].MoveObject(transportEntities[i].movement, transportEntities[i].onPlatform);
+					//transportEntities[i].transform.GetComponent<PlayerController>().MoveObject(transportEntities[i].movement, transportEntities[i].onPlatform);
+					transportEntities[i].transform.GetComponent<PlayerController>().MoveObject(transportEntities[i].movement, transportEntities[i].onPlatform);
+					//Debug.Log(transportEntities[i].transform);
+				}
+			//}
+		}
+	}	
+	
+	void CheckForMoveEntities(Vector2 movement)
 	{
 		//stores entities that moved during this frame
 		HashSet<Transform> movedEntities = new HashSet<Transform>();
+		transportEntities = new List<TransportEntities>();
 		
 		float directionX = Mathf.Sign(movement.x);
 		float directionY = Mathf.Sign(movement.y);
@@ -94,18 +121,24 @@ public class PlatformController : RaycastController
 						movedEntities.Add(hitY.transform);
 						
 						float moveX;
+						bool onPlatform;
 						
 						if(directionY == 1)
 						{
 							moveX = movement.x;
+							onPlatform = true;
 						}
 						else
 						{
 							moveX = 0;
+							onPlatform = false;
 						}
 					
 						float moveY = movement.y - (hitY.distance - collisionOffset*setRayLength) * directionY;
-						hitY.transform.Translate(new Vector2(moveX, moveY));
+						
+						transportEntities.Add(new TransportEntities(hitY.transform, new Vector2(moveX, moveY), onPlatform, true));
+						
+						//hitY.transform.Translate(new Vector2(moveX, moveY));
 					}
 				}
 			}
@@ -140,9 +173,11 @@ public class PlatformController : RaycastController
 						//add moved entities to hashset movedEntities.
 						movedEntities.Add(hitX.transform);
 						float moveX = movement.x - (hitX.distance - collisionOffset*setRayLength) * directionX;			
-						float moveY = 0;
 						
-						hitX.transform.Translate(new Vector2(moveX, moveY));
+						float moveY = -collisionOffset;
+					
+						transportEntities.Add(new TransportEntities(hitX.transform, new Vector2(moveX, moveY), false, true));					
+						//hitX.transform.Translate(new Vector2(moveX, moveY));
 					}
 				}
 			}
@@ -169,11 +204,31 @@ public class PlatformController : RaycastController
 						movedEntities.Add(hitY.transform);
 						float moveX = movement.x;
 						float moveY = movement.y;
-						
-						hitY.transform.Translate(new Vector2(moveX, moveY));
+				
+						transportEntities.Add(new TransportEntities(hitY.transform, new Vector2(moveX, moveY), true, false));				
+						//hitY.transform.Translate(new Vector2(moveX, moveY));
 					}
 				}
 			}
 		}
 	}
+	
+	struct TransportEntities
+	{
+		public Transform transform;
+		public Vector2 movement;
+		public bool onPlatform;
+		public bool moveEntity;
+		
+		//public constructor
+		//public TransportEntities(Transform mTranform, Vector2 mMovement, bool mOnPlatform, bool mMoveEntity)
+		public TransportEntities(Transform mTranform, Vector2 mMovement, bool mOnPlatform, bool mMoveEntity)
+		{
+			transform = mTranform;
+			movement = mMovement;
+			onPlatform = mOnPlatform;
+			moveEntity = mMoveEntity;
+		}
+	}
+	
 }

@@ -11,6 +11,8 @@ TagManager:
   - Coast_Character
   - Jungle_Character
   - Blast
+  - Wall
+  - OneWay
   layers:
   - Default
   - TransparentFX
@@ -20,9 +22,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - Player
+  - Platform
+  - MovingPlatform
   - 
   - 
   - 

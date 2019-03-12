@@ -436,7 +436,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1046756301658722
 GameObject:
   m_ObjectHideFlags: 1
@@ -8123,7 +8123,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1045792901303020}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 21.06, y: 9.24, z: 0}
+  m_LocalPosition: {x: 15.92, y: 13.94, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4325771557941594}
@@ -15198,7 +15198,6 @@ MonoBehaviour:
   movementSpeed: 10
   movementAcceleration: 0.15
   collisionController: {fileID: 114954231877299268}
-  wallSlideSpeedMax: 3
   movement: {x: -2.922741e-14, y: 0}
   abilityMeter: 100
   abilityTimer: 3

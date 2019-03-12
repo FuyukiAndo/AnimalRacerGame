@@ -20020,7 +20020,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -20044,7 +20044,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
 --- !u!95 &95652340729087472
 Animator:
   serializedVersion: 3
@@ -20103,20 +20103,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12cc0c1502d1f9a4d8cf9512b0083174, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerStates: 0
   maxJumpHeight: 8
   minJumpHeight: 1
   jumpAndFallDelay: 0.4
   gravity: 0
   maxVelocity: 0
   minVelocity: 0
-  playerType: 4
   movementSpeed: 9
   movementAcceleration: 0.2
   collisionController: {fileID: 0}
   movement: {x: -4.7322654e-29, y: -3.8317637}
-  direction: 0
   abilityMeter: 100
+  abilityTimer: 3
+  collision: []
 --- !u!114 &114470421385512892
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20156,6 +20155,7 @@ MonoBehaviour:
   autoAnimate: 0
   animator: {fileID: 0}
   animationType: []
+  blinkInterval: 0
 --- !u!114 &114968224538395452
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20185,17 +20185,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ada670a83430aa448bc3fa1cbfa48aaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerCharacterType: 0
   animationHandler: {fileID: 0}
   playerLeftKey: 276
   playerRightKey: 275
   playerJumpKey: 97
   playerAbilityKey: 115
-  speed: 0.25
-  rotationActive: 0
-  isGrounded: 1
-  isRunning: 0
-  isGliding: 0
-  f: 0
+  rotationSpeed: 0.09
+  targetAngle: 0
+  isControllable: 1
+  stunDurationLeft: 1.2
 --- !u!137 &137862767182398390
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
