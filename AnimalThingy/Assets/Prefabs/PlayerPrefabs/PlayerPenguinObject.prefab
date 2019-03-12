@@ -2936,7 +2936,7 @@ GameObject:
   - component: {fileID: 61278632595405568}
   - component: {fileID: 114374172877530122}
   - component: {fileID: 114163380269625004}
-  - component: {fileID: 114299933292904478}
+  - component: {fileID: 114776052051929664}
   m_Layer: 8
   m_Name: PlayerPenguinObject
   m_TagString: Untagged
@@ -9270,7 +9270,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1363596147525290}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13.91, y: 11.61, z: 0}
+  m_LocalPosition: {x: 13.91, y: 18.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4788003634734142}
@@ -14281,7 +14281,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 1.1}
+  m_Offset: {x: 0, y: 1.68}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -14332,41 +14332,6 @@ MonoBehaviour:
   targetAngle: 269
   isControllable: 1
   stunDurationLeft: 1.2
---- !u!114 &114299933292904478
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1363596147525290}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e08f83bd87fb6d45a770257bf733f45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxJumpHeight: 6
-  minJumpHeight: 1
-  jumpAndFallDelay: 0.884
-  gravity: -15.355951
-  maxVelocity: 13.574661
-  minVelocity: 5.541832
-  movementSpeed: 10
-  movementAcceleration: 0.15
-  collisionController: {fileID: 114374172877530122}
-  wallSlideSpeedMax: 3
-  movement: {x: -2.922741e-14, y: 0}
-  abilityMeter: 100
-  abilityTimer: 3
-  collision:
-  - {fileID: 61278632595405568}
-  - {fileID: 0}
-  flyTimer: 2.3
-  maxFlyCount: 20
-  isGliding: 0
-  abilityModifier: 5
-  mDash: 0
-  glideTimer: 1
-  activateGlide: 0
-  maxGlideSpeed: 2.79
 --- !u!114 &114374172877530122
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -14400,6 +14365,30 @@ MonoBehaviour:
   animator: {fileID: 95198743248783362}
   animationType: []
   blinkInterval: 0
+--- !u!114 &114776052051929664
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1363596147525290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38603cbf4f9ce4e499b835196f235665, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxJumpHeight: 8
+  minJumpHeight: 1
+  jumpAndFallDelay: 0.4
+  gravity: 0
+  maxVelocity: 0
+  minVelocity: 0
+  movementSpeed: 7
+  movementAcceleration: 0.225
+  collisionController: {fileID: 0}
+  movement: {x: 0, y: 0}
+  abilityMeter: 100
+  abilityTimer: 3
+  collision: []
 --- !u!137 &137667382652020064
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

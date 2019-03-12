@@ -19995,10 +19995,10 @@ MonoBehaviour:
   movement: {x: -0.0000003280503, y: 0}
   abilityMeter: 100
   abilityTimer: 3
-  stunDuration: 10
   collision:
   - {fileID: 61194066869096336}
   - {fileID: 0}
+  wallSlideSpeedMax: 6
 --- !u!114 &114301050931871096
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20019,6 +20019,7 @@ MonoBehaviour:
   rotationSpeed: 0.18
   targetAngle: 269
   isControllable: 1
+  stunDurationLeft: 1.2
 --- !u!114 &114465721495774082
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20033,6 +20034,7 @@ MonoBehaviour:
   autoAnimate: 0
   animator: {fileID: 95947069429241726}
   animationType: []
+  blinkInterval: 0
 --- !u!114 &114728513420524546
 MonoBehaviour:
   m_ObjectHideFlags: 1

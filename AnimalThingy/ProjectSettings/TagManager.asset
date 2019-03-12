@@ -17,7 +17,7 @@ TagManager:
   - Ball
   - Workdammit
   - Blast
-
+  - OneWay
   layers:
   - Default
   - TransparentFX
@@ -28,7 +28,25 @@ TagManager:
   - 
   - 
   - Player
-  - Plattform
+  - Platform
+  - MovingPlatform
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
