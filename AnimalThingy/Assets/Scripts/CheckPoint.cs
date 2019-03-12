@@ -50,6 +50,10 @@ public class Checkpoint : MonoBehaviour
 			}
 			if (collider.name == playerFlags[i].playerName)
 			{
+				if (effectController != null)
+				{
+					
+				}
 				playerFlags[i].playerFlag.SetActive(true);
 				if (!updatedCheckToGoFor)
 				{
