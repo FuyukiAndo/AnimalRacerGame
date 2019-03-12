@@ -2,22 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/*public enum PlayerType
-{
-	playerNobody,
-	playerAlbatross,
-	playerPig,
-	playerMonkey,
-	playerPenguin
-};*/
-
 [RequireComponent(typeof(CollisionController))]
 [RequireComponent(typeof(PlayerInput))]
 
 public class PlayerController : MonoBehaviour
 {
-	//public PlayerStates playerStates;
-	
 	[Header("Jump and Gravity Settings")]
 
 	public float maxJumpHeight = 8.0f;
@@ -28,17 +17,14 @@ public class PlayerController : MonoBehaviour
 	[HideInInspector] public float maxVelocity;
 	[HideInInspector] public float minVelocity;
 
-	//public PlayerType playerType;
-
 	[Header("Movement Settings")]
 	public float movementSpeed = 18.0f;
 	[Range(0.1f,1.0f)]public float movementAcceleration = 0.15f;
 
 	[HideInInspector] public CollisionController collisionController;
-	RaycastController raycastController;
+	protected RaycastController raycastController;
 
 	protected float velocitySmoothing;
-	public float wallSlideSpeedMax = 6;
 	
 	[HideInInspector] public Vector2 movement;
 	protected int movementDirection;
@@ -47,21 +33,20 @@ public class PlayerController : MonoBehaviour
 	protected float tempSpeed;
 	protected float mod0 = 0.1f;
 	protected float mod1 = 0.2f;
-    protected float startMovementSpeed;
-
+	protected bool abilityActive = false;
+	
 	[HideInInspector] public int abilityMeter = 100;
 	[HideInInspector] public int abilityTimer = 3;
 	
 	protected PlayerInput playerInput;
-	public Collider2D[] collision;	
+	[HideInInspector] public Collider2D[] collision;	
 	
 	public virtual void Start()
 	{
 		collisionController = GetComponent<CollisionController>();
 		raycastController = GetComponent<RaycastController>();
 		playerInput = GetComponent<PlayerInput>();
-
-        startMovementSpeed = movementSpeed;
+		
 		movementDirection = 0;
 		abilityDirection = 0;
 	}
@@ -95,14 +80,9 @@ public class PlayerController : MonoBehaviour
 			movementSpeed = 1.0f;
 		}
 	}
-	public IEnumerator movementSpeedChanger(float speedChange, float duration)
-    {
-        movementSpeed += speedChange;
-        yield return new WaitForSeconds(duration);
-        movementSpeed = startMovementSpeed;
-    }
+	
 	//If jump button released before reaching max value, then goto min value.
-	public void OnJumpKeyUp()
+	public virtual void OnJumpKeyUp()
 	{
 		if(!collisionController.boxCollisionDirections.down)
 		{
@@ -114,7 +94,7 @@ public class PlayerController : MonoBehaviour
 	}
 
 	//If pressed down, then goes to max value.
-	public void OnJumpKeyDown()
+	public virtual void OnJumpKeyDown()
 	{
 		if(collisionController.boxCollisionDirections.down)
 		{
@@ -123,7 +103,7 @@ public class PlayerController : MonoBehaviour
 	}
 	
 	//Move player Left direction with smooth acceleration
-	public void MoveLeft()
+	public virtual void MoveLeft()
 	{
 		//Smooth movement acceleration
 		for(float i = 0; i <movementSpeed;i++)
@@ -144,10 +124,10 @@ public class PlayerController : MonoBehaviour
 	}
 
 	//Move player Right direction with smooth acceleration	
-	public void MoveRight()
+	public virtual void MoveRight()
 	{
 		//Smooth movement acceleration
-		for(float i = 0; i <movementSpeed;i++)
+		for(float i = 0; i < movementSpeed;i++)
 		{
 			tempSpeed=tempSpeed+mod0;
 			
@@ -164,7 +144,7 @@ public class PlayerController : MonoBehaviour
 		movementDirection = 1;
 	}
 	
-	public void MoveNot()
+	public virtual void MoveNot()
 	{
 		//Smooth deacceleration
 		tempSpeed=tempSpeed-0.2f;
@@ -183,13 +163,18 @@ public class PlayerController : MonoBehaviour
 		movementDirection = 0;
 	}
 
+	public virtual void gravityTranslate()
+	{
+		movement.y += gravity * Time.deltaTime;//verticalTranslate;		
+	}
+
 	public virtual void Update()
 	{
 		UpdateGravity();
 
-		float verticalTranslate = gravity * Time.deltaTime;
+		//float verticalTranslate = gravity * Time.deltaTime;
 		
-		movement.y += verticalTranslate;
+		gravityTranslate();
 		
 		MoveObject(movement * Time.deltaTime);
 
@@ -207,16 +192,31 @@ public class PlayerController : MonoBehaviour
 			abilityDirection = -1;
 		}
 	
-		WindblastCollision();
+		OpponentAbilityCollision();
+		
+		if(abilityMeter >= 100)
+		{
+			abilityMeter = 100;
+			abilityActive = false;
+		}
 	}
 	
-	void WindblastCollision()
+	public virtual void OnAbilityKey()
 	{
-		collision = Physics2D.OverlapCircleAll(transform.position, 1.5f);
+		if(abilityMeter == 100)
+		{
+			abilityMeter = 0;
+		}
+	}
+	
+	private void OpponentAbilityCollision()
+	{
+		LayerMask projectileMask = LayerMask.NameToLayer("Projectile");
+		collision = Physics2D.OverlapCircleAll(transform.position, 1.5f, projectileMask);
 
 		for(int i = 0; i < collision.Length; i++)
 		{
-			if(collision[i].gameObject.tag == "Blast")
+			if(collision[i].gameObject.layer == LayerMask.GetMask("Projectile"))
 			{
 				Debug.Log("this works");
 				//Call on Stun function
@@ -224,18 +224,29 @@ public class PlayerController : MonoBehaviour
 		}		
 	}
 
-	public void MoveObject(Vector2 movement)
+	public void MoveObject(Vector2 movement, bool onPlatform = false)
 	{
 		collisionController.UpdateRaycastDirections();
 		collisionController.boxCollisionDirections.resetDirections();
+
+		if(movement.x != 0)
+		{
+			collisionController.boxCollisionDirections.direction = (int)Mathf.Sign(movement.x);
+		}
 
 		if(movement.y < 0)
 		{
 			collisionController.DescendSlope(ref movement);
 		}
+
 		if(movement.x != 0 || movement.y != 0)
 		{
 			collisionController.checkCollision(ref movement);
+		}
+		
+		if(onPlatform)
+		{
+			collisionController.boxCollisionDirections.down = true;	
 		}
 
 		transform.Translate(movement,Space.World);

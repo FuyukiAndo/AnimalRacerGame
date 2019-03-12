@@ -9,15 +9,16 @@ public class CollisionController : RaycastController
 	public LayerMask collisionMask;
 	
 	[Header("Amount of raycasts")]
-	[Tooltip("The amount of raycasts vectors for horizontal collision")]	
+	//[Tooltip("The amount of raycasts vectors for horizontal collision")]	
 	public int horizontalRaycastsAmount = 4;
-	[Tooltip("The amount of raycasts vectors for horizontal collision")]	
+	//[Tooltip("The amount of raycasts vectors for horizontal collision")]	
 	public int verticalRaycastsAmount = 4;
 	
 	public float SetRayLength = 1.0f;
 	//public static CollisionController collisionController;
 	
-	private string collisionTag = "OneWay";
+	//private string collisionTag = "OneWay";
+	private string oneWayCollision = "OneWay";
 	
 	//Max angle player can move on, (don't touch this) - 80
 	[HideInInspector]public float maxAngle = 80;
@@ -27,7 +28,7 @@ public class CollisionController : RaycastController
 	public override void Start()
 	{
 		base.Start();
-		//collisionController = this;
+		boxCollisionDirections.direction = 1;
 	}
 	
 	void Update()
@@ -52,6 +53,7 @@ public class CollisionController : RaycastController
 	{
 		public bool up, down, left, right, horizontal, climbing, descendAngle, moving;
 		public float ascendAngle, angleOld;
+		public int direction;
 		
 		public void resetDirections()
 		{
@@ -90,8 +92,13 @@ public class CollisionController : RaycastController
 	
 	public void checkCollision(ref Vector2 movement)
 	{
-		float directionX = Mathf.Sign(movement.x);
+		float directionX = boxCollisionDirections.direction;//Mathf.Sign(movement.x);
 		float rayLengthX = Mathf.Abs(movement.x) + collisionOffset*SetRayLength;
+		
+		if(Mathf.Abs(movement.x) < collisionOffset)
+		{
+			rayLengthX = 2*collisionOffset;
+		}
 		
 		for(int i = 0; i < horizontalRaycastAmount; i++)
 		{
@@ -114,7 +121,22 @@ public class CollisionController : RaycastController
 			
 			if (hitX)
 			{		
+				if(hitX.distance == 0)
+				{
+					continue;
+				}
+		
 				float angle = Vector2.Angle(hitX.normal, Vector2.up);
+
+				if (directionX == -1)
+				{
+					boxCollisionDirections.left = true;
+				}
+				
+				if (directionX == 1)
+				{
+					boxCollisionDirections.right = true;
+				}
 
 				if(i == 0 && angle <= maxAngle)
 				{
@@ -125,40 +147,27 @@ public class CollisionController : RaycastController
 						distanceToSlope = hitX.distance-collisionOffset;
 						movement.x -= distanceToSlope * directionX;
 					}
+
 					ClimbSlope(ref movement, angle);	
 					movement.x += distanceToSlope * directionX;
 				}
 			
 				if(!boxCollisionDirections.climbing || angle > maxAngle)
 				{			
-					if ((directionX == 1 || directionX == -1) && hitX.collider.tag == collisionTag)
+					if ((directionX == 1 || directionX == -1) && hitX.collider.tag == oneWayCollision)
 					{
 						boxCollisionDirections.horizontal = false;
 						continue;
 					}
-				
-					movement.x = (hitX.distance - collisionOffset) * directionX;
-					rayLengthX = hitX.distance;	
 
 					if(boxCollisionDirections.climbing && movement.y > 0)
 					{
 						movement.y = Mathf.Tan(boxCollisionDirections.ascendAngle * Mathf.Deg2Rad) * Mathf.Abs(movement.x);
 					}
+					
+					movement.x = (hitX.distance - collisionOffset) * directionX;
+					rayLengthX = hitX.distance;	
 				}
-				
-				if (directionX == -1)
-				{
-					boxCollisionDirections.left = true;
-				}
-				
-				if (directionX == 1)
-				{
-					boxCollisionDirections.right = true;
-				}
-				
-				movement.x = (hitX.distance - collisionOffset) * directionX;
-				rayLengthX = hitX.distance;
-				
 			}
 		}	
 
@@ -186,32 +195,18 @@ public class CollisionController : RaycastController
 			
 			if (hitY)
 			{	
+				if(hitY.distance == 0)
+				{
+					continue;
+				}
+		
 				// Collision check for one way-platform
-				if((directionY == 1 && (hitY.collider.tag == collisionTag)))
+				if((directionY == 1 && (hitY.collider.tag == oneWayCollision)))
                 {
 					boxCollisionDirections.down = false;
                     continue;
-                }
-				
-				/*Isflak isflak = hitY.transform.GetComponent<Isflak>();
-
-				if(isflak)//FindObjectOfType(typeof(Isflak)))
-				{
-					transform.SetParent(isflak.transform);
-					
-					//Vector2 movingPlatform = isflak.flak;
-					//print("it works!");
-					//hitY.transform.Translate(movingPlatform);	
-				}
-				
-				if(!hitY.transform.GetComponent<Isflak>())
-				{
-					transform.SetParent(null);
-				}*/
-				
+                }			
 			
-				//hitY.transform.Translate(new Vector2(moveX, moveY));
-				
 				if(boxCollisionDirections.climbing)
 				{
 					movement.x = movement.y / Mathf.Tan(boxCollisionDirections.ascendAngle * Mathf.Deg2Rad) * Mathf.Sign(movement.x);
@@ -254,26 +249,7 @@ public class CollisionController : RaycastController
 				movement.y = (hitY.distance - collisionOffset) * directionY;
 				rayLengthY = hitY.distance;
 			}
-		}
-		
-		//Check for movingplatforms
-		/*if(FindObjectOfType(typeof(Isflak)))
-		{
-			Vector2 movingPlatform = Isflak.isflakVector;
-			
-			//if(movingPlatform.x != 0)
-			//{
-				print("test");
-			//}
-			//print("it work");
-			//if (movingPlatform.x != 0)
-			//{
-			//	print("it work");
-			//}
-		}*/
-		
-		
-		
+		}	
 	}	
 
 	public void ClimbSlope(ref Vector2 movement, float angle)

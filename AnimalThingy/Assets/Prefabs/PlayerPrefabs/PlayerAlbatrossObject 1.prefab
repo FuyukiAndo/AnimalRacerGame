@@ -436,7 +436,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1046756301658722
 GameObject:
   m_ObjectHideFlags: 1
@@ -15198,7 +15198,6 @@ MonoBehaviour:
   movementSpeed: 10
   movementAcceleration: 0.15
   collisionController: {fileID: 114954231877299268}
-  wallSlideSpeedMax: 3
   movement: {x: -2.922741e-14, y: 0}
   abilityMeter: 100
   abilityTimer: 3

@@ -14348,11 +14348,9 @@ MonoBehaviour:
   movementSpeed: 10
   movementAcceleration: 0.15
   collisionController: {fileID: 114258264335855992}
-  wallSlideSpeedMax: 3
   movement: {x: -2.922741e-14, y: 0}
   abilityMeter: 100
   abilityTimer: 3
-  stunDuration: 10
   collision:
   - {fileID: 61934723476577046}
   - {fileID: 0}
@@ -14384,6 +14382,7 @@ MonoBehaviour:
   rotationSpeed: 0.18
   targetAngle: 269
   isControllable: 1
+  stunDurationLeft: 1.2
 --- !u!137 &137417768681018818
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

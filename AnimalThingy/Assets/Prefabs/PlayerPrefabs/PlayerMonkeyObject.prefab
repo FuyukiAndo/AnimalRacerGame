@@ -1981,7 +1981,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1197218654713814
 GameObject:
   m_ObjectHideFlags: 1
@@ -12159,7 +12159,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1196314723305698}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 16.54, y: 10.81, z: 0}
+  m_LocalPosition: {x: 19, y: 12.69, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4132141405291118}
@@ -19959,7 +19959,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.65, y: 2.86}
+  m_Size: {x: 1.46, y: 2.86}
   m_EdgeRadius: 0
 --- !u!95 &95162043421401120
 Animator:
@@ -20013,13 +20013,19 @@ MonoBehaviour:
   movementSpeed: 18
   movementAcceleration: 0.15
   collisionController: {fileID: 114687995741526254}
-  wallSlideSpeedMax: 6
   movement: {x: -0.0000003280503, y: 0}
   abilityMeter: 100
   abilityTimer: 3
   collision:
   - {fileID: 61297682882013074}
   - {fileID: 0}
+  wallClimbingSpeed: 5
+  isClimbing: 0
+  activeClimbing: 0
+  surfaceOn: {x: 7.5, y: 16}
+  surfaceOff: {x: 8.5, y: 7}
+  surfaceLeap: {x: 18, y: 17}
+  directionX: 0
 --- !u!114 &114687995741526254
 MonoBehaviour:
   m_ObjectHideFlags: 1
