@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+guid: d0af3a7ba326d0a428e151e871f1297b
+folderAsset: yes
+timeCreated: 1550532868
+=======
 guid: c74adedbee04e3e4989bf0a4ddba4e02
 folderAsset: yes
 timeCreated: 1550575342
+>>>>>>> Peter's-diner
 licenseType: Free
 DefaultImporter:
   externalObjects: {}

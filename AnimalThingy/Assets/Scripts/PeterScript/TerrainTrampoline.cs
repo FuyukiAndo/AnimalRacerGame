@@ -7,12 +7,12 @@ public class TerrainTrampoline : MonoBehaviour {
     public float bounceHeight;
     public LayerMask characterLayer;
 
-    private BoxCollider2D bc2d;
+    private Collider2D c2d;
     private Collider2D[] colliders;
     private int newColliderCount;
     // Use this for initialization
     void Start () {
-        bc2d = GetComponent<BoxCollider2D>();
+        c2d = GetComponent<Collider2D>();
 	}
 	
 	// Update is called once per frame
@@ -23,7 +23,7 @@ public class TerrainTrampoline : MonoBehaviour {
     {
         var oldColliderCount = newColliderCount;
 
-        colliders = Physics2D.OverlapBoxAll(transform.position, bc2d.bounds.size, 0.0f);
+        colliders = Physics2D.OverlapBoxAll(transform.position, c2d.bounds.size, 0.0f);
 
         newColliderCount = colliders.Length;
         if (newColliderCount > oldColliderCount)
@@ -33,7 +33,6 @@ public class TerrainTrampoline : MonoBehaviour {
                 bool isOnLayer = characterLayer == (characterLayer | (1 << collision.gameObject.layer));
                 if (isOnLayer)
                 {
-                    
                     collision.GetComponent<PlayerController>().movement.y = bounceHeight;
                 }
             }

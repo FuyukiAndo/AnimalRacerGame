@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="AudioFile" id="{2dd00c6e-6cde-4361-a159-a41be4e2ae7a}">
+        <property name="assetPath">
+            <value>Prototuta.wav</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>48</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>1.9525416666666666</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{62735493-e8e9-437e-ba6c-43c859bdfc29}</destination>
+        </relationship>
+    </object>
+</objects>

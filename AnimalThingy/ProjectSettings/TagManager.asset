@@ -4,12 +4,18 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Ground
-  - Ball
-  - Workdammit
+
   - Ice_Character
+  - Ground
+  - OneWay
+  - Spike
+  - Tranpolin
+  - Bonefire
   - Coast_Character
   - Jungle_Character
+  - Wall
+  - Ball
+  - Workdammit
   - Blast
   - OneWay
   layers:

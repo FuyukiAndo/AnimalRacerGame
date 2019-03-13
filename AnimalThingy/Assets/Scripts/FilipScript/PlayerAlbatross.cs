@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerAlbatross : PlayerController 
 {
-	public GameObject windBlastObject; 
+	private GameObject windBlastObject; 
 
 	public float flyCounter = 3f;	
 	public float flyCountdownSpeed = 0.1f;
@@ -20,7 +20,8 @@ public class PlayerAlbatross : PlayerController
 	
 	public override void Start()
 	{
-		base.Start();
+		base.Start();		
+		windBlastObject = Resources.Load<GameObject>("Prefabs/SpeedUpBlast"); //good idea - ?
 		savedUntilGlideCounter = untilGlideCounter;
 		savedFlyCounter = flyCounter;
 		savedJumpAndFallDelay = jumpAndFallDelay;
