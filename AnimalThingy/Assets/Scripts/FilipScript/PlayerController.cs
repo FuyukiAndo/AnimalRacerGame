@@ -13,33 +13,48 @@ public class PlayerController : MonoBehaviour
 	public float minJumpHeight = 1f;
 	[Range(0.1f,6.0f)]public float jumpAndFallDelay = 0.4f;
 	
-	[HideInInspector] public float gravity;
 	[HideInInspector] public float maxVelocity;
 	[HideInInspector] public float minVelocity;
 
 	[Header("Movement Settings")]
+	
 	public float movementSpeed = 18.0f;
 	[Range(0.1f,1.0f)]public float movementAcceleration = 0.15f;
 
-	[HideInInspector] public CollisionController collisionController;
-	protected RaycastController raycastController;
+	[Header("Character Settings")]
+	
+	public bool isActiveAbility = false;
+	public bool isPassiveAbility = false;
+	public bool activeAbility = false;
+	public bool passiveAbility = false;
+	public bool isJumping = false;
 
-	protected float velocitySmoothing;
+	public int maxUseCounter = 3;
+	protected int savedMaxUseCounter;
+	
+	public float abilityModifier = 2.0f;
+
+	[HideInInspector] public int abilityMeter = 100;
+	[HideInInspector] public int abilityTimer = 3;
+
+	//protected bool abilityActive = false;
+	//private float abilityModifier;
+
+	[HideInInspector] public Collider2D[] collision;	
+	
+	[HideInInspector] public CollisionController collisionController;	
 	
 	[HideInInspector] public Vector2 movement;
-	protected int movementDirection;
-	protected int abilityDirection;
 
 	protected float tempSpeed;
 	protected float mod0 = 0.1f;
-	protected float mod1 = 0.2f;
-	protected bool abilityActive = false;
-	
-	[HideInInspector] public int abilityMeter = 100;
-	[HideInInspector] public int abilityTimer = 3;
-	
+	protected float mod1 = 0.2f;	
+	protected RaycastController raycastController;
+	protected int movementDirection;
+	protected int abilityDirection;
 	protected PlayerInput playerInput;
-	[HideInInspector] public Collider2D[] collision;	
+	protected float velocitySmoothing;	
+	protected float gravity;
 	
 	public virtual void Start()
 	{
@@ -49,6 +64,7 @@ public class PlayerController : MonoBehaviour
 		
 		movementDirection = 0;
 		abilityDirection = 0;
+		savedMaxUseCounter = maxUseCounter;
 	}
 
 	public void UpdateGravity()
@@ -197,7 +213,7 @@ public class PlayerController : MonoBehaviour
 		if(abilityMeter >= 100)
 		{
 			abilityMeter = 100;
-			abilityActive = false;
+			//abilityActive = false;
 		}
 	}
 	

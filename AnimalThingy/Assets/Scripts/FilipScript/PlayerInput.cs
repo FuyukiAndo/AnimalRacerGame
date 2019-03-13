@@ -244,6 +244,12 @@ public class PlayerInput : MonoBehaviour
 			animationHandler.SetAnimatorBool("RunT", false);
 			animationHandler.SetAnimatorBool("IdleT", true);
 		}	
+		
+		if(Input.GetKeyDown(playerAbilityKey))
+		{
+			animationHandler.SetAnimatorBool("SpecialT",true);
+		}
+
 	}
 	
 	void InputAnimationAlbatross()
@@ -258,14 +264,19 @@ public class PlayerInput : MonoBehaviour
 			animationHandler.SetAnimatorTrigger("WingUp");
 		}	
 		
-		if(Input.GetKeyDown(playerAbilityKey))
+		/*if(Input.GetKeyDown(playerAbilityKey))
 		{
 			animationHandler.SetAnimatorBool("Flap",true);
-		}
+		}*/
+		
+		/*if(isControllable)
+		{
+			animationHandler.SetAnimatorBool("Flap",false);
+		}*/
 		
 		if(isControllable)
 		{
-			animationHandler.SetAnimatorBool("Flap",false);
+			animationHandler.SetAnimatorBool("SpecialT",false);
 		}
 
 		if(playerAlbatross.collisionController.boxCollisionDirections.down)
