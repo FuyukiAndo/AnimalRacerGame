@@ -53,7 +53,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnObject: {fileID: 1449025070846608, guid: da0c17568ede2f04bab89524cc9b6476,
     type: 2}
+  wantSpawnerToBeRemoved: 0
   timeBetweenSpawnsMin: 2
   timeBetweenSpawnsMax: 3
+  wantToPopOnDestination: 1
   travelToFromStart: {x: 0, y: 3}
   popTime: 0.5
+  travelTime: 50

@@ -33,8 +33,10 @@ public class GPSCheckpoint : MonoBehaviour {
             instance = this;
         }
         currentCheckpoint = checkpoints[index];
-        canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
-
+        if (canvas != null)
+        {
+            canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+        }
     }
     public void UpdateCheckpointToGo()
     {
@@ -105,6 +107,7 @@ public class GPSCheckpoint : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+        if(arrow != null)
         UpdateScreenArrow();
 	}
 }

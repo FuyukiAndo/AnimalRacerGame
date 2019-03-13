@@ -33,7 +33,6 @@ public class TerrainTrampoline : MonoBehaviour {
                 bool isOnLayer = characterLayer == (characterLayer | (1 << collision.gameObject.layer));
                 if (isOnLayer)
                 {
-                    Debug.Log("Hello");
                     collision.GetComponent<PlayerController>().movement.y = bounceHeight;
                 }
             }
