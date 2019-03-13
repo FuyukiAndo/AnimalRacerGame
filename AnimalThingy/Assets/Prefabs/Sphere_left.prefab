@@ -134,4 +134,9 @@ MonoBehaviour:
   speed: -0.6
   terrainLayer:
     serializedVersion: 2
-    m_Bits: 768
+    m_Bits: 512
+  characterLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  pushForce: 20
+  stunDuration: 3

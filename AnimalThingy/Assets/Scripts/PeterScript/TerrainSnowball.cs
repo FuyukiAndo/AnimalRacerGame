@@ -9,16 +9,26 @@ public class TerrainSnowball : MonoBehaviour {
     public LayerMask terrainLayer, characterLayer;
     public float pushForce = 5.0f;
     public float stunDuration;
+    public float maxPushBack;
 
     private Rigidbody2D rb2d;
     private Collider2D c2d;
     private Collider2D[] collision;
     private float dir;
+    private float pushback;
+    private float usedPushForce;
 
 	// Use this for initialization
 	void Start () {
         rb2d = GetComponent<Rigidbody2D>();
         c2d = GetComponent<Collider2D>();
+        if(transform.parent != null)
+        {
+            speed = GetComponentInParent<SpawnTerrainSnowball>().getAcc;
+            pushForce = GetComponentInParent<SpawnTerrainSnowball>().getForce;
+            stunDuration = GetComponentInParent<SpawnTerrainSnowball>().getStunDuration;
+            maxPushBack = GetComponentInParent<SpawnTerrainSnowball>().getMaxPushBack;
+        }
         if(speed > 0)
         {
             dir = gameObject.transform.lossyScale.x;
@@ -39,24 +49,43 @@ public class TerrainSnowball : MonoBehaviour {
 	}
     public void HitPlayer()
     {
+        Debug.Log(rb2d.velocity.x);
         collision = Physics2D.OverlapBoxAll(transform.position, c2d.bounds.size, 0.0f);
-        foreach(var collider in collision)
+        foreach (var collider in collision)
         {
             bool isOnLayer = characterLayer == (characterLayer | (1 << collider.gameObject.layer));
             if (isOnLayer)
             {
-                collider.GetComponent<PlayerInput>().stunDurationLeft = stunDuration;
-                if(transform.position.x > collider.transform.position.x)
+                if(maxPushBack < Mathf.Abs(rb2d.velocity.x * pushForce))
                 {
-                    collider.GetComponent<PlayerController>().movement.y += pushForce;
-                    collider.GetComponent<PlayerController>().movement.x += rb2d.velocity.x * pushForce;
-                    Debug.Log("elloh");
+                    pushback = maxPushBack;
                 }
                 else
                 {
-                    Debug.Log("hello");
-                    collider.GetComponent<PlayerController>().movement.y += pushForce;
-                    collider.GetComponent<PlayerController>().movement.x -= rb2d.velocity.x * pushForce;
+                    pushback = rb2d.velocity.x * pushForce;
+                }
+                if (maxPushBack <  pushForce)
+                {
+                    usedPushForce = maxPushBack;
+                }
+                else
+                {
+                    usedPushForce = pushForce;
+                }
+                Debug.Log(pushback);
+                Physics2D.IgnoreCollision(collider, c2d);
+                collider.GetComponent<PlayerInput>().stunDurationLeft = stunDuration;
+                if(transform.position.x > collider.transform.position.x)
+                {
+                   
+                    collider.GetComponent<PlayerController>().movement.y += usedPushForce;
+                    collider.GetComponent<PlayerController>().movement.x += pushback;
+
+                }
+                else
+                {
+                    collider.GetComponent<PlayerController>().movement.y += usedPushForce;
+                    collider.GetComponent<PlayerController>().movement.x -= pushback;
                 }
             }
         }
