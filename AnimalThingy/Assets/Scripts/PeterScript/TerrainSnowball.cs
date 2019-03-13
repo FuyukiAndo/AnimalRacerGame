@@ -46,7 +46,18 @@ public class TerrainSnowball : MonoBehaviour {
             if (isOnLayer)
             {
                 collider.GetComponent<PlayerInput>().stunDurationLeft = stunDuration;
-                collider.GetComponent<PlayerController>().movement.x += rb2d.velocity.x * pushForce;
+                if(transform.position.x > collider.transform.position.x)
+                {
+                    collider.GetComponent<PlayerController>().movement.y += pushForce;
+                    collider.GetComponent<PlayerController>().movement.x += rb2d.velocity.x * pushForce;
+                    Debug.Log("elloh");
+                }
+                else
+                {
+                    Debug.Log("hello");
+                    collider.GetComponent<PlayerController>().movement.y += pushForce;
+                    collider.GetComponent<PlayerController>().movement.x -= rb2d.velocity.x * pushForce;
+                }
             }
         }
     }
