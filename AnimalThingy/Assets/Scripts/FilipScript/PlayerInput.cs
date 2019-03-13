@@ -54,8 +54,6 @@ public class PlayerInput : MonoBehaviour
 	
 	public float stunDurationLeft = 1.2f;
 
-	//public float stunDurationLeft; //Added by Emil, not neccessarily important
-
 	public float GetMaxAngleValue()
 	{
 		return maxAngleValue;
@@ -164,48 +162,41 @@ public class PlayerInput : MonoBehaviour
 	
 	void InputAction()
 	{
-        if (stunDurationLeft < 0)
-        {
-            // Move player left
-            if (isControllable)
-            {
-                if (Input.GetKey(playerLeftKey))
-                {
-                    keyCodeDictionary0[playerLeftKey]();
-                }
+		// Move player left
+		if(isControllable)
+		{
+			if(Input.GetKey(playerLeftKey))
+			{
+				keyCodeDictionary0[playerLeftKey]();
+			}
 
-                // Move player right
-                if (Input.GetKey(playerRightKey))
-                {
-                    keyCodeDictionary0[playerRightKey]();
-                }
-
-                // Ability Key
-                if (Input.GetKeyDown(playerAbilityKey))
-                {
-                    keyCodeDictionary0[playerAbilityKey]();
-                }
-
-                // Jump KeyCode Down
-                if (Input.GetKeyDown(playerJumpKey))
-                {
-                    keyCodeDictionary0[playerJumpKey]();
-                }
-
-                // Jump KeyCode Up
-                if (Input.GetKeyUp(playerJumpKey))
-                {
-                    keyCodeDictionary1[playerJumpKey]();
-                }
-            }
-        }
-        else
-        {
-            stunDurationLeft -= Time.deltaTime;
-        }
-
-        //If no KeyCode is pressed
-        keyCodeDictionary0[playerNoKey]();
+			// Move player right
+			if(Input.GetKey(playerRightKey))
+			{
+				keyCodeDictionary0[playerRightKey]();
+			}
+			
+			// Ability Key
+			if(Input.GetKeyDown(playerAbilityKey))
+			{
+				keyCodeDictionary0[playerAbilityKey]();
+			}
+			
+			// Jump KeyCode Down
+			if(Input.GetKeyDown(playerJumpKey))
+			{
+				keyCodeDictionary0[playerJumpKey]();
+			}
+			
+			// Jump KeyCode Up
+			if(Input.GetKeyUp(playerJumpKey))
+			{
+				keyCodeDictionary1[playerJumpKey]();
+			}
+		}
+		
+		//If no KeyCode is pressed
+		keyCodeDictionary0[playerNoKey]();
 	}
 
 	void InputAnimationRotation()
@@ -253,6 +244,12 @@ public class PlayerInput : MonoBehaviour
 			animationHandler.SetAnimatorBool("RunT", false);
 			animationHandler.SetAnimatorBool("IdleT", true);
 		}	
+		
+		if(Input.GetKeyDown(playerAbilityKey))
+		{
+			animationHandler.SetAnimatorBool("SpecialT",true);
+		}
+
 	}
 	
 	void InputAnimationAlbatross()
@@ -267,14 +264,19 @@ public class PlayerInput : MonoBehaviour
 			animationHandler.SetAnimatorTrigger("WingUp");
 		}	
 		
-		if(Input.GetKeyDown(playerAbilityKey))
+		/*if(Input.GetKeyDown(playerAbilityKey))
 		{
 			animationHandler.SetAnimatorBool("Flap",true);
-		}
+		}*/
+		
+		/*if(isControllable)
+		{
+			animationHandler.SetAnimatorBool("Flap",false);
+		}*/
 		
 		if(isControllable)
 		{
-			animationHandler.SetAnimatorBool("Flap",false);
+			animationHandler.SetAnimatorBool("SpecialT",false);
 		}
 
 		if(playerAlbatross.collisionController.boxCollisionDirections.down)
@@ -521,8 +523,7 @@ public class PlayerInput : MonoBehaviour
 	void Update() 
 	{
 		StaticZPos();
-
-            InputAction();
+		InputAction();
 		
 		if(animationHandler != null)
 		{

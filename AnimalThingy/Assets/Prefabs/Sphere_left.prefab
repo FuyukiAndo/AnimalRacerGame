@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 50211802004755084}
   - component: {fileID: 114149042015133368}
   - component: {fileID: 58583448267880432}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sphere_left
   m_TagString: Ball
   m_Icon: {fileID: 0}
@@ -129,14 +129,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 50593e60b0356be46a007dc42e3e0779, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   speed: -0.6
   terrainLayer:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 768
   characterLayer:
     serializedVersion: 2
     m_Bits: 256
-  pushForce: 20
-  stunDuration: 3
+  pushForce: 25
+  stunDuration: 1

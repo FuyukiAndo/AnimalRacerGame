@@ -3,12 +3,25 @@ guid: 6fda6176378b0824f95d902a14573bc4
 timeCreated: 1552402897
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: texture_generator_0
+    21300002: texture_generator_1
+    21300004: texture_generator_2
+    21300006: texture_generator_3
+    21300008: texture_generator_4
+    21300010: texture_generator_5
+    21300012: texture_generator_6
+    21300014: texture_generator_7
+    21300016: texture_generator_8
+    21300018: texture_generator_10
+    21300020: texture_generator_11
+    21300022: texture_generator_13
+    21300024: texture_generator_15
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -34,23 +47,23 @@ TextureImporter:
     filterMode: -1
     aniso: -1
     mipBias: -1
-    wrapU: -1
-    wrapV: -1
+    wrapU: 1
+    wrapV: 1
     wrapW: -1
-  nPOTScale: 1
+  nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 0
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
-  alphaUsage: 1
-  alphaIsTransparency: 0
+  alphaUsage: 0
+  alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: 0
+  textureType: 8
   textureShape: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
@@ -66,9 +79,201 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: texture_generator_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1332
+        width: 675
+        height: 716
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: texture_generator_1
+      rect:
+        serializedVersion: 2
+        x: 675
+        y: 1388
+        width: 603
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: texture_generator_2
+      rect:
+        serializedVersion: 2
+        x: 1260
+        y: 1739
+        width: 303
+        height: 309
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: texture_generator_3
+      rect:
+        serializedVersion: 2
+        x: 1279
+        y: 1416
+        width: 265
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: texture_generator_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 668
+        width: 703
+        height: 664
+      alignment: 9
+      pivot: {x: 0.70077574, y: 0.17145824}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: texture_generator_5
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 808
+        width: 537
+        height: 570
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: texture_generator_6
+      rect:
+        serializedVersion: 2
+        x: 1262
+        y: 1102
+        width: 306
+        height: 304
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: texture_generator_7
+      rect:
+        serializedVersion: 2
+        x: 1582
+        y: 1290
+        width: 411
+        height: 758
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: texture_generator_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 23
+        width: 671
+        height: 645
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: texture_generator_10
+      rect:
+        serializedVersion: 2
+        x: 1255
+        y: 776
+        width: 789
+        height: 248
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: texture_generator_11
+      rect:
+        serializedVersion: 2
+        x: 1633
+        y: 1033
+        width: 337
+        height: 243
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: texture_generator_13
+      rect:
+        serializedVersion: 2
+        x: 685
+        y: 0
+        width: 607
+        height: 813
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: texture_generator_15
+      rect:
+        serializedVersion: 2
+        x: 1302
+        y: 0
+        width: 746
+        height: 771
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
     outline: []
     physicsShape: []
   spritePackingTag: 
