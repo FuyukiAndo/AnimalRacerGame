@@ -4,14 +4,15 @@ using UnityEngine.Animations;
 
 public class AnimationHandler : MonoBehaviour
 {
-	[SerializeField] private bool autoAnimate;
+    [SerializeField] private bool autoAnimate;
 	[SerializeField] private Animator animator;
 	[Tooltip("One animation per event type")][SerializeField] private AnimationType[] animationType;
 	private AnimationType forUpdate, forCollisionEnter, forCollisionExit, forCollisionStay, forTriggerEnter,
 	forTriggerStay, forTriggerExit;
-	private bool queveUpdateAnimation;
-	public float BlinkInterval
-	{
+    private bool queveUpdateAnimation;
+    public float speed;
+    public float BlinkInterval
+    {
 		get
 		{
 			return blinkInterval;
