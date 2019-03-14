@@ -1972,16 +1972,16 @@ GameObject:
   - component: {fileID: 33794479502874608}
   - component: {fileID: 23113791957725580}
   - component: {fileID: 61297682882013074}
-  - component: {fileID: 114187184963359304}
-  - component: {fileID: 114882341670314140}
   - component: {fileID: 114687995741526254}
+  - component: {fileID: 114882341670314140}
+  - component: {fileID: 114187184963359304}
   m_Layer: 8
   m_Name: PlayerMonkeyObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1197218654713814
 GameObject:
   m_ObjectHideFlags: 1
@@ -19948,7 +19948,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.08, y: 1.4}
+  m_Offset: {x: -0.07999998, y: 1.0141066}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -19959,7 +19959,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.46, y: 2.86}
+  m_Size: {x: 1.46, y: 2.0882132}
   m_EdgeRadius: 0
 --- !u!95 &95162043421401120
 Animator:
@@ -20007,25 +20007,26 @@ MonoBehaviour:
   maxJumpHeight: 8
   minJumpHeight: 1
   jumpAndFallDelay: 0.4
-  gravity: -99.99999
-  maxVelocity: 39.999996
-  minVelocity: 14.142135
   movementSpeed: 18
   movementAcceleration: 0.15
+  accelerationModifier: 0.1
+  deaccelerationModifier: 0.1
+  abilityMeter: 100
+  abilityMeterModifier: 1
+  isActiveAbility: 0
+  isPassiveAbility: 0
+  activeAbility: 0
+  passiveAbility: 0
+  isJumping: 0
+  maxUseCounter: 1
+  abilityModifier: 2
   collisionController: {fileID: 114687995741526254}
   movement: {x: -0.0000003280503, y: 0}
-  abilityMeter: 100
-  abilityTimer: 3
-  collision:
-  - {fileID: 61297682882013074}
-  - {fileID: 0}
-  wallClimbingSpeed: 5
-  isClimbing: 0
-  activeClimbing: 0
+  projectileObject: {fileID: 0}
+  climbingSpeed: 5
   surfaceOn: {x: 7.5, y: 16}
   surfaceOff: {x: 8.5, y: 7}
   surfaceLeap: {x: 18, y: 17}
-  directionX: 0
 --- !u!114 &114687995741526254
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20055,16 +20056,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ada670a83430aa448bc3fa1cbfa48aaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCharacterType: 4
   animationHandler: {fileID: 114078422127414728}
+  playerCharacterType: 4
   playerLeftKey: 276
   playerRightKey: 275
   playerJumpKey: 97
   playerAbilityKey: 115
   rotationSpeed: 0.18
-  targetAngle: 269
   isControllable: 1
+  changeAngle: 1
   stunDurationLeft: 1.2
+  targetAngle: 269
 --- !u!137 &137550280197760516
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

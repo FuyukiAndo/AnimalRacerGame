@@ -6,23 +6,24 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerInput))]
 
 public class PlayerController : MonoBehaviour
-{
+{	
 	[Header("Jump and Gravity Settings")]
-
 	public float maxJumpHeight = 8.0f;
-	public float minJumpHeight = 1f;
-	[Range(0.1f,6.0f)]public float jumpAndFallDelay = 0.4f;
-	
-	[HideInInspector] public float maxVelocity;
-	[HideInInspector] public float minVelocity;
+	public float minJumpHeight = 1.0f;
+	[Range(.01f,1f)] public float jumpAndFallDelay = 0.4f;
 
 	[Header("Movement Settings")]
-	
 	public float movementSpeed = 18.0f;
-	[Range(0.1f,1.0f)]public float movementAcceleration = 0.15f;
+	[Range(.01f,1f)] public float movementAcceleration = 0.15f;
+	[Range(.01f,1f)] public float accelerationModifier = 0.1f;
+	[Range(.01f,1f)] public float deaccelerationModifier = 0.1f;
 
-	[Header("Character Settings")]
+	[Header("Ability Meter Settings")]
+	[Range(.01f,1f)] public float abilityMeter = 1f;
+	[Range(.01f,1f)] public float abilityMeterModifier = 1f;	
 	
+	[Header("Character Settings")]
+	//Public for debug
 	public bool isActiveAbility = false;
 	public bool isPassiveAbility = false;
 	public bool activeAbility = false;
@@ -30,31 +31,32 @@ public class PlayerController : MonoBehaviour
 	public bool isJumping = false;
 
 	public int maxUseCounter = 3;
-	protected int savedMaxUseCounter;
-	
 	public float abilityModifier = 2.0f;
 
-	[HideInInspector] public int abilityMeter = 100;
-	[HideInInspector] public int abilityTimer = 3;
-
-	//protected bool abilityActive = false;
-	//private float abilityModifier;
-
-	[HideInInspector] public Collider2D[] collision;	
-	
-	[HideInInspector] public CollisionController collisionController;	
-	
+	[HideInInspector] public CollisionController collisionController;
 	[HideInInspector] public Vector2 movement;
 
-	protected float tempSpeed;
-	protected float mod0 = 0.1f;
-	protected float mod1 = 0.2f;	
+	protected Collider2D[] collision;	
+	
+	protected int savedMaxUseCounter;
+	protected float abilityMeterMax = 1f;
+	
+	protected float maxVelocity;
+	protected float minVelocity;
+
+	protected PlayerInput playerInput;
 	protected RaycastController raycastController;
+
+	protected float accelerationSpeed;
+	
 	protected int movementDirection;
 	protected int abilityDirection;
-	protected PlayerInput playerInput;
+	
 	protected float velocitySmoothing;	
 	protected float gravity;
+	
+	protected float directionX;
+	protected float directionY;
 	
 	public virtual void Start()
 	{
@@ -65,6 +67,7 @@ public class PlayerController : MonoBehaviour
 		movementDirection = 0;
 		abilityDirection = 0;
 		savedMaxUseCounter = maxUseCounter;
+		abilityMeterMax = abilityMeter;
 	}
 
 	public void UpdateGravity()
@@ -94,6 +97,7 @@ public class PlayerController : MonoBehaviour
 		if(movementSpeed < 1.0f)
 		{
 			movementSpeed = 1.0f;
+			
 		}
 	}
 	
@@ -109,7 +113,6 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
-	//If pressed down, then goes to max value.
 	public virtual void OnJumpKeyDown()
 	{
 		if(collisionController.boxCollisionDirections.down)
@@ -117,79 +120,64 @@ public class PlayerController : MonoBehaviour
 			movement.y = maxVelocity;
 		}
 	}
-	
-	//Move player Left direction with smooth acceleration
+
 	public virtual void MoveLeft()
 	{
-		//Smooth movement acceleration
 		for(float i = 0; i <movementSpeed;i++)
 		{
-			tempSpeed=tempSpeed+mod0;
+			accelerationSpeed = accelerationSpeed + accelerationModifier;
 			
-			if(tempSpeed > movementSpeed)
+			if(accelerationSpeed > movementSpeed)
 			{
-				tempSpeed = movementSpeed;
+				accelerationSpeed = movementSpeed;
 			}
 		}
+	
+		movement.x = -1 * accelerationSpeed;
 
-		//Translation in Left direction		
-		movement.x = -1 * tempSpeed;
-		
-		//Set direction to Left
 		movementDirection = -1;
 	}
 
-	//Move player Right direction with smooth acceleration	
 	public virtual void MoveRight()
 	{
-		//Smooth movement acceleration
 		for(float i = 0; i < movementSpeed;i++)
 		{
-			tempSpeed=tempSpeed+mod0;
+			accelerationSpeed = accelerationSpeed + accelerationModifier;
 			
-			if(tempSpeed > movementSpeed)
+			if(accelerationSpeed > movementSpeed)
 			{
-				tempSpeed = movementSpeed;
+				accelerationSpeed = movementSpeed;
 			}
 		}
 		
-		//Translation in Right direction
-		movement.x = 1 * tempSpeed;
+		movement.x = 1 * accelerationSpeed;
 
-		//Set direction to Right 
 		movementDirection = 1;
 	}
 	
 	public virtual void MoveNot()
 	{
-		//Smooth deacceleration
-		tempSpeed=tempSpeed-0.2f;
-		
-		//When fully deaccelerated, movement speed is 0
-		if(tempSpeed < 0)
+		accelerationSpeed = accelerationSpeed - deaccelerationModifier;
+
+		if(accelerationSpeed < 0)
 		{
-			tempSpeed = 0;
+			accelerationSpeed = 0;
 		}
-	
-		//SmoothDamp for deacceleratation
-		float movementVelocity = movementDirection * tempSpeed;
+
+		float movementVelocity = movementDirection * accelerationSpeed;
 		movement.x = Mathf.SmoothDamp(movement.x, movementVelocity, ref velocitySmoothing,movementAcceleration);
-		
-		//Set direction to None
+
 		movementDirection = 0;
 	}
 
 	public virtual void gravityTranslate()
 	{
-		movement.y += gravity * Time.deltaTime;//verticalTranslate;		
+		movement.y += gravity * Time.deltaTime;	
 	}
 
 	public virtual void Update()
 	{
 		UpdateGravity();
-
-		//float verticalTranslate = gravity * Time.deltaTime;
-		
 		gravityTranslate();
 		
 		MoveObject(movement * Time.deltaTime);
@@ -199,33 +187,49 @@ public class PlayerController : MonoBehaviour
 			movement.y = 0;
 		}	
 		
-		if(playerInput.targetAngle == playerInput.GetMaxAngleValue())
+		OpponentProjectileCollision();
+		AbilityHandler();
+	}
+	
+	private void AbilityHandler()
+	{
+		if(playerInput.changeAngle)
 		{
-			abilityDirection = 1;
+			if(playerInput.targetAngle == playerInput.GetMaxAngleValue())
+			{
+				abilityDirection = 1;
+			}
+			else
+			{
+				abilityDirection = -1;
+			}
+		}
+		
+		if(abilityMeter >= 1f)
+		{
+			abilityMeter = 1f;
+			passiveAbility = false;
 		}
 		else
 		{
-			abilityDirection = -1;
+			abilityMeter = abilityMeter + abilityMeterModifier;
 		}
-	
-		OpponentAbilityCollision();
 		
-		if(abilityMeter >= 100)
+		/*if(maxUseCounter < 0)
 		{
-			abilityMeter = 100;
-			//abilityActive = false;
-		}
+			maxUseCounter = savedMaxUseCounter;
+		}*/
 	}
 	
 	public virtual void OnAbilityKey()
 	{
-		if(abilityMeter == 100)
+		if(abilityMeter == 1.0f)
 		{
 			abilityMeter = 0;
 		}
 	}
 	
-	private void OpponentAbilityCollision()
+	private void OpponentProjectileCollision()
 	{
 		LayerMask projectileMask = LayerMask.NameToLayer("Projectile");
 		collision = Physics2D.OverlapCircleAll(transform.position, 1.5f, projectileMask);

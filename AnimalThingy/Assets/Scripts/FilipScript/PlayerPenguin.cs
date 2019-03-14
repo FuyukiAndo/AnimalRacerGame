@@ -4,38 +4,39 @@ using UnityEngine;
 
 public class PlayerPenguin : PlayerController
 {
-	public bool isSlide = false;
-	public bool activeSlide = false;
+	//public bool isSlide = false;
+	//public bool activeSlide = false;
 	
-	public int i;
-	int count = 4;
+	//public int i;
+	//int count = 4;
 	//public float abilityModifier = 2f;
 
 	public override void Start() 
 	{
 		base.Start();
-			i = count;
+			//i = count;
 	}
 
 	public override void Update() 
 	{
 		base.Update();
 		
-		if(isSlide && !activeSlide)
+		if(isPassiveAbility && !passiveAbility)//isSlide && !activeSlide)
 		{
 			movement.y = minVelocity;
-			movement.x += -1 * abilityDirection * 2.0f;
-			i--;
+			movement.x += -1 * abilityDirection * abilityModifier;
+			maxUseCounter--;//i--;
 			
-			if(i < 0)
+			if(maxUseCounter < 0)
 			{
-				isSlide = false;
-				activeSlide = true;
-				i = count;
+				isPassiveAbility = false;//isSlide = false;
+				passiveAbility = true;//activeSlide = true;
+				maxUseCounter = savedMaxUseCounter;
+				//i = count;
 			}
 		}
 		
-		if(!isSlide && activeSlide)
+		if(!isPassiveAbility && passiveAbility)
 		{
 			movement.y = 0;
 			movement.x += -1 * abilityDirection * abilityModifier;
@@ -47,10 +48,11 @@ public class PlayerPenguin : PlayerController
 		base.OnAbilityKey();
 		
 		playerInput.isControllable = false;
+		playerInput.changeAngle = false;
 		
-		if(!isSlide)
+		if(!isPassiveAbility)
 		{
-			isSlide = true;
+			isPassiveAbility = true;
 		}
 	}
 }

@@ -4,26 +4,27 @@ using UnityEngine;
 
 public class PlayerAlbatross : PlayerController 
 {
-	private GameObject windBlastObject; 
-
-	public float flyCounter = 3f;	
-	public float flyCountdownSpeed = 0.1f;
-	
+	public float maxFlyCounter = 3f;	
 	public float untilGlideCounter = 1.0f;
-	public float glideCounterSpeed = 1.4f;
 	
-	[Range(0.1f,6.0f)] public float glideSpeed = 4.0f;
+	[Range(0.1f,10.0f)] public float glideSpeed = 4.0f;
 
-	private float savedFlyCounter;
+	public GameObject windBlastObject; 
+
+	[Header("Parameter Counter Settings")]	
+	public float maxFlyCountdownSpeed = 0.1f;
+	public float glideCounterSpeed = 1.4f;	
+	
+	private float savedMaxFlyCounter;
 	private float savedJumpAndFallDelay;
 	private float savedUntilGlideCounter;
 	
 	public override void Start()
 	{
-		base.Start();		
-		windBlastObject = Resources.Load<GameObject>("Prefabs/SpeedUpBlast"); //good idea - ?
+		base.Start();
+		
 		savedUntilGlideCounter = untilGlideCounter;
-		savedFlyCounter = flyCounter;
+		savedMaxFlyCounter = maxFlyCounter;
 		savedJumpAndFallDelay = jumpAndFallDelay;
 	}
 	
@@ -40,7 +41,7 @@ public class PlayerAlbatross : PlayerController
 		
 		if(isActiveAbility)
 		{
-			float directionY = Mathf.Sign(movement.y);
+			directionY = Mathf.Sign(movement.y);
 			
 			if(directionY == -1)
 			{
@@ -62,22 +63,23 @@ public class PlayerAlbatross : PlayerController
 		if(isPassiveAbility && passiveAbility)
 		{
 			movement.x += -1 * abilityDirection * abilityModifier;
-			abilityMeter = abilityMeter + abilityTimer;
+			//abilityMeter = abilityMeter + abilityMeterModifier;
 		}
 		
 		if(!passiveAbility)
 		{
 			isPassiveAbility = false;
-			playerInput.isControllable = true;			
+			playerInput.isControllable = true;	
+			playerInput.changeAngle = true;
 		}
 		
 		if(isJumping)
 		{
-			flyCounter = flyCounter-flyCountdownSpeed;
+			maxFlyCounter = maxFlyCounter-maxFlyCountdownSpeed;
 			
-			if(flyCounter < 0)
+			if(maxFlyCounter < 0)
 			{
-				flyCounter = savedFlyCounter;
+				maxFlyCounter = savedMaxFlyCounter;
 				maxUseCounter--;
 				isJumping = false;
 			}
@@ -107,7 +109,7 @@ public class PlayerAlbatross : PlayerController
 			
 			if(maxUseCounter !=0)
 			{
-				if (flyCounter == savedFlyCounter)
+				if (maxFlyCounter == savedMaxFlyCounter)
 				{
 					isJumping = true;
 					movement.y = maxVelocity;
@@ -131,12 +133,14 @@ public class PlayerAlbatross : PlayerController
 	{
 		base.OnAbilityKey();
 		
-		passiveAbility = true;
+		passiveAbility = true;		
 		
 		if(passiveAbility)
-		{
+		{					
+			//passiveAbility = true;
 			isPassiveAbility = true;
 			playerInput.isControllable = false;
+			playerInput.changeAngle = false;
 		}
 		
 		Instantiate(windBlastObject, new Vector2(transform.position.x+(2.5f*abilityDirection),transform.position.y+2f), new Quaternion(0, 0, 0, 0), gameObject.transform);
