@@ -41,6 +41,7 @@ public class AudioEffectController : MonoBehaviour
 	[SerializeField] private FMODAudio sfx;
 	[SerializeField] private LayerMask layer;
 	[SerializeField] private Vector2 boxSize = new Vector2(1f, 1f);
+	[SerializeField] private Vector2 boxOffset = new Vector2(0f, 0f);
 	[SerializeField] private Dictionary<string, AudioClip> clips;
 	[SerializeField] private AudioClip clip;
 
@@ -207,7 +208,7 @@ public class AudioEffectController : MonoBehaviour
 
 		//Trigger event replacement
 		oldColliderCount = newColliderCount;
-		colliders = Physics2D.OverlapBoxAll(transform.position, boxSize, 0f, layer);
+		colliders = Physics2D.OverlapBoxAll((Vector2)transform.position + boxOffset, boxSize, 0f, layer);
 		newColliderCount = colliders.Length;
 		if (playEffectAuto)
 		{
@@ -609,17 +610,15 @@ public class AudioEffectController : MonoBehaviour
 
 	public void PlayAudioOneShot(float value)
 	{
-		if (AudioManager.Instance.useFMOD)
-		{
-			Setup();
-			sfx.audioInstance.start();
-			sfx.audioInstance.release();
-		}
-		else
-		{
-			source.volume = value;
-			source.PlayOneShot(clip);
-		}
+		source.volume = value;
+		source.PlayOneShot(clip);
+	}
+
+	public void PlayAudioOneShot()
+	{
+		Setup();
+		sfx.audioInstance.start();
+		sfx.audioInstance.release();
 	}
 
 	public void SetAudioClip(AudioClip clip)
@@ -710,7 +709,7 @@ public class AudioEffectController : MonoBehaviour
 	void OnDrawGizmos()
 	{
 		Gizmos.color = Color.red;
-		Gizmos.DrawWireCube(transform.position, boxSize);
+		Gizmos.DrawWireCube((Vector2)transform.position + boxOffset, boxSize);
 	}
 
 }
