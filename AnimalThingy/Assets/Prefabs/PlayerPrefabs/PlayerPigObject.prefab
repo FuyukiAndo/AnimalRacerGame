@@ -7104,7 +7104,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1658185059900300}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 19.91, y: 13.09, z: 0}
+  m_LocalPosition: {x: 206.96257, y: 14.77105, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4845561731692918}
@@ -11689,6 +11689,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8000d20c51bd1394fb04a2c1baaced7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxJumpHeight: 5
+  minJumpHeight: 1
+  jumpAndFallDelay: 0.4
+  gravity: 0
+  maxVelocity: 0
+  minVelocity: 0
+  movementSpeed: 10
+  movementAcceleration: 0.15
+  collisionController: {fileID: 0}
+  movement: {x: 0, y: 0}
+  abilityMeter: 100
+  abilityTimer: 3
+  collision: []
+  maxJumpCount: 3
+  heightModifier: 2
+  inbetweenJumpCounter: 0.2
+  isJump: 0
+  blowUp: 0
+  timer: 0
 --- !u!137 &137990517440077416
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

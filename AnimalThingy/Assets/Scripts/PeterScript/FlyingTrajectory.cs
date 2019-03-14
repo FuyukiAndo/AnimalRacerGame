@@ -26,7 +26,6 @@ public class FlyingTrajectory : MonoBehaviour {
         }
         if(isOnLayer)
         {
-            Debug.Log("HEllo");
             Destroy(gameObject);
         }
     }
