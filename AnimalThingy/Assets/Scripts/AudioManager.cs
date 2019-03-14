@@ -240,7 +240,8 @@ public class AudioManager : MonoBehaviour
 
 	public float GetVolumeSFX()
 	{
-		return FindObjectOfType<AudioEffectController>().GetAudioVolume();
+		return FindObjectOfType<AudioEffectController>() ? FindObjectOfType<AudioEffectController>().GetAudioVolume() :
+		sfxVolume;
 	}
 
 	public void FadeBackTo(string path)
