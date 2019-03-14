@@ -13,17 +13,6 @@ public class SpeedChanger : MonoBehaviour
     private void Start()
     {
         c2d = GetComponent<Collider2D>();
-        if(transform.parent != null)
-        {
-            if(gameObject.name == "GoodMushroom(Clone)")
-            {
-                speedChangeAmount = GetComponentInParent<SpeedChangerSpawner>().getGoodSpeed;
-            }
-            else
-            {
-                speedChangeAmount = GetComponentInParent<SpeedChangerSpawner>().getBadSpeed;
-            }
-        }
     }
 
     void CollisionEnter2D()

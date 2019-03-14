@@ -60,6 +60,8 @@ public class PlayerInput : MonoBehaviour
 
 	void Start() 
 	{
+		animationHandler.speed = 0;
+		
 		targetAngle = maxAngleValue;
 		
 		var albatrossComponent = gameObject.GetComponent<PlayerAlbatross>();

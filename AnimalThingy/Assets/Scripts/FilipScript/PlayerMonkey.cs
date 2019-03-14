@@ -102,7 +102,7 @@ public class PlayerMonkey : PlayerController
 	
 	public override void gravityTranslate()
 	{
-		if(!activeAbility)
+		if(!activeAbility && !isActiveAbility)
 		{
 			base.gravityTranslate();		
 		}
