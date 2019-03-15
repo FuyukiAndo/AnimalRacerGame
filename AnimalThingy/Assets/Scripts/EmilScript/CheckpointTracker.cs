@@ -1,8 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
-using System;
+using FMODUnity;
+using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class CheckpointTracker : MonoBehaviour
@@ -16,8 +17,11 @@ public class CheckpointTracker : MonoBehaviour
 	}
 	private List<int> checkPointsPassed = new List<int>();
 	private int lastCheckpointPassed = 0;
-	[SerializeField] private Vector2 boxSize = new Vector2(1.0f,1.0f), boxOffset;
+	[SerializeField] private Vector2 boxOffset;
 	[SerializeField] private LayerMask checkpointLayer;
+	[SerializeField] private FMODAudio checkpointSFX;
+	[SerializeField] private AudioEffectController effectController;
+	private Vector2 boxSize;
 	public float FinishingTime
 	{
 		get
@@ -42,6 +46,15 @@ public class CheckpointTracker : MonoBehaviour
 		}
 	}
 	private int placementPoint;
+
+	void Start()
+	{
+		if (!GetComponent<BoxCollider2D>())
+		{
+			gameObject.AddComponent<BoxCollider2D>();
+		}
+		boxSize = GetComponent<BoxCollider2D>().size;
+	}
 
 	void Update()
 	{
@@ -69,6 +82,10 @@ public class CheckpointTracker : MonoBehaviour
 							return;
 						}
 					}
+				}
+				if (effectController != null)
+				{
+					effectController.PlayAudioOneShot();
 				}
 				checkPointsPassed.Add(checkPoint.Index);
 			}

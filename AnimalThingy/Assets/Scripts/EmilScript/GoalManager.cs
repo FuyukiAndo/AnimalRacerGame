@@ -36,7 +36,7 @@ public class GoalManager : MonoBehaviour
 	private bool startCountDown;
 	[SerializeField] private List<CheckpointTracker> unplacedPlayers = new List<CheckpointTracker>();
 	[SerializeField] private GameObject[] playerGoalPositions;
-	[SerializeField] private string[] playerMoveScriptName;
+	[SerializeField] private string[] playerMoveScripts;
 	private float totalTimeBeforeAutoPlacements;
 	private int initialPlayerCount;
 	[SerializeField] private LayerMask playerLayer, ignorePlayerLayer;
@@ -59,13 +59,17 @@ public class GoalManager : MonoBehaviour
 
 	void Start()
 	{
+		boxSize = GetComponent<BoxCollider2D>().size;
+	}
+
+	public void Setup()
+	{
 		foreach (var tracker in FindObjectsOfType<CheckpointTracker>())
 		{
 			unplacedPlayers.Add(tracker);
 		}
 		totalTimeBeforeAutoPlacements = timeBeforeAutoPlacements;
 		initialPlayerCount = unplacedPlayers.Count;
-		boxSize = GetComponent<BoxCollider2D>().size;
 	}
 
 	void Update()
@@ -112,27 +116,6 @@ public class GoalManager : MonoBehaviour
 		}
 	}
 
-	void OnCollisionEnter2D(Collision2D other)
-	{
-		/*if (ValidateTracker(other.transform.GetComponent<CheckpointTracker>()) && countDownOnFirstPlayer && !startCountDown)
-		{
-			//placedPlayers.Add(other.gameObject);
-			PlacePlayers();
-			//int index = Array.IndexOf(unplacedPlayers.ToArray(), other.transform.GetComponent<CheckpointTracker>());
-			//unplacedPlayers.RemoveAt(index);
-			startCountDown = true;
-		}
-		if (ValidateTracker(other.transform.GetComponent<CheckpointTracker>()))
-		{
-			print("Validated");
-			PlacePlayers();
-			if (countDownOnFirstPlayer && !startCountDown)
-			{
-				startCountDown = true;
-			}
-		}*/
-	}
-
 	bool ValidateTracker(CheckpointTracker tracker)
 	{
 		tracker.gameObject.layer = ignorePlayerLayer;
@@ -164,29 +147,6 @@ public class GoalManager : MonoBehaviour
 		return false;
 	}
 
-	public float[] GetPlayerTimesForCurrentRound()
-	{
-		List<float> playerTimes = new List<float>();
-		for (int i = 0; i < placedPlayers.Count; i++)
-		{
-			playerTimes.Add(placedPlayers[i].GetComponent<CheckpointTracker>().FinishingTime);
-		}
-		return playerTimes.ToArray();
-	}
-
-	public int[] GetPlayerPointsForCurrentRound()
-	{
-		List<int> playerPoints = new List<int>();
-		for (int i = 0; i < placedPlayers.Count; i++)
-		{
-			playerPoints.Add(placedPlayers[i].GetComponent<CheckpointTracker>().PlacementPoint);
-		}
-		return playerPoints.ToArray();
-	}
-
-	//Fast antal poäng per placering - har 2 spelare samma placering avgörs placeringen med deras finishingTime
-	//vid målgång kolla och sätt rätt poäng för rätt spelare
-	//lagra poängen och skicka poäng och tid per spelare när alla gått i mål
 	void PlacePlayers()
 	{
 		CheckpointTracker closestTracker = GetPlayerClosestToGoal();
@@ -284,28 +244,18 @@ public class GoalManager : MonoBehaviour
 
 	void TrapPlayers()
 	{
-		//string componentName = playerMoveScript.GetType().ToString();
 		foreach (var player in placedPlayers)
 		{
 			if (trappedPlayers.Contains(player))
 			{
 				continue;
 			}
-			player.transform.GetChild(0).rotation = Quaternion.Euler(
-				player.transform.GetChild(0).rotation.x, yRotation, player.transform.GetChild(0).rotation.z
-			);
-			if (player.GetComponentInChildren<AnimationHandler>())
+			//Set victory animation?
+			for (int i = 0; i < playerMoveScripts.Length; i++)
 			{
-				//player.GetComponentInChildren<AnimationHandler>().SetAnimatorTrigger("Idle");
-				//player.GetComponentInChildren<AnimationHandler>().SetAnimatorTrigger("Victory");
+				MonoBehaviour script = player.GetComponent(playerMoveScripts[i])as MonoBehaviour;
+				script.enabled = false;
 			}
-			for (int i = 0; i < playerMoveScriptName.Length; i++)
-			{
-				//MonoBehaviour script = player.GetComponent(playerMoveScriptName[i])as MonoBehaviour;
-				//script.enabled = false;
-			}
-			PlayerInput input = player.GetComponent<PlayerInput>();
-			input.isControllable = false;
 			trappedPlayers.Add(player);
 		}
 		if (placedPlayers.Count == initialPlayerCount)

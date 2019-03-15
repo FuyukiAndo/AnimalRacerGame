@@ -38,7 +38,6 @@ public class Checkpoint : MonoBehaviour
 		{
 			effectController = GetComponent<AudioEffectController>();
 		}
-		SetNextCheckPosToGoFor();
 	}
 
 	void Update()
@@ -74,7 +73,7 @@ public class Checkpoint : MonoBehaviour
 		Gizmos.DrawWireSphere((Vector2)transform.position + collisionDetectionOffset, searchRadius);
 	}
 
-	void SetNextCheckPosToGoFor()
+	public void SetNextCheckPosToGoFor()
 	{
 		if (GPSCheckpoint.Instance != null)
 		{
