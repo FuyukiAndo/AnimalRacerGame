@@ -48,7 +48,8 @@ public class PlayerController : MonoBehaviour
 	protected RaycastController raycastController;
 
 	protected float accelerationSpeed;
-	
+	protected float startSpeed;
+
 	protected int movementDirection;
 	protected int abilityDirection;
 	
@@ -60,6 +61,7 @@ public class PlayerController : MonoBehaviour
 	
 	public virtual void Start()
 	{
+		startSpeed = movementSpeed;
 		collisionController = GetComponent<CollisionController>();
 		raycastController = GetComponent<RaycastController>();
 		playerInput = GetComponent<PlayerInput>();
@@ -271,7 +273,11 @@ public class PlayerController : MonoBehaviour
 
 		transform.Translate(movement,Space.World);
 	}
-	
+	public IEnumerator movemenetSpeedChanger(float speed, float duration){
+		movementSpeed += speed;
+		yield return new WaitForSeconds(duration);
+		movementSpeed = startSpeed;
+	}
 	void OnDrawGizmosSelected()
 	{
 		Gizmos.color = Color.red;

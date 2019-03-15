@@ -34,7 +34,7 @@ public class SpeedChanger : MonoBehaviour
             PlayerController player = collider.gameObject.GetComponent<PlayerController>();
             if (player != null)
             {
-                StartCoroutine(player.movementSpeedChanger(speedChangeAmount, speedDuration));
+                StartCoroutine(player.movemenetSpeedChanger(speedChangeAmount, speedDuration));
                 GetComponent<MeshRenderer>().enabled = false;
                 GetComponent<Collider2D>().enabled = false;
             }
