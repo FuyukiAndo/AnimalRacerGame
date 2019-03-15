@@ -14,13 +14,19 @@ public class Bubble : MonoBehaviour {
     private BoxCollider2D bc2d;
     private Collider2D[] colliders;
     private int newColliderCount;
+    private float floatSpeed;
     public bool popOnDestination;
 
     private void Start()
     {
-        bubbleSpawner = GetComponentInParent<BubbleSpawner>();
-        travelPosition = bubbleSpawner.GetTravelPosition();
         bc2d = GetComponent<BoxCollider2D>();
+        if (transform.parent != null)
+        {
+            bubbleSpawner = GetComponentInParent<BubbleSpawner>();
+            popOnDestination = bubbleSpawner.getPopDesition;
+            travelPosition = bubbleSpawner.getTravelPosition;
+            timeBeforeDestination = bubbleSpawner.getDestinationTime;
+        }
     }
     // Update is called once per frame
     void Update () {
@@ -31,11 +37,11 @@ public class Bubble : MonoBehaviour {
 
     private void MoveToPosition()
     {
-       travelTime += Time.deltaTime / timeBeforeDestination;
+        travelTime += Time.deltaTime / timeBeforeDestination ;
         if (popOnDestination && (Vector2)transform.position == travelPosition)
         {
             Destroy(gameObject);
-            transform.position = Vector2.Lerp(currentPosition, travelPosition, travelTime/2);
+            transform.position = Vector2.Lerp(currentPosition, travelPosition, travelTime);
         }
         else
         {
@@ -64,7 +70,7 @@ public class Bubble : MonoBehaviour {
     } 
     IEnumerator PopBubble()
     {
-        yield return new WaitForSeconds(bubbleSpawner.GetPopTime());
+        yield return new WaitForSeconds(bubbleSpawner.getPopTime);
         Destroy(gameObject);
     }
 

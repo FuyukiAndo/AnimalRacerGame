@@ -38,7 +38,7 @@ public class Spike : FlyingTrajectory
             rb2d.WakeUp();
         }
     }
-	void FixedUpdate () {
+	void Update () {
         WakeUp();
-	}
+    }
 }

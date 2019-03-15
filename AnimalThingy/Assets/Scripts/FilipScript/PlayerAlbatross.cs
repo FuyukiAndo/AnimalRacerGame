@@ -4,41 +4,28 @@ using UnityEngine;
 
 public class PlayerAlbatross : PlayerController 
 {
-	GameObject windBlastObject; //make it public instead?
-	[Header("Flying Settings")]
-	public float flyTimer = 3;
-	public int maxFlyCount = 3;
+	public float maxFlyCounter = 3f;	
+	public float untilGlideCounter = 1.0f;
 	
-	private bool isFlying = false;
-	private int mMaxFlyCount;
-	private float mFlyTimer;
-	private float countdownMod = 0.1f;
-	private float tempDelay;
-	public bool isGliding = false;
-	public float abilityModifier;
-	public bool mDash = false; 
-	//public int dashCounter;
-	public float glideTimer = 1.0f;
-	public bool activateGlide = false;
-	[Range(0.1f,6.0f)] public float maxGlideSpeed = 4.0f;
-	private float tempFallDelay;
-	//public float tt = 0;
+	[Range(0.1f,10.0f)] public float glideSpeed = 4.0f;
 
-	//private PlayerInput playerInput;
+	public GameObject windBlastObject; 
+
+	[Header("Parameter Counter Settings")]	
+	public float maxFlyCountdownSpeed = 0.1f;
+	public float glideCounterSpeed = 1.4f;	
+	
+	private float savedMaxFlyCounter;
+	private float savedJumpAndFallDelay;
+	private float savedUntilGlideCounter;
 	
 	public override void Start()
 	{
 		base.Start();
-		//playerStates = PlayerStates.playerIdle;
-		windBlastObject = Resources.Load<GameObject>("Prefabs/SpeedUpBlast"); //good idea - ?
 		
-		mMaxFlyCount = maxFlyCount;
-		mFlyTimer = flyTimer;
-		abilityModifier = 2f;
-		tempFallDelay = jumpAndFallDelay;
-		//dashCounter = 0;
-		//playerInput = GetComponent<PlayerInput>();
-		//abilityMeter = 1.0f;
+		savedUntilGlideCounter = untilGlideCounter;
+		savedMaxFlyCounter = maxFlyCounter;
+		savedJumpAndFallDelay = jumpAndFallDelay;
 	}
 	
 	public override void Update()
@@ -46,141 +33,95 @@ public class PlayerAlbatross : PlayerController
 		base.Update();	
 		UpdateGravity();		
 		
-		if(activateGlide)
+		if(activeAbility)
 		{
-			glideTimer -= 1.4f * Time.deltaTime;
-			isGliding = false;
+			untilGlideCounter -= Mathf.Abs(glideCounterSpeed) * Time.deltaTime;
+			isActiveAbility = false;
 		}
 		
-		if(isGliding)
+		if(isActiveAbility)
 		{
-			float directionY = Mathf.Sign(movement.y);
+			directionY = Mathf.Sign(movement.y);
 			
 			if(directionY == -1)
 			{
-				jumpAndFallDelay = maxGlideSpeed;	
+				jumpAndFallDelay = glideSpeed;	
 			}
 		}
 		else
 		{
-			jumpAndFallDelay = tempFallDelay;
+			jumpAndFallDelay = savedJumpAndFallDelay;
 		}
 		
-		if(glideTimer < 0)
+		if(untilGlideCounter < 0)
 		{
-			activateGlide = false;	
-			isGliding = true;
-			glideTimer = 1.0f;
+			activeAbility = false;	
+			isActiveAbility = true;
+			untilGlideCounter = savedUntilGlideCounter;
 		}
 		
-		if(mDash && abilityActive)//abilityMeter < 100)
+		if(isPassiveAbility && passiveAbility)
 		{
 			movement.x += -1 * abilityDirection * abilityModifier;
-			abilityMeter=abilityMeter+abilityTimer;
-		}
-	
-		/*if(abilityMeter >= 100)
-		{
-			abilityMeter = 100;
-			abilityActive = false;
-		}*/
-		
-		if(!abilityActive)
-		{
-			mDash = false;
-			playerInput.isControllable = true;			
+			//abilityMeter = abilityMeter + abilityMeterModifier;
 		}
 		
-		if(isFlying)
+		if(!passiveAbility)
 		{
-			flyTimer = flyTimer-countdownMod;
+			isPassiveAbility = false;
+			playerInput.isControllable = true;	
+			playerInput.changeAngle = true;
+		}
+		
+		if(isJumping)
+		{
+			maxFlyCounter = maxFlyCounter-maxFlyCountdownSpeed;
 			
-			if(flyTimer < 0)
+			if(maxFlyCounter < 0)
 			{
-				flyTimer = mFlyTimer;
-				maxFlyCount--;
-				isFlying = false;
+				maxFlyCounter = savedMaxFlyCounter;
+				maxUseCounter--;
+				isJumping = false;
 			}
 		}
 		
 		if(collisionController.boxCollisionDirections.down)
 		{
-			maxFlyCount = mMaxFlyCount;
-			//playerInput.groundedMovement = true;
+			maxUseCounter = savedMaxUseCounter;
 		}
-		//else
-		//{
-			//playerInput.groundedMovement = false;	
-		//}
 		
-		if(maxFlyCount == 0)
-		{	
-			maxFlyCount = 0;
+		if(maxUseCounter == 0)
+		{
+			maxUseCounter = 0;
 	
 			if(collisionController.boxCollisionDirections.down)
 			{
-				maxFlyCount = mMaxFlyCount;
+				maxUseCounter = savedMaxUseCounter;
 			}
-		}
-		
-		//float t = movement.y+maxVelocity;
-	
-		//Debug.Log(tt);
-		//Debug.Log("Movement.y: " + t);
-		//Debug.Log("MaxVelocity: " + maxVelocity);
-		
-		/*if(tt < maxVelocity && isGliding == false && isFlying == true)
-		{
-			//isGliding = true;
-			tt=tt+1.4f;
-		}	
-		
-		if(tt >= maxVelocity)
-		{
-			isGliding = true;
-			tt = 0;
-		}*/
-		
+		}		
 	}
 	
 	public override void OnJumpKeyDown()
 	{
-		//glideTimer -= 0.1f * Time.deltaTime;
-		
-		if(!isGliding)
+		if(!isActiveAbility)
 		{	
-			activateGlide = true;	
-			//jumpAndFallDelay = 0.884f;
+			activeAbility = true;
 			
-			if(maxFlyCount != 0)
+			if(maxUseCounter !=0)
 			{
-				if (flyTimer == mFlyTimer)
+				if (maxFlyCounter == savedMaxFlyCounter)
 				{
-					isFlying = true;
+					isJumping = true;
 					movement.y = maxVelocity;
 				}
 			}
 		}
-		else
-		{	
-			//jumpAndFallDelay = 4.0f;		
-		}
 	}
-	
-	/*public void OnGlideKeyDown()
-	{
-		 jumpAndFallDelay = 1.8f;
-	}*/
-	
-	/*public void OnGlideKeyUp()
-	{
-
-	}*/
 	
 	public override void OnJumpKeyUp()
 	{
-		isGliding = false;
-		activateGlide = false;
+		isActiveAbility = false;
+		activeAbility = false;
 				
 		if(movement.y > minVelocity)
 		{
@@ -192,39 +133,17 @@ public class PlayerAlbatross : PlayerController
 	{
 		base.OnAbilityKey();
 		
-		abilityActive=true;
+		passiveAbility = true;		
 		
-		if(abilityActive)
-		{
-			mDash = true;
+		if(passiveAbility)
+		{					
+			//passiveAbility = true;
+			isPassiveAbility = true;
 			playerInput.isControllable = false;
+			playerInput.changeAngle = false;
 		}
 		
 		Instantiate(windBlastObject, new Vector2(transform.position.x+(2.5f*abilityDirection),transform.position.y+2f), new Quaternion(0, 0, 0, 0), gameObject.transform);
-		//Physics2D.IgnoreCollision(windBlastObject.GetComponent<BoxCollider2D>(), GetComponent<BoxCollider2D>());
-		
-		//Instantiate(prefab,transform.position, Quaternion.identity);
-		//prefab.transform.SetParent(transform.parent, true);
-		//prefab.transform.parent = gameObject.transform;
+		windBlastObject.transform.parent = null;
 	}
-	
-	/*public int GetDirection()
-	{
-		return direction;
-	}*/
-	
-	/*void windDiraction()
-    {
-        intervalTime += Time.deltaTime;
-        if(intervalTime > currentChangeInterval)
-        {
-            pushStrenght = -pushStrenght;
-            intervalTime = 0;
-            currentChangeInterval = Random.Range(minWindChangeInterval, maxWindChangeInterval);
-        }
-        foreach (Rigidbody2D rb2d in playerRigidbody2D)
-        {
-            rb2d.velocity = new Vector2(pushStrenght, rb2d.velocity.y);
-        }
-    }*/
 }

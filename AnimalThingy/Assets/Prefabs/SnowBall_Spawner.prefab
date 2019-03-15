@@ -36,8 +36,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1117828008854848}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 298.7, y: 51.4, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 52.8, y: 31.6, z: 0}
   m_LocalScale: {x: 2.786497, y: 2.7864976, z: 2.7864976}
   m_Children: []
   m_Father: {fileID: 0}
@@ -97,7 +97,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnObject: {fileID: 1163810867469742, guid: e0e7fe00fbf66d8428183647ab872a11,
     type: 2}
-  timeBetweenSpawns: 5
+  wantSpawnerToBeRemoved: 1
+  timeBetweenSpawnsMin: 5
+  timeBetweenSpawnsMax: 5
+  acceleration: -0.6
+  stunDuration: 2
+  force: 5
+  maxPushBack: 10
 --- !u!135 &135061801177166374
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -105,7 +111,7 @@ SphereCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1117828008854848}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5

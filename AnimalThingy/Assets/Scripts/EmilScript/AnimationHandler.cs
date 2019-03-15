@@ -4,14 +4,15 @@ using UnityEngine.Animations;
 
 public class AnimationHandler : MonoBehaviour
 {
-	[SerializeField] private bool autoAnimate;
+    [SerializeField] private bool autoAnimate;
 	[SerializeField] private Animator animator;
-	[Tooltip("One animation per event type")] [SerializeField] private AnimationType[] animationType;
+	[Tooltip("One animation per event type")][SerializeField] private AnimationType[] animationType;
 	private AnimationType forUpdate, forCollisionEnter, forCollisionExit, forCollisionStay, forTriggerEnter,
 	forTriggerStay, forTriggerExit;
-	private bool queveUpdateAnimation;
-	public float BlinkInterval
-	{
+    private bool queveUpdateAnimation;
+    public float speed;
+    public float BlinkInterval
+    {
 		get
 		{
 			return blinkInterval;
@@ -21,6 +22,7 @@ public class AnimationHandler : MonoBehaviour
 			blinkInterval = value;
 		}
 	}
+
 	[SerializeField] private float blinkInterval;
 	private float nextBlink;
 
@@ -84,13 +86,13 @@ public class AnimationHandler : MonoBehaviour
 				{
 					case AnimationTriggerType.boolean:
 						SetAnimatorBool(forUpdate.animationName,
-						forUpdate.OnFirstAnimation ? forUpdate.animationActiveState : !forUpdate.animationActiveState);
+							forUpdate.OnFirstAnimation ? forUpdate.animationActiveState : !forUpdate.animationActiveState);
 						break;
 					case AnimationTriggerType.floating:
 						if (forUpdate.secondAnimationValue != 0.0f)
 						{
 							SetAnimatorFloat(forUpdate.animationName,
-						forUpdate.OnFirstAnimation ? forUpdate.animationValue : forUpdate.secondAnimationValue);
+								forUpdate.OnFirstAnimation ? forUpdate.animationValue : forUpdate.secondAnimationValue);
 						}
 						else
 						{
@@ -101,7 +103,7 @@ public class AnimationHandler : MonoBehaviour
 						if (forUpdate.secondAnimationTrigger != null)
 						{
 							SetAnimatorTrigger(
-							forUpdate.OnFirstAnimation ? forUpdate.animationTrigger : forUpdate.secondAnimationTrigger);
+								forUpdate.OnFirstAnimation ? forUpdate.animationTrigger : forUpdate.secondAnimationTrigger);
 						}
 						else
 						{
@@ -283,5 +285,15 @@ public class AnimationHandler : MonoBehaviour
 		}
 		animator.SetBool("Blink", false);
 		nextBlink = Time.time + blinkInterval;
+	}
+
+	public void SetAnimationSpeed(float speed)
+	{
+		animator.speed = speed;
+	}
+
+	public void SetAnimatorActive(bool state)
+	{
+		animator.enabled = state;
 	}
 }

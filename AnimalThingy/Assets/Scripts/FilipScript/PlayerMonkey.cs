@@ -4,61 +4,56 @@ using UnityEngine;
 
 public class PlayerMonkey : PlayerController 
 {
-	GameObject projectileObject;
-	public float wallClimbingSpeed = 5f;
+	public GameObject projectileObject;
+	public float climbingSpeed = 5f;
 	
-	public bool isClimbing = false;
-	public bool activeClimbing = false;
 	public Vector2 surfaceOn;
 	public Vector2 surfaceOff;
 	public Vector2 surfaceLeap;
-	int dirX;	
-	public float directionX;
 	
 	public override void Start()
 	{
 		base.Start();
-		projectileObject = Resources.Load<GameObject>("Prefabs/BananaGameObject");
 	}
 	
 	public override void MoveLeft()
 	{
-		if(!isClimbing)
+		if(!isActiveAbility)
 		{
 			base.MoveLeft();	
 		}
 		else
 		{
-			activeClimbing = true;
+			activeAbility = true;
 			
-			if(dirX == 1)
+			if(directionX == 1)
 			{
-				movement.y = -wallClimbingSpeed;	
+				movement.y = -climbingSpeed;	
 			}	
 			else
 			{
-				movement.y = wallClimbingSpeed;				
+				movement.y = climbingSpeed;				
 			}
 		}		
 	}
 	
 	public override void MoveRight()
 	{	
-		if(!isClimbing)
+		if(!isActiveAbility)
 		{
 			base.MoveRight();		
 		}
 		else
 		{
-			activeClimbing = true;
+			activeAbility = true;
 			
-			if(dirX == 1)
+			if(directionX == 1)
 			{
-				movement.y = wallClimbingSpeed;	
+				movement.y = climbingSpeed;	
 			}	
 			else
 			{
-				movement.y = -wallClimbingSpeed;				
+				movement.y = -climbingSpeed;				
 			}
 		}
 	}
@@ -70,22 +65,17 @@ public class PlayerMonkey : PlayerController
 	
 	public override void OnJumpKeyUp()
 	{
-		if(isClimbing)
-		{
-			
-		}
-		else
+		if(!isActiveAbility)
 		{
 			base.OnJumpKeyUp();
 		}
 	}	
 
-	//If pressed down, then goes to max value.
 	public override void OnJumpKeyDown()
 	{
-		if(isClimbing)
+		if(isActiveAbility)
 		{
-			movement.x = -dirX * surfaceLeap.x;
+			movement.x = -directionX * surfaceLeap.x;
 				//movement.y = surfaceLeap.y;
 			
 			/*if(dirX == abilityDirection)
@@ -112,9 +102,9 @@ public class PlayerMonkey : PlayerController
 	
 	public override void gravityTranslate()
 	{
-		if(!activeClimbing)
+		if(!activeAbility && !isActiveAbility)
 		{
-			base.gravityTranslate();//movement.y += gravity * Time.deltaTime;//verticalTranslate;		
+			base.gravityTranslate();		
 		}
 	}
 
@@ -125,38 +115,42 @@ public class PlayerMonkey : PlayerController
 		
 		if(collisionController.boxCollisionDirections.left)
 		{
-			dirX = -1;
+			directionX = -1;
 		}
 		else
 		{
-			dirX = 1;
+			directionX = 1;
 		}
 
 		if((collisionController.boxCollisionDirections.left || collisionController.boxCollisionDirections.right)
 		&& !collisionController.boxCollisionDirections.down && movement.y < 0)
 		{
-			isClimbing  = true;
-	
-			//if(!activeClimbing)
-			//{
-				if(movement.y < -wallClimbingSpeed)
-				{
-					movement.y = -wallClimbingSpeed;
-				}
-			//}
+			isActiveAbility = true;
+			activeAbility = true;
+			
+			playerInput.changeAngle = false;
+
+			/*if(movement.y < -climbingSpeed)
+			{
+				movement.y = -climbingSpeed/2.0f;
+			}*/
 		}
 		
 		if((collisionController.boxCollisionDirections.left || collisionController.boxCollisionDirections.right)
-		&& collisionController.boxCollisionDirections.down)
+		&& collisionController.boxCollisionDirections.down && movement.y == 0)
 		{
-			isClimbing = false;
-			activeClimbing = false;
+			isActiveAbility = false;
+			activeAbility = false;
+
+			playerInput.changeAngle = true;
 		}
 
-		if(!(collisionController.boxCollisionDirections.left || collisionController.boxCollisionDirections.right))
+		if(!(collisionController.boxCollisionDirections.left) || (collisionController.boxCollisionDirections.right))
 		{
-			isClimbing = false;
-			activeClimbing = false;
+			isActiveAbility = false;
+			activeAbility = false;
+			
+			playerInput.changeAngle = true;
 		}
 	}
 	
@@ -164,7 +158,7 @@ public class PlayerMonkey : PlayerController
 	{
 		base.OnAbilityKey();
 	
-		if(!isClimbing)
+		if(!isActiveAbility)
 		{
 			Instantiate(projectileObject, new Vector2(transform.position.x+(2.5f*abilityDirection),transform.position.y+2f), new Quaternion(0, 0, 0, 0), gameObject.transform);		
 		}
