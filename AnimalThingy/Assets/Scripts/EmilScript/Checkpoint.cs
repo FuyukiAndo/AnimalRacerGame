@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(BoxCollider2D))]
 public class Checkpoint : MonoBehaviour
 {
 	public int Index
@@ -17,6 +18,7 @@ public class Checkpoint : MonoBehaviour
 	[SerializeField] private AudioEffectController effectController;
 	[SerializeField] private float searchRadius = 1f;
 	[SerializeField] private Vector2 collisionDetectionOffset;
+	[SerializeField] private LayerMask playerLayer;
 
 	private bool updatedCheckToGoFor;
 
@@ -36,17 +38,13 @@ public class Checkpoint : MonoBehaviour
 		{
 			effectController = GetComponent<AudioEffectController>();
 		}
+		SetNextCheckPosToGoFor();
 	}
 
 	void Update()
 	{
-		Collider2D collider = Physics2D.OverlapCircle((Vector2)transform.position + collisionDetectionOffset, searchRadius);
+		Collider2D collider = Physics2D.OverlapCircle((Vector2)transform.position + collisionDetectionOffset, searchRadius, playerLayer);
 		if (playerFlags.Length <= 0)return;
-		if (collider == this.GetComponent<Collider2D>())
-		{
-			print("Hello");
-			return;
-		}
 		for (int i = 0; i < playerFlags.Length; i++)
 		{
 			if (playerFlags[i].playerFlag == null)
@@ -55,10 +53,6 @@ public class Checkpoint : MonoBehaviour
 			}
 			if (collider.name == playerFlags[i].playerName)
 			{
-				if (effectController != null)
-				{
-
-				}
 				playerFlags[i].playerFlag.SetActive(true);
 				if (!updatedCheckToGoFor)
 				{

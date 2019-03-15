@@ -26,7 +26,7 @@ public class StartManager : MonoBehaviour
 	}
 
 	private static StartManager instance;
-	[SerializeField] private GameObject[] unplacedPlayers;
+	[SerializeField] private List<GameObject> unplacedPlayers = new List<GameObject>();
 	[SerializeField] private string playerMoveScript;
     private CharacterUIManager characterUIManager;
     public List<int> playerScoreList;
@@ -46,18 +46,8 @@ public class StartManager : MonoBehaviour
 	[SerializeField] private int timeUntilStart;
 	[SerializeField] private bool startCountDownOnSceneLoad;
 
-	void Start()
-	{
-        playerScoreList = new List<int>();
-        characterUIManager = FindObjectOfType<CharacterUIManager>();
-        spawnPoints = new List<SpawnPoint>
-        {
-            spawnPos1,
-            spawnPos2,
-            spawnPos3,
-            spawnPos4
-        };
-
+	void Awake()
+    {
 		if (instance == null)
 		{
 			instance = this;
@@ -66,9 +56,28 @@ public class StartManager : MonoBehaviour
 		{
 			Destroy(gameObject);
 		}
+    }
+
+	void Start()
+	{
+		playerScoreList = new List<int>();
+		print("step 1");
+		characterUIManager = FindObjectOfType<CharacterUIManager>();
+		print("step 2");
+        spawnPoints = new List<SpawnPoint>
+        {
+            spawnPos1,
+            spawnPos2,
+            spawnPos3,
+            spawnPos4
+        };
+		print("step 3");
         SortPlayers();
+		print("step 4");
         SpawnPlayers();
+		print("step 5");
 		TrapPlayers();
+		print("step 6");
 		if (startCountDownOnSceneLoad)
 		{
             

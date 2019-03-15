@@ -17,6 +17,7 @@ public class CheckpointTracker : MonoBehaviour
 	private List<int> checkPointsPassed = new List<int>();
 	private int lastCheckpointPassed = 0;
 	[SerializeField] private Vector2 boxSize = new Vector2(1.0f,1.0f), boxOffset;
+	[SerializeField] private LayerMask checkpointLayer;
 	public float FinishingTime
 	{
 		get
@@ -44,7 +45,7 @@ public class CheckpointTracker : MonoBehaviour
 
 	void Update()
 	{
-		Collider2D collider = Physics2D.OverlapBox((Vector2)transform.position + boxOffset, boxSize, 0f);
+		Collider2D collider = Physics2D.OverlapBox((Vector2)transform.position + boxOffset, boxSize, 0f, checkpointLayer);
 		if (collider.GetComponent<Checkpoint>())
 		{
 			Checkpoint checkPoint = collider.GetComponent<Checkpoint>();

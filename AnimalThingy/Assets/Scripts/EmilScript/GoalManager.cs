@@ -34,7 +34,7 @@ public class GoalManager : MonoBehaviour
 	private List<GameObject> placedPlayers = new List<GameObject>();
 	private List<GameObject> trappedPlayers = new List<GameObject>();
 	private bool startCountDown;
-	private List<CheckpointTracker> unplacedPlayers = new List<CheckpointTracker>();
+	[SerializeField] private List<CheckpointTracker> unplacedPlayers = new List<CheckpointTracker>();
 	[SerializeField] private GameObject[] playerGoalPositions;
 	[SerializeField] private string[] playerMoveScriptName;
 	private float totalTimeBeforeAutoPlacements;
@@ -45,7 +45,7 @@ public class GoalManager : MonoBehaviour
 	private GameObject checkpointToGoFor;
 	private int currentCheckToGoFor;
 
-	void Start()
+	void Awake()
 	{
 		if (instance == null)
 		{
@@ -55,6 +55,10 @@ public class GoalManager : MonoBehaviour
 		{
 			Destroy(gameObject);
 		}
+	}
+
+	void Start()
+	{
 		foreach (var tracker in FindObjectsOfType<CheckpointTracker>())
 		{
 			unplacedPlayers.Add(tracker);
