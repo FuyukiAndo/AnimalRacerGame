@@ -145,38 +145,42 @@ public class PlayerInput : MonoBehaviour
 	
 	void InputAction()
 	{
-		// Move player left
-		if(isControllable)
-		{
-			if(Input.GetKey(playerLeftKey))
-			{
-				keyCodeDictionary0[playerLeftKey]();
-			}
+        stunDurationLeft -= Time.deltaTime;
+        // Move player left
+        if (stunDurationLeft < 0)
+        {
+            if (isControllable)
+            {
+                if (Input.GetKey(playerLeftKey))
+                {
+                    keyCodeDictionary0[playerLeftKey]();
+                }
 
-			// Move player right
-			if(Input.GetKey(playerRightKey))
-			{
-				keyCodeDictionary0[playerRightKey]();
-			}
+                // Move player right
+                if (Input.GetKey(playerRightKey))
+                {
+                    keyCodeDictionary0[playerRightKey]();
+                }
 
-			// Jump KeyCode Down
-			if(Input.GetKeyDown(playerJumpKey))
-			{
-				keyCodeDictionary0[playerJumpKey]();
-			}
-			
-			// Jump KeyCode Up
-			if(Input.GetKeyUp(playerJumpKey))
-			{
-				keyCodeDictionary1[playerJumpKey]();
-			}
-			
-			// Ability Key
-			if(Input.GetKeyDown(playerAbilityKey))
-			{
-				keyCodeDictionary0[playerAbilityKey]();
-			}
-		}
+                // Jump KeyCode Down
+                if (Input.GetKeyDown(playerJumpKey))
+                {
+                    keyCodeDictionary0[playerJumpKey]();
+                }
+
+                // Jump KeyCode Up
+                if (Input.GetKeyUp(playerJumpKey))
+                {
+                    keyCodeDictionary1[playerJumpKey]();
+                }
+
+                // Ability Key
+                if (Input.GetKeyDown(playerAbilityKey))
+                {
+                    keyCodeDictionary0[playerAbilityKey]();
+                }
+            }
+        }
 		
 		//If no KeyCode is pressed
 		keyCodeDictionary0[playerNoKey]();

@@ -7126,7 +7126,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1658185059900300}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 206.96257, y: 14.77105, z: 0}
+  m_LocalPosition: {x: 216, y: 45.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4845561731692918}
@@ -11810,10 +11810,10 @@ MonoBehaviour:
   playerRightKey: 275
   playerJumpKey: 97
   playerAbilityKey: 115
-  rotationSpeed: 0.18
+  rotationSpeed: 0.25
   isControllable: 1
   changeAngle: 1
-  stunDurationLeft: 1.2
+  stunDurationLeft: 3
   targetAngle: 269
 --- !u!114 &114207199674327870
 MonoBehaviour:
@@ -11907,8 +11907,8 @@ MonoBehaviour:
   jumpAndFallDelay: 0.4
   movementSpeed: 10
   movementAcceleration: 0.15
-  accelerationModifier: 0.1
-  deaccelerationModifier: 0.1
+  accelerationModifier: 0.2
+  deaccelerationModifier: 0.3
   abilityMeter: 100
   abilityMeterModifier: 1
   isActiveAbility: 0
@@ -11922,7 +11922,7 @@ MonoBehaviour:
   movement: {x: 0, y: 0}
   maxJumpCount: 3
   heightModifier: 2
-  inbetweenJumpCounter: 0.2
+  inbetweenJumpCounter: 0.3
   isJump: 0
   blowUp: 0
   timer: 0
