@@ -8124,7 +8124,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1045792901303020}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.57927, y: 12.28, z: 0}
+  m_LocalPosition: {x: 226.2, y: 48.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4325771557941594}
@@ -13186,7 +13186,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1788849976365246}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.91, y: 0, z: 51.75}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children: []
   m_Father: {fileID: 4325771557941594}
@@ -15199,26 +15199,28 @@ MonoBehaviour:
   maxJumpHeight: 5
   minJumpHeight: 1
   jumpAndFallDelay: 0.4
-  gravity: -62.499996
-  maxVelocity: 24.999998
-  minVelocity: 11.18034
   movementSpeed: 10
   movementAcceleration: 0.15
+  accelerationModifier: 0.2
+  deaccelerationModifier: 0.3
+  abilityMeter: 100
+  abilityMeterModifier: 1
+  isActiveAbility: 0
+  isPassiveAbility: 0
+  activeAbility: 0
+  passiveAbility: 0
+  isJumping: 0
+  maxUseCounter: 3
+  abilityModifier: 2
   collisionController: {fileID: 114954231877299268}
   movement: {x: 0, y: 0}
-  abilityMeter: 100
-  abilityTimer: 3
-  collision:
-  - {fileID: 61171798329010392}
-  - {fileID: 0}
-  flyTimer: 2.3
-  maxFlyCount: 3
-  isGliding: 0
-  abilityModifier: 2
-  mDash: 0
-  glideTimer: 0.6984188
-  activateGlide: 0
-  maxGlideSpeed: 1.5
+  maxFlyCounter: 3
+  untilGlideCounter: 0.4
+  glideSpeed: 2
+  windBlastObject: {fileID: 1252155166552534, guid: 4a00aecaa868a53409b7b0f3a73e88a4,
+    type: 2}
+  maxFlyCountdownSpeed: 5
+  glideCounterSpeed: 0.7
 --- !u!114 &114262746873581374
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15233,6 +15235,7 @@ MonoBehaviour:
   autoAnimate: 0
   animator: {fileID: 95377604215473606}
   animationType: []
+  speed: 0
   blinkInterval: 0
 --- !u!114 &114819313975983990
 MonoBehaviour:
@@ -15245,16 +15248,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ada670a83430aa448bc3fa1cbfa48aaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCharacterType: 1
   animationHandler: {fileID: 114262746873581374}
+  playerCharacterType: 1
   playerLeftKey: 276
   playerRightKey: 275
   playerJumpKey: 97
   playerAbilityKey: 115
-  rotationSpeed: 0.18
-  targetAngle: 269
+  rotationSpeed: 0.25
   isControllable: 1
-  stunDurationLeft: 1.2
+  changeAngle: 1
+  stunDurationLeft: 3
+  targetAngle: 269
 --- !u!114 &114954231877299268
 MonoBehaviour:
   m_ObjectHideFlags: 1

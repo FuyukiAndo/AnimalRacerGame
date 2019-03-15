@@ -11,6 +11,7 @@ public class TerrainSnowball : MonoBehaviour {
     public float stunDuration;
     public float maxPushBack;
 
+    private bool gotHit = false;
     private Rigidbody2D rb2d;
     private Collider2D c2d;
     private Collider2D[] collision;
@@ -40,7 +41,9 @@ public class TerrainSnowball : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void FixedUpdate () {
+	void FixedUpdate ()
+    {
+        if (gotHit) return;
         Debug.DrawRay(transform.position,Vector2.right * (dir), Color.red);
         HitWall();
         HitPlayer();
@@ -49,10 +52,16 @@ public class TerrainSnowball : MonoBehaviour {
 	}
     public void HitPlayer()
     {
-        Debug.Log(rb2d.velocity.x);
         collision = Physics2D.OverlapBoxAll(transform.position, c2d.bounds.size, 0.0f);
+        
         foreach (var collider in collision)
         {
+            if (collider.gameObject.GetComponent<Spike>())
+            {
+                Debug.Log("hello");
+                Physics2D.IgnoreCollision(c2d, collider.gameObject.GetComponent<Collider2D>());
+
+            }
             bool isOnLayer = characterLayer == (characterLayer | (1 << collider.gameObject.layer));
             if (isOnLayer)
             {
@@ -75,17 +84,19 @@ public class TerrainSnowball : MonoBehaviour {
                 Debug.Log(pushback);
                 Physics2D.IgnoreCollision(collider, c2d);
                 collider.GetComponent<PlayerInput>().stunDurationLeft = stunDuration;
-                if(transform.position.x > collider.transform.position.x)
+                if(transform.position.x < collider.transform.position.x)
                 {
                    
                     collider.GetComponent<PlayerController>().movement.y += usedPushForce;
                     collider.GetComponent<PlayerController>().movement.x += pushback;
+                    gotHit = true;
 
                 }
                 else
                 {
                     collider.GetComponent<PlayerController>().movement.y += usedPushForce;
                     collider.GetComponent<PlayerController>().movement.x -= pushback;
+                    gotHit = true;
                 }
             }
         }
