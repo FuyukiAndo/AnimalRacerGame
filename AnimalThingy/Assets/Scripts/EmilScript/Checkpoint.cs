@@ -42,6 +42,11 @@ public class Checkpoint : MonoBehaviour
 	{
 		Collider2D collider = Physics2D.OverlapCircle((Vector2)transform.position + collisionDetectionOffset, searchRadius);
 		if (playerFlags.Length <= 0)return;
+		if (collider == this.GetComponent<Collider2D>())
+		{
+			print("Hello");
+			return;
+		}
 		for (int i = 0; i < playerFlags.Length; i++)
 		{
 			if (playerFlags[i].playerFlag == null)
@@ -52,7 +57,7 @@ public class Checkpoint : MonoBehaviour
 			{
 				if (effectController != null)
 				{
-					
+
 				}
 				playerFlags[i].playerFlag.SetActive(true);
 				if (!updatedCheckToGoFor)
