@@ -52,6 +52,7 @@ public class TerrainSnowball : MonoBehaviour {
 	}
     public void HitPlayer()
     {
+        //Debug.Log(rb2d.velocity.x);
         collision = Physics2D.OverlapBoxAll(transform.position, c2d.bounds.size, 0.0f);
         
         foreach (var collider in collision)
