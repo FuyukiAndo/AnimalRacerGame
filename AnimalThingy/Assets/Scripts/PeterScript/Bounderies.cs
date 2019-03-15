@@ -18,16 +18,18 @@ public class Bounderies : MonoBehaviour {
         }   
     }
     void Update () {
-        collider2d = Physics2D.OverlapBox(transform.position,bc2d.bounds.size,0);
-		if (collider2d == this.GetComponent<Collider2D>()) return;
+       collider2d = Physics2D.OverlapBox(transform.position,bc2d.bounds.size,0);
+        Physics2D.IgnoreCollision(collider2d, bc2d);
 
-        if (checkpointPositions.Count <= 0 || collider2d.gameObject.GetComponent<CheckpointTracker>().CheckpointsPassed.Count <= 0 )
+        var checkpointTracker = collider2d.gameObject.GetComponent<CheckpointTracker>();
+
+        if (!checkpointTracker) return;
+        if (checkpointPositions.Count <= 0 || checkpointTracker.CheckpointsPassed.Count <= 0 )
         {
             collider2d.gameObject.transform.position = StartManager.Instance.spawnPos1.spawnPos.transform.position;
         }
         for (int i = 0; i < checkpointPositions.Count; i++)
         {
-            CheckpointTracker checkpointTracker = collider2d.gameObject.GetComponent<CheckpointTracker>();
             int index = checkpointTracker.CheckpointsPassed[checkpointTracker.CheckpointsPassed.Count - 1];
             if (checkpointPositions[i].GetComponent<Checkpoint>().Index == index)
             {
