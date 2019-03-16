@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(BoxCollider2D))]
+[RequireComponent(typeof(CircleCollider2D))]
 public class Checkpoint : MonoBehaviour
 {
 	public int Index
@@ -15,10 +15,8 @@ public class Checkpoint : MonoBehaviour
 
 	[SerializeField] private int index;
 	[SerializeField] private PlayerFlag[] playerFlags;
-	[SerializeField] private AudioEffectController effectController;
-	[SerializeField] private float searchRadius = 1f;
-	[SerializeField] private Vector2 collisionDetectionOffset;
 	[SerializeField] private LayerMask playerLayer;
+	[SerializeField] private CircleCollider2D circle;
 
 	private bool updatedCheckToGoFor;
 
@@ -34,15 +32,16 @@ public class Checkpoint : MonoBehaviour
 				}
 			}
 		}
-		if (GetComponent<AudioEffectController>() && effectController == null)
+		if (!GetComponent<CircleCollider2D>())
 		{
-			effectController = GetComponent<AudioEffectController>();
+			gameObject.AddComponent<CircleCollider2D>();
 		}
+		circle = GetComponent<CircleCollider2D>();
 	}
 
 	void Update()
 	{
-		Collider2D collider = Physics2D.OverlapCircle((Vector2)transform.position + collisionDetectionOffset, searchRadius, playerLayer);
+		Collider2D collider = Physics2D.OverlapCircle((Vector2)transform.position + circle.offset, circle.radius, playerLayer);
 		if (playerFlags.Length <= 0)return;
 		for (int i = 0; i < playerFlags.Length; i++)
 		{
@@ -70,7 +69,7 @@ public class Checkpoint : MonoBehaviour
 	void OnDrawGizmos()
 	{
 		Gizmos.color = Color.yellow;
-		Gizmos.DrawWireSphere((Vector2)transform.position + collisionDetectionOffset, searchRadius);
+		Gizmos.DrawWireSphere((Vector2)transform.position + circle.offset, circle.radius);
 	}
 
 	public void SetNextCheckPosToGoFor()
