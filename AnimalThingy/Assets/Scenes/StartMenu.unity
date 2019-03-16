@@ -10721,7 +10721,7 @@ MonoBehaviour:
     randomizeValue: 0
   backgroundClip: {fileID: 0}
   useFMOD: 1
-  backgroundVolume: 0.197
+  backgroundVolume: 0
   ambienceVolume: 0
   sfxVolume: 0.378
   masterVolume: 1
@@ -18330,19 +18330,19 @@ MonoBehaviour:
   m_FillRect: {fileID: 1787959970}
   m_HandleRect: {fileID: 80990369}
   m_Direction: 0
-  m_MinValue: -80
-  m_MaxValue: 0
+  m_MinValue: 0
+  m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: -80
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 33042093}
-        m_MethodName: SetVolume
-        m_Mode: 0
+        m_MethodName: SetSFXVolume
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1522133669}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Slider, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -20490,19 +20490,19 @@ MonoBehaviour:
   m_FillRect: {fileID: 397593877}
   m_HandleRect: {fileID: 2035482575}
   m_Direction: 0
-  m_MinValue: -80
-  m_MaxValue: 0
+  m_MinValue: 0
+  m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: -80
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 33042093}
-        m_MethodName: SetVolume
-        m_Mode: 0
+        m_MethodName: SetMasterVolume
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1663533402}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Slider, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -21253,19 +21253,19 @@ MonoBehaviour:
   m_FillRect: {fileID: 1436511674}
   m_HandleRect: {fileID: 445801355}
   m_Direction: 0
-  m_MinValue: -80
-  m_MaxValue: 0
+  m_MinValue: 0
+  m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: -80
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 33042093}
-        m_MethodName: SetVolume
-        m_Mode: 0
+        m_MethodName: SetBackgroundVolume
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1755186854}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Slider, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

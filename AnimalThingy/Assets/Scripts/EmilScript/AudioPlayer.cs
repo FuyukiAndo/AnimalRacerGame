@@ -19,7 +19,7 @@ public class AudioPlayer : MonoBehaviour
 			sfx.audioInstance = RuntimeManager.CreateInstance(sfx.currentAudioPath);
 			ATTRIBUTES_3D attributesAmb = FMODUnity.RuntimeUtils.To3DAttributes(transform.position);
 			sfx.audioInstance.set3DAttributes(attributesAmb);
-			SetAudioVolume(AudioManager.Instance.SFXVolume);
+			SetAudioVolume(AudioManager.Instance.GetVolumeSFX());
 
 			if (sfx.randomizeValue && sfx.additionalParamValues.Length > 0)
 			{

@@ -36,7 +36,7 @@ public class GoalManager : MonoBehaviour
 	private bool startCountDown;
 	[SerializeField] private List<CheckpointTracker> unplacedPlayers = new List<CheckpointTracker>();
 	[SerializeField] private GameObject[] playerGoalPositions;
-	[SerializeField] private string[] playerMoveScripts;
+	//[SerializeField] private string[] playerMoveScripts;
 	private float totalTimeBeforeAutoPlacements;
 	private int initialPlayerCount;
 	[SerializeField] private LayerMask playerLayer, ignorePlayerLayer;
@@ -251,11 +251,12 @@ public class GoalManager : MonoBehaviour
 				continue;
 			}
 			//Set victory animation?
-			for (int i = 0; i < playerMoveScripts.Length; i++)
-			{
-				MonoBehaviour script = player.GetComponent(playerMoveScripts[i])as MonoBehaviour;
-				script.enabled = false;
-			}
+			PlayerInput input = player.GetComponent<PlayerInput>();
+			input.isControllable = false;
+			PlayerController controller = player.GetComponent<PlayerController>();
+			//MonoBehaviour script = player.GetComponent(playerMoveScript) as MonoBehaviour;
+			//script.enabled = true;
+			controller.enabled = false;
 			trappedPlayers.Add(player);
 		}
 		if (placedPlayers.Count == initialPlayerCount)

@@ -43,36 +43,8 @@ public class AudioManager : MonoBehaviour
 	}
 	private static AudioManager instance;
 	public bool useFMOD;
-	public float BackgroundVolume
-	{
-		get
-		{
-			return backgroundVolume;
-		}
-	}
-	public float AmbienceVolume
-	{
-		get
-		{
-			return ambienceVolume;
-		}
-	}
-	public float SFXVolume
-	{
-		get
-		{
-			return sfxVolume;
-		}
-	}
-	public float MasterVolume
-	{
-		get
-		{
-			return masterVolume;
-		}
-	}
 
-	[SerializeField][Range(0f, 1f)] private float backgroundVolume, ambienceVolume, sfxVolume, masterVolume;
+	[SerializeField][Range(0f, 1f)] private float backgroundVolume = .5f, ambienceVolume = .5f, sfxVolume = .5f, masterVolume = .5f;
 
 	void OnValidate()
 	{
@@ -93,8 +65,9 @@ public class AudioManager : MonoBehaviour
 		{
 			if (scene.name.Contains(audio.mapName) || audio.mapName.Contains(scene.name))
 			{
+				StopBackAudioLooping();
 				SetBackgroundAudio(audio.audioPath);
-				FadeBackTo(background.currentAudioPath);
+				PlayBackAudioLooping();
 			}
 		}
 	}
@@ -117,7 +90,6 @@ public class AudioManager : MonoBehaviour
 	{
 		if (useFMOD)
 		{
-			Setup();
 			if (background.randomizeValue && background.additionalParamValues.Length > 0)
 			{
 				int rand = Random.Range(0, background.additionalParamValues.Length);
@@ -140,8 +112,12 @@ public class AudioManager : MonoBehaviour
 			SetVolumeBackground(backgroundVolume);
 			SetVolumeAmbience(ambienceVolume);
 			SetVolumeMaster(masterVolume);
-			StartCoroutine(PlayBackAudio());
-			StartCoroutine(PlayAmbience());
+			if (!IsBackPlaying())
+			{
+				Setup();
+				StartCoroutine(PlayBackAudio());
+			}
+			//StartCoroutine(PlayAmbience());
 		}
 		else
 		{
@@ -193,7 +169,8 @@ public class AudioManager : MonoBehaviour
 			background.audioInstance.getPlaybackState(out playState);
 			yield return null;
 		}
-		background.audioInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+		FadeBackTo(background.currentAudioPath);
+		//background.audioInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
 	}
 
 	IEnumerator PlayAmbience()
@@ -210,7 +187,8 @@ public class AudioManager : MonoBehaviour
 			ambience.audioInstance.getPlaybackState(out playState);
 			yield return null;
 		}
-		ambience.audioInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+		FadeAmbienceTo(ambience.currentAudioPath);
+		//ambience.audioInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
 	}
 
 	IEnumerator PlayBackgroundAudio()
@@ -253,6 +231,7 @@ public class AudioManager : MonoBehaviour
 
 	public void SetVolumeSFX(float volume)
 	{
+		sfxVolume = volume;
 		foreach (var controller in FindObjectsOfType<AudioEffectController>())
 		{
 			controller.SetAudioVolume(volume);
@@ -261,8 +240,7 @@ public class AudioManager : MonoBehaviour
 
 	public float GetVolumeSFX()
 	{
-		return FindObjectOfType<AudioEffectController>() ? FindObjectOfType<AudioEffectController>().GetAudioVolume()
-			: sfxVolume;
+		return sfxVolume;
 	}
 
 	public void FadeBackTo(string path)
@@ -271,8 +249,7 @@ public class AudioManager : MonoBehaviour
 		if (path != null)
 		{
 			Setup();
-			background.audioInstance = RuntimeManager.CreateInstance(path);
-			background.audioInstance.start();
+			StartCoroutine(PlayBackAudio());
 		}
 	}
 
@@ -281,7 +258,8 @@ public class AudioManager : MonoBehaviour
 		ambience.audioInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
 		if (path != null)
 		{
-			ambience.audioInstance = RuntimeManager.CreateInstance(path);
+			Setup();
+			//ambience.audioInstance = RuntimeManager.CreateInstance(path);
 			ambience.audioInstance.start();
 		}
 	}
@@ -334,17 +312,20 @@ public class AudioManager : MonoBehaviour
 	public void StopBackAudioLooping()
 	{
 		shouldStopBack = true;
+		StopCoroutine(PlayBackAudio());
 	}
 
 	public void StopAmbienceLooping()
 	{
 		shouldStopAmbience = true;
+		StopCoroutine(PlayAmbience());
 	}
 
 	public void SetVolumeBackground(float volume)
 	{
 		if (useFMOD)
 		{
+			backgroundVolume = volume;
 			background.audioInstance.setVolume(volume);
 		}
 		else
@@ -362,6 +343,7 @@ public class AudioManager : MonoBehaviour
 
 	public void SetVolumeAmbience(float volume)
 	{
+		ambienceVolume = volume;
 		ambience.audioInstance.setVolume(volume);
 	}
 
@@ -424,6 +406,20 @@ public class AudioManager : MonoBehaviour
 	public void SetAmbienceParameterValue(float value)
 	{
 		ambience.audioInstance.setParameterValue(background.paramName, value);
+	}
+
+	private bool IsBackPlaying()
+	{
+		PLAYBACK_STATE state;
+		background.audioInstance.getPlaybackState(out state);
+		return state == PLAYBACK_STATE.PLAYING;
+	}
+
+	private bool IsAmbiencePlaying()
+	{
+		PLAYBACK_STATE state;
+		ambience.audioInstance.getPlaybackState(out state);
+		return state == PLAYBACK_STATE.PLAYING;
 	}
 
 	[System.Serializable]

@@ -2,7 +2,7 @@ Karaktärer
  
 Albatross = "Albatrossljud"
 
-Apa = "Appljud"
+Apa = "Apljud"
 
 Gris = "Grisljud"
 

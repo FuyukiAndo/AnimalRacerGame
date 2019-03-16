@@ -41,21 +41,24 @@ public class Checkpoint : MonoBehaviour
 
 	void Update()
 	{
-		Collider2D collider = Physics2D.OverlapCircle((Vector2)transform.position + circle.offset, circle.radius, playerLayer);
-		if (playerFlags.Length <= 0)return;
-		for (int i = 0; i < playerFlags.Length; i++)
+		if (Physics2D.OverlapCircle((Vector2)transform.position + circle.offset, circle.radius, playerLayer))
 		{
-			if (playerFlags[i].playerFlag == null)
+			Collider2D collider = Physics2D.OverlapCircle((Vector2)transform.position + circle.offset, circle.radius, playerLayer);
+			if (playerFlags.Length <= 0) return;
+			for (int i = 0; i < playerFlags.Length; i++)
 			{
-				continue;
-			}
-			if (collider.name == playerFlags[i].playerName)
-			{
-				playerFlags[i].playerFlag.SetActive(true);
-				if (!updatedCheckToGoFor)
+				if (playerFlags[i].playerFlag == null)
 				{
-					SetNextCheckPosToGoFor();
-					updatedCheckToGoFor = true;
+					continue;
+				}
+				if (collider.name == playerFlags[i].playerName)
+				{
+					playerFlags[i].playerFlag.SetActive(true);
+					if (!updatedCheckToGoFor)
+					{
+						SetNextCheckPosToGoFor();
+						updatedCheckToGoFor = true;
+					}
 				}
 			}
 		}

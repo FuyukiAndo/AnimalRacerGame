@@ -3947,6 +3947,7 @@ GameObject:
   - component: {fileID: 312705057}
   - component: {fileID: 312705056}
   - component: {fileID: 312705061}
+  - component: {fileID: 312705062}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -4057,6 +4058,18 @@ MonoBehaviour:
   - {fileID: 1951572433}
   arrow: {fileID: 0}
   offset: {x: 0, y: 0}
+--- !u!114 &312705062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 312705055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ListenerNumber: 0
 --- !u!4 &315282415 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4110585945378458, guid: e9e8eaef1e2626b4097711f5edc90642,
@@ -19366,7 +19379,6 @@ MonoBehaviour:
   spawnPos4:
     spawnPos: {fileID: 375593064}
     beenUsed: 0
-  playerMoveScript: PlayerController
   playerScoreList: 
   timeUntilStart: 0
   startCountDownOnSceneLoad: 0

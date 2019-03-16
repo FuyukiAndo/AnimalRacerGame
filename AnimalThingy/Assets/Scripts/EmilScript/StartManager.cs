@@ -26,7 +26,7 @@ public class StartManager : MonoBehaviour
     }
 
     private static StartManager instance;
-    [SerializeField] private string playerMoveScript;
+    //[SerializeField] private string playerMoveScript;
     private CharacterUIManager characterUIManager;
     public List<int> playerScoreList;
 
@@ -90,17 +90,25 @@ public class StartManager : MonoBehaviour
     {
 		foreach (var player in FindObjectsOfType<CheckpointTracker>())
         {
-			MonoBehaviour script = player.GetComponent(playerMoveScript) as MonoBehaviour;
-			script.enabled = true;
-        }
+			PlayerInput input = player.GetComponent<PlayerInput>();
+			input.isControllable = true;
+			PlayerController controller = player.GetComponent<PlayerController>();
+			//MonoBehaviour script = player.GetComponent(playerMoveScript) as MonoBehaviour;
+			//script.enabled = true;
+			controller.enabled = true;
+		}
     }
 
     void TrapPlayers()
     {
 		foreach (var player in FindObjectsOfType<CheckpointTracker>())
 		{
-			MonoBehaviour script = player.GetComponent(playerMoveScript) as MonoBehaviour;
-			script.enabled = false;
+			PlayerInput input = player.GetComponent<PlayerInput>();
+			input.isControllable = false;
+			PlayerController controller = player.GetComponent<PlayerController>();
+			//MonoBehaviour script = player.GetComponent(playerMoveScript) as MonoBehaviour;
+			//script.enabled = true;
+			controller.enabled = false;
 		}
     }
 
