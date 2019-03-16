@@ -4,7 +4,6 @@
 TagManager:
   serializedVersion: 2
   tags:
-
   - Ice_Character
   - Ground
   - OneWay
@@ -30,7 +29,7 @@ TagManager:
   - Player
   - Platform
   - MovingPlatform
-  - 
+  - Checkpoint
   - 
   - 
   - 

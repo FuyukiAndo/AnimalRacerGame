@@ -17,98 +17,96 @@ public class StartManager : MonoBehaviour
     public SpawnPoint spawnPos4;
     private List<SpawnPoint> spawnPoints;
 
-	public static StartManager Instance
-	{
-		get
-		{
-			return instance;
-		}
-	}
+    public static StartManager Instance
+    {
+        get
+        {
+            return instance;
+        }
+    }
 
-	private static StartManager instance;
-	[SerializeField] private GameObject[] unplacedPlayers;
-	[SerializeField] private string playerMoveScript;
+    private static StartManager instance;
+    [SerializeField] private string playerMoveScript;
     private CharacterUIManager characterUIManager;
     public List<int> playerScoreList;
 
     public int TimeUntilStart
-	{
-		get
-		{
-			return timeUntilStart;
-		}
-		set
-		{
-			timeUntilStart = value;
-		}
-	}
+    {
+        get
+        {
+            return timeUntilStart;
+        }
+        set
+        {
+            timeUntilStart = value;
+        }
+    }
 
-	[SerializeField] private int timeUntilStart;
-	[SerializeField] private bool startCountDownOnSceneLoad;
+    [SerializeField] private int timeUntilStart;
+    [SerializeField] private bool startCountDownOnSceneLoad;
 
-	void Start()
-	{
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    void Start()
+    {
         playerScoreList = new List<int>();
         characterUIManager = FindObjectOfType<CharacterUIManager>();
         spawnPoints = new List<SpawnPoint>
-        {
-            spawnPos1,
-            spawnPos2,
-            spawnPos3,
-            spawnPos4
-        };
-
-		if (instance == null)
-		{
-			instance = this;
-		}
-		else if (instance != this)
-		{
-			Destroy(gameObject);
-		}
+            {
+                spawnPos1,
+                spawnPos2,
+                spawnPos3,
+                spawnPos4
+            };
         SortPlayers();
         SpawnPlayers();
+		GoalManager.Instance.Setup();
+		FindObjectOfType<Checkpoint>().SetNextCheckPosToGoFor();
 		TrapPlayers();
-		if (startCountDownOnSceneLoad)
-		{
-            
-			StartCoroutine(CountDownStart());
-		}
-	}
+		StartCoroutine(CountDownStart());
+    }
 
-	IEnumerator CountDownStart()
-	{
-		while (timeUntilStart > 0)
-		{
-			timeUntilStart -= 1;
-			yield return new WaitForSeconds(1f);
-		}
-		ReleasePlayers();
-	}
+    IEnumerator CountDownStart()
+    {
+        while (timeUntilStart > 0)
+        {
+            timeUntilStart -= 1;
+            yield return new WaitForSeconds(1f);
+        }
+        ReleasePlayers();
+    }
 
-	void ReleasePlayers()
-	{
-		//string componentName = playerMoveScript.GetType().ToString();
-		foreach (var player in unplacedPlayers)
-		{
-			MonoBehaviour script = player.GetComponent(playerMoveScript)as MonoBehaviour;
+    void ReleasePlayers()
+    {
+		foreach (var player in FindObjectsOfType<CheckpointTracker>())
+        {
+			MonoBehaviour script = player.GetComponent(playerMoveScript) as MonoBehaviour;
 			script.enabled = true;
-		}
-	}
+        }
+    }
 
-	void TrapPlayers()
-	{
-		//string componentName = playerMoveScript.GetType().ToString();
-		foreach (var player in unplacedPlayers)
+    void TrapPlayers()
+    {
+		foreach (var player in FindObjectsOfType<CheckpointTracker>())
 		{
-			MonoBehaviour script = player.GetComponent(playerMoveScript)as MonoBehaviour;
+			MonoBehaviour script = player.GetComponent(playerMoveScript) as MonoBehaviour;
 			script.enabled = false;
 		}
-	}
+    }
 
     public void SortPlayers()
     {
-        foreach(Player player in InformationManager.Instance.players)
+        foreach (Player player in InformationManager.Instance.players)
         {
             playerScoreList.Add(player.score);
         }
@@ -117,13 +115,13 @@ public class StartManager : MonoBehaviour
     }
     void SpawnPlayers()
     {
-        for(int i = 0; i < InformationManager.Instance.players.Count; i++)
+        for (int i = 0; i < InformationManager.Instance.players.Count; i++)
         {
             GameObject spawnedPlayer = null;
             bool playerSpawned = false;
-            for(int j = 0; j < playerScoreList.Count; j++)
+            for (int j = 0; j < playerScoreList.Count; j++)
             {
-                if(InformationManager.Instance.players[i].score == playerScoreList[j] && spawnPoints[j].beenUsed == false && playerSpawned == false)
+                if (InformationManager.Instance.players[i].score == playerScoreList[j] && spawnPoints[j].beenUsed == false && playerSpawned == false)
                 {
                     spawnedPlayer = Instantiate(InformationManager.Instance.players[i].character, spawnPoints[j].spawnPos.transform.position, Quaternion.identity);
                     playerSpawned = true;

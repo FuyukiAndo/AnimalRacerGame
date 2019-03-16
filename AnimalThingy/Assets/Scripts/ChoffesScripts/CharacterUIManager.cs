@@ -196,7 +196,7 @@ public class CharacterUIManager : MonoBehaviour {
     }
     private void SetCurrentCheckpointProgress(PlayerUI player)
     {
-        player.playerCheckpoints.GetComponent<TextMeshProUGUI>().text = player.player.GetComponent<CheckpointTracker>().CheckpointsPassed.Count + "/" + GoalManager.Instance.checksToPass.Length;
+		player.playerCheckpoints.GetComponent<TextMeshProUGUI>().text = player.player.GetComponent<CheckpointTracker>().CheckpointsPassed.Count + "/" + GoalManager.Instance.checksToPass.Length;
         //get checkpoint tracker
        // player.playerCheckpoints.text = /*playercheckpointtracker.currentprogress*/ + "/" + /*player.checkpointtracker.total checkpoints
     }
