@@ -31,9 +31,9 @@ public class SettingsManager : MonoBehaviour {
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
     }
-    public void SetMasterVolume(Slider slider)
+    public void SetAmbienceVolume(Slider slider)
     {
-		AudioManager.Instance.SetVolumeMaster(slider.value);
+		AudioManager.Instance.SetVolumeAmbience(slider.value);
 	}
 
     public void SetSFXVolume(Slider slider)
@@ -44,7 +44,6 @@ public class SettingsManager : MonoBehaviour {
     public void SetBackgroundVolume(Slider slider)
     {
 		AudioManager.Instance.SetVolumeBackground(slider.value);
-		AudioManager.Instance.SetVolumeAmbience(slider.value);
 	}
 
     public void SetQualityLevel(int qualityIndex)

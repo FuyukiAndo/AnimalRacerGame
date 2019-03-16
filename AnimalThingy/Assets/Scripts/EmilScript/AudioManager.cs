@@ -46,14 +46,6 @@ public class AudioManager : MonoBehaviour
 
 	[SerializeField][Range(0f, 1f)] private float backgroundVolume = .5f, ambienceVolume = .5f, sfxVolume = .5f, masterVolume = .5f;
 
-	void OnValidate()
-	{
-		SetVolumeSFX(sfxVolume);
-		SetVolumeBackground(backgroundVolume);
-		SetVolumeAmbience(ambienceVolume);
-		SetVolumeMaster(masterVolume);
-	}
-
 	void OnEnable()
 	{
 		SceneManager.sceneLoaded += OnLevelLoaded;
@@ -68,9 +60,12 @@ public class AudioManager : MonoBehaviour
 				StopBackAudioLooping();
 				SetBackgroundAudio(audio.audioPath);
 				PlayBackAudioLooping();
+				return;
 			}
 		}
 	}
+
+	//Get rid of master, set volume of everything to .5f, in the menu as well
 
 	void Awake()
 	{
@@ -111,13 +106,16 @@ public class AudioManager : MonoBehaviour
 			SetVolumeSFX(sfxVolume);
 			SetVolumeBackground(backgroundVolume);
 			SetVolumeAmbience(ambienceVolume);
-			SetVolumeMaster(masterVolume);
 			if (!IsBackPlaying())
 			{
 				Setup();
 				StartCoroutine(PlayBackAudio());
 			}
-			//StartCoroutine(PlayAmbience());
+			if (!IsAmbiencePlaying())
+			{
+				Setup();
+				StartCoroutine(PlayAmbience());
+			}
 		}
 		else
 		{
