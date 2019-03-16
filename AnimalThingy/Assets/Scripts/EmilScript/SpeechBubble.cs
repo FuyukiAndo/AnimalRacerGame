@@ -29,6 +29,8 @@ public class SpeechBubble : MonoBehaviour
 			textMesh.autoSizeTextContainer = true;
 		}
 		sprite = speechBubble.GetComponentInChildren<SpriteRenderer>();
+		characterCrystal.SetActive(true);
+		speechBubble.SetActive(false);
 	}
 
 	void Update()

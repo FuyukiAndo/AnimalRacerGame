@@ -5,20 +5,20 @@ using FMOD.Studio;
 using FMODUnity;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
-[RequireComponent(typeof(AudioSource))]
 public class AudioManager : MonoBehaviour
 {
 
 	//FMOD
-	public FMODAudio Background
+	public FMODManagerAudio Background
 	{
 		get
 		{
 			return background;
 		}
 	}
-	public FMODAudio Ambience
+	public FMODManagerAudio Ambience
 	{
 		get
 		{
@@ -26,7 +26,7 @@ public class AudioManager : MonoBehaviour
 		}
 	}
 
-	[SerializeField] private FMODAudio background, ambience;
+	[SerializeField] private FMODManagerAudio background, ambience;
 
 	//Unity
 	[SerializeField] private AudioClip backgroundClip;
@@ -82,6 +82,23 @@ public class AudioManager : MonoBehaviour
 		SetVolumeMaster(masterVolume);
 	}
 
+	void OnEnable()
+	{
+		SceneManager.sceneLoaded += OnLevelLoaded;
+	}
+
+	void OnLevelLoaded(Scene scene, LoadSceneMode sceneMode)
+	{
+		foreach (var audio in background.audioPaths)
+		{
+			if (scene.name.Contains(audio.mapName) || audio.mapName.Contains(scene.name))
+			{
+				SetBackgroundAudio(audio.audioPath);
+				FadeBackTo(background.currentAudioPath);
+			}
+		}
+	}
+
 	void Awake()
 	{
 		if (instance == null)
@@ -128,6 +145,10 @@ public class AudioManager : MonoBehaviour
 		}
 		else
 		{
+			if (!GetComponent<AudioSource>())
+			{
+				gameObject.AddComponent<AudioSource>();
+			}
 			source = GetComponent<AudioSource>();
 			if (source != null)
 			{
@@ -143,16 +164,16 @@ public class AudioManager : MonoBehaviour
 
 	void Setup()
 	{
-		if (background.audioPath != string.Empty)
+		if (background.currentAudioPath != string.Empty)
 		{
-			background.audioInstance = RuntimeManager.CreateInstance(background.audioPath);
+			background.audioInstance = RuntimeManager.CreateInstance(background.currentAudioPath);
 			ATTRIBUTES_3D attributesBack = FMODUnity.RuntimeUtils.To3DAttributes(transform.position);
 			background.audioInstance.set3DAttributes(attributesBack);
 		}
 
-		if (ambience.audioPath != string.Empty)
+		if (ambience.currentAudioPath != string.Empty)
 		{
-			ambience.audioInstance = RuntimeManager.CreateInstance(ambience.audioPath);
+			ambience.audioInstance = RuntimeManager.CreateInstance(ambience.currentAudioPath);
 			ATTRIBUTES_3D attributesAmb = FMODUnity.RuntimeUtils.To3DAttributes(transform.position);
 			ambience.audioInstance.set3DAttributes(attributesAmb);
 		}
@@ -240,8 +261,8 @@ public class AudioManager : MonoBehaviour
 
 	public float GetVolumeSFX()
 	{
-		return FindObjectOfType<AudioEffectController>() ? FindObjectOfType<AudioEffectController>().GetAudioVolume() :
-		sfxVolume;
+		return FindObjectOfType<AudioEffectController>() ? FindObjectOfType<AudioEffectController>().GetAudioVolume()
+			: sfxVolume;
 	}
 
 	public void FadeBackTo(string path)
@@ -249,6 +270,7 @@ public class AudioManager : MonoBehaviour
 		background.audioInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
 		if (path != null)
 		{
+			Setup();
 			background.audioInstance = RuntimeManager.CreateInstance(path);
 			background.audioInstance.start();
 		}
@@ -359,12 +381,12 @@ public class AudioManager : MonoBehaviour
 
 	public void SetBackgroundAudio(string path)
 	{
-		background.audioPath = path;
+		background.currentAudioPath = path;
 	}
 
 	public void SetAmbience(string path)
 	{
-		ambience.audioPath = path;
+		ambience.currentAudioPath = path;
 	}
 
 	public void SetBackgroundAudio(AudioClip clip)
@@ -403,12 +425,33 @@ public class AudioManager : MonoBehaviour
 	{
 		ambience.audioInstance.setParameterValue(background.paramName, value);
 	}
+
+	[System.Serializable]
+	public struct FMODManagerAudio
+	{
+		public MapAudio[] audioPaths;
+		[EventRef] public string currentAudioPath;
+		public string paramName;
+		public float paramValue;
+		public float[] additionalParamValues;
+		public bool randomizeValue;
+
+		public ParameterInstance paramInstance;
+		public EventInstance audioInstance;
+
+		[System.Serializable]
+		public struct MapAudio
+		{
+			[EventRef] public string audioPath;
+			public string mapName;
+		}
+	}
 }
 
 [System.Serializable]
 public struct FMODAudio
 {
-	[EventRef] public string audioPath;
+	[EventRef] public string currentAudioPath;
 	public string paramName;
 	public float paramValue;
 	public float[] additionalParamValues;
