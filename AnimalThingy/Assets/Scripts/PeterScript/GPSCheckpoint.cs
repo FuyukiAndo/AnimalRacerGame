@@ -66,13 +66,26 @@ public class GPSCheckpoint : MonoBehaviour {
         if (outofScreenX)
         {
             UpdateRotation();
-            arrow.rectTransform.position = new Vector3(arrow.rectTransform.position.x, Camera.main.WorldToScreenPoint(new Vector3(checkX, checkY)).y);
+            if(transform.position.x < currentCheckpoint.position.x) { 
+                arrow.rectTransform.position = new Vector3(Screen.width - arrow.rectTransform.rect.width, Camera.main.WorldToScreenPoint(new Vector3(checkX, checkY)).y);
+                }
+            else
+            {
+                arrow.rectTransform.position = new Vector3(arrow.rectTransform.rect.width, Camera.main.WorldToScreenPoint(new Vector3(checkX, checkY)).y);
+            }
             return;
         }
         if (outofScreenY)
         {
             UpdateRotation();
-            arrow.rectTransform.position = new Vector3(Camera.main.WorldToScreenPoint(new Vector3(checkX, checkY)).x, arrow.rectTransform.position.y);
+            if (transform.position.y < currentCheckpoint.position.y)
+            {
+                arrow.rectTransform.position = new Vector3(Camera.main.WorldToScreenPoint(new Vector3(checkX, checkY)).x, Screen.height - arrow.rectTransform.rect.height);
+            }
+            else
+            {
+                arrow.rectTransform.position = new Vector3(Camera.main.WorldToScreenPoint(new Vector3(checkX, checkY)).x,  arrow.rectTransform.rect.height);
+            }
             return;
         }
         arrow.rectTransform.eulerAngles = new Vector3(0f, 0f, 0f);

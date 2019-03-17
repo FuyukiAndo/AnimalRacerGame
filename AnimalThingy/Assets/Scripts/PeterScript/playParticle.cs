@@ -1,20 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
 
 public class playParticle : MonoBehaviour {
 
     public Object soundObject;
     private ParticleSystem system;
     [SerializeField]
-    private AudioEffectController effectController;
+    private AudioOneshotPlayer OneshotPlayer;
 
     private void Start()
     {
       system = GetComponent<ParticleSystem>();
-      effectController = GetComponent<AudioEffectController>();
+      OneshotPlayer = GetComponent<AudioOneshotPlayer>();
       system.Play();
-      effectController.PlayAudioOneShot();
+      OneshotPlayer.PlayAudioOneShot();
     }
     private void Update()
     {
