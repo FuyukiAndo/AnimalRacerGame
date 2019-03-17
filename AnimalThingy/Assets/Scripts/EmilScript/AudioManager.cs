@@ -108,12 +108,12 @@ public class AudioManager : MonoBehaviour
 			SetVolumeAmbience(ambienceVolume);
 			if (!IsBackPlaying())
 			{
-				Setup();
+				SetupBack();
 				StartCoroutine(PlayBackAudio());
 			}
 			if (!IsAmbiencePlaying())
 			{
-				Setup();
+				SetupAmbience();
 				StartCoroutine(PlayAmbience());
 			}
 		}
@@ -136,7 +136,7 @@ public class AudioManager : MonoBehaviour
 		}
 	}
 
-	void Setup()
+	void SetupBack()
 	{
 		if (background.currentAudioPath != string.Empty)
 		{
@@ -144,7 +144,10 @@ public class AudioManager : MonoBehaviour
 			ATTRIBUTES_3D attributesBack = FMODUnity.RuntimeUtils.To3DAttributes(transform.position);
 			background.audioInstance.set3DAttributes(attributesBack);
 		}
+	}
 
+	void SetupAmbience()
+	{
 		if (ambience.currentAudioPath != string.Empty)
 		{
 			ambience.audioInstance = RuntimeManager.CreateInstance(ambience.currentAudioPath);
@@ -246,7 +249,7 @@ public class AudioManager : MonoBehaviour
 		background.audioInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
 		if (path != null)
 		{
-			Setup();
+			SetupBack();
 			StartCoroutine(PlayBackAudio());
 		}
 	}
@@ -256,7 +259,7 @@ public class AudioManager : MonoBehaviour
 		ambience.audioInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
 		if (path != null)
 		{
-			Setup();
+			SetupAmbience();
 			//ambience.audioInstance = RuntimeManager.CreateInstance(path);
 			ambience.audioInstance.start();
 		}

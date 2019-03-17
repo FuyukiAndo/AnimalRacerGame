@@ -262,7 +262,10 @@ public class GoalManager : MonoBehaviour
 		}
 		if (placedPlayers.Count == initialPlayerCount)
 		{
-			commentator.SetCommentatorSpeechActive(true);
+			if (commentator != null)
+			{
+				commentator.SetCommentatorSpeechActive(true);
+			}
 		}
 	}
 
