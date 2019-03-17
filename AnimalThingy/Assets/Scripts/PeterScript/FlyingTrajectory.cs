@@ -10,6 +10,7 @@ public class FlyingTrajectory : MonoBehaviour {
     [Header("Trajectory Attributs")]
     public float speed = 2;
     public LayerMask terrainTypesLayer;
+    public ParticleSystem destroyParticle;
 
     protected Rigidbody2D rb2d;
     protected float startFalling;
@@ -23,9 +24,11 @@ public class FlyingTrajectory : MonoBehaviour {
         {
             player.stunDurationLeft = stunDuration;
             Destroy(gameObject);
+            
         }
         if(isOnLayer)
         {
+            Instantiate(destroyParticle, transform.position, destroyParticle.gameObject.transform.rotation);
             Destroy(gameObject);
         }
     }

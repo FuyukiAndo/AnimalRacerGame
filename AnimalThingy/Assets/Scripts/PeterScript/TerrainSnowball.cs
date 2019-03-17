@@ -5,9 +5,9 @@ using UnityEngine.Animations;
 
 public class TerrainSnowball : MonoBehaviour {
 
-    public float speed = 5.0f;
+    public float speed;
     public LayerMask terrainLayer, characterLayer;
-    public float pushForce = 5.0f;
+    public float pushForce;
     public float stunDuration;
     public float maxPushBack;
 
