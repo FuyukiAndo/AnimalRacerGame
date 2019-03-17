@@ -35,8 +35,15 @@ public class AudioPlayer : MonoBehaviour
 
 	public void PlayAudio()
 	{
-		Setup();
-		sfx.audioInstance.start();
+		if (AudioManager.Instance.useFMOD)
+		{
+			Setup();
+			sfx.audioInstance.start();
+		}
+		else
+		{
+			source.Play();
+		}
 	}
 
 	public void SetAudioVolume(float volume)
@@ -102,6 +109,11 @@ public class AudioPlayer : MonoBehaviour
 	public void SetAudioPath(string path)
 	{
 		sfx.currentAudioPath = path;
+	}
+
+	public void SetAudioClip(AudioClip clip)
+	{
+		source.clip = clip;
 	}
 
 	void OnDrawGizmos()

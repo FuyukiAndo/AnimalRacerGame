@@ -722,7 +722,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 182.09998, y: -12.804943}
+  m_AnchoredPosition: {x: 182.09961, y: -12.804943}
   m_SizeDelta: {x: 364.2, y: 109.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &33042090
@@ -1591,7 +1591,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 182.09998, y: 208}
+  m_AnchoredPosition: {x: 182.09961, y: 208}
   m_SizeDelta: {x: 364.2, y: 109.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &114188914
@@ -4998,7 +4998,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 182.1, y: -122}
+  m_AnchoredPosition: {x: 182.09961, y: -122}
   m_SizeDelta: {x: 364.2, y: 109.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &388647367
@@ -10719,7 +10719,14 @@ MonoBehaviour:
     paramValue: 0
     additionalParamValues: []
     randomizeValue: 0
-  backgroundClip: {fileID: 0}
+  backgroundUnity:
+    audioClips: []
+    currentAudioClip: {fileID: 0}
+  ambienceUnity:
+    audioClips: []
+    currentAudioClip: {fileID: 0}
+  backSource: {fileID: 0}
+  ambienceSource: {fileID: 0}
   useFMOD: 1
   backgroundVolume: 0
   ambienceVolume: 0
@@ -17683,7 +17690,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 182.09998, y: 97.31979}
+  m_AnchoredPosition: {x: 182.09961, y: 97.31979}
   m_SizeDelta: {x: 364.2, y: 109.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1466098463
