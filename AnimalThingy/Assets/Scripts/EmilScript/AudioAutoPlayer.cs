@@ -40,7 +40,6 @@ public class AudioAutoPlayer : MonoBehaviour
 	[SerializeField] private LayerMask layer;
 	[SerializeField] private Vector2 boxSize = new Vector2(1f, 1f);
 	[SerializeField] private Vector2 boxOffset = new Vector2(0f, 0f);
-	[SerializeField] private Dictionary<string, AudioClip> clips;
 	[SerializeField] private AudioClip clip;
 
 	private float nextWait;
@@ -50,41 +49,65 @@ public class AudioAutoPlayer : MonoBehaviour
 
 	void Start()
 	{
-		if (startEvent == StartEvent.start)
+		if (AudioManager.Instance.useFMOD)
 		{
-			//Play audio
-			if (!oneshot)
+			Setup();
+			if (startEvent == StartEvent.start)
 			{
-				Setup();
-				sfx.audioInstance.start();
-			}
-			else
-			{
-				if (!attached)
+				//Play audio
+				if (!oneshot)
 				{
-					if (sfx.paramName != string.Empty)
-					{
-						Setup();
-						sfx.audioInstance.start();
-						sfx.audioInstance.release();
-					}
-					else
-					{
-						RuntimeManager.PlayOneShot(sfx.currentAudioPath, transform.position);
-					}
+					Setup();
+					sfx.audioInstance.start();
 				}
 				else
 				{
-					if (sfx.paramName != string.Empty)
+					if (!attached)
 					{
-						Setup();
-						sfx.audioInstance.start();
-						sfx.audioInstance.release();
+						if (sfx.paramName != string.Empty)
+						{
+							Setup();
+							sfx.audioInstance.start();
+							sfx.audioInstance.release();
+						}
+						else
+						{
+							RuntimeManager.PlayOneShot(sfx.currentAudioPath, transform.position);
+						}
 					}
 					else
 					{
-						RuntimeManager.PlayOneShotAttached(sfx.currentAudioPath, gameObject);
+						if (sfx.paramName != string.Empty)
+						{
+							Setup();
+							sfx.audioInstance.start();
+							sfx.audioInstance.release();
+						}
+						else
+						{
+							RuntimeManager.PlayOneShotAttached(sfx.currentAudioPath, gameObject);
+						}
 					}
+				}
+			}
+		}
+		else
+		{
+			if (!GetComponent<AudioSource>())
+			{
+				gameObject.AddComponent<AudioSource>();
+			}
+			source = GetComponent<AudioSource>();
+			if (startEvent == StartEvent.start)
+			{
+				//Play audio
+				if (!oneshot)
+				{
+					source.Play();
+				}
+				else
+				{
+					source.PlayOneShot(clip);
 				}
 			}
 		}
@@ -319,8 +342,16 @@ public class AudioAutoPlayer : MonoBehaviour
 	{
 		if (startEvent == StartEvent.destroyed)
 		{
-			Setup();
-			sfx.audioInstance.start();
+			if (AudioManager.Instance.useFMOD)
+			{
+				Setup();
+				sfx.audioInstance.start();
+				sfx.audioInstance.release();
+			}
+			else
+			{
+				source.PlayOneShot(clip);
+			}
 		}
 		if (stopEvent == StopEvent.destroyed)
 		{
@@ -547,9 +578,16 @@ public class AudioAutoPlayer : MonoBehaviour
 
 	public void PlayAudioOneShot()
 	{
-		Setup();
-		sfx.audioInstance.start();
-		sfx.audioInstance.release();
+		if (AudioManager.Instance.useFMOD)
+		{
+			Setup();
+			sfx.audioInstance.start();
+			sfx.audioInstance.release();
+		}
+		else
+		{
+			source.PlayOneShot(clip);
+		}
 	}
 
 	public void SetAudioVolume(float volume)
@@ -617,9 +655,14 @@ public class AudioAutoPlayer : MonoBehaviour
 		sfx.currentAudioPath = path;
 	}
 
+	public void SetAudioClip(AudioClip clip)
+	{
+		source.clip = clip;
+	}
+
 	void OnDrawGizmos()
 	{
 		Gizmos.color = Color.red;
-		Gizmos.DrawWireCube((Vector2)transform.position + boxOffset, boxSize);
+		Gizmos.DrawWireSphere((Vector2)transform.position, 1f);
 	}
 }

@@ -6,9 +6,6 @@ using UnityEngine;
 public class AudioOneshotPlayer : MonoBehaviour
 {
 	[SerializeField] private FMODAudio sfx;
-	[SerializeField] private Vector2 boxSize = new Vector2(1f, 1f);
-	[SerializeField] private Vector2 boxOffset = new Vector2(0f, 0f);
-	[SerializeField] private Dictionary<string, AudioClip> clips;
 	[SerializeField] private AudioClip clip;
 	private AudioSource source;
 
@@ -47,9 +44,17 @@ public class AudioOneshotPlayer : MonoBehaviour
 
 	public void PlayAudioOneShot()
 	{
-		Setup();
-		sfx.audioInstance.start();
-		sfx.audioInstance.release();
+		if (AudioManager.Instance.useFMOD)
+		{
+			Setup();
+			sfx.audioInstance.start();
+			sfx.audioInstance.release();
+		}
+		else
+		{
+			source.volume = AudioManager.Instance.GetVolumeSFX();
+			source.PlayOneShot(clip);
+		}
 	}
 
 	public void SetAudioVolume(float volume)
@@ -117,9 +122,14 @@ public class AudioOneshotPlayer : MonoBehaviour
 		sfx.currentAudioPath = path;
 	}
 
+	public void SetAudioClip(AudioClip clip)
+	{
+		source.clip = clip;
+	}
+
 	void OnDrawGizmos()
 	{
 		Gizmos.color = Color.red;
-		Gizmos.DrawWireCube((Vector2)transform.position + boxOffset, boxSize);
+		Gizmos.DrawWireSphere((Vector2)transform.position, 1f);
 	}
 }

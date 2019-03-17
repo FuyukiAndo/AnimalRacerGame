@@ -41,7 +41,6 @@ public class AudioEffectController : MonoBehaviour
 	[SerializeField] private LayerMask layer;
 	[SerializeField] private Vector2 boxSize = new Vector2(1f, 1f);
 	[SerializeField] private Vector2 boxOffset = new Vector2(0f, 0f);
-	[SerializeField] private Dictionary<string, AudioClip> clips;
 	[SerializeField] private AudioClip clip;
 
 	private float nextWait;
@@ -611,32 +610,24 @@ public class AudioEffectController : MonoBehaviour
 		}
 	}
 
-	public void PlayAudioOneShot(float value)
-	{
-		source.volume = value;
-		source.PlayOneShot(clip);
-	}
-
 	public void PlayAudioOneShot()
 	{
-		Setup();
-		sfx.audioInstance.start();
-		sfx.audioInstance.release();
+		if (AudioManager.Instance.useFMOD)
+		{
+			Setup();
+			sfx.audioInstance.start();
+			sfx.audioInstance.release();
+		}
+		else
+		{
+			source.volume = AudioManager.Instance.GetVolumeSFX();
+			source.PlayOneShot(clip);
+		}
 	}
 
 	public void SetAudioClip(AudioClip clip)
 	{
 		source.clip = clip;
-	}
-
-	public void SetAudioClip(string clip)
-	{
-		AudioClip _clip;
-		clips.TryGetValue(clip, out _clip);
-		if (clip != null)
-		{
-			source.clip = _clip;
-		}
 	}
 
 	public void SetAudioVolume(float volume)
@@ -704,15 +695,10 @@ public class AudioEffectController : MonoBehaviour
 		sfx.currentAudioPath = path;
 	}
 
-	public void SetAudioPath(EventRefAttribute eventRef)
-	{
-		sfx.currentAudioPath = eventRef.ToString();
-	}
-
 	void OnDrawGizmos()
 	{
 		Gizmos.color = Color.red;
-		Gizmos.DrawWireCube((Vector2)transform.position + boxOffset, boxSize);
+		Gizmos.DrawWireSphere((Vector2)transform.position, 1f);
 	}
 
 }
