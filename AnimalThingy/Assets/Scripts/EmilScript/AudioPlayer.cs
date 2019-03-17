@@ -6,9 +6,6 @@ using UnityEngine;
 public class AudioPlayer : MonoBehaviour
 {
 	[SerializeField] private FMODAudio sfx;
-	[SerializeField] private Vector2 boxSize = new Vector2(1f, 1f);
-	[SerializeField] private Vector2 boxOffset = new Vector2(0f, 0f);
-	[SerializeField] private Dictionary<string, AudioClip> clips;
 	[SerializeField] private AudioClip clip;
 	private AudioSource source;
 
@@ -119,6 +116,6 @@ public class AudioPlayer : MonoBehaviour
 	void OnDrawGizmos()
 	{
 		Gizmos.color = Color.red;
-		Gizmos.DrawWireCube((Vector2)transform.position + boxOffset, boxSize);
+		Gizmos.DrawWireSphere((Vector2)transform.position, 1f);
 	}
 }
