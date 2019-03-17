@@ -59,9 +59,7 @@ public class TerrainSnowball : MonoBehaviour {
         {
             if (collider.gameObject.GetComponent<Spike>())
             {
-                Debug.Log("hello");
                 Physics2D.IgnoreCollision(c2d, collider.gameObject.GetComponent<Collider2D>());
-
             }
             bool isOnLayer = characterLayer == (characterLayer | (1 << collider.gameObject.layer));
             if (isOnLayer)
