@@ -161,6 +161,7 @@ public class GoalManager : MonoBehaviour
 		if (unplacedPlayers.Count <= 0 && !startedSceneSwitch)
 		{
 			startedSceneSwitch = true;
+            Debug.Log("placeplayers check");
 			StartCoroutine(LoadNextScene());
 		}
 	}
