@@ -22,6 +22,7 @@ public class FlyingTrajectory : MonoBehaviour {
         bool isOnLayer = terrainTypesLayer == (terrainTypesLayer | (1 << collision.gameObject.layer));
         if (player != null)
         {
+            collision.gameObject.GetComponent<SpeechBubble>().SetSpeechActive(SpeechType.stun);
             player.stunDurationLeft = stunDuration;
             Destroy(gameObject);
             
