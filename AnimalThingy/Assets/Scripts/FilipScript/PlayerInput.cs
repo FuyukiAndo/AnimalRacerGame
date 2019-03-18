@@ -426,6 +426,17 @@ public class PlayerInput : MonoBehaviour
 		{
 				animationHandler.SetAnimatorBool("JumpT", true);
 		}
+		
+		
+		if(playerPig.collisionController.boxCollisionDirections.down && playerPig.movement.y == 0)
+		{	
+			animationHandler.SetAnimatorBool("JumpT", false);	
+			
+			if(playerPig.movement.x == 0)
+			{
+				animationHandler.SetAnimatorBool("IdleT", true);
+			}			
+		}
 	}
 	
 	void InputAnimation()

@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
 
 	[Header("Ability Meter Settings")]
 	[Range(0,1f)] public float abilityMeter = 1f;
-	[Range(.01f,1f)] public float abilityMeterModifier = 1f;	
+	[Range(0.01f,.1f)] public float abilityMeterModifier = 0.01f;	
 	
 	[Header("Character Settings")]
 	public int maxUseCounter = 3;
