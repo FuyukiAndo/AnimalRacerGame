@@ -21,53 +21,55 @@ public enum PlayerCharacterType
 };*/
 
 public class PlayerInput : MonoBehaviour 
-{	
-	private PlayerAlbatross playerAlbatross;
-	private PlayerMonkey playerMonkey;
-	private PlayerPig playerPig;
-	private PlayerPenguin playerPenguin;
-	
-	public AnimationHandler animationHandler;
-	
-	[HideInInspector] public PlayerCharacterType playerCharacterType;
-
-	private Dictionary<KeyCode, Action> keyCodeDictionary0 = new Dictionary<KeyCode, Action>();
-	private Dictionary<KeyCode, Action> keyCodeDictionary1 = new Dictionary<KeyCode, Action>();
-
+{
+	[Header("KeyCode Settings")]
 	public KeyCode playerLeftKey = KeyCode.LeftArrow;
 	public KeyCode playerRightKey = KeyCode.RightArrow;
 	public KeyCode playerJumpKey = KeyCode.A;
 	public KeyCode playerAbilityKey = KeyCode.S;
-	
-	private KeyCode playerNoKey = KeyCode.None;
+
+	[Header("Miscellaneous Settings")]
+	public float stunDurationTimer = 1.2f;
 
     [Range(0.01f, 1f)] public float rotationSpeed = 0.09f;
+	public AnimationHandler animationHandler;
+
 	
-	[HideInInspector] public bool isControllable = true;
-	[HideInInspector] public bool changeAngle = true;
-
-	public float stunDurationLeft = 1.2f;
-
-	public float GetMaxAngleValue()
-	{
-		return maxAngleValue;
-	}
-
-	private float minAngleValue = 90.0f;
-	private float maxAngleValue = 269.0f;
+	[HideInInspector] public PlayerCharacterType playerCharacterType;
 	
 	[HideInInspector] public float targetAngle;
 
+	[HideInInspector] public bool isStunned = false;	
+	[HideInInspector] public bool isControllable = true;
+	[HideInInspector] public bool changeAngle = true;
+
+	private PlayerAlbatross playerAlbatross;
+	
+	private PlayerMonkey playerMonkey;
+	
+	private PlayerPig playerPig;
+	
+	private PlayerPenguin playerPenguin;
+
+	private float minAngleValue = 90.0f;
+	private float maxAngleValue = 269.0f;
+	private float savedStunDurationTimer;
+	
+	private KeyCode playerNoKey = KeyCode.None;
+	
+	private Dictionary<KeyCode, Action> keyCodeDictionary0 = new Dictionary<KeyCode, Action>();
+	private Dictionary<KeyCode, Action> keyCodeDictionary1 = new Dictionary<KeyCode, Action>();
+
 	void Start() 
-	{
-		animationHandler.speed = 0;
-		
+	{	
 		targetAngle = maxAngleValue;
 		
 		var albatrossComponent = gameObject.GetComponent<PlayerAlbatross>();
 		var monkeyComponent = gameObject.GetComponent<PlayerMonkey>();
 		var penguinComponent = gameObject.GetComponent<PlayerPenguin>();
 		var pigComponent = gameObject.GetComponent<PlayerPig>();
+		
+		savedStunDurationTimer = stunDurationTimer;
 
 		if(albatrossComponent !=null)
 		{
@@ -135,46 +137,62 @@ public class PlayerInput : MonoBehaviour
 		}
 	}
 	
-	private void StaticZPos()
+	private void StaticZPosition()
 	{
 		Vector3 zpos = transform.position;
 		zpos.z = 0;
 
 		transform.position = zpos;		
-	}
+	}	
 	
 	void InputAction()
 	{
-		// Move player left
-		if(isControllable)
+        if (!isStunned)
+        {
+			if(isControllable)
+			{
+				//Move Left
+				if(Input.GetKey(playerLeftKey))
+				{
+					keyCodeDictionary0[playerLeftKey]();
+				}
+
+				//Move Right
+				if(Input.GetKey(playerRightKey))
+				{
+					keyCodeDictionary0[playerRightKey]();
+				}
+
+				//Jump Key Down
+				if(Input.GetKeyDown(playerJumpKey))
+				{
+					keyCodeDictionary0[playerJumpKey]();
+				}
+				
+				//Jump Key Up
+				if(Input.GetKeyUp(playerJumpKey))
+				{
+					keyCodeDictionary1[playerJumpKey]();
+				}
+				
+				// Ability Key
+				if(Input.GetKeyDown(playerAbilityKey))
+				{
+					keyCodeDictionary0[playerAbilityKey]();
+				}
+			}
+		}
+		else
 		{
-			if(Input.GetKey(playerLeftKey))
-			{
-				keyCodeDictionary0[playerLeftKey]();
-			}
-
-			// Move player right
-			if(Input.GetKey(playerRightKey))
-			{
-				keyCodeDictionary0[playerRightKey]();
-			}
-
-			// Jump KeyCode Down
-			if(Input.GetKeyDown(playerJumpKey))
-			{
-				keyCodeDictionary0[playerJumpKey]();
-			}
+			isStunned = true;
+			changeAngle = false;
+			stunDurationTimer -= Time.deltaTime;
 			
-			// Jump KeyCode Up
-			if(Input.GetKeyUp(playerJumpKey))
+			if(stunDurationTimer < 0)
 			{
-				keyCodeDictionary1[playerJumpKey]();
-			}
-			
-			// Ability Key
-			if(Input.GetKeyDown(playerAbilityKey))
-			{
-				keyCodeDictionary0[playerAbilityKey]();
+				isStunned = false;
+				stunDurationTimer = savedStunDurationTimer;
+				changeAngle = true;
 			}
 		}
 		
@@ -197,7 +215,7 @@ public class PlayerInput : MonoBehaviour
 			}
 		}
 		
-		// Rotates player model when changing direction
+		//Rotates player model when changing direction
 		Quaternion target = Quaternion.Euler(new Vector3(0f,targetAngle,0f));
 		animationHandler.transform.rotation = Quaternion.Lerp(animationHandler.transform.rotation, target, rotationSpeed);	
 	}
@@ -231,8 +249,7 @@ public class PlayerInput : MonoBehaviour
 		if(Input.GetKeyDown(playerAbilityKey))
 		{
 			animationHandler.SetAnimatorBool("SpecialT",true);
-		}
-
+		}		
 	}
 	
 	void InputAnimationAlbatross()
@@ -268,21 +285,16 @@ public class PlayerInput : MonoBehaviour
 	
 		if(Input.GetKey(playerJumpKey))
 		{	
-			if(directionY == -1 && playerPig.isJump)
+			if(directionY == -1 && playerPig.isActiveAbility)
 			{
 				animationHandler.SetAnimatorBool("SpecialJumpT", true);
 			}
 			
-			if(directionY == 1 && playerPig.isJump)
+			if(directionY == 1 && playerPig.isActiveAbility)
 			{
 				animationHandler.SetAnimatorBool("JumpT", true);
 			}
 		}
-		
-		/*if(playerPig.isJump)
-		{
-			animationHandler.SetAnimatorBool("SpecialJumpT", true);		
-		}*/
 		
 		if(Input.GetKeyUp(playerJumpKey))
 		{
@@ -294,33 +306,32 @@ public class PlayerInput : MonoBehaviour
 		
 		if(Input.GetKeyDown(playerAbilityKey))
 		{
-			if(!playerPig.blowUp)
+			if(!playerPig.passiveAbility && !playerPig.isPassiveAbility)
 			{
 				animationHandler.SetAnimatorBool("SpecialT",true);
-				playerPig.blowUp = true;
+				playerPig.passiveAbility = true;
 				isControllable = false;
 				changeAngle = false;
 			}
 		}
 		
-		if(!playerPig.blowUp)
+		if(!playerPig.passiveAbility)
 		{
 			animationHandler.SetAnimatorBool("SpecialT",false);
 			isControllable = true;
 			changeAngle = true;
 		}	
 
-			if(!playerPig.isJump)
-			{
-				animationHandler.SetAnimatorBool("SpecialJumpT", false);	
-			}
+		if(!playerPig.isActiveAbility)
+		{
+			animationHandler.SetAnimatorBool("SpecialJumpT", false);	
+		}
 		
 		if(playerPig.collisionController.boxCollisionDirections.down)
 		{	
 			if(playerPig.movement.x == 0)
 			{
 				animationHandler.SetAnimatorBool("IdleT", true);
-				//animationHandler.SetAnimatorBool("RunT", false);
 				animationHandler.SetAnimatorBool("JumpT", false);
 			}			
 		}
@@ -328,7 +339,7 @@ public class PlayerInput : MonoBehaviour
 		if(playerPig.collisionController.boxCollisionDirections.down && playerPig.movement.y == 0)
 		{	
 	
-			if(!playerPig.GetSignal())
+			if(!playerPig.activeAbility)
 			{
 				animationHandler.SetAnimatorBool("JumpT", false);	
 				animationHandler.SetAnimatorBool("JumpSpecialT", false);
@@ -342,7 +353,6 @@ public class PlayerInput : MonoBehaviour
 			if(playerPig.movement.x == 0)
 			{
 				animationHandler.SetAnimatorBool("IdleT", true);
-				
 			}			
 		}
 	}
@@ -366,118 +376,78 @@ public class PlayerInput : MonoBehaviour
 				animationHandler.SetAnimatorBool("JumpT", false);				
 			}	
 		}
-			
+		
+		if(playerPenguin.abilityMeter == 1f)
+		{
+			animationHandler.SetAnimatorBool("SpecialT", false);
+		}
 	}
 
 	void InputAnimationMonkey()
-	{	
-		if(Input.GetKeyUp(playerLeftKey) || Input.GetKeyUp(playerRightKey))
+	{			
+		if(Input.GetKeyUp(playerLeftKey))
 		{
-			if(playerMonkey.isActiveAbility)//isClimbing)
-			{
-				playerMonkey.movement.y = 0;
-			}
+			playerMonkey.activeAbility = false;
 		}
 		
-		/*if(Input.GetKeyUp(playerRightKey))
-		{
-			if(playerMonkey.isActiveAbility)//isClimbing)
-			{
-				playerMonkey.movement.y = 0;
-			}
-		}*/
+		if(Input.GetKeyUp(playerRightKey))
+		{	
+			playerMonkey.activeAbility = false;
+		}
 	
-		float directionY = Mathf.Sign(playerMonkey.movement.y);
-		float directionX = Mathf.Sign(playerMonkey.movement.x);
-		
-		if(directionX == 1)
-		{
-			targetAngle = minAngleValue;
+		if(Input.GetKeyUp(playerLeftKey) || Input.GetKeyUp(playerRightKey))
+		{			
+			if(playerMonkey.isActiveAbility)
+			{
+				animationHandler.SetAnimatorBool("SpecialT2",true);
+			}
 		}
 		
-		if(directionX == -1)
+		if(Input.GetKeyDown(playerLeftKey) || Input.GetKeyDown(playerRightKey))		
 		{
-			targetAngle = maxAngleValue;
+			if(playerMonkey.isActiveAbility)
+			{
+				animationHandler.SetAnimatorBool("SpecialT2",false);
+			}		
 		}
-		
-		if(directionY == -1)
-		{
-			animationHandler.SetAnimatorBool("FallT",true);
-		}
-		
-		if(directionY == 1)
-		{
-			animationHandler.SetAnimatorBool("FallT",false);
-		}	
 
 		if((playerMonkey.collisionController.boxCollisionDirections.left || playerMonkey.collisionController.boxCollisionDirections.right)
-		&& !playerMonkey.collisionController.boxCollisionDirections.down /*&& playerMonkey.movement.y < 0*/)
+		&& !playerMonkey.collisionController.boxCollisionDirections.down)
 		{
 			animationHandler.SetAnimatorBool("SpecialT", true);
-			animationHandler.SetAnimatorBool("IdleT", false);
-			animationHandler.SetAnimatorBool("RunT", false);
-			animationHandler.SetAnimatorBool("JumpT", false);
-			animationHandler.SetAnimatorBool("FallT", false);
 		}
 		else
 		{
 			animationHandler.SetAnimatorBool("SpecialT", false);
-			
-			if(playerMonkey.movement.x != 0)
-			{
-				animationHandler.SetAnimatorBool("RunT", true);	
-				animationHandler.SetAnimatorBool("IdleT", false);			
-			}
-			else
-			{
-				animationHandler.SetAnimatorBool("RunT", false);	
-				animationHandler.SetAnimatorBool("IdleT", true);				
-			}
-			
+			animationHandler.SetAnimatorBool("SpecialT2", false);	
 		}
-
-
-		if(playerMonkey.collisionController.boxCollisionDirections.down)
+		
+		if(Input.GetKeyDown(playerJumpKey))
 		{
-			if(playerMonkey.movement.y == 0)
-			{	
-				animationHandler.SetAnimatorBool("JumpT", false);				
-			}	
-		}
-		else
-		{
-			if(directionY == 1)
-			{
 				animationHandler.SetAnimatorBool("JumpT", true);
-			}				
-		}			
+		}
 	}
 	
 	void InputAnimation()
 	{
-		/* Shared animation functions */
 		InputAnimationGeneric();
 		InputAnimationRotation();
 	
-		/* Albatross specific animations */
 		if(playerCharacterType == PlayerCharacterType.PlayerAlbatross)
 		{
 			InputAnimationAlbatross();
 		}
 
-		/* Penguin specific animations */
 		if(playerCharacterType == PlayerCharacterType.PlayerPenguin)
 		{
 			InputAnimationPenguin();
 		}
-
-		/* Pig specific animations */		
+		
 		if(playerCharacterType == PlayerCharacterType.PlayerPig)
 		{
 			InputAnimationPig();
 		}
-
-		/* Monkey specific animations */	
+	
 		if(playerCharacterType == PlayerCharacterType.PlayerMonkey)
 		{
 			InputAnimationMonkey();
@@ -486,7 +456,7 @@ public class PlayerInput : MonoBehaviour
 	
 	void Update() 
 	{
-		StaticZPos();
+		StaticZPosition();
 		InputAction();
 		
 		if(animationHandler != null)
@@ -494,4 +464,9 @@ public class PlayerInput : MonoBehaviour
 			InputAnimation();
 		}
 	}
+	
+	public float GetMaxAngleValue()
+	{
+		return maxAngleValue;
+	}	
 }

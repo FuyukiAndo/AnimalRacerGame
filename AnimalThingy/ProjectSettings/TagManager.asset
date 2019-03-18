@@ -4,7 +4,6 @@
 TagManager:
   serializedVersion: 2
   tags:
-
   - Ice_Character
   - Ground
   - OneWay
@@ -18,6 +17,8 @@ TagManager:
   - Workdammit
   - Blast
   - OneWay
+  - Projectile
+  - Obstacle
   layers:
   - Default
   - TransparentFX
@@ -30,7 +31,7 @@ TagManager:
   - Player
   - Platform
   - MovingPlatform
-  - 
+  - Projectile
   - 
   - 
   - 

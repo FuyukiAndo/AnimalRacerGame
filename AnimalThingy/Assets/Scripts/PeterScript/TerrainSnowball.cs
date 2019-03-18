@@ -74,7 +74,7 @@ public class TerrainSnowball : MonoBehaviour {
                 }
                 Debug.Log(pushback);
                 Physics2D.IgnoreCollision(collider, c2d);
-                collider.GetComponent<PlayerInput>().stunDurationLeft = stunDuration;
+                collider.GetComponent<PlayerInput>().stunDurationTimer = stunDuration;
                 if(transform.position.x > collider.transform.position.x)
                 {
                    

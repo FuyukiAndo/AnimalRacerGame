@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour 
 {
-	GravityController gravityController;
+	/*GravityController gravityController;
 	CollisionController collisionController;
 	Vector2 movement;
 	
@@ -35,6 +35,5 @@ public class Projectile : MonoBehaviour
 		}
 
 		transform.Translate(movement);
-	}
-	
+	}*/
 }

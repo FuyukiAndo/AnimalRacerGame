@@ -9,47 +9,76 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1164201688429514}
+  m_RootGameObject: {fileID: 1468555816427564}
   m_IsPrefabParent: 1
---- !u!1 &1164201688429514
+--- !u!1 &1468555816427564
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4991582234378600}
-  - component: {fileID: 33988807850618552}
-  - component: {fileID: 23269981365263724}
-  - component: {fileID: 61354334367736266}
-  - component: {fileID: 114744816111177328}
-  - component: {fileID: 114219394262681424}
-  m_Layer: 8
-  m_Name: PlayerTester
-  m_TagString: Player
+  - component: {fileID: 4924562913403426}
+  - component: {fileID: 61506058312782946}
+  - component: {fileID: 114141593343324228}
+  - component: {fileID: 114922491023152096}
+  m_Layer: 11
+  m_Name: BananaProjectile
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4991582234378600
+--- !u!1 &1517169913806222
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4779105321741636}
+  - component: {fileID: 33316457089966072}
+  - component: {fileID: 23685269671527576}
+  m_Layer: 0
+  m_Name: BananaModel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4779105321741636
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1164201688429514}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -55.77, y: -20.91, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_GameObject: {fileID: 1517169913806222}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 4924562913403426}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23269981365263724
+--- !u!4 &4924562913403426
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1468555816427564}
+  m_LocalRotation: {x: -0, y: -0.26496634, z: -0, w: 0.96425766}
+  m_LocalPosition: {x: 10.595112, y: 20.78, z: -0.095}
+  m_LocalScale: {x: 0.28, y: 0.28, z: 0.28}
+  m_Children:
+  - {fileID: 4779105321741636}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: -30.730001, z: 0}
+--- !u!23 &23685269671527576
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1164201688429514}
+  m_GameObject: {fileID: 1517169913806222}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -58,7 +87,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b1904159fcf89524a80396103560e571, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -66,7 +95,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_PreserveUVs: 1
+  m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_StitchLightmapSeams: 0
@@ -78,26 +107,26 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33988807850618552
+--- !u!33 &33316457089966072
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1164201688429514}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!61 &61354334367736266
+  m_GameObject: {fileID: 1517169913806222}
+  m_Mesh: {fileID: 4300000, guid: f7344148ab74bca4d89fe6eb4345b952, type: 3}
+--- !u!61 &61506058312782946
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1164201688429514}
+  m_GameObject: {fileID: 1468555816427564}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 2.28}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -108,14 +137,14 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 12.95, y: 7.6}
   m_EdgeRadius: 0
---- !u!114 &114219394262681424
+--- !u!114 &114141593343324228
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1164201688429514}
+  m_GameObject: {fileID: 1468555816427564}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2f3c395ba95f4f341a3da67a53d8acfd, type: 3}
@@ -128,29 +157,16 @@ MonoBehaviour:
   verticalRaycastsAmount: 4
   SetRayLength: 1
   maxAngle: 80
---- !u!114 &114744816111177328
+--- !u!114 &114922491023152096
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1164201688429514}
+  m_GameObject: {fileID: 1468555816427564}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12cc0c1502d1f9a4d8cf9512b0083174, type: 3}
+  m_Script: {fileID: 11500000, guid: 6ed1cde3c8425894e982f21e941e58d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerStates: 0
-  maxJumpHeight: 5.14
-  minJumpHeight: 3.27
-  jumpAndFallDelay: 0.4
-  gravity: 0
-  maxVelocity: 0
-  minVelocity: 0
-  playerType: 0
-  movementSpeed: 10
-  movementAcceleration: 0.13
-  collisionController: {fileID: 114219394262681424}
-  movement: {x: -4.7322654e-29, y: -3.8317637}
-  direction: 0
-  stunDurationLeft: 0
-  abilityMeter: 100
+  velocity: 8
+  velocityDelay: 0.4
