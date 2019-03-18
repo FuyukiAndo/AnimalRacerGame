@@ -583,8 +583,8 @@ MonoBehaviour:
   pinguinPrefab: {fileID: 1363596147525290, guid: 4c08a920c500b6b4a971b87e0b0a6ed7,
     type: 2}
   albatrossClip: {fileID: 32900000, guid: 928345104cc431043a20be56750b49c0, type: 3}
-  pigClip: {fileID: 32900000, guid: 17c70d4c7dc9b1b40bede0f22b2f9d73, type: 3}
-  monkeyClip: {fileID: 32900000, guid: f210c602334f7aa41900c0776b68b5a6, type: 3}
+  pigClip: {fileID: 32900000, guid: f210c602334f7aa41900c0776b68b5a6, type: 3}
+  monkeyClip: {fileID: 32900000, guid: 17c70d4c7dc9b1b40bede0f22b2f9d73, type: 3}
   pinguinClip: {fileID: 32900000, guid: 0e6127a485a02ee4cb921255f1d62ffd, type: 3}
   vp: {fileID: 250409844}
 --- !u!1 &293211985
