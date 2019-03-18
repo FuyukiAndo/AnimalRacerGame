@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LiquidScript : MonoBehaviour {
+public class LiquidScript : MonoBehaviour
+{
 
     private BoxCollider2D bc2d;
     private Collider2D collider2d;
@@ -18,35 +19,38 @@ public class LiquidScript : MonoBehaviour {
             checkpointPositions.Add(checkpoint.gameObject);
         }
     }
-	
+
     void Update()
     {
         CollisionDetect();
     }
-	
+
     void CollisionDetect()
     {
-        collider2d = Physics2D.OverlapBox(transform.position, bc2d.bounds.size, 0);
-        Physics2D.IgnoreCollision(collider2d, bc2d);
-        playerInput = collider2d.gameObject.GetComponent<PlayerInput>();
-
-        if (!playerInput) return;
-        if (playerInput.playerCharacterType == PlayerCharacterType.PlayerPenguin) return;
-
-        if (collider2d.gameObject.GetComponent<CheckpointTracker>().CheckpointsPassed.Count <= 0 || checkpointPositions.Count <= 0)
+        if (Physics2D.OverlapBox(transform.position, bc2d.bounds.size, 0))
         {
-            collider2d.gameObject.transform.position = StartManager.Instance.spawnPos1.spawnPos.transform.position;
-        }
+			collider2d = Physics2D.OverlapBox(transform.position, bc2d.bounds.size, 0);
+			Physics2D.IgnoreCollision(collider2d, bc2d);
+			playerInput = collider2d.gameObject.GetComponent<PlayerInput>();
 
-        for (int i = 0; i < checkpointPositions.Count; i++)
-        {
-            CheckpointTracker checkpointTracker = collider2d.gameObject.GetComponent<CheckpointTracker>();
-            int index = checkpointTracker.CheckpointsPassed[checkpointTracker.CheckpointsPassed.Count - 1];
+            if (!playerInput) return;
+			if (playerInput.playerCharacterType == PlayerCharacterType.PlayerPenguin) return;
 
-            if (checkpointPositions[i].GetComponent<Checkpoint>().Index == index)
-            {
-                collider2d.gameObject.transform.position = checkpointPositions[i].transform.position;
-            }
+			if (collider2d.gameObject.GetComponent<CheckpointTracker>().CheckpointsPassed.Count <= 0 || checkpointPositions.Count <= 0)
+			{
+				collider2d.gameObject.transform.position = StartManager.Instance.spawnPos1.spawnPos.transform.position;
+			}
+
+			for (int i = 0; i < checkpointPositions.Count; i++)
+			{
+				CheckpointTracker checkpointTracker = collider2d.gameObject.GetComponent<CheckpointTracker>();
+				int index = checkpointTracker.CheckpointsPassed[checkpointTracker.CheckpointsPassed.Count - 1];
+
+				if (checkpointPositions[i].GetComponent<Checkpoint>().Index == index)
+				{
+					collider2d.gameObject.transform.position = checkpointPositions[i].transform.position;
+				}
+			}
         }
     }
 }

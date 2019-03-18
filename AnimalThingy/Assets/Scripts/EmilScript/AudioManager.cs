@@ -62,6 +62,13 @@ public class AudioManager : MonoBehaviour
 				if (path.mapName.Contains(scene.name) || scene.name.Contains(path.mapName))
 				{
 					SetBackgroundAudio(path.audioPath);
+					SetAmbience(path.audioPath);
+					StopBackAudioLooping();
+					StopAmbienceLooping();
+					SetupBack();
+					SetupAmbience();
+					PlayBackAudioLooping();
+					PlayAmbienceLooping();
 					return;
 				}
 			}
@@ -126,16 +133,13 @@ public class AudioManager : MonoBehaviour
 	{
 		if (useFMOD)
 		{
-			//SetVolumeSFX(sfxVolume);
-			//SetVolumeBackground(backgroundVolume);
-			//SetVolumeAmbience(ambienceVolume);
-			//shouldStopBack = true;
-			StopBackAudioLooping();
-			//StopAmbienceLooping();
+			SetVolumeSFX(sfxVolume);
+			SetVolumeBackground(backgroundVolume);
+			SetVolumeAmbience(ambienceVolume);
 			SetupBack();
+			SetupAmbience();
 			PlayBackAudioLooping();
-			//SetupAmbience();
-			//PlayAmbienceLooping();
+			PlayAmbienceLooping();
 			if (background.randomizeValue && background.additionalParamValues.Length > 0)
 			{
 				int rand = Random.Range(0, background.additionalParamValues.Length);
@@ -190,13 +194,27 @@ public class AudioManager : MonoBehaviour
 		}
 	}
 
+	void Update()
+	{
+		PositionAudioSource();
+	}
+
+	void PositionAudioSource()
+	{
+		GameObject cam = FindObjectOfType<Camera>().gameObject;
+		Vector3 position = new Vector3(cam.transform.position.x, cam.transform.position.y, 0f);
+		transform.position = position;
+		RuntimeManager.AttachInstanceToGameObject(currentBackgroundInstance, transform, GetComponent<Rigidbody2D>());
+		RuntimeManager.AttachInstanceToGameObject(currentAmbienceInstance, transform, GetComponent<Rigidbody2D>());
+	}
+
 	void SetupBack()
 	{
 		if (background.currentAudioPath != string.Empty)
 		{
 			currentBackgroundInstance = RuntimeManager.CreateInstance(background.currentAudioPath);
-			ATTRIBUTES_3D attributesBack = FMODUnity.RuntimeUtils.To3DAttributes(transform.position);
-			currentBackgroundInstance.set3DAttributes(attributesBack);
+			//ATTRIBUTES_3D attributesBack = FMODUnity.RuntimeUtils.To3DAttributes(transform.position);
+			//currentBackgroundInstance.set3DAttributes(attributesBack);
 		}
 	}
 
@@ -205,8 +223,8 @@ public class AudioManager : MonoBehaviour
 		if (ambience.currentAudioPath != string.Empty)
 		{
 			ambience.audioInstance = RuntimeManager.CreateInstance(ambience.currentAudioPath);
-			ATTRIBUTES_3D attributesAmb = FMODUnity.RuntimeUtils.To3DAttributes(transform.position);
-			ambience.audioInstance.set3DAttributes(attributesAmb);
+			//ATTRIBUTES_3D attributesAmb = FMODUnity.RuntimeUtils.To3DAttributes(transform.position);
+			//ambience.audioInstance.set3DAttributes(attributesAmb);
 		}
 	}
 
@@ -411,9 +429,7 @@ public class AudioManager : MonoBehaviour
 		backgroundVolume = volume;
 		if (useFMOD)
 		{
-			print("setting volume " + volume);
 			currentBackgroundInstance.setVolume(volume);
-			print("getting volume " + GetVolumeBackground());
 		}
 		else
 		{

@@ -12,25 +12,48 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: 114988838994429382}
-  - {fileID: 114539901019315346}
+  - {fileID: 114180154500292704}
+  - {fileID: 114964534265062558}
   EditorEvents:
-  - {fileID: 114182289501037090}
-  - {fileID: 114296719327238250}
-  - {fileID: 114034228575523692}
-  - {fileID: 114417519674613584}
-  - {fileID: 114972250230397360}
-  - {fileID: 114971208824408298}
-  - {fileID: 114021322971596176}
-  - {fileID: 114761144364197244}
-  - {fileID: 114124047635614874}
-  - {fileID: 114619289332772368}
+  - {fileID: 114914137799850010}
+  - {fileID: 114009673179468594}
+  - {fileID: 114533408500480834}
+  - {fileID: 114568331256277052}
+  - {fileID: 114582225798360632}
+  - {fileID: 114046129312826864}
+  - {fileID: 114167849861321210}
+  - {fileID: 114903514257547762}
+  - {fileID: 114379425142292004}
+  - {fileID: 114131587354849996}
   MasterBanks:
-  - {fileID: 114539901019315346}
+  - {fileID: 114964534265062558}
   StringsBanks:
-  - {fileID: 114988838994429382}
-  stringsBankWriteTime: 636880015179549900
+  - {fileID: 114180154500292704}
+  stringsBankWriteTime: 636885068114945468
   cacheVersion: 3
+--- !u!114 &114009673179468594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/[B] Isbana
+  guid: 26f5e0baecbfe64db0c49d7bb5c7bb10
+  Banks:
+  - {fileID: 114964534265062558}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 114788699758198788}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 160752
 --- !u!114 &114021245832967308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,6 +178,28 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &114046129312826864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Victory Screen
+  guid: c09eff2eaa0f344cb98d638629a2b7ae
+  Banks:
+  - {fileID: 114964534265062558}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 7666
 --- !u!114 &114051762311651792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -351,6 +396,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 28672
+--- !u!114 &114131587354849996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/[K] Apa
+  guid: e44d8cba9c3fd745a92b6905b0f395dc
+  Banks:
+  - {fileID: 114964534265062558}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 114835564380459764}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &114139852495217996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -449,6 +517,46 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
+--- !u!114 &114167849861321210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Intro Screen
+  guid: cc6fea0eee2e494f8c138eb2b5e38798
+  Banks:
+  - {fileID: 114964534265062558}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 147905
+--- !u!114 &114180154500292704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: Assets\Resources\Animal Racer\Build\Desktop\Master Bank.strings.bank
+  lastModified: 636885068114945468
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 1136
+  Exists: 1
 --- !u!114 &114182289501037090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -510,6 +618,21 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 54500
+--- !u!114 &114198225476987370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Albatrossljud
+  Min: 0
+  Max: 3
+  Default: 0
 --- !u!114 &114203500236496050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -542,6 +665,21 @@ MonoBehaviour:
   Name: Checkpoints
   Min: 0
   Max: 1
+  Default: 0
+--- !u!114 &114208983098726558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Pingvinljud
+  Min: 0
+  Max: 3
   Default: 0
 --- !u!114 &114215007777053326
 MonoBehaviour:
@@ -798,6 +936,21 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
+--- !u!114 &114321255473001550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Knappar
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114323707190422554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -932,6 +1085,29 @@ MonoBehaviour:
   - Name: Desktop
     Value: 672
   Exists: 1
+--- !u!114 &114379425142292004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/[K] Albatross
+  guid: e2845ba7004fd5498457fe65219930b5
+  Banks:
+  - {fileID: 114964534265062558}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 114198225476987370}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &114391741170905856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1027,6 +1203,21 @@ MonoBehaviour:
   - Name: Desktop
     Value: 12474
   Exists: 0
+--- !u!114 &114436299449437088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Grisljud
+  Min: 0
+  Max: 3
+  Default: 0
 --- !u!114 &114456785269202490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1076,6 +1267,21 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
+--- !u!114 &114515955985942394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Checkpoints
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114518172535216132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1106,6 +1312,29 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
+--- !u!114 &114533408500480834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/[K] Gris
+  guid: 5e8d71e00ddd51489db37e62ff1f34de
+  Banks:
+  - {fileID: 114964534265062558}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 114436299449437088}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &114538464434709526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1212,6 +1441,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 0
+--- !u!114 &114568331256277052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Checkpoints
+  guid: 8441286251d42f4495a65c58ea96cb06
+  Banks:
+  - {fileID: 114964534265062558}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 114515955985942394}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &114573120955509024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1249,6 +1501,29 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
+--- !u!114 &114582225798360632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/[K] Pingvin
+  guid: 964a24d94ade4940b0b6da3c94e167b0
+  Banks:
+  - {fileID: 114964534265062558}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 114208983098726558}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &114588000112897164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1610,6 +1885,21 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 54500
+--- !u!114 &114788699758198788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Slut Isbana
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114796096705496788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1693,6 +1983,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: WaterFall_djungel
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114835564380459764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Apljud
+  Min: 0
+  Max: 3
+  Default: 0
+--- !u!114 &114841176776342578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Slut Djungelbana
   Min: 0
   Max: 1
   Default: 0
@@ -1802,6 +2122,29 @@ MonoBehaviour:
   Min: 0
   Max: 3
   Default: 0
+--- !u!114 &114903514257547762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Meny
+  guid: e2349baf434c4045ab9d33f72326796f
+  Banks:
+  - {fileID: 114964534265062558}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 114321255473001550}
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 54500
 --- !u!114 &114913243382348896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1817,6 +2160,29 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
+--- !u!114 &114914137799850010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/[B] Djungelbana
+  guid: 0b96a49b692eed4f83272a1cd825c91b
+  Banks:
+  - {fileID: 114964534265062558}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 114841176776342578}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 210752
 --- !u!114 &114914557223268710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1897,6 +2263,25 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 32079
+--- !u!114 &114964534265062558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: C:\Users\Emilb\DevProjects\Games\AnimalRacerGame\AnimalThingy\Assets\Resources\Animal
+    Racer\Build\Desktop\Master Bank.bank
+  lastModified: 636885068114755901
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 11859520
+  Exists: 1
 --- !u!114 &114971208824408298
 MonoBehaviour:
   m_ObjectHideFlags: 0

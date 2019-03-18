@@ -433,6 +433,7 @@ GameObject:
   - component: {fileID: 82546735184454966}
   - component: {fileID: 114619608739582500}
   - component: {fileID: 114671128806814976}
+  - component: {fileID: 114553485742183486}
   m_Layer: 8
   m_Name: PlayerAlbatrossObject 1
   m_TagString: Untagged
@@ -6144,7 +6145,7 @@ GameObject:
   - component: {fileID: 23254571143514922}
   - component: {fileID: 222843295050451804}
   - component: {fileID: 114975244916216128}
-  - component: {fileID: 114687204331443414}
+  - component: {fileID: 114100909348234834}
   m_Layer: 0
   m_Name: SpeechBubble
   m_TagString: Untagged
@@ -15445,6 +15446,28 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114100909348234834
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1777770811447258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 121ede1f33be8754eb9a275a62bbbe51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speeches: []
+  speechBubble: {fileID: 1777770811447258}
+  characterCrystal: {fileID: 1181000132539974}
+  speechSpeedMult: 0.4
+  isCommentator: 0
+  commentator:
+    speeches: []
+    levelCompleteSpeech: 
+    commentingDelay: 0
+    commentatorSpeechBubble: {fileID: 0}
+    nextComment: 0
 --- !u!114 &114140393569672606
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15465,15 +15488,17 @@ MonoBehaviour:
   deaccelerationModifier: 0.3
   abilityMeter: 100
   abilityMeterModifier: 1
+  maxUseCounter: 3
+  abilityModifier: 2
+  abilityDirection: 0
+  collisionController: {fileID: 114954231877299268}
+  movement: {x: 0, y: 0}
   isActiveAbility: 0
   isPassiveAbility: 0
   activeAbility: 0
   passiveAbility: 0
   isJumping: 0
-  maxUseCounter: 3
-  abilityModifier: 2
-  collisionController: {fileID: 114954231877299268}
-  movement: {x: 0, y: 0}
+  collision: []
   maxFlyCounter: 3
   untilGlideCounter: 0.4
   glideSpeed: 2
@@ -15514,6 +15539,18 @@ MonoBehaviour:
   animationType: []
   speed: 0
   blinkInterval: 0
+--- !u!114 &114553485742183486
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1045792901303020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ListenerNumber: 1
 --- !u!114 &114619608739582500
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15525,14 +15562,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76fe4c252ae9c5f479067e802bfc9545, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playEffectAuto: 0
-  oneshot: 0
+  playEffectAuto: 1
+  oneshot: 1
   attached: 0
-  startEvent: 0
+  startEvent: 2
   stopEvent: 0
-  updateDelay: 0
+  updateDelay: 2
   sfx:
-    audioPath: 
+    currentAudioPath: event:/[K] Albatross
     paramName: 
     paramValue: 0
     additionalParamValues: []
@@ -15558,35 +15595,13 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   checkpointSFX:
-    audioPath: 
+    currentAudioPath: 
     paramName: 
     paramValue: 0
     additionalParamValues: []
     randomizeValue: 0
   effectController: {fileID: 0}
   box: {fileID: 61171798329010392}
---- !u!114 &114687204331443414
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1777770811447258}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5ddfcab7d9d5d446b639dffb17d6e8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speeches: []
-  speechBubble: {fileID: 1777770811447258}
-  characterCrystal: {fileID: 1181000132539974}
-  speechSpeedMult: 0.4
-  isCommentator: 0
-  commentator:
-    speeches: []
-    levelCompleteSpeech: 
-    commentingDelay: 0
-    commentatorSpeechBubble: {fileID: 0}
-    nextComment: 0
 --- !u!114 &114819313975983990
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15598,17 +15613,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ada670a83430aa448bc3fa1cbfa48aaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationHandler: {fileID: 114262746873581374}
-  playerCharacterType: 1
   playerLeftKey: 276
   playerRightKey: 275
   playerJumpKey: 97
   playerAbilityKey: 115
+  stunDurationTimer: 1.2
   rotationSpeed: 0.25
+  animationHandler: {fileID: 114262746873581374}
+  playerCharacterType: 1
+  targetAngle: 269
+  isStunned: 0
   isControllable: 1
   changeAngle: 1
-  stunDurationLeft: 3
-  targetAngle: 269
 --- !u!114 &114954231877299268
 MonoBehaviour:
   m_ObjectHideFlags: 1
