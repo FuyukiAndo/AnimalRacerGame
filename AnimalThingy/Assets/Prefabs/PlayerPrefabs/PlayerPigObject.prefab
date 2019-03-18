@@ -2879,7 +2879,7 @@ GameObject:
   - component: {fileID: 23034549461503264}
   - component: {fileID: 222420716959115208}
   - component: {fileID: 114440336730658774}
-  - component: {fileID: 114491078811193722}
+  - component: {fileID: 114047839096835806}
   m_Layer: 0
   m_Name: SpeechBubble
   m_TagString: Untagged
@@ -3971,6 +3971,7 @@ GameObject:
   - component: {fileID: 82977158773414486}
   - component: {fileID: 114246133739192836}
   - component: {fileID: 114207199674327870}
+  - component: {fileID: 114287004088598780}
   m_Layer: 8
   m_Name: PlayerPigObject
   m_TagString: Untagged
@@ -11884,6 +11885,28 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114047839096835806
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1502186054641404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 121ede1f33be8754eb9a275a62bbbe51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speeches: []
+  speechBubble: {fileID: 1502186054641404}
+  characterCrystal: {fileID: 1038028058540318}
+  speechSpeedMult: 0.4
+  isCommentator: 0
+  commentator:
+    speeches: []
+    levelCompleteSpeech: 
+    commentingDelay: 0
+    commentatorSpeechBubble: {fileID: 0}
+    nextComment: 0
 --- !u!114 &114056456133718378
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11940,14 +11963,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76fe4c252ae9c5f479067e802bfc9545, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playEffectAuto: 0
-  oneshot: 0
+  playEffectAuto: 1
+  oneshot: 1
   attached: 0
-  startEvent: 0
+  startEvent: 2
   stopEvent: 0
-  updateDelay: 0
+  updateDelay: 2
   sfx:
-    currentAudioPath: 
+    currentAudioPath: event:/[K] Gris
     paramName: 
     paramValue: 0
     additionalParamValues: []
@@ -11976,6 +11999,18 @@ MonoBehaviour:
   verticalRaycastsAmount: 4
   SetRayLength: 1
   maxAngle: 80
+--- !u!114 &114287004088598780
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1658185059900300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ListenerNumber: 4
 --- !u!114 &114314866177196584
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12157,28 +12192,6 @@ MonoBehaviour:
     type: 2}
   yellowCrystalMaterial: {fileID: 2100000, guid: 1841b5596ca744b4d8e16085a83d274a,
     type: 2}
---- !u!114 &114491078811193722
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1502186054641404}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5ddfcab7d9d5d446b639dffb17d6e8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speeches: []
-  speechBubble: {fileID: 1502186054641404}
-  characterCrystal: {fileID: 1038028058540318}
-  speechSpeedMult: 0.4
-  isCommentator: 0
-  commentator:
-    speeches: []
-    levelCompleteSpeech: 
-    commentingDelay: 0
-    commentatorSpeechBubble: {fileID: 0}
-    nextComment: 0
 --- !u!137 &137990517440077416
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

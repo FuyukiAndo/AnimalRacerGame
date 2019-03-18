@@ -1994,6 +1994,7 @@ GameObject:
   - component: {fileID: 82505532763273022}
   - component: {fileID: 114482449793670534}
   - component: {fileID: 114215283629440506}
+  - component: {fileID: 114067485108579324}
   m_Layer: 8
   m_Name: PlayerMonkeyObject
   m_TagString: Untagged
@@ -6425,7 +6426,7 @@ GameObject:
   - component: {fileID: 23448453265515114}
   - component: {fileID: 222013417147161694}
   - component: {fileID: 114567713011928814}
-  - component: {fileID: 114327265959059356}
+  - component: {fileID: 114636262690531154}
   m_Layer: 0
   m_Name: SpeechBubble
   m_TagString: Untagged
@@ -20238,6 +20239,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114067485108579324
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1196314723305698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ListenerNumber: 2
 --- !u!114 &114078422127414728
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20311,28 +20324,6 @@ MonoBehaviour:
     randomizeValue: 0
   effectController: {fileID: 0}
   box: {fileID: 61297682882013074}
---- !u!114 &114327265959059356
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1668845144114176}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5ddfcab7d9d5d446b639dffb17d6e8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speeches: []
-  speechBubble: {fileID: 1668845144114176}
-  characterCrystal: {fileID: 1952473443513038}
-  speechSpeedMult: 0.4
-  isCommentator: 0
-  commentator:
-    speeches: []
-    levelCompleteSpeech: 
-    commentingDelay: 0
-    commentatorSpeechBubble: {fileID: 0}
-    nextComment: 0
 --- !u!114 &114482449793670534
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20344,14 +20335,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76fe4c252ae9c5f479067e802bfc9545, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playEffectAuto: 0
-  oneshot: 0
+  playEffectAuto: 1
+  oneshot: 1
   attached: 0
-  startEvent: 0
+  startEvent: 2
   stopEvent: 0
-  updateDelay: 0
+  updateDelay: 2
   sfx:
-    currentAudioPath: 
+    currentAudioPath: event:/[K] Apa
     paramName: 
     paramValue: 0
     additionalParamValues: []
@@ -20475,6 +20466,28 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   m_maskType: 0
+--- !u!114 &114636262690531154
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1668845144114176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 121ede1f33be8754eb9a275a62bbbe51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speeches: []
+  speechBubble: {fileID: 1668845144114176}
+  characterCrystal: {fileID: 1952473443513038}
+  speechSpeedMult: 0.4
+  isCommentator: 0
+  commentator:
+    speeches: []
+    levelCompleteSpeech: 
+    commentingDelay: 0
+    commentatorSpeechBubble: {fileID: 0}
+    nextComment: 0
 --- !u!114 &114677369950948764
 MonoBehaviour:
   m_ObjectHideFlags: 1
