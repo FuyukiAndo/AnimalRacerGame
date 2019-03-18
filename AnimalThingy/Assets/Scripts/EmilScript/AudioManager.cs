@@ -5,20 +5,20 @@ using FMOD.Studio;
 using FMODUnity;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
-[RequireComponent(typeof(AudioSource))]
 public class AudioManager : MonoBehaviour
 {
 
 	//FMOD
-	public FMODAudio Background
+	public FMODManagerAudio Background
 	{
 		get
 		{
 			return background;
 		}
 	}
-	public FMODAudio Ambience
+	public FMODManagerAudio Ambience
 	{
 		get
 		{
@@ -26,11 +26,12 @@ public class AudioManager : MonoBehaviour
 		}
 	}
 
-	[SerializeField] private FMODAudio background, ambience;
+	[SerializeField] private FMODManagerAudio background, ambience;
+	private EventInstance currentBackgroundInstance, currentAmbienceInstance;
 
 	//Unity
-	[SerializeField] private AudioClip backgroundClip;
-	private AudioSource source;
+	[SerializeField] private ManagerAudio backgroundUnity, ambienceUnity;
+	[SerializeField] private AudioSource backSource, ambienceSource;
 
 	private bool shouldStopBack, shouldStopAmbience;
 
@@ -43,43 +44,65 @@ public class AudioManager : MonoBehaviour
 	}
 	private static AudioManager instance;
 	public bool useFMOD;
-	public float BackgroundVolume
+
+	[SerializeField][Range(0f, 1f)] private float backgroundVolume = .5f, ambienceVolume = .5f, sfxVolume = .5f, masterVolume = .5f;
+	private IEnumerator backgroundRoutine, ambienceRoutine;
+
+	void OnEnable()
 	{
-		get
-		{
-			return backgroundVolume;
-		}
+		SceneManager.sceneLoaded += OnSceneLoaded;
 	}
-	public float AmbienceVolume
+
+	void OnSceneLoaded(Scene scene, LoadSceneMode sceneMode)
 	{
-		get
+		if (useFMOD)
 		{
-			return ambienceVolume;
+			foreach (var path in background.audioPaths)
+			{
+				if (path.mapName.Contains(scene.name) || scene.name.Contains(path.mapName))
+				{
+					SetBackgroundAudio(path.audioPath);
+					return;
+				}
+			}
 		}
-	}
-	public float SFXVolume
-	{
-		get
+		else
 		{
-			return sfxVolume;
-		}
-	}
-	public float MasterVolume
-	{
-		get
-		{
-			return masterVolume;
+			foreach (var clip in backgroundUnity.audioClips)
+			{
+				if (clip.mapName.Contains(scene.name) || scene.name.Contains(clip.mapName))
+				{
+					SetBackgroundAudio(clip.audioClip);
+					return;
+				}
+			}
 		}
 	}
 
-	[SerializeField][Range(0f, 1f)] private float backgroundVolume, ambienceVolume, sfxVolume, masterVolume;
-
-	void OnValidate()
+	void OnAwake(Scene scene)
 	{
-		SetVolumeSFX(sfxVolume);
-		SetVolumeBackground(backgroundVolume);
-		SetVolumeAmbience(ambienceVolume);
-		SetVolumeMaster(masterVolume);
+		if (useFMOD)
+		{
+			foreach (var path in background.audioPaths)
+			{
+				if (path.mapName.Contains(scene.name) || scene.name.Contains(path.mapName))
+				{
+					SetBackgroundAudio(path.audioPath);
+					return;
+				}
+			}
+		}
+		else
+		{
+			foreach (var clip in backgroundUnity.audioClips)
+			{
+				if (clip.mapName.Contains(scene.name) || scene.name.Contains(clip.mapName))
+				{
+					SetBackgroundAudio(clip.audioClip);
+					return;
+				}
+			}
+		}
 	}
 
 	void Awake()
@@ -87,6 +110,9 @@ public class AudioManager : MonoBehaviour
 		if (instance == null)
 		{
 			instance = this;
+			backgroundRoutine = PlayBackAudio();
+			ambienceRoutine = PlayAmbience();
+			OnAwake(SceneManager.GetActiveScene());
 			DontDestroyOnLoad(gameObject);
 		}
 		else if (instance != this)
@@ -100,7 +126,16 @@ public class AudioManager : MonoBehaviour
 	{
 		if (useFMOD)
 		{
-			Setup();
+			//SetVolumeSFX(sfxVolume);
+			//SetVolumeBackground(backgroundVolume);
+			//SetVolumeAmbience(ambienceVolume);
+			//shouldStopBack = true;
+			StopBackAudioLooping();
+			//StopAmbienceLooping();
+			SetupBack();
+			PlayBackAudioLooping();
+			//SetupAmbience();
+			//PlayAmbienceLooping();
 			if (background.randomizeValue && background.additionalParamValues.Length > 0)
 			{
 				int rand = Random.Range(0, background.additionalParamValues.Length);
@@ -119,20 +154,34 @@ public class AudioManager : MonoBehaviour
 			{
 				SetAmbienceParameterValue(ambience.paramValue);
 			}
-			SetVolumeSFX(sfxVolume);
-			SetVolumeBackground(backgroundVolume);
-			SetVolumeAmbience(ambienceVolume);
-			SetVolumeMaster(masterVolume);
-			StartCoroutine(PlayBackAudio());
-			StartCoroutine(PlayAmbience());
 		}
 		else
 		{
-			source = GetComponent<AudioSource>();
-			if (source != null)
+			if (GetComponents<AudioSource>().Length >= 0)
 			{
-				SetBackgroundAudio(backgroundClip);
-				StartCoroutine(PlayBackgroundAudio());
+				if (GetComponents<AudioSource>().Length == 1)
+				{
+					gameObject.AddComponent<AudioSource>();
+				}
+				else
+				{
+					gameObject.AddComponent<AudioSource>();
+					gameObject.AddComponent<AudioSource>();
+				}
+			}
+			backSource = GetComponents(typeof(AudioSource))[0] as AudioSource;
+			ambienceSource = GetComponents(typeof(AudioSource))[1] as AudioSource;
+			if (backSource != null)
+			{
+				PlayBackAudioLooping();
+			}
+			else
+			{
+				UnityEngine.Debug.LogWarning("AudioManager has no AudioSource component!");
+			}
+			if (ambienceSource != null)
+			{
+				PlayAmbienceLooping();
 			}
 			else
 			{
@@ -141,18 +190,21 @@ public class AudioManager : MonoBehaviour
 		}
 	}
 
-	void Setup()
+	void SetupBack()
 	{
-		if (background.audioPath != string.Empty)
+		if (background.currentAudioPath != string.Empty)
 		{
-			background.audioInstance = RuntimeManager.CreateInstance(background.audioPath);
+			currentBackgroundInstance = RuntimeManager.CreateInstance(background.currentAudioPath);
 			ATTRIBUTES_3D attributesBack = FMODUnity.RuntimeUtils.To3DAttributes(transform.position);
-			background.audioInstance.set3DAttributes(attributesBack);
+			currentBackgroundInstance.set3DAttributes(attributesBack);
 		}
+	}
 
-		if (ambience.audioPath != string.Empty)
+	void SetupAmbience()
+	{
+		if (ambience.currentAudioPath != string.Empty)
 		{
-			ambience.audioInstance = RuntimeManager.CreateInstance(ambience.audioPath);
+			ambience.audioInstance = RuntimeManager.CreateInstance(ambience.currentAudioPath);
 			ATTRIBUTES_3D attributesAmb = FMODUnity.RuntimeUtils.To3DAttributes(transform.position);
 			ambience.audioInstance.set3DAttributes(attributesAmb);
 		}
@@ -160,50 +212,66 @@ public class AudioManager : MonoBehaviour
 
 	IEnumerator PlayBackAudio()
 	{
-		background.audioInstance.start();
-		PLAYBACK_STATE playState;
-		background.audioInstance.getPlaybackState(out playState);
-		while (!shouldStopBack)
+		if (useFMOD)
 		{
-			if (playState == PLAYBACK_STATE.STOPPED)
+			currentBackgroundInstance.start();
+			PLAYBACK_STATE playState;
+			currentBackgroundInstance.getPlaybackState(out playState);
+			while (!shouldStopBack)
 			{
-				background.audioInstance.start();
+				if (playState == PLAYBACK_STATE.STOPPED)
+				{
+					currentBackgroundInstance.start();
+				}
+				currentBackgroundInstance.getPlaybackState(out playState);
+				yield return null;
 			}
-			background.audioInstance.getPlaybackState(out playState);
-			yield return null;
 		}
-		background.audioInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+		else
+		{
+			backSource.Play();
+			while (!shouldStopBack)
+			{
+				if (!backSource.isPlaying)
+				{
+					backSource.Play();
+				}
+				yield return null;
+			}
+			backSource.Stop();
+		}
 	}
 
 	IEnumerator PlayAmbience()
 	{
-		ambience.audioInstance.start();
-		PLAYBACK_STATE playState;
-		ambience.audioInstance.getPlaybackState(out playState);
-		while (!shouldStopAmbience)
+		if (useFMOD)
 		{
-			if (playState == PLAYBACK_STATE.STOPPED)
-			{
-				ambience.audioInstance.start();
-			}
+			ambience.audioInstance.start();
+			PLAYBACK_STATE playState;
 			ambience.audioInstance.getPlaybackState(out playState);
-			yield return null;
-		}
-		ambience.audioInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-	}
-
-	IEnumerator PlayBackgroundAudio()
-	{
-		source.Play();
-		while (!shouldStopBack)
-		{
-			if (!source.isPlaying)
+			while (!shouldStopAmbience)
 			{
-				source.Play();
+				if (playState == PLAYBACK_STATE.STOPPED)
+				{
+					ambience.audioInstance.start();
+				}
+				ambience.audioInstance.getPlaybackState(out playState);
+				yield return null;
 			}
-			yield return null;
 		}
-		source.Stop();
+		else
+		{
+			ambienceSource.Play();
+			while (!shouldStopBack)
+			{
+				if (!ambienceSource.isPlaying)
+				{
+					ambienceSource.Play();
+				}
+				yield return null;
+			}
+			ambienceSource.Stop();
+		}
 	}
 
 	IEnumerator IStopAll(bool fade)
@@ -232,6 +300,7 @@ public class AudioManager : MonoBehaviour
 
 	public void SetVolumeSFX(float volume)
 	{
+		sfxVolume = volume;
 		foreach (var controller in FindObjectsOfType<AudioEffectController>())
 		{
 			controller.SetAudioVolume(volume);
@@ -240,52 +309,71 @@ public class AudioManager : MonoBehaviour
 
 	public float GetVolumeSFX()
 	{
-		return FindObjectOfType<AudioEffectController>() ? FindObjectOfType<AudioEffectController>().GetAudioVolume() :
-		sfxVolume;
+		return sfxVolume;
 	}
 
 	public void FadeBackTo(string path)
 	{
-		background.audioInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-		if (path != null)
+		currentBackgroundInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+		if (path != "")
 		{
-			background.audioInstance = RuntimeManager.CreateInstance(path);
-			background.audioInstance.start();
+			SetupBack();
+			StartCoroutine(PlayBackAudio());
 		}
 	}
 
-	public void FadeAmbienceTo(string path)
+	public void FadeAmbienceTo(string path = null)
 	{
 		ambience.audioInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-		if (path != null)
+		if (path != null || path != string.Empty)
 		{
-			ambience.audioInstance = RuntimeManager.CreateInstance(path);
-			ambience.audioInstance.start();
+			SetupAmbience();
+			StartCoroutine(PlayAmbience());
 		}
 	}
 
-	public void FadeTo(AudioClip clip)
+	public void FadeBackTo(AudioClip clip)
 	{
-		if (useFMOD)
-		{
-			print("Using FMOD enabled, no need for fading with AudioClip.");
-			return;
-		}
-		StartCoroutine(IFadeTo(clip));
+		StartCoroutine(IFadeBackTo(clip));
 	}
 
-	IEnumerator IFadeTo(AudioClip clip)
+	public void FadeAmbienceTo(AudioClip clip)
 	{
-		while (source.volume > 0.0f)
+		StartCoroutine(IFadeAmbienceTo(clip));
+	}
+
+	IEnumerator IFadeBackTo(AudioClip clip)
+	{
+		float tempBack = backgroundVolume;
+		while (backSource.volume > 0.0f)
 		{
-			source.volume -= Time.deltaTime;
+			backSource.volume -= Time.deltaTime;
 			yield return null;
 		}
-		backgroundClip = clip;
-		source.clip = backgroundClip;
-		while (source.volume < 1.0f)
+		StopBackAudioLooping();
+		SetBackgroundAudio(clip);
+		PlayBackAudioLooping();
+		while (backSource.volume < tempBack)
 		{
-			source.volume += Time.deltaTime;
+			backSource.volume += Time.deltaTime;
+			yield return null;
+		}
+	}
+
+	IEnumerator IFadeAmbienceTo(AudioClip clip)
+	{
+		float tempAmb = ambienceVolume;
+		while (ambienceSource.volume > 0.0f)
+		{
+			ambienceSource.volume -= Time.deltaTime;
+			yield return null;
+		}
+		StopAmbienceLooping();
+		SetAmbience(clip);
+		PlayAmbienceLooping();
+		while (ambienceSource.volume < tempAmb)
+		{
+			ambienceSource.volume += Time.deltaTime;
 			yield return null;
 		}
 	}
@@ -293,61 +381,85 @@ public class AudioManager : MonoBehaviour
 	public void PlayBackAudioLooping()
 	{
 		shouldStopBack = false;
-		if (useFMOD)
-		{
-			StartCoroutine(PlayBackAudio());
-		}
-		else
-		{
-			StartCoroutine(PlayBackgroundAudio());
-		}
+		StartCoroutine(backgroundRoutine);
 	}
 
 	public void PlayAmbienceLooping()
 	{
 		shouldStopAmbience = false;
-		StartCoroutine(PlayAmbience());
+		StartCoroutine(ambienceRoutine);
 	}
 
 	public void StopBackAudioLooping()
 	{
 		shouldStopBack = true;
+		currentBackgroundInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+		StopCoroutine(backgroundRoutine);
+		//FadeBackTo("");
 	}
 
 	public void StopAmbienceLooping()
 	{
 		shouldStopAmbience = true;
+		currentAmbienceInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+		StopCoroutine(ambienceRoutine);
+		//FadeAmbienceTo();
 	}
 
 	public void SetVolumeBackground(float volume)
 	{
+		backgroundVolume = volume;
 		if (useFMOD)
 		{
-			background.audioInstance.setVolume(volume);
+			print("setting volume " + volume);
+			currentBackgroundInstance.setVolume(volume);
+			print("getting volume " + GetVolumeBackground());
 		}
 		else
 		{
-			source.volume = volume;
+			backSource.volume = volume;
 		}
 	}
 
 	public float GetVolumeBackground()
 	{
-		float volume, finalVolume;
-		background.audioInstance.getVolume(out volume, out finalVolume);
-		return volume;
+		if (useFMOD)
+		{
+			float volume, finalVolume;
+			currentBackgroundInstance.getVolume(out volume, out finalVolume);
+			return volume;
+		}
+		else
+		{
+			return backSource.volume;
+		}
 	}
 
 	public void SetVolumeAmbience(float volume)
 	{
-		ambience.audioInstance.setVolume(volume);
+		ambienceVolume = volume;
+		if (useFMOD)
+		{
+			ambience.audioInstance.setVolume(volume);
+		}
+		else
+		{
+			ambienceSource.volume = volume;
+		}
 	}
 
 	public float GetVolumeAmbience()
 	{
-		float volume, finalVolume;
-		ambience.audioInstance.getVolume(out volume, out finalVolume);
-		return volume;
+		if (useFMOD)
+		{
+			float volume, finalVolume;
+			ambience.audioInstance.getVolume(out volume, out finalVolume);
+			return volume;
+		}
+		else
+		{
+			return ambienceSource.volume;
+		}
 	}
 
 	public void SetVolumeMaster(float volume)
@@ -359,28 +471,27 @@ public class AudioManager : MonoBehaviour
 
 	public void SetBackgroundAudio(string path)
 	{
-		background.audioPath = path;
+		background.currentAudioPath = path;
 	}
 
 	public void SetAmbience(string path)
 	{
-		ambience.audioPath = path;
+		ambience.currentAudioPath = path;
 	}
 
 	public void SetBackgroundAudio(AudioClip clip)
 	{
-		if (useFMOD)
-		{
-			print("Using FMOD enabled, no need for setting AudioClip.");
-			return;
-		}
-		backgroundClip = clip;
-		source.clip = backgroundClip;
+		backSource.clip = clip;
+	}
+
+	public void SetAmbience(AudioClip clip)
+	{
+		ambienceSource.clip = clip;
 	}
 
 	public float GetBackParameterValue()
 	{
-		background.audioInstance.getParameter(background.paramName, out background.paramInstance);
+		currentBackgroundInstance.getParameter(background.paramName, out background.paramInstance);
 		float tempValue;
 		background.paramInstance.getValue(out tempValue);
 		return tempValue;
@@ -396,19 +507,82 @@ public class AudioManager : MonoBehaviour
 
 	public void SetBackParameterValue(float value)
 	{
-		background.audioInstance.setParameterValue(background.paramName, value);
+		currentBackgroundInstance.setParameterValue(background.paramName, value);
 	}
 
 	public void SetAmbienceParameterValue(float value)
 	{
 		ambience.audioInstance.setParameterValue(background.paramName, value);
 	}
+
+	private bool IsBackPlaying()
+	{
+		if (useFMOD)
+		{
+			PLAYBACK_STATE state;
+			currentBackgroundInstance.getPlaybackState(out state);
+			print(state);
+			return state == PLAYBACK_STATE.PLAYING;
+		}
+		else
+		{
+			return backSource.isPlaying;
+		}
+	}
+
+	private bool IsAmbiencePlaying()
+	{
+		if (useFMOD)
+		{
+			PLAYBACK_STATE state;
+			ambience.audioInstance.getPlaybackState(out state);
+			return state == PLAYBACK_STATE.PLAYING;
+		}
+		else
+		{
+			return ambienceSource.isPlaying;
+		}
+	}
+
+	[System.Serializable]
+	public struct FMODManagerAudio
+	{
+		public MapAudio[] audioPaths;
+		[EventRef] public string currentAudioPath;
+		public string paramName;
+		public float paramValue;
+		public float[] additionalParamValues;
+		public bool randomizeValue;
+
+		public ParameterInstance paramInstance;
+		public EventInstance audioInstance;
+
+		[System.Serializable]
+		public struct MapAudio
+		{
+			[EventRef] public string audioPath;
+			public string mapName;
+		}
+	}
+
+	[System.Serializable]
+	public struct ManagerAudio
+	{
+		public MapAudio[] audioClips;
+
+		[System.Serializable]
+		public struct MapAudio
+		{
+			public AudioClip audioClip;
+			public string mapName;
+		}
+	}
 }
 
 [System.Serializable]
 public struct FMODAudio
 {
-	[EventRef] public string audioPath;
+	[EventRef] public string currentAudioPath;
 	public string paramName;
 	public float paramValue;
 	public float[] additionalParamValues;

@@ -27,9 +27,10 @@ public class LiquidScript : MonoBehaviour {
     void CollisionDetect()
     {
         collider2d = Physics2D.OverlapBox(transform.position, bc2d.bounds.size, 0);
-
+        Physics2D.IgnoreCollision(collider2d, bc2d);
         playerInput = collider2d.gameObject.GetComponent<PlayerInput>();
 
+        if (!playerInput) return;
         if (playerInput.playerCharacterType == PlayerCharacterType.PlayerPenguin) return;
 
         if (collider2d.gameObject.GetComponent<CheckpointTracker>().CheckpointsPassed.Count <= 0 || checkpointPositions.Count <= 0)

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Camera))]
+[RequireComponent(typeof(Camera)), RequireComponent(typeof(AudioListener))]
 public class CameraScript : MonoBehaviour {
     public float cameraSmoothTime = 0.5f;
 
@@ -39,8 +39,11 @@ public class CameraScript : MonoBehaviour {
         {
             players.Add(player.gameObject);
         }
-        furthestPosPlayer = players[0].gameObject;
-        furthestNegPlayer = players[1].gameObject;
+        if (players.Count > 1)
+        {
+			furthestPosPlayer = players[0].gameObject;
+			furthestNegPlayer = players[1].gameObject;
+        }
     }
 
     private void LateUpdate()

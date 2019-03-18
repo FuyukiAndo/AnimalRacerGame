@@ -1,11 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class Spike : FlyingTrajectory
 {
-    public float timeBeforeSpikeFallsMin = 0;
-    public float timeBeforeSpikeFallsMax = 5;
+    public float timeBeforeSpikeFallsMin;
+    public float timeBeforeSpikeFallsMax;
 
     private float timeBeforeSpikeFalls;
     private SpikeSpawner spikeSpawner;

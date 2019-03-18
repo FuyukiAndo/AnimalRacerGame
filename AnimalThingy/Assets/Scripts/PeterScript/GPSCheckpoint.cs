@@ -39,7 +39,7 @@ public class GPSCheckpoint : MonoBehaviour {
         }
     }
     public void UpdateCheckpointToGo()
-    {
+    {   
         index++;
         currentCheckpoint = checkpoints[index];
     }
@@ -50,7 +50,7 @@ public class GPSCheckpoint : MonoBehaviour {
         dir.Normalize();
 
         float rot_z = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        arrow.rectTransform.eulerAngles = new Vector3(0f, 0f, rot_z - 90 );
+        arrow.transform.eulerAngles = new Vector3(0f, 0f, rot_z - 90 );
     }
     void UpdateScreenArrow()    
     {
@@ -66,13 +66,26 @@ public class GPSCheckpoint : MonoBehaviour {
         if (outofScreenX)
         {
             UpdateRotation();
-            arrow.rectTransform.position = new Vector3(arrow.rectTransform.position.x, Camera.main.WorldToScreenPoint(new Vector3(checkX, checkY)).y);
+            if(transform.position.x < currentCheckpoint.position.x) { 
+                arrow.rectTransform.position = new Vector3(Screen.width - arrow.rectTransform.rect.width, Camera.main.WorldToScreenPoint(new Vector3(checkX, checkY)).y);
+                }
+            else
+            {
+                arrow.rectTransform.position = new Vector3(arrow.rectTransform.rect.width, Camera.main.WorldToScreenPoint(new Vector3(checkX, checkY)).y);
+            }
             return;
         }
         if (outofScreenY)
         {
             UpdateRotation();
-            arrow.rectTransform.position = new Vector3(Camera.main.WorldToScreenPoint(new Vector3(checkX, checkY)).x, arrow.rectTransform.position.y);
+            if (transform.position.y < currentCheckpoint.position.y)
+            {
+                arrow.rectTransform.position = new Vector3(Camera.main.WorldToScreenPoint(new Vector3(checkX, checkY)).x, Screen.height - arrow.rectTransform.rect.height);
+            }
+            else
+            {
+                arrow.rectTransform.position = new Vector3(Camera.main.WorldToScreenPoint(new Vector3(checkX, checkY)).x,  arrow.rectTransform.rect.height);
+            }
             return;
         }
         arrow.rectTransform.eulerAngles = new Vector3(0f, 0f, 0f);
@@ -81,7 +94,7 @@ public class GPSCheckpoint : MonoBehaviour {
     }
     void UpdateIfInsideOfScreenX()
     {
-        if(Camera.main.WorldToScreenPoint(checkpoints[index].position).x < 0 + arrow.rectTransform.rect.width || Camera.main.WorldToScreenPoint(checkpoints[index].position).x > Screen.width - arrow.rectTransform.rect.width)
+        if (Camera.main.WorldToScreenPoint(checkpoints[index].position).x < 0 + arrow.rectTransform.rect.width || Camera.main.WorldToScreenPoint(checkpoints[index].position).x > Screen.width - arrow.rectTransform.rect.width)
         {
             outofScreenX = true;
             return;
@@ -94,7 +107,7 @@ public class GPSCheckpoint : MonoBehaviour {
 
     void UpdateIfInsideOfScreenY()
     {
-        if (Camera.main.WorldToScreenPoint(checkpoints[index].position).y < 0 || Camera.main.WorldToScreenPoint(checkpoints[index].position).y > Screen.height - arrow.rectTransform.rect.height)
+        if (Camera.main.WorldToScreenPoint(checkpoints[index].position).y < 0  + arrow.rectTransform.rect.height || Camera.main.WorldToScreenPoint(checkpoints[index].position).y > Screen.height - arrow.rectTransform.rect.height )
         {
             outofScreenY = true;
             return;

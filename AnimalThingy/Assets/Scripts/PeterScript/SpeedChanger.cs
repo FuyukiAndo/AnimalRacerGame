@@ -13,6 +13,17 @@ public class SpeedChanger : MonoBehaviour
     private void Start()
     {
         c2d = GetComponent<Collider2D>();
+        if (transform.parent != null)
+        {
+            if (gameObject.name == "GoodMushroom(Clone)")
+            {
+                speedChangeAmount = GetComponentInParent<SpeedChangerSpawner>().getGoodSpeed;
+            }
+            else
+            {
+                speedChangeAmount = GetComponentInParent<SpeedChangerSpawner>().getBadSpeed;
+            }
+        }
     }
 
     void CollisionEnter2D()
@@ -23,7 +34,7 @@ public class SpeedChanger : MonoBehaviour
             PlayerController player = collider.gameObject.GetComponent<PlayerController>();
             if (player != null)
             {
-                //StartCoroutine(player.movementSpeedChanger(speedChangeAmount, speedDuration));
+                StartCoroutine(player.movemenetSpeedChanger(speedChangeAmount, speedDuration));
                 GetComponent<MeshRenderer>().enabled = false;
                 GetComponent<Collider2D>().enabled = false;
             }
