@@ -6,6 +6,7 @@ using FMODUnity;
 using UnityEngine;
 using UnityEngine.Audio;
 
+[RequireComponent(typeof(AudioSource))]
 public class AudioEffectController : MonoBehaviour
 {
 

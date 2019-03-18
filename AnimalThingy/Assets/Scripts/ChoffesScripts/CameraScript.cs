@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Camera))]
+[RequireComponent(typeof(Camera)), RequireComponent(typeof(AudioListener))]
 public class CameraScript : MonoBehaviour {
     public float cameraSmoothTime = 0.5f;
 

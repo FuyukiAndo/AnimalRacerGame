@@ -3,11 +3,20 @@ using FMOD;
 using FMODUnity;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class AudioPlayer : MonoBehaviour
 {
 	[SerializeField] private FMODAudio sfx;
 	[SerializeField] private AudioClip clip;
 	private AudioSource source;
+
+	void Start()
+	{
+		if (source == null)
+		{
+			source = GetComponent<AudioSource>();
+		}
+	}
 
 	void Setup()
 	{
