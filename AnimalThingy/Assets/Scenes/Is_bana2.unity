@@ -13277,7 +13277,7 @@ Prefab:
     - target: {fileID: 224312059224456844, guid: a768db3b971244243a25da874e2306a0,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0.1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224312059224456844, guid: a768db3b971244243a25da874e2306a0,
         type: 2}
@@ -13287,7 +13287,7 @@ Prefab:
     - target: {fileID: 224037718998003700, guid: a768db3b971244243a25da874e2306a0,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0.1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224037718998003700, guid: a768db3b971244243a25da874e2306a0,
         type: 2}
@@ -13297,7 +13297,7 @@ Prefab:
     - target: {fileID: 224775251890089226, guid: a768db3b971244243a25da874e2306a0,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0.1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224775251890089226, guid: a768db3b971244243a25da874e2306a0,
         type: 2}
@@ -13307,11 +13307,36 @@ Prefab:
     - target: {fileID: 224084462475346434, guid: a768db3b971244243a25da874e2306a0,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0.1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224084462475346434, guid: a768db3b971244243a25da874e2306a0,
         type: 2}
       propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114288045004885032, guid: a768db3b971244243a25da874e2306a0,
+        type: 2}
+      propertyPath: m_MaxValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114288045004885032, guid: a768db3b971244243a25da874e2306a0,
+        type: 2}
+      propertyPath: m_Value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114769913119055274, guid: a768db3b971244243a25da874e2306a0,
+        type: 2}
+      propertyPath: m_MaxValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114384582030689048, guid: a768db3b971244243a25da874e2306a0,
+        type: 2}
+      propertyPath: m_MaxValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114171714835850364, guid: a768db3b971244243a25da874e2306a0,
+        type: 2}
+      propertyPath: m_MaxValue
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -20196,7 +20196,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -20220,7 +20220,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
 --- !u!95 &95162043421401120
 Animator:
   serializedVersion: 3
@@ -20274,21 +20274,21 @@ MonoBehaviour:
   deaccelerationModifier: 0.3
   abilityMeter: 100
   abilityMeterModifier: 1
+  maxUseCounter: 1
+  abilityModifier: 2
+  abilityDirection: 0
+  collisionController: {fileID: 114687995741526254}
+  movement: {x: -0.0000003280503, y: 0}
   isActiveAbility: 0
   isPassiveAbility: 0
   activeAbility: 0
   passiveAbility: 0
   isJumping: 0
-  maxUseCounter: 1
-  abilityModifier: 2
-  collisionController: {fileID: 114687995741526254}
-  movement: {x: -0.0000003280503, y: 0}
+  collision: []
+  wallClimbingSpeed: 5
+  leapDistance: 19
   projectileObject: {fileID: 1616428850741774, guid: 14bba72daa8f50d4997ba88ab87a812a,
     type: 2}
-  climbingSpeed: 5
-  surfaceOn: {x: 7.5, y: 16}
-  surfaceOff: {x: 8.5, y: 7}
-  surfaceLeap: {x: 18, y: 17}
 --- !u!114 &114215283629440506
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20304,7 +20304,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   checkpointSFX:
-    audioPath: 
+    currentAudioPath: 
     paramName: 
     paramValue: 0
     additionalParamValues: []
@@ -20351,7 +20351,7 @@ MonoBehaviour:
   stopEvent: 0
   updateDelay: 0
   sfx:
-    audioPath: 
+    currentAudioPath: 
     paramName: 
     paramValue: 0
     additionalParamValues: []
@@ -20521,17 +20521,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ada670a83430aa448bc3fa1cbfa48aaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationHandler: {fileID: 114078422127414728}
-  playerCharacterType: 4
   playerLeftKey: 276
   playerRightKey: 275
   playerJumpKey: 97
   playerAbilityKey: 115
+  stunDurationTimer: 1.2
   rotationSpeed: 0.25
+  animationHandler: {fileID: 114078422127414728}
+  playerCharacterType: 4
+  targetAngle: 269
+  isStunned: 0
   isControllable: 1
   changeAngle: 1
-  stunDurationLeft: 3
-  targetAngle: 269
 --- !u!137 &137550280197760516
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
