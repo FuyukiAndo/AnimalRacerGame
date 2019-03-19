@@ -63,8 +63,6 @@ public class CharacterUIManager : MonoBehaviour {
         foreach (PlayerUI player in playersUI)
         {
             UpdateEnergy(player);
-            AddEnergy(player);
-            UpdateSlider(player);
             SetCurrentCheckpointProgress(player);
         }
     }
@@ -95,25 +93,8 @@ public class CharacterUIManager : MonoBehaviour {
 
     private void UpdateEnergy(PlayerUI playerUI)
     {
-        if(playerUI.playerEnergy >= 10)
-        {
-            playerUI.playerEnergy = 10;
-            //check input??
-            //run abilityFunction in playerscript
-        }
-
-        //abilitykey check -> getComponent().keyisdownbool
+        playerUI.playerSlider.value = playerUI.player.GetComponent<PlayerController>().abilityMeter;
     }
-    private void AddEnergy(PlayerUI player)
-    {
-        if (player.playerEnergy <= 10)
-            player.playerEnergy += Time.deltaTime; //player.player.GetComponent</*Filips playerability*/>().EnergyRegen;
-    }
-    private void UpdateSlider(PlayerUI player)
-    {
-        player.playerSlider.value = player.playerEnergy;
-    }
-
 
     private void SetPlayerImage(PlayerUI playerUI)
     {

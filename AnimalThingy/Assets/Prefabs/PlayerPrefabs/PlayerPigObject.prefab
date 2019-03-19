@@ -7176,7 +7176,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1658185059900300}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 216, y: 45.1, z: 0}
+  m_LocalPosition: {x: 345.34653, y: 169.98015, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4845561731692918}
@@ -11843,7 +11843,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -11867,7 +11867,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
 --- !u!95 &95515094125330820
 Animator:
   serializedVersion: 3
@@ -11896,7 +11896,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 121ede1f33be8754eb9a275a62bbbe51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speeches: []
+  speeches:
+  - speechType: 0
+    speeches:
+    - Gwaah!
+    - Do I need to tell your parents about this?
+    - "Don\u2019t think this is enough for an old fool like me!"
+    - ' Ouf! My back!'
+    - "Don\u2019t underestimate this little pork. Bwahaha \u2013 *Cough cough*"
+  - speechType: 3
+    speeches:
+    - Huff! I still... I still got it in me!
+    - "Did everyone\u2019s expectations get \u201Cblown away\u201D? Bwahaha!"
+    - Hoho! I wish everyone back home could see me right now!
+    - You got nothing on this old pig!
+    - "One step closer and I'm still \u201Cpumped up\u201D! Bwahaha!"
+  - speechType: 4
+    speeches:
+    - Blowing up!
+    - Starting to look like my mother-in-law. Bwahaha!
+    - Give me space! Papa pig is here!
+    - "Woah, I'm starting to really \u201Cblow up\u201D here. Bwahaha!"
+    - ' Am I fat to you? I''m feeling pretty swollen. Bwahaha!'
+  - speechType: 6
+    speeches:
+    - Having a harder time then i thought!
+    - "Don\u2019t worry about me! I never stay down long!"
+    - Buwahaha! Restoration!
   speechBubble: {fileID: 1502186054641404}
   characterCrystal: {fileID: 1038028058540318}
   speechSpeedMult: 0.4
@@ -12045,8 +12071,8 @@ MonoBehaviour:
   movementAcceleration: 0.15
   accelerationModifier: 0.2
   deaccelerationModifier: 0.3
-  abilityMeter: 100
-  abilityMeterModifier: 1
+  abilityMeter: 1
+  abilityMeterModifier: 0.01
   maxUseCounter: 3
   abilityModifier: 2
   abilityDirection: 0

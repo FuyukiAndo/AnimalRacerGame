@@ -8183,7 +8183,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1045792901303020}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 226.2, y: 48.7, z: 0}
+  m_LocalPosition: {x: 344.79968, y: 170.76709, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4256667031458686}
@@ -15404,7 +15404,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -15428,7 +15428,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
 --- !u!95 &95377604215473606
 Animator:
   serializedVersion: 3
@@ -15457,7 +15457,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 121ede1f33be8754eb9a275a62bbbe51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speeches: []
+  speeches:
+  - speechType: 0
+    speeches:
+    - "Uwah! That wasn\u2019t nice!"
+    - Ugh... What happened?
+    - Be careful around you please!
+    - Where are we? Who are we, I?
+    - Oh hi, friend! It hurts.
+  - speechType: 3
+    speeches:
+    - ' I did it? Yeeah!...?'
+    - "That\u2019s how I apparently do it!"
+    - ' I''m hungry...'
+    - Why are you all looking at me? You wanna be friends?!
+    - Being good at flying away from danger seemed to pay off eventually.
+  - speechType: 4
+    speeches:
+    - Blast off!
+    - Uwiie!
+    - "I think I can see home from up here, It\u2019s everywhere!"
+    - Uwaah! Is there something dangerous nearby?!
+    - Look out behind me!
+  - speechType: 6
+    speeches:
+    - "Wha-what happened,  I\u2019m alive? Neat! "
+    - "I\u2019m back? I\u2019m back! "
+    - "Hi again Y\u2019all!"
   speechBubble: {fileID: 1777770811447258}
   characterCrystal: {fileID: 1181000132539974}
   speechSpeedMult: 0.4
