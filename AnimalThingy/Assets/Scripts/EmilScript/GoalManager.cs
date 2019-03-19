@@ -385,6 +385,7 @@ public class GoalManager : MonoBehaviour
 	{
 		tracker.PlacementPoint = initialPlayerCount - placedPlayers.Count;
 		string name = tracker.name;
+
 		switch (name)
 		{
 			case "Player1":
@@ -392,21 +393,19 @@ public class GoalManager : MonoBehaviour
 				break;
 			case "Player2":
 				InformationManager.Instance.player2.score += tracker.PlacementPoint;
-				break;
+                break;
 			case "Player3":
 				InformationManager.Instance.player3.score += tracker.PlacementPoint;
-				break;
+                break;
 			case "Player4":
 				InformationManager.Instance.player4.score += tracker.PlacementPoint;
-				break;
+                break;
 		}
 	}
 
 	IEnumerator LoadNextScene()
 	{
 		yield return new WaitForSeconds(nextSceneDelay);
-		//int index = InformationManager.Instance.multiplayerLevels.IndexOf(
-		//InformationManager.Instance.multiplayerLevels.Find(x => x == SceneManager.GetActiveScene().name));
 		InformationManager.Instance.sceneIndex += 1;
 		SceneManager.LoadScene(InformationManager.Instance.multiplayerLevels[InformationManager.Instance.sceneIndex]);
 	}
