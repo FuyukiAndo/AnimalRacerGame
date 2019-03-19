@@ -10883,6 +10883,8 @@ MonoBehaviour:
     audioPaths:
     - audioPath: event:/[B] Isbana
       mapName: Is_bana2
+    - audioPath: event:/Meny
+      mapName: StartMenu
     currentAudioPath: event:/Meny
     paramName: 
     paramValue: 0
