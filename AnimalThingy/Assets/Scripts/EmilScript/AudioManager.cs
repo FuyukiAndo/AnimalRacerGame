@@ -296,7 +296,7 @@ public class AudioManager : MonoBehaviour
 
 	void Update()
 	{
-		PositionAudioSource();
+		//PositionAudioSource();
 	}
 
 	void PositionAudioSource()
