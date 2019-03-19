@@ -20315,7 +20315,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   checkpointLayer:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 0
   checkpointSFX:
     currentAudioPath: 
     paramName: 
@@ -20323,7 +20323,7 @@ MonoBehaviour:
     additionalParamValues: []
     randomizeValue: 0
   effectController: {fileID: 0}
-  box: {fileID: 61297682882013074}
+  box: {fileID: 0}
 --- !u!114 &114482449793670534
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20342,7 +20342,7 @@ MonoBehaviour:
   stopEvent: 0
   updateDelay: 2
   sfx:
-    currentAudioPath: event:/[K] Apa
+    currentAudioPath: 
     paramName: 
     paramValue: 0
     additionalParamValues: []
