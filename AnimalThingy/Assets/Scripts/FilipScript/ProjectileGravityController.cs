@@ -16,6 +16,8 @@ public class ProjectileGravityController : MonoBehaviour
 	private float gravity;
 	private float maxVelocity;
 	
+	private bool isGravity = true;
+	
 	public virtual void Start()
 	{
 		collisionController = GetComponent<CollisionController>();
@@ -36,17 +38,24 @@ public class ProjectileGravityController : MonoBehaviour
 	}
 	
 	public virtual void Update()
-	{
-		UpdateGravity();
-		
+	{	
 		if (collisionController.boxCollisionDirections.up || collisionController.boxCollisionDirections.down)
 		{
 			movement.y = 0;
 			movement.x = 0;
+			
+			if(movement.y == 0)
+			{
+				isGravity = false;
+			}
 		}	
-		
-		movement.y += gravity * Time.deltaTime;	
-		MoveObject(movement * Time.deltaTime);
+
+		if(isGravity)
+		{
+			UpdateGravity();
+			movement.y += gravity * Time.deltaTime;	
+			MoveObject(movement * Time.deltaTime);
+		}
 	}
 	
 	private void MoveObject(Vector2 movement, bool onPlatform = false)
