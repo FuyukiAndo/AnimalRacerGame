@@ -611,7 +611,7 @@ public class AudioEffectController : MonoBehaviour
 		}
 	}
 
-	public void PlayAudioOneShot(float value)
+	public void PlayAudioOneShot()
 	{
 		if (AudioManager.Instance.useFMOD)
 		{
@@ -624,13 +624,6 @@ public class AudioEffectController : MonoBehaviour
 			source.volume = AudioManager.Instance.GetVolumeSFX();
 			source.PlayOneShot(clip);
 		}
-	}
-
-	public void PlayAudioOneShot()
-	{
-		Setup();
-		sfx.audioInstance.start();
-		sfx.audioInstance.release();
 	}
 
 	public void SetAudioClip(AudioClip clip)
@@ -701,11 +694,6 @@ public class AudioEffectController : MonoBehaviour
 	public void SetAudioPath(string path)
 	{
 		sfx.currentAudioPath = path;
-	}
-
-	public void SetRandomizeParamValue(bool state)
-	{
-		sfx.randomizeValue = state;
 	}
 
 	void OnDrawGizmos()

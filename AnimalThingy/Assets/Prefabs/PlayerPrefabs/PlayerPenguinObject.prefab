@@ -2943,7 +2943,7 @@ GameObject:
   - component: {fileID: 114969139045625284}
   m_Layer: 8
   m_Name: PlayerPenguinObject
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9329,7 +9329,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1363596147525290}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 342.99005, y: 168.0445, z: 0}
+  m_LocalPosition: {x: -158.23267, y: 95.49104, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4788003634734142}
@@ -14530,7 +14530,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 0
+    m_RotationOrder: 4
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -14554,7 +14554,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 0
+    m_RotationOrder: 4
 --- !u!95 &95198743248783362
 Animator:
   serializedVersion: 3
@@ -14578,7 +14578,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1363596147525290}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ada670a83430aa448bc3fa1cbfa48aaf, type: 3}
   m_Name: 
@@ -14624,33 +14624,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 121ede1f33be8754eb9a275a62bbbe51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speeches:
-  - speechType: 0
-    speeches:
-    - Ugh!
-    - Uuugh... Stop with your interference!
-    - You will feel my wrath!
-    - Prepare for your doom, which is me!
-    - Gaah! Enough!
-  - speechType: 3
-    speeches:
-    - Haha! I reign supreme!
-    - 'You fools never had a chance against my flippers! '
-    - "One step closer to my plan. \u201CShowing them all!\u201D"
-    - Ooh, you all put in good effort, but still pale compared to the big Finely!
-    - 'I am unrivalled! '
-  - speechType: 4
-    speeches:
-    - Redirect your losing face elsewhere!
-    - "You fools can\u2019t beat my slide!"
-    - "You don\u2019t want to be close when my flippers are in action!"
-    - "You won\u2019t look down at me anymore after you witness this!"
-    - 'Certain kill move: POWERSLIDE!'
-  - speechType: 6
-    speeches:
-    - "That won\u2019t happen again."
-    - 'All great plans have setbacks! '
-    - Greatness comes from experiences!
+  speeches: []
   speechBubble: {fileID: 1850997573419068}
   characterCrystal: {fileID: 1934345133084732}
   speechSpeedMult: 0.4
@@ -14876,8 +14850,8 @@ MonoBehaviour:
   movementAcceleration: 0.15
   accelerationModifier: 0.2
   deaccelerationModifier: 0.3
-  abilityMeter: 100
-  abilityMeterModifier: 1
+  abilityMeter: 1
+  abilityMeterModifier: 0.01
   maxUseCounter: 3
   abilityModifier: 2
   abilityDirection: 0
@@ -14889,7 +14863,8 @@ MonoBehaviour:
   passiveAbility: 0
   isJumping: 0
   collision: []
-  projectileObject: {fileID: 0}
+  projectileObject: {fileID: 1615396423180318, guid: 8f9be1d561b46b1488bcc52545b9531d,
+    type: 2}
 --- !u!114 &114969139045625284
 MonoBehaviour:
   m_ObjectHideFlags: 1

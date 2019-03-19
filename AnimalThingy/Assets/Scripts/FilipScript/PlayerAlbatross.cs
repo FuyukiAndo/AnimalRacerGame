@@ -76,6 +76,7 @@ public class PlayerAlbatross : PlayerController
 			isActiveAbility = true;
 			untilGlideCounter = savedUntilGlideCounter;
 		}
+
 		if(isJumping)
 		{
 			maxFlyCounter = maxFlyCounter-maxFlyCountdownSpeed;

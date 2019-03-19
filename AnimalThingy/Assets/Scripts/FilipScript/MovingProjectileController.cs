@@ -16,7 +16,6 @@ public class MovingProjectileController : ProjectileGravityController
 		playerMonkey = GetComponentInParent<PlayerMonkey>();
 		projectileDirection = -playerMonkey.abilityDirection;
 		projectileSpeed = playerMonkey.abilityModifier;
-		
 		transform.parent = null;
 		
 		//movement.y = velocity;

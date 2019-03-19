@@ -62,7 +62,6 @@ public class PlayerController : MonoBehaviour
 	
 	public virtual void Start()
 	{
-		startSpeed = movementSpeed;
 		collisionController = GetComponent<CollisionController>();
 		raycastController = GetComponent<RaycastController>();
 		playerInput = GetComponent<PlayerInput>();

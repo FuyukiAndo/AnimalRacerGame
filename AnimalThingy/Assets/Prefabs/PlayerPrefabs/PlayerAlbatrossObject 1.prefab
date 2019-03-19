@@ -436,11 +436,11 @@ GameObject:
   - component: {fileID: 114553485742183486}
   m_Layer: 8
   m_Name: PlayerAlbatrossObject 1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1046756301658722
 GameObject:
   m_ObjectHideFlags: 1
@@ -1540,6 +1540,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1190872880976326
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4695004280077352}
+  - component: {fileID: 20287692704317766}
+  - component: {fileID: 124749820273772114}
+  - component: {fileID: 81865437843204950}
+  m_Layer: 0
+  m_Name: Camera (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
 --- !u!1 &1191995819253284
 GameObject:
   m_ObjectHideFlags: 1
@@ -8183,10 +8201,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1045792901303020}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 344.79968, y: 170.76709, z: 0}
+  m_LocalPosition: {x: -155.85, y: 95.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4256667031458686}
+  - {fileID: 4695004280077352}
   - {fileID: 4325771557941594}
   - {fileID: 224657422876422780}
   m_Father: {fileID: 0}
@@ -10239,7 +10258,7 @@ Transform:
   - {fileID: 4702090520359054}
   - {fileID: 4161152396923142}
   m_Father: {fileID: 4041217017797012}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 269, z: 0}
 --- !u!4 &4329620478650062
 Transform:
@@ -13213,6 +13232,19 @@ Transform:
   m_Father: {fileID: 4052304911993712}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4695004280077352
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1190872880976326}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -5.9, y: 2.1, z: -30}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4041217017797012}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4698000199888246
 Transform:
   m_ObjectHideFlags: 1
@@ -15189,6 +15221,42 @@ Transform:
   m_Father: {fileID: 4078665474537238}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &20287692704317766
+Camera:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1190872880976326}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
 --- !u!23 &23254571143514922
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -15349,6 +15417,13 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!81 &81865437843204950
+AudioListener:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1190872880976326}
+  m_Enabled: 1
 --- !u!82 &82546735184454966
 AudioSource:
   m_ObjectHideFlags: 1
@@ -15457,33 +15532,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 121ede1f33be8754eb9a275a62bbbe51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speeches:
-  - speechType: 0
-    speeches:
-    - "Uwah! That wasn\u2019t nice!"
-    - Ugh... What happened?
-    - Be careful around you please!
-    - Where are we? Who are we, I?
-    - Oh hi, friend! It hurts.
-  - speechType: 3
-    speeches:
-    - ' I did it? Yeeah!...?'
-    - "That\u2019s how I apparently do it!"
-    - ' I''m hungry...'
-    - Why are you all looking at me? You wanna be friends?!
-    - Being good at flying away from danger seemed to pay off eventually.
-  - speechType: 4
-    speeches:
-    - Blast off!
-    - Uwiie!
-    - "I think I can see home from up here, It\u2019s everywhere!"
-    - Uwaah! Is there something dangerous nearby?!
-    - Look out behind me!
-  - speechType: 6
-    speeches:
-    - "Wha-what happened,  I\u2019m alive? Neat! "
-    - "I\u2019m back? I\u2019m back! "
-    - "Hi again Y\u2019all!"
+  speeches: []
   speechBubble: {fileID: 1777770811447258}
   characterCrystal: {fileID: 1181000132539974}
   speechSpeedMult: 0.4
@@ -15505,15 +15554,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e08f83bd87fb6d45a770257bf733f45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxJumpHeight: 5
+  maxJumpHeight: 8
   minJumpHeight: 1
-  jumpAndFallDelay: 0.4
+  jumpAndFallDelay: 0.645
   movementSpeed: 10
   movementAcceleration: 0.15
   accelerationModifier: 0.2
   deaccelerationModifier: 0.3
-  abilityMeter: 100
-  abilityMeterModifier: 1
+  abilityMeter: 1
+  abilityMeterModifier: 0.01
   maxUseCounter: 3
   abilityModifier: 2
   abilityDirection: 0
@@ -15782,6 +15831,13 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   m_maskType: 0
+--- !u!124 &124749820273772114
+Behaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1190872880976326}
+  m_Enabled: 1
 --- !u!137 &137132973778145464
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -16258,7 +16314,7 @@ RectTransform:
   m_Children:
   - {fileID: 4583863536510514}
   m_Father: {fileID: 4041217017797012}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

@@ -15,7 +15,6 @@ public class GPSCheckpoint : MonoBehaviour {
     private float checkX;
     private float checkY;
     private Vector3 dir;
-    private RectTransform arrowRect;
     
     public static GPSCheckpoint Instance
     {
@@ -28,7 +27,7 @@ public class GPSCheckpoint : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        arrowRect = arrow.GetComponent<RectTransform>();
+
         if (instance == null)
         {
             instance = this;
@@ -89,8 +88,8 @@ public class GPSCheckpoint : MonoBehaviour {
             }
             return;
         }
-        arrowRect.transform.eulerAngles = new Vector3(0f, 0f, 0f);
-        arrowRect.transform.position = Camera.main.WorldToScreenPoint(new Vector3(checkX,checkY));
+        arrow.rectTransform.eulerAngles = new Vector3(0f, 0f, 0f);
+        arrow.rectTransform.position = Camera.main.WorldToScreenPoint(new Vector3(checkX,checkY));
   
     }
     void UpdateIfInsideOfScreenX()

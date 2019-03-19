@@ -39,8 +39,8 @@ public class PlayerInput : MonoBehaviour
 	
 	[HideInInspector] public float targetAngle;
 
-	[HideInInspector] public bool isStunned = false;	
-	[HideInInspector] public bool isControllable = true;
+	public bool isStunned = false;	
+	public bool isControllable = true;
 	[HideInInspector] public bool changeAngle = true;
 
 	private PlayerAlbatross playerAlbatross;
@@ -145,7 +145,7 @@ public class PlayerInput : MonoBehaviour
 		transform.position = zpos;		
 	}	
 	
-	void InputAction()
+	public void InputAction()
 	{
         if (!isStunned)
         {
@@ -184,24 +184,16 @@ public class PlayerInput : MonoBehaviour
 		}
 		else
 		{
-			isStunned = true;
+			stunDurationTimer -= Time.deltaTime;	
 			changeAngle = false;
-			stunDurationTimer -= Time.deltaTime;
-			
-			if(stunDurationTimer < 0)
+
+			if(stunDurationTimer <= 0f)
 			{
 				isStunned = false;
 				stunDurationTimer = savedStunDurationTimer;
 				changeAngle = true;
 			}
-			
-			// Ability Key
-			if(Input.GetKeyDown(playerAbilityKey))
-			{
-				keyCodeDictionary0[playerAbilityKey]();
-			}
 		}
-		
 		//If no KeyCode is pressed
 		keyCodeDictionary0[playerNoKey]();
 	}
@@ -471,7 +463,7 @@ public class PlayerInput : MonoBehaviour
 		}
 	}
 	
-	void Update() 
+	public void Update() 
 	{
 		StaticZPosition();
 		InputAction();

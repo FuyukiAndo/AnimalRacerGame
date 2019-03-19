@@ -51,7 +51,7 @@ public class PlayerMonkey : PlayerController
 		{
 			activeAbility = true;
 			
-			if(directionX == 1)
+			if(dirX == 1)
 			{
 				movement.y = -wallClimbingSpeed;	
 			}	
@@ -72,7 +72,7 @@ public class PlayerMonkey : PlayerController
 		{
 			activeAbility = true;
 			
-			if(directionX == 1)
+			if(dirX == 1)
 			{
 				movement.y = wallClimbingSpeed;	
 			}	
@@ -128,11 +128,11 @@ public class PlayerMonkey : PlayerController
 	{
 		if(collisionController.boxCollisionDirections.left)
 		{
-			directionX = -1;
+			dirX = -1;
 		}
 		else
 		{
-			directionX = 1;
+			dirX = 1;
 		}
 	}
 
@@ -146,9 +146,9 @@ public class PlayerMonkey : PlayerController
 			playerInput.changeAngle = false;
 			//if(!activeClimbing)
 			//{
-				/*if(movement.y < -wallwallClimbingSpeed)
+				/*if(movement.y < -wallClimbingSpeed)
 				{
-					movement.y = -wallwallClimbingSpeed;
+					movement.y = -wallClimbingSpeed;
 				}*/
 			//}
 		}
@@ -160,7 +160,7 @@ public class PlayerMonkey : PlayerController
 			playerInput.changeAngle = true;
 		}
 
-		if(!(collisionController.boxCollisionDirections.left) || (collisionController.boxCollisionDirections.right))
+		if(!(collisionController.boxCollisionDirections.left || collisionController.boxCollisionDirections.right))
 		{
 			isActiveAbility = false;
 			activeAbility = false;
