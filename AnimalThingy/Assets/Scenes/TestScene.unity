@@ -347,7 +347,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1658185059900300, guid: e5105c37dcc465343b80bbc531df0d5b, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114389010344827742, guid: e5105c37dcc465343b80bbc531df0d5b,
         type: 2}
@@ -377,7 +377,7 @@ Prefab:
     - target: {fileID: 114389010344827742, guid: e5105c37dcc465343b80bbc531df0d5b,
         type: 2}
       propertyPath: maxUseCounter
-      value: 7
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 114389010344827742, guid: e5105c37dcc465343b80bbc531df0d5b,
         type: 2}
@@ -427,6 +427,16 @@ Prefab:
         type: 2}
       propertyPath: reverbZoneMixCustomCurve.m_RotationOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114389010344827742, guid: e5105c37dcc465343b80bbc531df0d5b,
+        type: 2}
+      propertyPath: horizontalKnockBackPower
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 114389010344827742, guid: e5105c37dcc465343b80bbc531df0d5b,
+        type: 2}
+      propertyPath: verticalKnockBackPower
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e5105c37dcc465343b80bbc531df0d5b, type: 2}
@@ -1257,7 +1267,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 519034577}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.76, y: 12.28, z: 0}
+  m_LocalPosition: {x: 31.87, y: 7.96, z: 0}
   m_LocalScale: {x: 0.82, y: 9.3, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1456,7 +1466,7 @@ Transform:
   m_PrefabInternal: {fileID: 1389142643}
   m_GameObject: {fileID: 591123355}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.74, y: 8.2, z: 0}
+  m_LocalPosition: {x: 9.17, y: 8.2, z: 0}
   m_LocalScale: {x: 15.54, y: 1.4979364, z: 1.0604863}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1522,11 +1532,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4393363705862192, guid: c8774a9e2dbf17a4084b83a326e6f7f7, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 7
+      value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 4393363705862192, guid: c8774a9e2dbf17a4084b83a326e6f7f7, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -2.5
+      value: 17.5
       objectReference: {fileID: 0}
     - target: {fileID: 4393363705862192, guid: c8774a9e2dbf17a4084b83a326e6f7f7, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1750,8 +1760,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 793565942}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.161, y: -0.431, z: 0}
-  m_LocalScale: {x: 0.85, y: -7.7, z: 1}
+  m_LocalPosition: {x: 5.161, y: 2.99, z: 0}
+  m_LocalScale: {x: 0.85, y: -8.88, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 14
@@ -2010,11 +2020,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4393363705862192, guid: c8774a9e2dbf17a4084b83a326e6f7f7, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 5.5
+      value: 16.5
       objectReference: {fileID: 0}
     - target: {fileID: 4393363705862192, guid: c8774a9e2dbf17a4084b83a326e6f7f7, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 10.5
+      value: 17.5
       objectReference: {fileID: 0}
     - target: {fileID: 4393363705862192, guid: c8774a9e2dbf17a4084b83a326e6f7f7, type: 2}
       propertyPath: m_LocalPosition.z
@@ -2293,7 +2303,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 895638466}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 53.2, y: 13.7, z: 0}
+  m_LocalPosition: {x: 54.34, y: 10.25, z: 0}
   m_LocalScale: {x: 3.16, y: 26.15627, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2319,7 +2329,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &925268172
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2882,6 +2892,11 @@ Prefab:
       propertyPath: reverbZoneMixCustomCurve.m_RotationOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114819313975983990, guid: b2547890fc16cec4ca11bd9f648c247a,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b2547890fc16cec4ca11bd9f648c247a, type: 2}
   m_IsPrefabParent: 0
@@ -2926,7 +2941,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1363596147525290, guid: 4c08a920c500b6b4a971b87e0b0a6ed7, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 61278632595405568, guid: 4c08a920c500b6b4a971b87e0b0a6ed7,
         type: 2}
@@ -3006,6 +3021,11 @@ Prefab:
     - target: {fileID: 82494832880021398, guid: 4c08a920c500b6b4a971b87e0b0a6ed7,
         type: 2}
       propertyPath: reverbZoneMixCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114163380269625004, guid: 4c08a920c500b6b4a971b87e0b0a6ed7,
+        type: 2}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -3927,7 +3947,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4229388411195966, guid: a5462c44346de7045974f82c82c607d2, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 8.74
+      value: 9.17
       objectReference: {fileID: 0}
     - target: {fileID: 4229388411195966, guid: a5462c44346de7045974f82c82c607d2, type: 2}
       propertyPath: m_LocalPosition.y
@@ -4278,13 +4298,13 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 925268171}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 16.5, y: -5.5, z: 0}
-  m_LocalScale: {x: 5.44, y: 0.87, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0.27904913, w: 0.96027684}
+  m_LocalPosition: {x: 27.5, y: 20, z: 0}
+  m_LocalScale: {x: 14.25, y: 0.87, z: 1}
   m_Children: []
   m_Father: {fileID: 1324328558}
   m_RootOrder: 40
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -32.407}
 --- !u!1001 &1529624610
 Prefab:
   m_ObjectHideFlags: 0
@@ -4784,7 +4804,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1196314723305698, guid: 790971f4a240d454e8fed09565390b99, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 61297682882013074, guid: 790971f4a240d454e8fed09565390b99,
         type: 2}
@@ -4858,6 +4878,11 @@ Prefab:
     - target: {fileID: 82505532763273022, guid: 790971f4a240d454e8fed09565390b99,
         type: 2}
       propertyPath: reverbZoneMixCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114882341670314140, guid: 790971f4a240d454e8fed09565390b99,
+        type: 2}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
