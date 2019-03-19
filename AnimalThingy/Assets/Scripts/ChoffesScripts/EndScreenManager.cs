@@ -36,6 +36,7 @@ public class EndScreenManager : MonoBehaviour
 
         AddNamesToChildObjects();
         AddTimeToChildObjects();
+        AddScoreToChildObjects();
         SetBackgroundColor();
 
     }
@@ -106,22 +107,22 @@ public class EndScreenManager : MonoBehaviour
             {
                 if (currentScene.name == InformationManager.Instance.multiplayerLevels[0])
                 {
-                    childObjects[i].timeText.text = InformationManager.Instance.player1.level1Time.ToString();
+                    childObjects[i].timeText.text = "Time: " + InformationManager.Instance.player1.level1Time.ToString();
                     continue;
                 }
                 if (currentScene.name == InformationManager.Instance.multiplayerLevels[1])
                 {
-                    childObjects[i].timeText.text = InformationManager.Instance.player1.level2Time.ToString();
+                    childObjects[i].timeText.text = "Time: " + InformationManager.Instance.player1.level2Time.ToString();
                     continue;
                 }
                 if (currentScene.name == InformationManager.Instance.multiplayerLevels[2])
                 {
-                    childObjects[i].timeText.text = InformationManager.Instance.player1.level3Time.ToString();
+                    childObjects[i].timeText.text = "Time: " + InformationManager.Instance.player1.level3Time.ToString();
                     continue;
                 }
                 if (currentScene.name == InformationManager.Instance.multiplayerLevels[3])
                 {
-                    childObjects[i].timeText.text = InformationManager.Instance.player1.level4Time.ToString();
+                    childObjects[i].timeText.text = "Time: " + InformationManager.Instance.player1.level4Time.ToString();
                     continue;
                 }
             }
@@ -129,22 +130,22 @@ public class EndScreenManager : MonoBehaviour
             {
                 if (currentScene.name == InformationManager.Instance.multiplayerLevels[0])
                 {
-                    childObjects[i].timeText.text = InformationManager.Instance.player2.level1Time.ToString();
+                    childObjects[i].timeText.text = "Time: " + InformationManager.Instance.player2.level1Time.ToString();
                     continue;
                 }
                 if (currentScene.name == InformationManager.Instance.multiplayerLevels[1])
                 {
-                    childObjects[i].timeText.text = InformationManager.Instance.player2.level2Time.ToString();
+                    childObjects[i].timeText.text = "Time: " + InformationManager.Instance.player2.level2Time.ToString();
                     continue;
                 }
                 if (currentScene.name == InformationManager.Instance.multiplayerLevels[2])
                 {
-                    childObjects[i].timeText.text = InformationManager.Instance.player2.level3Time.ToString();
+                    childObjects[i].timeText.text = "Time: " + InformationManager.Instance.player2.level3Time.ToString();
                     continue;
                 }
                 if (currentScene.name == InformationManager.Instance.multiplayerLevels[3])
                 {
-                    childObjects[i].timeText.text = InformationManager.Instance.player2.level4Time.ToString();
+                    childObjects[i].timeText.text = "Time: " + InformationManager.Instance.player2.level4Time.ToString();
                     continue;
                 }
             }
@@ -152,22 +153,22 @@ public class EndScreenManager : MonoBehaviour
             {
                 if (currentScene.name == InformationManager.Instance.multiplayerLevels[0])
                 {
-                    childObjects[i].timeText.text = InformationManager.Instance.player3.level1Time.ToString();
+                    childObjects[i].timeText.text = "Time: " + InformationManager.Instance.player3.level1Time.ToString();
                     continue;
                 }
                 if (currentScene.name == InformationManager.Instance.multiplayerLevels[1])
                 {
-                    childObjects[i].timeText.text = InformationManager.Instance.player3.level2Time.ToString();
+                    childObjects[i].timeText.text = "Time: " + InformationManager.Instance.player3.level2Time.ToString();
                     continue;
                 }
                 if (currentScene.name == InformationManager.Instance.multiplayerLevels[2])
                 {
-                    childObjects[i].timeText.text = InformationManager.Instance.player3.level3Time.ToString();
+                    childObjects[i].timeText.text = "Time: " + InformationManager.Instance.player3.level3Time.ToString();
                     continue;
                 }
                 if (currentScene.name == InformationManager.Instance.multiplayerLevels[3])
                 {
-                    childObjects[i].timeText.text = InformationManager.Instance.player3.level4Time.ToString();
+                    childObjects[i].timeText.text = "Time: " + InformationManager.Instance.player3.level4Time.ToString();
                     continue;
                 }
             }
@@ -175,25 +176,35 @@ public class EndScreenManager : MonoBehaviour
             {
                 if (currentScene.name == InformationManager.Instance.multiplayerLevels[0])
                 {
-                    childObjects[i].timeText.text = InformationManager.Instance.player4.level1Time.ToString();
+                    childObjects[i].timeText.text = "Time: " + InformationManager.Instance.player4.level1Time.ToString();
                     continue;
                 }
                 if (currentScene.name == InformationManager.Instance.multiplayerLevels[1])
                 {
-                    childObjects[i].timeText.text = InformationManager.Instance.player4.level2Time.ToString();
+                    childObjects[i].timeText.text = "Time: " + InformationManager.Instance.player4.level2Time.ToString();
                     continue;
                 }
                 if (currentScene.name == InformationManager.Instance.multiplayerLevels[2])
                 {
-                    childObjects[i].timeText.text = InformationManager.Instance.player4.level3Time.ToString();
+                    childObjects[i].timeText.text = "Time: " + InformationManager.Instance.player4.level3Time.ToString();
                     continue;
                 }
                 if (currentScene.name == InformationManager.Instance.multiplayerLevels[3])
                 {
-                    childObjects[i].timeText.text = InformationManager.Instance.player4.level4Time.ToString();
+                    childObjects[i].timeText.text = "Time: " + InformationManager.Instance.player4.level4Time.ToString();
                     continue;
                 }
             }
+        }
+    }
+
+    private void AddScoreToChildObjects()
+    {
+        int temp = childObjects.Count - 1;
+        for(int i = 0; i < childObjects.Count; i++)
+        {
+            childObjects[i].scoreText.text = "+ " + temp.ToString();
+            temp -= 1;
         }
     }
 
