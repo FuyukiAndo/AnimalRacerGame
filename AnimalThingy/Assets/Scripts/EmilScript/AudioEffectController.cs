@@ -696,6 +696,11 @@ public class AudioEffectController : MonoBehaviour
 		sfx.currentAudioPath = path;
 	}
 
+	public void SetRandomizeParamValue(bool state)
+	{
+		sfx.randomizeValue = state;
+	}
+
 	void OnDrawGizmos()
 	{
 		Gizmos.color = Color.red;
