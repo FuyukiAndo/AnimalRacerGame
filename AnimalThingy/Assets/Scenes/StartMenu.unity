@@ -11815,21 +11815,27 @@ MonoBehaviour:
   background:
     audioPaths:
     - audioPath: event:/[B] Isbana
+      additionalParamValues: []
+      paramName: 
+      paramValue: 0
       mapName: Is_bana2
+      randomizeValue: 0
     - audioPath: event:/Meny
+      additionalParamValues: []
+      paramName: 
+      paramValue: 0
       mapName: StartMenu
+      randomizeValue: 0
+    - audioPath: event:/Victory Screen
+      additionalParamValues: []
+      paramName: 
+      paramValue: 0
+      mapName: VictoryScreen
+      randomizeValue: 0
     currentAudioPath: event:/Meny
-    paramName: 
-    paramValue: 0
-    additionalParamValues: []
-    randomizeValue: 0
   ambience:
     audioPaths: []
     currentAudioPath: 
-    paramName: 
-    paramValue: 0
-    additionalParamValues: []
-    randomizeValue: 0
   backgroundUnity:
     audioClips:
     - audioClip: {fileID: 8300000, guid: 106aed5c6430fc44daef0e8a5cd5285e, type: 3}
