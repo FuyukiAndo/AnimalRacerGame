@@ -80,6 +80,13 @@ public class AudioManager : MonoBehaviour
 				if (clip.mapName.Contains(scene.name) || scene.name.Contains(clip.mapName))
 				{
 					SetBackgroundAudio(clip.audioClip);
+					SetAmbience(clip.audioClip);
+					StopBackAudioLooping();
+					StopAmbienceLooping();
+					SetupBack();
+					SetupAmbience();
+					PlayBackAudioLooping();
+					PlayAmbienceLooping();
 					return;
 				}
 			}
