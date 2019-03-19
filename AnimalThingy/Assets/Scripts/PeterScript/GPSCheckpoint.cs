@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GPSCheckpoint : MonoBehaviour {
 
     public List<Transform> checkpoints;
-    public GameObject arrow;
+    public Image arrow;
     public Vector2 offset;
     private int index = 0;
     private bool outofScreenX,outofScreenY;

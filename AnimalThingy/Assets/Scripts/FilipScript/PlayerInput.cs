@@ -60,11 +60,6 @@ public class PlayerInput : MonoBehaviour
 	private Dictionary<KeyCode, Action> keyCodeDictionary0 = new Dictionary<KeyCode, Action>();
 	private Dictionary<KeyCode, Action> keyCodeDictionary1 = new Dictionary<KeyCode, Action>();
 
-	private float minAngleValue = 90.0f;
-	private float maxAngleValue = 269.0f;
-	
-	[HideInInspector] public float targetAngle;
-
 	void Start() 
 	{	
 		targetAngle = maxAngleValue;

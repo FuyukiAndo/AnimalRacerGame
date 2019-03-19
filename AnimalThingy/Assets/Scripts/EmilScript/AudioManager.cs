@@ -72,7 +72,7 @@ public class AudioManager : MonoBehaviour
 		}
 	}
 
-	[SerializeField][Range(0f, 1f)] private float backgroundVolume, ambienceVolume, sfxVolume, masterVolume;
+	//[SerializeField][Range(0f, 1f)] private float backgroundVolume, ambienceVolume, sfxVolume, masterVolume;
 
 	void OnValidate()
 	{
@@ -361,23 +361,6 @@ public class AudioManager : MonoBehaviour
 		if (ambience.currentAudioPath != string.Empty)
 		{
 			ambience.audioInstance = RuntimeManager.CreateInstance(ambience.currentAudioPath);
-			ATTRIBUTES_3D attributesAmb = FMODUnity.RuntimeUtils.To3DAttributes(transform.position);
-			ambience.audioInstance.set3DAttributes(attributesAmb);
-		}
-	}
-
-	void Setup()
-	{
-		if (background.audioPath != string.Empty)
-		{
-			background.audioInstance = RuntimeManager.CreateInstance(background.audioPath);
-			ATTRIBUTES_3D attributesBack = FMODUnity.RuntimeUtils.To3DAttributes(transform.position);
-			background.audioInstance.set3DAttributes(attributesBack);
-		}
-
-		if (ambience.audioPath != string.Empty)
-		{
-			ambience.audioInstance = RuntimeManager.CreateInstance(ambience.audioPath);
 			ATTRIBUTES_3D attributesAmb = FMODUnity.RuntimeUtils.To3DAttributes(transform.position);
 			ambience.audioInstance.set3DAttributes(attributesAmb);
 		}

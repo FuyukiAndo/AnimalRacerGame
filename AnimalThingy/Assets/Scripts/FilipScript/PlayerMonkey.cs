@@ -53,11 +53,11 @@ public class PlayerMonkey : PlayerController
 			
 			if(directionX == 1)
 			{
-				movement.y = -climbingSpeed;	
+				movement.y = -wallClimbingSpeed;	
 			}	
 			else
 			{
-				movement.y = climbingSpeed;				
+				movement.y = wallClimbingSpeed;				
 			}
 		}		
 	}
@@ -74,11 +74,11 @@ public class PlayerMonkey : PlayerController
 			
 			if(directionX == 1)
 			{
-				movement.y = climbingSpeed;	
+				movement.y = wallClimbingSpeed;	
 			}	
 			else
 			{
-				movement.y = -climbingSpeed;				
+				movement.y = -wallClimbingSpeed;				
 			}
 		}
 	}
@@ -146,9 +146,9 @@ public class PlayerMonkey : PlayerController
 			playerInput.changeAngle = false;
 			//if(!activeClimbing)
 			//{
-				/*if(movement.y < -wallClimbingSpeed)
+				/*if(movement.y < -wallwallClimbingSpeed)
 				{
-					movement.y = -wallClimbingSpeed;
+					movement.y = -wallwallClimbingSpeed;
 				}*/
 			//}
 		}

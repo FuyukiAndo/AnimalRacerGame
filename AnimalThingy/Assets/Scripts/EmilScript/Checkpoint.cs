@@ -32,10 +32,11 @@ public class Checkpoint : MonoBehaviour
 				}
 			}
 		}
-		if (!GetComponent<CircleCollider2D>())
+		if (!gameObject.GetComponent<CircleCollider2D>())
 		{
 			gameObject.AddComponent<CircleCollider2D>();
 		}
+
 		circle = GetComponent<CircleCollider2D>();
 	}
 
@@ -69,11 +70,11 @@ public class Checkpoint : MonoBehaviour
 		playerFlags = new PlayerFlag[count];
 	}
 
-	void OnDrawGizmos()
+	/*void OnDrawGizmos()
 	{
 		Gizmos.color = Color.yellow;
 		Gizmos.DrawWireSphere((Vector2)transform.position + circle.offset, circle.radius);
-	}
+	}*/
 
 	public void SetNextCheckPosToGoFor()
 	{
