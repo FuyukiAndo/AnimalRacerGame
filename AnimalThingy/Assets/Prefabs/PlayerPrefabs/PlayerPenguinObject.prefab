@@ -9329,7 +9329,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1363596147525290}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 220.63109, y: 46.8, z: 0}
+  m_LocalPosition: {x: 342.99005, y: 168.0445, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4788003634734142}
@@ -14530,7 +14530,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -14554,7 +14554,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
 --- !u!95 &95198743248783362
 Animator:
   serializedVersion: 3
@@ -14624,7 +14624,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 121ede1f33be8754eb9a275a62bbbe51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speeches: []
+  speeches:
+  - speechType: 0
+    speeches:
+    - Ugh!
+    - Uuugh... Stop with your interference!
+    - You will feel my wrath!
+    - Prepare for your doom, which is me!
+    - Gaah! Enough!
+  - speechType: 3
+    speeches:
+    - Haha! I reign supreme!
+    - 'You fools never had a chance against my flippers! '
+    - "One step closer to my plan. \u201CShowing them all!\u201D"
+    - Ooh, you all put in good effort, but still pale compared to the big Finely!
+    - 'I am unrivalled! '
+  - speechType: 4
+    speeches:
+    - Redirect your losing face elsewhere!
+    - "You fools can\u2019t beat my slide!"
+    - "You don\u2019t want to be close when my flippers are in action!"
+    - "You won\u2019t look down at me anymore after you witness this!"
+    - 'Certain kill move: POWERSLIDE!'
+  - speechType: 6
+    speeches:
+    - "That won\u2019t happen again."
+    - 'All great plans have setbacks! '
+    - Greatness comes from experiences!
   speechBubble: {fileID: 1850997573419068}
   characterCrystal: {fileID: 1934345133084732}
   speechSpeedMult: 0.4
