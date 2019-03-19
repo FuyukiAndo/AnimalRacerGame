@@ -31,10 +31,20 @@ public class SettingsManager : MonoBehaviour {
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
     }
-    public void SetVolume(float volume)
+    public void SetAmbienceVolume(Slider slider)
     {
-        Debug.Log("Denna slider gör ingenting eftersom FMOD behöver implementeras");
-    }
+		AudioManager.Instance.SetVolumeAmbience(slider.value);
+	}
+
+    public void SetSFXVolume(Slider slider)
+    {
+		AudioManager.Instance.SetVolumeSFX(slider.value);
+	}
+
+    public void SetBackgroundVolume(Slider slider)
+    {
+		AudioManager.Instance.SetVolumeBackground(slider.value);
+	}
 
     public void SetQualityLevel(int qualityIndex)
     {

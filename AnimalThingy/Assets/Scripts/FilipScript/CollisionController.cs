@@ -25,6 +25,9 @@ public class CollisionController : RaycastController
 	
 	[HideInInspector]public BoxCollisionDirections boxCollisionDirections;
 	
+//	public float directionY;// = Mathf.Sign(movement.y);
+	//public Vector2 rayVectorY;
+	
 	public override void Start()
 	{
 		base.Start();
@@ -231,6 +234,7 @@ public class CollisionController : RaycastController
 						if(angle != boxCollisionDirections.ascendAngle)
 						{
 							movement.x = (newHitY.distance - collisionOffset) * directionX;
+							
 							boxCollisionDirections.ascendAngle = angle;
 						}
 					}
@@ -260,7 +264,8 @@ public class CollisionController : RaycastController
 		if(movement.y <= climbMovementY)
 		{
 			movement.y = climbMovementY;
-			movement.x = Mathf.Cos(angle * Mathf.Deg2Rad) * moveDistance * Mathf.Sign(movement.x);
+			movement.x = Mathf.Cos(angle * Mathf.Deg2Rad) * moveDistance * Mathf.Sign(movement.x); //Mathf.Cos(angle * Mathf.Deg2Rad) * moveDistance * Mathf.Sign(movement.x);
+			
 			boxCollisionDirections.down = true;
 			boxCollisionDirections.climbing = true;
 			boxCollisionDirections.ascendAngle = angle;
@@ -287,7 +292,7 @@ public class CollisionController : RaycastController
 		{
 			float angle = Vector2.Angle(hit.normal, Vector2.up);
 			
-			if(angle != 0 && angle <=maxAngle)
+			if(angle != 0 && angle <= maxAngle)
 			{
 				if(Mathf.Sign(hit.normal.x) == directionX)
 				{
@@ -295,6 +300,7 @@ public class CollisionController : RaycastController
 					{
 						float moveDistance = Mathf.Abs(movement.x);
 						float descendMovementY = Mathf.Sin(angle * Mathf.Deg2Rad) * moveDistance;
+						
 						movement.x = Mathf.Cos(angle * Mathf.Deg2Rad) * moveDistance * Mathf.Sign(movement.x);
 						movement.y -= descendMovementY;
 						
@@ -307,51 +313,4 @@ public class CollisionController : RaycastController
 			}
 		}
 	}
-	
-   /* public IEnumerator SpeedChange(float boostChangeAmount, float boostDuration, GameObject speedObject)
-    {
-        speed = speed + boostChangeAmount;
-        yield return new WaitForSeconds(boostDuration);
-        speed = originalSpeed;
-        Destroy(speedObject);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        bool isOnLayer = waterLayer == (waterLayer | (1 << collision.gameObject.layer));
-        //Mathf.Log(waterLayer.value, 2) == collision.gameObject.layer
-        //(waterLayer | (1 << collision.gameObject.layer)) - Kollar bitmaskens position på collisionen och jämför den med bitmasken
-
-        if (isOnLayer && pengvin == false)
-        {
-            GetKilled();
-        }
-    }
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Bonefire")
-        {
-            coldWinter.WarmedUp();
-        }
-    }
-    public IEnumerator GetStunnedAndDestroy(float stunDuration, GameObject stunObject)
-    {
-        isStunned = true;
-        yield return new WaitForSeconds(stunDuration);
-        isStunned = false;
-        Destroy(stunObject);
-    }
-	
-    public IEnumerator GetStunned(float stunDurtation)
-    {
-        Debug.Log(stunDurtation);
-        isStunned = true;
-        yield return new WaitForSeconds(stunDurtation);
-        isStunned = false;
-    }
-	
-    public void GetKilled()
-    {
-        Destroy(gameObject);
-    }*/
 }

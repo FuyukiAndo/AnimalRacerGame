@@ -4,45 +4,20 @@ using UnityEngine;
 
 public class PlayerPenguin : PlayerController
 {
-	//public bool isSlide = false;
-	//public bool activeSlide = false;
-	
-	//public int i;
-	//int count = 4;
-	//public float abilityModifier = 2f;
+	public GameObject projectileObject;	
 
+	private bool spawnProjectile = false;
+
+	private float InstantiateProjectileTimer;
+	private float savedInstatiateTimer;
+	
 	public override void Start() 
 	{
 		base.Start();
-			//i = count;
+		InstantiateProjectileTimer = movementSpeed/96f;
+		savedInstatiateTimer = InstantiateProjectileTimer;
 	}
 
-	public override void Update() 
-	{
-		base.Update();
-		
-		if(isPassiveAbility && !passiveAbility)//isSlide && !activeSlide)
-		{
-			movement.y = minVelocity;
-			movement.x += -1 * abilityDirection * abilityModifier;
-			maxUseCounter--;//i--;
-			
-			if(maxUseCounter < 0)
-			{
-				isPassiveAbility = false;//isSlide = false;
-				passiveAbility = true;//activeSlide = true;
-				maxUseCounter = savedMaxUseCounter;
-				//i = count;
-			}
-		}
-		
-		if(!isPassiveAbility && passiveAbility)
-		{
-			movement.y = 0;
-			movement.x += -1 * abilityDirection * abilityModifier;
-		}
-	}
-	
 	public override void OnAbilityKey()
 	{
 		base.OnAbilityKey();
@@ -52,7 +27,56 @@ public class PlayerPenguin : PlayerController
 		
 		if(!isPassiveAbility)
 		{
-			isPassiveAbility = true;
+			spawnProjectile = true;
 		}
 	}
+	
+	private void PlayerPassiveAbility()
+	{
+		if(spawnProjectile)
+		{
+			InstantiateProjectileTimer -= Time.deltaTime;
+			
+			if(InstantiateProjectileTimer <= 0)
+			{
+				Instantiate(projectileObject, new Vector2(transform.position.x,transform.position.y+2f), new Quaternion(0, 0, 0, 0), gameObject.transform);		
+				InstantiateProjectileTimer = savedInstatiateTimer;
+			}			
+		}
+	}
+
+	private void PlayerActiveAbility()
+	{
+		if(!isPassiveAbility && passiveAbility)
+		{
+			maxUseCounter--;
+			
+			if(maxUseCounter < 0)
+			{
+				isPassiveAbility = true;
+				passiveAbility = false;
+				maxUseCounter = savedMaxUseCounter;
+			}
+		}
+		
+		if(!passiveAbility && isPassiveAbility)
+		{
+			movement.x += -1 * abilityDirection * abilityModifier;
+		}
+		
+		if(!passiveAbility && !isPassiveAbility)
+		{
+			playerInput.isControllable = true;
+			playerInput.changeAngle = true;		
+			spawnProjectile = false;	
+		}		
+	}	
+
+	public override void Update() 
+	{
+		base.Update();
+		
+		PlayerPassiveAbility();
+		PlayerActiveAbility();
+	}	
 }

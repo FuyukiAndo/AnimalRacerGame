@@ -4,20 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-
-  - Ice_Character
-  - Ground
   - OneWay
-  - Spike
-  - Tranpolin
-  - Bonefire
-  - Coast_Character
-  - Jungle_Character
-  - Wall
   - Ball
-  - Workdammit
-  - Blast
-  - OneWay
+  - Obstacle
+  - Projectile
   layers:
   - Default
   - TransparentFX

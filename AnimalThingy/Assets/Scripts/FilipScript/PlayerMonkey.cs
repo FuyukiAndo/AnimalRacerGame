@@ -3,17 +3,42 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMonkey : PlayerController 
-{
+{	
+	public float wallClimbingSpeed = 5f;
+	public float leapDistance = 19f;
+
 	public GameObject projectileObject;
-	public float climbingSpeed = 5f;
 	
-	public Vector2 surfaceOn;
-	public Vector2 surfaceOff;
-	public Vector2 surfaceLeap;
+	private Vector2 surfaceLeap;
+	private int dirX;
 	
 	public override void Start()
 	{
 		base.Start();
+	}
+
+	public override void gravityTranslate()
+	{
+		if(!isActiveAbility)
+		{
+			base.gravityTranslate();	
+		}
+	}	
+	
+	public override void MoveNot()
+	{
+		if(!isActiveAbility)
+		{
+			base.MoveNot();
+		}
+		else
+		{
+			if((collisionController.boxCollisionDirections.left || collisionController.boxCollisionDirections.right) && !activeAbility)
+			{
+				movement.y = 0;
+				movementDirection = 0;
+			}
+		}
 	}
 	
 	public override void MoveLeft()
@@ -57,42 +82,12 @@ public class PlayerMonkey : PlayerController
 			}
 		}
 	}
-	
-	public override void MoveNot()
-	{
-		base.MoveNot();
-	}	
-	
-	public override void OnJumpKeyUp()
-	{
-		if(!isActiveAbility)
-		{
-			base.OnJumpKeyUp();
-		}
-	}	
 
 	public override void OnJumpKeyDown()
 	{
 		if(isActiveAbility)
 		{
-			movement.x = -directionX * surfaceLeap.x;
-				//movement.y = surfaceLeap.y;
-			
-			/*if(dirX == abilityDirection)
-			{
-				movement.x = -dirX * surfaceOn.x;
-				movement.y = surfaceOn.y;
-			}
-			else if(movement.x == 0)
-			{
-				movement.x = -dirX * surfaceOff.x;
-				movement.y = surfaceOff.y;
-			}
-			else
-			{
-				movement.x = -dirX * surfaceLeap.x;
-				movement.y = surfaceLeap.y;
-			}*/
+			movement.x = -dirX * surfaceLeap.x;
 		}
 		else
 		{
@@ -100,19 +95,37 @@ public class PlayerMonkey : PlayerController
 		}
 	}
 	
-	public override void gravityTranslate()
+	public override void OnJumpKeyUp()
 	{
-		if(!activeAbility && !isActiveAbility)
+		if(!isActiveAbility)
 		{
-			base.gravityTranslate();		
+			base.OnJumpKeyUp();
 		}
-	}
-
-	public override void Update()
+		/*if(isActiveAbility)
+		{
+			
+		}
+		else
+		{
+			base.OnJumpKeyUp();
+		}*/
+	}	
+	
+	public override void OnAbilityKey()
 	{
-		base.Update();
-		directionX = Mathf.Sign(movement.x);
-		
+		base.OnAbilityKey();
+	
+		//playerInput.isControllable = false;
+		//playerInput.changeAngle = false;
+	
+		if(!isActiveAbility)
+		{
+			Instantiate(projectileObject, new Vector2(transform.position.x+(2.5f*-abilityDirection),transform.position.y+2f), new Quaternion(0, 0, 0, 0), gameObject.transform);		
+		}
+	}	
+	
+	private void PlayerPassiveAbility()
+	{
 		if(collisionController.boxCollisionDirections.left)
 		{
 			directionX = -1;
@@ -121,27 +134,29 @@ public class PlayerMonkey : PlayerController
 		{
 			directionX = 1;
 		}
+	}
 
-		if((collisionController.boxCollisionDirections.left || collisionController.boxCollisionDirections.right)
-		&& !collisionController.boxCollisionDirections.down && movement.y < 0)
+	private void PlayerActiveAbility()
+	{
+		surfaceLeap = new Vector2(leapDistance, 17f);
+		
+		if((collisionController.boxCollisionDirections.left || collisionController.boxCollisionDirections.right) && !collisionController.boxCollisionDirections.down && movement.y < 0)
 		{
-			isActiveAbility = true;
-			activeAbility = true;
-			
+			isActiveAbility  = true;
 			playerInput.changeAngle = false;
-
-			/*if(movement.y < -climbingSpeed)
-			{
-				movement.y = -climbingSpeed/2.0f;
-			}*/
+			//if(!activeClimbing)
+			//{
+				/*if(movement.y < -wallClimbingSpeed)
+				{
+					movement.y = -wallClimbingSpeed;
+				}*/
+			//}
 		}
 		
-		if((collisionController.boxCollisionDirections.left || collisionController.boxCollisionDirections.right)
-		&& collisionController.boxCollisionDirections.down && movement.y == 0)
+		if((collisionController.boxCollisionDirections.left || collisionController.boxCollisionDirections.right) && collisionController.boxCollisionDirections.down)
 		{
 			isActiveAbility = false;
 			activeAbility = false;
-
 			playerInput.changeAngle = true;
 		}
 
@@ -149,19 +164,15 @@ public class PlayerMonkey : PlayerController
 		{
 			isActiveAbility = false;
 			activeAbility = false;
-			
 			playerInput.changeAngle = true;
 		}
 	}
 	
-	public override void OnAbilityKey()
+	public override void Update()
 	{
-		base.OnAbilityKey();
-	
-		if(!isActiveAbility)
-		{
-			Instantiate(projectileObject, new Vector2(transform.position.x+(2.5f*abilityDirection),transform.position.y+2f), new Quaternion(0, 0, 0, 0), gameObject.transform);		
-		}
-	}
-	
+		base.Update();
+		
+		PlayerPassiveAbility();
+		PlayerActiveAbility();
+	}	
 }

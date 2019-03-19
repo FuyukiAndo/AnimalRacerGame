@@ -28,11 +28,28 @@ public class PlayerAlbatross : PlayerController
 		savedJumpAndFallDelay = jumpAndFallDelay;
 	}
 	
-	public override void Update()
+	private void PlayerPassiveAbility()
 	{
-		base.Update();	
-		UpdateGravity();		
+		if(passiveAbility)
+		{
+			passiveAbility = false;
+			isPassiveAbility = true;
+		}
 		
+		if(!passiveAbility && isPassiveAbility)
+		{
+			movement.x += -1 * abilityDirection * abilityModifier;
+		}		
+		
+		if(!passiveAbility && !isPassiveAbility)
+		{
+			playerInput.isControllable = true;
+			playerInput.changeAngle = true;
+		}
+	}
+
+	private void PlayerActiveAbility()
+	{
 		if(activeAbility)
 		{
 			untilGlideCounter -= Mathf.Abs(glideCounterSpeed) * Time.deltaTime;
@@ -59,20 +76,6 @@ public class PlayerAlbatross : PlayerController
 			isActiveAbility = true;
 			untilGlideCounter = savedUntilGlideCounter;
 		}
-		
-		if(isPassiveAbility && passiveAbility)
-		{
-			movement.x += -1 * abilityDirection * abilityModifier;
-			//abilityMeter = abilityMeter + abilityMeterModifier;
-		}
-		
-		if(!passiveAbility)
-		{
-			isPassiveAbility = false;
-			playerInput.isControllable = true;	
-			playerInput.changeAngle = true;
-		}
-		
 		if(isJumping)
 		{
 			maxFlyCounter = maxFlyCounter-maxFlyCountdownSpeed;
@@ -132,18 +135,20 @@ public class PlayerAlbatross : PlayerController
 	public override void OnAbilityKey()
 	{
 		base.OnAbilityKey();
-		
-		passiveAbility = true;		
-		
-		if(passiveAbility)
-		{					
-			//passiveAbility = true;
-			isPassiveAbility = true;
-			playerInput.isControllable = false;
-			playerInput.changeAngle = false;
-		}
-		
+	
+		playerInput.isControllable = false;
+		playerInput.changeAngle = false;
+
 		Instantiate(windBlastObject, new Vector2(transform.position.x+(2.5f*abilityDirection),transform.position.y+2f), new Quaternion(0, 0, 0, 0), gameObject.transform);
 		windBlastObject.transform.parent = null;
 	}
+	
+	public override void Update()
+	{
+		base.Update();	
+		UpdateGravity();		
+		
+		PlayerActiveAbility();
+		PlayerPassiveAbility();
+	}	
 }

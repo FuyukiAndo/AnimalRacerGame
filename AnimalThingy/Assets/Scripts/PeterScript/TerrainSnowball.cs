@@ -49,7 +49,6 @@ public class TerrainSnowball : MonoBehaviour {
 	}
     public void HitPlayer()
     {
-        //Debug.Log(rb2d.velocity.x);
         collision = Physics2D.OverlapBoxAll(transform.position, c2d.bounds.size, 0.0f);
         foreach (var collider in collision)
         {
@@ -74,7 +73,7 @@ public class TerrainSnowball : MonoBehaviour {
                 }
                 Debug.Log(pushback);
                 Physics2D.IgnoreCollision(collider, c2d);
-                collider.GetComponent<PlayerInput>().stunDurationLeft = stunDuration;
+                collider.GetComponent<PlayerInput>().stunDurationTimer = stunDuration;
                 if(transform.position.x > collider.transform.position.x)
                 {
                    

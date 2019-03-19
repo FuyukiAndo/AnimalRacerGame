@@ -21,7 +21,7 @@ public class FlyingTrajectory : MonoBehaviour {
         bool isOnLayer = terrainTypesLayer == (terrainTypesLayer | (1 << collision.gameObject.layer));
         if (player != null)
         {
-            player.stunDurationLeft = stunDuration;
+            player.stunDurationTimer = stunDuration;
             Destroy(gameObject);
         }
         if(isOnLayer)

@@ -163,6 +163,8 @@ MonoBehaviour:
   speed: 1
   terrainTypesLayer:
     serializedVersion: 2
-    m_Bits: 528
-  timeBeforeSpikeFallsMin: 0
+    m_Bits: 1552
+  destroyParticle: {fileID: 198248860858819048, guid: 4eec1e771c970ba4db91ac2191d71d52,
+    type: 2}
+  timeBeforeSpikeFallsMin: 3
   timeBeforeSpikeFallsMax: 5

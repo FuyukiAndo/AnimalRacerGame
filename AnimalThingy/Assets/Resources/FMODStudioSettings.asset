@@ -13,9 +13,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: Assets\Resources\Animal Racer FMOD\Animal Racer.fspro
-  SourceProjectPathUnformatted: Assets\Resources\Animal Racer FMOD\Animal Racer.fspro
-  SourceBankPathUnformatted: Assets\Resources\Animal Racer FMOD\Build
+  sourceProjectPath: Assets\Resources\Animal Racer\Animal Racer.fspro
+  SourceProjectPathUnformatted: Assets\Resources\Animal Racer\Animal Racer.fspro
+  SourceBankPathUnformatted: Assets\Resources\Animal Racer\Build
   AutomaticEventLoading: 1
   AutomaticSampleLoading: 0
   ImportType: 0
@@ -36,7 +36,7 @@ MonoBehaviour:
     Value: 0
   OverlaySettings:
   - Platform: 1
-    Value: 1
+    Value: 0
   - Platform: 2
     Value: 0
   LoggingSettings:
