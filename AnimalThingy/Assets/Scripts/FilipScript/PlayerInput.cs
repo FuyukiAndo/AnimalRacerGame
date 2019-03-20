@@ -173,9 +173,6 @@ public class PlayerInput : MonoBehaviour
 				//Jump Key Down
 				if (Input.GetKeyDown(playerJumpKey))
 				{
-					//Emil AudioOneshotPlayer
-					oneshotPlayer.SetParameterValue(0.05f);
-					oneshotPlayer.PlayAudioOneShot(true);
 					keyCodeDictionary0[playerJumpKey]();
 				}
 
@@ -188,9 +185,6 @@ public class PlayerInput : MonoBehaviour
 				// Ability Key
 				if (Input.GetKeyDown(playerAbilityKey))
 				{
-					//Emil AudioOneshotPlayer
-					oneshotPlayer.SetParameterValue(2.5f);
-					oneshotPlayer.PlayAudioOneShot(true);
 					keyCodeDictionary0[playerAbilityKey]();
 				}
 			}
@@ -270,8 +264,18 @@ public class PlayerInput : MonoBehaviour
 
 		if (Input.GetKeyDown(playerAbilityKey))
 		{
+			//Emil AudioOneshotPlayer
+			oneshotPlayer.SetParameterValue(2.5f);
+			oneshotPlayer.PlayAudioOneShot(true);
 			animationHandler.SetAnimatorBool("SpecialT",true);
 		}		
+
+		if (Input.GetKeyDown(playerJumpKey))
+		{
+			//Emil AudioOneshotPlayer
+			oneshotPlayer.SetParameterValue(0.05f);
+			oneshotPlayer.PlayAudioOneShot(true);
+		}
 		
 		
 		if(isStunned)
