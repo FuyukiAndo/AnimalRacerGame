@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SpeechBubble : MonoBehaviour
 {
@@ -22,15 +23,17 @@ public class SpeechBubble : MonoBehaviour
 		{
 			commentatorText = commentator.commentatorSpeechBubble.GetComponent<TextMeshProUGUI>();
 			commentatorText.autoSizeTextContainer = true;
+			commentator.commentatorSpeechBubble.SetActive(false);
+			commentator.commentatorSpeechImage.SetActive(false);
 		}
 		else
 		{
 			textMesh = speechBubble.GetComponent<TextMeshPro>();
 			textMesh.autoSizeTextContainer = true;
+			sprite = speechBubble.GetComponentInChildren<SpriteRenderer>();
+			characterCrystal.SetActive(true);
+			speechBubble.SetActive(false);
 		}
-		sprite = speechBubble.GetComponentInChildren<SpriteRenderer>();
-		characterCrystal.SetActive(true);
-		speechBubble.SetActive(false);
 	}
 
 	void Update()
@@ -62,6 +65,7 @@ public class SpeechBubble : MonoBehaviour
 		{
 			SetRandomSpeechFromCommentator();
 		}
+		commentator.commentatorSpeechImage.SetActive(true);
 		commentator.commentatorSpeechBubble.SetActive(true);
 		StartCoroutine(SetSpeechInactive());
 		commentator.nextComment = Time.time + commentator.commentingDelay;
@@ -88,6 +92,7 @@ public class SpeechBubble : MonoBehaviour
 			yield return new WaitForSeconds(commentatorText.text.Length * speechSpeedMult);
 			commentatorText.text = string.Empty;
 			commentator.commentatorSpeechBubble.SetActive(false);
+			commentator.commentatorSpeechImage.SetActive(false);
 		}
 		else
 		{
@@ -114,6 +119,7 @@ public class CommentatorSpeech
 	public string levelCompleteSpeech;
 	public float commentingDelay;
 	public GameObject commentatorSpeechBubble;
+	public GameObject commentatorSpeechImage;
 	[HideInInspector] public float nextComment;
 }
 
