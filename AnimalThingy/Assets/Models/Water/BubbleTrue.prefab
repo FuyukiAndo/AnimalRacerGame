@@ -20,10 +20,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4425993728381920}
   - component: {fileID: 33247631877210252}
-  - component: {fileID: 135227229044719862}
   - component: {fileID: 23421012746593400}
   - component: {fileID: 114162201261923706}
   - component: {fileID: 114595293550989538}
+  - component: {fileID: 58192781361857698}
   m_Layer: 9
   m_Name: BubbleTrue
   m_TagString: Untagged
@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1460911525680832}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -158.38719, y: 94.37581, z: -0.22079}
+  m_LocalPosition: {x: 18.241138, y: -43.23929, z: -0.22079}
   m_LocalScale: {x: 2.3531084, y: 2.3531082, z: 2.3531082}
   m_Children: []
   m_Father: {fileID: 0}
@@ -85,6 +85,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1460911525680832}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!58 &58192781361857698
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1460911525680832}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!114 &114162201261923706
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -114,15 +129,3 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   popOnDestination: 0
---- !u!135 &135227229044719862
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1460911525680832}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
