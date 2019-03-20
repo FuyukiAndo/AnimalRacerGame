@@ -1997,7 +1997,7 @@ GameObject:
   - component: {fileID: 114862703998541950}
   m_Layer: 8
   m_Name: PlayerMonkeyObject
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5149,7 +5149,7 @@ GameObject:
   - component: {fileID: 114078422127414728}
   m_Layer: 0
   m_Name: PlayerMonkeyModel
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12218,7 +12218,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1196314723305698}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 344.46286, y: 168.38113, z: 0}
+  m_LocalPosition: {x: 32.260002, y: 13.53, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4132141405291118}
@@ -20117,7 +20117,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 1.2}
+  m_Offset: {x: -0.11788845, y: 1.7027447}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -20128,7 +20128,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 2}
+  m_Size: {x: 2.264223, y: 3.2245107}
   m_EdgeRadius: 0
 --- !u!65 &65136667508437002
 BoxCollider:
@@ -20285,10 +20285,10 @@ MonoBehaviour:
   movementAcceleration: 0.15
   accelerationModifier: 0.2
   deaccelerationModifier: 0.3
-  abilityMeter: 100
-  abilityMeterModifier: 1
-  maxUseCounter: 1
-  abilityModifier: 2
+  abilityMeter: 1
+  abilityMeterModifier: 0.01
+  maxUseCounter: 3
+  abilityModifier: 40
   abilityDirection: 0
   collisionController: {fileID: 114687995741526254}
   movement: {x: -0.0000003280503, y: 0}
@@ -20300,7 +20300,7 @@ MonoBehaviour:
   collision: []
   wallClimbingSpeed: 5
   leapDistance: 19
-  projectileObject: {fileID: 1616428850741774, guid: 14bba72daa8f50d4997ba88ab87a812a,
+  projectileObject: {fileID: 1468555816427564, guid: cc27c8f39f3a65b419dd0f11e6c7a264,
     type: 2}
 --- !u!114 &114215283629440506
 MonoBehaviour:
@@ -20324,6 +20324,35 @@ MonoBehaviour:
     randomizeValue: 0
   effectController: {fileID: 0}
   box: {fileID: 61297682882013074}
+--- !u!114 &114482449793670534
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1196314723305698}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76fe4c252ae9c5f479067e802bfc9545, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playEffectAuto: 1
+  oneshot: 1
+  attached: 0
+  startEvent: 2
+  stopEvent: 0
+  updateDelay: 2
+  sfx:
+    currentAudioPath: event:/[K] Apa
+    paramName: 
+    paramValue: 0
+    additionalParamValues: []
+    randomizeValue: 0
+  layer:
+    serializedVersion: 2
+    m_Bits: 0
+  boxSize: {x: 1, y: 1}
+  boxOffset: {x: 0, y: 0}
+  clip: {fileID: 0}
 --- !u!114 &114567713011928814
 MonoBehaviour:
   m_ObjectHideFlags: 1
