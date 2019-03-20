@@ -39,8 +39,14 @@ public class AudioOneshotPlayer : MonoBehaviour
 		}
 	}
 
+	public bool IsAudioPathNull()
+	{
+		return sfx.currentAudioPath == string.Empty;
+	}
+
 	public void PlayAudioOneShot(bool attached)
 	{
+		if (IsAudioPathNull())return;
 		Setup();
 		if (attached)
 		{
@@ -56,6 +62,7 @@ public class AudioOneshotPlayer : MonoBehaviour
 	{
 		if (AudioManager.Instance.useFMOD)
 		{
+			if (IsAudioPathNull())return;
 			Setup();
 			sfx.audioInstance.start();
 			sfx.audioInstance.release();

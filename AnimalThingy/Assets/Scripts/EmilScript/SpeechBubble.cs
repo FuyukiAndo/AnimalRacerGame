@@ -9,29 +9,33 @@ public class SpeechBubble : MonoBehaviour
 {
 
 	[SerializeField] private Speech[] speeches;
-	[SerializeField] private GameObject speechBubble, characterCrystal;
+	[SerializeField] private GameObject speechBubble, speechTextUI, characterCrystal;
 	[SerializeField] private float speechSpeedMult = .4f;
-	[SerializeField] private bool isCommentator;
+	[SerializeField] private bool isCommentator, isUi;
 	[SerializeField] private CommentatorSpeech commentator;
 	private TextMeshPro textMesh;
-	private SpriteRenderer sprite;
-	private TextMeshProUGUI commentatorText;
+	private TextMeshProUGUI commentatorText, textUI;
 
 	void Start()
 	{
-		if (isCommentator)
+		if (!isUi && isCommentator)
 		{
 			commentatorText = commentator.commentatorSpeechBubble.GetComponent<TextMeshProUGUI>();
 			commentatorText.autoSizeTextContainer = true;
 			commentator.commentatorSpeechBubble.SetActive(false);
 			commentator.commentatorSpeechImage.SetActive(false);
 		}
-		else
+		else if (!isUi && !isCommentator)
 		{
 			textMesh = speechBubble.GetComponent<TextMeshPro>();
 			textMesh.autoSizeTextContainer = true;
-			sprite = speechBubble.GetComponentInChildren<SpriteRenderer>();
 			characterCrystal.SetActive(true);
+			speechBubble.SetActive(false);
+		}
+		else if (isUi && !isCommentator)
+		{
+			textUI = speechTextUI.GetComponent<TextMeshProUGUI>();
+			textUI.autoSizeTextContainer = true;
 			speechBubble.SetActive(false);
 		}
 	}
@@ -50,8 +54,15 @@ public class SpeechBubble : MonoBehaviour
 	public void SetSpeechActive(SpeechType type)
 	{
 		SetRandomSpeechFromType(type);
-		characterCrystal.SetActive(false);
-		speechBubble.SetActive(true);
+		if (!isUi)
+		{
+			characterCrystal.SetActive(false);
+			speechBubble.SetActive(true);
+		}
+		else
+		{
+			speechBubble.SetActive(true);
+		}
 		StartCoroutine(SetSpeechInactive());
 	}
 
@@ -76,7 +87,14 @@ public class SpeechBubble : MonoBehaviour
 		Speech speech;
 		speech = (Speech)speeches.Where(tempSpeech => tempSpeech.speechType == type);
 		int rand = Random.Range(0, speech.speeches.Length - 1);
-		textMesh.text = speech.speeches[rand];
+		if (!isUi)
+		{
+			textMesh.text = speech.speeches[rand];
+		}
+		else
+		{
+			textUI.text = speech.speeches[rand];
+		}
 	}
 
 	void SetRandomSpeechFromCommentator()
@@ -96,10 +114,19 @@ public class SpeechBubble : MonoBehaviour
 		}
 		else
 		{
-			yield return new WaitForSeconds(textMesh.text.Length * speechSpeedMult);
-			textMesh.text = string.Empty;
-			speechBubble.SetActive(false);
-			characterCrystal.SetActive(true);
+			if (!isUi)
+			{
+				yield return new WaitForSeconds(textMesh.text.Length * speechSpeedMult);
+				textMesh.text = string.Empty;
+				speechBubble.SetActive(false);
+				characterCrystal.SetActive(true);
+			}
+			else
+			{
+				yield return new WaitForSeconds(textUI.text.Length * speechSpeedMult);
+				textUI.text = string.Empty;
+				speechBubble.SetActive(false);
+			}
 		}
 	}
 

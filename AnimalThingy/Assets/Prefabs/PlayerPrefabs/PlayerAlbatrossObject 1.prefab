@@ -15513,8 +15513,8 @@ MonoBehaviour:
   movementAcceleration: 0.15
   accelerationModifier: 0.2
   deaccelerationModifier: 0.3
-  abilityMeter: 100
-  abilityMeterModifier: 1
+  abilityMeter: 1
+  abilityMeterModifier: 0.01
   maxUseCounter: 3
   abilityModifier: 2
   abilityDirection: 0
