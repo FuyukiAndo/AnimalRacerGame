@@ -250,6 +250,17 @@ public class PlayerInput : MonoBehaviour
 		{
 			animationHandler.SetAnimatorBool("SpecialT",true);
 		}		
+		
+		
+		if(isStunned)
+		{
+			animationHandler.SetAnimatorBool("StunT",true);			
+		}
+		else
+		{
+			animationHandler.SetAnimatorBool("StunT",false);				
+		}
+		
 	}
 	
 	private void InputAnimationAlbatross()
@@ -408,14 +419,14 @@ public class PlayerInput : MonoBehaviour
 		{
 			if(!playerMonkey.passiveAbility)
 			{
-				animationHandler.SetAnimatorBool("SpecialT", true);				
+				animationHandler.SetAnimatorTrigger("SpecialT");//Bool("SpecialT", true);				
 			}
 		}
 		
-		if(playerMonkey.abilityMeter == 1f)
+		/*if(playerMonkey.abilityMeter == 1f)
 		{
 			animationHandler.SetAnimatorBool("SpecialT", false);	
-		}
+		}*/
 
 		if((playerMonkey.collisionController.boxCollisionDirections.left || playerMonkey.collisionController.boxCollisionDirections.right)
 		&& !playerMonkey.collisionController.boxCollisionDirections.down)
