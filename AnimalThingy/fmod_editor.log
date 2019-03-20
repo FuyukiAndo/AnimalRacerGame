@@ -21,160 +21,70 @@
 [LOG] SystemI::createSoundInternal             : exinfo->length             = 11791712
 [LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 67808
 [LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000000784AF5FC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000006F1EF5FC
 [LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
 [LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCFB481100
 [LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCFB4810D0
 [LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCFB4811D0
 [LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCFB481290
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000000061AF8CD8
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000000001105F998
 [LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
 [LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
-[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Albatross_Hoppljud_01 V1', format=2, channels=2, frequency=48000, lengthbytes=8992, lengthpcm=35246, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.338165.
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Checkpoint_2', format=2, channels=2, frequency=48000, lengthbytes=28224, lengthpcm=192000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.201813.
 [LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
 [LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 232
 [LOG] SystemI::createSoundInternal             : exinfo->length             = 11791712
 [LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 67808
 [LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000000784AF5FC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000006F1EF5FC
 [LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
 [LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCFB481100
 [LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCFB4810D0
 [LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCFB4811D0
 [LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCFB481290
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000000061AF8CD8
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000000001105F998
 [LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
 [LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
-[LOG] SystemI::createSoundInternal             : Sample 0/1: name='ALBATROSS_POWERUP_V1 ', format=2, channels=2, frequency=48000, lengthbytes=89440, lengthpcm=458464, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=1.000000.
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Checkpoint_3', format=2, channels=2, frequency=48000, lengthbytes=27424, lengthpcm=192000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.213867.
 [LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
 [LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 232
 [LOG] SystemI::createSoundInternal             : exinfo->length             = 11791712
 [LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 67808
 [LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000000784AF5FC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000006F1EF5FC
 [LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
 [LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCFB481100
 [LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCFB4810D0
 [LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCFB4811D0
 [LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCFB481290
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000000061AF8CD8
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000000001105F998
 [LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
 [LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
-[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Albatross_01 V1', format=2, channels=2, frequency=48000, lengthbytes=6784, lengthpcm=22345, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.269379.
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Checkpoint_1', format=2, channels=2, frequency=48000, lengthbytes=29888, lengthpcm=192000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.208954.
 [LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
 [LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 232
 [LOG] SystemI::createSoundInternal             : exinfo->length             = 11791712
 [LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 67808
 [LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000000784AF5FC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000006F1EF5FC
 [LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
 [LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCFB481100
 [LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCFB4810D0
 [LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCFB4811D0
 [LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCFB481290
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000000061AF8CD8
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000000001105F998
 [LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
 [LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
-[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Albatross_Hoppljud_04 V1', format=2, channels=2, frequency=48000, lengthbytes=7264, lengthpcm=16629, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.571777.
-[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
-[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 232
-[LOG] SystemI::createSoundInternal             : exinfo->length             = 11791712
-[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 67808
-[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000000784AF5FC
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCFB481100
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCFB4810D0
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCFB4811D0
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCFB481290
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000000061AF8CD8
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
-[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
-[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Albatross_Hoppljud_03 V1', format=2, channels=2, frequency=48000, lengthbytes=5440, lengthpcm=15056, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.409576.
-[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
-[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 232
-[LOG] SystemI::createSoundInternal             : exinfo->length             = 11791712
-[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 67808
-[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000000784AF5FC
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCFB481100
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCFB4810D0
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCFB4811D0
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCFB481290
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000000061AF8CD8
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
-[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
-[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Albatross_02 V1', format=2, channels=2, frequency=48000, lengthbytes=6624, lengthpcm=20786, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.437469.
-[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
-[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 232
-[LOG] SystemI::createSoundInternal             : exinfo->length             = 11791712
-[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 67808
-[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000000784AF5FC
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCFB481100
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCFB4810D0
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCFB4811D0
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCFB481290
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000000061AF8CD8
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
-[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
-[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Albatross_04 V1', format=2, channels=2, frequency=48000, lengthbytes=11936, lengthpcm=43050, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.385223.
-[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
-[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 232
-[LOG] SystemI::createSoundInternal             : exinfo->length             = 11791712
-[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 67808
-[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000000784AF5FC
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCFB481100
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCFB4810D0
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCFB4811D0
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCFB481290
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000000061AF8CD8
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
-[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
-[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Albatross_Hoppljud_02 V1', format=2, channels=2, frequency=48000, lengthbytes=5248, lengthpcm=14222, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.433350.
-[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
-[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 232
-[LOG] SystemI::createSoundInternal             : exinfo->length             = 11791712
-[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 67808
-[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000000784AF5FC
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCFB481100
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCFB4810D0
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCFB4811D0
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCFB481290
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000000061AF8CD8
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
-[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
-[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Albatross_03 V1', format=2, channels=2, frequency=48000, lengthbytes=10464, lengthpcm=36896, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.395386.
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Checkpoint_4', format=2, channels=2, frequency=48000, lengthbytes=26784, lengthpcm=192000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.199310.
+[LOG] SoundI::release                          :  (000000006A85A368)
+[LOG] SoundI::release                          :     Checkpoint_1 (000000006B0FA718)
 [LOG] SoundI::release                          :  (000000006A85B618)
-[LOG] SoundI::release                          :     Albatross_Hoppljud_03 V1 (00000000476982F8)
-[LOG] SoundI::release                          :  (000000006A85BBD8)
-[LOG] SoundI::release                          :     Albatross_Hoppljud_01 V1 (00000000474156F8)
-[LOG] SoundI::release                          :  (000000006A85B788)
-[LOG] SoundI::release                          :     Albatross_Hoppljud_02 V1 (000000006AE09F68)
-[LOG] SoundI::release                          :  (000000006A85BD48)
-[LOG] SoundI::release                          :     Albatross_03 V1 (000000006AE07388)
+[LOG] SoundI::release                          :     Checkpoint_4 (000000006B0F8D18)
 [LOG] SoundI::release                          :  (000000006A85BA68)
-[LOG] SoundI::release                          :     Albatross_04 V1 (000000006AE0B148)
-[LOG] SoundI::release                          :  (000000006A85B338)
-[LOG] SoundI::release                          :     Albatross_01 V1 (0000000047414518)
-[LOG] SoundI::release                          :  (000000006A85A648)
-[LOG] SoundI::release                          :     Albatross_02 V1 (00000000476975F8)
-[LOG] SoundI::release                          :  (000000006A85B8F8)
-[LOG] SoundI::release                          :     Albatross_Hoppljud_04 V1 (000000004769A1D8)
-[LOG] SoundI::release                          :  (000000006A85BEB8)
-[LOG] SoundI::release                          :     ALBATROSS_POWERUP_V1  (00000000474141D8)
+[LOG] SoundI::release                          :     Checkpoint_2 (0000000061814538)
+[LOG] SoundI::release                          :  (000000006A85B058)
+[LOG] SoundI::release                          :     Checkpoint_3 (0000000061812E78)

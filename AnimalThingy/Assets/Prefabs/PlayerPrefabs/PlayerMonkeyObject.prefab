@@ -1995,6 +1995,7 @@ GameObject:
   - component: {fileID: 114215283629440506}
   - component: {fileID: 114067485108579324}
   - component: {fileID: 114862703998541950}
+  - component: {fileID: 114482449793670534}
   m_Layer: 8
   m_Name: PlayerMonkeyObject
   m_TagString: Player
@@ -20326,7 +20327,7 @@ MonoBehaviour:
   box: {fileID: 61297682882013074}
 --- !u!114 &114482449793670534
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1196314723305698}
