@@ -21,7 +21,6 @@ public class SpeechBubble : MonoBehaviour
 		if (!isUi && isCommentator)
 		{
 			commentatorText = commentator.commentatorSpeechBubble.GetComponent<TextMeshProUGUI>();
-			commentatorText.autoSizeTextContainer = true;
 			commentator.commentatorSpeechBubble.SetActive(false);
 			commentator.commentatorSpeechImage.SetActive(false);
 		}
@@ -35,7 +34,6 @@ public class SpeechBubble : MonoBehaviour
 		else if (isUi && !isCommentator)
 		{
 			textUI = speechTextUI.GetComponent<TextMeshProUGUI>();
-			textUI.autoSizeTextContainer = true;
 			speechBubble.SetActive(false);
 		}
 	}
@@ -51,9 +49,9 @@ public class SpeechBubble : MonoBehaviour
 		}
 	}
 
-	public void SetSpeechActive(SpeechType type)
+	public void SetSpeechActive(SpeechType speechType, PlayerCharacterType playerType)
 	{
-		SetRandomSpeechFromType(type);
+		SetRandomSpeechFromType(speechType, playerType);
 		if (!isUi)
 		{
 			characterCrystal.SetActive(false);
@@ -82,11 +80,10 @@ public class SpeechBubble : MonoBehaviour
 		commentator.nextComment = Time.time + commentator.commentingDelay;
 	}
 
-	void SetRandomSpeechFromType(SpeechType type)
+	void SetRandomSpeechFromType(SpeechType speechType, PlayerCharacterType playerType)
 	{
-		Speech speech;
-		speech = (Speech)speeches.Where(tempSpeech => tempSpeech.speechType == type);
-		int rand = Random.Range(0, speech.speeches.Length - 1);
+		Speech speech = speeches.Where(tempSpeech => tempSpeech.speechType == speechType && tempSpeech.playerCharacterType == playerType).FirstOrDefault();
+		int rand = Random.Range(0, speech.speeches.Length);
 		if (!isUi)
 		{
 			textMesh.text = speech.speeches[rand];
@@ -136,6 +133,7 @@ public class SpeechBubble : MonoBehaviour
 public class Speech
 {
 	public SpeechType speechType;
+	public PlayerCharacterType playerCharacterType;
 	public string[] speeches;
 }
 

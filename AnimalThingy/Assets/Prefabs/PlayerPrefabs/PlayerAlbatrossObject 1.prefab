@@ -15485,9 +15485,11 @@ MonoBehaviour:
     - "I\u2019m back? I\u2019m back! "
     - "Hi again Y\u2019all!"
   speechBubble: {fileID: 1777770811447258}
+  speechTextUI: {fileID: 0}
   characterCrystal: {fileID: 1181000132539974}
   speechSpeedMult: 0.4
   isCommentator: 0
+  isUi: 0
   commentator:
     speeches: []
     levelCompleteSpeech: 
@@ -15600,6 +15602,7 @@ MonoBehaviour:
     randomizeValue: 0
   effectController: {fileID: 0}
   box: {fileID: 61171798329010392}
+  playerSpeech: {fileID: 0}
 --- !u!114 &114731093749113338
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15642,6 +15645,7 @@ MonoBehaviour:
   isControllable: 1
   changeAngle: 1
   oneshotPlayer: {fileID: 0}
+  playerSpeech: {fileID: 0}
 --- !u!114 &114954231877299268
 MonoBehaviour:
   m_ObjectHideFlags: 1
