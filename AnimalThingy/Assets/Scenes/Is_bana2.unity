@@ -13625,19 +13625,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1998671147384860, guid: a768db3b971244243a25da874e2306a0, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1676799621361320, guid: a768db3b971244243a25da874e2306a0, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1524354365945242, guid: a768db3b971244243a25da874e2306a0, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1752930201693762, guid: a768db3b971244243a25da874e2306a0, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224312059224456844, guid: a768db3b971244243a25da874e2306a0,
         type: 2}
