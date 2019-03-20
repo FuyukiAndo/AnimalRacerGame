@@ -40,7 +40,7 @@ public class GoalManager : MonoBehaviour
 	private float totalTimeBeforeAutoPlacements;
 	private int initialPlayerCount;
 	[SerializeField] private LayerMask playerLayer, ignorePlayerLayer;
-	[SerializeField] private float nextSceneDelay;
+	[SerializeField] private float nextSceneDelay, stressSignalDelay;
 	private bool startedSceneSwitch;
 	private GameObject checkpointToGoFor;
 	private int currentCheckToGoFor;
@@ -60,6 +60,7 @@ public class GoalManager : MonoBehaviour
 	void Start()
 	{
 		boxSize = GetComponent<BoxCollider2D>().size;
+		StartCoroutine(CountDownToStressSignal());
 	}
 
 	public void Setup()
@@ -70,6 +71,12 @@ public class GoalManager : MonoBehaviour
 		}
 		totalTimeBeforeAutoPlacements = timeBeforeAutoPlacements;
 		initialPlayerCount = unplacedPlayers.Count;
+	}
+
+	IEnumerator CountDownToStressSignal()
+	{
+		yield return new WaitForSeconds(stressSignalDelay);
+		AudioManager.Instance.SetBackParameterValue(0.7f);
 	}
 
 	void Update()
@@ -161,7 +168,6 @@ public class GoalManager : MonoBehaviour
 		if (unplacedPlayers.Count <= 0 && !startedSceneSwitch)
 		{
 			startedSceneSwitch = true;
-            Debug.Log("placeplayers check");
 			StartCoroutine(LoadNextScene());
 		}
 	}
@@ -251,12 +257,9 @@ public class GoalManager : MonoBehaviour
 			{
 				continue;
 			}
-			//Set victory animation?
 			PlayerInput input = player.GetComponent<PlayerInput>();
 			input.isControllable = false;
 			PlayerController controller = player.GetComponent<PlayerController>();
-			//MonoBehaviour script = player.GetComponent(playerMoveScript) as MonoBehaviour;
-			//script.enabled = true;
 			controller.enabled = false;
 			trappedPlayers.Add(player);
 		}

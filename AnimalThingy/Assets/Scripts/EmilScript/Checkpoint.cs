@@ -17,6 +17,7 @@ public class Checkpoint : MonoBehaviour
 	[SerializeField] private PlayerFlag[] playerFlags;
 	[SerializeField] private LayerMask playerLayer;
 	[SerializeField] private CircleCollider2D circle;
+	[SerializeField] private AudioOneshotPlayer oneshotPlayer;
 
 	private bool updatedCheckToGoFor;
 
@@ -32,11 +33,8 @@ public class Checkpoint : MonoBehaviour
 				}
 			}
 		}
-		if (!GetComponent<CircleCollider2D>())
-		{
-			gameObject.AddComponent<CircleCollider2D>();
-		}
 		circle = GetComponent<CircleCollider2D>();
+		oneshotPlayer = GetComponent<AudioOneshotPlayer>();
 	}
 
 	void Update()
@@ -54,6 +52,24 @@ public class Checkpoint : MonoBehaviour
 				if (collider.name == playerFlags[i].playerName)
 				{
 					playerFlags[i].playerFlag.SetActive(true);
+					float paramValue = 0f;
+					switch (collider.name)
+					{
+						case "Player1":
+							paramValue = Random.Range(0.0f, 0.05f);
+							break;
+						case "Player2":
+							paramValue = Random.Range(0.1f, 0.15f);
+							break;
+						case "Player3":
+							paramValue = Random.Range(0.2f, 0.25f);
+							break;
+						case "Player4":
+							paramValue = Random.Range(0.3f, 0.35f);
+							break;
+					}
+					oneshotPlayer.SetParameterValue(paramValue);
+					oneshotPlayer.PlayAudioOneShot();
 					if (!updatedCheckToGoFor)
 					{
 						SetNextCheckPosToGoFor();

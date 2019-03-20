@@ -3969,9 +3969,9 @@ GameObject:
   - component: {fileID: 114056456133718378}
   - component: {fileID: 114389010344827742}
   - component: {fileID: 82977158773414486}
-  - component: {fileID: 114246133739192836}
   - component: {fileID: 114207199674327870}
   - component: {fileID: 114287004088598780}
+  - component: {fileID: 114922924393472816}
   m_Layer: 8
   m_Name: PlayerPigObject
   m_TagString: Untagged
@@ -11932,6 +11932,7 @@ MonoBehaviour:
     levelCompleteSpeech: 
     commentingDelay: 0
     commentatorSpeechBubble: {fileID: 0}
+    commentatorSpeechImage: {fileID: 0}
     nextComment: 0
 --- !u!114 &114056456133718378
 MonoBehaviour:
@@ -11956,6 +11957,7 @@ MonoBehaviour:
   isStunned: 0
   isControllable: 1
   changeAngle: 1
+  oneshotPlayer: {fileID: 0}
 --- !u!114 &114207199674327870
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11978,35 +11980,6 @@ MonoBehaviour:
     randomizeValue: 0
   effectController: {fileID: 0}
   box: {fileID: 61492939536428068}
---- !u!114 &114246133739192836
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1658185059900300}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76fe4c252ae9c5f479067e802bfc9545, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playEffectAuto: 1
-  oneshot: 1
-  attached: 0
-  startEvent: 2
-  stopEvent: 0
-  updateDelay: 2
-  sfx:
-    currentAudioPath: event:/[K] Gris
-    paramName: 
-    paramValue: 0
-    additionalParamValues: []
-    randomizeValue: 0
-  layer:
-    serializedVersion: 2
-    m_Bits: 0
-  boxSize: {x: 1, y: 1}
-  boxOffset: {x: 0, y: 0}
-  clip: {fileID: 0}
 --- !u!114 &114277197157822712
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12218,6 +12191,24 @@ MonoBehaviour:
     type: 2}
   yellowCrystalMaterial: {fileID: 2100000, guid: 1841b5596ca744b4d8e16085a83d274a,
     type: 2}
+--- !u!114 &114922924393472816
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1658185059900300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ea590d8ab4e15f4cb59fa3face9f2a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sfx:
+    currentAudioPath: event:/[K] Gris
+    paramName: Grisljud
+    paramValue: 0
+    additionalParamValues: []
+    randomizeValue: 0
+  clip: {fileID: 0}
 --- !u!137 &137990517440077416
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

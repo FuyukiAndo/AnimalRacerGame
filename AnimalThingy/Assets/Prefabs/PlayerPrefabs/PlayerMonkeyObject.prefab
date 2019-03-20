@@ -1992,9 +1992,9 @@ GameObject:
   - component: {fileID: 114882341670314140}
   - component: {fileID: 114187184963359304}
   - component: {fileID: 82505532763273022}
-  - component: {fileID: 114482449793670534}
   - component: {fileID: 114215283629440506}
   - component: {fileID: 114067485108579324}
+  - component: {fileID: 114862703998541950}
   m_Layer: 8
   m_Name: PlayerMonkeyObject
   m_TagString: Untagged
@@ -20324,35 +20324,6 @@ MonoBehaviour:
     randomizeValue: 0
   effectController: {fileID: 0}
   box: {fileID: 61297682882013074}
---- !u!114 &114482449793670534
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1196314723305698}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76fe4c252ae9c5f479067e802bfc9545, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playEffectAuto: 1
-  oneshot: 1
-  attached: 0
-  startEvent: 2
-  stopEvent: 0
-  updateDelay: 2
-  sfx:
-    currentAudioPath: event:/[K] Apa
-    paramName: 
-    paramValue: 0
-    additionalParamValues: []
-    randomizeValue: 0
-  layer:
-    serializedVersion: 2
-    m_Bits: 0
-  boxSize: {x: 1, y: 1}
-  boxOffset: {x: 0, y: 0}
-  clip: {fileID: 0}
 --- !u!114 &114567713011928814
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20513,6 +20484,7 @@ MonoBehaviour:
     levelCompleteSpeech: 
     commentingDelay: 0
     commentatorSpeechBubble: {fileID: 0}
+    commentatorSpeechImage: {fileID: 0}
     nextComment: 0
 --- !u!114 &114677369950948764
 MonoBehaviour:
@@ -20549,6 +20521,24 @@ MonoBehaviour:
   verticalRaycastsAmount: 4
   SetRayLength: 1
   maxAngle: 80
+--- !u!114 &114862703998541950
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1196314723305698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ea590d8ab4e15f4cb59fa3face9f2a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sfx:
+    currentAudioPath: event:/[K] Apa
+    paramName: Apljud
+    paramValue: 0
+    additionalParamValues: []
+    randomizeValue: 0
+  clip: {fileID: 0}
 --- !u!114 &114882341670314140
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20572,6 +20562,7 @@ MonoBehaviour:
   isStunned: 0
   isControllable: 1
   changeAngle: 1
+  oneshotPlayer: {fileID: 0}
 --- !u!137 &137550280197760516
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

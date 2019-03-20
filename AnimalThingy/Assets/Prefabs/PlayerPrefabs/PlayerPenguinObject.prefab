@@ -2938,9 +2938,9 @@ GameObject:
   - component: {fileID: 114163380269625004}
   - component: {fileID: 114776052051929664}
   - component: {fileID: 82494832880021398}
-  - component: {fileID: 114483013755905996}
   - component: {fileID: 114605183616127202}
   - component: {fileID: 114969139045625284}
+  - component: {fileID: 114627367570281634}
   m_Layer: 8
   m_Name: PlayerPenguinObject
   m_TagString: Untagged
@@ -14595,6 +14595,7 @@ MonoBehaviour:
   isStunned: 0
   isControllable: 1
   changeAngle: 1
+  oneshotPlayer: {fileID: 0}
 --- !u!114 &114374172877530122
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -14660,36 +14661,8 @@ MonoBehaviour:
     levelCompleteSpeech: 
     commentingDelay: 0
     commentatorSpeechBubble: {fileID: 0}
+    commentatorSpeechImage: {fileID: 0}
     nextComment: 0
---- !u!114 &114483013755905996
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1363596147525290}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76fe4c252ae9c5f479067e802bfc9545, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playEffectAuto: 1
-  oneshot: 1
-  attached: 0
-  startEvent: 2
-  stopEvent: 0
-  updateDelay: 2
-  sfx:
-    currentAudioPath: event:/[K] Pingvin
-    paramName: 
-    paramValue: 0
-    additionalParamValues: []
-    randomizeValue: 0
-  layer:
-    serializedVersion: 2
-    m_Bits: 0
-  boxSize: {x: 1, y: 1}
-  boxOffset: {x: 0, y: 0}
-  clip: {fileID: 0}
 --- !u!114 &114496571398257566
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -14841,6 +14814,24 @@ MonoBehaviour:
     randomizeValue: 0
   effectController: {fileID: 0}
   box: {fileID: 61278632595405568}
+--- !u!114 &114627367570281634
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1363596147525290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ea590d8ab4e15f4cb59fa3face9f2a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sfx:
+    currentAudioPath: event:/[K] Pingvin
+    paramName: Pingvinljud
+    paramValue: 0
+    additionalParamValues: []
+    randomizeValue: 0
+  clip: {fileID: 0}
 --- !u!114 &114698770280714850
 MonoBehaviour:
   m_ObjectHideFlags: 1
