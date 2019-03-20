@@ -26,7 +26,7 @@ public class MovingPlatform : MonoBehaviour
 
     public Vector2 movement;
     private float breakTime;
-    private float defaultSpeed = 1;
+    //private float defaultSpeed = 1;
     private float movementSpeed;
 
     private int movementDirection;
@@ -40,10 +40,12 @@ public class MovingPlatform : MonoBehaviour
 
     //private Vector2 hitDir;
     private MovingPlatformSpawner movingPlatformSpawner;
+	
     void Start()
     {
         collisionController = GetComponent<CollisionController>();
         boxCollider = GetComponent<BoxCollider2D>();
+		
         if (transform.parent != null)
         {
             //timeBeforeDestroyed = platformDurability;
@@ -52,6 +54,7 @@ public class MovingPlatform : MonoBehaviour
             platformDurability = movingPlatformSpawner.GetDurability();
             movementDirection = movingPlatformSpawner.GetDirection();
         }
+		
     }
 
     void OnValidate()

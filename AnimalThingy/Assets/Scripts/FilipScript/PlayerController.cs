@@ -31,11 +31,11 @@ public class PlayerController : MonoBehaviour
 	
 	[HideInInspector] public Vector2 movement;
 	
-	[HideInInspector] public bool isActiveAbility = false;
-	[HideInInspector] public bool isPassiveAbility = false;
-	[HideInInspector] public bool activeAbility = false;
-	[HideInInspector] public bool passiveAbility = false;
-	[HideInInspector] public bool isJumping = false;
+	public bool isActiveAbility = false;
+	public bool isPassiveAbility = false;
+	public bool activeAbility = false;
+	public bool passiveAbility = false;
+	public bool isJumping = false;
 
 	[HideInInspector] public Collider2D[] collision;	
 	

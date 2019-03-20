@@ -145,7 +145,7 @@ public class PlayerInput : MonoBehaviour
 		transform.position = zpos;		
 	}	
 	
-	void InputAction()
+	private void InputAction()
 	{
         if (!isStunned)
         {
@@ -200,7 +200,7 @@ public class PlayerInput : MonoBehaviour
 		keyCodeDictionary0[playerNoKey]();
 	}
 
-	void InputAnimationRotation()
+	private void InputAnimationRotation()
 	{	
 		if(changeAngle)
 		{
@@ -220,7 +220,7 @@ public class PlayerInput : MonoBehaviour
 		animationHandler.transform.rotation = Quaternion.Lerp(animationHandler.transform.rotation, target, rotationSpeed);	
 	}
 	
-	void InputAnimationGeneric()
+	private void InputAnimationGeneric()
 	{		
 		if(Input.GetKey(playerLeftKey))
 		{
@@ -252,7 +252,7 @@ public class PlayerInput : MonoBehaviour
 		}		
 	}
 	
-	void InputAnimationAlbatross()
+	private void InputAnimationAlbatross()
 	{		
 		if(Input.GetKeyDown(playerJumpKey))
 		{
@@ -279,7 +279,7 @@ public class PlayerInput : MonoBehaviour
 		}
 	}
 	
-	void InputAnimationPig()
+	private void InputAnimationPig()
 	{		
 		float directionY = Mathf.Sign(playerPig.movement.y);
 	
@@ -310,6 +310,7 @@ public class PlayerInput : MonoBehaviour
 			{
 				animationHandler.SetAnimatorBool("SpecialT",true);
 				playerPig.passiveAbility = true;
+				
 				isControllable = false;
 				changeAngle = false;
 			}
@@ -318,6 +319,7 @@ public class PlayerInput : MonoBehaviour
 		if(!playerPig.passiveAbility)
 		{
 			animationHandler.SetAnimatorBool("SpecialT",false);
+			
 			isControllable = true;
 			changeAngle = true;
 		}	
@@ -329,35 +331,29 @@ public class PlayerInput : MonoBehaviour
 		
 		if(playerPig.collisionController.boxCollisionDirections.down)
 		{	
-			if(playerPig.movement.x == 0)
-			{
-				animationHandler.SetAnimatorBool("IdleT", true);
-				animationHandler.SetAnimatorBool("JumpT", false);
-			}			
-		}
-		
-		if(playerPig.collisionController.boxCollisionDirections.down && playerPig.movement.y == 0)
-		{	
-	
-			if(!playerPig.activeAbility)
-			{
-				animationHandler.SetAnimatorBool("JumpT", false);	
-				animationHandler.SetAnimatorBool("JumpSpecialT", false);
+			if(playerPig.movement.y == 0)
+			{	
+				if(!playerPig.activeAbility)
+				{
+					animationHandler.SetAnimatorBool("JumpT", false);	
+					animationHandler.SetAnimatorBool("JumpSpecialT", false);
+				}
+				else
+				{
+					animationHandler.SetAnimatorBool("JumpT", true);	
+					animationHandler.SetAnimatorBool("JumpSpecialT", true);					
+				}
+				
+				if(playerPig.movement.x == 0)
+				{
+					animationHandler.SetAnimatorBool("IdleT", true);
+					animationHandler.SetAnimatorBool("JumpT", false);
+				}			
 			}
-			else
-			{
-				animationHandler.SetAnimatorBool("JumpT", true);	
-				animationHandler.SetAnimatorBool("JumpSpecialT", true);					
-			}
-			
-			if(playerPig.movement.x == 0)
-			{
-				animationHandler.SetAnimatorBool("IdleT", true);
-			}			
 		}
 	}
 
-	void InputAnimationPenguin()
+	private void InputAnimationPenguin()
 	{	
 		if(Input.GetKeyDown(playerJumpKey))
 		{
@@ -379,27 +375,19 @@ public class PlayerInput : MonoBehaviour
 		
 		if(playerPenguin.abilityMeter == 1f)
 		{
-			animationHandler.SetAnimatorBool("SpecialT", false);
+			animationHandler.SetAnimatorBool("ClimbActive", false);
 		}
 	}
 
-	void InputAnimationMonkey()
-	{			
-		if(Input.GetKeyUp(playerLeftKey))
-		{
-			playerMonkey.activeAbility = false;
-		}
-		
-		if(Input.GetKeyUp(playerRightKey))
-		{	
-			playerMonkey.activeAbility = false;
-		}
-	
+	private void InputAnimationMonkey()
+	{
 		if(Input.GetKeyUp(playerLeftKey) || Input.GetKeyUp(playerRightKey))
-		{			
+		{		
+			playerMonkey.activeAbility = false;
+	
 			if(playerMonkey.isActiveAbility)
 			{
-				animationHandler.SetAnimatorBool("SpecialT2",true);
+				animationHandler.SetAnimatorBool("ClimbInactive", true);
 			}
 		}
 		
@@ -407,39 +395,51 @@ public class PlayerInput : MonoBehaviour
 		{
 			if(playerMonkey.isActiveAbility)
 			{
-				animationHandler.SetAnimatorBool("SpecialT2",false);
+				animationHandler.SetAnimatorBool("ClimbInactive", false);
 			}		
+		}
+		
+		if(Input.GetKeyDown(playerJumpKey))
+		{
+			animationHandler.SetAnimatorBool("JumpT", true);
+		}
+		
+		if(Input.GetKeyDown(playerAbilityKey))
+		{
+			if(!playerMonkey.passiveAbility)
+			{
+				animationHandler.SetAnimatorBool("SpecialT", true);				
+			}
+		}
+		
+		if(playerMonkey.abilityMeter == 1f)
+		{
+			animationHandler.SetAnimatorBool("SpecialT", false);	
 		}
 
 		if((playerMonkey.collisionController.boxCollisionDirections.left || playerMonkey.collisionController.boxCollisionDirections.right)
 		&& !playerMonkey.collisionController.boxCollisionDirections.down)
 		{
-			animationHandler.SetAnimatorBool("SpecialT", true);
+			animationHandler.SetAnimatorBool("ClimbActive", true);
 		}
 		else
 		{
-			animationHandler.SetAnimatorBool("SpecialT", false);
-			animationHandler.SetAnimatorBool("SpecialT2", false);	
-		}
-		
-		if(Input.GetKeyDown(playerJumpKey))
-		{
-				animationHandler.SetAnimatorBool("JumpT", true);
-		}
-		
-		
-		if(playerPig.collisionController.boxCollisionDirections.down && playerPig.movement.y == 0)
-		{	
-			animationHandler.SetAnimatorBool("JumpT", false);	
+			animationHandler.SetAnimatorBool("ClimbActive", false);
+			animationHandler.SetAnimatorBool("ClimbInactive", false);
 			
-			if(playerPig.movement.x == 0)
+			animationHandler.SetAnimatorBool("IdleT", true);
+		}
+		
+		if(playerMonkey.collisionController.boxCollisionDirections.down)
+		{	
+			if(playerMonkey.movement.y == 0)
 			{
-				animationHandler.SetAnimatorBool("IdleT", true);
+				animationHandler.SetAnimatorBool("JumpT", false);	
 			}			
 		}
 	}
 	
-	void InputAnimation()
+	private void InputAnimation()
 	{
 		InputAnimationGeneric();
 		InputAnimationRotation();

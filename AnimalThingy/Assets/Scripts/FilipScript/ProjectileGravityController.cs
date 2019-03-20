@@ -14,7 +14,7 @@ public class ProjectileGravityController : MonoBehaviour
 	protected Vector2 movement;
 	
 	private float gravity;
-	private float maxVelocity;
+	//private float maxVelocity;
 	
 	private bool isGravity = true;
 	
@@ -26,7 +26,7 @@ public class ProjectileGravityController : MonoBehaviour
 	private void UpdateGravity()
 	{
 		gravity = -(2*velocity)/Mathf.Pow(velocityDelay, 2);
-		maxVelocity = Mathf.Abs(gravity) * velocityDelay;
+		//maxVelocity = Mathf.Abs(gravity) * velocityDelay;
 	}
 	
 	void OnValidate()
