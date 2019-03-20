@@ -126,6 +126,7 @@ public class PlayerMonkey : PlayerController
 				canThrow = false;
 				isPassiveAbility = true;
 				passiveAbility = false;
+				abilityMeter = 0;
 				maxUseCounter = savedMaxUseCounter;
 			}
 		}

@@ -67,7 +67,7 @@ public class PlayerController : MonoBehaviour
 		playerInput = GetComponent<PlayerInput>();
 		
 		movementDirection = (int)Mathf.Sign(movement.x);
-		abilityDirection = (int)Mathf.Sign(movement.x);
+		abilityDirection = (int)Mathf.Sign(transform.rotation.x);//movement.x);
 		savedMaxUseCounter = maxUseCounter;
 		abilityMeterMax = abilityMeter;
 		
@@ -161,7 +161,6 @@ public class PlayerController : MonoBehaviour
 	{
 		if(!passiveAbility && !isPassiveAbility)
 		{
-			abilityMeter = 0;
 			passiveAbility = true;
 		}
 	}	

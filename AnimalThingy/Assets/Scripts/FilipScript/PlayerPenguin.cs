@@ -24,6 +24,7 @@ public class PlayerPenguin : PlayerController
 		
 		playerInput.isControllable = false;
 		playerInput.changeAngle = false;
+		abilityMeter = 0;
 		
 		if(!isPassiveAbility)
 		{

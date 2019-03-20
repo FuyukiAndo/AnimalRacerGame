@@ -419,7 +419,10 @@ public class PlayerInput : MonoBehaviour
 		{
 			if(!playerMonkey.passiveAbility)
 			{
-				animationHandler.SetAnimatorTrigger("SpecialT");//Bool("SpecialT", true);				
+				if(playerMonkey.movement.x == 0)
+				{	
+					animationHandler.SetAnimatorTrigger("SpecialT");//Bool("SpecialT", true);		
+				}				
 			}
 		}
 		
