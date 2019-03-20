@@ -436,7 +436,7 @@ GameObject:
   - component: {fileID: 114731093749113338}
   m_Layer: 8
   m_Name: PlayerAlbatrossObject 1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8183,7 +8183,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1045792901303020}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 344.79968, y: 170.76709, z: 0}
+  m_LocalPosition: {x: 36.47, y: 13.94, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4256667031458686}
@@ -15506,17 +15506,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e08f83bd87fb6d45a770257bf733f45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxJumpHeight: 5
+  maxJumpHeight: 8
   minJumpHeight: 1
-  jumpAndFallDelay: 0.4
+  jumpAndFallDelay: 0.65
   movementSpeed: 10
   movementAcceleration: 0.15
-  accelerationModifier: 0.2
+  accelerationModifier: 0.1
   deaccelerationModifier: 0.3
   abilityMeter: 1
-  abilityMeterModifier: 0.01
+  abilityMeterModifier: 0.06
   maxUseCounter: 3
-  abilityModifier: 2
+  abilityModifier: 6
   abilityDirection: 0
   collisionController: {fileID: 114954231877299268}
   movement: {x: 0, y: 0}

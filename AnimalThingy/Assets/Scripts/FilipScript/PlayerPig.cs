@@ -59,6 +59,7 @@ public class PlayerPig : PlayerController
 		base.OnAbilityKey();
 		playerInput.isControllable = false;
 		playerInput.changeAngle = false;
+		abilityMeter = 0;
 	}
 	
 	private void PlayerPassiveAbility()

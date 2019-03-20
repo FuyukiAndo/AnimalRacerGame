@@ -139,6 +139,7 @@ public class PlayerAlbatross : PlayerController
 	
 		playerInput.isControllable = false;
 		playerInput.changeAngle = false;
+		abilityMeter = 0;
 
 		Instantiate(windBlastObject, new Vector2(transform.position.x+(2.5f*abilityDirection),transform.position.y+2f), new Quaternion(0, 0, 0, 0), gameObject.transform);
 		windBlastObject.transform.parent = null;
