@@ -41,6 +41,7 @@ public class AudioOneshotPlayer : MonoBehaviour
 
 	public void PlayAudioOneShot(bool attached)
 	{
+		Setup();
 		if (attached)
 		{
 			RuntimeManager.PlayOneShotAttached(sfx.currentAudioPath, gameObject);

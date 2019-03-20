@@ -26,7 +26,6 @@ public class CameraScript : MonoBehaviour {
 
 	private void Start()
     {
-        Debug.Log(InformationManager.Instance.players.Count);
         players = new List<GameObject>();
         cam = GetComponent<Camera>();
 		cam.transform.Rotate(camAngle, 0f, 0f);
