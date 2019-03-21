@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 
@@ -64,32 +65,35 @@ public class PlayerInput : MonoBehaviour
 	[SerializeField] private AudioOneshotPlayer oneshotPlayer;
 	private bool triggeredAnger = false;
 
+	//Emil SpeechBubble
+	[SerializeField] private SpeechBubble playerSpeech;
+
 	void Start()
 	{
-		targetAngle = maxAngleValue;
+	targetAngle = maxAngleValue;
 
-		var albatrossComponent = gameObject.GetComponent<PlayerAlbatross>();
-		var monkeyComponent = gameObject.GetComponent<PlayerMonkey>();
-		var penguinComponent = gameObject.GetComponent<PlayerPenguin>();
-		var pigComponent = gameObject.GetComponent<PlayerPig>();
+	var albatrossComponent = gameObject.GetComponent<PlayerAlbatross>();
+	var monkeyComponent = gameObject.GetComponent<PlayerMonkey>();
+	var penguinComponent = gameObject.GetComponent<PlayerPenguin>();
+	var pigComponent = gameObject.GetComponent<PlayerPig>();
 
-		savedStunDurationTimer = stunDurationTimer;
+	savedStunDurationTimer = stunDurationTimer;
 
-		if (albatrossComponent != null)
-		{
-			playerAlbatross = GetComponent<PlayerAlbatross>();
+	if (albatrossComponent != null)
+	{
+	playerAlbatross = GetComponent<PlayerAlbatross>();
 
-			playerCharacterType = PlayerCharacterType.PlayerAlbatross;
+	playerCharacterType = PlayerCharacterType.PlayerAlbatross;
 
-			keyCodeDictionary0.Add(playerNoKey, () => playerAlbatross.MoveNot());
+	keyCodeDictionary0.Add(playerNoKey, () => playerAlbatross.MoveNot());
 
-			keyCodeDictionary0.Add(playerLeftKey, () => playerAlbatross.MoveLeft());
-			keyCodeDictionary0.Add(playerRightKey, () => playerAlbatross.MoveRight());
+	keyCodeDictionary0.Add(playerLeftKey, () => playerAlbatross.MoveLeft());
+	keyCodeDictionary0.Add(playerRightKey, () => playerAlbatross.MoveRight());
 
-			keyCodeDictionary0.Add(playerJumpKey, () => playerAlbatross.OnJumpKeyDown());
-			keyCodeDictionary1.Add(playerJumpKey, () => playerAlbatross.OnJumpKeyUp());
+	keyCodeDictionary0.Add(playerJumpKey, () => playerAlbatross.OnJumpKeyDown());
+	keyCodeDictionary1.Add(playerJumpKey, () => playerAlbatross.OnJumpKeyUp());
 
-			keyCodeDictionary0.Add(playerAbilityKey, () => playerAlbatross.OnAbilityKey());
+	keyCodeDictionary0.Add(playerAbilityKey, () => playerAlbatross.OnAbilityKey());
 		}
 		else if (monkeyComponent != null)
 		{
@@ -142,6 +146,8 @@ public class PlayerInput : MonoBehaviour
 
 		//Emil AudioOneshotPlayer
 		oneshotPlayer = GetComponent<AudioOneshotPlayer>();
+		//Emil SpeechBubble
+		playerSpeech = FindObjectsOfType<SpeechBubble>().Where(bubble => bubble.name == name).FirstOrDefault();
 	}
 
 	private void StaticZPosition()
@@ -149,9 +155,9 @@ public class PlayerInput : MonoBehaviour
 		Vector3 zpos = transform.position;
 		zpos.z = 0;
 
-		transform.position = zpos;		
-	}	
-	
+		transform.position = zpos;
+	}
+
 	private void InputAction()
 	{
 		if (!isStunned)
@@ -190,8 +196,20 @@ public class PlayerInput : MonoBehaviour
 			}
 		}
 		else
-		{	
-			//isStunned = true;
+		{
+			//Emil AudioOneshotPlayer
+			if (!triggeredAnger)
+			{
+				triggeredAnger = true;
+				oneshotPlayer.PlayAudioOneShot();
+				oneshotPlayer.SetParameterValue(1.5f);
+				//Emil SpeechBubble
+				if (playerSpeech != null)
+				{
+					playerSpeech.SetSpeechActive(SpeechType.stun, playerCharacterType);
+				}
+			}
+			isStunned = true;
 			changeAngle = false;
 			stunDurationTimer -= Time.deltaTime;
 
@@ -200,50 +218,18 @@ public class PlayerInput : MonoBehaviour
 				isStunned = false;
 				stunDurationTimer = savedStunDurationTimer;
 				changeAngle = true;
+				//Emil AudioOneshotPlayer
+				triggeredAnger = false;
 			}
 		}
 
 		//If no KeyCode is pressed
 		keyCodeDictionary0[playerNoKey]();
 	}
-	
-	private void InputAudio()
-	{
-		/*if(isStunned)
-		{
-			if (!triggeredAnger)
-			{
-				triggeredAnger = true;
-				oneshotPlayer.SetParameterValue(1.5f);
-				oneshotPlayer.PlayAudioOneShot(true);
-			}		
-			
-			if (stunDurationTimer < 0)
-			{
-				triggeredAnger = false;
-			}			
-		}
-		else
-		{
-			// Does not work!
-			
-			/*if (Input.GetKeyDown(playerAbilityKey))
-			{
-				oneshotPlayer.SetParameterValue(2.5f);
-				oneshotPlayer.PlayAudioOneShot(true);
-			}		
-
-			if (Input.GetKeyDown(playerJumpKey))
-			{
-				oneshotPlayer.SetParameterValue(0.05f);
-				oneshotPlayer.PlayAudioOneShot(true);
-			}*/	
-		//}
-	}
 
 	private void InputAnimationRotation()
-	{	
-		if(changeAngle)
+	{
+		if (changeAngle)
 		{
 			if (Input.GetKey(playerLeftKey))
 			{
@@ -260,10 +246,10 @@ public class PlayerInput : MonoBehaviour
 		Quaternion target = Quaternion.Euler(new Vector3(0f, targetAngle, 0f));
 		animationHandler.transform.rotation = Quaternion.Lerp(animationHandler.transform.rotation, target, rotationSpeed);
 	}
-	
+
 	private void InputAnimationGeneric()
-	{		
-		if(Input.GetKey(playerLeftKey))
+	{
+		if (Input.GetKey(playerLeftKey))
 		{
 			animationHandler.SetAnimatorBool("RunT", true);
 			animationHandler.SetAnimatorBool("IdleT", false);
@@ -289,22 +275,39 @@ public class PlayerInput : MonoBehaviour
 
 		if (Input.GetKeyDown(playerAbilityKey))
 		{
-			animationHandler.SetAnimatorBool("SpecialT",true);
-		}		
-	
-		if(isStunned)
+			//Emil AudioOneshotPlayer
+			oneshotPlayer.PlayAudioOneShot();
+			oneshotPlayer.SetParameterValue(2.5f);
+			//Emil SpeechBubble
+			if (playerSpeech != null)
+			{
+				playerSpeech.SetSpeechActive(SpeechType.ability, playerCharacterType);
+			}
+			animationHandler.SetAnimatorBool("SpecialT", true);
+		}
+
+		if (Input.GetKeyDown(playerJumpKey))
 		{
-			animationHandler.SetAnimatorBool("StunT",true);			
+			//Emil AudioOneshotPlayer
+			oneshotPlayer.PlayAudioOneShot();
+			oneshotPlayer.SetParameterValue(0.05f);
+		}
+
+
+		if (isStunned)
+		{
+			animationHandler.SetAnimatorBool("StunT", true);
 		}
 		else
 		{
-			animationHandler.SetAnimatorBool("StunT",false);				
+			animationHandler.SetAnimatorBool("StunT", false);
 		}
+
 	}
-	
+
 	private void InputAnimationAlbatross()
-	{		
-		if(Input.GetKeyDown(playerJumpKey))
+	{
+		if (Input.GetKeyDown(playerJumpKey))
 		{
 			animationHandler.SetAnimatorTrigger("WingDown");
 		}
@@ -328,9 +331,9 @@ public class PlayerInput : MonoBehaviour
 			animationHandler.SetAnimatorBool("Glide", false);
 		}
 	}
-	
+
 	private void InputAnimationPig()
-	{		
+	{
 		float directionY = Mathf.Sign(playerPig.movement.y);
 
 		if (Input.GetKey(playerJumpKey))
@@ -360,7 +363,7 @@ public class PlayerInput : MonoBehaviour
 			{
 				animationHandler.SetAnimatorBool("SpecialT", true);
 				playerPig.passiveAbility = true;
-				
+
 				isControllable = false;
 				changeAngle = false;
 			}
@@ -368,8 +371,8 @@ public class PlayerInput : MonoBehaviour
 
 		if (!playerPig.passiveAbility)
 		{
-			animationHandler.SetAnimatorBool("SpecialT",false);
-			
+			animationHandler.SetAnimatorBool("SpecialT", false);
+
 			isControllable = true;
 			changeAngle = true;
 		}
@@ -378,34 +381,34 @@ public class PlayerInput : MonoBehaviour
 		{
 			animationHandler.SetAnimatorBool("SpecialJumpT", false);
 		}
-		
-		if(playerPig.collisionController.boxCollisionDirections.down)
-		{	
-			if(playerPig.movement.y == 0)
-			{	
-				if(!playerPig.activeAbility)
+
+		if (playerPig.collisionController.boxCollisionDirections.down)
+		{
+			if (playerPig.movement.y == 0)
+			{
+				if (!playerPig.activeAbility)
 				{
-					animationHandler.SetAnimatorBool("JumpT", false);	
+					animationHandler.SetAnimatorBool("JumpT", false);
 					animationHandler.SetAnimatorBool("JumpSpecialT", false);
 				}
 				else
 				{
-					animationHandler.SetAnimatorBool("JumpT", true);	
-					animationHandler.SetAnimatorBool("JumpSpecialT", true);					
+					animationHandler.SetAnimatorBool("JumpT", true);
+					animationHandler.SetAnimatorBool("JumpSpecialT", true);
 				}
-				
-				if(playerPig.movement.x == 0)
+
+				if (playerPig.movement.x == 0)
 				{
 					animationHandler.SetAnimatorBool("IdleT", true);
 					animationHandler.SetAnimatorBool("JumpT", false);
-				}			
+				}
 			}
 		}
 	}
 
 	private void InputAnimationPenguin()
-	{	
-		if(Input.GetKeyDown(playerJumpKey))
+	{
+		if (Input.GetKeyDown(playerJumpKey))
 		{
 			animationHandler.SetAnimatorBool("JumpT", true);
 		}
@@ -429,17 +432,17 @@ public class PlayerInput : MonoBehaviour
 		}
 		else
 		{
-			animationHandler.SetAnimatorBool("SpecialT", false);		
+			animationHandler.SetAnimatorBool("SpecialT", false);
 		}
 	}
 
 	private void InputAnimationMonkey()
 	{
-		if(Input.GetKeyUp(playerLeftKey) || Input.GetKeyUp(playerRightKey))
-		{		
+		if (Input.GetKeyUp(playerLeftKey) || Input.GetKeyUp(playerRightKey))
+		{
 			playerMonkey.activeAbility = false;
-	
-			if(playerMonkey.isActiveAbility)
+
+			if (playerMonkey.isActiveAbility)
 			{
 				animationHandler.SetAnimatorBool("ClimbInactive", true);
 			}
@@ -450,24 +453,29 @@ public class PlayerInput : MonoBehaviour
 			if (playerMonkey.isActiveAbility)
 			{
 				animationHandler.SetAnimatorBool("ClimbInactive", false);
-			}		
+			}
 		}
-		
-		if(Input.GetKeyDown(playerJumpKey))
+
+		if (Input.GetKeyDown(playerJumpKey))
 		{
 			animationHandler.SetAnimatorBool("JumpT", true);
 		}
-		
-		if(Input.GetKeyDown(playerAbilityKey))
+
+		if (Input.GetKeyDown(playerAbilityKey))
 		{
-			if(!playerMonkey.passiveAbility)
+			if (!playerMonkey.passiveAbility)
 			{
-				if(playerMonkey.movement.x == 0)
-				{	
-					animationHandler.SetAnimatorTrigger("SpecialT");		
-				}				
+				if (playerMonkey.movement.x == 0)
+				{
+					animationHandler.SetAnimatorTrigger("SpecialT"); //Bool("SpecialT", true);		
+				}
 			}
 		}
+
+		/*if(playerMonkey.abilityMeter == 1f)
+		{
+			animationHandler.SetAnimatorBool("SpecialT", false);	
+		}*/
 
 		if ((playerMonkey.collisionController.boxCollisionDirections.left || playerMonkey.collisionController.boxCollisionDirections.right)
 			&& !playerMonkey.collisionController.boxCollisionDirections.down)
@@ -478,19 +486,19 @@ public class PlayerInput : MonoBehaviour
 		{
 			animationHandler.SetAnimatorBool("ClimbActive", false);
 			animationHandler.SetAnimatorBool("ClimbInactive", false);
-			
+
 			animationHandler.SetAnimatorBool("IdleT", true);
 		}
-		
-		if(playerMonkey.collisionController.boxCollisionDirections.down)
-		{	
-			if(playerMonkey.movement.y == 0)
+
+		if (playerMonkey.collisionController.boxCollisionDirections.down)
+		{
+			if (playerMonkey.movement.y == 0)
 			{
-				animationHandler.SetAnimatorBool("JumpT", false);	
-			}			
+				animationHandler.SetAnimatorBool("JumpT", false);
+			}
 		}
 	}
-	
+
 	private void InputAnimation()
 	{
 		InputAnimationGeneric();
@@ -521,7 +529,6 @@ public class PlayerInput : MonoBehaviour
 	{
 		StaticZPosition();
 		InputAction();
-		InputAudio();
 
 		if (animationHandler != null)
 		{

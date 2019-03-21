@@ -44,7 +44,6 @@ public class CheckpointTracker : MonoBehaviour
 		}
 	}
 	private int placementPoint;
-	[SerializeField] private SpeechBubble playerSpeech;
 	private PlayerInput input;
 
 	void Start()
@@ -54,7 +53,6 @@ public class CheckpointTracker : MonoBehaviour
 			gameObject.AddComponent<BoxCollider2D>();
 		}
 		box = GetComponent<BoxCollider2D>();
-		playerSpeech = FindObjectsOfType<SpeechBubble>().Where(bubble => bubble.name == name).FirstOrDefault();
 		input = GetComponent<PlayerInput>();
 	}
 
@@ -87,11 +85,8 @@ public class CheckpointTracker : MonoBehaviour
 							}
 						}
 					}
-					if (playerSpeech != null)
-					{
-						playerSpeech.SetSpeechActive(SpeechType.checkpoint, input.playerCharacterType);
-					}
 					checkPointsPassed.Add(checkPoint.Index);
+					GoalManager.Instance.NotifyOfCheckpointCount(this);
 				}
 			}
 		}

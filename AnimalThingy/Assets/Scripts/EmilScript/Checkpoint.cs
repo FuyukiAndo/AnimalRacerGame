@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(CircleCollider2D))]
 public class Checkpoint : MonoBehaviour
 {
 	public int Index
@@ -52,24 +51,28 @@ public class Checkpoint : MonoBehaviour
 				if (collider.name == playerFlags[i].playerName)
 				{
 					playerFlags[i].playerFlag.SetActive(true);
-					float paramValue = 0f;
-					switch (collider.name)
+					if (!playerFlags[i].playedAudioForPlayer)
 					{
-						case "Player1":
-							paramValue = Random.Range(0.0f, 0.05f);
-							break;
-						case "Player2":
-							paramValue = Random.Range(0.1f, 0.15f);
-							break;
-						case "Player3":
-							paramValue = Random.Range(0.2f, 0.25f);
-							break;
-						case "Player4":
-							paramValue = Random.Range(0.3f, 0.35f);
-							break;
+						float paramValue = 0f;
+						switch (collider.name)
+						{
+							case "Player1":
+								paramValue = Random.Range(0.0f, 0.05f);
+								break;
+							case "Player2":
+								paramValue = Random.Range(0.1f, 0.15f);
+								break;
+							case "Player3":
+								paramValue = Random.Range(0.2f, 0.25f);
+								break;
+							case "Player4":
+								paramValue = Random.Range(0.3f, 0.35f);
+								break;
+						}
+						oneshotPlayer.PlayAudioOneShot();
+						oneshotPlayer.SetParameterValue(paramValue);
+						playerFlags[i].playedAudioForPlayer = true;
 					}
-					oneshotPlayer.PlayAudioOneShot();
-					oneshotPlayer.SetParameterValue(paramValue);
 					if (!updatedCheckToGoFor)
 					{
 						SetNextCheckPosToGoFor();
@@ -95,7 +98,7 @@ public class Checkpoint : MonoBehaviour
 	{
 		if (GPSCheckpoint.Instance != null)
 		{
-			GPSCheckpoint.Instance.UpdateCheckpointToGo();
+			GPSCheckpoint.Instance.UpdateCheckpointToGo(this);
 		}
 	}
 }
@@ -105,4 +108,5 @@ public class PlayerFlag
 {
 	public GameObject playerFlag;
 	public string playerName;
+	[HideInInspector] public bool playedAudioForPlayer = false;
 }

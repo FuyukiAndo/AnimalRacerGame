@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GPSCheckpoint : MonoBehaviour {
+public class GPSCheckpoint : MonoBehaviour
+{
 
     public List<Transform> checkpoints;
     public Image arrow;
     public Vector2 offset;
     private int index = 0;
-    private bool outofScreenX,outofScreenY;
+    private bool outofScreenX, outofScreenY;
     private Transform currentCheckpoint;
     private Canvas canvas;
     private float checkX;
     private float checkY;
     private Vector3 dir;
-    
+
     public static GPSCheckpoint Instance
     {
         get
@@ -26,7 +27,8 @@ public class GPSCheckpoint : MonoBehaviour {
     private static GPSCheckpoint instance;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
 
         if (instance == null)
         {
@@ -38,21 +40,24 @@ public class GPSCheckpoint : MonoBehaviour {
             canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
         }
     }
-    public void UpdateCheckpointToGo()
-    {   
-        index++;
-        currentCheckpoint = checkpoints[index];
+    public void UpdateCheckpointToGo(Checkpoint checkpoint)
+    {
+        if (checkpoint.transform == checkpoints[index])
+        {
+            index++;
+            currentCheckpoint = checkpoints[index];
+        }
     }
-	private void UpdateRotation()
+    private void UpdateRotation()
     {
         dir = transform.position - currentCheckpoint.position;
 
         dir.Normalize();
 
         float rot_z = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        arrow.transform.eulerAngles = new Vector3(0f, 0f, rot_z - 90 );
+        arrow.transform.eulerAngles = new Vector3(0f, 0f, rot_z - 90);
     }
-    void UpdateScreenArrow()    
+    void UpdateScreenArrow()
     {
         UpdateIfInsideOfScreenX();
         UpdateIfInsideOfScreenY();
@@ -66,9 +71,10 @@ public class GPSCheckpoint : MonoBehaviour {
         if (outofScreenX)
         {
             UpdateRotation();
-            if(transform.position.x < currentCheckpoint.position.x) { 
+            if (transform.position.x < currentCheckpoint.position.x)
+            {
                 arrow.rectTransform.position = new Vector3(Screen.width - arrow.rectTransform.rect.width, Camera.main.WorldToScreenPoint(new Vector3(checkX, checkY)).y);
-                }
+            }
             else
             {
                 arrow.rectTransform.position = new Vector3(arrow.rectTransform.rect.width, Camera.main.WorldToScreenPoint(new Vector3(checkX, checkY)).y);
@@ -84,13 +90,13 @@ public class GPSCheckpoint : MonoBehaviour {
             }
             else
             {
-                arrow.rectTransform.position = new Vector3(Camera.main.WorldToScreenPoint(new Vector3(checkX, checkY)).x,  arrow.rectTransform.rect.height);
+                arrow.rectTransform.position = new Vector3(Camera.main.WorldToScreenPoint(new Vector3(checkX, checkY)).x, arrow.rectTransform.rect.height);
             }
             return;
         }
         arrow.rectTransform.eulerAngles = new Vector3(0f, 0f, 0f);
-        arrow.rectTransform.position = Camera.main.WorldToScreenPoint(new Vector3(checkX,checkY));
-  
+        arrow.rectTransform.position = Camera.main.WorldToScreenPoint(new Vector3(checkX, checkY));
+
     }
     void UpdateIfInsideOfScreenX()
     {
@@ -107,7 +113,7 @@ public class GPSCheckpoint : MonoBehaviour {
 
     void UpdateIfInsideOfScreenY()
     {
-        if (Camera.main.WorldToScreenPoint(checkpoints[index].position).y < 0  + arrow.rectTransform.rect.height || Camera.main.WorldToScreenPoint(checkpoints[index].position).y > Screen.height - arrow.rectTransform.rect.height )
+        if (Camera.main.WorldToScreenPoint(checkpoints[index].position).y < 0 + arrow.rectTransform.rect.height || Camera.main.WorldToScreenPoint(checkpoints[index].position).y > Screen.height - arrow.rectTransform.rect.height)
         {
             outofScreenY = true;
             return;
@@ -119,8 +125,9 @@ public class GPSCheckpoint : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update () {
-        if(arrow != null)
-        UpdateScreenArrow();
-	}
+    void Update()
+    {
+        if (arrow != null)
+            UpdateScreenArrow();
+    }
 }

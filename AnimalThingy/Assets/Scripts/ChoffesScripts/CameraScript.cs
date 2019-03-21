@@ -6,8 +6,8 @@ using UnityEngine;
 public class CameraScript : MonoBehaviour {
     public float cameraSmoothTime = 0.5f;
 
-    public float minZoom = 100f;
-    public float maxZoom = 10f;
+    public float minZoomSinglePlayer = 70f, minZoom = 100f;
+    public float maxZoomSinglePlayer = 30f, maxZoom = 10f;
     public float zoomLimiter = 50f;
 
 
@@ -54,7 +54,7 @@ public class CameraScript : MonoBehaviour {
                 var newPosition =  new Vector3(players[0].transform.position.x, players[0].transform.position.y + camYOffset, transform.position.z);
                 transform.position = Vector3.SmoothDamp(transform.position, newPosition, ref velocity, cameraSmoothTime);
                 transform.parent = players[0].transform;
-                float newZoom = Mathf.Lerp(maxZoom, minZoom, GetGreatestDistance() / zoomLimiter);
+                float newZoom = Mathf.Lerp(maxZoomSinglePlayer, minZoomSinglePlayer, GetGreatestDistance() / zoomLimiter);
                 cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, newZoom, Time.deltaTime);
             }
         }

@@ -51,6 +51,9 @@ public class AudioManager : MonoBehaviour
 	void OnEnable()
 	{
 		SceneManager.sceneLoaded += OnSceneLoaded;
+		SetVolumeSFX(sfxVolume);
+		SetVolumeBackground(backgroundVolume);
+		SetVolumeAmbience(ambienceVolume);
 	}
 
 	void OnSceneLoaded(Scene scene, LoadSceneMode sceneMode)
