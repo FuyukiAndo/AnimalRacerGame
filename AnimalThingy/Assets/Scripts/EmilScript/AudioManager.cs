@@ -64,9 +64,6 @@ public class AudioManager : MonoBehaviour
 				{
 					SetBackgroundAudio(GetBackAudioPathForScene(scene));
 					SetAmbience(GetAmbienceAudioPathForScene(scene));
-					SetVolumeSFX(sfxVolume);
-					SetVolumeBackground(backgroundVolume);
-					SetVolumeAmbience(ambienceVolume);
 					StopBackAudioLooping();
 					StopAmbienceLooping();
 					SetupBack();
@@ -85,9 +82,6 @@ public class AudioManager : MonoBehaviour
 				{
 					SetBackgroundAudio(backgroundUnity.audioClips[i].audioClip);
 					SetAmbience(backgroundUnity.audioClips[i].audioClip);
-					SetVolumeSFX(sfxVolume);
-					SetVolumeBackground(backgroundVolume);
-					SetVolumeAmbience(ambienceVolume);
 					StopBackAudioLooping();
 					StopAmbienceLooping();
 					SetupBack();
@@ -229,6 +223,9 @@ public class AudioManager : MonoBehaviour
 			instance = this;
 			backgroundRoutine = PlayBackAudio();
 			ambienceRoutine = PlayAmbience();
+			SetVolumeSFX(sfxVolume);
+			SetVolumeBackground(backgroundVolume);
+			SetVolumeAmbience(ambienceVolume);
 			DontDestroyOnLoad(gameObject);
 		}
 		else if (instance != this)

@@ -146,10 +146,6 @@ public class PlayerInput : MonoBehaviour
 		//Emil AudioOneshotPlayer
 		oneshotPlayer = GetComponent<AudioOneshotPlayer>();
 		playerSpeech = FindObjectsOfType<SpeechBubble>().Where(bubble => bubble.name == name).FirstOrDefault();
-		if (playerSpeech != null)
-		{
-			playerSpeech.SetSpeechActive(SpeechType.stun, playerCharacterType);
-		}
 	}
 
 	private void StaticZPosition()
@@ -204,7 +200,7 @@ public class PlayerInput : MonoBehaviour
 			{
 				triggeredAnger = true;
 				oneshotPlayer.SetParameterValue(1.5f);
-				oneshotPlayer.PlayAudioOneShot(true);
+				oneshotPlayer.PlayAudioOneShot();
 				if (playerSpeech != null)
 				{
 					playerSpeech.SetSpeechActive(SpeechType.stun, playerCharacterType);
@@ -278,7 +274,7 @@ public class PlayerInput : MonoBehaviour
 		{
 			//Emil AudioOneshotPlayer
 			oneshotPlayer.SetParameterValue(2.5f);
-			oneshotPlayer.PlayAudioOneShot(true);
+			oneshotPlayer.PlayAudioOneShot();
 			if (playerSpeech != null)
 			{
 				playerSpeech.SetSpeechActive(SpeechType.ability, playerCharacterType);
@@ -290,7 +286,7 @@ public class PlayerInput : MonoBehaviour
 		{
 			//Emil AudioOneshotPlayer
 			oneshotPlayer.SetParameterValue(0.05f);
-			oneshotPlayer.PlayAudioOneShot(true);
+			oneshotPlayer.PlayAudioOneShot();
 		}
 
 

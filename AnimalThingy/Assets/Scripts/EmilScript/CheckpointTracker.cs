@@ -19,7 +19,6 @@ public class CheckpointTracker : MonoBehaviour
 	private int lastCheckpointPassed = 0;
 	[SerializeField] private LayerMask checkpointLayer;
 	[SerializeField] private FMODAudio checkpointSFX;
-	[SerializeField] private AudioEffectController effectController;
 	[SerializeField] private BoxCollider2D box;
 	public float FinishingTime
 	{
@@ -87,10 +86,6 @@ public class CheckpointTracker : MonoBehaviour
 								return;
 							}
 						}
-					}
-					if (effectController != null)
-					{
-						effectController.PlayAudioOneShot();
 					}
 					if (playerSpeech != null)
 					{
