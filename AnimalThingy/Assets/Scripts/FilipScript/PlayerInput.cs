@@ -41,8 +41,8 @@ public class PlayerInput : MonoBehaviour
 	[HideInInspector] public float targetAngle;
 
 	[HideInInspector] public bool isStunned = false;
-	[HideInInspector] public bool isControllable = true;
-	[HideInInspector] public bool changeAngle = true;
+	public bool isControllable = true;
+	public bool changeAngle = true;
 
 	private PlayerAlbatross playerAlbatross;
 
@@ -69,30 +69,30 @@ public class PlayerInput : MonoBehaviour
 
 	void Start()
 	{
-	targetAngle = maxAngleValue;
+		targetAngle = maxAngleValue;
 
-	var albatrossComponent = gameObject.GetComponent<PlayerAlbatross>();
-	var monkeyComponent = gameObject.GetComponent<PlayerMonkey>();
-	var penguinComponent = gameObject.GetComponent<PlayerPenguin>();
-	var pigComponent = gameObject.GetComponent<PlayerPig>();
+		var albatrossComponent = gameObject.GetComponent<PlayerAlbatross>();
+		var monkeyComponent = gameObject.GetComponent<PlayerMonkey>();
+		var penguinComponent = gameObject.GetComponent<PlayerPenguin>();
+		var pigComponent = gameObject.GetComponent<PlayerPig>();
 
-	savedStunDurationTimer = stunDurationTimer;
+		savedStunDurationTimer = stunDurationTimer;
 
-	if (albatrossComponent != null)
-	{
-	playerAlbatross = GetComponent<PlayerAlbatross>();
+		if (albatrossComponent != null)
+		{
+			playerAlbatross = GetComponent<PlayerAlbatross>();
 
-	playerCharacterType = PlayerCharacterType.PlayerAlbatross;
+			playerCharacterType = PlayerCharacterType.PlayerAlbatross;
 
-	keyCodeDictionary0.Add(playerNoKey, () => playerAlbatross.MoveNot());
+			keyCodeDictionary0.Add(playerNoKey, () => playerAlbatross.MoveNot());
 
-	keyCodeDictionary0.Add(playerLeftKey, () => playerAlbatross.MoveLeft());
-	keyCodeDictionary0.Add(playerRightKey, () => playerAlbatross.MoveRight());
+			keyCodeDictionary0.Add(playerLeftKey, () => playerAlbatross.MoveLeft());
+			keyCodeDictionary0.Add(playerRightKey, () => playerAlbatross.MoveRight());
 
-	keyCodeDictionary0.Add(playerJumpKey, () => playerAlbatross.OnJumpKeyDown());
-	keyCodeDictionary1.Add(playerJumpKey, () => playerAlbatross.OnJumpKeyUp());
+			keyCodeDictionary0.Add(playerJumpKey, () => playerAlbatross.OnJumpKeyDown());
+			keyCodeDictionary1.Add(playerJumpKey, () => playerAlbatross.OnJumpKeyUp());
 
-	keyCodeDictionary0.Add(playerAbilityKey, () => playerAlbatross.OnAbilityKey());
+			keyCodeDictionary0.Add(playerAbilityKey, () => playerAlbatross.OnAbilityKey());
 		}
 		else if (monkeyComponent != null)
 		{

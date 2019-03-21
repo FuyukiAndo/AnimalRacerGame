@@ -345,63 +345,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1658185059900300, guid: e5105c37dcc465343b80bbc531df0d5b, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114389010344827742, guid: e5105c37dcc465343b80bbc531df0d5b,
+    - target: {fileID: 33222110712822008, guid: e5105c37dcc465343b80bbc531df0d5b,
         type: 2}
-      propertyPath: inbetweenJumpCounter
-      value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 114389010344827742, guid: e5105c37dcc465343b80bbc531df0d5b,
-        type: 2}
-      propertyPath: maxJumpCount
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 61492939536428068, guid: e5105c37dcc465343b80bbc531df0d5b,
-        type: 2}
-      propertyPath: m_Offset.y
-      value: 1.63
-      objectReference: {fileID: 0}
-    - target: {fileID: 114056456133718378, guid: e5105c37dcc465343b80bbc531df0d5b,
-        type: 2}
-      propertyPath: isControllable
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114389010344827742, guid: e5105c37dcc465343b80bbc531df0d5b,
-        type: 2}
-      propertyPath: heightModifier
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114389010344827742, guid: e5105c37dcc465343b80bbc531df0d5b,
-        type: 2}
-      propertyPath: maxUseCounter
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 114389010344827742, guid: e5105c37dcc465343b80bbc531df0d5b,
-        type: 2}
-      propertyPath: abilityModifier
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114389010344827742, guid: e5105c37dcc465343b80bbc531df0d5b,
-        type: 2}
-      propertyPath: deltaJumpCounter
-      value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 114389010344827742, guid: e5105c37dcc465343b80bbc531df0d5b,
-        type: 2}
-      propertyPath: timer
-      value: 0.71
-      objectReference: {fileID: 0}
-    - target: {fileID: 114389010344827742, guid: e5105c37dcc465343b80bbc531df0d5b,
-        type: 2}
-      propertyPath: abilityMeterModifier
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 1658185059900300, guid: e5105c37dcc465343b80bbc531df0d5b, type: 2}
-      propertyPath: m_TagString
-      value: Player
+      propertyPath: m_Mesh
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 114440336730658774, guid: e5105c37dcc465343b80bbc531df0d5b,
         type: 2}
@@ -413,30 +360,9 @@ Prefab:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 33222110712822008, guid: e5105c37dcc465343b80bbc531df0d5b,
-        type: 2}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 82977158773414486, guid: e5105c37dcc465343b80bbc531df0d5b,
-        type: 2}
-      propertyPath: panLevelCustomCurve.m_RotationOrder
+    - target: {fileID: 1658185059900300, guid: e5105c37dcc465343b80bbc531df0d5b, type: 2}
+      propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 82977158773414486, guid: e5105c37dcc465343b80bbc531df0d5b,
-        type: 2}
-      propertyPath: reverbZoneMixCustomCurve.m_RotationOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114389010344827742, guid: e5105c37dcc465343b80bbc531df0d5b,
-        type: 2}
-      propertyPath: horizontalKnockBackPower
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 114389010344827742, guid: e5105c37dcc465343b80bbc531df0d5b,
-        type: 2}
-      propertyPath: verticalKnockBackPower
-      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e5105c37dcc465343b80bbc531df0d5b, type: 2}
@@ -2809,68 +2735,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1045792901303020, guid: b2547890fc16cec4ca11bd9f648c247a, type: 2}
-      propertyPath: m_Name
-      value: PlayerAlbatrossObject
-      objectReference: {fileID: 0}
-    - target: {fileID: 114140393569672606, guid: b2547890fc16cec4ca11bd9f648c247a,
-        type: 2}
-      propertyPath: maxFlyCount
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1045792901303020, guid: b2547890fc16cec4ca11bd9f648c247a, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114140393569672606, guid: b2547890fc16cec4ca11bd9f648c247a,
-        type: 2}
-      propertyPath: jumpAndFallDelay
-      value: 0.65
-      objectReference: {fileID: 0}
-    - target: {fileID: 114140393569672606, guid: b2547890fc16cec4ca11bd9f648c247a,
-        type: 2}
-      propertyPath: maxJumpHeight
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 114140393569672606, guid: b2547890fc16cec4ca11bd9f648c247a,
-        type: 2}
-      propertyPath: maxGlideSpeed
-      value: 3.51
-      objectReference: {fileID: 0}
-    - target: {fileID: 114140393569672606, guid: b2547890fc16cec4ca11bd9f648c247a,
-        type: 2}
-      propertyPath: maxUseCounter
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114140393569672606, guid: b2547890fc16cec4ca11bd9f648c247a,
-        type: 2}
-      propertyPath: windBlastObject
-      value: 
-      objectReference: {fileID: 1252155166552534, guid: 4a00aecaa868a53409b7b0f3a73e88a4,
-        type: 2}
-    - target: {fileID: 114140393569672606, guid: b2547890fc16cec4ca11bd9f648c247a,
-        type: 2}
-      propertyPath: abilityMeterModifier
-      value: 0.06
-      objectReference: {fileID: 0}
-    - target: {fileID: 114140393569672606, guid: b2547890fc16cec4ca11bd9f648c247a,
-        type: 2}
-      propertyPath: abilityMeter
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114140393569672606, guid: b2547890fc16cec4ca11bd9f648c247a,
-        type: 2}
-      propertyPath: accelerationModifier
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1045792901303020, guid: b2547890fc16cec4ca11bd9f648c247a, type: 2}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
     - target: {fileID: 33772893476645470, guid: b2547890fc16cec4ca11bd9f648c247a,
         type: 2}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1045792901303020, guid: b2547890fc16cec4ca11bd9f648c247a, type: 2}
+      propertyPath: m_Name
+      value: PlayerAlbatrossObject
       objectReference: {fileID: 0}
     - target: {fileID: 114975244916216128, guid: b2547890fc16cec4ca11bd9f648c247a,
         type: 2}
@@ -2882,25 +2754,19 @@ Prefab:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 82546735184454966, guid: b2547890fc16cec4ca11bd9f648c247a,
-        type: 2}
-      propertyPath: panLevelCustomCurve.m_RotationOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 82546735184454966, guid: b2547890fc16cec4ca11bd9f648c247a,
-        type: 2}
-      propertyPath: reverbZoneMixCustomCurve.m_RotationOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114819313975983990, guid: b2547890fc16cec4ca11bd9f648c247a,
-        type: 2}
-      propertyPath: m_Enabled
+    - target: {fileID: 1045792901303020, guid: b2547890fc16cec4ca11bd9f648c247a, type: 2}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114140393569672606, guid: b2547890fc16cec4ca11bd9f648c247a,
         type: 2}
-      propertyPath: abilityModifier
-      value: 6
+      propertyPath: dashTimer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114140393569672606, guid: b2547890fc16cec4ca11bd9f648c247a,
+        type: 2}
+      propertyPath: abilityMeterModifier
+      value: 0.01
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b2547890fc16cec4ca11bd9f648c247a, type: 2}
@@ -2944,65 +2810,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 1363596147525290, guid: 4c08a920c500b6b4a971b87e0b0a6ed7, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 61278632595405568, guid: 4c08a920c500b6b4a971b87e0b0a6ed7,
-        type: 2}
-      propertyPath: m_Offset.y
-      value: 1.7027447
-      objectReference: {fileID: 0}
-    - target: {fileID: 61278632595405568, guid: 4c08a920c500b6b4a971b87e0b0a6ed7,
-        type: 2}
-      propertyPath: m_Size.y
-      value: 3.2245107
-      objectReference: {fileID: 0}
-    - target: {fileID: 61278632595405568, guid: 4c08a920c500b6b4a971b87e0b0a6ed7,
-        type: 2}
-      propertyPath: m_Offset.x
-      value: -0.11788845
-      objectReference: {fileID: 0}
-    - target: {fileID: 61278632595405568, guid: 4c08a920c500b6b4a971b87e0b0a6ed7,
-        type: 2}
-      propertyPath: m_Size.x
-      value: 2.264223
-      objectReference: {fileID: 0}
-    - target: {fileID: 114776052051929664, guid: 4c08a920c500b6b4a971b87e0b0a6ed7,
-        type: 2}
-      propertyPath: maxUseCounter
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114776052051929664, guid: 4c08a920c500b6b4a971b87e0b0a6ed7,
-        type: 2}
-      propertyPath: abilityMeterModifier
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 114776052051929664, guid: 4c08a920c500b6b4a971b87e0b0a6ed7,
-        type: 2}
-      propertyPath: projectileObject
-      value: 
-      objectReference: {fileID: 1615396423180318, guid: 8f9be1d561b46b1488bcc52545b9531d,
-        type: 2}
-    - target: {fileID: 114776052051929664, guid: 4c08a920c500b6b4a971b87e0b0a6ed7,
-        type: 2}
-      propertyPath: InstantiateProjectileTimer
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 114776052051929664, guid: 4c08a920c500b6b4a971b87e0b0a6ed7,
-        type: 2}
-      propertyPath: fuckthis
-      value: 0.33
-      objectReference: {fileID: 0}
-    - target: {fileID: 114163380269625004, guid: 4c08a920c500b6b4a971b87e0b0a6ed7,
-        type: 2}
-      propertyPath: stunDurationLeft
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 1363596147525290, guid: 4c08a920c500b6b4a971b87e0b0a6ed7, type: 2}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
     - target: {fileID: 33977303132150286, guid: 4c08a920c500b6b4a971b87e0b0a6ed7,
         type: 2}
       propertyPath: m_Mesh
@@ -3018,20 +2825,44 @@ Prefab:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 82494832880021398, guid: 4c08a920c500b6b4a971b87e0b0a6ed7,
-        type: 2}
-      propertyPath: panLevelCustomCurve.m_RotationOrder
+    - target: {fileID: 1363596147525290, guid: 4c08a920c500b6b4a971b87e0b0a6ed7, type: 2}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 82494832880021398, guid: 4c08a920c500b6b4a971b87e0b0a6ed7,
+    - target: {fileID: 114776052051929664, guid: 4c08a920c500b6b4a971b87e0b0a6ed7,
         type: 2}
-      propertyPath: reverbZoneMixCustomCurve.m_RotationOrder
-      value: 0
+      propertyPath: jumpAndFallDelay
+      value: 0.65
       objectReference: {fileID: 0}
-    - target: {fileID: 114163380269625004, guid: 4c08a920c500b6b4a971b87e0b0a6ed7,
+    - target: {fileID: 114776052051929664, guid: 4c08a920c500b6b4a971b87e0b0a6ed7,
         type: 2}
-      propertyPath: m_Enabled
-      value: 1
+      propertyPath: movementSpeed
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 114776052051929664, guid: 4c08a920c500b6b4a971b87e0b0a6ed7,
+        type: 2}
+      propertyPath: deaccelerationModifier
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 114776052051929664, guid: 4c08a920c500b6b4a971b87e0b0a6ed7,
+        type: 2}
+      propertyPath: accelerationModifier
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 114776052051929664, guid: 4c08a920c500b6b4a971b87e0b0a6ed7,
+        type: 2}
+      propertyPath: movementAcceleration
+      value: 0.29
+      objectReference: {fileID: 0}
+    - target: {fileID: 114776052051929664, guid: 4c08a920c500b6b4a971b87e0b0a6ed7,
+        type: 2}
+      propertyPath: abilityModifier
+      value: 2.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114776052051929664, guid: 4c08a920c500b6b4a971b87e0b0a6ed7,
+        type: 2}
+      propertyPath: abilityMeterModifier
+      value: 0.06
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4c08a920c500b6b4a971b87e0b0a6ed7, type: 2}
@@ -4807,24 +4638,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1196314723305698, guid: 790971f4a240d454e8fed09565390b99, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 33422348675456548, guid: 790971f4a240d454e8fed09565390b99,
         type: 2}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114567713011928814, guid: 790971f4a240d454e8fed09565390b99,
-        type: 2}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114567713011928814, guid: 790971f4a240d454e8fed09565390b99,
-        type: 2}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1196314723305698, guid: 790971f4a240d454e8fed09565390b99, type: 2}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 790971f4a240d454e8fed09565390b99, type: 2}
@@ -5141,6 +4962,7 @@ MonoBehaviour:
   isStunned: 0
   isControllable: 1
   changeAngle: 1
+  oneshotPlayer: {fileID: 0}
 --- !u!114 &2094139360
 MonoBehaviour:
   m_ObjectHideFlags: 0
