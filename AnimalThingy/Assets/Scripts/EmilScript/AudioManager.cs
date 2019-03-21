@@ -44,7 +44,7 @@ public class AudioManager : MonoBehaviour
 	private static AudioManager instance;
 	public bool useFMOD;
 
-	[SerializeField][Range(0f, 1f)] private float backgroundVolume, ambienceVolume, sfxVolume, masterVolume;
+	[SerializeField][Range(0f, 1f)] private float backgroundVolume = .5f, ambienceVolume = .5f, sfxVolume = .5f, masterVolume = .5f;
 	private IEnumerator backgroundRoutine, ambienceRoutine;
 	private Scene scene;
 
@@ -64,13 +64,13 @@ public class AudioManager : MonoBehaviour
 				{
 					SetBackgroundAudio(GetBackAudioPathForScene(scene));
 					SetAmbience(GetAmbienceAudioPathForScene(scene));
-					SetVolumeSFX(GetVolumeSFX());
-					SetVolumeBackground(GetVolumeBackground());
-					SetVolumeAmbience(GetVolumeAmbience());
 					StopBackAudioLooping();
 					StopAmbienceLooping();
 					SetupBack();
 					SetupAmbience();
+					SetVolumeSFX(GetVolumeSFX());
+					SetVolumeBackground(GetVolumeBackground());
+					SetVolumeAmbience(GetVolumeAmbience());
 					PlayBackAudioLooping();
 					PlayAmbienceLooping();
 					return;
@@ -85,13 +85,13 @@ public class AudioManager : MonoBehaviour
 				{
 					SetBackgroundAudio(backgroundUnity.audioClips[i].audioClip);
 					SetAmbience(backgroundUnity.audioClips[i].audioClip);
-					SetVolumeSFX(GetVolumeSFX());
-					SetVolumeBackground(GetVolumeBackground());
-					SetVolumeAmbience(GetVolumeAmbience());
 					StopBackAudioLooping();
 					StopAmbienceLooping();
 					SetupBack();
 					SetupAmbience();
+					SetVolumeSFX(GetVolumeSFX());
+					SetVolumeBackground(GetVolumeBackground());
+					SetVolumeAmbience(GetVolumeAmbience());
 					PlayBackAudioLooping();
 					PlayAmbienceLooping();
 					return;
@@ -418,6 +418,7 @@ public class AudioManager : MonoBehaviour
 
 	public void SetVolumeSFX(float volume)
 	{
+		PlayerPrefs.SetFloat("SFX", volume);
 		sfxVolume = volume;
 		foreach (var controller in FindObjectsOfType<AudioEffectController>())
 		{
@@ -427,7 +428,7 @@ public class AudioManager : MonoBehaviour
 
 	public float GetVolumeSFX()
 	{
-		return sfxVolume;
+		return PlayerPrefs.GetFloat("SFX");
 	}
 
 	public void FadeBackTo(string path)
@@ -526,6 +527,7 @@ public class AudioManager : MonoBehaviour
 
 	public void SetVolumeBackground(float volume)
 	{
+		PlayerPrefs.SetFloat("Background", volume);
 		backgroundVolume = volume;
 		if (useFMOD)
 		{
@@ -543,7 +545,7 @@ public class AudioManager : MonoBehaviour
 		{
 			float volume, finalVolume;
 			background.audioInstance.getVolume(out volume, out finalVolume);
-			return volume;
+			return PlayerPrefs.GetFloat("Background");
 		}
 		else
 		{
@@ -553,6 +555,7 @@ public class AudioManager : MonoBehaviour
 
 	public void SetVolumeAmbience(float volume)
 	{
+		PlayerPrefs.SetFloat("Ambience", volume);
 		ambienceVolume = volume;
 		if (useFMOD)
 		{
@@ -570,7 +573,7 @@ public class AudioManager : MonoBehaviour
 		{
 			float volume, finalVolume;
 			ambience.audioInstance.getVolume(out volume, out finalVolume);
-			return volume;
+			return PlayerPrefs.GetFloat("Ambience");
 		}
 		else
 		{
