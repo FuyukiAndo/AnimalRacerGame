@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 
@@ -191,18 +190,7 @@ public class PlayerInput : MonoBehaviour
 			}
 		}
 		else
-		{
-			//Emil AudioOneshotPlayer
-			if (!triggeredAnger)
-			{
-				triggeredAnger = true;
-				oneshotPlayer.PlayAudioOneShot();
-				oneshotPlayer.SetParameterValue(1.5f);
-				if (playerSpeech != null)
-				{
-					playerSpeech.SetSpeechActive(SpeechType.stun, playerCharacterType);
-				}
-			}
+		{	
 			isStunned = true;
 			changeAngle = false;
 			stunDurationTimer -= Time.deltaTime;
@@ -212,13 +200,45 @@ public class PlayerInput : MonoBehaviour
 				isStunned = false;
 				stunDurationTimer = savedStunDurationTimer;
 				changeAngle = true;
-				//Emil AudioOneshotPlayer
-				triggeredAnger = false;
 			}
 		}
 
 		//If no KeyCode is pressed
 		keyCodeDictionary0[playerNoKey]();
+	}
+	
+	private void InputAudio()
+	{
+		if(isStunned)
+		{
+			if (!triggeredAnger)
+			{
+				triggeredAnger = true;
+				oneshotPlayer.SetParameterValue(1.5f);
+				oneshotPlayer.PlayAudioOneShot(true);
+			}		
+			
+			if (stunDurationTimer < 0)
+			{
+				triggeredAnger = false;
+			}			
+		}
+		else
+		{
+			// Does not work!
+			
+			/*if (Input.GetKeyDown(playerAbilityKey))
+			{
+				oneshotPlayer.SetParameterValue(2.5f);
+				oneshotPlayer.PlayAudioOneShot(true);
+			}		
+
+			if (Input.GetKeyDown(playerJumpKey))
+			{
+				oneshotPlayer.SetParameterValue(0.05f);
+				oneshotPlayer.PlayAudioOneShot(true);
+			}*/	
+		}
 	}
 
 	private void InputAnimationRotation()
@@ -269,25 +289,10 @@ public class PlayerInput : MonoBehaviour
 
 		if (Input.GetKeyDown(playerAbilityKey))
 		{
-			//Emil AudioOneshotPlayer
-			oneshotPlayer.PlayAudioOneShot();
-			oneshotPlayer.SetParameterValue(2.5f);
-			if (playerSpeech != null)
-			{
-				playerSpeech.SetSpeechActive(SpeechType.ability, playerCharacterType);
-			}
-			animationHandler.SetAnimatorBool("SpecialT", true);
-		}
-
-		if (Input.GetKeyDown(playerJumpKey))
-		{
-			//Emil AudioOneshotPlayer
-			oneshotPlayer.PlayAudioOneShot();
-			oneshotPlayer.SetParameterValue(0.05f);
-		}
-
-
-		if (isStunned)
+			animationHandler.SetAnimatorBool("SpecialT",true);
+		}		
+	
+		if(isStunned)
 		{
 			animationHandler.SetAnimatorBool("StunT",true);			
 		}
@@ -295,7 +300,6 @@ public class PlayerInput : MonoBehaviour
 		{
 			animationHandler.SetAnimatorBool("StunT",false);				
 		}
-		
 	}
 	
 	private void InputAnimationAlbatross()
@@ -460,15 +464,10 @@ public class PlayerInput : MonoBehaviour
 			{
 				if(playerMonkey.movement.x == 0)
 				{	
-					animationHandler.SetAnimatorTrigger("SpecialT");//Bool("SpecialT", true);		
+					animationHandler.SetAnimatorTrigger("SpecialT");		
 				}				
 			}
 		}
-		
-		/*if(playerMonkey.abilityMeter == 1f)
-		{
-			animationHandler.SetAnimatorBool("SpecialT", false);	
-		}*/
 
 		if ((playerMonkey.collisionController.boxCollisionDirections.left || playerMonkey.collisionController.boxCollisionDirections.right)
 			&& !playerMonkey.collisionController.boxCollisionDirections.down)
@@ -522,6 +521,7 @@ public class PlayerInput : MonoBehaviour
 	{
 		StaticZPosition();
 		InputAction();
+		InputAudio();
 
 		if (animationHandler != null)
 		{
