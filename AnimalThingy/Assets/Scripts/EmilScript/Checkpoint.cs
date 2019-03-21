@@ -42,7 +42,7 @@ public class Checkpoint : MonoBehaviour
 		if (Physics2D.OverlapCircle((Vector2)transform.position + circle.offset, circle.radius, playerLayer))
 		{
 			Collider2D collider = Physics2D.OverlapCircle((Vector2)transform.position + circle.offset, circle.radius, playerLayer);
-			if (playerFlags.Length <= 0) return;
+			if (playerFlags.Length <= 0)return;
 			for (int i = 0; i < playerFlags.Length; i++)
 			{
 				if (playerFlags[i].playerFlag == null)
@@ -68,8 +68,8 @@ public class Checkpoint : MonoBehaviour
 							paramValue = Random.Range(0.3f, 0.35f);
 							break;
 					}
-					oneshotPlayer.SetParameterValue(paramValue);
 					oneshotPlayer.PlayAudioOneShot();
+					oneshotPlayer.SetParameterValue(paramValue);
 					if (!updatedCheckToGoFor)
 					{
 						SetNextCheckPosToGoFor();

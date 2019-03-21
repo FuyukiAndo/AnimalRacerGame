@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 
@@ -195,8 +196,12 @@ public class PlayerInput : MonoBehaviour
 			if (!triggeredAnger)
 			{
 				triggeredAnger = true;
+				oneshotPlayer.PlayAudioOneShot();
 				oneshotPlayer.SetParameterValue(1.5f);
-				oneshotPlayer.PlayAudioOneShot(true);
+				if (playerSpeech != null)
+				{
+					playerSpeech.SetSpeechActive(SpeechType.stun, playerCharacterType);
+				}
 			}
 			isStunned = true;
 			changeAngle = false;
@@ -265,20 +270,24 @@ public class PlayerInput : MonoBehaviour
 		if (Input.GetKeyDown(playerAbilityKey))
 		{
 			//Emil AudioOneshotPlayer
-			//oneshotPlayer.SetParameterValue(2.5f);
-			//oneshotPlayer.PlayAudioOneShot(true);
-			animationHandler.SetAnimatorBool("SpecialT",true);
-		}		
+			oneshotPlayer.PlayAudioOneShot();
+			oneshotPlayer.SetParameterValue(2.5f);
+			if (playerSpeech != null)
+			{
+				playerSpeech.SetSpeechActive(SpeechType.ability, playerCharacterType);
+			}
+			animationHandler.SetAnimatorBool("SpecialT", true);
+		}
 
-		/*if (Input.GetKeyDown(playerJumpKey))
+		if (Input.GetKeyDown(playerJumpKey))
 		{
 			//Emil AudioOneshotPlayer
+			oneshotPlayer.PlayAudioOneShot();
 			oneshotPlayer.SetParameterValue(0.05f);
-			oneshotPlayer.PlayAudioOneShot(true);
-		}*/
-		
-		
-		if(isStunned)
+		}
+
+
+		if (isStunned)
 		{
 			animationHandler.SetAnimatorBool("StunT",true);			
 		}

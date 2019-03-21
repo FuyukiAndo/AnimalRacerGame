@@ -22,20 +22,10 @@ public class AudioPlayer : MonoBehaviour
 	{
 		if (sfx.currentAudioPath != string.Empty)
 		{
+			SetAudioVolume(AudioManager.Instance.GetVolumeSFX());
 			sfx.audioInstance = RuntimeManager.CreateInstance(sfx.currentAudioPath);
 			ATTRIBUTES_3D attributesAmb = FMODUnity.RuntimeUtils.To3DAttributes(transform.position);
 			sfx.audioInstance.set3DAttributes(attributesAmb);
-			SetAudioVolume(AudioManager.Instance.GetVolumeSFX());
-
-			if (sfx.randomizeValue && sfx.additionalParamValues.Length > 0)
-			{
-				int rand = Random.Range(0, sfx.additionalParamValues.Length);
-				SetParameterValue(sfx.additionalParamValues[rand]);
-			}
-			else
-			{
-				SetParameterValue(sfx.paramValue);
-			}
 		}
 	}
 
@@ -45,6 +35,16 @@ public class AudioPlayer : MonoBehaviour
 		{
 			if (IsAudioPathNull())return;
 			Setup();
+			RuntimeManager.AttachInstanceToGameObject(sfx.audioInstance, transform, GetComponent<Rigidbody2D>());
+			if (sfx.randomizeValue && sfx.additionalParamValues.Length > 0)
+			{
+				int rand = Random.Range(0, sfx.additionalParamValues.Length);
+				SetParameterValue(sfx.additionalParamValues[rand]);
+			}
+			else
+			{
+				SetParameterValue(sfx.paramValue);
+			}
 			sfx.audioInstance.start();
 		}
 		else

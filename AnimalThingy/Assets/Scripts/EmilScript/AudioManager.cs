@@ -44,7 +44,7 @@ public class AudioManager : MonoBehaviour
 	private static AudioManager instance;
 	public bool useFMOD;
 
-	[SerializeField][Range(0f, 1f)] private float backgroundVolume = .5f, ambienceVolume = .5f, sfxVolume = .5f, masterVolume = .5f;
+	[SerializeField][Range(0f, 1f)] private float backgroundVolume, ambienceVolume, sfxVolume, masterVolume;
 	private IEnumerator backgroundRoutine, ambienceRoutine;
 	private Scene scene;
 
@@ -64,6 +64,9 @@ public class AudioManager : MonoBehaviour
 				{
 					SetBackgroundAudio(GetBackAudioPathForScene(scene));
 					SetAmbience(GetAmbienceAudioPathForScene(scene));
+					SetVolumeSFX(GetVolumeSFX());
+					SetVolumeBackground(GetVolumeBackground());
+					SetVolumeAmbience(GetVolumeAmbience());
 					StopBackAudioLooping();
 					StopAmbienceLooping();
 					SetupBack();
@@ -82,6 +85,9 @@ public class AudioManager : MonoBehaviour
 				{
 					SetBackgroundAudio(backgroundUnity.audioClips[i].audioClip);
 					SetAmbience(backgroundUnity.audioClips[i].audioClip);
+					SetVolumeSFX(GetVolumeSFX());
+					SetVolumeBackground(GetVolumeBackground());
+					SetVolumeAmbience(GetVolumeAmbience());
 					StopBackAudioLooping();
 					StopAmbienceLooping();
 					SetupBack();
@@ -223,9 +229,6 @@ public class AudioManager : MonoBehaviour
 			instance = this;
 			backgroundRoutine = PlayBackAudio();
 			ambienceRoutine = PlayAmbience();
-			SetVolumeSFX(sfxVolume);
-			SetVolumeBackground(backgroundVolume);
-			SetVolumeAmbience(ambienceVolume);
 			DontDestroyOnLoad(gameObject);
 		}
 		else if (instance != this)
