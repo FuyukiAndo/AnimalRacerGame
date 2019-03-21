@@ -2756,7 +2756,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1045792901303020, guid: b2547890fc16cec4ca11bd9f648c247a, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114140393569672606, guid: b2547890fc16cec4ca11bd9f648c247a,
         type: 2}
@@ -2824,45 +2824,6 @@ Prefab:
         type: 2}
       propertyPath: m_isInputParsingRequired
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1363596147525290, guid: 4c08a920c500b6b4a971b87e0b0a6ed7, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114776052051929664, guid: 4c08a920c500b6b4a971b87e0b0a6ed7,
-        type: 2}
-      propertyPath: jumpAndFallDelay
-      value: 0.65
-      objectReference: {fileID: 0}
-    - target: {fileID: 114776052051929664, guid: 4c08a920c500b6b4a971b87e0b0a6ed7,
-        type: 2}
-      propertyPath: movementSpeed
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 114776052051929664, guid: 4c08a920c500b6b4a971b87e0b0a6ed7,
-        type: 2}
-      propertyPath: deaccelerationModifier
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 114776052051929664, guid: 4c08a920c500b6b4a971b87e0b0a6ed7,
-        type: 2}
-      propertyPath: accelerationModifier
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 114776052051929664, guid: 4c08a920c500b6b4a971b87e0b0a6ed7,
-        type: 2}
-      propertyPath: movementAcceleration
-      value: 0.29
-      objectReference: {fileID: 0}
-    - target: {fileID: 114776052051929664, guid: 4c08a920c500b6b4a971b87e0b0a6ed7,
-        type: 2}
-      propertyPath: abilityModifier
-      value: 2.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114776052051929664, guid: 4c08a920c500b6b4a971b87e0b0a6ed7,
-        type: 2}
-      propertyPath: abilityMeterModifier
-      value: 0.06
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4c08a920c500b6b4a971b87e0b0a6ed7, type: 2}

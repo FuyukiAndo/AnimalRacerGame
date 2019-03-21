@@ -14627,6 +14627,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speeches:
   - speechType: 0
+    playerCharacterType: 0
     speeches:
     - Ugh!
     - Uuugh... Stop with your interference!
@@ -14634,6 +14635,7 @@ MonoBehaviour:
     - Prepare for your doom, which is me!
     - Gaah! Enough!
   - speechType: 3
+    playerCharacterType: 0
     speeches:
     - Haha! I reign supreme!
     - 'You fools never had a chance against my flippers! '
@@ -14641,6 +14643,7 @@ MonoBehaviour:
     - Ooh, you all put in good effort, but still pale compared to the big Finely!
     - 'I am unrivalled! '
   - speechType: 4
+    playerCharacterType: 0
     speeches:
     - Redirect your losing face elsewhere!
     - "You fools can\u2019t beat my slide!"
@@ -14648,14 +14651,17 @@ MonoBehaviour:
     - "You won\u2019t look down at me anymore after you witness this!"
     - 'Certain kill move: POWERSLIDE!'
   - speechType: 6
+    playerCharacterType: 0
     speeches:
     - "That won\u2019t happen again."
     - 'All great plans have setbacks! '
     - Greatness comes from experiences!
   speechBubble: {fileID: 1850997573419068}
+  speechTextUI: {fileID: 0}
   characterCrystal: {fileID: 1934345133084732}
   speechSpeedMult: 0.4
   isCommentator: 0
+  isUi: 0
   commentator:
     speeches: []
     levelCompleteSpeech: 
@@ -14812,8 +14818,8 @@ MonoBehaviour:
     paramValue: 0
     additionalParamValues: []
     randomizeValue: 0
-  effectController: {fileID: 0}
   box: {fileID: 61278632595405568}
+  playerSpeech: {fileID: 0}
 --- !u!114 &114627367570281634
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -14862,15 +14868,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxJumpHeight: 8
   minJumpHeight: 1
-  jumpAndFallDelay: 0.4
-  movementSpeed: 10
-  movementAcceleration: 0.15
-  accelerationModifier: 0.2
-  deaccelerationModifier: 0.3
-  abilityMeter: 100
+  jumpAndFallDelay: 0.496
+  movementSpeed: 12
+  movementAcceleration: 0.403
+  accelerationModifier: 0.194
+  deaccelerationModifier: 0.188
+  abilityMeter: 1
   abilityMeterModifier: 0.01
   maxUseCounter: 4
-  abilityModifier: 2
+  abilityModifier: 2.3
   abilityDirection: 0
   collisionController: {fileID: 0}
   movement: {x: 0, y: 0}
@@ -14882,6 +14888,8 @@ MonoBehaviour:
   collision: []
   projectileObject: {fileID: 1615396423180318, guid: 8f9be1d561b46b1488bcc52545b9531d,
     type: 2}
+  slideTimer: 2
+  savedSlideTimer: 0
 --- !u!114 &114969139045625284
 MonoBehaviour:
   m_ObjectHideFlags: 1
