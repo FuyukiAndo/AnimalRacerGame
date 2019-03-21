@@ -42,7 +42,7 @@ public class GPSCheckpoint : MonoBehaviour
     }
     public void UpdateCheckpointToGo(Checkpoint checkpoint)
     {
-        if (checkpoint == checkpoints[index])
+        if (checkpoint.transform == checkpoints[index])
         {
             index++;
             currentCheckpoint = checkpoints[index];

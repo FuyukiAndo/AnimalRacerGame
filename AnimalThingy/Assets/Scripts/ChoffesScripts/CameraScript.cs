@@ -6,8 +6,8 @@ using UnityEngine;
 public class CameraScript : MonoBehaviour {
     public float cameraSmoothTime = 0.5f;
 
-    public float minZoomSinglePlayer, minZoom = 100f;
-    public float maxZoomSinglePlayer, maxZoom = 10f;
+    public float minZoomSinglePlayer = 70f, minZoom = 100f;
+    public float maxZoomSinglePlayer = 30f, maxZoom = 10f;
     public float zoomLimiter = 50f;
 
 
