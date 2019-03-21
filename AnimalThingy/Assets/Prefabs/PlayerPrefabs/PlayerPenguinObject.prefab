@@ -14860,7 +14860,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38603cbf4f9ce4e499b835196f235665, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxJumpHeight: 5
+  maxJumpHeight: 8
   minJumpHeight: 1
   jumpAndFallDelay: 0.4
   movementSpeed: 10

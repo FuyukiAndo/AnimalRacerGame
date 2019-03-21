@@ -118,7 +118,7 @@ public class PlayerMonkey : PlayerController
 	}	
 
 	private void PlayerPassiveAbility()
-	{	
+	{		
 		if(!isPassiveAbility && passiveAbility)
 		{	
 			if(maxUseCounter < 1)
