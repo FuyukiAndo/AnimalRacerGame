@@ -43,6 +43,7 @@ public class AudioPlayer : MonoBehaviour
 	{
 		if (AudioManager.Instance.useFMOD)
 		{
+			if (IsAudioPathNull())return;
 			Setup();
 			sfx.audioInstance.start();
 		}
@@ -62,6 +63,11 @@ public class AudioPlayer : MonoBehaviour
 		{
 			source.volume = volume;
 		}
+	}
+
+	public bool IsAudioPathNull()
+	{
+		return sfx.currentAudioPath == string.Empty;
 	}
 
 	public float GetAudioVolume()

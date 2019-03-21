@@ -9,12 +9,9 @@ public class Spike : FlyingTrajectory
     private float timeBeforeSpikeFalls;
     private SpikeSpawner spikeSpawner;
 
-    void Awake()
-    {
+    void Start () {
         rb2d = GetComponent<Rigidbody2D>();
         rb2d.gravityScale = 0;
-    }
-    void Start () {
         if (transform.parent != null)
         {
             spikeSpawner = GetComponentInParent<SpikeSpawner>();

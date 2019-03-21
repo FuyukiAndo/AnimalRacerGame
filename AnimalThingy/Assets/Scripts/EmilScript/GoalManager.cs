@@ -60,6 +60,7 @@ public class GoalManager : MonoBehaviour
 	void Start()
 	{
 		boxSize = GetComponent<BoxCollider2D>().size;
+		commentator = FindObjectsOfType<SpeechBubble>().Where(bubble => bubble.name.Contains("Commentator")).FirstOrDefault();
 		StartCoroutine(CountDownToStressSignal());
 	}
 
@@ -259,6 +260,7 @@ public class GoalManager : MonoBehaviour
 			}
 			PlayerInput input = player.GetComponent<PlayerInput>();
 			input.isControllable = false;
+			input.changeAngle = false;
 			PlayerController controller = player.GetComponent<PlayerController>();
 			controller.enabled = false;
 			trappedPlayers.Add(player);

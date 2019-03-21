@@ -656,6 +656,11 @@ public class AudioAutoPlayer : MonoBehaviour
 		sfx.currentAudioPath = path;
 	}
 
+	public bool IsAudioPathNull()
+	{
+		return sfx.currentAudioPath == string.Empty;
+	}
+
 	public void SetAudioClip(AudioClip clip)
 	{
 		source.clip = clip;

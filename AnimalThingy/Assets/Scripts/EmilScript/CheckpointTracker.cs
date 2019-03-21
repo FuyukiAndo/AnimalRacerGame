@@ -19,7 +19,6 @@ public class CheckpointTracker : MonoBehaviour
 	private int lastCheckpointPassed = 0;
 	[SerializeField] private LayerMask checkpointLayer;
 	[SerializeField] private FMODAudio checkpointSFX;
-	[SerializeField] private AudioEffectController effectController;
 	[SerializeField] private BoxCollider2D box;
 	public float FinishingTime
 	{
@@ -45,6 +44,8 @@ public class CheckpointTracker : MonoBehaviour
 		}
 	}
 	private int placementPoint;
+	[SerializeField] private SpeechBubble playerSpeech;
+	private PlayerInput input;
 
 	void Start()
 	{
@@ -53,6 +54,8 @@ public class CheckpointTracker : MonoBehaviour
 			gameObject.AddComponent<BoxCollider2D>();
 		}
 		box = GetComponent<BoxCollider2D>();
+		playerSpeech = FindObjectsOfType<SpeechBubble>().Where(bubble => bubble.name == name).FirstOrDefault();
+		input = GetComponent<PlayerInput>();
 	}
 
 	void Update()
@@ -84,9 +87,9 @@ public class CheckpointTracker : MonoBehaviour
 							}
 						}
 					}
-					if (effectController != null)
+					if (playerSpeech != null)
 					{
-						effectController.PlayAudioOneShot();
+						playerSpeech.SetSpeechActive(SpeechType.checkpoint, input.playerCharacterType);
 					}
 					checkPointsPassed.Add(checkPoint.Index);
 				}

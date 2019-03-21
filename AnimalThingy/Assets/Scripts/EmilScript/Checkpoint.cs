@@ -69,7 +69,7 @@ public class Checkpoint : MonoBehaviour
 							break;
 					}
 					oneshotPlayer.SetParameterValue(paramValue);
-					oneshotPlayer.PlayAudioOneShot(true);
+					oneshotPlayer.PlayAudioOneShot();
 					if (!updatedCheckToGoFor)
 					{
 						SetNextCheckPosToGoFor();
