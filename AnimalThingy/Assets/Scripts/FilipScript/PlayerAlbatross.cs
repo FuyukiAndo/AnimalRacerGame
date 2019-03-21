@@ -170,6 +170,11 @@ public class PlayerAlbatross : PlayerController
 		}
 	}
 	
+	public override void OpponentProjectileCollision()
+	{
+		base.OpponentProjectileCollision();
+	}
+	
 	public override void Update()
 	{
 		base.Update();	

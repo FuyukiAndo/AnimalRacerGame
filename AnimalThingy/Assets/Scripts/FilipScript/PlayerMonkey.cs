@@ -117,6 +117,11 @@ public class PlayerMonkey : PlayerController
 		}
 	}	
 
+	public override  void OpponentProjectileCollision()
+	{
+		base.OpponentProjectileCollision();
+	}
+
 	private void PlayerPassiveAbility()
 	{		
 		if(!isPassiveAbility && passiveAbility)

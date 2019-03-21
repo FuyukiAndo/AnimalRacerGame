@@ -22,6 +22,11 @@ public class PlayerPenguin : PlayerController
 		savedSlideTimer = slideTimer;
 	}
 
+	public override  void OpponentProjectileCollision()
+	{
+		base.OpponentProjectileCollision();
+	}
+
 	public override void OnAbilityKey()
 	{
 		base.OnAbilityKey();

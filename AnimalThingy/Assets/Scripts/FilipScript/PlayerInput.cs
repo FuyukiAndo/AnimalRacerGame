@@ -39,7 +39,7 @@ public class PlayerInput : MonoBehaviour
 
 	[HideInInspector] public float targetAngle;
 
-	[HideInInspector] public bool isStunned = false;
+	public bool isStunned = false;
 	public bool isControllable = true;
 	public bool changeAngle = true;
 
@@ -191,7 +191,7 @@ public class PlayerInput : MonoBehaviour
 		}
 		else
 		{	
-			isStunned = true;
+			//isStunned = true;
 			changeAngle = false;
 			stunDurationTimer -= Time.deltaTime;
 
@@ -209,7 +209,7 @@ public class PlayerInput : MonoBehaviour
 	
 	private void InputAudio()
 	{
-		if(isStunned)
+		/*if(isStunned)
 		{
 			if (!triggeredAnger)
 			{
@@ -238,7 +238,7 @@ public class PlayerInput : MonoBehaviour
 				oneshotPlayer.SetParameterValue(0.05f);
 				oneshotPlayer.PlayAudioOneShot(true);
 			}*/	
-		}
+		//}
 	}
 
 	private void InputAnimationRotation()

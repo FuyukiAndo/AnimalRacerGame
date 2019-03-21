@@ -180,13 +180,13 @@ public class PlayerController : MonoBehaviour
 			
 			if(collision[i].gameObject.tag == "Obstacle" && playerInput.playerCharacterType != PlayerCharacterType.PlayerPenguin)
 			{
-				playerInput.isControllable = false;
+				playerInput.isStunned = true;
 				movement.x = -abilityDirection * movementSpeed*1.4f;
 			}
 			
-			if(!collision[i].gameObject)
+			if(collision[i].gameObject)
 			{
-				playerInput.isControllable = true;
+				playerInput.isStunned = false;
 			}
 		}
 
