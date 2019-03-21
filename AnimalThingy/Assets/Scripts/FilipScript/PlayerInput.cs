@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
+using UnityEngine;
 
 
 public enum PlayerCharacterType
@@ -199,8 +199,8 @@ public class PlayerInput : MonoBehaviour
 			if (!triggeredAnger)
 			{
 				triggeredAnger = true;
-				oneshotPlayer.SetParameterValue(1.5f);
 				oneshotPlayer.PlayAudioOneShot();
+				oneshotPlayer.SetParameterValue(1.5f);
 				if (playerSpeech != null)
 				{
 					playerSpeech.SetSpeechActive(SpeechType.stun, playerCharacterType);
@@ -273,8 +273,8 @@ public class PlayerInput : MonoBehaviour
 		if (Input.GetKeyDown(playerAbilityKey))
 		{
 			//Emil AudioOneshotPlayer
-			oneshotPlayer.SetParameterValue(2.5f);
 			oneshotPlayer.PlayAudioOneShot();
+			oneshotPlayer.SetParameterValue(2.5f);
 			if (playerSpeech != null)
 			{
 				playerSpeech.SetSpeechActive(SpeechType.ability, playerCharacterType);
@@ -285,8 +285,8 @@ public class PlayerInput : MonoBehaviour
 		if (Input.GetKeyDown(playerJumpKey))
 		{
 			//Emil AudioOneshotPlayer
-			oneshotPlayer.SetParameterValue(0.05f);
 			oneshotPlayer.PlayAudioOneShot();
+			oneshotPlayer.SetParameterValue(0.05f);
 		}
 
 
