@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
+using System.Linq;
 
 public class TerrainSnowball : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class TerrainSnowball : MonoBehaviour
     private float dir;
     private float pushback;
     private float usedPushForce;
+    private SpeechBubble playerSpeech1, playerSpeech2, playerSpeech3, playerSpeech4;
 
     // Use this for initialization
     void Start()
@@ -40,6 +42,10 @@ public class TerrainSnowball : MonoBehaviour
         {
             dir = -gameObject.transform.lossyScale.x;
         }
+        playerSpeech1 = FindObjectsOfType<SpeechBubble>().Where(bubble => bubble.name == "Player1").FirstOrDefault();
+        playerSpeech2 = FindObjectsOfType<SpeechBubble>().Where(bubble => bubble.name == "Player2").FirstOrDefault();
+        playerSpeech3 = FindObjectsOfType<SpeechBubble>().Where(bubble => bubble.name == "Player3").FirstOrDefault();
+        playerSpeech4 = FindObjectsOfType<SpeechBubble>().Where(bubble => bubble.name == "Player4").FirstOrDefault();
     }
 
     // Update is called once per frame
@@ -92,6 +98,21 @@ public class TerrainSnowball : MonoBehaviour
 
                     collider.GetComponent<PlayerController>().movement.y += usedPushForce;
                     collider.GetComponent<PlayerController>().movement.x += pushback;
+                    switch (collider.gameObject.name)
+                    {
+                        case "Player1":
+                            playerSpeech1.SetSpeechActive(SpeechType.stun, collider.gameObject.GetComponent<PlayerInput>().playerCharacterType);
+                            break;
+                        case "Player2":
+                            playerSpeech2.SetSpeechActive(SpeechType.stun, collider.gameObject.GetComponent<PlayerInput>().playerCharacterType);
+                            break;
+                        case "Player3":
+                            playerSpeech2.SetSpeechActive(SpeechType.stun, collider.gameObject.GetComponent<PlayerInput>().playerCharacterType);
+                            break;
+                        case "Player4":
+                            playerSpeech4.SetSpeechActive(SpeechType.stun, collider.gameObject.GetComponent<PlayerInput>().playerCharacterType);
+                            break;
+                    }
                     gotHit = true;
 
                 }
@@ -99,6 +120,21 @@ public class TerrainSnowball : MonoBehaviour
                 {
                     collider.GetComponent<PlayerController>().movement.y += usedPushForce;
                     collider.GetComponent<PlayerController>().movement.x -= pushback;
+                    switch (collider.gameObject.name)
+                    {
+                        case "Player1":
+                            playerSpeech1.SetSpeechActive(SpeechType.stun, collider.gameObject.GetComponent<PlayerInput>().playerCharacterType);
+                            break;
+                        case "Player2":
+                            playerSpeech2.SetSpeechActive(SpeechType.stun, collider.gameObject.GetComponent<PlayerInput>().playerCharacterType);
+                            break;
+                        case "Player3":
+                            playerSpeech2.SetSpeechActive(SpeechType.stun, collider.gameObject.GetComponent<PlayerInput>().playerCharacterType);
+                            break;
+                        case "Player4":
+                            playerSpeech4.SetSpeechActive(SpeechType.stun, collider.gameObject.GetComponent<PlayerInput>().playerCharacterType);
+                            break;
+                    }
                     gotHit = true;
                 }
             }
