@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(CircleCollider2D))]
 public class Checkpoint : MonoBehaviour
 {
 	public int Index
@@ -99,7 +98,7 @@ public class Checkpoint : MonoBehaviour
 	{
 		if (GPSCheckpoint.Instance != null)
 		{
-			GPSCheckpoint.Instance.UpdateCheckpointToGo();
+			GPSCheckpoint.Instance.UpdateCheckpointToGo(this);
 		}
 	}
 }

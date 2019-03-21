@@ -33,10 +33,10 @@ public class GoalManager : MonoBehaviour
 	}
 	private List<GameObject> placedPlayers = new List<GameObject>();
 	private List<GameObject> trappedPlayers = new List<GameObject>();
+	private Dictionary<CheckpointTracker, int> playerChecks = new Dictionary<CheckpointTracker, int>();
 	private bool startCountDown;
 	[SerializeField] private List<CheckpointTracker> unplacedPlayers = new List<CheckpointTracker>();
 	[SerializeField] private GameObject[] playerGoalPositions;
-	//[SerializeField] private string[] playerMoveScripts;
 	private float totalTimeBeforeAutoPlacements;
 	private int initialPlayerCount;
 	[SerializeField] private LayerMask playerLayer, ignorePlayerLayer;
@@ -107,6 +107,13 @@ public class GoalManager : MonoBehaviour
 		}
 
 		ValidateForGoal();
+
+		//Nibi
+	}
+
+	public void NotifyOfCheckpointCount(CheckpointTracker tracker)
+	{
+
 	}
 
 	void ValidateForGoal()
@@ -398,13 +405,13 @@ public class GoalManager : MonoBehaviour
 				break;
 			case "Player2":
 				InformationManager.Instance.player2.score += tracker.PlacementPoint;
-                break;
+				break;
 			case "Player3":
 				InformationManager.Instance.player3.score += tracker.PlacementPoint;
-                break;
+				break;
 			case "Player4":
 				InformationManager.Instance.player4.score += tracker.PlacementPoint;
-                break;
+				break;
 		}
 	}
 
