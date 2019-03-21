@@ -167,7 +167,7 @@ public class PlayerController : MonoBehaviour
 
 	public virtual void OpponentProjectileCollision()
 	{
-		LayerMask projectileMask = LayerMask.NameToLayer("Projectile");
+		//LayerMask projectileMask = LayerMask.NameToLayer("Projectile");
 		collision = Physics2D.OverlapCircleAll(transform.position, 1.5f);//, projectileMask);
 
 		for(int i = 0; i < collision.Length; i++)
@@ -184,7 +184,7 @@ public class PlayerController : MonoBehaviour
 				movement.x = -abilityDirection * movementSpeed*1.4f;
 			}
 			
-			if(collision[i].gameObject)
+			if(!collision[i].gameObject)
 			{
 				playerInput.isStunned = false;
 			}
