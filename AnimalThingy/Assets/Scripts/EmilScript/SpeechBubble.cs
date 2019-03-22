@@ -11,6 +11,7 @@ public class SpeechBubble : MonoBehaviour
 	[SerializeField] private Speech[] speeches;
 	[SerializeField] private GameObject speechBubble, speechTextUI;
 	[SerializeField] private float speechSpeedMult = .4f;
+	[SerializeField] private int minSpeechSizeToIgnoreSpeedMult = 8;
 	[SerializeField] private bool isCommentator;
 	[SerializeField] private CommentatorSpeech[] commentatorSpeeches;
 	[SerializeField] private string levelCompleteSpeech;
@@ -64,6 +65,10 @@ public class SpeechBubble : MonoBehaviour
 		{
 			SetRandomSpeechFromCommentator(type);
 		}
+		if (commentatorText.text == string.Empty)
+		{
+			return;
+		}
 		commentatorSpeechBubble.SetActive(true);
 		nibiPortrait.SetActive(true);
 		StartCoroutine(SetSpeechInactive());
@@ -90,14 +95,28 @@ public class SpeechBubble : MonoBehaviour
 	{
 		if (isCommentator)
 		{
-			yield return new WaitForSeconds(commentatorText.text.Length * speechSpeedMult);
+			if (commentatorText.text.Length > minSpeechSizeToIgnoreSpeedMult)
+			{
+				yield return new WaitForSeconds(commentatorText.text.Length * speechSpeedMult);
+			}
+			else
+			{
+				yield return new WaitForSeconds(commentatorText.text.Length);
+			}
 			commentatorText.text = string.Empty;
 			commentatorSpeechBubble.SetActive(false);
 			nibiPortrait.SetActive(false);
 		}
 		else
 		{
-			yield return new WaitForSeconds(textUI.text.Length * speechSpeedMult);
+			if (textUI.text.Length > minSpeechSizeToIgnoreSpeedMult)
+			{
+				yield return new WaitForSeconds(textUI.text.Length * speechSpeedMult);
+			}
+			else
+			{
+				yield return new WaitForSeconds(textUI.text.Length);
+			}
 			textUI.text = string.Empty;
 			speechBubble.SetActive(false);
 		}
