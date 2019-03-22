@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1691896454225558}
+  m_IsPrefabParent: 1
+--- !u!1 &1691896454225558
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4505575662771652}
+  - component: {fileID: 114335112655288274}
+  m_Layer: 0
+  m_Name: CharacterUIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4505575662771652
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1691896454225558}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 51.99626, y: 232.52956, z: 0}
+  m_LocalScale: {x: 0.6716418, y: 0.6716418, z: 0.6716418}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114335112655288274
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1691896454225558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8f2500535e2f0b47a9100423052b82d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  albatrossImage: {fileID: 21300000, guid: 040d583c9b692b94aa14bc3aa9314e2b, type: 3}
+  albatrossPrefab: {fileID: 1045792901303020, guid: b2547890fc16cec4ca11bd9f648c247a,
+    type: 2}
+  pigImage: {fileID: 21300000, guid: 2e78df1a19881b243aaa287756c081e4, type: 3}
+  pigPrefab: {fileID: 1658185059900300, guid: e5105c37dcc465343b80bbc531df0d5b, type: 2}
+  pinguinImage: {fileID: 21300000, guid: 949c580843363614bb6864c45fb24c83, type: 3}
+  pinguinPrefab: {fileID: 1363596147525290, guid: 4c08a920c500b6b4a971b87e0b0a6ed7,
+    type: 2}
+  monkeyImage: {fileID: 21300000, guid: 08ff04beb316e18448622950cc8c5119, type: 3}
+  monkeyPrefab: {fileID: 1196314723305698, guid: 790971f4a240d454e8fed09565390b99,
+    type: 2}
+  player1UI:
+    playerUIObject: {fileID: 0}
+    playerImage: {fileID: 0}
+    playerSlider: {fileID: 0}
+    playerCheckpoints: {fileID: 0}
+    playerEnergy: 0
+    player: {fileID: 0}
+  player2UI:
+    playerUIObject: {fileID: 0}
+    playerImage: {fileID: 0}
+    playerSlider: {fileID: 0}
+    playerCheckpoints: {fileID: 0}
+    playerEnergy: 0
+    player: {fileID: 0}
+  player3UI:
+    playerUIObject: {fileID: 0}
+    playerImage: {fileID: 0}
+    playerSlider: {fileID: 0}
+    playerCheckpoints: {fileID: 0}
+    playerEnergy: 0
+    player: {fileID: 0}
+  player4UI:
+    playerUIObject: {fileID: 0}
+    playerImage: {fileID: 0}
+    playerSlider: {fileID: 0}
+    playerCheckpoints: {fileID: 0}
+    playerEnergy: 0
+    player: {fileID: 0}

@@ -4,34 +4,74 @@ using UnityEngine;
 
 public class PlayerAlbatross : PlayerController 
 {
-	private GameObject windBlastObject; 
-
-	public float flyCounter = 3f;	
-	public float flyCountdownSpeed = 0.1f;
-	
+	public float maxFlyCounter = 3f;	
 	public float untilGlideCounter = 1.0f;
-	public float glideCounterSpeed = 1.4f;
 	
-	[Range(0.1f,6.0f)] public float glideSpeed = 4.0f;
+	[Range(0.1f,10.0f)] public float glideSpeed = 4.0f;
 
-	private float savedFlyCounter;
+	public GameObject windBlastObject; 
+
+	[Header("Parameter Counter Settings")]	
+	public float maxFlyCountdownSpeed = 0.1f;
+	public float glideCounterSpeed = 1.4f;	
+	
+	private float savedMaxFlyCounter;
 	private float savedJumpAndFallDelay;
 	private float savedUntilGlideCounter;
 	
+	public float dashTimer = 3f;
+	private float savedDashTimer;
+	
 	public override void Start()
 	{
-		base.Start();		
-		windBlastObject = Resources.Load<GameObject>("Prefabs/SpeedUpBlast"); //good idea - ?
+		base.Start();
+		
 		savedUntilGlideCounter = untilGlideCounter;
-		savedFlyCounter = flyCounter;
+		savedMaxFlyCounter = maxFlyCounter;
 		savedJumpAndFallDelay = jumpAndFallDelay;
+		savedDashTimer = dashTimer;
 	}
 	
-	public override void Update()
+	private void PlayerPassiveAbility()
 	{
-		base.Update();	
-		UpdateGravity();		
+		/*if(passiveAbility)
+		{
+			//passiveAbility = false;
+			//isPassiveAbility = true;
+		}*/
 		
+		if(passiveAbility)//!passiveAbility && isPassiveAbility)
+		{
+			if(dashTimer > 0)
+			{
+				dashTimer -= Time.deltaTime;
+				movement.x += -1 * abilityDirection * abilityModifier;
+			}
+			
+			if(dashTimer < 0)
+			{
+				//dashTimer = savedDashTimer;
+				isPassiveAbility = true;
+				passiveAbility = false;
+				playerInput.isControllable = true;
+				playerInput.changeAngle = true;
+			}
+		}		
+		
+		if(abilityMeter == 1f)
+		{
+			dashTimer = savedDashTimer;
+		}
+		
+		/*if(!passiveAbility && !isPassiveAbility)
+		{
+			playerInput.isControllable = true;
+			playerInput.changeAngle = true;
+		}*/
+	}
+
+	private void PlayerActiveAbility()
+	{
 		if(activeAbility)
 		{
 			untilGlideCounter -= Mathf.Abs(glideCounterSpeed) * Time.deltaTime;
@@ -40,7 +80,7 @@ public class PlayerAlbatross : PlayerController
 		
 		if(isActiveAbility)
 		{
-			float directionY = Mathf.Sign(movement.y);
+			directionY = Mathf.Sign(movement.y);
 			
 			if(directionY == -1)
 			{
@@ -58,26 +98,14 @@ public class PlayerAlbatross : PlayerController
 			isActiveAbility = true;
 			untilGlideCounter = savedUntilGlideCounter;
 		}
-		
-		if(isPassiveAbility && passiveAbility)
-		{
-			movement.x += -1 * abilityDirection * abilityModifier;
-			abilityMeter = abilityMeter + abilityTimer;
-		}
-		
-		if(!passiveAbility)
-		{
-			isPassiveAbility = false;
-			playerInput.isControllable = true;			
-		}
-		
+
 		if(isJumping)
 		{
-			flyCounter = flyCounter-flyCountdownSpeed;
+			maxFlyCounter = maxFlyCounter-maxFlyCountdownSpeed;
 			
-			if(flyCounter < 0)
+			if(maxFlyCounter < 0)
 			{
-				flyCounter = savedFlyCounter;
+				maxFlyCounter = savedMaxFlyCounter;
 				maxUseCounter--;
 				isJumping = false;
 			}
@@ -107,7 +135,7 @@ public class PlayerAlbatross : PlayerController
 			
 			if(maxUseCounter !=0)
 			{
-				if (flyCounter == savedFlyCounter)
+				if (maxFlyCounter == savedMaxFlyCounter)
 				{
 					isJumping = true;
 					movement.y = maxVelocity;
@@ -130,16 +158,29 @@ public class PlayerAlbatross : PlayerController
 	public override void OnAbilityKey()
 	{
 		base.OnAbilityKey();
-		
-		passiveAbility = true;
-		
-		if(passiveAbility)
+	
+		if(dashTimer == savedDashTimer)
 		{
-			isPassiveAbility = true;
 			playerInput.isControllable = false;
+			playerInput.changeAngle = false;
+			abilityMeter = 0;
+
+			Instantiate(windBlastObject, new Vector2(transform.position.x+(2.5f*abilityDirection),transform.position.y+2f), new Quaternion(0, 0, 0, 0), gameObject.transform);
+			windBlastObject.transform.parent = null;
 		}
-		
-		Instantiate(windBlastObject, new Vector2(transform.position.x+(2.5f*abilityDirection),transform.position.y+2f), new Quaternion(0, 0, 0, 0), gameObject.transform);
-		windBlastObject.transform.parent = null;
 	}
+	
+	public override void OpponentProjectileCollision()
+	{
+		base.OpponentProjectileCollision();
+	}
+	
+	public override void Update()
+	{
+		base.Update();	
+		UpdateGravity();		
+		
+		PlayerActiveAbility();
+		PlayerPassiveAbility();
+	}	
 }

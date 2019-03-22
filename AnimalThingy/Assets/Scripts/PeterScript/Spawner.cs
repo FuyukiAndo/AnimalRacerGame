@@ -6,8 +6,8 @@ public class Spawner : MonoBehaviour
 {
     public GameObject spawnObject;
     public bool wantSpawnerToBeRemoved;
-    public float timeBetweenSpawnsMin = 1;
-    public float timeBetweenSpawnsMax = 3;
+    public float timeBetweenSpawnsMin;
+    public float timeBetweenSpawnsMax;
     protected float timeBetweenSpawns;
     protected float spawnClock;
     protected bool ifTimed;

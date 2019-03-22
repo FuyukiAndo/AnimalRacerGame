@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.4964127, b: 0.5748172, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -308,8 +308,8 @@ Camera:
   m_GameObject: {fileID: 211661461}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -575,15 +575,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab79b06392ba4bf43be89b915be025ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  albatrossPrefab: {fileID: 1934942309825892, guid: 5b29a2af749912542a1e24e3ff3321db,
+  albatrossPrefab: {fileID: 1045792901303020, guid: b2547890fc16cec4ca11bd9f648c247a,
     type: 2}
-  pigPrefab: {fileID: 0}
-  monkeyPrefab: {fileID: 0}
-  pinguinPrefab: {fileID: 0}
+  pigPrefab: {fileID: 1658185059900300, guid: e5105c37dcc465343b80bbc531df0d5b, type: 2}
+  monkeyPrefab: {fileID: 1196314723305698, guid: 790971f4a240d454e8fed09565390b99,
+    type: 2}
+  pinguinPrefab: {fileID: 1363596147525290, guid: 4c08a920c500b6b4a971b87e0b0a6ed7,
+    type: 2}
   albatrossClip: {fileID: 32900000, guid: 928345104cc431043a20be56750b49c0, type: 3}
-  pigClip: {fileID: 0}
-  monkeyClip: {fileID: 0}
-  pinguinClip: {fileID: 0}
+  pigClip: {fileID: 32900000, guid: f210c602334f7aa41900c0776b68b5a6, type: 3}
+  monkeyClip: {fileID: 32900000, guid: 17c70d4c7dc9b1b40bede0f22b2f9d73, type: 3}
+  pinguinClip: {fileID: 32900000, guid: 0e6127a485a02ee4cb921255f1d62ffd, type: 3}
   vp: {fileID: 250409844}
 --- !u!1 &293211985
 GameObject:
@@ -1099,7 +1101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.392}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

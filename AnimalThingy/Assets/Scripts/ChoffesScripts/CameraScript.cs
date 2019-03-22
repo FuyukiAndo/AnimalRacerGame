@@ -6,8 +6,8 @@ using UnityEngine;
 public class CameraScript : MonoBehaviour {
     public float cameraSmoothTime = 0.5f;
 
-    public float minZoom = 100f;
-    public float maxZoom = 10f;
+    public float minZoomSinglePlayer = 70f, minZoom = 100f;
+    public float maxZoomSinglePlayer = 30f, maxZoom = 10f;
     public float zoomLimiter = 50f;
 
 
@@ -26,7 +26,6 @@ public class CameraScript : MonoBehaviour {
 
 	private void Start()
     {
-        Debug.Log(InformationManager.Instance.players.Count);
         players = new List<GameObject>();
         cam = GetComponent<Camera>();
 		cam.transform.Rotate(camAngle, 0f, 0f);
@@ -39,8 +38,11 @@ public class CameraScript : MonoBehaviour {
         {
             players.Add(player.gameObject);
         }
-        furthestPosPlayer = players[0].gameObject;
-        furthestNegPlayer = players[1].gameObject;
+        if (players.Count > 1)
+        {
+			furthestPosPlayer = players[0].gameObject;
+			furthestNegPlayer = players[1].gameObject;
+        }
     }
 
     private void LateUpdate()
@@ -52,7 +54,7 @@ public class CameraScript : MonoBehaviour {
                 var newPosition =  new Vector3(players[0].transform.position.x, players[0].transform.position.y + camYOffset, transform.position.z);
                 transform.position = Vector3.SmoothDamp(transform.position, newPosition, ref velocity, cameraSmoothTime);
                 transform.parent = players[0].transform;
-                float newZoom = Mathf.Lerp(maxZoom, minZoom, GetGreatestDistance() / zoomLimiter);
+                float newZoom = Mathf.Lerp(maxZoomSinglePlayer, minZoomSinglePlayer, GetGreatestDistance() / zoomLimiter);
                 cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, newZoom, Time.deltaTime);
             }
         }

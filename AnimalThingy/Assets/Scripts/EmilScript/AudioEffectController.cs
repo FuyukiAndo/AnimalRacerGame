@@ -41,7 +41,7 @@ public class AudioEffectController : MonoBehaviour
 	[SerializeField] private FMODAudio sfx;
 	[SerializeField] private LayerMask layer;
 	[SerializeField] private Vector2 boxSize = new Vector2(1f, 1f);
-	[SerializeField] private Dictionary<string, AudioClip> clips;
+	[SerializeField] private Vector2 boxOffset = new Vector2(0f, 0f);
 	[SerializeField] private AudioClip clip;
 
 	private float nextWait;
@@ -76,7 +76,7 @@ public class AudioEffectController : MonoBehaviour
 							}
 							else
 							{
-								RuntimeManager.PlayOneShot(sfx.audioPath, transform.position);
+								RuntimeManager.PlayOneShot(sfx.currentAudioPath, transform.position);
 							}
 						}
 						else
@@ -89,7 +89,7 @@ public class AudioEffectController : MonoBehaviour
 							}
 							else
 							{
-								RuntimeManager.PlayOneShotAttached(sfx.audioPath, gameObject);
+								RuntimeManager.PlayOneShotAttached(sfx.currentAudioPath, gameObject);
 							}
 						}
 					}
@@ -102,6 +102,10 @@ public class AudioEffectController : MonoBehaviour
 		}
 		else
 		{
+			if (!GetComponent<AudioSource>())
+			{
+				gameObject.AddComponent<AudioSource>();
+			}
 			source = GetComponent<AudioSource>();
 			if (playEffectAuto)
 			{
@@ -123,12 +127,12 @@ public class AudioEffectController : MonoBehaviour
 
 	void Setup()
 	{
-		if (sfx.audioPath != string.Empty)
+		if (sfx.currentAudioPath != string.Empty)
 		{
-			sfx.audioInstance = RuntimeManager.CreateInstance(sfx.audioPath);
+			sfx.audioInstance = RuntimeManager.CreateInstance(sfx.currentAudioPath);
 			ATTRIBUTES_3D attributesAmb = FMODUnity.RuntimeUtils.To3DAttributes(transform.position);
 			sfx.audioInstance.set3DAttributes(attributesAmb);
-			SetAudioVolume(AudioManager.Instance.SFXVolume);
+			SetAudioVolume(AudioManager.Instance.GetVolumeSFX());
 
 			if (sfx.randomizeValue && sfx.additionalParamValues.Length > 0)
 			{
@@ -168,7 +172,7 @@ public class AudioEffectController : MonoBehaviour
 							}
 							else
 							{
-								RuntimeManager.PlayOneShot(sfx.audioPath, transform.position);
+								RuntimeManager.PlayOneShot(sfx.currentAudioPath, transform.position);
 							}
 						}
 						else
@@ -181,7 +185,7 @@ public class AudioEffectController : MonoBehaviour
 							}
 							else
 							{
-								RuntimeManager.PlayOneShotAttached(sfx.audioPath, gameObject);
+								RuntimeManager.PlayOneShotAttached(sfx.currentAudioPath, gameObject);
 							}
 						}
 					}
@@ -207,7 +211,7 @@ public class AudioEffectController : MonoBehaviour
 
 		//Trigger event replacement
 		oldColliderCount = newColliderCount;
-		colliders = Physics2D.OverlapBoxAll(transform.position, boxSize, 0f, layer);
+		colliders = Physics2D.OverlapBoxAll((Vector2)transform.position + boxOffset, boxSize, 0f, layer);
 		newColliderCount = colliders.Length;
 		if (playEffectAuto)
 		{
@@ -235,7 +239,7 @@ public class AudioEffectController : MonoBehaviour
 								}
 								else
 								{
-									RuntimeManager.PlayOneShot(sfx.audioPath, transform.position);
+									RuntimeManager.PlayOneShot(sfx.currentAudioPath, transform.position);
 								}
 							}
 							else
@@ -248,7 +252,7 @@ public class AudioEffectController : MonoBehaviour
 								}
 								else
 								{
-									RuntimeManager.PlayOneShotAttached(sfx.audioPath, gameObject);
+									RuntimeManager.PlayOneShotAttached(sfx.currentAudioPath, gameObject);
 								}
 							}
 						}
@@ -308,7 +312,7 @@ public class AudioEffectController : MonoBehaviour
 								}
 								else
 								{
-									RuntimeManager.PlayOneShot(sfx.audioPath, transform.position);
+									RuntimeManager.PlayOneShot(sfx.currentAudioPath, transform.position);
 								}
 							}
 							else
@@ -321,7 +325,7 @@ public class AudioEffectController : MonoBehaviour
 								}
 								else
 								{
-									RuntimeManager.PlayOneShotAttached(sfx.audioPath, gameObject);
+									RuntimeManager.PlayOneShotAttached(sfx.currentAudioPath, gameObject);
 								}
 							}
 						}
@@ -401,7 +405,7 @@ public class AudioEffectController : MonoBehaviour
 							}
 							else
 							{
-								RuntimeManager.PlayOneShot(sfx.audioPath, transform.position);
+								RuntimeManager.PlayOneShot(sfx.currentAudioPath, transform.position);
 							}
 						}
 						else
@@ -414,7 +418,7 @@ public class AudioEffectController : MonoBehaviour
 							}
 							else
 							{
-								RuntimeManager.PlayOneShotAttached(sfx.audioPath, gameObject);
+								RuntimeManager.PlayOneShotAttached(sfx.currentAudioPath, gameObject);
 							}
 						}
 					}
@@ -474,7 +478,7 @@ public class AudioEffectController : MonoBehaviour
 							}
 							else
 							{
-								RuntimeManager.PlayOneShot(sfx.audioPath, transform.position);
+								RuntimeManager.PlayOneShot(sfx.currentAudioPath, transform.position);
 							}
 						}
 						else
@@ -487,7 +491,7 @@ public class AudioEffectController : MonoBehaviour
 							}
 							else
 							{
-								RuntimeManager.PlayOneShotAttached(sfx.audioPath, gameObject);
+								RuntimeManager.PlayOneShotAttached(sfx.currentAudioPath, gameObject);
 							}
 						}
 					}
@@ -547,7 +551,7 @@ public class AudioEffectController : MonoBehaviour
 							}
 							else
 							{
-								RuntimeManager.PlayOneShot(sfx.audioPath, transform.position);
+								RuntimeManager.PlayOneShot(sfx.currentAudioPath, transform.position);
 							}
 						}
 						else
@@ -560,7 +564,7 @@ public class AudioEffectController : MonoBehaviour
 							}
 							else
 							{
-								RuntimeManager.PlayOneShotAttached(sfx.audioPath, gameObject);
+								RuntimeManager.PlayOneShotAttached(sfx.currentAudioPath, gameObject);
 							}
 						}
 					}
@@ -599,15 +603,15 @@ public class AudioEffectController : MonoBehaviour
 	{
 		if (attached)
 		{
-			RuntimeManager.PlayOneShotAttached(sfx.audioPath, gameObject);
+			RuntimeManager.PlayOneShotAttached(sfx.currentAudioPath, gameObject);
 		}
 		else
 		{
-			RuntimeManager.PlayOneShot(sfx.audioPath, transform.position);
+			RuntimeManager.PlayOneShot(sfx.currentAudioPath, transform.position);
 		}
 	}
 
-	public void PlayAudioOneShot(float value)
+	public void PlayAudioOneShot()
 	{
 		if (AudioManager.Instance.useFMOD)
 		{
@@ -617,7 +621,7 @@ public class AudioEffectController : MonoBehaviour
 		}
 		else
 		{
-			source.volume = value;
+			source.volume = AudioManager.Instance.GetVolumeSFX();
 			source.PlayOneShot(clip);
 		}
 	}
@@ -625,16 +629,6 @@ public class AudioEffectController : MonoBehaviour
 	public void SetAudioClip(AudioClip clip)
 	{
 		source.clip = clip;
-	}
-
-	public void SetAudioClip(string clip)
-	{
-		AudioClip _clip;
-		clips.TryGetValue(clip, out _clip);
-		if (clip != null)
-		{
-			source.clip = _clip;
-		}
 	}
 
 	public void SetAudioVolume(float volume)
@@ -699,18 +693,18 @@ public class AudioEffectController : MonoBehaviour
 
 	public void SetAudioPath(string path)
 	{
-		sfx.audioPath = path;
+		sfx.currentAudioPath = path;
 	}
 
-	public void SetAudioPath(EventRefAttribute eventRef)
+	public void SetRandomizeParamValue(bool state)
 	{
-		sfx.audioPath = eventRef.ToString();
+		sfx.randomizeValue = state;
 	}
 
 	void OnDrawGizmos()
 	{
 		Gizmos.color = Color.red;
-		Gizmos.DrawWireCube(transform.position, boxSize);
+		Gizmos.DrawWireSphere((Vector2)transform.position, 1f);
 	}
 
 }

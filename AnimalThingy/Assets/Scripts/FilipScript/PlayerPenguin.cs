@@ -4,53 +4,116 @@ using UnityEngine;
 
 public class PlayerPenguin : PlayerController
 {
-	public bool isSlide = false;
-	public bool activeSlide = false;
-	
-	public int i;
-	int count = 4;
-	//public float abilityModifier = 2f;
+	public GameObject projectileObject;	
 
+	public float slideTimer = 2f;
+	[HideInInspector] public float savedSlideTimer;
+
+	private bool spawnProjectile = false;
+
+	private float InstantiateProjectileTimer;
+	private float savedInstatiateTimer;
+	
 	public override void Start() 
 	{
 		base.Start();
-			i = count;
+		InstantiateProjectileTimer = movementSpeed/96f;
+		savedInstatiateTimer = InstantiateProjectileTimer;
+		savedSlideTimer = slideTimer;
 	}
+
+	public override  void OpponentProjectileCollision()
+	{
+		base.OpponentProjectileCollision();
+	}
+
+	public override void OnAbilityKey()
+	{
+		base.OnAbilityKey();
+
+		if(slideTimer == savedSlideTimer && abilityMeter == 1f)
+		{
+			playerInput.isControllable = false;
+			playerInput.changeAngle = false;
+			abilityMeter = 0;
+			
+			if(!isPassiveAbility)
+			{
+				spawnProjectile = true;
+			}
+		}
+	}
+	
+	private void PlayerPassiveAbility()
+	{
+		if(spawnProjectile)
+		{
+			InstantiateProjectileTimer -= Time.deltaTime;
+			
+			if(InstantiateProjectileTimer <= 0)
+			{
+				Instantiate(projectileObject, new Vector2(transform.position.x,transform.position.y+2f), new Quaternion(0, 0, 0, 0), gameObject.transform);		
+				InstantiateProjectileTimer = savedInstatiateTimer;
+			}			
+		}
+	}
+
+	private void PlayerActiveAbility()
+	{
+		if(passiveAbility)//!passiveAbility && isPassiveAbility)
+		{
+			if(slideTimer > 0)
+			{
+				slideTimer -= Time.deltaTime;
+				movement.x += -1 * abilityDirection * abilityModifier;
+			}
+			
+			if(slideTimer < 0)
+			{
+				slideTimer = savedSlideTimer;
+				isPassiveAbility = true;
+				passiveAbility = false;
+				playerInput.isControllable = true;
+				playerInput.changeAngle = true;
+				spawnProjectile = false;	
+			}
+		}		
+		
+		if(abilityMeter == 1f)
+		{
+			slideTimer = savedSlideTimer;
+		}
+		
+		/*if(!isPassiveAbility && passiveAbility)
+		{
+			maxUseCounter--;
+			
+			if(maxUseCounter < 0)
+			{
+				isPassiveAbility = true;
+				passiveAbility = false;
+				maxUseCounter = savedMaxUseCounter;
+			}
+		}*/
+		
+		/*if(!passiveAbility && isPassiveAbility)
+		{
+			movement.x += -1 * abilityDirection * abilityModifier;
+		}*/
+		
+		if(!passiveAbility && !isPassiveAbility)
+		{
+			//playerInput.isControllable = true;
+			//playerInput.changeAngle = true;		
+
+		}		
+	}	
 
 	public override void Update() 
 	{
 		base.Update();
 		
-		if(isSlide && !activeSlide)
-		{
-			movement.y = minVelocity;
-			movement.x += -1 * abilityDirection * 2.0f;
-			i--;
-			
-			if(i < 0)
-			{
-				isSlide = false;
-				activeSlide = true;
-				i = count;
-			}
-		}
-		
-		if(!isSlide && activeSlide)
-		{
-			movement.y = 0;
-			movement.x += -1 * abilityDirection * abilityModifier;
-		}
-	}
-	
-	public override void OnAbilityKey()
-	{
-		base.OnAbilityKey();
-		
-		playerInput.isControllable = false;
-		
-		if(!isSlide)
-		{
-			isSlide = true;
-		}
-	}
+		PlayerPassiveAbility();
+		PlayerActiveAbility();
+	}	
 }

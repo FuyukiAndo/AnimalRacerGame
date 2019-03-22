@@ -4,105 +4,152 @@ using UnityEngine;
 
 public class PlayerPig : PlayerController 
 {
-	public int maxJumpCount = 7;
-	public float heightModifier = 2.0f;
-	public float inbetweenJumpCounter = 0.25f;
-	private float tempCounter;
-	public bool isJump = false;
-	private bool newJump = false;
-	public bool blowUp = false;
-	private bool blowUp2 = false;
-	private int i = 0;
-	BoxCollider2D boxCollider2D;
-    float scaleX, scaleY;
-	float tempX, tempY;
-	float newX, newY;
-	float oldOffsetY, newOffsetY;
-	public float timer;
-	
-	public bool GetSignal()
-	{
-		return newJump;
-	}
-	
+	[Header("Parameter Counter Settings")]	
+
+	public float deltaJumpCounter = 0.25f;
+	public float horizontalKnockBackPower = 9f;
+	public float verticalKnockBackPower = 9f;
+
+	private float blowUpTimer = 0.71f;	
+	private float savedBlowUpTimer;
+	private bool canSuperJump = true;
+	private float savedDeltaJumpCounter;
+	private int jumpIncreaseCounter = 0;
+	private BoxCollider2D boxCollider2D;
+	private float tempX, tempY;
+	private float newX;
+
 	public override void Start() 
 	{
 		base.Start();
-		tempCounter = inbetweenJumpCounter;	
+		savedDeltaJumpCounter = deltaJumpCounter;	
 		boxCollider2D = GetComponent<BoxCollider2D>();
 		
 		tempX = boxCollider2D.size.x;
 		tempY = boxCollider2D.size.y;
 		newX = 5.75f;
-		newY = 3.75f;
-		oldOffsetY = 1.36f;
-		timer = 0.71f;
-		
-		Debug.Log(tempX);
-		Debug.Log(tempY);
+		savedBlowUpTimer = blowUpTimer;
 		
 		boxCollider2D.size = new Vector2(tempX, tempY);
-	}
-
-	public override void Update() 
-	{		
-		base.Update();
-
-		if(blowUp)
-		{
-			boxCollider2D.size = new Vector2(newX,tempY+.28f);
-			timer-=Time.deltaTime;
-			
-			if(timer < 0)
-			{
-				blowUp = false;
-			}
-		}
-		else
-		{
-			timer = 0.71f;
-			boxCollider2D.size = new Vector2(tempX, tempY);
-		}
-
-		if(collisionController.boxCollisionDirections.down)
-		{	
-			if(inbetweenJumpCounter < 0)
-			{
-				inbetweenJumpCounter = tempCounter;
-			}
-	
-			if(isJump)
-			{
-				inbetweenJumpCounter -= Time.deltaTime;
-				newJump = true;
-			}
-		}
-		
-		if(inbetweenJumpCounter < 0)
-		{
-			isJump = false;
-			newJump = false;
-			inbetweenJumpCounter = tempCounter;
-			i = 0;
-		}
-		else
-		{
-			
-		}
+		directionY = Mathf.Sign(movement.y);
 	}
 	
 	public override void OnJumpKeyDown()
 	{
-		base.OnJumpKeyDown();
-		isJump = true;
-		i++;
-		
-		movement.y += heightModifier * i*2;
+		if(maxUseCounter > 0)
+		{
+			if(collisionController.boxCollisionDirections.down)
+			{		
+				base.OnJumpKeyDown();
+				isActiveAbility = true;
+				jumpIncreaseCounter++;
+				
+				if(directionY == 1)
+				{			
+					maxUseCounter--;
+					deltaJumpCounter = savedDeltaJumpCounter;
+				}
+				
+				movement.y += abilityModifier * jumpIncreaseCounter * 2f;
+			}
+		}
 	}
 	
 	public override void OnAbilityKey()
 	{
-		base.OnAbilityKey();	
+		base.OnAbilityKey();
+		playerInput.isControllable = false;
+		playerInput.changeAngle = false;
+		abilityMeter = 0;
 	}
 	
+	private void PlayerPassiveAbility()
+	{
+		if(passiveAbility)
+		{
+			boxCollider2D.size = new Vector2(newX,tempY+.28f);
+			blowUpTimer-= Time.deltaTime;
+			
+			if(blowUpTimer < 0f)
+			{
+				passiveAbility = false;
+				isPassiveAbility = true;
+				boxCollider2D.size = new Vector2(tempX, tempY);
+			}
+		}
+		else
+		{
+			blowUpTimer = savedBlowUpTimer;
+		}
+	}
+
+	private void PlayerActiveAbility()
+	{
+		if(collisionController.boxCollisionDirections.down)
+		{		
+			if(maxUseCounter < 0)
+			{
+				canSuperJump = true;
+			}
+			
+			if(deltaJumpCounter < 0)
+			{
+				deltaJumpCounter = savedDeltaJumpCounter;
+			}
+	
+			if(isActiveAbility)
+			{
+				deltaJumpCounter -= Time.deltaTime;
+				activeAbility = true;
+			}
+		}
+		else
+		{
+			if(maxUseCounter < 0)
+			{
+				canSuperJump = false;
+			}
+		}
+
+		if(deltaJumpCounter < 0)
+		{
+			isActiveAbility = false;
+			activeAbility = false;
+			deltaJumpCounter = savedDeltaJumpCounter;
+			jumpIncreaseCounter = 0;
+			maxUseCounter = savedMaxUseCounter;
+		}
+	}
+	
+	public override  void OpponentProjectileCollision()
+	{
+		base.OpponentProjectileCollision();
+
+		if(passiveAbility)
+		{
+			collision = Physics2D.OverlapCircleAll(transform.position, 1.8f);
+
+			for(int i = 0; i < collision.Length; i++)
+			{	
+				if(collision[i].gameObject.GetInstanceID() != this.gameObject.GetInstanceID())
+				{
+					if(collision[i].gameObject.tag == "Player")
+					{
+						collision[i].gameObject.GetComponent<PlayerController>().movement.y = verticalKnockBackPower;
+						collision[i].gameObject.GetComponent<PlayerController>().movement.x = collision[i].gameObject.GetComponent<PlayerController>().abilityDirection * horizontalKnockBackPower;
+						collision[i].gameObject.GetComponent<PlayerInput>().isStunned = true;
+						//Debug.Log("this works");
+					}
+				}	
+			}
+		}
+	}
+
+	public override void Update() 
+	{		
+		base.Update();	
+
+		PlayerPassiveAbility();
+		PlayerActiveAbility();
+	}	
 }

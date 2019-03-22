@@ -14,9 +14,9 @@ public class Checkpoint : MonoBehaviour
 
 	[SerializeField] private int index;
 	[SerializeField] private PlayerFlag[] playerFlags;
-	[SerializeField] private AudioEffectController effectController;
-	[SerializeField] private float searchRadius = 1f;
-	[SerializeField] private Vector2 collisionDetectionOffset;
+	[SerializeField] private LayerMask playerLayer;
+	[SerializeField] private CircleCollider2D circle;
+	[SerializeField] private AudioOneshotPlayer oneshotPlayer;
 
 	private bool updatedCheckToGoFor;
 
@@ -32,33 +32,52 @@ public class Checkpoint : MonoBehaviour
 				}
 			}
 		}
-		if (GetComponent<AudioEffectController>() && effectController == null)
-		{
-			effectController = GetComponent<AudioEffectController>();
-		}
+		circle = GetComponent<CircleCollider2D>();
+		oneshotPlayer = GetComponent<AudioOneshotPlayer>();
 	}
 
 	void Update()
 	{
-		Collider2D collider = Physics2D.OverlapCircle((Vector2)transform.position + collisionDetectionOffset, searchRadius);
-		if (playerFlags.Length <= 0)return;
-		for (int i = 0; i < playerFlags.Length; i++)
+		if (Physics2D.OverlapCircle((Vector2)transform.position + circle.offset, circle.radius, playerLayer))
 		{
-			if (playerFlags[i].playerFlag == null)
+			Collider2D collider = Physics2D.OverlapCircle((Vector2)transform.position + circle.offset, circle.radius, playerLayer);
+			if (playerFlags.Length <= 0)return;
+			for (int i = 0; i < playerFlags.Length; i++)
 			{
-				continue;
-			}
-			if (collider.name == playerFlags[i].playerName)
-			{
-				if (effectController != null)
+				if (playerFlags[i].playerFlag == null)
 				{
-					
+					continue;
 				}
-				playerFlags[i].playerFlag.SetActive(true);
-				if (!updatedCheckToGoFor)
+				if (collider.name == playerFlags[i].playerName)
 				{
-					SetNextCheckPosToGoFor();
-					updatedCheckToGoFor = true;
+					playerFlags[i].playerFlag.SetActive(true);
+					if (!playerFlags[i].playedAudioForPlayer)
+					{
+						float paramValue = 0f;
+						switch (collider.name)
+						{
+							case "Player1":
+								paramValue = Random.Range(0.0f, 0.05f);
+								break;
+							case "Player2":
+								paramValue = Random.Range(0.1f, 0.15f);
+								break;
+							case "Player3":
+								paramValue = Random.Range(0.2f, 0.25f);
+								break;
+							case "Player4":
+								paramValue = Random.Range(0.3f, 0.35f);
+								break;
+						}
+						oneshotPlayer.PlayAudioOneShot();
+						oneshotPlayer.SetParameterValue(paramValue);
+						playerFlags[i].playedAudioForPlayer = true;
+					}
+					if (!updatedCheckToGoFor)
+					{
+						SetNextCheckPosToGoFor();
+						updatedCheckToGoFor = true;
+					}
 				}
 			}
 		}
@@ -72,14 +91,14 @@ public class Checkpoint : MonoBehaviour
 	void OnDrawGizmos()
 	{
 		Gizmos.color = Color.yellow;
-		Gizmos.DrawWireSphere((Vector2)transform.position + collisionDetectionOffset, searchRadius);
+		Gizmos.DrawWireSphere((Vector2)transform.position + circle.offset, circle.radius);
 	}
 
-	void SetNextCheckPosToGoFor()
+	public void SetNextCheckPosToGoFor()
 	{
 		if (GPSCheckpoint.Instance != null)
 		{
-			GPSCheckpoint.Instance.UpdateCheckpointToGo();
+			GPSCheckpoint.Instance.UpdateCheckpointToGo(this);
 		}
 	}
 }
@@ -89,4 +108,5 @@ public class PlayerFlag
 {
 	public GameObject playerFlag;
 	public string playerName;
+	[HideInInspector] public bool playedAudioForPlayer = false;
 }
