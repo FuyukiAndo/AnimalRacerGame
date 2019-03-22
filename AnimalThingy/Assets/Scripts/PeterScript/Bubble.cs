@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bubble : MonoBehaviour {
-
+public class Bubble : MonoBehaviour 
+{
+	private PlatformController platformController;
     public float timeBeforeDestination;
     public LayerMask characterLayer;
 
@@ -20,6 +21,8 @@ public class Bubble : MonoBehaviour {
     private void Start()
     {
         bc2d = GetComponent<BoxCollider2D>();
+		platformController = GetComponent<PlatformController> ();
+
         if (transform.parent != null)
         {
             bubbleSpawner = GetComponentInParent<BubbleSpawner>();
@@ -38,7 +41,7 @@ public class Bubble : MonoBehaviour {
     private void MoveToPosition()
     {
         travelTime += Time.deltaTime / timeBeforeDestination ;
-        if (popOnDestination && (Vector2)transform.position == travelPosition)
+		if (popOnDestination && Vector2.Distance((Vector2)transform.position, travelPosition) < 1.5f)
         {
             Destroy(gameObject);
             transform.position = Vector2.Lerp(currentPosition, travelPosition, travelTime);
@@ -53,7 +56,7 @@ public class Bubble : MonoBehaviour {
     {
         var oldColliderCount = newColliderCount;
 
-        colliders = Physics2D.OverlapBoxAll(transform.position, bc2d.bounds.size, 0.0f);
+		colliders = Physics2D.OverlapCircleAll(transform.position, GetComponent<CircleCollider2D>().radius, characterLayer);
 
         newColliderCount = colliders.Length;
         if (newColliderCount > oldColliderCount)
@@ -61,6 +64,7 @@ public class Bubble : MonoBehaviour {
             foreach (var collision in colliders)
             {
                 bool isOnLayer = characterLayer == (characterLayer | (1 << collision.gameObject.layer));
+				print(isOnLayer);
                 if (isOnLayer)
                 {
                     StartCoroutine(PopBubble());
