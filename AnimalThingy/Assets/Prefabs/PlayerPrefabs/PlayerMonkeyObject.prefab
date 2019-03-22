@@ -12219,7 +12219,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1196314723305698}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 32.260002, y: 13.53, z: 0}
+  m_LocalPosition: {x: 216.9153, y: 45.93389, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4132141405291118}
@@ -20288,7 +20288,7 @@ MonoBehaviour:
   deaccelerationModifier: 0.3
   abilityMeter: 1
   abilityMeterModifier: 0.01
-  maxUseCounter: 3
+  maxUseCounter: 1
   abilityModifier: 40
   abilityDirection: 0
   collisionController: {fileID: 114687995741526254}
@@ -20300,7 +20300,7 @@ MonoBehaviour:
   isJumping: 0
   collision: []
   wallClimbingSpeed: 5
-  leapDistance: 19
+  leapDistance: 10
   projectileObject: {fileID: 1468555816427564, guid: cc27c8f39f3a65b419dd0f11e6c7a264,
     type: 2}
 --- !u!114 &114215283629440506
@@ -20323,7 +20323,6 @@ MonoBehaviour:
     paramValue: 0
     additionalParamValues: []
     randomizeValue: 0
-  effectController: {fileID: 0}
   box: {fileID: 61297682882013074}
 --- !u!114 &114482449793670534
 MonoBehaviour:
@@ -20449,11 +20448,11 @@ MonoBehaviour:
     lineCount: 0
     pageCount: 0
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 23448453265515114}
@@ -20480,6 +20479,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speeches:
   - speechType: 0
+    playerCharacterType: 0
     speeches:
     - Uwaah!
     - "T-this won\u2019t s-stop me!"
@@ -20487,6 +20487,7 @@ MonoBehaviour:
     - Watch out with that!
     - A-almost there, c-can't stop n-now!
   - speechType: 3
+    playerCharacterType: 0
     speeches:
     - I did it! I-I can do this!
     - S-stop looking at me...
@@ -20494,6 +20495,7 @@ MonoBehaviour:
     - M-maybe I could take o-one extra banana f-for this occasion.
     - I-I will reach my goal, no matter what!
   - speechType: 4
+    playerCharacterType: 0
     speeches:
     - D-don't underrestim-mate me!
     - B-banana Power!
@@ -20501,14 +20503,17 @@ MonoBehaviour:
     - Oh, banana peel, l-let my aim b-be true!
     - 'D-don''t blame me if you g-get hurt! S-sorry just in case... '
   - speechType: 6
+    playerCharacterType: 0
     speeches:
     - I-I'm back? That was freaky...
     - W-what just happened?!
     - P-please myself, be careful.
   speechBubble: {fileID: 1668845144114176}
+  speechTextUI: {fileID: 0}
   characterCrystal: {fileID: 1952473443513038}
   speechSpeedMult: 0.4
   isCommentator: 0
+  isUi: 0
   commentator:
     speeches: []
     levelCompleteSpeech: 
@@ -20593,6 +20598,7 @@ MonoBehaviour:
   isControllable: 1
   changeAngle: 1
   oneshotPlayer: {fileID: 0}
+  playerSpeech: {fileID: 0}
 --- !u!137 &137550280197760516
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

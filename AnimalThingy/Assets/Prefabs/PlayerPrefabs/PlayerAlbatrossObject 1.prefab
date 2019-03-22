@@ -8183,7 +8183,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1045792901303020}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 36.47, y: 13.94, z: 0}
+  m_LocalPosition: {x: 227.54, y: 49.19, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4256667031458686}
@@ -15459,6 +15459,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speeches:
   - speechType: 0
+    playerCharacterType: 0
     speeches:
     - "Uwah! That wasn\u2019t nice!"
     - Ugh... What happened?
@@ -15466,6 +15467,7 @@ MonoBehaviour:
     - Where are we? Who are we, I?
     - Oh hi, friend! It hurts.
   - speechType: 3
+    playerCharacterType: 0
     speeches:
     - ' I did it? Yeeah!...?'
     - "That\u2019s how I apparently do it!"
@@ -15473,6 +15475,7 @@ MonoBehaviour:
     - Why are you all looking at me? You wanna be friends?!
     - Being good at flying away from danger seemed to pay off eventually.
   - speechType: 4
+    playerCharacterType: 0
     speeches:
     - Blast off!
     - Uwiie!
@@ -15480,6 +15483,7 @@ MonoBehaviour:
     - Uwaah! Is there something dangerous nearby?!
     - Look out behind me!
   - speechType: 6
+    playerCharacterType: 0
     speeches:
     - "Wha-what happened,  I\u2019m alive? Neat! "
     - "I\u2019m back? I\u2019m back! "
@@ -15508,15 +15512,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e08f83bd87fb6d45a770257bf733f45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxJumpHeight: 8
+  maxJumpHeight: 5
   minJumpHeight: 1
-  jumpAndFallDelay: 0.65
+  jumpAndFallDelay: 0.6
   movementSpeed: 10
   movementAcceleration: 0.15
-  accelerationModifier: 0.1
+  accelerationModifier: 0.2
   deaccelerationModifier: 0.3
   abilityMeter: 1
-  abilityMeterModifier: 0.06
+  abilityMeterModifier: 0.01
   maxUseCounter: 3
   abilityModifier: 6
   abilityDirection: 0
@@ -15534,7 +15538,8 @@ MonoBehaviour:
   windBlastObject: {fileID: 1252155166552534, guid: 4a00aecaa868a53409b7b0f3a73e88a4,
     type: 2}
   maxFlyCountdownSpeed: 5
-  glideCounterSpeed: 0.7
+  glideCounterSpeed: 0.4
+  dashTimer: 0.6
 --- !u!114 &114150597338352834
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15600,9 +15605,7 @@ MonoBehaviour:
     paramValue: 0
     additionalParamValues: []
     randomizeValue: 0
-  effectController: {fileID: 0}
   box: {fileID: 61171798329010392}
-  playerSpeech: {fileID: 0}
 --- !u!114 &114731093749113338
 MonoBehaviour:
   m_ObjectHideFlags: 1
