@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
+using UnityEngine;
 
 public class LiquidScript : MonoBehaviour
 {
@@ -10,7 +10,7 @@ public class LiquidScript : MonoBehaviour
     private Collider2D[] collider2d;
     private List<GameObject> checkpointPositions = new List<GameObject>();
     private PlayerInput playerInput;
-    private SpeechBubble playerSpeech1, playerSpeech2, playerSpeech3, playerSpeech4;
+    [SerializeField] private SpeechBubble playerSpeech1, playerSpeech2, playerSpeech3, playerSpeech4;
 
     private void Start()
     {
@@ -20,75 +20,87 @@ public class LiquidScript : MonoBehaviour
         {
             checkpointPositions.Add(checkpoint.gameObject);
         }
-        playerSpeech1 = FindObjectsOfType<SpeechBubble>().Where(bubble => bubble.name == "Player1").FirstOrDefault();
-        playerSpeech2 = FindObjectsOfType<SpeechBubble>().Where(bubble => bubble.name == "Player2").FirstOrDefault();
-        playerSpeech3 = FindObjectsOfType<SpeechBubble>().Where(bubble => bubble.name == "Player3").FirstOrDefault();
-        playerSpeech4 = FindObjectsOfType<SpeechBubble>().Where(bubble => bubble.name == "Player4").FirstOrDefault();
+        if (playerSpeech1 == null)
+        {
+            playerSpeech1 = FindObjectsOfType<SpeechBubble>().Where(bubble => bubble.name == "Player1").FirstOrDefault();
+        }
+        if (playerSpeech2 == null)
+        {
+            playerSpeech2 = FindObjectsOfType<SpeechBubble>().Where(bubble => bubble.name == "Player2").FirstOrDefault();
+        }
+        if (playerSpeech3 == null)
+        {
+            playerSpeech3 = FindObjectsOfType<SpeechBubble>().Where(bubble => bubble.name == "Player3").FirstOrDefault();
+        }
+        if (playerSpeech4 == null)
+        {
+            playerSpeech4 = FindObjectsOfType<SpeechBubble>().Where(bubble => bubble.name == "Player4").FirstOrDefault();
+        }
     }
 
     void Update()
     {
-        collider2d = Physics2D.OverlapBoxAll(transform.position, bc2d.bounds.size, 0,LayerMask.GetMask("Player"));
+        collider2d = Physics2D.OverlapBoxAll(transform.position, bc2d.bounds.size, 0, LayerMask.GetMask("Player"));
         CollisionDetect();
     }
 
     void CollisionDetect()
     {
-            for(int i = 0; i < collider2d.Length; i++)
+        for (int i = 0; i < collider2d.Length; i++)
+        {
+            if (collider2d[i].gameObject.layer == 8)
             {
-                if (collider2d[i].gameObject.layer == 8)
-                {
-                    playerInput = collider2d[i].gameObject.GetComponent<PlayerInput>();
-                }
-                if (!playerInput) break;
-                
-                if (playerInput.playerCharacterType == PlayerCharacterType.PlayerPenguin) break;
+                playerInput = collider2d[i].gameObject.GetComponent<PlayerInput>();
+            }
+            if (!playerInput)break;
 
-                if (collider2d[i].gameObject.GetComponent<CheckpointTracker>().CheckpointsPassed.Count <= 0 || checkpointPositions.Count <= 0)
+            if (playerInput.playerCharacterType == PlayerCharacterType.PlayerPenguin)break;
+
+            if (collider2d[i].gameObject.GetComponent<CheckpointTracker>().CheckpointsPassed.Count <= 0 || checkpointPositions.Count <= 0)
+            {
+                switch (collider2d[i].gameObject.name)
                 {
-                    switch (collider2d[i].gameObject.name)
+                    case "Player1":
+                        playerSpeech1.SetSpeechActive(SpeechType.respawn, collider2d[i].gameObject.GetComponent<PlayerInput>().playerCharacterType);
+                        break;
+                    case "Player2":
+                        playerSpeech2.SetSpeechActive(SpeechType.respawn, collider2d[i].gameObject.GetComponent<PlayerInput>().playerCharacterType);
+                        break;
+                    case "Player3":
+                        playerSpeech2.SetSpeechActive(SpeechType.respawn, collider2d[i].gameObject.GetComponent<PlayerInput>().playerCharacterType);
+                        break;
+                    case "Player4":
+                        playerSpeech4.SetSpeechActive(SpeechType.respawn, collider2d[i].gameObject.GetComponent<PlayerInput>().playerCharacterType);
+                        break;
+                }
+                collider2d[i].gameObject.transform.position = StartManager.Instance.spawnPos1.spawnPos.transform.position;
+            }
+
+            for (int j = 0; j < checkpointPositions.Count; j++)
+            {
+                CheckpointTracker checkpointTracker = collider2d[i].gameObject.GetComponent<CheckpointTracker>();
+                int index = checkpointTracker.CheckpointsPassed[checkpointTracker.CheckpointsPassed.Count - 1];
+
+                if (checkpointPositions[i].GetComponent<Checkpoint>().Index == index)
+                {
+                    switch (checkpointTracker.name)
                     {
                         case "Player1":
-                            playerSpeech1.SetSpeechActive(SpeechType.respawn, collider2d[i].gameObject.GetComponent<PlayerInput>().playerCharacterType);
+                            playerSpeech1.SetSpeechActive(SpeechType.respawn, checkpointTracker.GetComponent<PlayerInput>().playerCharacterType);
                             break;
                         case "Player2":
-                            playerSpeech2.SetSpeechActive(SpeechType.respawn, collider2d[i].gameObject.GetComponent<PlayerInput>().playerCharacterType);
+                            playerSpeech2.SetSpeechActive(SpeechType.respawn, checkpointTracker.GetComponent<PlayerInput>().playerCharacterType);
                             break;
                         case "Player3":
-                            playerSpeech2.SetSpeechActive(SpeechType.respawn, collider2d[i].gameObject.GetComponent<PlayerInput>().playerCharacterType);
+                            playerSpeech2.SetSpeechActive(SpeechType.respawn, checkpointTracker.GetComponent<PlayerInput>().playerCharacterType);
                             break;
                         case "Player4":
-                            playerSpeech4.SetSpeechActive(SpeechType.respawn, collider2d[i].gameObject.GetComponent<PlayerInput>().playerCharacterType);
+                            playerSpeech4.SetSpeechActive(SpeechType.respawn, checkpointTracker.GetComponent<PlayerInput>().playerCharacterType);
                             break;
                     }
-                    collider2d[i].gameObject.transform.position = StartManager.Instance.spawnPos1.spawnPos.transform.position;
+                    collider2d[i].gameObject.transform.position = checkpointPositions[i].transform.position;
                 }
 
-                for (int j = 0; j < checkpointPositions.Count; j++)
-                {
-                    CheckpointTracker checkpointTracker = collider2d[i].gameObject.GetComponent<CheckpointTracker>();
-                    int index = checkpointTracker.CheckpointsPassed[checkpointTracker.CheckpointsPassed.Count - 1];
-
-                    if (checkpointPositions[i].GetComponent<Checkpoint>().Index == index)
-                    {
-                        switch (checkpointTracker.name)
-                        {
-                            case "Player1":
-                                playerSpeech1.SetSpeechActive(SpeechType.respawn, checkpointTracker.GetComponent<PlayerInput>().playerCharacterType);
-                                break;
-                            case "Player2":
-                                playerSpeech2.SetSpeechActive(SpeechType.respawn, checkpointTracker.GetComponent<PlayerInput>().playerCharacterType);
-                                break;
-                            case "Player3":
-                                playerSpeech2.SetSpeechActive(SpeechType.respawn, checkpointTracker.GetComponent<PlayerInput>().playerCharacterType);
-                                break;
-                            case "Player4":
-                                playerSpeech4.SetSpeechActive(SpeechType.respawn, checkpointTracker.GetComponent<PlayerInput>().playerCharacterType);
-                                break;
-                        }
-                        collider2d[i].gameObject.transform.position = checkpointPositions[i].transform.position;
-                    }
-                
             }
         }
     }

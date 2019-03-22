@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bubble : MonoBehaviour {
+public class Bubble : MonoBehaviour
+{
 
     public float timeBeforeDestination;
     public LayerMask characterLayer;
@@ -16,10 +17,13 @@ public class Bubble : MonoBehaviour {
     private int newColliderCount;
     private float floatSpeed;
     public bool popOnDestination;
+    public float destinationMargin;
+    private CircleCollider2D circle;
 
     private void Start()
     {
         bc2d = GetComponent<BoxCollider2D>();
+        circle = GetComponent<CircleCollider2D>();
         if (transform.parent != null)
         {
             bubbleSpawner = GetComponentInParent<BubbleSpawner>();
@@ -29,16 +33,17 @@ public class Bubble : MonoBehaviour {
         }
     }
     // Update is called once per frame
-    void Update () {
+    void Update()
+    {
         currentPosition = transform.position;
         MoveToPosition();
         CollisionCheck();
-	}
+    }
 
     private void MoveToPosition()
     {
-        travelTime += Time.deltaTime / timeBeforeDestination ;
-        if (popOnDestination && (Vector2)transform.position == travelPosition)
+        travelTime += Time.deltaTime / timeBeforeDestination;
+        if (popOnDestination && Vector2.Distance((Vector2)transform.position, travelPosition) < destinationMargin)
         {
             Destroy(gameObject);
             transform.position = Vector2.Lerp(currentPosition, travelPosition, travelTime);
@@ -53,7 +58,7 @@ public class Bubble : MonoBehaviour {
     {
         var oldColliderCount = newColliderCount;
 
-        colliders = Physics2D.OverlapBoxAll(transform.position, bc2d.bounds.size, 0.0f);
+        colliders = Physics2D.OverlapCircleAll(transform.position, circle.radius, characterLayer);
 
         newColliderCount = colliders.Length;
         if (newColliderCount > oldColliderCount)
@@ -67,7 +72,7 @@ public class Bubble : MonoBehaviour {
                 }
             }
         }
-    } 
+    }
     IEnumerator PopBubble()
     {
         yield return new WaitForSeconds(bubbleSpawner.getPopTime);
