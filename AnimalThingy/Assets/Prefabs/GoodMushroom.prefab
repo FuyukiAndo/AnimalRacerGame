@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 61399967024677750}
   - component: {fileID: 114904973728665062}
   m_Layer: 0
-  m_Name: SpeedChanger 1
+  m_Name: GoodMushroom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
