@@ -9293,7 +9293,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1363596147525290}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 19.65, y: 13.43, z: 0}
+  m_LocalPosition: {x: 323.52084, y: 20.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4788003634734142}
@@ -12764,7 +12764,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1858676143915328}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 21.3, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children: []
   m_Father: {fileID: 4788003634734142}
@@ -14607,17 +14607,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38603cbf4f9ce4e499b835196f235665, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxJumpHeight: 8
+  maxJumpHeight: 5
   minJumpHeight: 1
-  jumpAndFallDelay: 0.496
-  movementSpeed: 12
-  movementAcceleration: 0.403
-  accelerationModifier: 0.194
-  deaccelerationModifier: 0.188
+  jumpAndFallDelay: 0.4
+  movementSpeed: 10
+  movementAcceleration: 0.15
+  accelerationModifier: 0.2
+  deaccelerationModifier: 0.3
   abilityMeter: 1
   abilityMeterModifier: 0.01
-  maxUseCounter: 4
-  abilityModifier: 1.2
+  maxUseCounter: 2
+  abilityModifier: 5
   abilityDirection: 0
   collisionController: {fileID: 0}
   movement: {x: 0, y: 0}

@@ -7127,7 +7127,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1658185059900300}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 24.28, y: 13.09, z: 0}
+  m_LocalPosition: {x: 217.51965, y: 46.210625, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4845561731692918}
@@ -11672,7 +11672,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.25, y: 1.63}
+  m_Offset: {x: -0.2731781, y: 1.57108}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -11683,7 +11683,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4, y: 2.3}
+  m_Size: {x: 3.671051, y: 2.4178786}
   m_EdgeRadius: 0
 --- !u!65 &65687791553525676
 BoxCollider:
@@ -11897,7 +11897,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8000d20c51bd1394fb04a2c1baaced7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxJumpHeight: 7
+  maxJumpHeight: 5
   minJumpHeight: 1
   jumpAndFallDelay: 0.4
   movementSpeed: 10
@@ -11906,8 +11906,8 @@ MonoBehaviour:
   deaccelerationModifier: 0.3
   abilityMeter: 1
   abilityMeterModifier: 0.01
-  maxUseCounter: 20
-  abilityModifier: 4
+  maxUseCounter: 3
+  abilityModifier: 3
   abilityDirection: 0
   collisionController: {fileID: 0}
   movement: {x: 0, y: 0}
@@ -11917,9 +11917,9 @@ MonoBehaviour:
   passiveAbility: 0
   isJumping: 0
   collision: []
-  deltaJumpCounter: 0.15
-  horizontalKnockBackPower: 30
-  verticalKnockBackPower: 30
+  deltaJumpCounter: 0.35
+  horizontalKnockBackPower: 15
+  verticalKnockBackPower: 15
 --- !u!114 &114443231994388580
 MonoBehaviour:
   m_ObjectHideFlags: 1
