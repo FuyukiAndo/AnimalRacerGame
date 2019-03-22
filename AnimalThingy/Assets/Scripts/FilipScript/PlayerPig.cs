@@ -5,11 +5,12 @@ using UnityEngine;
 public class PlayerPig : PlayerController 
 {
 	[Header("Parameter Counter Settings")]	
-	public float blowUpTimer = 0.71f;
+
 	public float deltaJumpCounter = 0.25f;
 	public float horizontalKnockBackPower = 9f;
 	public float verticalKnockBackPower = 9f;
-	
+
+	private float blowUpTimer = 0.71f;	
 	private float savedBlowUpTimer;
 	private bool canSuperJump = true;
 	private float savedDeltaJumpCounter;
@@ -59,6 +60,7 @@ public class PlayerPig : PlayerController
 		base.OnAbilityKey();
 		playerInput.isControllable = false;
 		playerInput.changeAngle = false;
+		abilityMeter = 0;
 	}
 	
 	private void PlayerPassiveAbility()

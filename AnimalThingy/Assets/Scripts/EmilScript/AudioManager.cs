@@ -51,6 +51,9 @@ public class AudioManager : MonoBehaviour
 	void OnEnable()
 	{
 		SceneManager.sceneLoaded += OnSceneLoaded;
+		SetVolumeSFX(sfxVolume);
+		SetVolumeBackground(backgroundVolume);
+		SetVolumeAmbience(ambienceVolume);
 	}
 
 	void OnSceneLoaded(Scene scene, LoadSceneMode sceneMode)
@@ -61,12 +64,15 @@ public class AudioManager : MonoBehaviour
 			{
 				if (path.mapName.Contains(scene.name) || scene.name.Contains(path.mapName))
 				{
-					SetBackgroundAudio(path.audioPath);
-					SetAmbience(path.audioPath);
+					SetBackgroundAudio(GetBackAudioPathForScene(scene));
+					SetAmbience(GetAmbienceAudioPathForScene(scene));
 					StopBackAudioLooping();
 					StopAmbienceLooping();
 					SetupBack();
 					SetupAmbience();
+					SetVolumeSFX(GetVolumeSFX());
+					SetVolumeBackground(GetVolumeBackground());
+					SetVolumeAmbience(GetVolumeAmbience());
 					PlayBackAudioLooping();
 					PlayAmbienceLooping();
 					return;
@@ -79,7 +85,17 @@ public class AudioManager : MonoBehaviour
 			{
 				if (clip.mapName.Contains(scene.name) || scene.name.Contains(clip.mapName))
 				{
-					SetBackgroundAudio(clip.audioClip);
+					SetBackgroundAudio(backgroundUnity.audioClips[i].audioClip);
+					SetAmbience(backgroundUnity.audioClips[i].audioClip);
+					StopBackAudioLooping();
+					StopAmbienceLooping();
+					SetupBack();
+					SetupAmbience();
+					SetVolumeSFX(GetVolumeSFX());
+					SetVolumeBackground(GetVolumeBackground());
+					SetVolumeAmbience(GetVolumeAmbience());
+					PlayBackAudioLooping();
+					PlayAmbienceLooping();
 					return;
 				}
 			}
@@ -318,6 +334,7 @@ public class AudioManager : MonoBehaviour
 
 	public void SetVolumeSFX(float volume)
 	{
+		PlayerPrefs.SetFloat("SFX", volume);
 		sfxVolume = volume;
 		foreach (var controller in FindObjectsOfType<AudioEffectController>())
 		{
@@ -327,7 +344,7 @@ public class AudioManager : MonoBehaviour
 
 	public float GetVolumeSFX()
 	{
-		return sfxVolume;
+		return PlayerPrefs.GetFloat("SFX");
 	}
 
 	public void FadeBackTo(string path)
@@ -426,6 +443,7 @@ public class AudioManager : MonoBehaviour
 
 	public void SetVolumeBackground(float volume)
 	{
+		PlayerPrefs.SetFloat("Background", volume);
 		backgroundVolume = volume;
 		if (useFMOD)
 		{
@@ -442,8 +460,8 @@ public class AudioManager : MonoBehaviour
 		if (useFMOD)
 		{
 			float volume, finalVolume;
-			currentBackgroundInstance.getVolume(out volume, out finalVolume);
-			return volume;
+			background.audioInstance.getVolume(out volume, out finalVolume);
+			return PlayerPrefs.GetFloat("Background");
 		}
 		else
 		{
@@ -453,6 +471,7 @@ public class AudioManager : MonoBehaviour
 
 	public void SetVolumeAmbience(float volume)
 	{
+		PlayerPrefs.SetFloat("Ambience", volume);
 		ambienceVolume = volume;
 		if (useFMOD)
 		{
@@ -470,7 +489,7 @@ public class AudioManager : MonoBehaviour
 		{
 			float volume, finalVolume;
 			ambience.audioInstance.getVolume(out volume, out finalVolume);
-			return volume;
+			return PlayerPrefs.GetFloat("Ambience");
 		}
 		else
 		{

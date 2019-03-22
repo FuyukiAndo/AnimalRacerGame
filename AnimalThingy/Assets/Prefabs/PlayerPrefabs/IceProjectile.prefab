@@ -24,7 +24,8 @@ GameObject:
   - component: {fileID: 61340279907888542}
   - component: {fileID: 114545884689168594}
   - component: {fileID: 114132070141352782}
-  m_Layer: 11
+  - component: {fileID: 114328998894758230}
+  m_Layer: 0
   m_Name: IceProjectile
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -123,6 +124,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: 8
   velocityDelay: 0.4
+--- !u!114 &114328998894758230
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1615396423180318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb45d73f4018b05428d78c453a20e5a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  untilDestroy: 3
 --- !u!114 &114545884689168594
 MonoBehaviour:
   m_ObjectHideFlags: 1

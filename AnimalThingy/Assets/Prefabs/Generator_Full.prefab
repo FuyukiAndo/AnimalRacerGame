@@ -418,6 +418,8 @@ GameObject:
   - component: {fileID: 4037059384291992}
   - component: {fileID: 114302295530753082}
   - component: {fileID: 58817857368271116}
+  - component: {fileID: 82901717571622346}
+  - component: {fileID: 114522038076732888}
   m_Layer: 11
   m_Name: Checkpoint(2)
   m_TagString: Untagged
@@ -1885,6 +1887,86 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.5}
   serializedVersion: 2
   m_Radius: 1.5
+--- !u!82 &82901717571622346
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1389414379596852}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!95 &95321139264557348
 Animator:
   serializedVersion: 3
@@ -1995,6 +2077,25 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   circle: {fileID: 58817857368271116}
+  oneshotPlayer: {fileID: 0}
+--- !u!114 &114522038076732888
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1389414379596852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ea590d8ab4e15f4cb59fa3face9f2a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sfx:
+    currentAudioPath: event:/Checkpoints
+    paramName: Checkpoints
+    paramValue: 0
+    additionalParamValues: []
+    randomizeValue: 0
+  clip: {fileID: 0}
 --- !u!137 &137095214574860946
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

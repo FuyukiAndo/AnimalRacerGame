@@ -33,14 +33,14 @@ public class GoalManager : MonoBehaviour
 	}
 	private List<GameObject> placedPlayers = new List<GameObject>();
 	private List<GameObject> trappedPlayers = new List<GameObject>();
+	private Dictionary<CheckpointTracker, int> playerChecks = new Dictionary<CheckpointTracker, int>();
 	private bool startCountDown;
 	[SerializeField] private List<CheckpointTracker> unplacedPlayers = new List<CheckpointTracker>();
 	[SerializeField] private GameObject[] playerGoalPositions;
-	//[SerializeField] private string[] playerMoveScripts;
 	private float totalTimeBeforeAutoPlacements;
 	private int initialPlayerCount;
 	[SerializeField] private LayerMask playerLayer, ignorePlayerLayer;
-	[SerializeField] private float nextSceneDelay;
+	[SerializeField] private float nextSceneDelay, stressSignalDelay;
 	private bool startedSceneSwitch;
 	private GameObject checkpointToGoFor;
 	private int currentCheckToGoFor;
@@ -60,6 +60,8 @@ public class GoalManager : MonoBehaviour
 	void Start()
 	{
 		boxSize = GetComponent<BoxCollider2D>().size;
+		commentator = FindObjectsOfType<SpeechBubble>().Where(bubble => bubble.name.Contains("Commentator")).FirstOrDefault();
+		StartCoroutine(CountDownToStressSignal());
 	}
 
 	public void Setup()
@@ -70,6 +72,12 @@ public class GoalManager : MonoBehaviour
 		}
 		totalTimeBeforeAutoPlacements = timeBeforeAutoPlacements;
 		initialPlayerCount = unplacedPlayers.Count;
+	}
+
+	IEnumerator CountDownToStressSignal()
+	{
+		yield return new WaitForSeconds(stressSignalDelay);
+		AudioManager.Instance.SetBackParameterValue(0.7f);
 	}
 
 	void Update()
@@ -99,6 +107,13 @@ public class GoalManager : MonoBehaviour
 		}
 
 		ValidateForGoal();
+
+		//Nibi
+	}
+
+	public void NotifyOfCheckpointCount(CheckpointTracker tracker)
+	{
+
 	}
 
 	void ValidateForGoal()
@@ -161,7 +176,6 @@ public class GoalManager : MonoBehaviour
 		if (unplacedPlayers.Count <= 0 && !startedSceneSwitch)
 		{
 			startedSceneSwitch = true;
-            Debug.Log("placeplayers check");
 			StartCoroutine(LoadNextScene());
 		}
 	}
@@ -251,12 +265,10 @@ public class GoalManager : MonoBehaviour
 			{
 				continue;
 			}
-			//Set victory animation?
 			PlayerInput input = player.GetComponent<PlayerInput>();
 			input.isControllable = false;
+			input.changeAngle = false;
 			PlayerController controller = player.GetComponent<PlayerController>();
-			//MonoBehaviour script = player.GetComponent(playerMoveScript) as MonoBehaviour;
-			//script.enabled = true;
 			controller.enabled = false;
 			trappedPlayers.Add(player);
 		}
@@ -385,6 +397,7 @@ public class GoalManager : MonoBehaviour
 	{
 		tracker.PlacementPoint = initialPlayerCount - placedPlayers.Count;
 		string name = tracker.name;
+
 		switch (name)
 		{
 			case "Player1":
@@ -405,8 +418,6 @@ public class GoalManager : MonoBehaviour
 	IEnumerator LoadNextScene()
 	{
 		yield return new WaitForSeconds(nextSceneDelay);
-		//int index = InformationManager.Instance.multiplayerLevels.IndexOf(
-		//InformationManager.Instance.multiplayerLevels.Find(x => x == SceneManager.GetActiveScene().name));
 		InformationManager.Instance.sceneIndex += 1;
 		SceneManager.LoadScene(InformationManager.Instance.multiplayerLevels[InformationManager.Instance.sceneIndex]);
 	}

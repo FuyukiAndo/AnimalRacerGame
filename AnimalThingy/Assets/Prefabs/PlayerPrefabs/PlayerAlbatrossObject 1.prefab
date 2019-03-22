@@ -431,9 +431,9 @@ GameObject:
   - component: {fileID: 114819313975983990}
   - component: {fileID: 114140393569672606}
   - component: {fileID: 82546735184454966}
-  - component: {fileID: 114619608739582500}
   - component: {fileID: 114671128806814976}
   - component: {fileID: 114553485742183486}
+  - component: {fileID: 114731093749113338}
   m_Layer: 8
   m_Name: PlayerAlbatrossObject 1
   m_TagString: Player
@@ -8201,7 +8201,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1045792901303020}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -155.85, y: 95.4, z: 0}
+  m_LocalPosition: {x: 36.47, y: 13.94, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4256667031458686}
@@ -15534,14 +15534,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speeches: []
   speechBubble: {fileID: 1777770811447258}
+  speechTextUI: {fileID: 0}
   characterCrystal: {fileID: 1181000132539974}
   speechSpeedMult: 0.4
   isCommentator: 0
+  isUi: 0
   commentator:
     speeches: []
     levelCompleteSpeech: 
     commentingDelay: 0
     commentatorSpeechBubble: {fileID: 0}
+    commentatorSpeechImage: {fileID: 0}
     nextComment: 0
 --- !u!114 &114140393569672606
 MonoBehaviour:
@@ -15556,15 +15559,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxJumpHeight: 8
   minJumpHeight: 1
-  jumpAndFallDelay: 0.645
+  jumpAndFallDelay: 0.65
   movementSpeed: 10
   movementAcceleration: 0.15
-  accelerationModifier: 0.2
+  accelerationModifier: 0.1
   deaccelerationModifier: 0.3
   abilityMeter: 1
-  abilityMeterModifier: 0.01
+  abilityMeterModifier: 0.06
   maxUseCounter: 3
-  abilityModifier: 2
+  abilityModifier: 6
   abilityDirection: 0
   collisionController: {fileID: 114954231877299268}
   movement: {x: 0, y: 0}
@@ -15626,35 +15629,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ListenerNumber: 1
---- !u!114 &114619608739582500
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1045792901303020}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76fe4c252ae9c5f479067e802bfc9545, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playEffectAuto: 1
-  oneshot: 1
-  attached: 0
-  startEvent: 2
-  stopEvent: 0
-  updateDelay: 2
-  sfx:
-    currentAudioPath: event:/[K] Albatross
-    paramName: 
-    paramValue: 0
-    additionalParamValues: []
-    randomizeValue: 0
-  layer:
-    serializedVersion: 2
-    m_Bits: 0
-  boxSize: {x: 1, y: 1}
-  boxOffset: {x: 0, y: 0}
-  clip: {fileID: 0}
 --- !u!114 &114671128806814976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15677,6 +15651,25 @@ MonoBehaviour:
     randomizeValue: 0
   effectController: {fileID: 0}
   box: {fileID: 61171798329010392}
+  playerSpeech: {fileID: 0}
+--- !u!114 &114731093749113338
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1045792901303020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ea590d8ab4e15f4cb59fa3face9f2a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sfx:
+    currentAudioPath: event:/[K] Albatross
+    paramName: Albatrossljud
+    paramValue: 0
+    additionalParamValues: []
+    randomizeValue: 0
+  clip: {fileID: 0}
 --- !u!114 &114819313975983990
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15700,6 +15693,8 @@ MonoBehaviour:
   isStunned: 0
   isControllable: 1
   changeAngle: 1
+  oneshotPlayer: {fileID: 0}
+  playerSpeech: {fileID: 0}
 --- !u!114 &114954231877299268
 MonoBehaviour:
   m_ObjectHideFlags: 1

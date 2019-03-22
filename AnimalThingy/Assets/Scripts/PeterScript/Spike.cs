@@ -9,13 +9,9 @@ public class Spike : FlyingTrajectory
     private float timeBeforeSpikeFalls;
     private SpikeSpawner spikeSpawner;
 
-    void Awake()
-    {
-        rb2d = GetComponent<Rigidbody2D>();
-        rb2d.gravityScale = speed;
-        rb2d.sleepMode = RigidbodySleepMode2D.StartAsleep;
-    }
     void Start () {
+        rb2d = GetComponent<Rigidbody2D>();
+        rb2d.gravityScale = 0;
         if (transform.parent != null)
         {
             spikeSpawner = GetComponentInParent<SpikeSpawner>();
@@ -34,7 +30,7 @@ public class Spike : FlyingTrajectory
         startFalling += Time.deltaTime;
         if (startFalling > timeBeforeSpikeFalls)
         {
-            rb2d.WakeUp();
+            rb2d.gravityScale = speed;
         }
     }
 	void Update () {

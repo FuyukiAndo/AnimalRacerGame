@@ -3988,9 +3988,9 @@ GameObject:
   - component: {fileID: 114056456133718378}
   - component: {fileID: 114389010344827742}
   - component: {fileID: 82977158773414486}
-  - component: {fileID: 114246133739192836}
   - component: {fileID: 114207199674327870}
   - component: {fileID: 114287004088598780}
+  - component: {fileID: 114922924393472816}
   m_Layer: 8
   m_Name: PlayerPigObject
   m_TagString: Player
@@ -7196,7 +7196,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1658185059900300}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -158.23, y: 93.46, z: 0}
+  m_LocalPosition: {x: 24.28, y: 13.09, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4845561731692918}
@@ -11836,7 +11836,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.25, y: 1.32}
+  m_Offset: {x: -0.25, y: 1.63}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -11986,6 +11986,7 @@ MonoBehaviour:
     levelCompleteSpeech: 
     commentingDelay: 0
     commentatorSpeechBubble: {fileID: 0}
+    commentatorSpeechImage: {fileID: 0}
     nextComment: 0
 --- !u!114 &114056456133718378
 MonoBehaviour:
@@ -12010,6 +12011,7 @@ MonoBehaviour:
   isStunned: 0
   isControllable: 1
   changeAngle: 1
+  oneshotPlayer: {fileID: 0}
 --- !u!114 &114207199674327870
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12032,35 +12034,6 @@ MonoBehaviour:
     randomizeValue: 0
   effectController: {fileID: 0}
   box: {fileID: 61492939536428068}
---- !u!114 &114246133739192836
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1658185059900300}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76fe4c252ae9c5f479067e802bfc9545, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playEffectAuto: 1
-  oneshot: 1
-  attached: 0
-  startEvent: 2
-  stopEvent: 0
-  updateDelay: 2
-  sfx:
-    currentAudioPath: event:/[K] Gris
-    paramName: 
-    paramValue: 0
-    additionalParamValues: []
-    randomizeValue: 0
-  layer:
-    serializedVersion: 2
-    m_Bits: 0
-  boxSize: {x: 1, y: 1}
-  boxOffset: {x: 0, y: 0}
-  clip: {fileID: 0}
 --- !u!114 &114277197157822712
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12118,7 +12091,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8000d20c51bd1394fb04a2c1baaced7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxJumpHeight: 5
+  maxJumpHeight: 7
   minJumpHeight: 1
   jumpAndFallDelay: 0.4
   movementSpeed: 10
@@ -12127,11 +12100,11 @@ MonoBehaviour:
   deaccelerationModifier: 0.3
   abilityMeter: 1
   abilityMeterModifier: 0.01
-  maxUseCounter: 8
-  abilityModifier: 2
-  abilityDirection: -1
-  collisionController: {fileID: 114277197157822712}
-  movement: {x: 1e-45, y: 0}
+  maxUseCounter: 20
+  abilityModifier: 4
+  abilityDirection: 0
+  collisionController: {fileID: 0}
+  movement: {x: 0, y: 0}
   isActiveAbility: 0
   isPassiveAbility: 0
   activeAbility: 0
@@ -12141,9 +12114,9 @@ MonoBehaviour:
   - {fileID: 61492939536428068}
   - {fileID: 0}
   blowUpTimer: 0.71
-  deltaJumpCounter: 0.25
-  horizontalKnockBackPower: 9
-  verticalKnockBackPower: 9
+  deltaJumpCounter: 0.15
+  horizontalKnockBackPower: 30
+  verticalKnockBackPower: 30
 --- !u!114 &114440336730658774
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12274,35 +12247,24 @@ MonoBehaviour:
     type: 2}
   yellowCrystalMaterial: {fileID: 2100000, guid: 1841b5596ca744b4d8e16085a83d274a,
     type: 2}
---- !u!114 &114477862827418816
+--- !u!114 &114922924393472816
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1226172274235074}
+  m_GameObject: {fileID: 1658185059900300}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73de88bc64a6d8a4ca2a32bec4e2b17b, type: 3}
+  m_Script: {fileID: 11500000, guid: 7ea590d8ab4e15f4cb59fa3face9f2a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraSmoothTime: 0.5
-  minZoom: 48.3
-  maxZoom: 25.9
-  zoomLimiter: 50
-  players:
-  - {fileID: 1658185059900300}
-  startFov: 60
-  startPos: {fileID: 4840274416343484}
-  timeBeforeZoomToPlayers: 0
-  camAngle: 5
-  camYOffset: 6.3
---- !u!124 &124796487897405758
-Behaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1226172274235074}
-  m_Enabled: 1
+  sfx:
+    currentAudioPath: event:/[K] Gris
+    paramName: Grisljud
+    paramValue: 0
+    additionalParamValues: []
+    randomizeValue: 0
+  clip: {fileID: 0}
 --- !u!137 &137990517440077416
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

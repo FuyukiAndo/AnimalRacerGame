@@ -6,6 +6,9 @@ public class PlayerPenguin : PlayerController
 {
 	public GameObject projectileObject;	
 
+	public float slideTimer = 2f;
+	[HideInInspector] public float savedSlideTimer;
+
 	private bool spawnProjectile = false;
 
 	private float InstantiateProjectileTimer;
@@ -16,18 +19,28 @@ public class PlayerPenguin : PlayerController
 		base.Start();
 		InstantiateProjectileTimer = movementSpeed/96f;
 		savedInstatiateTimer = InstantiateProjectileTimer;
+		savedSlideTimer = slideTimer;
+	}
+
+	public override  void OpponentProjectileCollision()
+	{
+		base.OpponentProjectileCollision();
 	}
 
 	public override void OnAbilityKey()
 	{
 		base.OnAbilityKey();
-		
-		playerInput.isControllable = false;
-		playerInput.changeAngle = false;
-		
-		if(!isPassiveAbility)
+
+		if(slideTimer == savedSlideTimer && abilityMeter == 1f)
 		{
-			spawnProjectile = true;
+			playerInput.isControllable = false;
+			playerInput.changeAngle = false;
+			abilityMeter = 0;
+			
+			if(!isPassiveAbility)
+			{
+				spawnProjectile = true;
+			}
 		}
 	}
 	
@@ -47,7 +60,31 @@ public class PlayerPenguin : PlayerController
 
 	private void PlayerActiveAbility()
 	{
-		if(!isPassiveAbility && passiveAbility)
+		if(passiveAbility)//!passiveAbility && isPassiveAbility)
+		{
+			if(slideTimer > 0)
+			{
+				slideTimer -= Time.deltaTime;
+				movement.x += -1 * abilityDirection * abilityModifier;
+			}
+			
+			if(slideTimer < 0)
+			{
+				slideTimer = savedSlideTimer;
+				isPassiveAbility = true;
+				passiveAbility = false;
+				playerInput.isControllable = true;
+				playerInput.changeAngle = true;
+				spawnProjectile = false;	
+			}
+		}		
+		
+		if(abilityMeter == 1f)
+		{
+			slideTimer = savedSlideTimer;
+		}
+		
+		/*if(!isPassiveAbility && passiveAbility)
 		{
 			maxUseCounter--;
 			
@@ -57,18 +94,18 @@ public class PlayerPenguin : PlayerController
 				passiveAbility = false;
 				maxUseCounter = savedMaxUseCounter;
 			}
-		}
+		}*/
 		
-		if(!passiveAbility && isPassiveAbility)
+		/*if(!passiveAbility && isPassiveAbility)
 		{
 			movement.x += -1 * abilityDirection * abilityModifier;
-		}
+		}*/
 		
 		if(!passiveAbility && !isPassiveAbility)
 		{
-			playerInput.isControllable = true;
-			playerInput.changeAngle = true;		
-			spawnProjectile = false;	
+			//playerInput.isControllable = true;
+			//playerInput.changeAngle = true;		
+
 		}		
 	}	
 

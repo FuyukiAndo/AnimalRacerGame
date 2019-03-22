@@ -31,11 +31,11 @@ public class PlayerController : MonoBehaviour
 	
 	[HideInInspector] public Vector2 movement;
 	
-	[HideInInspector] public bool isActiveAbility = false;
-	[HideInInspector] public bool isPassiveAbility = false;
-	[HideInInspector] public bool activeAbility = false;
-	[HideInInspector] public bool passiveAbility = false;
-	[HideInInspector] public bool isJumping = false;
+	public bool isActiveAbility = false;
+	public bool isPassiveAbility = false;
+	public bool activeAbility = false;
+	public bool passiveAbility = false;
+	public bool isJumping = false;
 
 	[HideInInspector] public Collider2D[] collision;	
 	
@@ -67,7 +67,7 @@ public class PlayerController : MonoBehaviour
 		playerInput = GetComponent<PlayerInput>();
 		
 		movementDirection = (int)Mathf.Sign(movement.x);
-		abilityDirection = (int)Mathf.Sign(movement.x);
+		abilityDirection = (int)Mathf.Sign(transform.rotation.x);//movement.x);
 		savedMaxUseCounter = maxUseCounter;
 		abilityMeterMax = abilityMeter;
 		
@@ -161,14 +161,13 @@ public class PlayerController : MonoBehaviour
 	{
 		if(!passiveAbility && !isPassiveAbility)
 		{
-			abilityMeter = 0;
 			passiveAbility = true;
 		}
 	}	
 
 	public virtual void OpponentProjectileCollision()
 	{
-		LayerMask projectileMask = LayerMask.NameToLayer("Projectile");
+		//LayerMask projectileMask = LayerMask.NameToLayer("Projectile");
 		collision = Physics2D.OverlapCircleAll(transform.position, 1.5f);//, projectileMask);
 
 		for(int i = 0; i < collision.Length; i++)
@@ -181,13 +180,13 @@ public class PlayerController : MonoBehaviour
 			
 			if(collision[i].gameObject.tag == "Obstacle" && playerInput.playerCharacterType != PlayerCharacterType.PlayerPenguin)
 			{
-				playerInput.isControllable = false;
+				playerInput.isStunned = true;
 				movement.x = -abilityDirection * movementSpeed*1.4f;
 			}
 			
 			if(!collision[i].gameObject)
 			{
-				playerInput.isControllable = true;
+				playerInput.isStunned = false;
 			}
 		}
 

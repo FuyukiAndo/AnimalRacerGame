@@ -19,6 +19,9 @@ public class PlayerAlbatross : PlayerController
 	private float savedJumpAndFallDelay;
 	private float savedUntilGlideCounter;
 	
+	public float dashTimer = 3f;
+	private float savedDashTimer;
+	
 	public override void Start()
 	{
 		base.Start();
@@ -26,26 +29,45 @@ public class PlayerAlbatross : PlayerController
 		savedUntilGlideCounter = untilGlideCounter;
 		savedMaxFlyCounter = maxFlyCounter;
 		savedJumpAndFallDelay = jumpAndFallDelay;
+		savedDashTimer = dashTimer;
 	}
 	
 	private void PlayerPassiveAbility()
 	{
-		if(passiveAbility)
+		/*if(passiveAbility)
 		{
-			passiveAbility = false;
-			isPassiveAbility = true;
-		}
+			//passiveAbility = false;
+			//isPassiveAbility = true;
+		}*/
 		
-		if(!passiveAbility && isPassiveAbility)
+		if(passiveAbility)//!passiveAbility && isPassiveAbility)
 		{
-			movement.x += -1 * abilityDirection * abilityModifier;
+			if(dashTimer > 0)
+			{
+				dashTimer -= Time.deltaTime;
+				movement.x += -1 * abilityDirection * abilityModifier;
+			}
+			
+			if(dashTimer < 0)
+			{
+				//dashTimer = savedDashTimer;
+				isPassiveAbility = true;
+				passiveAbility = false;
+				playerInput.isControllable = true;
+				playerInput.changeAngle = true;
+			}
 		}		
 		
-		if(!passiveAbility && !isPassiveAbility)
+		if(abilityMeter == 1f)
+		{
+			dashTimer = savedDashTimer;
+		}
+		
+		/*if(!passiveAbility && !isPassiveAbility)
 		{
 			playerInput.isControllable = true;
 			playerInput.changeAngle = true;
-		}
+		}*/
 	}
 
 	private void PlayerActiveAbility()
@@ -137,11 +159,20 @@ public class PlayerAlbatross : PlayerController
 	{
 		base.OnAbilityKey();
 	
-		playerInput.isControllable = false;
-		playerInput.changeAngle = false;
+		if(dashTimer == savedDashTimer)
+		{
+			playerInput.isControllable = false;
+			playerInput.changeAngle = false;
+			abilityMeter = 0;
 
-		Instantiate(windBlastObject, new Vector2(transform.position.x+(2.5f*abilityDirection),transform.position.y+2f), new Quaternion(0, 0, 0, 0), gameObject.transform);
-		windBlastObject.transform.parent = null;
+			Instantiate(windBlastObject, new Vector2(transform.position.x+(2.5f*abilityDirection),transform.position.y+2f), new Quaternion(0, 0, 0, 0), gameObject.transform);
+			windBlastObject.transform.parent = null;
+		}
+	}
+	
+	public override void OpponentProjectileCollision()
+	{
+		base.OpponentProjectileCollision();
 	}
 	
 	public override void Update()

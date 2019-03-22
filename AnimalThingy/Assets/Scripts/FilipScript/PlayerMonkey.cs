@@ -6,11 +6,11 @@ public class PlayerMonkey : PlayerController
 {	
 	public float wallClimbingSpeed = 5f;
 	public float leapDistance = 19f;
+	private bool canThrow = true;
 
 	public GameObject projectileObject;
 	
 	private Vector2 surfaceLeap;
-	private int dirX;
 	
 	public override void Start()
 	{
@@ -51,13 +51,13 @@ public class PlayerMonkey : PlayerController
 		{
 			activeAbility = true;
 			
-			if(dirX == 1)
+			if(abilityDirection == 1)
 			{
-				movement.y = -wallClimbingSpeed;	
+				movement.y = wallClimbingSpeed;	
 			}	
 			else
 			{
-				movement.y = wallClimbingSpeed;				
+				movement.y = -wallClimbingSpeed;				
 			}
 		}		
 	}
@@ -72,13 +72,13 @@ public class PlayerMonkey : PlayerController
 		{
 			activeAbility = true;
 			
-			if(dirX == 1)
+			if(abilityDirection == 1)
 			{
-				movement.y = wallClimbingSpeed;	
+				movement.y = -wallClimbingSpeed;	
 			}	
 			else
 			{
-				movement.y = -wallClimbingSpeed;				
+				movement.y = wallClimbingSpeed;				
 			}
 		}
 	}
@@ -87,7 +87,7 @@ public class PlayerMonkey : PlayerController
 	{
 		if(isActiveAbility)
 		{
-			movement.x = -dirX * surfaceLeap.x;
+			movement.x = abilityDirection * surfaceLeap.x;
 		}
 		else
 		{
@@ -101,38 +101,44 @@ public class PlayerMonkey : PlayerController
 		{
 			base.OnJumpKeyUp();
 		}
-		/*if(isActiveAbility)
-		{
-			
-		}
-		else
-		{
-			base.OnJumpKeyUp();
-		}*/
 	}	
 	
 	public override void OnAbilityKey()
 	{
 		base.OnAbilityKey();
 	
-		//playerInput.isControllable = false;
-		//playerInput.changeAngle = false;
-	
 		if(!isActiveAbility)
 		{
-			Instantiate(projectileObject, new Vector2(transform.position.x+(2.5f*-abilityDirection),transform.position.y+2f), new Quaternion(0, 0, 0, 0), gameObject.transform);		
+			if(canThrow)
+			{
+				maxUseCounter--;
+				Instantiate(projectileObject, new Vector2(transform.position.x+(2.5f*-abilityDirection),transform.position.y+2f), new Quaternion(0, 0, 0, 0), gameObject.transform);
+			}
 		}
 	}	
-	
-	private void PlayerPassiveAbility()
+
+	public override  void OpponentProjectileCollision()
 	{
-		if(collisionController.boxCollisionDirections.left)
-		{
-			dirX = -1;
+		base.OpponentProjectileCollision();
+	}
+
+	private void PlayerPassiveAbility()
+	{		
+		if(!isPassiveAbility && passiveAbility)
+		{	
+			if(maxUseCounter < 1)
+			{
+				canThrow = false;
+				isPassiveAbility = true;
+				passiveAbility = false;
+				abilityMeter = 0;
+				maxUseCounter = savedMaxUseCounter;
+			}
 		}
-		else
+		
+		if(abilityMeter == 1)
 		{
-			dirX = 1;
+			canThrow = true;
 		}
 	}
 
@@ -140,24 +146,26 @@ public class PlayerMonkey : PlayerController
 	{
 		surfaceLeap = new Vector2(leapDistance, 17f);
 		
-		if((collisionController.boxCollisionDirections.left || collisionController.boxCollisionDirections.right) && !collisionController.boxCollisionDirections.down && movement.y < 0)
+		if((collisionController.boxCollisionDirections.left || collisionController.boxCollisionDirections.right))
 		{
-			isActiveAbility  = true;
-			playerInput.changeAngle = false;
-			//if(!activeClimbing)
-			//{
-				/*if(movement.y < -wallClimbingSpeed)
+			if(!collisionController.boxCollisionDirections.down)
+			{
+				if(movement.y < 0)
 				{
-					movement.y = -wallClimbingSpeed;
-				}*/
-			//}
+					isActiveAbility  = true;
+					playerInput.changeAngle = false;
+				}
+			}
 		}
 		
-		if((collisionController.boxCollisionDirections.left || collisionController.boxCollisionDirections.right) && collisionController.boxCollisionDirections.down)
+		if((collisionController.boxCollisionDirections.left || collisionController.boxCollisionDirections.right))
 		{
-			isActiveAbility = false;
-			activeAbility = false;
-			playerInput.changeAngle = true;
+			if(collisionController.boxCollisionDirections.down)
+			{
+				isActiveAbility = false;
+				activeAbility = false;
+				playerInput.changeAngle = true;
+			}
 		}
 
 		if(!(collisionController.boxCollisionDirections.left || collisionController.boxCollisionDirections.right))
@@ -171,8 +179,7 @@ public class PlayerMonkey : PlayerController
 	public override void Update()
 	{
 		base.Update();
-		
-		PlayerPassiveAbility();
 		PlayerActiveAbility();
+		PlayerPassiveAbility();
 	}	
 }
