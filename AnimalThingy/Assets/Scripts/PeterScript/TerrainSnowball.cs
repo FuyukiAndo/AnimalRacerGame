@@ -107,7 +107,7 @@ public class TerrainSnowball : MonoBehaviour
                             playerSpeech2.SetSpeechActive(SpeechType.stun, collider.gameObject.GetComponent<PlayerInput>().playerCharacterType);
                             break;
                         case "Player3":
-                            playerSpeech2.SetSpeechActive(SpeechType.stun, collider.gameObject.GetComponent<PlayerInput>().playerCharacterType);
+                            playerSpeech3.SetSpeechActive(SpeechType.stun, collider.gameObject.GetComponent<PlayerInput>().playerCharacterType);
                             break;
                         case "Player4":
                             playerSpeech4.SetSpeechActive(SpeechType.stun, collider.gameObject.GetComponent<PlayerInput>().playerCharacterType);
@@ -129,7 +129,7 @@ public class TerrainSnowball : MonoBehaviour
                             playerSpeech2.SetSpeechActive(SpeechType.stun, collider.gameObject.GetComponent<PlayerInput>().playerCharacterType);
                             break;
                         case "Player3":
-                            playerSpeech2.SetSpeechActive(SpeechType.stun, collider.gameObject.GetComponent<PlayerInput>().playerCharacterType);
+                            playerSpeech3.SetSpeechActive(SpeechType.stun, collider.gameObject.GetComponent<PlayerInput>().playerCharacterType);
                             break;
                         case "Player4":
                             playerSpeech4.SetSpeechActive(SpeechType.stun, collider.gameObject.GetComponent<PlayerInput>().playerCharacterType);
