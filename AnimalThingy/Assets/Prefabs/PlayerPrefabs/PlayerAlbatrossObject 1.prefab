@@ -436,7 +436,7 @@ GameObject:
   - component: {fileID: 114731093749113338}
   m_Layer: 8
   m_Name: PlayerAlbatrossObject 1
-  m_TagString: Player
+  m_TagString: Ice_Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15519,7 +15519,6 @@ MonoBehaviour:
     m_Bits: 1536
   horizontalRaycastsAmount: 4
   verticalRaycastsAmount: 4
-  SetRayLength: 1
   maxAngle: 80
 --- !u!137 &137132973778145464
 SkinnedMeshRenderer:
