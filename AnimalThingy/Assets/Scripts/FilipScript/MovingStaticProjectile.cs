@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlastMovement : MonoBehaviour 
+public class MovingStaticProjectile : MonoBehaviour 
 {
 	private float blastSpeed = 20f;
 	private int blastDirection;

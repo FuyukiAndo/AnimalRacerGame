@@ -89,6 +89,7 @@ public class MovingPlatform : MonoBehaviour
         //MoveObject(movement * Time.deltaTime);
 
         //If collides with a BoxCollider2D above or below then velocity or movement in y-axis = 0
+		
         if (collisionController.boxCollisionDirections.up || collisionController.boxCollisionDirections.down)
         {
             movement.y = 0;
@@ -108,6 +109,7 @@ public class MovingPlatform : MonoBehaviour
         collision = Physics2D.OverlapCircleAll(transform.position, 1.5f);
 
         newColliderCount = collision.Length;
+	
         if (newColliderCount > oldColliderCount)
         {
             for (int i = 0; i < collision.Length; i++)
@@ -123,8 +125,9 @@ public class MovingPlatform : MonoBehaviour
                     //platformDurability--;
                 }
 
-                if (collision[i].gameObject.tag == "Ground" && collision[i].gameObject != gameObject)
-                {
+               // if (collision[i].gameObject.tag == "Ground" && collision[i].gameObject != gameObject)
+                if(collision[i].gameObject.tag == "Ground" && collision[i].gameObject.GetInstanceID() != this.gameObject.GetInstanceID())
+				{
                     //Destroy(gameObject);
                     if (i != 0)//(collision.Length > 2 && i > 1)
                     {
@@ -158,34 +161,7 @@ public class MovingPlatform : MonoBehaviour
         //}
         //}
     }
-    /* void OnCollisionEnter2D(Collision2D collision)
-	{
-		if(collision.gameObject.tag == "Wall")
-		{
-			//movement.x = -movement.x;
-			print("yes");
-		}
-	}*/
-
-    /*void OnCollisionEnter2D(Collision2D collision)
-    {
-		bool isOnLayer = characterLayer == (characterLayer | (1 << collision.gameObject.layer));
-		
-        if (isOnLayer)
-        {
-            timeBeforeDestroyed--;
-        }
-		
-        if (collision.gameObject.tag == "Ground")
-        {
-            Destroy(gameObject);
-        }
-		
-        //if (collision.gameObject.tag == "Wall")
-        //{
-        //    speed = -speed;
-        //}
-    }*/
+	
     //void whichHitDir()
     //{
     //   /* if(speed > 0)
@@ -202,31 +178,14 @@ public class MovingPlatform : MonoBehaviour
     //    }*/
     //}
 
-    //  void MovePlatform()
-    //{
-    //movePlatform = new Vector2(speed, 0);
-    //transform.Translate(movePlatform * Time.deltaTime);
-    //rb2d.velocity = movePlatform;
-    // Debug.Log(breakTime);
-    // }
-    /*void MoveObject(Vector2 movement)
+	/*void MovePlatform()
 	{
-		//Checks for collisions 
-		/*collisionController.UpdateRaycastDirections();
-		collisionController.boxCollisionDirections.resetDirections();
-		if(movement.y < 0)
-		{
-			collisionController.DescendSlope(ref movement);
-		}
-		//Only checks for collision if moving in any direction
-		if(movement.x != 0 || movement.y != 0)
-		{
-			collisionController.checkCollision(ref movement);
-		}
-		//Translate the object in the direction movement
-		platformController.MoveObject(movement);
-		//transform.Translate(movement);
+		movePlatform = new Vector2(speed, 0);
+		transform.Translate(movePlatform * Time.deltaTime);
+		rb2d.velocity = movePlatform;
+		Debug.Log(breakTime);
 	}*/
+
     IEnumerator DestroyOnPlatformCollision()
     {
         yield return new WaitForSeconds(destroyDelay);
@@ -249,24 +208,5 @@ public class MovingPlatform : MonoBehaviour
                 }
             }
         }
-
-
-        /*private void OnTriggerEnter2D(Collider2D collision)
-        {
-            if(collision.gameObject.layer == 4)
-            {
-                rb2d.velocity = new Vector2(speed, 0);
-                //rb2d.bodyType = RigidbodyType2D.Kinematic;
-
-            }
-        }
-
-        private void OnTriggerExit2D(Collider2D collision)
-        {
-            if (collision.gameObject.layer == 4)
-            {
-                //rb2d.bodyType = RigidbodyType2D.Dynamic;
-            }
-        }*/
     }
-    }
+}
