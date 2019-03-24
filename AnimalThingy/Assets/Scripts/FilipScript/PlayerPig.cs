@@ -138,7 +138,6 @@ public class PlayerPig : PlayerController
 						collision[i].gameObject.GetComponent<PlayerController>().movement.y = verticalKnockBackPower;
 						collision[i].gameObject.GetComponent<PlayerController>().movement.x = collision[i].gameObject.GetComponent<PlayerController>().abilityDirection * horizontalKnockBackPower;
 						collision[i].gameObject.GetComponent<PlayerInput>().isStunned = true;
-						//Debug.Log("this works");
 					}
 				}	
 			}

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StaticProjectileController : ProjectileGravityController 
+public class StaticProjectile : ProjectileGravityController 
 {
 	public override void Start()
 	{
