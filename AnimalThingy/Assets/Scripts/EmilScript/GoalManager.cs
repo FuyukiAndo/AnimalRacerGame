@@ -33,7 +33,7 @@ public class GoalManager : MonoBehaviour
 	}
 	private List<GameObject> placedPlayers = new List<GameObject>();
 	private List<GameObject> trappedPlayers = new List<GameObject>();
-	private Dictionary<CheckpointTracker, int> playerChecks = new Dictionary<CheckpointTracker, int>();
+	private List<PlayerCheckCount> playerChecks = new List<PlayerCheckCount>();
 	private bool startCountDown;
 	[SerializeField] private List<CheckpointTracker> unplacedPlayers = new List<CheckpointTracker>();
 	[SerializeField] private GameObject[] playerGoalPositions;
@@ -69,6 +69,11 @@ public class GoalManager : MonoBehaviour
 		foreach (var tracker in FindObjectsOfType<CheckpointTracker>())
 		{
 			unplacedPlayers.Add(tracker);
+		}
+		for (int i = 0; i < unplacedPlayers.Count(); i++)
+		{
+			playerChecks[i].tracker = unplacedPlayers[i].GetComponent<CheckpointTracker>();
+			playerChecks[i].checks = 0;
 		}
 		totalTimeBeforeAutoPlacements = timeBeforeAutoPlacements;
 		initialPlayerCount = unplacedPlayers.Count;
@@ -107,13 +112,85 @@ public class GoalManager : MonoBehaviour
 		}
 
 		ValidateForGoal();
-
-		//Nibi
 	}
 
 	public void NotifyOfCheckpointCount(CheckpointTracker tracker)
 	{
+		PlayerCheckCount checkCount = playerChecks.Where(player => player.tracker == tracker).FirstOrDefault();
+		checkCount.checks++;
+		CheckForCommentatorEvent();
+	}
 
+	void CheckForCommentatorEvent()
+	{
+		bool allOneLeft = true, allTwo = true, allThree = true, allAll = true;
+		foreach (var player in playerChecks)
+		{
+			if (player.checks != checksToPass.Count() - 1)
+			{
+				allOneLeft = false;
+			}
+			if (player.checks != 2)
+			{
+				allTwo = false;
+			}
+			if (player.checks != 3)
+			{
+				allThree = false;
+			}
+			if (player.checks != checksToPass.Count())
+			{
+				allAll = false;
+			}
+		}
+		for (int i = 0; i < playerChecks.Count(); i++)
+		{
+			for (int j = 0; j < playerChecks.Count(); j++)
+			{
+				if (playerChecks[i].checks == checksToPass.Count() - 1 && playerChecks[j].checks == checksToPass.Count() - 1)
+				{
+					commentator.SetCommentatorSpeechActive(false, CommentatorSpeechType.twoOneLeft);
+					return;
+				}
+				else if (playerChecks[i].checks == 2 && playerChecks[j].checks == 2
+					|| playerChecks[i].checks == 3 && playerChecks[j].checks == 3)
+				{
+					commentator.SetCommentatorSpeechActive(false, CommentatorSpeechType.twoTwo);
+					return;
+				}
+				else if (playerChecks[i].checks == checksToPass.Count() && playerChecks[j].checks == checksToPass.Count())
+				{
+					commentator.SetCommentatorSpeechActive(false, CommentatorSpeechType.twoAll);
+					return;
+				}
+			}
+			if (playerChecks[i].checks == checksToPass.Count() - 1)
+			{
+				commentator.SetCommentatorSpeechActive(false, CommentatorSpeechType.oneOneLeft);
+				return;
+			}
+			else if (playerChecks[i].checks == checksToPass.Count())
+			{
+				commentator.SetCommentatorSpeechActive(false, CommentatorSpeechType.oneAll);
+				return;
+			}
+		}
+		if (allOneLeft)
+		{
+			commentator.SetCommentatorSpeechActive(false, CommentatorSpeechType.multipleOneLeft);
+		}
+		else if (allAll)
+		{
+			commentator.SetCommentatorSpeechActive(false, CommentatorSpeechType.multipleAll);
+		}
+		else if (allThree)
+		{
+			commentator.SetCommentatorSpeechActive(false, CommentatorSpeechType.multipleThree);
+		}
+		else if (allTwo)
+		{
+			commentator.SetCommentatorSpeechActive(false, CommentatorSpeechType.multipleTwo);
+		}
 	}
 
 	void ValidateForGoal()
@@ -177,6 +254,10 @@ public class GoalManager : MonoBehaviour
 		{
 			startedSceneSwitch = true;
 			StartCoroutine(LoadNextScene());
+		}
+		if (placedPlayers.Count == initialPlayerCount)
+		{
+			commentator.SetCommentatorSpeechActive(true, CommentatorSpeechType.none);
 		}
 	}
 
@@ -271,13 +352,6 @@ public class GoalManager : MonoBehaviour
 			PlayerController controller = player.GetComponent<PlayerController>();
 			controller.enabled = false;
 			trappedPlayers.Add(player);
-		}
-		if (placedPlayers.Count == initialPlayerCount)
-		{
-			if (commentator != null)
-			{
-				commentator.SetCommentatorSpeechActive(true);
-			}
 		}
 	}
 
@@ -421,4 +495,10 @@ public class GoalManager : MonoBehaviour
 		InformationManager.Instance.sceneIndex += 1;
 		SceneManager.LoadScene(InformationManager.Instance.multiplayerLevels[InformationManager.Instance.sceneIndex]);
 	}
+}
+
+public class PlayerCheckCount
+{
+	public int checks;
+	public CheckpointTracker tracker;
 }
