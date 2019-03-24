@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovingProjectile: ProjectileGravityController 
+public class MovingDynamicProjectile: ProjectileGravityController 
 {
 	private int projectileDirection;
 	private float projectileArch;
