@@ -45,10 +45,7 @@ public class GPSCheckpoint : MonoBehaviour
     {
         if (checkpoint.transform == checkpoints[index])
         {
-            index++;
-			Debug.Log("index:" + index);
-			Debug.Log("index: " + checkpoints.IndexOf(checkpoints[index]) + " item: " + checkpoints[index]);
-			
+            index++;			
             currentCheckpoint = checkpoints[index];
 
         }
@@ -100,8 +97,12 @@ public class GPSCheckpoint : MonoBehaviour
             }
             return;
         }
+		
+		if(!outofScreenX && !outofScreenY)
+		{
         arrow.rectTransform.eulerAngles = new Vector3(0f, 0f, 0f);
         arrow.rectTransform.position = Camera.main.WorldToScreenPoint(new Vector3(checkX, checkY));
+		}
 
     }
     void UpdateIfInsideOfScreenX()

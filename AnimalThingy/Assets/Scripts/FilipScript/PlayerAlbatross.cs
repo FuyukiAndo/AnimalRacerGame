@@ -31,7 +31,7 @@ public class PlayerAlbatross : PlayerController
 		savedJumpAndFallDelay = jumpAndFallDelay;
 		savedDashTimer = dashTimer;
 	}
-	
+
 	private void PlayerPassiveAbility()
 	{
 		/*if(passiveAbility)
