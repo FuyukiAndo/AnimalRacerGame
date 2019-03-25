@@ -5,19 +5,21 @@ using UnityEngine;
 public class CollisionController : RaycastController
 {
 	[Header("Collision Mask")]
-	[Tooltip("The layer mask which to check for collision")]
+	
+	[Tooltip("The layer mask(s) which to check for collision")]
 	public LayerMask collisionMask;
 	
 	[Header("Amount of raycasts")]
-	//[Tooltip("The amount of raycasts vectors for horizontal collision")]	
+
+	[Tooltip("The amount of raycasts vectors for horizontal collision")]	
 	public int horizontalRaycastsAmount = 4;
-	//[Tooltip("The amount of raycasts vectors for horizontal collision")]	
+
+	[Tooltip("The amount of raycasts vectors for horizontal collision")]	
 	public int verticalRaycastsAmount = 4;
 	
-	public float SetRayLength = 1.0f;
+	//private float SetRayLength = 1.0f;
 	//public static CollisionController collisionController;
-	
-	//private string collisionTag = "OneWay";
+
 	private string oneWayCollision = "OneWay";
 	
 	//Max angle player can move on, (don't touch this) - 80
@@ -25,20 +27,18 @@ public class CollisionController : RaycastController
 	
 	[HideInInspector]public BoxCollisionDirections boxCollisionDirections;
 	
-//	public float directionY;// = Mathf.Sign(movement.y);
-	//public Vector2 rayVectorY;
-	
 	public override void Start()
 	{
 		base.Start();
 		boxCollisionDirections.direction = 1;
 	}
 	
-	void Update()
+	private void Update()
 	{
 		horizontalRaycastAmount = horizontalRaycastsAmount;
 		verticalRaycastAmount = verticalRaycastsAmount;
 	}
+	
 	/*string[] stringtags = new string[]{"player", "enemy"};
 	public enum tagNumbers{player,enemy};
 	public tagNumbers tagNum;*/
@@ -96,7 +96,7 @@ public class CollisionController : RaycastController
 	public void checkCollision(ref Vector2 movement)
 	{
 		float directionX = boxCollisionDirections.direction;//Mathf.Sign(movement.x);
-		float rayLengthX = Mathf.Abs(movement.x) + collisionOffset*SetRayLength;
+		float rayLengthX = Mathf.Abs(movement.x) + collisionOffset;// * SetRayLength;
 		
 		if(Mathf.Abs(movement.x) < collisionOffset)
 		{
@@ -120,7 +120,6 @@ public class CollisionController : RaycastController
 			
 			RaycastHit2D hitX = Physics2D.Raycast(rayVectorX, Vector2.right * directionX, rayLengthX, collisionMask);
 			Debug.DrawRay(rayVectorX, Vector2.right * directionX * rayLengthX, Color.red);
-
 			
 			if (hitX)
 			{		
@@ -176,7 +175,7 @@ public class CollisionController : RaycastController
 
 		//Physics2D.SyncTransforms(); 
 		float directionY = Mathf.Sign(movement.y);
-		float rayLengthY = Mathf.Abs(movement.y) + collisionOffset*SetRayLength;
+		float rayLengthY = Mathf.Abs(movement.y) + collisionOffset;// * SetRayLength;
 		
 		for(int i = 0; i < verticalRaycastAmount; i++)
 		{

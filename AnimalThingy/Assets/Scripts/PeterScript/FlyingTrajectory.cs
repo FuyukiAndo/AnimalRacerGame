@@ -43,7 +43,7 @@ public class FlyingTrajectory : MonoBehaviour {
                     playerSpeech2.SetSpeechActive(SpeechType.stun, player.playerCharacterType);
                     break;
                 case "Player3":
-                    playerSpeech2.SetSpeechActive(SpeechType.stun, player.playerCharacterType);
+                    playerSpeech3.SetSpeechActive(SpeechType.stun, player.playerCharacterType);
                     break;
                 case "Player4":
                     playerSpeech4.SetSpeechActive(SpeechType.stun, player.playerCharacterType);

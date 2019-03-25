@@ -85,15 +85,15 @@ public class PlayerInput : MonoBehaviour
 
 			playerCharacterType = PlayerCharacterType.PlayerAlbatross;
 
-			keyCodeDictionary0.Add(playerNoKey,()=> playerAlbatross.MoveNot());
+			keyCodeDictionary0.Add(playerNoKey, () => playerAlbatross.MoveNot());
 
-			keyCodeDictionary0.Add(playerLeftKey,()=> playerAlbatross.MoveLeft());
-			keyCodeDictionary0.Add(playerRightKey,()=> playerAlbatross.MoveRight());
+			keyCodeDictionary0.Add(playerLeftKey, () => playerAlbatross.MoveLeft());
+			keyCodeDictionary0.Add(playerRightKey, () => playerAlbatross.MoveRight());
 
-			keyCodeDictionary0.Add(playerJumpKey,()=> playerAlbatross.OnJumpKeyDown());
-			keyCodeDictionary1.Add(playerJumpKey,()=> playerAlbatross.OnJumpKeyUp());
+			keyCodeDictionary0.Add(playerJumpKey, () => playerAlbatross.OnJumpKeyDown());
+			keyCodeDictionary1.Add(playerJumpKey, () => playerAlbatross.OnJumpKeyUp());
 
-			keyCodeDictionary0.Add(playerAbilityKey,()=> playerAlbatross.OnAbilityKey());
+			keyCodeDictionary0.Add(playerAbilityKey, () => playerAlbatross.OnAbilityKey());
 		}
 		else if (monkeyComponent != null)
 		{
@@ -101,15 +101,15 @@ public class PlayerInput : MonoBehaviour
 
 			playerCharacterType = PlayerCharacterType.PlayerMonkey;
 
-			keyCodeDictionary0.Add(playerNoKey,()=> playerMonkey.MoveNot());
+			keyCodeDictionary0.Add(playerNoKey, () => playerMonkey.MoveNot());
 
-			keyCodeDictionary0.Add(playerLeftKey,()=> playerMonkey.MoveLeft());
-			keyCodeDictionary0.Add(playerRightKey,()=> playerMonkey.MoveRight());
+			keyCodeDictionary0.Add(playerLeftKey, () => playerMonkey.MoveLeft());
+			keyCodeDictionary0.Add(playerRightKey, () => playerMonkey.MoveRight());
 
-			keyCodeDictionary0.Add(playerJumpKey,()=> playerMonkey.OnJumpKeyDown());
-			keyCodeDictionary1.Add(playerJumpKey,()=> playerMonkey.OnJumpKeyUp());
+			keyCodeDictionary0.Add(playerJumpKey, () => playerMonkey.OnJumpKeyDown());
+			keyCodeDictionary1.Add(playerJumpKey, () => playerMonkey.OnJumpKeyUp());
 
-			keyCodeDictionary0.Add(playerAbilityKey,()=>playerMonkey.OnAbilityKey());
+			keyCodeDictionary0.Add(playerAbilityKey, () => playerMonkey.OnAbilityKey());
 		}
 		else if (penguinComponent != null)
 		{
@@ -117,31 +117,31 @@ public class PlayerInput : MonoBehaviour
 
 			playerCharacterType = PlayerCharacterType.PlayerPenguin;
 
-			keyCodeDictionary0.Add(playerNoKey,()=> playerPenguin.MoveNot());
+			keyCodeDictionary0.Add(playerNoKey, () => playerPenguin.MoveNot());
 
-			keyCodeDictionary0.Add(playerLeftKey,()=> playerPenguin.MoveLeft());
-			keyCodeDictionary0.Add(playerRightKey,()=> playerPenguin.MoveRight());
+			keyCodeDictionary0.Add(playerLeftKey, () => playerPenguin.MoveLeft());
+			keyCodeDictionary0.Add(playerRightKey, () => playerPenguin.MoveRight());
 
-			keyCodeDictionary0.Add(playerJumpKey,()=> playerPenguin.OnJumpKeyDown());
-			keyCodeDictionary1.Add(playerJumpKey,()=> playerPenguin.OnJumpKeyUp());
+			keyCodeDictionary0.Add(playerJumpKey, () => playerPenguin.OnJumpKeyDown());
+			keyCodeDictionary1.Add(playerJumpKey, () => playerPenguin.OnJumpKeyUp());
 
-			keyCodeDictionary0.Add(playerAbilityKey,()=> playerPenguin.OnAbilityKey());
+			keyCodeDictionary0.Add(playerAbilityKey, () => playerPenguin.OnAbilityKey());
 		}
 		else if (pigComponent != null)
 		{
 			playerPig = GetComponent<PlayerPig>();
 
 			playerCharacterType = PlayerCharacterType.PlayerPig;
-			
-			keyCodeDictionary0.Add(playerNoKey,()=> playerPig.MoveNot());
 
-			keyCodeDictionary0.Add(playerLeftKey,()=> playerPig.MoveLeft());
-			keyCodeDictionary0.Add(playerRightKey,()=> playerPig.MoveRight());
+			keyCodeDictionary0.Add(playerNoKey, () => playerPig.MoveNot());
 
-			keyCodeDictionary0.Add(playerJumpKey,()=> playerPig.OnJumpKeyDown());
-			keyCodeDictionary1.Add(playerJumpKey,()=> playerPig.OnJumpKeyUp());
+			keyCodeDictionary0.Add(playerLeftKey, () => playerPig.MoveLeft());
+			keyCodeDictionary0.Add(playerRightKey, () => playerPig.MoveRight());
 
-			keyCodeDictionary0.Add(playerAbilityKey,()=> playerPig.OnAbilityKey());
+			keyCodeDictionary0.Add(playerJumpKey, () => playerPig.OnJumpKeyDown());
+			keyCodeDictionary1.Add(playerJumpKey, () => playerPig.OnJumpKeyUp());
+
+			keyCodeDictionary0.Add(playerAbilityKey, () => playerPig.OnAbilityKey());
 		}
 
 		// Audio & Speech text
@@ -214,18 +214,18 @@ public class PlayerInput : MonoBehaviour
 	private void InputAudio()
 	{
 		//Still doesn't work :S
-		
-		/*if(isStunned)
+
+		if(isStunned)
 		{
 			if (!triggeredAnger)
 			{
 				triggeredAnger = true;
 
-				if(!oneshotPlayer.IsAudioPathNull())
+				/*if(!oneshotPlayer.IsAudioPathNull())
 				{
 					oneshotPlayer.PlayAudioOneShot();
 					oneshotPlayer.SetParameterValue(1.5f);
-				}
+				}*/
 
 				if (playerSpeech != null)
 				{
@@ -241,11 +241,11 @@ public class PlayerInput : MonoBehaviour
 		
 		if (Input.GetKeyDown(playerAbilityKey))
 		{
-			if(!oneshotPlayer.IsAudioPathNull())
+			/*if(!oneshotPlayer.IsAudioPathNull())
 			{
 				oneshotPlayer.PlayAudioOneShot();
 				oneshotPlayer.SetParameterValue(2.5f);
-			}
+			}*/
 			
 			if (playerSpeech != null)
 			{
@@ -253,7 +253,7 @@ public class PlayerInput : MonoBehaviour
 			}
 		}
 
-		if (Input.GetKeyDown(playerJumpKey))
+		/*if (Input.GetKeyDown(playerJumpKey))
 		{
 			if(!oneshotPlayer.IsAudioPathNull())
 			{
@@ -486,7 +486,7 @@ public class PlayerInput : MonoBehaviour
 			{
 				if (playerMonkey.movement.x == 0)
 				{
-					animationHandler.SetAnimatorTrigger("SpecialT");	
+					animationHandler.SetAnimatorTrigger("SpecialT");
 				}
 			}
 		}

@@ -60,7 +60,7 @@ public class PlayerPenguin : PlayerController
 
 	private void PlayerActiveAbility()
 	{
-		if(passiveAbility)//!passiveAbility && isPassiveAbility)
+		if(passiveAbility)
 		{
 			if(slideTimer > 0)
 			{
@@ -82,31 +82,7 @@ public class PlayerPenguin : PlayerController
 		if(abilityMeter == 1f)
 		{
 			slideTimer = savedSlideTimer;
-		}
-		
-		/*if(!isPassiveAbility && passiveAbility)
-		{
-			maxUseCounter--;
-			
-			if(maxUseCounter < 0)
-			{
-				isPassiveAbility = true;
-				passiveAbility = false;
-				maxUseCounter = savedMaxUseCounter;
-			}
-		}*/
-		
-		/*if(!passiveAbility && isPassiveAbility)
-		{
-			movement.x += -1 * abilityDirection * abilityModifier;
-		}*/
-		
-		if(!passiveAbility && !isPassiveAbility)
-		{
-			//playerInput.isControllable = true;
-			//playerInput.changeAngle = true;		
-
-		}		
+		}	
 	}	
 
 	public override void Update() 

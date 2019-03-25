@@ -112,7 +112,7 @@ public class PlayerMonkey : PlayerController
 			if(canThrow)
 			{
 				maxUseCounter--;
-				Instantiate(projectileObject, new Vector2(transform.position.x+(2.5f*-abilityDirection),transform.position.y+2f), new Quaternion(0, 0, 0, 0), gameObject.transform);
+				Instantiate(projectileObject, new Vector2(transform.position.x+(2.5f*-abilityDirection),transform.position.y+2.5f), new Quaternion(0, 0, 0, 0), gameObject.transform);
 			}
 		}
 	}	

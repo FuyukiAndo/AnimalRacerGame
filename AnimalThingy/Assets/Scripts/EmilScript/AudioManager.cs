@@ -51,9 +51,9 @@ public class AudioManager : MonoBehaviour
 	void OnEnable()
 	{
 		SceneManager.sceneLoaded += OnSceneLoaded;
-		SetVolumeSFX(sfxVolume);
-		SetVolumeBackground(backgroundVolume);
-		SetVolumeAmbience(ambienceVolume);
+		SetVolumeSFX(.5f);
+		SetVolumeBackground(.5f);
+		SetVolumeAmbience(.5f);
 	}
 
 	void OnSceneLoaded(Scene scene, LoadSceneMode sceneMode)
@@ -232,6 +232,17 @@ public class AudioManager : MonoBehaviour
 			instance = this;
 			backgroundRoutine = PlayBackAudio();
 			ambienceRoutine = PlayAmbience();
+			SetBackgroundAudio(GetBackAudioPathForScene(SceneManager.GetActiveScene()));
+			SetAmbience(GetAmbienceAudioPathForScene(SceneManager.GetActiveScene()));
+			StopBackAudioLooping();
+			StopAmbienceLooping();
+			SetupBack();
+			SetupAmbience();
+			SetVolumeSFX(.5f);
+			SetVolumeBackground(.5f);
+			SetVolumeAmbience(.5f);
+			PlayBackAudioLooping();
+			PlayAmbienceLooping();
 			DontDestroyOnLoad(gameObject);
 		}
 		else if (instance != this)

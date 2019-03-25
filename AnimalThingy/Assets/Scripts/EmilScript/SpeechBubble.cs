@@ -9,29 +9,27 @@ public class SpeechBubble : MonoBehaviour
 {
 
 	[SerializeField] private Speech[] speeches;
-	[SerializeField] private GameObject speechBubble, speechTextUI, characterCrystal;
+	[SerializeField] private GameObject speechBubble, speechTextUI;
 	[SerializeField] private float speechSpeedMult = .4f;
-	[SerializeField] private bool isCommentator, isUi;
-	[SerializeField] private CommentatorSpeech commentator;
-	private TextMeshPro textMesh;
+	[SerializeField] private int minSpeechSizeToIgnoreSpeedMult = 8;
+	[SerializeField] private bool isCommentator;
+	[SerializeField] private CommentatorSpeech[] commentatorSpeeches;
+	[SerializeField] private string levelCompleteSpeech;
+	[SerializeField] private float commentingDelay;
+	[SerializeField] private GameObject commentatorSpeechBubble, commentatorSpeechText, nibiPortrait;
+	private float nextComment, actualCommentDelay;
 	private TextMeshProUGUI commentatorText, textUI;
+	private bool disruptUpdateCommenting = false;
 
 	void Start()
 	{
-		if (!isUi && isCommentator)
+		if (isCommentator)
 		{
-			commentatorText = commentator.commentatorSpeechBubble.GetComponent<TextMeshProUGUI>();
-			commentator.commentatorSpeechBubble.SetActive(false);
-			commentator.commentatorSpeechImage.SetActive(false);
+			commentatorText = commentatorSpeechText.GetComponent<TextMeshProUGUI>();
+			commentatorSpeechBubble.SetActive(false);
+			nibiPortrait.SetActive(false);
 		}
-		else if (!isUi && !isCommentator)
-		{
-			textMesh = speechBubble.GetComponent<TextMeshPro>();
-			textMesh.autoSizeTextContainer = true;
-			characterCrystal.SetActive(true);
-			speechBubble.SetActive(false);
-		}
-		else if (isUi && !isCommentator)
+		else
 		{
 			textUI = speechTextUI.GetComponent<TextMeshProUGUI>();
 			speechBubble.SetActive(false);
@@ -40,11 +38,13 @@ public class SpeechBubble : MonoBehaviour
 
 	void Update()
 	{
-		if (commentator.speeches.Length > 0 && isCommentator)
+		if (!disruptUpdateCommenting && commentatorSpeeches.Length > 0 && isCommentator)
 		{
-			if (Time.time > commentator.nextComment)
+			if (Time.time > nextComment)
 			{
-				SetCommentatorSpeechActive(false);
+				SetCommentatorSpeechActive(false, CommentatorSpeechType.none);
+				actualCommentDelay = commentingDelay + (commentatorText.text.Length * speechSpeedMult);
+				nextComment = Time.time + actualCommentDelay;
 			}
 		}
 	}
@@ -52,78 +52,77 @@ public class SpeechBubble : MonoBehaviour
 	public void SetSpeechActive(SpeechType speechType, PlayerCharacterType playerType)
 	{
 		SetRandomSpeechFromType(speechType, playerType);
-		if (!isUi)
-		{
-			characterCrystal.SetActive(false);
-			speechBubble.SetActive(true);
-		}
-		else
-		{
-			speechBubble.SetActive(true);
-		}
+		speechBubble.SetActive(true);
 		StartCoroutine(SetSpeechInactive());
 	}
 
-	public void SetCommentatorSpeechActive(bool levelComplete)
+	public void SetCommentatorSpeechActive(bool levelComplete, CommentatorSpeechType type)
 	{
 		if (levelComplete)
 		{
-			commentatorText.text = commentator.levelCompleteSpeech;
+			commentatorText.text = levelCompleteSpeech;
+			disruptUpdateCommenting = true;
 		}
 		else
 		{
-			SetRandomSpeechFromCommentator();
+			SetRandomSpeechFromCommentator(type);
 		}
-		commentator.commentatorSpeechImage.SetActive(true);
-		commentator.commentatorSpeechBubble.SetActive(true);
+		if (commentatorText.text == string.Empty)
+		{
+			return;
+		}
+		commentatorSpeechBubble.SetActive(true);
+		nibiPortrait.SetActive(true);
 		StartCoroutine(SetSpeechInactive());
-		commentator.nextComment = Time.time + commentator.commentingDelay;
 	}
 
 	void SetRandomSpeechFromType(SpeechType speechType, PlayerCharacterType playerType)
 	{
 		Speech speech = speeches.Where(tempSpeech => tempSpeech.speechType == speechType && tempSpeech.playerCharacterType == playerType).FirstOrDefault();
 		int rand = Random.Range(0, speech.speeches.Length);
-		if (!isUi)
-		{
-			textMesh.text = speech.speeches[rand];
-		}
-		else
-		{
-			textUI.text = speech.speeches[rand];
-		}
+		textUI.text = speech.speeches[rand];
 	}
 
-	void SetRandomSpeechFromCommentator()
+	void SetRandomSpeechFromCommentator(CommentatorSpeechType type)
 	{
-		int rand = Random.Range(0, commentator.speeches.Length - 1);
-		commentatorText.text = commentator.speeches[rand];
+		if (type != CommentatorSpeechType.none)disruptUpdateCommenting = true;
+		List<CommentatorSpeech> speeches = commentatorSpeeches.ToList();
+		CommentatorSpeech speechSearch = speeches.Find(x => x.speechType == type);
+		if (speechSearch == null)return;
+		CommentatorSpeech speech = commentatorSpeeches.Where(tempSpeech => tempSpeech.speechType == type).FirstOrDefault();
+		int rand = Random.Range(0, speech.speeches.Length);
+		commentatorText.text = speech.speeches[rand];
 	}
 
 	IEnumerator SetSpeechInactive()
 	{
 		if (isCommentator)
 		{
-			yield return new WaitForSeconds(commentatorText.text.Length * speechSpeedMult);
-			commentatorText.text = string.Empty;
-			commentator.commentatorSpeechBubble.SetActive(false);
-			commentator.commentatorSpeechImage.SetActive(false);
-		}
-		else
-		{
-			if (!isUi)
+			if (commentatorText.text.Length > minSpeechSizeToIgnoreSpeedMult)
 			{
-				yield return new WaitForSeconds(textMesh.text.Length * speechSpeedMult);
-				textMesh.text = string.Empty;
-				speechBubble.SetActive(false);
-				characterCrystal.SetActive(true);
+				yield return new WaitForSeconds(commentatorText.text.Length * speechSpeedMult);
 			}
 			else
 			{
-				yield return new WaitForSeconds(textUI.text.Length * speechSpeedMult);
-				textUI.text = string.Empty;
-				speechBubble.SetActive(false);
+				yield return new WaitForSeconds(commentatorText.text.Length);
 			}
+			commentatorText.text = string.Empty;
+			commentatorSpeechBubble.SetActive(false);
+			nibiPortrait.SetActive(false);
+			if (disruptUpdateCommenting) disruptUpdateCommenting = false;
+		}
+		else
+		{
+			if (textUI.text.Length > minSpeechSizeToIgnoreSpeedMult)
+			{
+				yield return new WaitForSeconds(textUI.text.Length * speechSpeedMult);
+			}
+			else
+			{
+				yield return new WaitForSeconds(textUI.text.Length);
+			}
+			textUI.text = string.Empty;
+			speechBubble.SetActive(false);
 		}
 	}
 
@@ -140,12 +139,8 @@ public class Speech
 [System.Serializable]
 public class CommentatorSpeech
 {
+	public CommentatorSpeechType speechType;
 	public string[] speeches;
-	public string levelCompleteSpeech;
-	public float commentingDelay;
-	public GameObject commentatorSpeechBubble;
-	public GameObject commentatorSpeechImage;
-	[HideInInspector] public float nextComment;
 }
 
 public enum SpeechType
@@ -158,4 +153,21 @@ public enum SpeechType
 	checkpoint,
 	respawn,
 	start
+}
+
+public enum CommentatorSpeechType
+{
+	oneAll,
+	oneTwo,
+	oneThree,
+	oneOneLeft,
+	twoAll,
+	twoTwo,
+	twoThree,
+	twoOneLeft,
+	multipleAll,
+	multipleTwo,
+	multipleThree,
+	multipleOneLeft,
+	none
 }

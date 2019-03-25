@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
 
 	[Header("Ability Meter Settings")]
 	[Range(0,1f)] public float abilityMeter = 1f;
-	[Range(0.01f,.1f)] public float abilityMeterModifier = 0.01f;	
+	[Range(0.001f,.1f)] public float abilityMeterModifier = 0.01f;	
 	
 	[Header("Character Settings")]
 	public int maxUseCounter = 3;
@@ -31,11 +31,12 @@ public class PlayerController : MonoBehaviour
 	
 	[HideInInspector] public Vector2 movement;
 	
-	public bool isActiveAbility = false;
-	public bool isPassiveAbility = false;
-	public bool activeAbility = false;
-	public bool passiveAbility = false;
-	public bool isJumping = false;
+
+	[HideInInspector] public bool isActiveAbility = false;
+	[HideInInspector] public bool isPassiveAbility = false;
+	[HideInInspector] public bool activeAbility = false;
+	[HideInInspector] public bool passiveAbility = false;
+	[HideInInspector] public bool isJumping = false;
 
 	[HideInInspector] public Collider2D[] collision;	
 	
