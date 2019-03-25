@@ -23,7 +23,6 @@ GameObject:
   - component: {fileID: 23421012746593400}
   - component: {fileID: 114162201261923706}
   - component: {fileID: 114595293550989538}
-  - component: {fileID: 58192781361857698}
   - component: {fileID: 114644469936336504}
   - component: {fileID: 61128413398791986}
   m_Layer: 9
@@ -87,21 +86,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1460911525680832}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!58 &58192781361857698
-CircleCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1460911525680832}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
 --- !u!61 &61128413398791986
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -151,11 +135,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 425587de37a0c0f48b0f5935107cd2ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBeforeDestination: 0
+  timeBeforeDestination: 100
   characterLayer:
     serializedVersion: 2
     m_Bits: 256
   popOnDestination: 0
+  destinationMargin: 1.5
 --- !u!114 &114644469936336504
 MonoBehaviour:
   m_ObjectHideFlags: 1
