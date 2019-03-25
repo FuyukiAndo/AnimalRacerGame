@@ -2943,7 +2943,7 @@ GameObject:
   - component: {fileID: 114627367570281634}
   m_Layer: 8
   m_Name: PlayerPenguinObject
-  m_TagString: Player
+  m_TagString: Ice_Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9293,7 +9293,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1363596147525290}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 323.52084, y: 20.5, z: 0}
+  m_LocalPosition: {x: 292.8715, y: 15.903044, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4788003634734142}
@@ -14522,7 +14522,6 @@ MonoBehaviour:
     m_Bits: 1536
   horizontalRaycastsAmount: 4
   verticalRaycastsAmount: 4
-  SetRayLength: 1
   maxAngle: 80
 --- !u!114 &114496571398257566
 MonoBehaviour:
@@ -14615,7 +14614,7 @@ MonoBehaviour:
   accelerationModifier: 0.2
   deaccelerationModifier: 0.3
   abilityMeter: 1
-  abilityMeterModifier: 0.01
+  abilityMeterModifier: 0.004
   maxUseCounter: 2
   abilityModifier: 5
   abilityDirection: 0
@@ -14629,7 +14628,7 @@ MonoBehaviour:
   collision: []
   projectileObject: {fileID: 1615396423180318, guid: 8f9be1d561b46b1488bcc52545b9531d,
     type: 2}
-  slideTimer: 2
+  slideTimer: 1.5
   savedSlideTimer: 0
 --- !u!114 &114969139045625284
 MonoBehaviour:

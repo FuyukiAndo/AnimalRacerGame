@@ -3938,7 +3938,7 @@ GameObject:
   - component: {fileID: 114922924393472816}
   m_Layer: 8
   m_Name: PlayerPigObject
-  m_TagString: Player
+  m_TagString: Jungle_Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11856,7 +11856,6 @@ MonoBehaviour:
     m_Bits: 1536
   horizontalRaycastsAmount: 4
   verticalRaycastsAmount: 4
-  SetRayLength: 1
   maxAngle: 80
 --- !u!114 &114287004088598780
 MonoBehaviour:
@@ -11905,7 +11904,7 @@ MonoBehaviour:
   accelerationModifier: 0.2
   deaccelerationModifier: 0.3
   abilityMeter: 1
-  abilityMeterModifier: 0.01
+  abilityMeterModifier: 0.006
   maxUseCounter: 3
   abilityModifier: 3
   abilityDirection: 0

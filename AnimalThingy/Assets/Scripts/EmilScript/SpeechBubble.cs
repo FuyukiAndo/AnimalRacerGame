@@ -19,6 +19,7 @@ public class SpeechBubble : MonoBehaviour
 	[SerializeField] private GameObject commentatorSpeechBubble, commentatorSpeechText, nibiPortrait;
 	private float nextComment, actualCommentDelay;
 	private TextMeshProUGUI commentatorText, textUI;
+	private bool disruptUpdateCommenting = false;
 
 	void Start()
 	{
@@ -37,7 +38,7 @@ public class SpeechBubble : MonoBehaviour
 
 	void Update()
 	{
-		if (commentatorSpeeches.Length > 0 && isCommentator)
+		if (!disruptUpdateCommenting && commentatorSpeeches.Length > 0 && isCommentator)
 		{
 			if (Time.time > nextComment)
 			{
@@ -60,6 +61,7 @@ public class SpeechBubble : MonoBehaviour
 		if (levelComplete)
 		{
 			commentatorText.text = levelCompleteSpeech;
+			disruptUpdateCommenting = true;
 		}
 		else
 		{
@@ -83,6 +85,7 @@ public class SpeechBubble : MonoBehaviour
 
 	void SetRandomSpeechFromCommentator(CommentatorSpeechType type)
 	{
+		if (type != CommentatorSpeechType.none)disruptUpdateCommenting = true;
 		List<CommentatorSpeech> speeches = commentatorSpeeches.ToList();
 		CommentatorSpeech speechSearch = speeches.Find(x => x.speechType == type);
 		if (speechSearch == null)return;
@@ -106,6 +109,7 @@ public class SpeechBubble : MonoBehaviour
 			commentatorText.text = string.Empty;
 			commentatorSpeechBubble.SetActive(false);
 			nibiPortrait.SetActive(false);
+			if (disruptUpdateCommenting) disruptUpdateCommenting = false;
 		}
 		else
 		{

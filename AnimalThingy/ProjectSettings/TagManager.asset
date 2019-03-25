@@ -8,6 +8,10 @@ TagManager:
   - Ball
   - Obstacle
   - Projectile
+  - Ice_Character
+  - Jungle_Character
+  - Farm_Character
+  - Coast_Character
   layers:
   - Default
   - TransparentFX
