@@ -72,11 +72,13 @@ public class GoalManager : MonoBehaviour
 		}
 		for (int i = 0; i < unplacedPlayers.Count(); i++)
 		{
+			playerChecks.Add(new PlayerCheckCount());
 			playerChecks[i].tracker = unplacedPlayers[i].GetComponent<CheckpointTracker>();
 			playerChecks[i].checks = 0;
 		}
 		totalTimeBeforeAutoPlacements = timeBeforeAutoPlacements;
 		initialPlayerCount = unplacedPlayers.Count;
+		print(initialPlayerCount + " count at beginning");
 	}
 
 	IEnumerator CountDownToStressSignal()
@@ -243,8 +245,8 @@ public class GoalManager : MonoBehaviour
 	{
 		CheckpointTracker closestTracker = GetPlayerClosestToGoal();
 		int index = unplacedPlayers.IndexOf(closestTracker);
-		placedPlayers.Add(GetPlayerClosestToGoal().gameObject);
 		AssignPlacementPoint(GetPlayerClosestToGoal());
+		placedPlayers.Add(GetPlayerClosestToGoal().gameObject);
 		AssignFinishingTime(GetPlayerClosestToGoal());
 		int index1 = placedPlayers.IndexOf(closestTracker.gameObject);
 		placedPlayers[index1].transform.position = playerGoalPositions[index1].transform.position;
@@ -395,6 +397,7 @@ public class GoalManager : MonoBehaviour
 			case "Player1":
 				if (InformationManager.Instance.player1.level1Time == 0f)
 				{
+					print("assigned player 1 time");
 					InformationManager.Instance.player1.level1Time = tracker.FinishingTime;
 				}
 				else if (InformationManager.Instance.player1.level2Time == 0f)
