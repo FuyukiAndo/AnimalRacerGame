@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb45d73f4018b05428d78c453a20e5a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  untilDestroy: 5
+  untilDestroy: 4
 --- !u!114 &114545884689168594
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -152,5 +152,4 @@ MonoBehaviour:
     m_Bits: 1536
   horizontalRaycastsAmount: 4
   verticalRaycastsAmount: 4
-  SetRayLength: 1
   maxAngle: 80

@@ -20196,7 +20196,7 @@ MonoBehaviour:
   accelerationModifier: 0.2
   deaccelerationModifier: 0.3
   abilityMeter: 1
-  abilityMeterModifier: 0.01
+  abilityMeterModifier: 0.005
   maxUseCounter: 1
   abilityModifier: 40
   abilityDirection: 0
