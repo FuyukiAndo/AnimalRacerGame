@@ -86,7 +86,7 @@ public class CheckpointTracker : MonoBehaviour
 						}
 					}
 					checkPointsPassed.Add(checkPoint.Index);
-					//GoalManager.Instance.NotifyOfCheckpointCount(this);
+					GoalManager.Instance.NotifyOfCheckpointCount(this);
 				}
 			}
 		}
