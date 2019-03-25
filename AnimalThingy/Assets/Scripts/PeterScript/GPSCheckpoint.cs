@@ -40,14 +40,20 @@ public class GPSCheckpoint : MonoBehaviour
             canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
         }
     }
+
     public void UpdateCheckpointToGo(Checkpoint checkpoint)
     {
         if (checkpoint.transform == checkpoints[index])
         {
             index++;
+			Debug.Log("index:" + index);
+			Debug.Log("index: " + checkpoints.IndexOf(checkpoints[index]) + " item: " + checkpoints[index]);
+			
             currentCheckpoint = checkpoints[index];
+
         }
     }
+
     private void UpdateRotation()
     {
         dir = transform.position - currentCheckpoint.position;

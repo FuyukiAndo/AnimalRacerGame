@@ -69,8 +69,8 @@ public class Checkpoint : MonoBehaviour
 								paramValue = Random.Range(0.3f, 0.35f);
 								break;
 						}
-						oneshotPlayer.PlayAudioOneShot();
-						oneshotPlayer.SetParameterValue(paramValue);
+						//oneshotPlayer.PlayAudioOneShot();
+						//oneshotPlayer.SetParameterValue(paramValue);
 						playerFlags[i].playedAudioForPlayer = true;
 					}
 					if (!updatedCheckToGoFor)

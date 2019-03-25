@@ -81,7 +81,11 @@ public class LiquidScript : MonoBehaviour
                 CheckpointTracker checkpointTracker = collider2d[i].gameObject.GetComponent<CheckpointTracker>();
                 int index = checkpointTracker.CheckpointsPassed[checkpointTracker.CheckpointsPassed.Count - 1];
 
-                if (checkpointPositions[i].GetComponent<Checkpoint>().Index == index)
+				Debug.Log(index);				
+				Debug.Log(checkpointTracker.CheckpointsPassed.Count);
+				//Debug.Log(checkpointTracker.CheckpointsPassed.Count-1);
+				
+                if (checkpointPositions[j].GetComponent<Checkpoint>().Index == index)
                 {
                     switch (checkpointTracker.name)
                     {
@@ -98,7 +102,9 @@ public class LiquidScript : MonoBehaviour
                             playerSpeech4.SetSpeechActive(SpeechType.respawn, checkpointTracker.GetComponent<PlayerInput>().playerCharacterType);
                             break;
                     }
-                    collider2d[i].gameObject.transform.position = checkpointPositions[i].transform.position;
+					
+					Debug.Log("I am here");
+                    collider2d[i].gameObject.transform.position = checkpointPositions[j].transform.position;
                 }
 
             }
