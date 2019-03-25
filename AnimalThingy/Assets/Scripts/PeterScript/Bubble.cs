@@ -18,6 +18,7 @@ public class Bubble : MonoBehaviour
     private float floatSpeed;
     public bool popOnDestination;
 
+
     private void Start()
     {
         bc2d = GetComponent<BoxCollider2D>();
