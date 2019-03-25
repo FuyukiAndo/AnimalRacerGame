@@ -196,7 +196,7 @@ public class PlayerInput : MonoBehaviour
 		}
 		else
 		{
-			isStunned = true;
+			stunDurationTimer -= Time.deltaTime;	
 			changeAngle = false;
 			stunDurationTimer -= Time.deltaTime;
 
@@ -207,7 +207,6 @@ public class PlayerInput : MonoBehaviour
 				changeAngle = true;
 			}
 		}
-
 		//If no KeyCode is pressed
 		keyCodeDictionary0[playerNoKey]();
 	}

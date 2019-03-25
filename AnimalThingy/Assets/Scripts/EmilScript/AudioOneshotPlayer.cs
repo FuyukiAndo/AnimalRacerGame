@@ -144,11 +144,6 @@ public class AudioOneshotPlayer : MonoBehaviour
 		source.clip = clip;
 	}
 
-	public void SetRandomizeParamValue(bool state)
-	{
-		sfx.randomizeValue = state;
-	}
-
 	void OnDrawGizmos()
 	{
 		Gizmos.color = Color.red;
