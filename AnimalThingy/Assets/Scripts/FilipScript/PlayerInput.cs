@@ -240,9 +240,7 @@ public class PlayerInput : MonoBehaviour
 			}
 		}
 		
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
+		
 
 		if(canSpeak)
 		{
@@ -270,23 +268,6 @@ public class PlayerInput : MonoBehaviour
 					oneshotPlayer.PlayAudioOneShot();
 					oneshotPlayer.SetParameterValue(2.5f);
 				}*/
-=======
-=======
->>>>>>> parent of 9caae8d... Merge branch 'Peter's-diner' of https://github.com/FuyukiAndo/AnimalRacerGame into Peter's-diner
-=======
->>>>>>> parent of 9caae8d... Merge branch 'Peter's-diner' of https://github.com/FuyukiAndo/AnimalRacerGame into Peter's-diner
-		if (Input.GetKeyDown(playerAbilityKey))
-		{
-			/*if(!oneshotPlayer.IsAudioPathNull())
-			{
-				oneshotPlayer.PlayAudioOneShot();
-				oneshotPlayer.SetParameterValue(2.5f);
-			}*/
-			
-			if (playerSpeech != null)
-			{
-				playerSpeech.SetSpeechActive(SpeechType.ability, playerCharacterType);
->>>>>>> parent of 9caae8d... Merge branch 'Peter's-diner' of https://github.com/FuyukiAndo/AnimalRacerGame into Peter's-diner
 			}
 		}	
 
