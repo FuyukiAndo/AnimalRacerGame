@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="AudioFile" id="{e57307b4-2144-48c8-b1b4-65870265f7ae}">
+        <property name="assetPath">
+            <value>Vietnamese Motorcycle Horn.wav</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>96</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>3.4197916666666668</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{62735493-e8e9-437e-ba6c-43c859bdfc29}</destination>
+        </relationship>
+    </object>
+</objects>

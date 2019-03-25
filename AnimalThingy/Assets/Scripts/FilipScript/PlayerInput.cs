@@ -65,6 +65,7 @@ public class PlayerInput : MonoBehaviour
 	[SerializeField] private AudioOneshotPlayer oneshotPlayer;
 	[SerializeField] private bool makeSound = false;
 	private bool triggeredAnger = false;
+	private bool canSpeak = false;
 
 	//Emil SpeechBubble
 	[SerializeField] private SpeechBubble playerSpeech;
@@ -196,7 +197,7 @@ public class PlayerInput : MonoBehaviour
 		}
 		else
 		{
-			isStunned = true;
+			stunDurationTimer -= Time.deltaTime;	
 			changeAngle = false;
 			stunDurationTimer -= Time.deltaTime;
 
@@ -207,7 +208,6 @@ public class PlayerInput : MonoBehaviour
 				changeAngle = true;
 			}
 		}
-
 		//If no KeyCode is pressed
 		keyCodeDictionary0[playerNoKey]();
 	}
@@ -240,19 +240,34 @@ public class PlayerInput : MonoBehaviour
 			}
 		}
 
-		if (Input.GetKeyDown(playerAbilityKey))
+		if(canSpeak)
 		{
-			if (!oneshotPlayer.IsAudioPathNull() && makeSound)
-			{
-				oneshotPlayer.PlayAudioOneShot();
-				oneshotPlayer.SetParameterValue(2.5f);
+			if (Input.GetKey(playerAbilityKey))
+			{	
+				if(playerCharacterType == PlayerCharacterType.PlayerAlbatross)
+				{
+					if(!playerAlbatross.passiveAbility)
+					{
+						canSpeak = true;
+					}			
+				}		
+				
+				if (playerSpeech != null)
+				{
+					if(canSpeak)
+					{	
+						playerSpeech.SetSpeechActive(SpeechType.ability, playerCharacterType);
+						canSpeak = false;
+					}
+				}
+				
+				/*if(!oneshotPlayer.IsAudioPathNull())
+				{
+					oneshotPlayer.PlayAudioOneShot();
+					oneshotPlayer.SetParameterValue(2.5f);
+				}*/
 			}
-
-			if (playerSpeech != null)
-			{
-				playerSpeech.SetSpeechActive(SpeechType.ability, playerCharacterType);
-			}
-		}
+		}	
 
 		if (Input.GetKeyDown(playerJumpKey))
 		{
@@ -522,21 +537,41 @@ public class PlayerInput : MonoBehaviour
 		if (playerCharacterType == PlayerCharacterType.PlayerAlbatross)
 		{
 			InputAnimationAlbatross();
+			
+			if(playerAlbatross.abilityMeter == 1f)
+			{
+				canSpeak = true;
+			}
 		}
 
 		if (playerCharacterType == PlayerCharacterType.PlayerPenguin)
 		{
 			InputAnimationPenguin();
+			
+			if(playerPenguin.abilityMeter == 1f)
+			{
+				canSpeak = true;
+			}
 		}
 
 		if (playerCharacterType == PlayerCharacterType.PlayerPig)
 		{
 			InputAnimationPig();
+			
+			if(playerPig.abilityMeter == 1f)
+			{
+				canSpeak = true;
+			}
 		}
 
 		if (playerCharacterType == PlayerCharacterType.PlayerMonkey)
 		{
 			InputAnimationMonkey();
+			
+			if(playerMonkey.abilityMeter == 1f)
+			{
+				canSpeak = true;
+			}
 		}
 	}
 
