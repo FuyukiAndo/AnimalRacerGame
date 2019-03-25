@@ -8147,7 +8147,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1045792901303020}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 299.48, y: 26.56, z: 0}
+  m_LocalPosition: {x: 7.1067286, y: -26.900177, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4256667031458686}
@@ -15368,15 +15368,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxJumpHeight: 4
   minJumpHeight: 1
-  jumpAndFallDelay: 0.6
+  jumpAndFallDelay: 0.5
   movementSpeed: 10
   movementAcceleration: 0.15
   accelerationModifier: 0.2
   deaccelerationModifier: 0.3
   abilityMeter: 1
-  abilityMeterModifier: 0.005
+  abilityMeterModifier: 0.003
   maxUseCounter: 3
-  abilityModifier: 6
+  abilityModifier: 5
   abilityDirection: 0
   collisionController: {fileID: 114954231877299268}
   movement: {x: 0, y: 0}
@@ -15388,12 +15388,12 @@ MonoBehaviour:
   collision: []
   maxFlyCounter: 3
   untilGlideCounter: 0.4
-  glideSpeed: 2
+  glideSpeed: 1.5
   windBlastObject: {fileID: 1252155166552534, guid: 4a00aecaa868a53409b7b0f3a73e88a4,
     type: 2}
   maxFlyCountdownSpeed: 5
   glideCounterSpeed: 0.4
-  dashTimer: 0.6
+  dashTimer: 0.5
 --- !u!114 &114150597338352834
 MonoBehaviour:
   m_ObjectHideFlags: 1
