@@ -63,6 +63,7 @@ public class PlayerInput : MonoBehaviour
 
 	//Emil AudioOneshotPlayer
 	[SerializeField] private AudioOneshotPlayer oneshotPlayer;
+	[SerializeField] private bool makeSound = false;
 	private bool triggeredAnger = false;
 
 	//Emil SpeechBubble
@@ -70,30 +71,30 @@ public class PlayerInput : MonoBehaviour
 
 	void Start()
 	{
-		targetAngle = maxAngleValue;
+	targetAngle = maxAngleValue;
 
-		var albatrossComponent = gameObject.GetComponent<PlayerAlbatross>();
-		var monkeyComponent = gameObject.GetComponent<PlayerMonkey>();
-		var penguinComponent = gameObject.GetComponent<PlayerPenguin>();
-		var pigComponent = gameObject.GetComponent<PlayerPig>();
+	var albatrossComponent = gameObject.GetComponent<PlayerAlbatross>();
+	var monkeyComponent = gameObject.GetComponent<PlayerMonkey>();
+	var penguinComponent = gameObject.GetComponent<PlayerPenguin>();
+	var pigComponent = gameObject.GetComponent<PlayerPig>();
 
-		savedStunDurationTimer = stunDurationTimer;
+	savedStunDurationTimer = stunDurationTimer;
 
-		if (albatrossComponent != null)
-		{
-			playerAlbatross = GetComponent<PlayerAlbatross>();
+	if (albatrossComponent != null)
+	{
+	playerAlbatross = GetComponent<PlayerAlbatross>();
 
-			playerCharacterType = PlayerCharacterType.PlayerAlbatross;
+	playerCharacterType = PlayerCharacterType.PlayerAlbatross;
 
-			keyCodeDictionary0.Add(playerNoKey, () => playerAlbatross.MoveNot());
+	keyCodeDictionary0.Add(playerNoKey, () => playerAlbatross.MoveNot());
 
-			keyCodeDictionary0.Add(playerLeftKey, () => playerAlbatross.MoveLeft());
-			keyCodeDictionary0.Add(playerRightKey, () => playerAlbatross.MoveRight());
+	keyCodeDictionary0.Add(playerLeftKey, () => playerAlbatross.MoveLeft());
+	keyCodeDictionary0.Add(playerRightKey, () => playerAlbatross.MoveRight());
 
-			keyCodeDictionary0.Add(playerJumpKey, () => playerAlbatross.OnJumpKeyDown());
-			keyCodeDictionary1.Add(playerJumpKey, () => playerAlbatross.OnJumpKeyUp());
+	keyCodeDictionary0.Add(playerJumpKey, () => playerAlbatross.OnJumpKeyDown());
+	keyCodeDictionary1.Add(playerJumpKey, () => playerAlbatross.OnJumpKeyUp());
 
-			keyCodeDictionary0.Add(playerAbilityKey, () => playerAlbatross.OnAbilityKey());
+	keyCodeDictionary0.Add(playerAbilityKey, () => playerAlbatross.OnAbilityKey());
 		}
 		else if (monkeyComponent != null)
 		{
@@ -195,7 +196,7 @@ public class PlayerInput : MonoBehaviour
 		}
 		else
 		{
-			isStunned = true;
+			stunDurationTimer -= Time.deltaTime;	
 			changeAngle = false;
 			stunDurationTimer -= Time.deltaTime;
 
@@ -206,7 +207,6 @@ public class PlayerInput : MonoBehaviour
 				changeAngle = true;
 			}
 		}
-
 		//If no KeyCode is pressed
 		keyCodeDictionary0[playerNoKey]();
 	}
@@ -215,17 +215,17 @@ public class PlayerInput : MonoBehaviour
 	{
 		//Still doesn't work :S
 
-		if(isStunned)
+		if (isStunned)
 		{
 			if (!triggeredAnger)
 			{
 				triggeredAnger = true;
 
-				/*if(!oneshotPlayer.IsAudioPathNull())
+				if (!oneshotPlayer.IsAudioPathNull() && makeSound)
 				{
 					oneshotPlayer.PlayAudioOneShot();
 					oneshotPlayer.SetParameterValue(1.5f);
-				}*/
+				}
 
 				if (playerSpeech != null)
 				{
@@ -238,29 +238,29 @@ public class PlayerInput : MonoBehaviour
 				triggeredAnger = false;
 			}
 		}
-		
+
 		if (Input.GetKeyDown(playerAbilityKey))
 		{
-			/*if(!oneshotPlayer.IsAudioPathNull())
+			if (!oneshotPlayer.IsAudioPathNull() && makeSound)
 			{
 				oneshotPlayer.PlayAudioOneShot();
 				oneshotPlayer.SetParameterValue(2.5f);
-			}*/
-			
+			}
+
 			if (playerSpeech != null)
 			{
 				playerSpeech.SetSpeechActive(SpeechType.ability, playerCharacterType);
 			}
 		}
 
-		/*if (Input.GetKeyDown(playerJumpKey))
+		if (Input.GetKeyDown(playerJumpKey))
 		{
-			if(!oneshotPlayer.IsAudioPathNull())
+			if (!oneshotPlayer.IsAudioPathNull() && makeSound)
 			{
 				oneshotPlayer.PlayAudioOneShot();
 				oneshotPlayer.SetParameterValue(0.05f);
 			}
-		}*/
+		}
 	}
 
 	private void InputAnimationRotation()
