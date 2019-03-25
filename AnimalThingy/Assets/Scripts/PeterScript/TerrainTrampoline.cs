@@ -42,4 +42,9 @@ public class TerrainTrampoline : MonoBehaviour
             }
         }
     }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawCube(transform.position, c2d.bounds.size);
+    }
 }
