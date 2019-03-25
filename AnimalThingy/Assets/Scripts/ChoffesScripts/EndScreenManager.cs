@@ -200,7 +200,7 @@ public class EndScreenManager : MonoBehaviour
 
     private void AddScoreToChildObjects()
     {
-        int temp = childObjects.Count;
+        int temp = childObjects.Count - 1;
         for(int i = 0; i < childObjects.Count; i++)
         {
             childObjects[i].scoreText.text = "+ " + temp.ToString();
