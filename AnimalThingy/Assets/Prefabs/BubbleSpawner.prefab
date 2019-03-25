@@ -59,4 +59,4 @@ MonoBehaviour:
   wantToPopOnDestination: 1
   travelToFromStart: {x: 0, y: 3}
   popTime: 0.5
-  travelTime: 50
+  travelTime: 100
