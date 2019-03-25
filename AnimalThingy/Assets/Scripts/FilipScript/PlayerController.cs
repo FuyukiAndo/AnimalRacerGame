@@ -40,27 +40,25 @@ public class PlayerController : MonoBehaviour
 
 	[HideInInspector] public Collider2D[] collision;	
 	
-	protected int savedMaxUseCounter;
-	protected float abilityMeterMax = 1f;
-	
-	protected float maxVelocity;
-	protected float minVelocity;
+
 
 	protected PlayerInput playerInput;
 	protected RaycastController raycastController;
-
-	protected float accelerationSpeed;
 	
 	protected int movementDirection;
+	protected int savedMaxUseCounter;
 	
+	protected float abilityMeterMax = 1f;
 	protected float velocitySmoothing;	
 	protected float gravity;
-	
+	protected float accelerationSpeed;
 	protected float directionX;
 	protected float directionY;
-	
 	protected float startSpeed;
-	
+	protected float maxVelocity;
+	protected float minVelocity;
+
+
 	public virtual void Start()
 	{
 		collisionController = GetComponent<CollisionController>();
@@ -101,7 +99,7 @@ public class PlayerController : MonoBehaviour
 
 		movementDirection = 0;
 	}	
-	
+
 	public virtual void MoveLeft()
 	{
 		for(float i = 0; i <movementSpeed;i++)

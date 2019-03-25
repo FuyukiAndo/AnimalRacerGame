@@ -17,7 +17,6 @@ public class ProjectileGravityController : MonoBehaviour
 	//private float maxVelocity;
 	
 	private bool isGravity = true;
-
 	
 	public virtual void Start()
 	{

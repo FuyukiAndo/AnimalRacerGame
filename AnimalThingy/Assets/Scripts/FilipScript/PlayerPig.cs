@@ -33,7 +33,7 @@ public class PlayerPig : PlayerController
 		boxCollider2D.size = new Vector2(tempX, tempY);
 		directionY = Mathf.Sign(movement.y);
 	}
-	
+
 	public override void OnJumpKeyDown()
 	{
 		if(maxUseCounter > 0)

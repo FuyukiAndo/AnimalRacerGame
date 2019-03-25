@@ -96,7 +96,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnObject: {fileID: 1585389020468604, guid: bf803633ed8580c43bd1abac191e0abd,
     type: 2}
-  wantSpawnerToBeRemoved: 1
-  timeBetweenSpawnsMin: 0
+  timeBetweenSpawnsMin: 2
   timeBetweenSpawnsMax: 3
   needleSpeed: -5
