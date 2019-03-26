@@ -8,6 +8,7 @@ public class SpawnTerrainSnowball : Spawner {
     public float stunDuration;
     public float force;
     public float maxPushBack;
+    public float timeLimit;
 
 
 	void Update () {
@@ -28,5 +29,9 @@ public class SpawnTerrainSnowball : Spawner {
     public float getMaxPushBack
     {
         get { return maxPushBack; }
+    }
+    public float getTimeLimit
+    {
+        get { return timeLimit;}
     }
 }
