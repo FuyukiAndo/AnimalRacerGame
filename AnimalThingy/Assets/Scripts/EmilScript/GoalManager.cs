@@ -61,7 +61,7 @@ public class GoalManager : MonoBehaviour
 	{
 		boxSize = GetComponent<BoxCollider2D>().size;
 		commentator = FindObjectsOfType<SpeechBubble>().Where(bubble => bubble.name.Contains("Commentator")).FirstOrDefault();
-		StartCoroutine(CountDownToStressSignal());
+		//StartCoroutine(CountDownToStressSignal());
 	}
 
 	public void Setup()
@@ -73,7 +73,6 @@ public class GoalManager : MonoBehaviour
 		for (int i = 0; i < unplacedPlayers.Count(); i++)
 		{
 			playerChecks.Add(new PlayerCheckCount());
-			
 			playerChecks[i].tracker = unplacedPlayers[i].GetComponent<CheckpointTracker>();
 			playerChecks[i].name = unplacedPlayers[i].name;
 			playerChecks[i].checks = 0;
@@ -124,7 +123,7 @@ public class GoalManager : MonoBehaviour
 	{
 		PlayerCheckCount checkCount = playerChecks.Where(player => player.tracker == tracker).FirstOrDefault();
 		checkCount.checks++;
-		CheckForCommentatorEvent();
+		//CheckForCommentatorEvent();
 	}
 
 	void CheckForCommentatorEvent()
@@ -254,8 +253,8 @@ public class GoalManager : MonoBehaviour
 	{
 		CheckpointTracker closestTracker = GetPlayerClosestToGoal();
 		int index = unplacedPlayers.IndexOf(closestTracker);
-		placedPlayers.Add(GetPlayerClosestToGoal().gameObject);
 		AssignPlacementPoint(GetPlayerClosestToGoal());
+		placedPlayers.Add(GetPlayerClosestToGoal().gameObject);
 		AssignFinishingTime(GetPlayerClosestToGoal());
 		int index1 = placedPlayers.IndexOf(closestTracker.gameObject);
 		placedPlayers[index1].transform.position = playerGoalPositions[index1].transform.position;

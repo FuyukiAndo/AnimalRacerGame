@@ -4255,8 +4255,15 @@ Prefab:
       propertyPath: m_Name
       value: Checkpoint b
       objectReference: {fileID: 0}
+    - target: {fileID: 114302295530753082, guid: c470275fa1e4d2f479b39d4afd9e1b14,
+        type: 2}
+      propertyPath: makeSound
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 58817857368271116, guid: c470275fa1e4d2f479b39d4afd9e1b14, type: 2}
+    - {fileID: 82901717571622346, guid: c470275fa1e4d2f479b39d4afd9e1b14, type: 2}
+    - {fileID: 114522038076732888, guid: c470275fa1e4d2f479b39d4afd9e1b14, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: c470275fa1e4d2f479b39d4afd9e1b14, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &273587801 stripped
@@ -17376,6 +17383,11 @@ Prefab:
       propertyPath: m_Name
       value: Generator_Full2
       objectReference: {fileID: 0}
+    - target: {fileID: 114302295530753082, guid: c470275fa1e4d2f479b39d4afd9e1b14,
+        type: 2}
+      propertyPath: makeSound
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c470275fa1e4d2f479b39d4afd9e1b14, type: 2}
   m_IsPrefabParent: 0
@@ -23746,7 +23758,14 @@ Prefab:
       propertyPath: m_Name
       value: Checkpoint c
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 114302295530753082, guid: c470275fa1e4d2f479b39d4afd9e1b14,
+        type: 2}
+      propertyPath: makeSound
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 82901717571622346, guid: c470275fa1e4d2f479b39d4afd9e1b14, type: 2}
+    - {fileID: 114522038076732888, guid: c470275fa1e4d2f479b39d4afd9e1b14, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: c470275fa1e4d2f479b39d4afd9e1b14, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &1497626792 stripped
@@ -25074,8 +25093,15 @@ Prefab:
       propertyPath: m_Name
       value: Checkpoint a
       objectReference: {fileID: 0}
+    - target: {fileID: 114302295530753082, guid: c470275fa1e4d2f479b39d4afd9e1b14,
+        type: 2}
+      propertyPath: makeSound
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 58817857368271116, guid: c470275fa1e4d2f479b39d4afd9e1b14, type: 2}
+    - {fileID: 82901717571622346, guid: c470275fa1e4d2f479b39d4afd9e1b14, type: 2}
+    - {fileID: 114522038076732888, guid: c470275fa1e4d2f479b39d4afd9e1b14, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: c470275fa1e4d2f479b39d4afd9e1b14, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &1598094599 stripped
@@ -30351,8 +30377,15 @@ Prefab:
       propertyPath: m_Name
       value: Checkpoint d
       objectReference: {fileID: 0}
+    - target: {fileID: 114302295530753082, guid: c470275fa1e4d2f479b39d4afd9e1b14,
+        type: 2}
+      propertyPath: makeSound
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 58817857368271116, guid: c470275fa1e4d2f479b39d4afd9e1b14, type: 2}
+    - {fileID: 82901717571622346, guid: c470275fa1e4d2f479b39d4afd9e1b14, type: 2}
+    - {fileID: 114522038076732888, guid: c470275fa1e4d2f479b39d4afd9e1b14, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: c470275fa1e4d2f479b39d4afd9e1b14, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &1950155897 stripped

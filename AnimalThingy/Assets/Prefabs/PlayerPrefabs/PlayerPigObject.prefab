@@ -11818,6 +11818,7 @@ MonoBehaviour:
   isControllable: 1
   changeAngle: 1
   oneshotPlayer: {fileID: 0}
+  makeSound: 1
   playerSpeech: {fileID: 0}
 --- !u!114 &114207199674327870
 MonoBehaviour:
