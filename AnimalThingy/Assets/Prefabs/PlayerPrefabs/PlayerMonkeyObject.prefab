@@ -20338,6 +20338,7 @@ MonoBehaviour:
   isControllable: 1
   changeAngle: 1
   oneshotPlayer: {fileID: 0}
+  makeSound: 1
   playerSpeech: {fileID: 0}
 --- !u!137 &137550280197760516
 SkinnedMeshRenderer:

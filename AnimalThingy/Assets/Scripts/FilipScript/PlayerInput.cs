@@ -65,36 +65,37 @@ public class PlayerInput : MonoBehaviour
 	[SerializeField] private AudioOneshotPlayer oneshotPlayer;
 	private bool triggeredAnger = false;
 	private bool canSpeak = false;
+	[SerializeField] private bool makeSound = false;
 
 	//Emil SpeechBubble
 	[SerializeField] private SpeechBubble playerSpeech;
 
 	void Start()
 	{
-		targetAngle = maxAngleValue;
+	targetAngle = maxAngleValue;
 
-		var albatrossComponent = gameObject.GetComponent<PlayerAlbatross>();
-		var monkeyComponent = gameObject.GetComponent<PlayerMonkey>();
-		var penguinComponent = gameObject.GetComponent<PlayerPenguin>();
-		var pigComponent = gameObject.GetComponent<PlayerPig>();
+	var albatrossComponent = gameObject.GetComponent<PlayerAlbatross>();
+	var monkeyComponent = gameObject.GetComponent<PlayerMonkey>();
+	var penguinComponent = gameObject.GetComponent<PlayerPenguin>();
+	var pigComponent = gameObject.GetComponent<PlayerPig>();
 
-		savedStunDurationTimer = stunDurationTimer;
+	savedStunDurationTimer = stunDurationTimer;
 
-		if (albatrossComponent != null)
-		{
-			playerAlbatross = GetComponent<PlayerAlbatross>();
+	if (albatrossComponent != null)
+	{
+	playerAlbatross = GetComponent<PlayerAlbatross>();
 
-			playerCharacterType = PlayerCharacterType.PlayerAlbatross;
+	playerCharacterType = PlayerCharacterType.PlayerAlbatross;
 
-			keyCodeDictionary0.Add(playerNoKey, () => playerAlbatross.MoveNot());
+	keyCodeDictionary0.Add(playerNoKey, () => playerAlbatross.MoveNot());
 
-			keyCodeDictionary0.Add(playerLeftKey, () => playerAlbatross.MoveLeft());
-			keyCodeDictionary0.Add(playerRightKey, () => playerAlbatross.MoveRight());
+	keyCodeDictionary0.Add(playerLeftKey, () => playerAlbatross.MoveLeft());
+	keyCodeDictionary0.Add(playerRightKey, () => playerAlbatross.MoveRight());
 
-			keyCodeDictionary0.Add(playerJumpKey, () => playerAlbatross.OnJumpKeyDown());
-			keyCodeDictionary1.Add(playerJumpKey, () => playerAlbatross.OnJumpKeyUp());
+	keyCodeDictionary0.Add(playerJumpKey, () => playerAlbatross.OnJumpKeyDown());
+	keyCodeDictionary1.Add(playerJumpKey, () => playerAlbatross.OnJumpKeyUp());
 
-			keyCodeDictionary0.Add(playerAbilityKey, () => playerAlbatross.OnAbilityKey());
+	keyCodeDictionary0.Add(playerAbilityKey, () => playerAlbatross.OnAbilityKey());
 		}
 		else if (monkeyComponent != null)
 		{
@@ -216,17 +217,17 @@ public class PlayerInput : MonoBehaviour
 	{
 		//Still doesn't work :S
 
-		if(isStunned)
+		if (isStunned)
 		{
 			if (!triggeredAnger)
 			{
 				triggeredAnger = true;
 
-				/*if(!oneshotPlayer.IsAudioPathNull())
+				if(makeSound && !oneshotPlayer.IsAudioPathNull())
 				{
 					oneshotPlayer.PlayAudioOneShot();
 					oneshotPlayer.SetParameterValue(1.5f);
-				}*/
+				}
 
 				if (playerSpeech != null)
 				{
@@ -239,68 +240,68 @@ public class PlayerInput : MonoBehaviour
 				triggeredAnger = false;
 			}
 		}
-		
-		if(canSpeak)
+
+		if (canSpeak)
 		{
 			if (Input.GetKey(playerAbilityKey))
-			{	
-				if(playerCharacterType == PlayerCharacterType.PlayerAlbatross)
+			{
+				if (playerCharacterType == PlayerCharacterType.PlayerAlbatross)
 				{
-					if(!playerAlbatross.passiveAbility)
+					if (!playerAlbatross.passiveAbility)
 					{
 						canSpeak = true;
-					}			
-				}		
-				
-				if(playerCharacterType == PlayerCharacterType.PlayerPig)
-				{
-					if(!playerPig.passiveAbility)
-					{
-						canSpeak = true;
-					}			
-				}		
+					}
+				}
 
-				if(playerCharacterType == PlayerCharacterType.PlayerPenguin)
+				if (playerCharacterType == PlayerCharacterType.PlayerPig)
 				{
-					if(!playerPenguin.passiveAbility)
+					if (!playerPig.passiveAbility)
 					{
 						canSpeak = true;
-					}			
-				}	
-				
-				if(playerCharacterType == PlayerCharacterType.PlayerMonkey)
+					}
+				}
+
+				if (playerCharacterType == PlayerCharacterType.PlayerPenguin)
 				{
-					if(!playerMonkey.passiveAbility)
+					if (!playerPenguin.passiveAbility)
 					{
 						canSpeak = true;
-					}			
-				}		
-				
+					}
+				}
+
+				if (playerCharacterType == PlayerCharacterType.PlayerMonkey)
+				{
+					if (!playerMonkey.passiveAbility)
+					{
+						canSpeak = true;
+					}
+				}
+
 				if (playerSpeech != null)
 				{
-					if(canSpeak)
-					{	
+					if (canSpeak)
+					{
 						playerSpeech.SetSpeechActive(SpeechType.ability, playerCharacterType);
 						canSpeak = false;
 					}
 				}
-				
-				/*if(!oneshotPlayer.IsAudioPathNull())
+
+				if(makeSound && !oneshotPlayer.IsAudioPathNull())
 				{
 					oneshotPlayer.PlayAudioOneShot();
 					oneshotPlayer.SetParameterValue(2.5f);
-				}*/
+				}
 			}
-		}	
+		}
 
-		/*if (Input.GetKeyDown(playerJumpKey))
+		if (Input.GetKeyDown(playerJumpKey))
 		{
-			if(!oneshotPlayer.IsAudioPathNull())
+			if(makeSound && !oneshotPlayer.IsAudioPathNull())
 			{
 				oneshotPlayer.PlayAudioOneShot();
 				oneshotPlayer.SetParameterValue(0.05f);
 			}
-		}*/
+		}
 	}
 
 	private void InputAnimationRotation()
@@ -559,8 +560,8 @@ public class PlayerInput : MonoBehaviour
 		if (playerCharacterType == PlayerCharacterType.PlayerAlbatross)
 		{
 			InputAnimationAlbatross();
-			
-			if(playerAlbatross.abilityMeter == 1f)
+
+			if (playerAlbatross.abilityMeter == 1f)
 			{
 				canSpeak = true;
 			}
@@ -569,8 +570,8 @@ public class PlayerInput : MonoBehaviour
 		if (playerCharacterType == PlayerCharacterType.PlayerPenguin)
 		{
 			InputAnimationPenguin();
-			
-			if(playerPenguin.abilityMeter == 1f)
+
+			if (playerPenguin.abilityMeter == 1f)
 			{
 				canSpeak = true;
 			}
@@ -579,8 +580,8 @@ public class PlayerInput : MonoBehaviour
 		if (playerCharacterType == PlayerCharacterType.PlayerPig)
 		{
 			InputAnimationPig();
-			
-			if(playerPig.abilityMeter == 1f)
+
+			if (playerPig.abilityMeter == 1f)
 			{
 				canSpeak = true;
 			}
@@ -589,8 +590,8 @@ public class PlayerInput : MonoBehaviour
 		if (playerCharacterType == PlayerCharacterType.PlayerMonkey)
 		{
 			InputAnimationMonkey();
-			
-			if(playerMonkey.abilityMeter == 1f)
+
+			if (playerMonkey.abilityMeter == 1f)
 			{
 				canSpeak = true;
 			}
