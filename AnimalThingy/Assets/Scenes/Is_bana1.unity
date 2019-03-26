@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1221,6 +1221,11 @@ Prefab:
         type: 2}
       propertyPath: acceleration
       value: -1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114893107088915604, guid: c82befd677112274d9f24d5689a76ae2,
+        type: 2}
+      propertyPath: timeLimit
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c82befd677112274d9f24d5689a76ae2, type: 2}
@@ -7446,7 +7451,7 @@ MonoBehaviour:
   players: []
   startFov: 60
   startPos: {fileID: 599408717}
-  timeBeforeZoomToPlayers: 0
+  timeBeforeZoomToPlayers: 3
   camAngle: 5
   camYOffset: 5
 --- !u!81 &599408714
@@ -9547,7 +9552,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4701780350517268, guid: eaee547b2d4409345a00a19c771aedb6, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 10.8
+      value: 11.1
       objectReference: {fileID: 0}
     - target: {fileID: 4701780350517268, guid: eaee547b2d4409345a00a19c771aedb6, type: 2}
       propertyPath: m_LocalPosition.z
@@ -20663,6 +20668,16 @@ Prefab:
         type: 2}
       propertyPath: wantSpawnerToBeRemoved
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114893107088915604, guid: c82befd677112274d9f24d5689a76ae2,
+        type: 2}
+      propertyPath: timeLimit
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 114893107088915604, guid: c82befd677112274d9f24d5689a76ae2,
+        type: 2}
+      propertyPath: acceleration
+      value: -0.7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c82befd677112274d9f24d5689a76ae2, type: 2}
