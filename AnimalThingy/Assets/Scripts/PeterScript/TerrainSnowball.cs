@@ -12,6 +12,7 @@ public class TerrainSnowball : MonoBehaviour
     public float pushForce = 5.0f;
     public float stunDuration;
     public float maxPushBack;
+    public float timeLimit;
 
     private bool gotHit = false;
     private Rigidbody2D rb2d;
@@ -33,6 +34,8 @@ public class TerrainSnowball : MonoBehaviour
             pushForce = GetComponentInParent<SpawnTerrainSnowball>().getForce;
             stunDuration = GetComponentInParent<SpawnTerrainSnowball>().getStunDuration;
             maxPushBack = GetComponentInParent<SpawnTerrainSnowball>().getMaxPushBack;
+            timeLimit = GetComponentInParent<SpawnTerrainSnowball>().getTimeLimit;
+
         }
         if (speed > 0)
         {
@@ -51,12 +54,21 @@ public class TerrainSnowball : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        snowballTimeLimit();
         if (gotHit) return;
         Debug.DrawRay(transform.position, Vector2.right * (dir), Color.red);
         HitWall();
         HitPlayer();
         Vector2 movement = new Vector2(speed, 0);
         rb2d.AddForce(movement);
+    }
+    void snowballTimeLimit()
+    {
+        timeLimit -= Time.deltaTime;
+        if(timeLimit < 0)
+        {
+            Destroy(gameObject);
+        }
     }
     public void HitPlayer()
     {

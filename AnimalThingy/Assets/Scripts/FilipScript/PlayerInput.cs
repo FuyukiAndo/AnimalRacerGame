@@ -240,8 +240,6 @@ public class PlayerInput : MonoBehaviour
 			}
 		}
 		
-		
-
 		if(canSpeak)
 		{
 			if (Input.GetKey(playerAbilityKey))
@@ -249,6 +247,30 @@ public class PlayerInput : MonoBehaviour
 				if(playerCharacterType == PlayerCharacterType.PlayerAlbatross)
 				{
 					if(!playerAlbatross.passiveAbility)
+					{
+						canSpeak = true;
+					}			
+				}		
+				
+				if(playerCharacterType == PlayerCharacterType.PlayerPig)
+				{
+					if(!playerPig.passiveAbility)
+					{
+						canSpeak = true;
+					}			
+				}		
+
+				if(playerCharacterType == PlayerCharacterType.PlayerPenguin)
+				{
+					if(!playerPenguin.passiveAbility)
+					{
+						canSpeak = true;
+					}			
+				}	
+				
+				if(playerCharacterType == PlayerCharacterType.PlayerMonkey)
+				{
+					if(!playerMonkey.passiveAbility)
 					{
 						canSpeak = true;
 					}			
@@ -518,8 +540,6 @@ public class PlayerInput : MonoBehaviour
 		{
 			animationHandler.SetAnimatorBool("ClimbActive", false);
 			animationHandler.SetAnimatorBool("ClimbInactive", false);
-
-			animationHandler.SetAnimatorBool("IdleT", true);
 		}
 
 		if (playerMonkey.collisionController.boxCollisionDirections.down)

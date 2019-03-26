@@ -73,6 +73,7 @@ public class GoalManager : MonoBehaviour
 		for (int i = 0; i < unplacedPlayers.Count(); i++)
 		{
 			playerChecks.Add(new PlayerCheckCount());
+			
 			playerChecks[i].tracker = unplacedPlayers[i].GetComponent<CheckpointTracker>();
 			playerChecks[i].name = unplacedPlayers[i].name;
 			playerChecks[i].checks = 0;
@@ -253,8 +254,8 @@ public class GoalManager : MonoBehaviour
 	{
 		CheckpointTracker closestTracker = GetPlayerClosestToGoal();
 		int index = unplacedPlayers.IndexOf(closestTracker);
-		AssignPlacementPoint(GetPlayerClosestToGoal());
 		placedPlayers.Add(GetPlayerClosestToGoal().gameObject);
+		AssignPlacementPoint(GetPlayerClosestToGoal());
 		AssignFinishingTime(GetPlayerClosestToGoal());
 		int index1 = placedPlayers.IndexOf(closestTracker.gameObject);
 		placedPlayers[index1].transform.position = playerGoalPositions[index1].transform.position;
