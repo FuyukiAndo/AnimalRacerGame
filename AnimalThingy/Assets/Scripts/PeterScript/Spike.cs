@@ -12,6 +12,7 @@ public class Spike : FlyingTrajectory
     void Start () {
         rb2d = GetComponent<Rigidbody2D>();
         rb2d.gravityScale = 0;
+		
         if (transform.parent != null)
         {
             spikeSpawner = GetComponentInParent<SpikeSpawner>();

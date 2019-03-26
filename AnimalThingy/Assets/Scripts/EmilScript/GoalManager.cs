@@ -72,6 +72,8 @@ public class GoalManager : MonoBehaviour
 		}
 		for (int i = 0; i < unplacedPlayers.Count(); i++)
 		{
+			playerChecks.Add(new PlayerCheckCount());
+			
 			playerChecks[i].tracker = unplacedPlayers[i].GetComponent<CheckpointTracker>();
 			playerChecks[i].checks = 0;
 		}
