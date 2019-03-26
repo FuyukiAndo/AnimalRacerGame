@@ -76,25 +76,17 @@ public class SpeechBubble : MonoBehaviour
 		StartCoroutine(SetSpeechInactive());
 	}
 
-	public void SetCommentatorSpeechActive(CommentatorSpeechType type, string nameA, int scoreA, string nameB, int scoreB)
+	public void SetCommentatorSpeechActive(CommentatorSpeechType type, string nameA, string nameB)
 	{
-		SetRandomSpeechFromCommentator(type, nameA, scoreA, nameB, scoreB);
+		SetRandomSpeechFromCommentator(type, nameA, nameB);
 		commentatorSpeechBubble.SetActive(true);
 		nibiPortrait.SetActive(true);
 		StartCoroutine(SetSpeechInactive());
 	}
 
-	public void SetCommentatorSpeechActive(CommentatorSpeechType type, string name, int score)
+	public void SetCommentatorSpeechActive(CommentatorSpeechType type, string name)
 	{
-		SetRandomSpeechFromCommentator(type, name, score);
-		commentatorSpeechBubble.SetActive(true);
-		nibiPortrait.SetActive(true);
-		StartCoroutine(SetSpeechInactive());
-	}
-
-	public void SetCommentatorSpeechActive(CommentatorSpeechType type, int score)
-	{
-		SetRandomSpeechFromCommentator(type, score);
+		SetRandomSpeechFromCommentator(type, name);
 		commentatorSpeechBubble.SetActive(true);
 		nibiPortrait.SetActive(true);
 		StartCoroutine(SetSpeechInactive());
@@ -118,34 +110,69 @@ public class SpeechBubble : MonoBehaviour
 		commentatorText.text = speech.speeches[rand];
 	}
 
-	void SetRandomSpeechFromCommentator(CommentatorSpeechType type, string nameA, int scoreA, string nameB, int scoreB)
+	void SetRandomSpeechFromCommentator(CommentatorSpeechType type, string nameA, string nameB)
 	{
 		List<CommentatorSpeech> speeches = commentatorSpeeches.ToList();
 		CommentatorSpeech speechSearch = speeches.Find(x => x.speechType == type);
 		if (speechSearch == null)return;
 		CommentatorSpeech speech = commentatorSpeeches.Where(tempSpeech => tempSpeech.speechType == type).FirstOrDefault();
 		int rand = Random.Range(0, speech.speeches.Length);
-		commentatorText.text = speech.speeches[rand].Replace("@", nameA + " :" + scoreA).Replace("@@", nameB + " :" + scoreB);
+		switch (nameA)
+		{
+			case "Player1":
+				nameA = "Player 1";
+				break;
+			case "Player2":
+				nameA = "Player 2";
+				break;
+			case "Player3":
+				nameA = "Player 3";
+				break;
+			case "Player4":
+				nameA = "Player 4";
+				break;
+		}
+		switch (nameB)
+		{
+			case "Player1":
+				nameA = "Player 1";
+				break;
+			case "Player2":
+				nameA = "Player 2";
+				break;
+			case "Player3":
+				nameA = "Player 3";
+				break;
+			case "Player4":
+				nameA = "Player 4";
+				break;
+		}
+		commentatorText.text = speech.speeches[rand].Replace("@", nameA).Replace("@@", nameB);
 	}
 
-	void SetRandomSpeechFromCommentator(CommentatorSpeechType type, string name, int score)
+	void SetRandomSpeechFromCommentator(CommentatorSpeechType type, string name)
 	{
 		List<CommentatorSpeech> speeches = commentatorSpeeches.ToList();
 		CommentatorSpeech speechSearch = speeches.Find(x => x.speechType == type);
 		if (speechSearch == null)return;
 		CommentatorSpeech speech = commentatorSpeeches.Where(tempSpeech => tempSpeech.speechType == type).FirstOrDefault();
 		int rand = Random.Range(0, speech.speeches.Length);
-		commentatorText.text = speech.speeches[rand].Replace("@", name + " :" + score);
-	}
-
-	void SetRandomSpeechFromCommentator(CommentatorSpeechType type, int score)
-	{
-		List<CommentatorSpeech> speeches = commentatorSpeeches.ToList();
-		CommentatorSpeech speechSearch = speeches.Find(x => x.speechType == type);
-		if (speechSearch == null)return;
-		CommentatorSpeech speech = commentatorSpeeches.Where(tempSpeech => tempSpeech.speechType == type).FirstOrDefault();
-		int rand = Random.Range(0, speech.speeches.Length);
-		commentatorText.text = speech.speeches[rand].Replace("@", score.ToString());
+		switch (name)
+		{
+			case "Player1":
+				name = "Player 1";
+				break;
+			case "Player2":
+				name = "Player 2";
+				break;
+			case "Player3":
+				name = "Player 3";
+				break;
+			case "Player4":
+				name = "Player 4";
+				break;
+		}
+		commentatorText.text = speech.speeches[rand].Replace("@", name);
 	}
 
 	IEnumerator SetSpeechInactive()

@@ -1839,9 +1839,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   iceMaps:
     maps:
-    - Djungelele
+    - Is_bana2
   jungleMaps:
-    maps: []
+    maps:
+    - Djungelele
   farmMaps:
     maps: []
   coastMaps:
@@ -5195,7 +5196,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 215.38086, y: -436.3209}
+  m_AnchoredPosition: {x: 215.38281, y: -436.3209}
   m_SizeDelta: {x: 284.9, y: 183.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &388647367
@@ -8355,7 +8356,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.422, g: 0.218, b: 0.109, a: 1}
+  m_Color: {r: 0.22745098, g: 0.2, b: 0.18431373, a: 0.47058824}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -11213,7 +11214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.422, g: 0.218, b: 0.109, a: 1}
+  m_Color: {r: 0.22745098, g: 0.2, b: 0.18431373, a: 0.47058824}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -24071,7 +24072,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.422, g: 0.218, b: 0.109, a: 1}
+  m_Color: {r: 0.22745098, g: 0.2, b: 0.18431373, a: 0.47058824}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

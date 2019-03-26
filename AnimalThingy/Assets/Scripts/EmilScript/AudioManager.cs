@@ -52,7 +52,8 @@ public class AudioManager : MonoBehaviour
 	{
 		SceneManager.sceneLoaded += OnSceneLoaded;
 		SetVolumeSFX(.5f);
-		//SetVolumeBackground(.5f);
+		SetVolumeBackground(.5f);
+		print(GetVolumeBackground() + " background volume enable " + SceneManager.GetActiveScene().name);
 		SetVolumeAmbience(.5f);
 	}
 
@@ -67,15 +68,16 @@ public class AudioManager : MonoBehaviour
 				{
 					SetBackgroundAudio(GetBackAudioPathForScene(scene));
 					SetAmbience(GetAmbienceAudioPathForScene(scene));
-					//StopBackAudioLooping();
-					//StopAmbienceLooping();
-					//SetupBack();
-					//SetupAmbience();
+					StopBackAudioLooping();
+					StopAmbienceLooping();
+					SetupBack();
+					SetupAmbience();
 					SetVolumeSFX(GetVolumeSFX());
-					//SetVolumeBackground(GetVolumeBackground());
+					SetVolumeBackground(GetVolumeBackground());
 					SetVolumeAmbience(GetVolumeAmbience());
-					//PlayBackAudioLooping();
-					//PlayAmbienceLooping();
+					PlayBackAudioLooping();
+					PlayAmbienceLooping();
+					print(GetVolumeBackground() + " background volume scene loaded " + SceneManager.GetActiveScene().name);
 					return;
 				}
 			}
@@ -88,15 +90,15 @@ public class AudioManager : MonoBehaviour
 				{
 					SetBackgroundAudio(backgroundUnity.audioClips[i].audioClip);
 					SetAmbience(backgroundUnity.audioClips[i].audioClip);
-					//StopBackAudioLooping();
-					//StopAmbienceLooping();
-					//SetupBack();
-					//SetupAmbience();
+					StopBackAudioLooping();
+					StopAmbienceLooping();
+					SetupBack();
+					SetupAmbience();
 					SetVolumeSFX(GetVolumeSFX());
-					//SetVolumeBackground(GetVolumeBackground());
+					SetVolumeBackground(GetVolumeBackground());
 					SetVolumeAmbience(GetVolumeAmbience());
-					//PlayBackAudioLooping();
-					//PlayAmbienceLooping();
+					PlayBackAudioLooping();
+					PlayAmbienceLooping();
 					return;
 				}
 			}
@@ -230,19 +232,20 @@ public class AudioManager : MonoBehaviour
 		if (instance == null)
 		{
 			instance = this;
-			//backgroundRoutine = PlayBackAudio();
-			//ambienceRoutine = PlayAmbience();
+			backgroundRoutine = PlayBackAudio();
+			ambienceRoutine = PlayAmbience();
 			SetBackgroundAudio(GetBackAudioPathForScene(SceneManager.GetActiveScene()));
 			SetAmbience(GetAmbienceAudioPathForScene(SceneManager.GetActiveScene()));
-			//StopBackAudioLooping();
-			//StopAmbienceLooping();
-			//SetupBack();
-			//SetupAmbience();
-			//SetVolumeSFX(.5f);
-			//SetVolumeBackground(.5f);
-			//SetVolumeAmbience(.5f);
-			//PlayBackAudioLooping();
-			//PlayAmbienceLooping();
+			StopBackAudioLooping();
+			StopAmbienceLooping();
+			SetupBack();
+			SetupAmbience();
+			SetVolumeSFX(.5f);
+			SetVolumeBackground(.5f);
+			SetVolumeAmbience(.5f);
+			PlayBackAudioLooping();
+			PlayAmbienceLooping();
+			print(GetVolumeBackground() + " background volume awake " + SceneManager.GetActiveScene().name);
 			DontDestroyOnLoad(gameObject);
 		}
 		else if (instance != this)
@@ -435,6 +438,18 @@ public class AudioManager : MonoBehaviour
 		PlayerPrefs.SetFloat("SFX", volume);
 		sfxVolume = volume;
 		foreach (var controller in FindObjectsOfType<AudioEffectController>())
+		{
+			controller.SetAudioVolume(volume);
+		}
+		foreach (var controller in FindObjectsOfType<AudioAutoPlayer>())
+		{
+			controller.SetAudioVolume(volume);
+		}
+		foreach (var controller in FindObjectsOfType<AudioPlayer>())
+		{
+			controller.SetAudioVolume(volume);
+		}
+		foreach (var controller in FindObjectsOfType<AudioOneshotPlayer>())
 		{
 			controller.SetAudioVolume(volume);
 		}

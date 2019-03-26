@@ -88,6 +88,7 @@ public class GoalManager : MonoBehaviour
 		AudioManager.Instance.SetupBack();
 		AudioManager.Instance.SetBackParameterValue(0.7f);
 		AudioManager.Instance.PlayBackAudioLooping();
+		print(AudioManager.Instance.GetVolumeBackground() + " background volume goal");
 	}
 
 	void Update()
@@ -123,7 +124,7 @@ public class GoalManager : MonoBehaviour
 	{
 		PlayerCheckCount checkCount = playerChecks.Where(player => player.tracker == tracker).FirstOrDefault();
 		checkCount.checks++;
-		//CheckForCommentatorEvent();
+		CheckForCommentatorEvent();
 	}
 
 	void CheckForCommentatorEvent()
@@ -150,56 +151,62 @@ public class GoalManager : MonoBehaviour
 		}
 		for (int i = 0; i < playerChecks.Count(); i++)
 		{
-			for (int j = 0; j < playerChecks.Count(); j++)
+			if (playerChecks.Count > 1)
 			{
-				if (playerChecks[i].checks == checksToPass.Count() - 1 && playerChecks[j].checks == checksToPass.Count() - 1)
+				for (int j = 0; j < playerChecks.Count(); j++)
 				{
-					commentator.SetCommentatorSpeechActive(CommentatorSpeechType.twoOneLeft,
-						playerChecks[i].name, playerChecks[i].checks, playerChecks[j].name, playerChecks[j].checks);
-					return;
-				}
-				else if (playerChecks[i].checks == 2 && playerChecks[j].checks == 2
-					|| playerChecks[i].checks == 3 && playerChecks[j].checks == 3)
-				{
-					commentator.SetCommentatorSpeechActive(CommentatorSpeechType.twoOneLeft,
-						playerChecks[i].name, playerChecks[i].checks, playerChecks[j].name, playerChecks[j].checks);
-					return;
-				}
-				else if (playerChecks[i].checks == checksToPass.Count() && playerChecks[j].checks == checksToPass.Count())
-				{
-					commentator.SetCommentatorSpeechActive(CommentatorSpeechType.twoOneLeft,
-						playerChecks[i].name, playerChecks[i].checks, playerChecks[j].name, playerChecks[j].checks);
-					return;
+					if (playerChecks[i].checks == checksToPass.Count() - 1 && playerChecks[j].checks == checksToPass.Count() - 1)
+					{
+						commentator.SetCommentatorSpeechActive(CommentatorSpeechType.twoOneLeft,
+							playerChecks[i].name, playerChecks[j].name);
+						return;
+					}
+					else if (playerChecks[i].checks == 2 && playerChecks[j].checks == 2
+						|| playerChecks[i].checks == 3 && playerChecks[j].checks == 3)
+					{
+						commentator.SetCommentatorSpeechActive(UnityEngine.Random.value >.5f ? CommentatorSpeechType.twoTwo : CommentatorSpeechType.twoThree,
+							playerChecks[i].name, playerChecks[j].name);
+						return;
+					}
+					else if (playerChecks[i].checks == checksToPass.Count() && playerChecks[j].checks == checksToPass.Count())
+					{
+						commentator.SetCommentatorSpeechActive(CommentatorSpeechType.twoAll,
+							playerChecks[i].name, playerChecks[j].name);
+						return;
+					}
 				}
 			}
 			if (playerChecks[i].checks == checksToPass.Count() - 1)
 			{
-				commentator.SetCommentatorSpeechActive(CommentatorSpeechType.twoOneLeft,
-					playerChecks[i].name, playerChecks[i].checks);
+				commentator.SetCommentatorSpeechActive(CommentatorSpeechType.oneOneLeft,
+					playerChecks[i].name);
 				return;
 			}
 			else if (playerChecks[i].checks == checksToPass.Count())
 			{
-				commentator.SetCommentatorSpeechActive(CommentatorSpeechType.twoOneLeft,
-					playerChecks[i].name, playerChecks[i].checks);
+				commentator.SetCommentatorSpeechActive(CommentatorSpeechType.oneAll,
+					playerChecks[i].name);
 				return;
 			}
 		}
-		if (allOneLeft)
+		if (playerChecks.Count > 1)
 		{
-			commentator.SetCommentatorSpeechActive(false, CommentatorSpeechType.multipleOneLeft);
-		}
-		else if (allAll)
-		{
-			commentator.SetCommentatorSpeechActive(false, CommentatorSpeechType.multipleAll);
-		}
-		else if (allThree)
-		{
-			commentator.SetCommentatorSpeechActive(false, CommentatorSpeechType.multipleThree);
-		}
-		else if (allTwo)
-		{
-			commentator.SetCommentatorSpeechActive(false, CommentatorSpeechType.multipleTwo);
+			if (allOneLeft)
+			{
+				commentator.SetCommentatorSpeechActive(false, CommentatorSpeechType.multipleOneLeft);
+			}
+			else if (allAll)
+			{
+				commentator.SetCommentatorSpeechActive(false, CommentatorSpeechType.multipleAll);
+			}
+			else if (allThree)
+			{
+				commentator.SetCommentatorSpeechActive(false, CommentatorSpeechType.multipleThree);
+			}
+			else if (allTwo)
+			{
+				commentator.SetCommentatorSpeechActive(false, CommentatorSpeechType.multipleTwo);
+			}
 		}
 	}
 
