@@ -322,7 +322,7 @@ public class AudioManager : MonoBehaviour
 		RuntimeManager.AttachInstanceToGameObject(ambience.audioInstance, transform, GetComponent<Rigidbody2D>());
 	}
 
-	void SetupBack()
+	public void SetupBack()
 	{
 		if (background.currentAudioPath != string.Empty)
 		{
@@ -332,7 +332,7 @@ public class AudioManager : MonoBehaviour
 		}
 	}
 
-	void SetupAmbience()
+	public void SetupAmbience()
 	{
 		if (ambience.currentAudioPath != string.Empty)
 		{

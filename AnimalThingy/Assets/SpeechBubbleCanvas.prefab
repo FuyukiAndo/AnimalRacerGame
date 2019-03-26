@@ -404,6 +404,7 @@ MonoBehaviour:
   speechBubble: {fileID: 1856111342710672}
   speechTextUI: {fileID: 1871258109539488}
   speechSpeedMult: 0.1
+  minSpeechSizeToIgnoreSpeedMult: 8
   isCommentator: 0
   commentatorSpeeches: []
   levelCompleteSpeech: 
@@ -782,6 +783,7 @@ MonoBehaviour:
   speechBubble: {fileID: 1123735491360268}
   speechTextUI: {fileID: 1319234902806242}
   speechSpeedMult: 0.1
+  minSpeechSizeToIgnoreSpeedMult: 8
   isCommentator: 0
   commentatorSpeeches: []
   levelCompleteSpeech: 
@@ -858,16 +860,61 @@ MonoBehaviour:
   speechBubble: {fileID: 0}
   speechTextUI: {fileID: 0}
   speechSpeedMult: 0.4
+  minSpeechSizeToIgnoreSpeedMult: 8
   isCommentator: 1
   commentatorSpeeches:
   - speechType: 0
-    speeches: []
+    speeches:
+    - Oh boy oh boy! Seems like @ Has them all! Hurry up the rest of you!
+    - Eey! @ got them all! Run run run!
+    - Dear Wilzimiax! @ got it! Such speed and finesse!
   - speechType: 5
-    speeches: []
+    speeches:
+    - Oh! Looks like @ and @@ are neck to neck already!
+    - Geez! Looks like @ and @@ really want those hats huh?
+    - Look at them go! @ and @@ seems to push it early on!
   - speechType: 6
-    speeches: []
-  - speechType: 0
-    speeches: []
+    speeches:
+    - Oh! Looks like @ and @@ are neck to neck already!
+    - Geez! Looks like @ and @@ really want those hats huh?
+    - Look at them go! @ and @@ seems to push it early on!
+  - speechType: 7
+    speeches:
+    - '@ and @@ only got one left! Who will win I wonder?'
+    - '@ and @@ are neck to neck almost at the end of this! Oh dear Wilzimiax!'
+    - "Don\u2019t the rest of you wanna win? @ and @@ only got one more before the
+      finish line!"
+  - speechType: 3
+    speeches:
+    - Seems like @ is dominating you all haha! Hurry it up!
+    - "Are you all slacking except for @? Hurry it up if you don\u2019t want to lose!"
+    - "AAAH! @ got them all! Can\u2019t tear my eyes off of this!"
+  - speechType: 4
+    speeches:
+    - Looks like the last stretch for @ and @@! Stop slacking the rest of you!
+    - Looks like the final showdown between @ and @@! What a thrill!
+    - "What\u2019ya know? Looks like we got our rivalry between @ and @@! Bring me
+      some earth snack!"
+  - speechType: 9
+    speeches:
+    - Wooh! All of you already got @! Slow it down for my poor eyes!
+    - You all already got @? The hat is tipping for your efforts!
+    - "It\u2019s all equal among you with @ done! Keep at it, my little runners!"
+  - speechType: 10
+    speeches:
+    - Wooh! All of you already got @! Slow it down for my poor eyes!
+    - You all already got @? The hat is tipping for your efforts!
+    - "It\u2019s all equal among you with @ done! Keep at it, my little runners!"
+  - speechType: 11
+    speeches:
+    - Seems like you all only got one left! Push through!
+    - You all got one left! Keep at it!
+    - You know what everyone? Only one left! Go go go!
+  - speechType: 8
+    speeches:
+    - You all got them! Hurry to the end!
+    - "All of you got them all! Keep on forward and don\u2019t look back!"
+    - Last stretch for you all! My heart is gonna explode from this, geez!
   levelCompleteSpeech: 
   commentingDelay: 4
   commentatorSpeechBubble: {fileID: 1945816186768468}
@@ -1089,6 +1136,7 @@ MonoBehaviour:
   speechBubble: {fileID: 1329786320517794}
   speechTextUI: {fileID: 1806253602305246}
   speechSpeedMult: 0.1
+  minSpeechSizeToIgnoreSpeedMult: 8
   isCommentator: 0
   commentatorSpeeches: []
   levelCompleteSpeech: 
@@ -1253,6 +1301,7 @@ MonoBehaviour:
   speechBubble: {fileID: 1293640811880736}
   speechTextUI: {fileID: 1664677346685776}
   speechSpeedMult: 0.1
+  minSpeechSizeToIgnoreSpeedMult: 8
   isCommentator: 0
   commentatorSpeeches: []
   levelCompleteSpeech: 

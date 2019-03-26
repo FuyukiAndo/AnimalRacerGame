@@ -76,6 +76,30 @@ public class SpeechBubble : MonoBehaviour
 		StartCoroutine(SetSpeechInactive());
 	}
 
+	public void SetCommentatorSpeechActive(CommentatorSpeechType type, string nameA, int scoreA, string nameB, int scoreB)
+	{
+		SetRandomSpeechFromCommentator(type, nameA, scoreA, nameB, scoreB);
+		commentatorSpeechBubble.SetActive(true);
+		nibiPortrait.SetActive(true);
+		StartCoroutine(SetSpeechInactive());
+	}
+
+	public void SetCommentatorSpeechActive(CommentatorSpeechType type, string name, int score)
+	{
+		SetRandomSpeechFromCommentator(type, name, score);
+		commentatorSpeechBubble.SetActive(true);
+		nibiPortrait.SetActive(true);
+		StartCoroutine(SetSpeechInactive());
+	}
+
+	public void SetCommentatorSpeechActive(CommentatorSpeechType type, int score)
+	{
+		SetRandomSpeechFromCommentator(type, score);
+		commentatorSpeechBubble.SetActive(true);
+		nibiPortrait.SetActive(true);
+		StartCoroutine(SetSpeechInactive());
+	}
+
 	void SetRandomSpeechFromType(SpeechType speechType, PlayerCharacterType playerType)
 	{
 		Speech speech = speeches.Where(tempSpeech => tempSpeech.speechType == speechType && tempSpeech.playerCharacterType == playerType).FirstOrDefault();
@@ -94,6 +118,36 @@ public class SpeechBubble : MonoBehaviour
 		commentatorText.text = speech.speeches[rand];
 	}
 
+	void SetRandomSpeechFromCommentator(CommentatorSpeechType type, string nameA, int scoreA, string nameB, int scoreB)
+	{
+		List<CommentatorSpeech> speeches = commentatorSpeeches.ToList();
+		CommentatorSpeech speechSearch = speeches.Find(x => x.speechType == type);
+		if (speechSearch == null)return;
+		CommentatorSpeech speech = commentatorSpeeches.Where(tempSpeech => tempSpeech.speechType == type).FirstOrDefault();
+		int rand = Random.Range(0, speech.speeches.Length);
+		commentatorText.text = speech.speeches[rand].Replace("@", nameA + " :" + scoreA).Replace("@@", nameB + " :" + scoreB);
+	}
+
+	void SetRandomSpeechFromCommentator(CommentatorSpeechType type, string name, int score)
+	{
+		List<CommentatorSpeech> speeches = commentatorSpeeches.ToList();
+		CommentatorSpeech speechSearch = speeches.Find(x => x.speechType == type);
+		if (speechSearch == null)return;
+		CommentatorSpeech speech = commentatorSpeeches.Where(tempSpeech => tempSpeech.speechType == type).FirstOrDefault();
+		int rand = Random.Range(0, speech.speeches.Length);
+		commentatorText.text = speech.speeches[rand].Replace("@", name + " :" + score);
+	}
+
+	void SetRandomSpeechFromCommentator(CommentatorSpeechType type, int score)
+	{
+		List<CommentatorSpeech> speeches = commentatorSpeeches.ToList();
+		CommentatorSpeech speechSearch = speeches.Find(x => x.speechType == type);
+		if (speechSearch == null)return;
+		CommentatorSpeech speech = commentatorSpeeches.Where(tempSpeech => tempSpeech.speechType == type).FirstOrDefault();
+		int rand = Random.Range(0, speech.speeches.Length);
+		commentatorText.text = speech.speeches[rand].Replace("@", score.ToString());
+	}
+
 	IEnumerator SetSpeechInactive()
 	{
 		if (isCommentator)
@@ -109,7 +163,7 @@ public class SpeechBubble : MonoBehaviour
 			commentatorText.text = string.Empty;
 			commentatorSpeechBubble.SetActive(false);
 			nibiPortrait.SetActive(false);
-			if (disruptUpdateCommenting) disruptUpdateCommenting = false;
+			if (disruptUpdateCommenting)disruptUpdateCommenting = false;
 		}
 		else
 		{

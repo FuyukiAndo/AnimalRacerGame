@@ -72,7 +72,10 @@ public class GoalManager : MonoBehaviour
 		}
 		for (int i = 0; i < unplacedPlayers.Count(); i++)
 		{
+			playerChecks.Add(new PlayerCheckCount());
+			
 			playerChecks[i].tracker = unplacedPlayers[i].GetComponent<CheckpointTracker>();
+			playerChecks[i].name = unplacedPlayers[i].name;
 			playerChecks[i].checks = 0;
 		}
 		totalTimeBeforeAutoPlacements = timeBeforeAutoPlacements;
@@ -82,7 +85,10 @@ public class GoalManager : MonoBehaviour
 	IEnumerator CountDownToStressSignal()
 	{
 		yield return new WaitForSeconds(stressSignalDelay);
+		AudioManager.Instance.StopBackAudioLooping();
+		AudioManager.Instance.SetupBack();
 		AudioManager.Instance.SetBackParameterValue(0.7f);
+		AudioManager.Instance.PlayBackAudioLooping();
 	}
 
 	void Update()
@@ -149,29 +155,34 @@ public class GoalManager : MonoBehaviour
 			{
 				if (playerChecks[i].checks == checksToPass.Count() - 1 && playerChecks[j].checks == checksToPass.Count() - 1)
 				{
-					commentator.SetCommentatorSpeechActive(false, CommentatorSpeechType.twoOneLeft);
+					commentator.SetCommentatorSpeechActive(CommentatorSpeechType.twoOneLeft,
+						playerChecks[i].name, playerChecks[i].checks, playerChecks[j].name, playerChecks[j].checks);
 					return;
 				}
 				else if (playerChecks[i].checks == 2 && playerChecks[j].checks == 2
 					|| playerChecks[i].checks == 3 && playerChecks[j].checks == 3)
 				{
-					commentator.SetCommentatorSpeechActive(false, CommentatorSpeechType.twoTwo);
+					commentator.SetCommentatorSpeechActive(CommentatorSpeechType.twoOneLeft,
+						playerChecks[i].name, playerChecks[i].checks, playerChecks[j].name, playerChecks[j].checks);
 					return;
 				}
 				else if (playerChecks[i].checks == checksToPass.Count() && playerChecks[j].checks == checksToPass.Count())
 				{
-					commentator.SetCommentatorSpeechActive(false, CommentatorSpeechType.twoAll);
+					commentator.SetCommentatorSpeechActive(CommentatorSpeechType.twoOneLeft,
+						playerChecks[i].name, playerChecks[i].checks, playerChecks[j].name, playerChecks[j].checks);
 					return;
 				}
 			}
 			if (playerChecks[i].checks == checksToPass.Count() - 1)
 			{
-				commentator.SetCommentatorSpeechActive(false, CommentatorSpeechType.oneOneLeft);
+				commentator.SetCommentatorSpeechActive(CommentatorSpeechType.twoOneLeft,
+					playerChecks[i].name, playerChecks[i].checks);
 				return;
 			}
 			else if (playerChecks[i].checks == checksToPass.Count())
 			{
-				commentator.SetCommentatorSpeechActive(false, CommentatorSpeechType.oneAll);
+				commentator.SetCommentatorSpeechActive(CommentatorSpeechType.twoOneLeft,
+					playerChecks[i].name, playerChecks[i].checks);
 				return;
 			}
 		}
@@ -501,4 +512,5 @@ public class PlayerCheckCount
 {
 	public int checks;
 	public CheckpointTracker tracker;
+	public string name;
 }

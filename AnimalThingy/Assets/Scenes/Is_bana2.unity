@@ -2998,6 +2998,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 114893107088915604, guid: c82befd677112274d9f24d5689a76ae2,
+        type: 2}
+      propertyPath: timeLimit
+      value: 23
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c82befd677112274d9f24d5689a76ae2, type: 2}
   m_IsPrefabParent: 0
@@ -5717,7 +5722,7 @@ MonoBehaviour:
   players: []
   startFov: 60
   startPos: {fileID: 334557326}
-  timeBeforeZoomToPlayers: 2
+  timeBeforeZoomToPlayers: 3
   camAngle: 5
   camYOffset: 5
 --- !u!81 &334557323
@@ -17843,22 +17848,32 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114069475100452098, guid: fd07e6b9c95dd1d4ba4004ab1be1f89c,
+    - target: {fileID: 114367661144948018, guid: fd07e6b9c95dd1d4ba4004ab1be1f89c,
         type: 2}
       propertyPath: m_havePropertiesChanged
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114069475100452098, guid: fd07e6b9c95dd1d4ba4004ab1be1f89c,
+    - target: {fileID: 114367661144948018, guid: fd07e6b9c95dd1d4ba4004ab1be1f89c,
         type: 2}
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114984696211184818, guid: fd07e6b9c95dd1d4ba4004ab1be1f89c,
+    - target: {fileID: 114902901436708136, guid: fd07e6b9c95dd1d4ba4004ab1be1f89c,
         type: 2}
       propertyPath: m_havePropertiesChanged
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114984696211184818, guid: fd07e6b9c95dd1d4ba4004ab1be1f89c,
+    - target: {fileID: 114902901436708136, guid: fd07e6b9c95dd1d4ba4004ab1be1f89c,
+        type: 2}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114069475100452098, guid: fd07e6b9c95dd1d4ba4004ab1be1f89c,
+        type: 2}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114069475100452098, guid: fd07e6b9c95dd1d4ba4004ab1be1f89c,
         type: 2}
       propertyPath: m_isInputParsingRequired
       value: 1
@@ -17879,16 +17894,6 @@ Prefab:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114058941551063574, guid: fd07e6b9c95dd1d4ba4004ab1be1f89c,
-        type: 2}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114902901436708136, guid: fd07e6b9c95dd1d4ba4004ab1be1f89c,
-        type: 2}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114902901436708136, guid: fd07e6b9c95dd1d4ba4004ab1be1f89c,
         type: 2}
       propertyPath: m_isInputParsingRequired
       value: 1
