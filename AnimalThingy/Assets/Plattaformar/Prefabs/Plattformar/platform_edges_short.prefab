@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4348151735998904}
-  - component: {fileID: 60197706571944514}
+  - component: {fileID: 61933386415726790}
   m_Layer: 9
   m_Name: platform_edges_short
   m_TagString: Ground
@@ -112,8 +112,8 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1818850107049098}
   m_Mesh: {fileID: 4300018, guid: 1b348d5fe283b834e87eb2097fc00165, type: 3}
---- !u!60 &60197706571944514
-PolygonCollider2D:
+--- !u!61 &61933386415726790
+BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -124,7 +124,7 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.022571564, y: -10.998433}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -134,34 +134,6 @@ PolygonCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.20944977, y: -10.498912}
-      - {x: -1.6530991, y: -10.49861}
-      - {x: -2.086193, y: -10.503318}
-      - {x: -2.1037483, y: -10.535042}
-      - {x: -2.1070442, y: -10.603076}
-      - {x: -2.1069412, y: -10.687148}
-      - {x: -2.091442, y: -10.8929205}
-      - {x: -2.029499, y: -10.930043}
-      - {x: -2.2215805, y: -11.144413}
-      - {x: -2.2716103, y: -11.395793}
-      - {x: -1.5373726, y: -11.396144}
-      - {x: -1.247879, y: -11.396536}
-      - {x: -1.0720139, y: -11.50369}
-      - {x: 1.1982269, y: -11.444088}
-      - {x: 1.2843513, y: -11.398164}
-      - {x: 2.278408, y: -11.394945}
-      - {x: 2.2613754, y: -11.318998}
-      - {x: 2.256382, y: -11.285708}
-      - {x: 2.2563477, y: -11.274618}
-      - {x: 2.2485313, y: -11.203808}
-      - {x: 2.2472687, y: -11.198258}
-      - {x: 2.2395554, y: -11.126472}
-      - {x: 2.184925, y: -10.953102}
-      - {x: 2.1647644, y: -10.871859}
-      - {x: 2.1601105, y: -10.861469}
-      - {x: 2.1665916, y: -10.683559}
-      - {x: 2.159481, y: -10.544944}
-      - {x: 2.1350098, y: -10.502412}
-      - {x: 1.3994942, y: -10.500683}
+  serializedVersion: 2
+  m_Size: {x: 4.277893, y: 0.8672085}
+  m_EdgeRadius: 0
