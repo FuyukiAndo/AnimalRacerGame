@@ -20,6 +20,7 @@ public class Bubble : MonoBehaviour
     public float destinationMargin;
     private CircleCollider2D circle;
 
+
     private void Start()
     {
         bc2d = GetComponent<BoxCollider2D>();
