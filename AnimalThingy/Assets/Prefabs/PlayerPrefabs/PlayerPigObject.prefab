@@ -11918,7 +11918,7 @@ MonoBehaviour:
   isJumping: 0
   collision: []
   deltaJumpCounter: 0.35
-  horizontalKnockBackPower: 15
+  horizontalKnockBackPower: 40
   verticalKnockBackPower: 15
 --- !u!114 &114443231994388580
 MonoBehaviour:
