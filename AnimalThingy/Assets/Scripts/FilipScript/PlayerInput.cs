@@ -215,7 +215,6 @@ public class PlayerInput : MonoBehaviour
 
 	private void InputAudio()
 	{
-		//Still doesn't work :S
 
 		if (isStunned)
 		{

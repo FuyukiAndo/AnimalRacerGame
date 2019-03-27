@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
@@ -52,7 +53,7 @@ public class Checkpoint : MonoBehaviour
 				if (collider.name == playerFlags[i].playerName)
 				{
 					playerFlags[i].playerFlag.SetActive(true);
-					if (!playerFlags[i].playedAudioForPlayer)
+					if (makeSound && !playerFlags[i].playedAudioForPlayer)
 					{
 						float paramValue = 0f;
 						switch (collider.name)
@@ -70,11 +71,8 @@ public class Checkpoint : MonoBehaviour
 								paramValue = Random.Range(0.3f, 0.35f);
 								break;
 						}
-						if (makeSound)
-						{
-							oneshotPlayer.PlayAudioOneShot();
-							oneshotPlayer.SetParameterValue(paramValue);
-						}
+						oneshotPlayer.PlayAudioOneShot();
+						oneshotPlayer.SetParameterValue(paramValue);
 						playerFlags[i].playedAudioForPlayer = true;
 					}
 					if (!updatedCheckToGoFor)
