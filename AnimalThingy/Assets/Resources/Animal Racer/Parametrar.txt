@@ -39,3 +39,12 @@ Meny = "Knappar"
  Select 0.0 - 0.19
 
  Back 0.20 - 0.39
+
+Istapp
+ 
+ 0.0 - 1.0
+
+Lövstuds 
+
+ 0.0 - 1.0 
+ 

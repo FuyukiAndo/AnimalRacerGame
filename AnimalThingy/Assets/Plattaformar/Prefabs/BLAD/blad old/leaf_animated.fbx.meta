@@ -37,7 +37,12 @@ ModelImporter:
     7400002: leaf_idle.001
     9500000: //RootNode
     13700000: giant_leaf
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: 38abe81fe670a3841a76f1a80b300e6f, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

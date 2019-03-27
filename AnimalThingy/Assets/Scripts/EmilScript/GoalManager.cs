@@ -40,7 +40,7 @@ public class GoalManager : MonoBehaviour
 	private float totalTimeBeforeAutoPlacements;
 	private int initialPlayerCount;
 	[SerializeField] private LayerMask playerLayer, ignorePlayerLayer;
-	[SerializeField] private float nextSceneDelay, stressSignalDelay;
+	[SerializeField] private float nextSceneDelay;
 	private bool startedSceneSwitch;
 	private GameObject checkpointToGoFor;
 	private int currentCheckToGoFor;
@@ -61,7 +61,6 @@ public class GoalManager : MonoBehaviour
 	{
 		boxSize = GetComponent<BoxCollider2D>().size;
 		commentator = FindObjectsOfType<SpeechBubble>().Where(bubble => bubble.name.Contains("Commentator")).FirstOrDefault();
-		//StartCoroutine(CountDownToStressSignal());
 	}
 
 	public void Setup()
@@ -79,16 +78,6 @@ public class GoalManager : MonoBehaviour
 		}
 		totalTimeBeforeAutoPlacements = timeBeforeAutoPlacements;
 		initialPlayerCount = unplacedPlayers.Count;
-	}
-
-	IEnumerator CountDownToStressSignal()
-	{
-		yield return new WaitForSeconds(stressSignalDelay);
-		AudioManager.Instance.StopBackAudioLooping();
-		AudioManager.Instance.SetupBack();
-		AudioManager.Instance.SetBackParameterValue(0.7f);
-		AudioManager.Instance.PlayBackAudioLooping();
-		print(AudioManager.Instance.GetVolumeBackground() + " background volume goal");
 	}
 
 	void Update()

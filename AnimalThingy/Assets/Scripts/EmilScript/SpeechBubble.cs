@@ -147,7 +147,7 @@ public class SpeechBubble : MonoBehaviour
 				nameA = "Player 4";
 				break;
 		}
-		commentatorText.text = speech.speeches[rand].Replace("@", nameA).Replace("@@", nameB);
+		commentatorText.text = speech.speeches[rand].Replace("@", nameA).Replace("§", nameB);
 	}
 
 	void SetRandomSpeechFromCommentator(CommentatorSpeechType type, string name)

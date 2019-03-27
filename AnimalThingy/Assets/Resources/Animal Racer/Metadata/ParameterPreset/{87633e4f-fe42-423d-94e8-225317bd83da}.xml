@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="ParameterPreset" id="{87633e4f-fe42-423d-94e8-225317bd83da}">
+        <property name="name">
+            <value>Lövstuds</value>
+        </property>
+        <relationship name="folder">
+            <destination>{eeb4d956-6d5f-4882-8484-a5143fb4d5f1}</destination>
+        </relationship>
+        <relationship name="parameter">
+            <destination>{61bd71be-89d5-429f-8bce-136afba7b739}</destination>
+        </relationship>
+    </object>
+    <object class="GameParameter" id="{61bd71be-89d5-429f-8bce-136afba7b739}">
+        <property name="initialValue">
+            <value>0</value>
+        </property>
+    </object>
+</objects>

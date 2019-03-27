@@ -7,17 +7,358 @@
 [LOG] OutputWASAPI::init                       : Output buffer size: 4096 samples, latency: 0.00ms, period: 10.00ms, DSP buffer: 1024 * 4
 [LOG] Thread::initThread                       : Init FMOD stream thread. Priority: 2, Stack Size: 65536, Semaphore: No, Sleep Time: 10, Looping: Yes.
 [LOG] Thread::initThread                       : Init FMOD mixer thread. Priority: 3, Stack Size: 49152, Semaphore: No, Sleep Time: 0, Looping: Yes.
-[LOG] AsyncManager::init                       : manager 0000000046FB2048 isAsync 0 updatePeriod 0.02
+[LOG] AsyncManager::init                       : manager 000000006ADB6558 isAsync 0 updatePeriod 0.02
 [LOG] AsyncManager::init                       : done
 [LOG] PlaybackSystem::init                     : 
 [LOG] Thread::initThread                       : Init FMOD Studio sample load thread. Priority: 0, Stack Size: 65536, Semaphore: No, Sleep Time: 1, Looping: No.
 [LOG] PlaybackSystem::init                     : done
 [LOG] Thread::initThread                       : Init FMOD Studio bank load thread. Priority: 0, Stack Size: 65536, Semaphore: No, Sleep Time: 1, Looping: No.
 [LOG] Manager::init                            : done.
+[LOG] SoundI::release                          : DJUNGELAMBIENCE_WATERFALL (LOOP) (000000004F4D8BA8)
+[LOG] SoundI::release                          :     DJUNGELAMBIENCE_WATERFALL (LOOP) (000000004FC95708)
+[LOG] SoundI::release                          :     DJUNGELAMBIENCE_WATERFALL (LOOP) (000000004F4D9268)
+[LOG] SoundI::release                          : DJUNGELAMBIENCE_WATERFALL (LOOP) (000000004F4D8F08)
+[LOG] SoundI::release                          :     DJUNGELAMBIENCE_WATERFALL (LOOP) (000000004FC97788)
+[LOG] SoundI::release                          :     DJUNGELAMBIENCE_WATERFALL (LOOP) (000000004F4D7918)
+[LOG] SoundI::release                          : DJUNGELAMBIENCE_WATERFALL (LOOP) (000000004F4D90B8)
+[LOG] SoundI::release                          :     DJUNGELAMBIENCE_WATERFALL (LOOP) (000000004FC95BE8)
+[LOG] SoundI::release                          :     DJUNGELAMBIENCE_WATERFALL (LOOP) (000000004F4D7C78)
+[LOG] SoundI::release                          : Is 140bpm (000000004F4D75B8)
+[LOG] SoundI::release                          :     Is 140bpm (000000004FC95568)
+[LOG] SoundI::release                          :     Is 140bpm (000000004F4D8698)
+[LOG] SoundI::release                          : VindLoop_04_V1 [long] merged (000000004F4D84E8)
+[LOG] SoundI::release                          :     VindLoop_04_V1 [long] merged (000000004FC953C8)
+[LOG] SoundI::release                          :     VindLoop_04_V1 [long] merged (000000004F4D8848)
+[LOG] SoundI::release                          :  (0000000058087858)
+[LOG] SoundI::release                          :     Meny (Klickljud) - 02 V1 (000000004F727EE8)
+[LOG] SoundI::release                          :  (00000000580879C8)
+[LOG] SoundI::release                          :     Meny (Klickljud) - 03 V1 (000000004F728708)
+[LOG] SoundI::release                          :  (000000001170C6F8)
+[LOG] SoundI::release                          :     Meny (Klickljud) - 01 V1 (000000004FC975E8)
+[LOG] SoundI::release                          :  (00000000580883D8)
+[LOG] SoundI::release                          :     Meny Backward (Klick) 01 - V1 (000000004F7283C8)
+[LOG] SoundI::release                          :  (0000000058088828)
+[LOG] SoundI::release                          :     Meny Backward (Klick) 02 - V1 (000000004F728228)
+[LOG] SoundI::release                          :  (00000000117A1D18)
+[LOG] SoundI::release                          :     ISTAPP_HIT_008 (000000004FC97AC8)
+[LOG] SoundI::release                          :  (000000006B0465A8)
+[LOG] SoundI::release                          :     ISTAPP_HIT_009 (000000004FC94EE8)
+[LOG] SoundI::release                          :  (000000006B046888)
+[LOG] SoundI::release                          :     ISTAPP_HIT_002 (000000004FC98148)
+[LOG] SoundI::release                          :  (000000006B045E78)
+[LOG] SoundI::release                          :     Foghorn Normalize (000000004FC94D48)
+[LOG] SoundI::release                          :  (000000006B047578)
+[LOG] SoundI::release                          :     Örn Normalize (000000004FC958A8)
+[LOG] SoundI::release                          :  (0000000048BEAD38)
+[LOG] SoundI::release                          :     ISBANA_SJÖLEJON_04-V1 (1shot) (000000004FC97E08)
+[LOG] SoundI::release                          :  (000000006B046CD8)
+[LOG] SoundI::release                          :     Prototuta (000000004FC94868)
+[LOG] Thread::callback                         : FMOD Studio update thread finished.
 [LOG] Thread::callback                         : FMOD Studio bank load thread finished.
 [LOG] Thread::callback                         : FMOD Studio sample load thread finished.
 [LOG] LiveUpdate::release                      : 
 [LOG] LiveUpdate::reset                        : Reset connection (reason Disconnected)
 [LOG] Thread::callback                         : FMOD stream thread finished.
 [LOG] Thread::callback                         : FMOD mixer thread finished.
+[LOG] SystemI::close                           : Closed.
+[LOG] Manager::readBank                        : fileversion = 100, compatVersion = 99 (oldest = 44, newest = 103)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 11389952
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 74656
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 0000000076C1F5FC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFD811A1100
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFD811A10D0
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFD811A11D0
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFD811A1290
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000000001DAEC8
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='ISBANA_SJÖLEJON_04-V1 (1shot)', format=2, channels=2, frequency=48000, lengthbytes=61728, lengthpcm=256000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.911033.
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 11389952
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 74656
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 0000000076C1F5FC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFD811A1100
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFD811A10D0
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFD811A11D0
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFD811A1290
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000000001DAEC8
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Prototuta', format=2, channels=2, frequency=48000, lengthbytes=18176, lengthpcm=93722, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.480854.
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 11389952
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 74656
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 0000000076C1F5FC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFD811A1100
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFD811A10D0
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFD811A11D0
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFD811A1290
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000000001DAEC8
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Örn Normalize', format=2, channels=2, frequency=48000, lengthbytes=40544, lengthpcm=150641, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.833801.
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 11389952
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 74656
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 0000000076C1F5FC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFD811A1100
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFD811A10D0
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFD811A11D0
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFD811A1290
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000000001DAEC8
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Foghorn Normalize', format=2, channels=2, frequency=48000, lengthbytes=67456, lengthpcm=453856, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.912048.
+[LOG] SystemI::createSound                     : filename = C:\Users\Emilb\DevProjects\Games\AnimalRacerGame\AnimalThingy\Assets\Resources\Animal Racer\Build\Desktop\Master Bank.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 000000004F4D8848 : node = 0000000048A9DB40
+[LOG] SystemI::createSound                     : add node to async list : head = 000000004FC96218.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000000004F4D8848
+[LOG] SystemI::createSoundInternal             :     Create name='C:\Users\Emilb\DevProjects\Games\AnimalRacerGame\AnimalThingy\Assets\Resources\Animal Racer\Build\Desktop\Master Bank.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 11389952
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 74656
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000000048A9DC58
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='VindLoop_04_V1 [long] merged', format=2, channels=2, frequency=48000, lengthbytes=374560, lengthpcm=1536000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.122097.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000000004F4D8848
+[LOG] SoundI::getSubSound                      : sound 000000004F4D8848.  Subsound index 0 / 1
+[LOG] SoundI::release                          : VindLoop_04_V1 [long] merged (000000004F4D8848)
+[LOG] SoundI::release                          :     VindLoop_04_V1 [long] merged (000000004FC97E08)
+[LOG] SoundI::release                          :     VindLoop_04_V1 [long] merged (000000004F4D89F8)
+[LOG] SystemI::createSound                     : filename = C:\Users\Emilb\DevProjects\Games\AnimalRacerGame\AnimalThingy\Assets\Resources\Animal Racer\Build\Desktop\Master Bank.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 000000004F4D75B8 : node = 0000000048A9DB40
+[LOG] SystemI::createSound                     : add node to async list : head = 000000004FC96218.  list count = 0
+[LOG] SystemI::createSound                     : filename = C:\Users\Emilb\DevProjects\Games\AnimalRacerGame\AnimalThingy\Assets\Resources\Animal Racer\Build\Desktop\Master Bank.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 000000004F4D8F08 : node = 0000000048A9D360
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000000004F4D75B8
+[LOG] SystemI::createSound                     : add node to async list : head = 000000004FC96218.  list count = 0
+[LOG] SystemI::createSoundInternal             :     Create name='C:\Users\Emilb\DevProjects\Games\AnimalRacerGame\AnimalThingy\Assets\Resources\Animal Racer\Build\Desktop\Master Bank.bank', mode=0x02010082
+[LOG] SystemI::createSound                     :     filename = C:\Users\Emilb\DevProjects\Games\AnimalRacerGame\AnimalThingy\Assets\Resources\Animal Racer\Build\Desktop\Master Bank.bank : mode 02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 11389952
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 74656
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSound                     :     FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000000048A9DC58
+[LOG] SystemI::createSound                     :     setdata soundi = 000000004F4D90B8 : node = 0000000048A9DC90
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSound                     :     add node to async list : head = 000000004FC96218.  list count = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='alt STRESS_Ljud_V1', format=2, channels=2, frequency=48000, lengthbytes=303104, lengthpcm=1376256, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.736500.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000000004F4D75B8
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000000004F4D8F08
+[LOG] SystemI::createSoundInternal             :     Create name='C:\Users\Emilb\DevProjects\Games\AnimalRacerGame\AnimalThingy\Assets\Resources\Animal Racer\Build\Desktop\Master Bank.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 11389952
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 74656
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000000048A9D478
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='VindLoop_04_V1 [long] merged', format=2, channels=2, frequency=48000, lengthbytes=374560, lengthpcm=1536000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.122097.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000000004F4D8F08
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000000004F4D90B8
+[LOG] SystemI::createSoundInternal             :     Create name='C:\Users\Emilb\DevProjects\Games\AnimalRacerGame\AnimalThingy\Assets\Resources\Animal Racer\Build\Desktop\Master Bank.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 11389952
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 74656
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000000048A9DDA8
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Is 160bpm Loop', format=2, channels=2, frequency=48000, lengthbytes=769312, lengthpcm=2591964, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.867523.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000000004F4D90B8
+[LOG] SoundI::getSubSound                      : sound 000000004F4D75B8.  Subsound index 0 / 1
+[LOG] SoundI::getSubSound                      : sound 000000004F4D8F08.  Subsound index 0 / 1
+[LOG] SoundI::getSubSound                      : sound 000000004F4D90B8.  Subsound index 0 / 1
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000000004F4D7918
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000000004F4D7918
+[LOG] SoundI::release                          :  (00000000580883D8)
+[LOG] SoundI::release                          :     Foghorn Normalize (000000004FC95BE8)
+[LOG] SoundI::release                          :  (00000000580879C8)
+[LOG] SoundI::release                          :     Örn Normalize (000000004FC97AC8)
+[LOG] SoundI::release                          :  (0000000058088828)
+[LOG] SoundI::release                          :     ISBANA_SJÖLEJON_04-V1 (1shot) (000000004FC975E8)
+[LOG] SoundI::release                          :  (0000000058087858)
+[LOG] SoundI::release                          :     Prototuta (000000004FC97788)
+[LOG] SoundI::release                          : Is 160bpm Loop (000000004F4D90B8)
+[LOG] SoundI::release                          :     Is 160bpm Loop (000000004FC98148)
+[LOG] SoundI::release                          :     Is 160bpm Loop (000000004F4D9268)
+[LOG] SoundI::release                          : VindLoop_04_V1 [long] merged (000000004F4D8F08)
+[LOG] SoundI::release                          :     VindLoop_04_V1 [long] merged (000000004FC97E08)
+[LOG] SoundI::release                          :     VindLoop_04_V1 [long] merged (000000004F4D7C78)
+[LOG] SoundI::release                          : alt STRESS_Ljud_V1 (000000004F4D75B8)
+[LOG] SoundI::release                          :     alt STRESS_Ljud_V1 (000000004FC94868)
+[LOG] SoundI::release                          :     alt STRESS_Ljud_V1 (000000004F4D7918)
+[LOG] Manager::readBank                        : fileversion = 100, compatVersion = 99 (oldest = 44, newest = 103)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 11389952
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 74656
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 0000000076C1F5FC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFD811A1100
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFD811A10D0
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFD811A11D0
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFD811A1290
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000000001DC578
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='ISBANA_SJÖLEJON_04-V1 (1shot)', format=2, channels=2, frequency=48000, lengthbytes=61728, lengthpcm=256000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.911033.
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 11389952
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 74656
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 0000000076C1F5FC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFD811A1100
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFD811A10D0
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFD811A11D0
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFD811A1290
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000000001DC578
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Prototuta', format=2, channels=2, frequency=48000, lengthbytes=18176, lengthpcm=93722, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.480854.
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 11389952
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 74656
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 0000000076C1F5FC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFD811A1100
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFD811A10D0
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFD811A11D0
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFD811A1290
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000000001DC578
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Örn Normalize', format=2, channels=2, frequency=48000, lengthbytes=40544, lengthpcm=150641, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.833801.
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 11389952
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 74656
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 0000000076C1F5FC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFD811A1100
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFD811A10D0
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFD811A11D0
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFD811A1290
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000000001DC578
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Foghorn Normalize', format=2, channels=2, frequency=48000, lengthbytes=67456, lengthpcm=453856, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.912048.
+[LOG] SystemI::createSound                     : filename = C:\Users\Emilb\DevProjects\Games\AnimalRacerGame\AnimalThingy\Assets\Resources\Animal Racer\Build\Desktop\Master Bank.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 000000004F4D8848 : node = 000000001174BAA0
+[LOG] SystemI::createSound                     : add node to async list : head = 000000004FC96218.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000000004F4D8848
+[LOG] SystemI::createSoundInternal             :     Create name='C:\Users\Emilb\DevProjects\Games\AnimalRacerGame\AnimalThingy\Assets\Resources\Animal Racer\Build\Desktop\Master Bank.bank', mode=0x02010082
+[LOG] SystemI::createSound                     :     filename = C:\Users\Emilb\DevProjects\Games\AnimalRacerGame\AnimalThingy\Assets\Resources\Animal Racer\Build\Desktop\Master Bank.bank : mode 02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
+[LOG] SystemI::createSound                     :     FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 11389952
+[LOG] SystemI::createSound                     :     setdata soundi = 000000004F4D7AC8 : node = 000000001174A840
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 74656
+[LOG] SystemI::createSound                     :     add node to async list : head = 000000004FC96218.  list count = 0
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000000001174BBB8
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSound                     :     filename = C:\Users\Emilb\DevProjects\Games\AnimalRacerGame\AnimalThingy\Assets\Resources\Animal Racer\Build\Desktop\Master Bank.bank : mode 02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSound                     :     FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSound                     :     setdata soundi = 000000004F4D8188 : node = 000000001174AAE0
+[LOG] SystemI::createSound                     :     add node to async list : head = 000000004FC96218.  list count = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='alt STRESS_Ljud_V1', format=2, channels=2, frequency=48000, lengthbytes=303104, lengthpcm=1376256, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.736500.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000000004F4D8848
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000000004F4D7AC8
+[LOG] SystemI::createSoundInternal             :     Create name='C:\Users\Emilb\DevProjects\Games\AnimalRacerGame\AnimalThingy\Assets\Resources\Animal Racer\Build\Desktop\Master Bank.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 11389952
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 74656
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000000001174A958
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='VindLoop_04_V1 [long] merged', format=2, channels=2, frequency=48000, lengthbytes=374560, lengthpcm=1536000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.122097.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000000004F4D7AC8
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000000004F4D8188
+[LOG] SystemI::createSoundInternal             :     Create name='C:\Users\Emilb\DevProjects\Games\AnimalRacerGame\AnimalThingy\Assets\Resources\Animal Racer\Build\Desktop\Master Bank.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 11389952
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 74656
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000000001174ABF8
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Is 160bpm Loop', format=2, channels=2, frequency=48000, lengthbytes=769312, lengthpcm=2591964, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.867523.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000000004F4D8188
+[LOG] SoundI::getSubSound                      : sound 000000004F4D8848.  Subsound index 0 / 1
+[LOG] SoundI::getSubSound                      : sound 000000004F4D7AC8.  Subsound index 0 / 1
+[LOG] SoundI::getSubSound                      : sound 000000004F4D8188.  Subsound index 0 / 1
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000000004F4D8D58
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000000004F4D8D58
+[LOG] SoundI::release                          :  (0000000058088828)
+[LOG] SoundI::release                          :     Foghorn Normalize (000000004FC97E08)
+[LOG] SoundI::release                          :  (00000000580883D8)
+[LOG] SoundI::release                          :     Örn Normalize (000000004FC975E8)
+[LOG] SoundI::release                          :  (0000000058087858)
+[LOG] SoundI::release                          :     ISBANA_SJÖLEJON_04-V1 (1shot) (000000004FC953C8)
+[LOG] SoundI::release                          :  (00000000580879C8)
+[LOG] SoundI::release                          :     Prototuta (000000004FC95708)
+[LOG] SoundI::release                          : Is 160bpm Loop (000000004F4D8188)
+[LOG] SoundI::release                          :     Is 160bpm Loop (000000004FC958A8)
+[LOG] SoundI::release                          :     Is 160bpm Loop (000000004F4D90B8)
+[LOG] SoundI::release                          : VindLoop_04_V1 [long] merged (000000004F4D7AC8)
+[LOG] SoundI::release                          :     VindLoop_04_V1 [long] merged (000000004FC97928)
+[LOG] SoundI::release                          :     VindLoop_04_V1 [long] merged (000000004F4D75B8)
+[LOG] SoundI::release                          : alt STRESS_Ljud_V1 (000000004F4D8848)
+[LOG] SoundI::release                          :     alt STRESS_Ljud_V1 (000000004FC97788)
+[LOG] SoundI::release                          :     alt STRESS_Ljud_V1 (000000004F4D8D58)
+[LOG] Thread::callback                         : FMOD Studio bank load thread finished.
+[LOG] Thread::callback                         : FMOD Studio sample load thread finished.
+[LOG] LiveUpdate::release                      : 
+[LOG] LiveUpdate::reset                        : Reset connection (reason Disconnected)
+[LOG] Thread::callback                         : FMOD stream thread finished.
+[LOG] Thread::callback                         : FMOD mixer thread finished.
+[LOG] Thread::callback                         : FMOD nonblocking thread (0) finished.
+[LOG] Thread::callback                         : FMOD file thread finished.
 [LOG] SystemI::close                           : Closed.

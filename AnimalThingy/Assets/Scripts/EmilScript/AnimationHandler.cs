@@ -4,15 +4,15 @@ using UnityEngine.Animations;
 
 public class AnimationHandler : MonoBehaviour
 {
-    [SerializeField] private bool autoAnimate;
+	[SerializeField] private bool autoAnimate;
 	[SerializeField] private Animator animator;
 	[Tooltip("One animation per event type")][SerializeField] private AnimationType[] animationType;
 	private AnimationType forUpdate, forCollisionEnter, forCollisionExit, forCollisionStay, forTriggerEnter,
 	forTriggerStay, forTriggerExit;
-    private bool queveUpdateAnimation;
-    public float speed;
-    public float BlinkInterval
-    {
+	private bool queveUpdateAnimation;
+	public float speed;
+	public float BlinkInterval
+	{
 		get
 		{
 			return blinkInterval;
@@ -74,7 +74,7 @@ public class AnimationHandler : MonoBehaviour
 		{
 			queveUpdateAnimation = false;
 		}
-		if (forUpdate != null && !queveUpdateAnimation)
+		if (forUpdate != null)
 		{
 			if (Time.time < forUpdate.initialAnimationDelay)
 			{
@@ -100,7 +100,7 @@ public class AnimationHandler : MonoBehaviour
 						}
 						break;
 					case AnimationTriggerType.trigger:
-						if (forUpdate.secondAnimationTrigger != null)
+						if (forUpdate.secondAnimationTrigger != string.Empty)
 						{
 							SetAnimatorTrigger(
 								forUpdate.OnFirstAnimation ? forUpdate.animationTrigger : forUpdate.secondAnimationTrigger);
@@ -117,8 +117,9 @@ public class AnimationHandler : MonoBehaviour
 		}
 	}
 
-	void OnCollisionEnter2D()
+	void OnCollisionEnter2D(Collision2D collision)
 	{
+		print("collisoin");
 		queveUpdateAnimation = true;
 		if (forCollisionEnter != null)
 		{

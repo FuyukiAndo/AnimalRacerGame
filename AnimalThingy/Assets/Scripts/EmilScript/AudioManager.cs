@@ -47,13 +47,13 @@ public class AudioManager : MonoBehaviour
 	[SerializeField][Range(0f, 1f)] private float backgroundVolume = .5f, ambienceVolume = .5f, sfxVolume = .5f, masterVolume = .5f;
 	private IEnumerator backgroundRoutine, ambienceRoutine;
 	private Scene scene;
+	[SerializeField] private float stressSignalDelay = 5f;
 
 	void OnEnable()
 	{
 		SceneManager.sceneLoaded += OnSceneLoaded;
 		SetVolumeSFX(.5f);
 		SetVolumeBackground(.5f);
-		print(GetVolumeBackground() + " background volume enable " + SceneManager.GetActiveScene().name);
 		SetVolumeAmbience(.5f);
 	}
 
@@ -66,6 +66,7 @@ public class AudioManager : MonoBehaviour
 			{
 				if (background.audioPaths[i].mapName.Contains(scene.name) || scene.name.Contains(background.audioPaths[i].mapName))
 				{
+					if (scene.name.Contains("VictoryScreen")) return;
 					SetBackgroundAudio(GetBackAudioPathForScene(scene));
 					SetAmbience(GetAmbienceAudioPathForScene(scene));
 					StopBackAudioLooping();
@@ -75,9 +76,9 @@ public class AudioManager : MonoBehaviour
 					SetVolumeSFX(GetVolumeSFX());
 					SetVolumeBackground(GetVolumeBackground());
 					SetVolumeAmbience(GetVolumeAmbience());
+					SetBackParameterValue(0f);
 					PlayBackAudioLooping();
 					PlayAmbienceLooping();
-					print(GetVolumeBackground() + " background volume scene loaded " + SceneManager.GetActiveScene().name);
 					return;
 				}
 			}
@@ -245,7 +246,6 @@ public class AudioManager : MonoBehaviour
 			SetVolumeAmbience(.5f);
 			PlayBackAudioLooping();
 			PlayAmbienceLooping();
-			print(GetVolumeBackground() + " background volume awake " + SceneManager.GetActiveScene().name);
 			DontDestroyOnLoad(gameObject);
 		}
 		else if (instance != this)
@@ -460,7 +460,7 @@ public class AudioManager : MonoBehaviour
 		return PlayerPrefs.GetFloat("SFX");
 	}
 
-	public void FadeBackTo(string path)
+	public void FadeBackTo(string path, float paramValue)
 	{
 		background.audioInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
 		if (path != "")
@@ -470,7 +470,7 @@ public class AudioManager : MonoBehaviour
 		}
 	}
 
-	public void FadeAmbienceTo(string path = null)
+	public void FadeAmbienceTo(string path, float paramValue)
 	{
 		ambience.audioInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
 		if (path != null || path != string.Empty)

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="ParameterPreset" id="{20a51707-a76c-4421-8da3-6efea7d50d2b}">
+        <property name="name">
+            <value>Istapp</value>
+        </property>
+        <relationship name="folder">
+            <destination>{eeb4d956-6d5f-4882-8484-a5143fb4d5f1}</destination>
+        </relationship>
+        <relationship name="parameter">
+            <destination>{8c576a6d-dd36-4e97-bf62-ddc10862df48}</destination>
+        </relationship>
+    </object>
+    <object class="GameParameter" id="{8c576a6d-dd36-4e97-bf62-ddc10862df48}">
+        <property name="initialValue">
+            <value>0</value>
+        </property>
+    </object>
+</objects>

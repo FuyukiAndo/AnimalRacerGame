@@ -674,6 +674,6 @@ public class AudioAutoPlayer : MonoBehaviour
 	void OnDrawGizmos()
 	{
 		Gizmos.color = Color.red;
-		Gizmos.DrawWireSphere((Vector2)transform.position, 1f);
+		Gizmos.DrawWireCube((Vector2)transform.position + boxOffset, boxSize);
 	}
 }

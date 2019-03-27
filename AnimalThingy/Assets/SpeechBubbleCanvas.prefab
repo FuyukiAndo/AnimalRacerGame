@@ -870,19 +870,19 @@ MonoBehaviour:
     - Dear Wilzimiax! @ got it! Such speed and finesse!
   - speechType: 5
     speeches:
-    - Oh! Looks like @ and @@ are neck to neck already!
-    - Geez! Looks like @ and @@ really want those hats huh?
-    - Look at them go! @ and @@ seems to push it early on!
+    - "Oh! Looks like @ and \xA7 are neck to neck already!"
+    - "Geez! Looks like @ and \xA7 really want those hats huh?"
+    - "Look at them go! @ and \xA7 seems to push it early on!"
   - speechType: 6
     speeches:
-    - Oh! Looks like @ and @@ are neck to neck already!
-    - Geez! Looks like @ and @@ really want those hats huh?
-    - Look at them go! @ and @@ seems to push it early on!
+    - "Oh! Looks like @ and \xA7 are neck to neck already!"
+    - "Geez! Looks like @ and \xA7 really want those hats huh?"
+    - "Look at them go! @ and \xA7 seems to push it early on!"
   - speechType: 7
     speeches:
-    - '@ and @@ only got one left! Who will win I wonder?'
-    - '@ and @@ are neck to neck almost at the end of this! Oh dear Wilzimiax!'
-    - "Don\u2019t the rest of you wanna win? @ and @@ only got one more before the
+    - "@ and \xA7 only got one left! Who will win I wonder?"
+    - "@ and \xA7 are neck to neck almost at the end of this! Oh dear Wilzimiax!"
+    - "Don\u2019t the rest of you wanna win? @ and \xA7 only got one more before the
       finish line!"
   - speechType: 3
     speeches:
@@ -891,10 +891,10 @@ MonoBehaviour:
     - "AAAH! @ got one leftl! Can\u2019t tear my eyes off of this!"
   - speechType: 4
     speeches:
-    - Looks like the last stretch for @ and @@! Stop slacking the rest of you!
-    - Looks like the final showdown between @ and @@! What a thrill!
-    - "What\u2019ya know? Looks like we got our rivalry between @ and @@! Bring me
-      some earth snack!"
+    - "Looks like the last stretch for @ and \xA7! Stop slacking the rest of you!"
+    - "Looks like the final showdown between @ and \xA7! What a thrill!"
+    - "What\u2019ya know? Looks like we got our rivalry between @ and \xA7! Bring
+      me some earth snack!"
   - speechType: 9
     speeches:
     - Wooh! All of you already got @ ! Slow it down for my poor eyes!

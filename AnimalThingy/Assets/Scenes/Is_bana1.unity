@@ -7443,17 +7443,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraSmoothTime: 0.5
-  minZoomSinglePlayer: 45
-  minZoom: 45
-  maxZoomSinglePlayer: 25
-  maxZoom: 10
+  minZoomSinglePlayer: 25
+  minZoom: 25
+  maxZoomSinglePlayer: 15
+  maxZoom: 12
   zoomLimiter: 50
   players: []
   startFov: 60
   startPos: {fileID: 599408717}
   timeBeforeZoomToPlayers: 3
   camAngle: 5
-  camYOffset: 10
+  camYOffset: 16
 --- !u!81 &599408714
 AudioListener:
   m_ObjectHideFlags: 0

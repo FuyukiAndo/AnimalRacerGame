@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="AudioFile" id="{b7f004c3-5e74-4156-b5e3-f449f9f47511}">
+        <property name="assetPath">
+            <value>ISTAPP_HIT_009.wav</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>48</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>0.31302083333333336</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{62735493-e8e9-437e-ba6c-43c859bdfc29}</destination>
+        </relationship>
+    </object>
+</objects>
